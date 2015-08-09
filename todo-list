@@ -1,0 +1,9 @@
+Login/Rigistration
+Category Listing
+Product Listing
+Product Detail
+Checkout
+
+http://dev.grocermax.com/webservice/new_services/index.php/productlist?pro_id=11498
+http://dev.grocermax.com/webservice/new_services/index.php/productlist?cat_id=2402
+http://dev.grocermax.com/webservice/new_services/index.php/category?parentid=2402
