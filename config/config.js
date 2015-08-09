@@ -6,7 +6,7 @@ var env = "local",
 			"protocol": "http",
 			"domainName": "localhost/grocermax/",
 			"port": "",			
-			"apiUrl": "http://localhost/grocermax-api/"
+			"apiUrl": "http://dev.grocermax.com/webservice/new_services/index.php/"
 		},
 		"qa": {			
 			"protocol": "http",

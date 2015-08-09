@@ -1,4 +1,4 @@
-Login/Rigistration
+Login/Registration
 Category Listing
 Product Listing
 Product Detail
@@ -7,3 +7,15 @@ Checkout
 http://dev.grocermax.com/webservice/new_services/index.php/productlist?pro_id=11498
 http://dev.grocermax.com/webservice/new_services/index.php/productlist?cat_id=2402
 http://dev.grocermax.com/webservice/new_services/index.php/category?parentid=2402
+
+Image: "http://dev.grocermax.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/m/image_210117.jpg"
+Name: "Coco No 1 Raw  Almonds 250 Gms"
+Price: "350.00"
+Status: "In stock"
+currencycode: "Rs."
+p_brand: "Coco No. 1"
+p_name: "Raw"
+p_pack: "Almonds | 250 Gms"
+productid: "15070"
+promotion_level: null
+sale_price: "266.69"

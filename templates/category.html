@@ -1,7 +1,39 @@
-<div ng-controller="categoryController">
-	<div class="row">
-        <div class="col-xs-6 col-md-3" data-ng-repeat="category in categories">
-            <div class="thumbnail">{{category.name}}</div>
-        </div> 	
-    </div>		
+<div style="width:25%; " ng-controller="categoryController">	
+	<div data-ng-repeat="category in categories">
+		<ul class="list-group">
+	  		<li class="list-group-item" 
+	  			data-ng-class="{'active': categoryIndex == category.category_id}">	    		
+	    		<span class="badge" 
+	    			data-ng-show="categoryIndex == -1"
+	    			data-ng-click="categoryIndex = category.category_id">+</span>
+	    		<span class="badge" 
+	    			data-ng-show="categoryIndex == category.category_id"
+	    			data-ng-click="categoryIndex = -1">-</span>
+	    		<!-- <span class="badge">{{category.children.length}}</span> -->
+	    		{{category.name}}	    		
+	  		</li>
+		</ul>
+		<ul class="list-group" 
+			data-ng-show="category.children.length && categoryIndex == category.category_id"
+			data-ng-repeat="subCategory in category.children" 
+			style="margin-left:10%; ">
+	  		<li class="list-group-item"
+	  			data-ng-class="{'active': subCategoryIndex == subCategory.category_id}">	    		
+	    		<span class="badge" 
+	    			data-ng-show="subCategoryIndex == -1"
+	    			data-ng-click="subCategoryIndex = subCategory.category_id">+</span>
+	    		<span class="badge" 
+	    			data-ng-show="subCategoryIndex == subCategory.category_id"
+	    			data-ng-click="subCategoryIndex = -1">-</span>
+	    		<!-- <span class="badge">{{category.children.length}}</span> -->
+	    		{{subCategory.name}}	    		
+	  		</li>
+	  		<div class="list-group" 
+				data-ng-show="subCategory.children.length && subCategoryIndex == subCategory.category_id"
+				data-ng-repeat="item in subCategory.children"
+				style="margin-left:20%; ">
+		  		<a href="#/product/{{item.category_id}}" class="list-group-item">{{item.name}}</a>
+		  	</div>
+		</ul>
+	</div>		
 </div>

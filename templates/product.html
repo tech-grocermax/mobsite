@@ -2,13 +2,17 @@
 	<div class="row">  		
   		<div class="col-xs-6 col-md-3" data-ng-repeat="product in products">
     		<div class="thumbnail">
-      			<img src="{{product.product_thumbnail}}">
+      			<img src="{{product.Image}}">
       			<div class="caption">
-        			<h3>{{product.name}}</h3>
-        			<p>{{product.product_description}}</p>
-        			<p>
-        				<a href="javascript: void(0); " 
-        					class="btn btn-primary" role="button">See More...</a> 
+        			<p>{{product.Name}}</p>
+                    <p >Price: 
+                        <span style="text-decoration:line-through; ">Rs. {{product.Price}}</span>
+                        &nbsp;&nbsp;<span style="font-weight:bold; ">Rs. {{product.sale_price}}<span>
+                    </p>
+                    <p data-ng-class="{'outStock': product.Status== 'Out of stock'}">
+                        {{product.Status}}</p>
+        			<p data-ng-show="product.Status == 'In stock'">
+        				<a href="javascript: void(0); " class="btn btn-primary" role="button">Add</a> 
         			</p>
       			</div>
     		</div>
