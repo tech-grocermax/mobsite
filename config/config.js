@@ -38,6 +38,3 @@ getAPIFullUrl = function() {
 getCurrentVersion = function() {
 	return applicationVersion;
 };
-
-console.log(getApplicationUrl());
-console.log(getAPIUrl());

@@ -6,3 +6,4 @@ ul{list-style: none; margin: 0; padding: 0;}
 nav{margin:10px 0; float: left;}
 pre{text-align: center;}
 p.outStock{color:#ff0000;}
+.category{width:100%; position: absolute; top:0px; left:-1%; text-align: center;}
