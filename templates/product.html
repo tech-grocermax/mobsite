@@ -1,5 +1,8 @@
 <div ng-controller="productController">
-	<div class="row">  		
+    <header data-ng-include="'templates/header.html'"></header>
+    <article class="margin-bot15" 
+        data-ng-include="'templates/subcategory.html'"></article>
+	<!-- <div class="row">  		
   		<div class="col-xs-6 col-md-3" data-ng-repeat="product in products">
     		<div class="thumbnail" data-ng-click="routerChange('product/details', product.productid)">
       			<img src="{{product.Image}}">
@@ -17,5 +20,5 @@
       			</div>
     		</div>
   		</div>
-	</div>
+	</div> -->
 </div>

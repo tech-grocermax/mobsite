@@ -1,27 +1,11 @@
 <div ng-controller="categoryController">    
-    <div class="row" style="background-color:#db5433; width: 100%; text-align: center; margin: 0 auto;">
-	    <div class="row">
-	    	<ul class="nav nav-pills" role="tablist" style="width:90%; margin: 0 auto;" data-ng-include="'templates/navigation.html'"></ul>
-	    </div>
-	    <!-- Start search section -->
-		<div class="row" data-ng-include="'templates/search.html'" style="width:100%; margin: 0 auto;"></div>
-		<div style="clear:both;">&nbsp;</div>
-	    <!-- End search section -->
-	</div>
-
-    <!-- Start banner section -->
-	<div class="panel panel-default" data-ng-include="'templates/banner.html'"></div>
-    <!-- End banner section -->
-
-	<!-- Start category section -->
-    <h3><span class="label label-default">Shop by Categories</span>	</h3>
-	<div style="clear:both;">&nbsp;</div>
-	<div class="row" data-ng-include="'templates/home-category.html'"></div>
-    <!-- End category section -->
-
-    <!-- Start deals section -->
-	<h3><span class="label label-default">Shop by Deals</span></h3>
-	<div style="clear:both;">&nbsp;</div>
-	<div class="row" data-ng-include="'templates/deals.html'"></div>
-    <!-- End deals section -->		
+    <header data-ng-include="'templates/header.html'"></header>
+    <article style="margin-bottom: 35px;">
+        <div class="row margin0" style="padding: 16px;" 
+        	data-ng-include="'templates/banner.html'"></div>
+        <div class="row margin0 slider" 
+        	data-ng-include="'templates/home-category.html'"></div>
+        <div class="row margin0 slider margin-top15"
+        	data-ng-include="'templates/deals.html'"></div>
+    </article>		
 </div>

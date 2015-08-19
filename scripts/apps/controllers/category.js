@@ -7,7 +7,8 @@ define(['app'], function(app) {
             $scope.categoryIndex = -1;
             $scope.subCategoryIndex = -1;
             $scope.categoryName = null;
-            $scope.subCategoryList = null;            
+            $scope.subCategoryList = null;
+
             
             if (utility.getJStorageKey(jstorageKey)) {
                 $scope.categories = utility.getJStorageKey(jstorageKey);
@@ -22,10 +23,14 @@ define(['app'], function(app) {
             if ($routeParams.categoryId) {
                 $scope.subCategoryList = categoryService.getSubCategoryList($scope.categories, $routeParams.categoryId);
                 $scope.categoryName = categoryService.getCategoryName($scope.categories, $routeParams.categoryId);
+                $scope.columnSize = 4;
+            }else{
+                $scope.columnSize = 3;
             }
 
             $scope.routerChange = function(route, id) {
-                $location.url(route + "/" + id);
+                route = angular.isDefined(id) ? route + ("/" + id) : route;
+                $location.url(route);
             };
         }
     ]);
