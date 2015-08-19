@@ -1,4 +1,10 @@
 <div ng-controller="categoryController">
+	<div class="row">
+    	<div class="col-xs-6 col-md-3" data-ng-show="categoryName">
+    	Category: {{categoryName}}
+    	</div>
+    </div>
+    <div style="clear:both;">&nbsp;</div>
 	<div class="row" data-ng-include="'templates/search.html'"></div>
 	<div style="clear:both;">&nbsp;</div>
 	<div class="row" data-ng-include="'templates/subcategory.html'"></div>

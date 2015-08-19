@@ -5,7 +5,7 @@ Product Detail
 Checkout
 
 ***** Search Web Service *****
-http://uat.grocermax.com/webservice/search?keyword=maggi&page=2
+http://dev.grocermax.com/webservice/new_services/index.php/search?keyword=maggi&page=2
 
 ***** Category  related web services *****
 http://dev.grocermax.com/webservice/new_services/index.php/productlist?pro_id=11498

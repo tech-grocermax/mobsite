@@ -1,0 +1,18 @@
+<div ng-controller="productController">
+	<div class="row">  		
+  		<div class="col-xs-6 col-md-3">
+    		<div class="thumbnail">
+      			<img src="{{productDetails.product_thumbnail}}">
+      			<div class="caption">
+        			<p>{{productDetails.product_name}}</p>
+                    <p >Price: 
+                        <span style="text-decoration:line-through; ">Rs. {{productDetails.product_price}}</span>
+                        &nbsp;&nbsp;<span style="font-weight:bold; ">Rs. {{productDetails.sale_price}}<span>
+                    </p>
+                    <p data-ng-class="{'outStock': productDetails.Status== 'Out of stock'}">
+                        {{productDetails.Status}}</p>        			
+      			</div>
+    		</div>
+  		</div>
+	</div>
+</div>

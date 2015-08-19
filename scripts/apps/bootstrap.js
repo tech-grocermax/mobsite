@@ -6,19 +6,23 @@ require.config({
 		'angular': 'scripts/libs/angular',
 		'angular-route': 'scripts/libs/angular-route',
 		'angular-ui': 'scripts/libs/angular-ui',
+		//'jquery': 'scripts/libs/jquery.min',
 		'bootstrap': 'scripts/libs/bootstrap.min',
 		'app': appURL + 'app'
     },
 	shim: {
 		'app': {
-			deps: ['angular', 'angular-route', 'angular-ui', 'bootstrap']
+			deps: ['angular', 'angular-route', 'angular-ui', /*'jquery',*/ 'bootstrap']
 		},
 		'angular-route': {
 			deps: ['angular']
 		},
 		'angular-ui': {
 			deps: ['angular']
-		}
+		}/*,
+		'bootstrap': {
+			deps: ['jquery']
+		}*/
 	}
 });
 

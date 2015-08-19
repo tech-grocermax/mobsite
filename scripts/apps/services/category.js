@@ -23,6 +23,18 @@ define(['app'], function (app) {
 		    	}
 		    	return subCategoryList;
 		    }; 
+
+		    this.getCategoryName = function(categories, categoryId){
+				var categoryName = null;
+		    	if(categories.length){
+		    		angular.forEach(categories, function(value, key) {
+		    			if(value.category_id == categoryId){
+							categoryName = value.name;
+		    			}
+		    		});
+		    	}
+		    	return categoryName;
+		    };
 	    
 	    	return this;
     	}

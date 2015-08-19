@@ -1,25 +1,52 @@
 define(['app'], function(app) {
 	app.controller('productController',  [
-        '$scope', '$rootScope', '$routeParams', 'productService', 'utility', 
-        function($scope, $rootScope, $routeParams, productService, utility){
-        	console.log($routeParams.categoryId);
-        	$scope.categoryId = $routeParams.categoryId;
-        	$scope.products = [];
-            var jstorageKey = "products_" + $routeParams.categoryId;
+        '$scope', '$rootScope', '$routeParams', '$location', 'productService', 'utility', 
+        function($scope, $rootScope, $routeParams, $location, productService, utility) {
+                        
+        	$scope.products = null;
+            $scope.productDetails = null;
+            $scope.categoryId = angular.isDefined($routeParams.categoryId) ? $routeParams.categoryId : null ;
+            $scope.productId = angular.isDefined($routeParams.productId) ? $routeParams.productId : null ;
 
-            if (utility.getJStorageKey(jstorageKey)) {
-                console.log("IF");
-                $scope.products = utility.getJStorageKey(jstorageKey);
-            } else {
-                console.log("ELSE");
-                productService.getProductList($scope.categoryId)
-                    .then(function(data){
-                        $scope.products = data.Product; 
-                        console.log($scope.products);
-                        utility.setJStorageKey(jstorageKey, $scope.products, 1);
-                    });
-            }        	
-        	
+            var jstorageKeyProducts = "products_" + $routeParams.categoryId;
+            var jstorageKeyProductDetails = "productDetails_" + $routeParams.productId;        	            
+
+            $scope.getProductList = function() {
+                if (utility.getJStorageKey(jstorageKeyProducts)) {
+                    $scope.products = utility.getJStorageKey(jstorageKeyProducts);
+                } else {
+                    productService.getProductList($scope.categoryId)
+                        .then(function(data){
+                            $scope.products = data.Product; 
+                            utility.setJStorageKey(jstorageKeyProducts, $scope.products, 1);
+                        });
+                }
+            };
+
+            if($scope.categoryId){
+               $scope.getProductList(); 
+            }
+
+            $scope.getProductDetails = function() {
+                if (utility.getJStorageKey(jstorageKeyProductDetails)) {
+                    $scope.productDetails = utility.getJStorageKey(jstorageKeyProductDetails);
+                } else {
+                    productService.getProductDetails($scope.productId)
+                        .then(function(data){
+                            $scope.productDetails = data.Product_Detail[0]; 
+                            utility.setJStorageKey(jstorageKeyProductDetails, $scope.productDetails, 1);
+                        });
+                }
+            };            
+
+            if($scope.productId){
+               $scope.getProductDetails(); 
+            }
+
+            $scope.routerChange = function(route, id) {
+                $location.url(route + "/" + id);
+            };
+
         }
     ]);
 });
