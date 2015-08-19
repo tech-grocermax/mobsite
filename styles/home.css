@@ -18,7 +18,7 @@ body{background: #f4f4f4;}
 .float-rt{float: right;}
 .search-bar{width: 100%; font-family: roboto; font-size: 22px; padding: 7px 0px 7px 5px; border: medium none;}
 .search-input{height: 64px; border-radius: 4px; background: #fff; margin-top: 32px;}
-.list-icon{margin: 8px 0px 0px;}
+.list-icon{margin: 8px 0px 0px; cursor: pointer;}
 .list-icon img{height: 47px; width:47px;}
 .search-icon{margin: 13px 0px 0px;}
 .search-icon img{height:45px; width: 38px;}
@@ -37,3 +37,11 @@ body{background: #f4f4f4;}
 .menu-item{background:#fff; font-size:26px; padding:32px 0 32px 32px; border-bottom:1px solid #d2d2d2; font-weight:bold;}
 .menu-item img{float:right; margin-right:32px; margin-top:12px;}
 .cursor-pointer{cursor:pointer;}
+.p_brand{color: #999; font-size: 12px; font-weight: 400; text-transform: uppercase; line-height: 16px;}
+.p_name{font-family: 'Roboto Slab', serif; font-weight: 400; white-space: nowrap;  overflow: hidden;
+    text-overflow: ellipsis;padding: 5px 0;}
+.p_pack{color: #666; font-size: 11px; font-weight: 600; white-space: nowrap;  overflow: hidden;
+    text-overflow: ellipsis;}
+.product-info{float: left; width: 100%; padding: 0 5px 10px; text-align: center;}
+.product-name{line-height:100%; padding: 0 5px;}
+.outStock{color:#FF0000;}

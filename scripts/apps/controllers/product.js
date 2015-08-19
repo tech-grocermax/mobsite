@@ -14,6 +14,7 @@ define(['app'], function(app) {
             $scope.getProductList = function() {
                 if (utility.getJStorageKey(jstorageKeyProducts)) {
                     $scope.products = utility.getJStorageKey(jstorageKeyProducts);
+                    console.log($scope.products);
                 } else {
                     productService.getProductList($scope.categoryId)
                         .then(function(data){
@@ -30,6 +31,7 @@ define(['app'], function(app) {
             $scope.getProductDetails = function() {
                 if (utility.getJStorageKey(jstorageKeyProductDetails)) {
                     $scope.productDetails = utility.getJStorageKey(jstorageKeyProductDetails);
+                    console.log($scope.productDetails);
                 } else {
                     productService.getProductDetails($scope.productId)
                         .then(function(data){
@@ -45,6 +47,16 @@ define(['app'], function(app) {
 
             $scope.routerChange = function(route, id) {
                 $location.url(route + "/" + id);
+            };
+
+            $scope.replaceImageUrl = function(src) {
+                //console.log(src.replace("image/", "small_image/190x190/"));
+                if(src.indexOf("placeholder") >= 0){
+                    return "images/small_image_1_2_1.jpg"
+                }else {
+                    return src.replace("image/", "small_image/190x190/");    
+                }
+                
             };
 
         }

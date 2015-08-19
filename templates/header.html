@@ -1,7 +1,7 @@
 <div class="row margin0">
     <div class="header-top"></div>
 </div>
-<div class="row margin0">
+<div class="row margin0" style="position:relative; ">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-middle">
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 padd0 cursor-pointer" data-ng-show="columnSize == 3">
             <a>
@@ -28,7 +28,8 @@
             </a>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-input">
-            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 list-icon">
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 list-icon"
+                data-ng-click="toggleCategoryMenu()">
                 <img src="images/app_bar_icons/list.png" alt="" class="img-responsive">
             </div>
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 padd0">
@@ -38,5 +39,17 @@
                 <img src="images/app_bar_icons/search_icon.jpg" alt="" class="img-responsive float-rt">
             </div>
         </div>
+    </div>
+
+    <div class="left-menu" style="position: absolute; z-index: 100; top: 100%;"
+        data-ng-show="showCategoryMenu">
+        <ul class="list-unstyled" >
+            <li class="menu-item-h">HOME</li>
+            <li class="item-shop">SHOP FOR</li>
+            <li class="menu-item" data-ng-repeat="category in categories">
+                {{category.name}} 
+                <img src="images/app_bar_icons/RIGHT-ICON.png" class="img-responsive">
+            </li>            
+        </ul>
     </div>          
 </div>

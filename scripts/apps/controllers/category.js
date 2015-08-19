@@ -9,7 +9,8 @@ define(['app'], function(app) {
             $scope.categoryName = null;
             $scope.subCategoryList = null;
 
-            
+            $scope.showCategoryMenu = false;
+
             if (utility.getJStorageKey(jstorageKey)) {
                 $scope.categories = utility.getJStorageKey(jstorageKey);
             } else {
@@ -31,6 +32,11 @@ define(['app'], function(app) {
             $scope.routerChange = function(route, id) {
                 route = angular.isDefined(id) ? route + ("/" + id) : route;
                 $location.url(route);
+            };
+
+            $scope.toggleCategoryMenu = function() {
+                $scope.showCategoryMenu = $scope.showCategoryMenu ? false : true;
+                console.log($scope.showCategoryMenu);
             };
         }
     ]);
