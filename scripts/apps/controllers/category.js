@@ -10,9 +10,13 @@ define(['app'], function(app) {
             $scope.subCategoryList = null;
 
             $scope.showCategoryMenu = false;
+            $scope.showSubCategoryMenu = false;
+            $scope.subSubCategoryIndex = -1;
+            $scope.preserveCategoryId = null;
 
             if (utility.getJStorageKey(jstorageKey)) {
                 $scope.categories = utility.getJStorageKey(jstorageKey);
+                console.log($scope.categories);
             } else {
         	   categoryService.getCategoryList()
                     .then(function(data){
@@ -24,9 +28,10 @@ define(['app'], function(app) {
             if ($routeParams.categoryId) {
                 $scope.subCategoryList = categoryService.getSubCategoryList($scope.categories, $routeParams.categoryId);
                 $scope.categoryName = categoryService.getCategoryName($scope.categories, $routeParams.categoryId);
+                console.log($scope.categoryName);
                 $scope.columnSize = 4;
             }else{
-                $scope.columnSize = 3;
+                $scope.columnSize = 1;
             }
 
             $scope.routerChange = function(route, id) {
@@ -35,8 +40,47 @@ define(['app'], function(app) {
             };
 
             $scope.toggleCategoryMenu = function() {
+                $scope.showSubCategoryMenu = false;
                 $scope.showCategoryMenu = $scope.showCategoryMenu ? false : true;
                 console.log($scope.showCategoryMenu);
+            };
+
+            $scope.toggleSubCategoryMenu = function(categoryId) {
+                console.log($scope.categories);
+                console.log(categoryId);
+                $scope.showCategoryMenu = false;
+                $scope.showSubCategoryMenu = $scope.showSubCategoryMenu ? false : true;
+                console.log($scope.showSubCategoryMenu);
+                $scope.categoryName = categoryService.getCategoryName($scope.categories, categoryId);
+                $scope.subCategories = categoryService.getSubCategoryList($scope.categories, categoryId);
+            };
+
+            $scope.toggleSubSubCategory = function(categoryId){
+                if($scope.subSubCategoryIndex == -1) {
+                    $scope.subSubCategoryIndex = categoryId;
+                    $scope.preserveCategoryId = categoryId;
+                }else{
+                    if($scope.preserveCategoryId == categoryId){
+                        $scope.subSubCategoryIndex = -1;
+                    }else{
+                        $scope.subSubCategoryIndex = categoryId;
+                    }                    
+                }
+            };
+           
+            $scope.renderChildrenCategory = function(childCategories) {
+                var strCategory = "";
+
+                angular.forEach(childCategories, function(value, key){
+                    if(key <= 1){
+                        strCategory+=value.name;
+                    }
+                    if(key < 1){
+                        strCategory+=", ";
+                    }
+                });
+                return strCategory;
+                
             };
         }
     ]);

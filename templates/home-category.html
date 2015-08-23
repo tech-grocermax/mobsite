@@ -5,7 +5,13 @@
 	    <div style="margin:10px 0px;" 
 	    	data-ng-click="routerChange('category', category.category_id)">
 	        <img src="images/silder-img1.jpg" title="{{category.name}}" class="width-100">
-	        <div class="caption" style="position:relative; "></div>
+	        <div class="img-text-box pad-lt16">
+				<span class="img-text-h">{{category.name}}</span><br>
+				<span class="img-text" data-ng-show="category.children.length">
+					{{renderChildrenCategory(category.children)}}
+				</span>
+			</div>
+	        <!-- <div class="caption" style="position:relative; "></div> -->
 	    </div>
 	    <div class="slide-text" style="height:100%: "><span>20 OFFERS</span></div>    
 	</div>

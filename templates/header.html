@@ -1,55 +1,83 @@
 <div class="row margin0">
-    <div class="header-top"></div>
-</div>
-<div class="row margin0" style="position:relative; ">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-middle">
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 padd0 cursor-pointer" data-ng-show="columnSize == 3">
-            <a>
-                <img src="images/app_bar_icons/cloud-icon.png" alt="" class="img-responsive margin-lt15" height="50" width="44">
-            </a>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 padd0 cursor-pointer" data-ng-show="columnSize == 3">
-            <a>
-                <img src="images/app_bar_icons/profile.png" alt="" class="img-responsive profile-lt">
-            </a>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd0 cursor-pointer" data-ng-show="columnSize == 4" data-ng-click="routerChange('/')">
-            <a><img src="images/app_bar_icons/back-icon.png" alt="" class="img-responsive" style="display:inline; "> </a>
-            <span style="color:#FFFFFF; font-weight:bold; ">&nbsp;{{categoryName}}</span>
-        </div>
-        <div class="col-lg-{{columnSize}} col-md-{{columnSize}} col-sm-{{columnSize}} col-xs-{{columnSize}} padd0 cursor-pointer">
-            <a>
-                <img src="images/app_bar_icons/cart.png" alt="" class="img-responsive cart-lt">
-            </a>
-        </div>
-        <div class="col-lg-{{columnSize}} col-md-{{columnSize}} col-sm-{{columnSize}} col-xs-{{columnSize}} padd0 cursor-pointer">
-            <a class="margin-rt15 float-rt margin-top10">
-                <img src="images/app_bar_icons/more-icon.png" alt="" class="img-responsive">
-            </a>
-        </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 search-input">
-            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 list-icon"
-                data-ng-click="toggleCategoryMenu()">
-                <img src="images/app_bar_icons/list.png" alt="" class="img-responsive">
+        <div class="row margin0" style="padding-left: 16px; padding-right: 16px;">
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0" data-ng-show="columnSize == 1">
+                <a>
+                    <img src="images/header-icon/logo-icon.png" alt="" class="img-responsive">
+                </a>
             </div>
-            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 padd0">
-                <input type="text" placeholder="Search and buy from here..." class="margin-top10 search-bar">
+            <div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 icon-margin" data-ng-show="columnSize == 1">
+                <a>
+                    <img src="images/header-icon/profile.png" alt="" class="img-responsive">
+                </a>
             </div>
-            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 search-icon">
-                <img src="images/app_bar_icons/search_icon.jpg" alt="" class="img-responsive float-rt">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd0" data-ng-show="columnSize == 4"data-ng-click="routerChange('/')">
+                <!-- <a><img src="images/app_bar_icons/heading_1.png" alt="" class="img-responsive"></a> -->
+                <a>
+                    <img src="images/app_bar_icons/back-icon.png" alt="" class="img-responsive" style="display:inline; "> </a>
+                <span style="color:#FFFFFF; font-weight:bold; ">&nbsp;{{categoryName}}</span>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 icon-margin">
+                <a>
+                    <img src="images/header-icon/cart.png" alt="" class="img-responsive">
+                </a>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 float-rt more-icon-mrg">
+                <a class="">
+                    <img src="images/header-icon/more-icon.png" alt="" class="img-responsive">
+                </a>
             </div>
         </div>
-    </div>
-
-    <div class="left-menu" style="position: absolute; z-index: 100; top: 100%;"
-        data-ng-show="showCategoryMenu">
-        <ul class="list-unstyled" >
-            <li class="menu-item-h">HOME</li>
+        <div class="row margin0 margin-top32">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white border-rad">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 padd0 list-icon" data-ng-click="toggleCategoryMenu()">
+                    <img src="images/app_bar_icons/list.png" alt="" class="img-responsive">
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 padd0">
+                    <input type="text" placeholder="Search and buy from here..." class="search-bar">
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 search-icon">
+                    <img src="images/app_bar_icons/search_icon.jpg" alt="" class="img-responsive float-rt">
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div class="left-menu" data-ng-show="showCategoryMenu" 
+        style="position: absolute; z-index: 100; top: 24%;">
+        <div class="menu-item-h">HOME</div>
+        <ul class="list-unstyled pad-lt32 back-white">
             <li class="item-shop">SHOP FOR</li>
-            <li class="menu-item" data-ng-repeat="category in categories">
-                {{category.name}} 
-                <img src="images/app_bar_icons/RIGHT-ICON.png" class="img-responsive">
+            <li class="menu-item" data-ng-repeat="category in categories"
+                data-ng-click="toggleSubCategoryMenu(category.category_id)">
+                {{category.name}}
+                <img src="images/app_bar_icons/RIGHT-ICON.png" alt="" class="img-responsive">
             </li>            
         </ul>
-    </div>          
+    </div>
+    <div class="left-menu" data-ng-show="showSubCategoryMenu"
+        style="position: absolute; z-index: 100; top: 24%;">
+        <div class="menu-item-h" data-ng-click="toggleCategoryMenu()">
+            <img src="images/app_bar_icons/back-icon.png" alt="" class="img-responsive" style="display:inline; ">
+            {{categoryName}}
+        </div>
+        <ul class="list-unstyled pad-lt32 back-white">
+            <li class="menu-item" data-ng-repeat="category in subCategories"
+                data-ng-click="toggleSubSubCategory(category.category_id)">
+                {{category.name}}
+                <img src="images/app_bar_icons/PLUS-ICON.png" alt="" class="img-responsive"
+                    data-ng-show="subSubCategoryIndex != category.category_id">
+                <img src="images/app_bar_icons/MINUS-ICON.png" alt="" class="img-responsive"
+                    data-ng-show="subSubCategoryIndex == category.category_id">
+                <ul class="list-unstyled" 
+                    data-ng-show="subSubCategoryIndex == category.category_id">
+                    <li class="sub-item" 
+                        data-ng-show="category.children.length"
+                        data-ng-repeat="subCategory in category.children"
+                        data-ng-click="routerChange('product', subCategory.category_id)">
+                        {{subCategory.name}}
+                    </li>                    
+                </ul>
+            </li>
+        </ul>
+    </div>             
 </div>
