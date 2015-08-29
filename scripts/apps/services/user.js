@@ -1,5 +1,5 @@
 define(['app'], function (app) {
-    app.service('customerService', ['$http', '$rootScope', 'serverUtility',
+    app.service('userService', ['$http', '$rootScope', 'serverUtility',
     	function ($http, $rootScope, serverUtility) {
 		    'use strict';
 		    

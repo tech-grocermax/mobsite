@@ -51,8 +51,8 @@ define([], function() {
                 dependencies: [
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',
-                    appURL + 'services/customer',
-                    appURL + 'controllers/customer'
+                    appURL + 'services/user',
+                    appURL + 'controllers/user'
                 ]
             }
         }

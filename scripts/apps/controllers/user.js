@@ -1,7 +1,7 @@
 define(['app'], function(app) {
-	app.controller('customerController',  [
-        '$scope', '$rootScope', '$routeParams', '$location', 'customerService', 'utility', 
-        function($scope, $rootScope, $routeParams, $location, customerService, utility) {
+	app.controller('userController',  [
+        '$scope', '$rootScope', '$routeParams', '$location', 'userService', 'utility', 
+        function($scope, $rootScope, $routeParams, $location, userService, utility) {
             
             $scope.sectionName = $routeParams.sectionName;          
         	$scope.showSearchBar = false;
@@ -56,7 +56,7 @@ define(['app'], function(app) {
 
             $scope.createUser = function() {
                 console.log($scope.user);
-                customerService.createUser($scope.user)
+                userService.createUser($scope.user)
                     .then(function(data){
                         console.log(data);
                         handleUserSuccessCallback(data);
@@ -69,7 +69,7 @@ define(['app'], function(app) {
                     password: $scope.user.password
                 };
 
-                customerService.loginUser(input)
+                userService.loginUser(input)
                     .then(function(data){
                         console.log(data);
                         handleUserSuccessCallback(data);
