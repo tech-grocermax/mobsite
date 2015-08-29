@@ -1,27 +1,58 @@
 <div ng-controller="productController">
     <header data-ng-include="'templates/header.html'"></header>    
-	<div class="row">  		
-  		<div class="col-xs-6 col-md-3" data-ng-repeat="product in products">
-    		<div class="thumbnail" data-ng-click="routerChange('product/details', product.productid)">
-      			<div style="margin:0 auto; ">
-                    <img src="{{replaceImageUrl(product.Image)}}" class="img-responsive">
+	<article class="margin-bot15">
+        <div class="row margin0 pad16 pad8-m">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box"
+                data-ng-repeat="product in products">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 margin-tp-5p"
+                    data-ng-click="routerChange('product/details', product.productid)">
+                    <img src="{{replaceImageUrl(product.Image)}}" 
+                        alt="" class="img-responsive">
                 </div>
-      			<div class="caption" style="text-align: center; ">        			
-                    <div class="product-name" title="{{product.Name}}">
-                        <p class="p_brand">{{product.p_brand}}</p>
-                        <p class="p_name" style=" ">{{product.Name}}</p>
-                        <p class="p_pack">{{product.p_pack}}</p>
-                        <div >
-                            <span style="color: #999; text-decoration: line-through;">₹{{product.Price}}</span>&nbsp;|&nbsp;<span style="font-weight:bold; ">₹{{product.sale_price}}<span>
-                        </div>
-                    </div>
-                    <!-- <p data-ng-class="{'outStock': product.Status== 'Out of stock'}">
-                        {{product.Status}}</p>
-        			<p data-ng-show="product.Status == 'In stock'">
-        				<a href="javascript: void(0); " class="btn btn-primary" role="button">Add</a> 
-        			</p> -->
-      			</div>
-    		</div>
-  		</div>
-	</div>
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 padd0"
+                    data-ng-click="routerChange('product/details', product.productid)">
+                    <ul class="list-unstyled">
+                        <li class="prod-list-h">{{product.p_brand}}</li>
+                        <li class="cat-list-name">{{product.Name}}</li>
+                        <li class="prod-list-qnty">{{product.p_pack}}</li>
+                        <li class="font-3"><span class="product-qnty">₹ {{product.Price}} |</span> <span class="prod-new-price">₹ {{product.sale_price}}</span></li>
+                        <li class="product-qnty">₹ {{getPriceDifference(product.Price, product.sale_price)}}</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cat-list-box"
+                    data-ng-show="product.Status == 'In stock'">
+                    <ul class="list-unstyled cat-list">
+                        <li class="cat-minus">-</li>
+                        <li class="cat-input-box">
+                            <input type="text" placeholder="1" class="cat-input-text">
+                        </li>
+                        <li class="cat-plus">+</li>
+                    </ul>
+                </div>
+            </div>            
+        </div>
+    </article>
 </div>
+<!-- <div class="col-xs-6 col-md-3" data-ng-repeat="product in products">
+    <div class="thumbnail" 
+        data-ng-click="routerChange('product/details', product.productid)">
+        <div style="margin:0 auto; ">
+            <img src="{{replaceImageUrl(product.Image)}}" class="img-responsive">
+        </div>
+        <div class="caption" style="text-align: center; ">                  
+            <div class="product-name" title="{{product.Name}}">
+                <p class="p_brand">{{product.p_brand}}</p>
+                <p class="p_name" style=" ">{{product.Name}}</p>
+                <p class="p_pack">{{product.p_pack}}</p>
+                <div >
+                    <span style="color: #999; text-decoration: line-through;">₹{{product.Price}}</span>&nbsp;|&nbsp;<span style="font-weight:bold; ">₹{{product.sale_price}}<span>
+                </div>
+            </div>
+            <p data-ng-class="{'outStock': product.Status== 'Out of stock'}">
+                {{product.Status}}</p>
+            <p data-ng-show="product.Status == 'In stock'">
+                <a href="javascript: void(0); " class="btn btn-primary" role="button">Add</a> 
+            </p>
+        </div>
+    </div>
+</div> -->

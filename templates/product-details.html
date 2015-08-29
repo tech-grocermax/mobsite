@@ -1,32 +1,52 @@
 <div ng-controller="productController">
-	<div class="row">  		
-  		<div class="col-xs-6 col-md-3">
-    		<div class="thumbnail">
-      			<div style="margin:0 auto; ">
-                    <img src="{{productDetails.product_thumbnail}}">
+	<header data-ng-include="'templates/header.html'"></header>
+    <article>
+        <div class="row margin0 back-white">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-md-offset-3 col-sm-offset-3 col-xs-offset-3" style="margin-top: 20px;">
+                <img src="images/prod-description.png" alt="" class="img-responsive">
+                <ul class="list-unstyled" style="text-align: center;">
+                    <li class="prod-list-h">{{productDetails.p_brand}}</li>
+                    <li class="cat-list-name">{{productDetails.product_name}}</li>
+                    <li class="prod-list-qnty">{{productDetails.p_pack}}</li>
+                </ul>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 font-3">
+                    <span class="product-qnty">₹ {{productDetails.product_price}} |</span> 
+                    <span class="prod-new-price">₹ {{productDetails.sale_price}}</span><br>
+                    <span class="product-qnty">₹ {{getPriceDifference(productDetails.product_price, productDetails.sale_price)}}</span>
                 </div>
-                <div class="caption" style="text-align: center; ">                  
-                    <div class="product-name" title="{{productDetails.product_name}}">
-                        <p class="p_brand">{{productDetails.p_brand}}</p>
-                        <p class="p_name" style=" ">{{productDetails.product_name}}</p>
-                        <p class="p_pack">{{productDetails.p_pack}}</p>
-                        <div >
-                            <span style="color: #999; text-decoration: line-through;">₹{{productDetails.product_price}}</span>&nbsp;|&nbsp;<span style="font-weight:bold; ">₹{{productDetails.sale_price}}<span>
-                        </div>
-                    </div>
-                    <p data-ng-class="{'outStock': productDetails.Status== 'Out of stock'}">
-                        {{productDetails.Status}}</p>                    
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 float-rt">
+                    <ul class="list-unstyled cat-list">
+                        <li class="cat-minus">-</li>
+                        <li class="cat-input-box">
+                            <input type="text" placeholder="1" class="cat-input-text">
+                        </li>
+                        <li class="cat-plus">+</li>
+                    </ul>
                 </div>
-      			<!-- <div class="caption">
-        			<p>{{productDetails.product_name}}</p>
-                    <p >Price: 
-                        <span style="text-decoration:line-through; ">Rs. {{productDetails.product_price}}</span>
-                        &nbsp;&nbsp;<span style="font-weight:bold; ">Rs. {{productDetails.sale_price}}<span>
-                    </p>
-                    <p data-ng-class="{'outStock': productDetails.Status== 'Out of stock'}">
-                        {{productDetails.Status}}</p>        			
-      			</div> -->
-    		</div>
-  		</div>
-	</div>
+            </div>
+        </div>
+    </article>
 </div>
+<!-- <div class="row">       
+    <div class="col-xs-6 col-md-3">
+        <div class="thumbnail">
+            <div style="margin:0 auto; ">
+                <img src="{{productDetails.product_thumbnail}}">
+            </div>
+            <div class="caption" style="text-align: center; ">                  
+                <div class="product-name" title="{{productDetails.product_name}}">
+                    <p class="p_brand">{{productDetails.p_brand}}</p>
+                    <p class="p_name" style=" ">{{productDetails.product_name}}</p>
+                    <p class="p_pack">{{productDetails.p_pack}}</p>
+                    <div >
+                        <span style="color: #999; text-decoration: line-through;">₹{{productDetails.product_price}}</span>&nbsp;|&nbsp;<span style="font-weight:bold; ">₹{{productDetails.sale_price}}<span>
+                    </div>
+                </div>
+                <p data-ng-class="{'outStock': productDetails.Status== 'Out of stock'}">
+                    {{productDetails.Status}}</p>                    
+            </div>                  
+        </div>
+    </div>
+</div> -->

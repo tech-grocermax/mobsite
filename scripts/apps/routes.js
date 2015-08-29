@@ -39,6 +39,21 @@ define([], function() {
                     appURL + 'filter/product',
                     appURL + 'controllers/product'
                 ]
+            },
+            '/page/:pageName': {
+                templateUrl: templateURL + 'page.html',
+                dependencies: [
+                    appURL + 'controllers/page'
+                ]
+            },
+            '/user/:sectionName': {
+                templateUrl: templateURL + 'user.html',
+                dependencies: [
+                    appURL + 'services/serverUtility',
+                    appURL + 'services/utility',
+                    appURL + 'services/customer',
+                    appURL + 'controllers/customer'
+                ]
             }
         }
     };

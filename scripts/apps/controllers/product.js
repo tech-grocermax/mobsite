@@ -7,7 +7,10 @@ define(['app'], function(app) {
             $scope.productDetails = null;
             $scope.categoryId = angular.isDefined($routeParams.categoryId) ? $routeParams.categoryId : null ;
             $scope.productId = angular.isDefined($routeParams.productId) ? $routeParams.productId : null ;
-
+            $scope.showSearchBar = false;
+            $scope.showSearchIcon = false;
+            $scope.showMoreIcon = true;
+            
             var jstorageKeyProducts = "products_" + $routeParams.categoryId;
             var jstorageKeyProductDetails = "productDetails_" + $routeParams.productId;        	            
 
@@ -58,6 +61,13 @@ define(['app'], function(app) {
                 }
                 
             };
+
+            $scope.getPriceDifference = function(price, salePrice) {
+                return  (price - salePrice);    
+            };
+
+            $scope.categoryName = "web service cat";
+            $scope.columnSize = 4;
 
         }
     ]);

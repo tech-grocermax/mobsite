@@ -4,20 +4,24 @@ Product Listing
 Product Detail
 Checkout
 
+http://dev.grocermax.com/webservice/new_services/index.php/
+
 ***** Search Web Service *****
-http://dev.grocermax.com/webservice/new_services/index.php/search?keyword=maggi&page=2
+search?keyword=maggi&page=2
 
 ***** Category  related web services *****
-http://dev.grocermax.com/webservice/new_services/index.php/productlist?pro_id=11498
-http://dev.grocermax.com/webservice/new_services/index.php/productlist?cat_id=2402
+productlist?pro_id=11498
+productlist?cat_id=2402
 
 ***** Product related web services *****
-http://dev.grocermax.com/webservice/new_services/index.php/category?parentid=2402
+category?parentid=2402
 
 ***** Customer related web services *****
-http://uat.grocermax.com/webservice/login?uemail=kundan@sakshay.in&password=sakshay
-http://uat.grocermax.com/webservice/createuser?uemail=sanjay@sakshay.in&password=sakshay&fname=sanjay&lname=kumar&number=9087654321
-http://uat.grocermax.com/webservice/userdetail?userid=323
+login?uemail=kundan@sakshay.in&password=sakshay
+createuser?uemail=sanjay@sakshay.in&password=sakshay&fname=sanjay&lname=kumar&number=9087654321
+userdetail?userid=323
+
+
 http://uat.grocermax.com/webservice/logout?userid=323
 http://uat.grocermax.com/webservice/forgotpassword?uemail=sanjay.chauhan@sakshay.in
 http://uat.grocermax.com/webservice/changepassword?userid=323&password=sakshay&old_password=WS*F_*Zz

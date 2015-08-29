@@ -1,0 +1,9 @@
+<div ng-controller="customerController">
+	<header data-ng-include="'templates/header.html'"></header>
+	<article data-ng-include="'templates/login.html'"
+		data-ng-show="section.login"></article>
+	<article data-ng-include="'templates/register.html'"
+		data-ng-show="section.register"></article>
+	<article data-ng-include="'templates/profile.html'"
+		data-ng-show="section.profile"></article>	
+</div>
