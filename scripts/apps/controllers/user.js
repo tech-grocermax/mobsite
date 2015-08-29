@@ -32,6 +32,18 @@ define(['app'], function(app) {
                 number: null
             };
 
+            $scope.password = {
+                caption: "Show",
+                type: "password"
+            };
+            $scope.userProfile = {};
+
+            $scope.togglePasswordField = function() {
+                console.log("togglePasswordField");
+                $scope.password.type == "password" ? "text" : "password";
+                $scope.password.caption == "Show" ? "Hide" : "Show";
+            };
+
             updateClassName = function(keyName) {
                 angular.forEach($scope.className, function(value, key){
                     $scope.className[key] = false;
@@ -75,6 +87,21 @@ define(['app'], function(app) {
                         handleUserSuccessCallback(data);
                     });
             };
+
+            utility.setJStorageKey("userId", 323, 1);
+
+            $scope.getUserProfile = function(userId) {
+                userService.getUserProfile(userId)
+                    .then(function(data){
+                        //console.log(data);
+                        //$scope.userProfile.personalInfo = data.Personal Info;
+                        $scope.userProfile.personalInfo = userService.samplePersonalInfo();
+                        $scope.userProfile.billingAddress = data.BillingAddress;
+                        $scope.userProfile.shippingAddress = data.ShippingAddress;
+                        console.log($scope.userProfile.personalInfo);
+                    });
+            };
+            $scope.getUserProfile(utility.getJStorageKey("userId"));
 
         }
     ]);

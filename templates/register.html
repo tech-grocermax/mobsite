@@ -54,8 +54,10 @@
 				</li>
 				<li class="reg-list">
 					<span class="reg-list-text">Password</span>
-					<span class="float-rt reg-list-text">Show</span><br>
-					<input type="password" placeholder="required" 
+					<span class="float-rt reg-list-text"
+						data-ng-click="togglePasswordField()"
+						style="cursor:pointer; ">{{password.caption}}</span><br>
+					<input type="{{password.type}}" placeholder="required" 
 						data-ng-model="user.password"
 						class="place-color reg-list-input">
 				</li>
