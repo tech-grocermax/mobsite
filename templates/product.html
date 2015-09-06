@@ -22,37 +22,16 @@
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cat-list-box"
                     data-ng-show="product.Status == 'In stock'">
                     <ul class="list-unstyled cat-list">
-                        <li class="cat-minus">-</li>
+                        <li class="cat-minus" data-ng-click="removeProduct(product)">-</li>
                         <li class="cat-input-box">
-                            <input type="text" placeholder="1" class="cat-input-text">
+                            <input type="text" placeholder="1" 
+                                value="{{getProductQuantity(product.productid)}}" 
+                                class="cat-input-text">
                         </li>
-                        <li class="cat-plus">+</li>
+                        <li class="cat-plus" data-ng-click="addProduct(product)">+</li>
                     </ul>
                 </div>
             </div>            
         </div>
     </article>
 </div>
-<!-- <div class="col-xs-6 col-md-3" data-ng-repeat="product in products">
-    <div class="thumbnail" 
-        data-ng-click="routerChange('product/details', product.productid)">
-        <div style="margin:0 auto; ">
-            <img src="{{replaceImageUrl(product.Image)}}" class="img-responsive">
-        </div>
-        <div class="caption" style="text-align: center; ">                  
-            <div class="product-name" title="{{product.Name}}">
-                <p class="p_brand">{{product.p_brand}}</p>
-                <p class="p_name" style=" ">{{product.Name}}</p>
-                <p class="p_pack">{{product.p_pack}}</p>
-                <div >
-                    <span style="color: #999; text-decoration: line-through;">₹{{product.Price}}</span>&nbsp;|&nbsp;<span style="font-weight:bold; ">₹{{product.sale_price}}<span>
-                </div>
-            </div>
-            <p data-ng-class="{'outStock': product.Status== 'Out of stock'}">
-                {{product.Status}}</p>
-            <p data-ng-show="product.Status == 'In stock'">
-                <a href="javascript: void(0); " class="btn btn-primary" role="button">Add</a> 
-            </p>
-        </div>
-    </div>
-</div> -->

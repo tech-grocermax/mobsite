@@ -13,7 +13,16 @@ define(['app'], function (app) {
 		    	var url = getAPIUrl() + "productlist?pro_id=" + productId;
 		    	return serverUtility.getWebService(url)
 		    		.then(function(data){return data}, function(error){return error});
-		    };    
+		    };  
+
+		    this.addProduct = function(products, quoteId) {
+		    	var strProducts = JSON.stringify(products),
+		    		url = getAPIUrl() + "addtocartgust?products=" + strProducts;
+
+		    	url = angular.isDefined(quoteId) ? url + "&quote_id=" + quoteId : url;		    		
+		    	return serverUtility.getWebService(url)
+		    		.then(function(data){return data}, function(error){return error});
+		    };
 	    
 	    	return this;
     	}

@@ -18,11 +18,15 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 float-rt">
                     <ul class="list-unstyled cat-list">
-                        <li class="cat-minus">-</li>
+                        <li class="cat-minus" 
+                            data-ng-click="removeProductWrapper(productDetails)">-</li>
                         <li class="cat-input-box">
-                            <input type="text" placeholder="1" class="cat-input-text">
+                            <input type="text" placeholder="1" 
+                                value="{{getProductQuantity(product.product_id)}}" 
+                                class="cat-input-text">
                         </li>
-                        <li class="cat-plus">+</li>
+                        <li class="cat-plus" 
+                            data-ng-click="addProductWrapper(productDetails)">+</li>
                     </ul>
                 </div>
             </div>
