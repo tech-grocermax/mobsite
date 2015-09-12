@@ -48,7 +48,53 @@ define(['app'], function (app) {
 		    			function(error){return error; }
 		    		);
 		    };
-	    
+
+		    this.getAddressList = function(userId) {
+		    	var url = getAPIUrl() + "getaddress?userid=" + userId;
+		    	return serverUtility.getWebService(url)
+		    		.then(
+		    			function(data){return data; },
+		    			function(error){return error; }
+		    		);
+		    };
+
+		    this.extractAddressById = function(addressList, addressId) {
+		    	var address = null;
+		    	angular.forEach(addressList, function(value, key) {
+		    		if(addressId == value.customer_address_id) {
+		    			address = value;
+		    		}
+		    	});
+		    	return address;
+		    };
+
+		    this.buildUpdateAddressObject = function(data, userId, addressId) {
+		    	return {
+		    		userid  : userId,
+					addressid : addressId,
+					fname : data.firstname,
+					lname : data.lastname,
+					addressline1 : data.street,
+					city : data.city,
+					state : data.region,
+					pin : data.postcode,
+					countrycode : data.country_id,
+					phone : data.telephone,
+					default_billing : data.is_default_billing ? 1 : 0,
+					default_shipping : data.is_default_shipping ? 1 : 0
+		    	};
+		    };
+	    	
+	    	this.updateAddress = function(data, userId, addressId) {
+		    	var url = getAPIUrl() + "editaddress?" 
+		    		+ $.param(this.buildUpdateAddressObject(data, userId, addressId));
+		    	return serverUtility.getWebService(url)
+		    		.then(
+		    			function(data){return data; },
+		    			function(error){return error; }
+		    		);
+		    };
+
 	    	return this;
     	}
     ]);

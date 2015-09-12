@@ -3,7 +3,8 @@ define(['app'], function(app) {
         '$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'userService', 'utility', 
         function($scope, $rootScope, $routeParams, $location, $timeout, userService, utility) {
             
-            $scope.sectionName = $routeParams.sectionName;          
+            $scope.sectionName = $routeParams.sectionName; 
+            $scope.addressId = angular.isDefined($routeParams.addressId) ? $routeParams.addressId : null;         
         	$scope.showSearchBar = false;
             $scope.columnSize = 1;
             $scope.pageName = $routeParams.pageName;
@@ -12,7 +13,6 @@ define(['app'], function(app) {
             $scope.showUserMenuOptions = false;
             $scope.showUserResponse = false;
             $scope.userResponseMessage = "";
-
             $scope.isUserLoggedIn = false;
 
             $scope.className = {
@@ -25,7 +25,10 @@ define(['app'], function(app) {
                 "login" : false,
                 "register" : false,
                 "profile" : false,
-                "editprofile": false
+                "editprofile": false,
+                "address" : false,
+                "addaddress" : false,
+                "editaddress" : false
             };
             $scope.section[$scope.sectionName] = true
 
@@ -42,6 +45,8 @@ define(['app'], function(app) {
                 type: "password"
             };
             $scope.userProfile = {};
+            $scope.addressList = [];
+            $scope.address = null;           
 
             $scope.togglePasswordField = function() {
                 console.log("togglePasswordField");
@@ -68,12 +73,9 @@ define(['app'], function(app) {
                 }
             };
 
-            console.log(utility.getJStorageKey("userId"));
-
             $scope.createUser = function() {
                 userService.createUser($scope.user)
                     .then(function(data){
-                        console.log(data);
                         successCallbackUser(data);
                     });
             };
@@ -147,6 +149,37 @@ define(['app'], function(app) {
                 userService.updateProfile($scope.user, utility.getJStorageKey("userId"))
                     .then(function(data){
                         successCallbackUpdateProfile(data);
+                    });
+            };
+
+            
+            getAddressList = function() {
+                userService.getAddressList(utility.getJStorageKey("userId"))
+                    .then(function(data){
+                        $scope.addressList = data.Address;
+                        if($scope.addressId) {
+                            $scope.address = userService.extractAddressById(data.Address, 
+                                $scope.addressId);
+                        }
+                    });
+            };
+
+            getAddressList();
+
+            $scope.editAddress = function(addressId) {
+                $location.url("user/editaddress?addressId=" + addressId);
+            };
+
+            $scope.updateAddress = function() {
+                userService.updateAddress($scope.address, 
+                    utility.getJStorageKey("userId"), $scope.addressId)
+                    .then(function(data){
+                        $scope.addressList = data.Address;
+                        if($scope.addressId) {
+                            $scope.address = userService.extractAddressById(data.Address, 
+                                $scope.addressId);
+                            $location.url('user/address');
+                        }
                     });
             };
 

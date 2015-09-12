@@ -1,0 +1,72 @@
+<section>
+	<div class="row margin0 pad-lt32 reg-bar pad-lt16-m"style="font-size: 4.1vw;">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
+			{{addressId ? 'EDIT' : 'CREATE'}} ADDRESS
+		</div>
+	</div>
+	
+	<div class="row margin0">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
+			<ul class="list-unstyled pad-lt32 margin0 pad-rt32 pad-lt-rt16-m" 
+				style="margin-top: 4px;">
+				<li class="reg-list">
+					<span class="reg-list-text">Address First Name</span><br>
+					<input type="text" placeholder="required"
+						data-ng-model="address.firstname"
+						value="{{address.firstname}}" 
+						class="place-color reg-list-input">
+				</li>
+				<li class="reg-list">
+					<span class="reg-list-text">Address Last Name</span><br>
+					<input type="text" placeholder="required" 
+						data-ng-model="address.lastname"
+						value="{{address.lastname}}"
+						class="place-color reg-list-input">
+				</li>
+				<li class="reg-list">
+					<span class="reg-list-text">City</span><br>
+					<input type="text" placeholder="required" 
+						data-ng-model="address.city"
+						value="{{address.city}}"
+						class="place-color reg-list-input">
+				</li>
+				<li class="reg-list">
+					<span class="reg-list-text">State</span><br>
+					<input type="text" placeholder="required" 
+						data-ng-model="address.region"
+						value="{{address.region}}"
+						class="place-color reg-list-input">
+				</li>
+				<li class="reg-list">
+					<span class="reg-list-text">Address</span><br>
+					<input type="text" placeholder="required"
+						data-ng-model="address.street"
+						value="{{address.street}}" 
+						class="place-color reg-list-input">
+				</li>
+				<li class="reg-list">
+					<span class="reg-list-text">Pincode</span><br>
+					<input type="text" placeholder="required"
+						data-ng-model="address.postcode"
+						value="{{address.postcode}}"  
+						class="place-color reg-list-input">
+				</li>
+				<li class="margin-top32">
+					<input type="checkbox" ng-model="address.is_default_billing" />
+					<div class="check-text">Make it my default billing address</div>
+				</li>
+				<li class="margin-top32">
+					<input type="checkbox" ng-model="address.is_default_shipping" />
+					<div class="check-text">Make it my default shipping address</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="row margin0 margin-top32">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" >
+			<button type="button" class="reg-bot-btn"
+				data-ng-click="updateAddress()">SAVE</button>
+		</div>
+	</div>
+</section>

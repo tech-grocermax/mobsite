@@ -79,3 +79,7 @@ if(cartItems.length) {
                         }
                     });
                 }
+
+
+
+                http://dev.grocermax.com/webservice/new_services/addaddress?userid=323&fname=Binit&lname=Katiyar&addressline1=Gurgaon&addressline2=B-45&city=Gurgaon&state=NCR&pin=122001&countrycode=IN&phone=09540955646&default_billing=1&default_shipping=1
