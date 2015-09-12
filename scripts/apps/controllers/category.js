@@ -14,9 +14,10 @@ define(['app'], function(app) {
             $scope.preserveCategoryId = null;
             $scope.showMoreMenuOptions = false;
             $scope.showSearchBar = true;
-
             $scope.showSearchIcon = false;
             $scope.showMoreIcon = true;
+            $scope.showMoreMenuOptions = false;
+            $scope.showUserMenuOptions = false;
 
             if (utility.getJStorageKey(jstorageKey)) {
                 $scope.categories = utility.getJStorageKey(jstorageKey);
@@ -88,8 +89,15 @@ define(['app'], function(app) {
             };
 
             $scope.showMoreMenu = function() {
+                $scope.showUserMenuOptions = false;
                 $scope.showMoreMenuOptions = $scope.showMoreMenuOptions ? false : true;
             };
+
+            $scope.showUserMenu = function() {
+                $scope.showMoreMenuOptions = false;
+                $scope.showUserMenuOptions = $scope.showUserMenuOptions ? false : true;
+            };
+
         }
     ]);
 });

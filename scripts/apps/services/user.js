@@ -68,10 +68,9 @@ define(['app'], function (app) {
 		    	return address;
 		    };
 
-		    this.buildUpdateAddressObject = function(data, userId, addressId) {
-		    	return {
+		    this.buildSaveUpdateAddressObject = function(data, userId, addressId) {
+		    	var obeject = {
 		    		userid  : userId,
-					addressid : addressId,
 					fname : data.firstname,
 					lname : data.lastname,
 					addressline1 : data.street,
@@ -83,11 +82,25 @@ define(['app'], function (app) {
 					default_billing : data.is_default_billing ? 1 : 0,
 					default_shipping : data.is_default_shipping ? 1 : 0
 		    	};
+		    	if(addressId){
+		    		obeject.addressid = addressId;
+		    	}
+		    	return obeject;
 		    };
 	    	
-	    	this.updateAddress = function(data, userId, addressId) {
-		    	var url = getAPIUrl() + "editaddress?" 
-		    		+ $.param(this.buildUpdateAddressObject(data, userId, addressId));
+	    	this.saveAddress = function(data, userId, addressId) {
+	    		var actionUrl = addressId ? "editaddress" : "addaddress";
+		    	var url = getAPIUrl() + actionUrl + "?" 
+		    		+ $.param(this.buildSaveUpdateAddressObject(data, userId, addressId));
+		    	return serverUtility.getWebService(url)
+		    		.then(
+		    			function(data){return data; },
+		    			function(error){return error; }
+		    		);
+		    };
+
+		    this.getOrderHistory = function(email) {
+		    	var url = getAPIUrl() + "orderhistory?email=" + email;
 		    	return serverUtility.getWebService(url)
 		    		.then(
 		    			function(data){return data; },

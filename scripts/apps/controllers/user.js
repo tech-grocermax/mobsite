@@ -10,6 +10,7 @@ define(['app'], function(app) {
             $scope.pageName = $routeParams.pageName;
             $scope.showSearchIcon = true;
             $scope.showMoreIcon = false;
+            $scope.showMoreMenuOptions = false;
             $scope.showUserMenuOptions = false;
             $scope.showUserResponse = false;
             $scope.userResponseMessage = "";
@@ -28,7 +29,8 @@ define(['app'], function(app) {
                 "editprofile": false,
                 "address" : false,
                 "addaddress" : false,
-                "editaddress" : false
+                "editaddress" : false,
+                "orderhistory" : false
             };
             $scope.section[$scope.sectionName] = true
 
@@ -46,7 +48,21 @@ define(['app'], function(app) {
             };
             $scope.userProfile = {};
             $scope.addressList = [];
-            $scope.address = null;           
+            $scope.address = null;
+            $scope.orderHistory = null;
+
+            $scope.address = {
+                firstname: null,
+                lastname: null,
+                city: null,
+                region: null,
+                street: null,
+                postcode: null,
+                country_id: "IN",
+                telephone: null,
+                is_default_billing: false,
+                is_default_shipping: false
+            };        
 
             $scope.togglePasswordField = function() {
                 console.log("togglePasswordField");
@@ -92,7 +108,7 @@ define(['app'], function(app) {
                     });
             };
 
-            utility.setJStorageKey("userId", 323, 1);
+            //utility.setJStorageKey("userId", 323, 1);
 
             syncModelData = function(data) {
                 $scope.user.fname = data.firstname;
@@ -123,8 +139,14 @@ define(['app'], function(app) {
                 getUserProfile(utility.getJStorageKey("userId"));
             }            
 
+            $scope.showMoreMenu = function() {
+                $scope.showUserMenuOptions = false;
+                $scope.showMoreMenuOptions = $scope.showMoreMenuOptions ? false : true;
+            };
+
             $scope.showUserMenu = function() {
-                $scope.showUserMenuOptions = true;
+                $scope.showMoreMenuOptions = false;
+                $scope.showUserMenuOptions = $scope.showUserMenuOptions ? false : true;
             };
 
             $scope.navigateTo = function(route) {
@@ -163,25 +185,37 @@ define(['app'], function(app) {
                         }
                     });
             };
-
-            getAddressList();
+            
+            if($scope.sectionName == "address" 
+                || $scope.sectionName == "addaddress"
+                || $scope.sectionName == "editaddress") {
+                getAddressList(); 
+            }            
 
             $scope.editAddress = function(addressId) {
                 $location.url("user/editaddress?addressId=" + addressId);
             };
 
-            $scope.updateAddress = function() {
-                userService.updateAddress($scope.address, 
+            $scope.saveAddress = function() {
+                userService.saveAddress($scope.address, 
                     utility.getJStorageKey("userId"), $scope.addressId)
                     .then(function(data){
-                        $scope.addressList = data.Address;
-                        if($scope.addressId) {
-                            $scope.address = userService.extractAddressById(data.Address, 
-                                $scope.addressId);
+                        if(data.flag == 1 || data.flag == "1") {
                             $location.url('user/address');
                         }
                     });
             };
+
+            var email ="sharan.radhakrishnan@outlook.com";
+            getOrderHistory = function() {
+                userService.getOrderHistory(email)
+                    .then(function(data){
+                        $scope.orderHistory = data.orderhistory;                        
+                    });
+            };
+            if($scope.sectionName == "orderhistory"){
+                getOrderHistory();
+            }
 
         }
     ]);

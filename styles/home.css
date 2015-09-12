@@ -132,7 +132,7 @@ body{background: #f4f4f4;}
 .user-details{font-size: 4.3vw; color:#7d7d76;}
 .profile-box{background: #fff; box-shadow: 0 8px 6px -8px #999;}
 .user-ul{font-size: 4.4vw; color: #2d2d2d;}
-.user-info{border-bottom: 1px solid #e4e4e4;padding: 22px 32px;}
+.user-info{border-bottom: 1px solid #e4e4e4;padding: 22px 32px; cursor: pointer;}
 .user-icon-arr{margin-top:1%;}
 .user-card{padding: 40px 30px;}
 

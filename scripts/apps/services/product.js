@@ -15,11 +15,22 @@ define(['app'], function (app) {
 		    		.then(function(data){return data}, function(error){return error});
 		    };  
 
-		    this.addProduct = function(products, quoteId) {
+		    this.cartAddProduct = function(products, quoteId) {
 		    	var strProducts = JSON.stringify(products),
 		    		url = getAPIUrl() + "addtocartgust?products=" + strProducts;
 
-		    	url = angular.isDefined(quoteId) ? url + "&quote_id=" + quoteId : url;		    		
+		    	return serverUtility.getWebService(url)
+		    		.then(function(data){return data}, function(error){return error});
+		    };
+
+		    this.cartUpdateProduct = function(products, quoteId, firstAddedProduct) {
+		    	var strProducts = JSON.stringify(products),
+		    		productid = new Array(firstAddedProduct),
+		    		strProductId = JSON.stringify(productid),
+		    		url = getAPIUrl() + "deleteitem?productid=" + strProductId 
+		    		+ "&quote_id=" + quoteId 
+		    		+ "&updateid=" + strProducts;
+
 		    	return serverUtility.getWebService(url)
 		    		.then(function(data){return data}, function(error){return error});
 		    };

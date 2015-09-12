@@ -1,47 +1,53 @@
 <div class="row margin0">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-middle">
-        <div class="row margin0" style="padding-left: 16px; padding-right: 16px;">
+        <div class="row margin0" 
+            style="padding-left: 16px; padding-right: 16px; position:relative;">
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0" 
                 data-ng-show="columnSize == 1">
-                <a><img src="images/header-icon/home.png" alt="" 
+                <a href="#/"><img src="images/header-icon/home.png" title="Home" 
                     class="img-responsive"></a>
             </div>
             <div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 margin-lt22p" 
                 data-ng-show="columnSize == 1"
                 data-ng-click="showUserMenu()">
-                <a><img src="images/header-icon/profile.png" alt="" 
-                        class="img-responsive"></a>
-                <ul class="list-unstyled drop-box"
-                    data-ng-show="showUserMenuOptions"                    
-                    style="position: absolute; z-index: 100; top: 24%; width:auto;">
-                    <li data-ng-show="!isUserLoggedIn">
-                        <a href="#/user/register">Register</a></li>
-                    <li  data-ng-show="!isUserLoggedIn">
-                        <a href="#/user/login">Login</a></li>
-                    <li data-ng-show="isUserLoggedIn">
-                        <a href="#/user/profile">Profile</a></li>
+                <a href="javascript:void(0);">
+                    <img src="images/header-icon/profile.png" 
+                        title="User" class="img-responsive"></a>                
+            </div>
+            <div data-ng-show="showUserMenuOptions"
+                style=" position: absolute; top: 110%; width: 300px; z-index: 100; left:-15%;">
+                <ul class="list-unstyled drop-box">
+                    <li><a href="#/user/register">Register</a></li>
+                    <li><a href="#/user/login">Login</a></li>
+                    <li><a href="#/user/profile">Profile</a></li>
                 </ul>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd0" 
                 data-ng-show="columnSize == 4"
                 data-ng-click="routerChange('/')">
-                <a><img src="images/app_bar_icons/back-icon.png" alt="" 
+                <a href="javascript:void(0);">
+                    <img src="images/app_bar_icons/back-icon.png" title="" 
                         class="img-responsive" style="display:inline; "> </a>
                 <span style="color:#FFFFFF; font-weight:bold; ">&nbsp;{{categoryName}}</span>
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 margin-lt22p"
                 data-ng-show="showSearchIcon">
-                <a><img class="img-responsive" src="images/header-icon/search1.png" alt=""></a>
+                <a href="javascript:void(0);">
+                    <img class="img-responsive" src="images/header-icon/search1.png" 
+                        title="Search"></a>
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 margin-lt22p">
-                <a><img src="images/header-icon/cart.png" alt="" class="img-responsive"></a>
+                <a href="javascript:void(0);">
+                    <img src="images/header-icon/cart.png" title="Cart" 
+                        class="img-responsive"></a>
                 <div class="header-O" 
-                    data-ng-click="addAllProductsToCart()">{{cartItemCount}}</div>
+                    data-ng-click="cartUpdateProducts()">{{cartItemCount}}</div>
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 float-rt more-icon-mrg"
                 data-ng-show="showMoreIcon"
                 data-ng-click="showMoreMenu()">
-                <a class=""><img src="images/header-icon/more-icon.png" alt="" 
+                <a href="javascript:void(0);">
+                    <img src="images/header-icon/more-icon.png" title="More" 
                         class="img-responsive"></a>                
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top15 padd0"

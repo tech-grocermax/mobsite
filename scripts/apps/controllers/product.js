@@ -6,16 +6,16 @@ define(['app'], function(app) {
             $scope.showSearchIcon = false;
             $scope.showMoreIcon = true; 
             $scope.categoryName = "web service cat";
-            $scope.columnSize = 4;       	
-
+            $scope.columnSize = 4;
             $scope.categoryId = angular.isDefined($routeParams.categoryId) ? $routeParams.categoryId : null ;
             $scope.productId = angular.isDefined($routeParams.productId) ? $routeParams.productId : null ;
             $scope.quoteId = angular.isDefined($routeParams.quoteId) ? $routeParams.quoteId : null ;
-                                   
             $scope.products = null;
             $scope.productDetails = null;
             $scope.cartItems = [];
             $scope.cartItemCount = 0;
+            $scope.showMoreMenuOptions = false;
+            $scope.showUserMenuOptions = false;
             
             getProductList = function() {
                 var jstorageKeyProducts = "products_" + $routeParams.categoryId;
@@ -163,10 +163,12 @@ define(['app'], function(app) {
             $scope.addProduct = function(product) {
                 if(angular.isUndefined(utility.getJStorageKey("quoteId")) 
                     || !utility.getJStorageKey("quoteId")) {
-                    productService.addProduct(buildAddProductObject(product))
+                    productService.cartAddProduct(buildAddProductObject(product))
                         .then(function(data){
                             if(data.flag == 1 || data.flag == "1"){
                                 utility.setJStorageKey("quoteId", data.QuoteId, 1);
+                                utility.setJStorageKey("firstAddedProduct",
+                                    product.productid, 1);
                                 addProductToJStorage(product);
                                 getCartDetails();
                             }                            
@@ -206,13 +208,14 @@ define(['app'], function(app) {
                 return qty;
             };
 
-            $scope.addAllProductsToCart = function() {
+            $scope.cartUpdateProducts = function() {
                 if(angular.isDefined(utility.getJStorageKey("quoteId"))) {
                     var quoteId = utility.getJStorageKey("quoteId"),
                         cartItemObject = utility.getJStorageKey("cartItems"),
-                        cartItems = cartItemObject[quoteId];
+                        cartItems = cartItemObject[quoteId],
+                        firstAddedProduct = utility.getJStorageKey("firstAddedProduct");
 
-                    productService.addProduct(cartItems, quoteId)
+                    productService.cartUpdateProduct(cartItems, quoteId, firstAddedProduct)
                         .then(function(data){
                             if(data.flag == 1 || data.flag == "1"){
                                 console.log("cart detail redirection");
@@ -246,7 +249,18 @@ define(['app'], function(app) {
             if($scope.quoteId){
                 console.log("quoteId = " + $scope.quoteId);
                 getCartItemDetails(); 
-            }    
+            }   
+
+            $scope.showMoreMenu = function() {
+                $scope.showUserMenuOptions = false;
+                $scope.showMoreMenuOptions = $scope.showMoreMenuOptions ? false : true;
+            };
+
+            $scope.showUserMenu = function() {
+                $scope.showMoreMenuOptions = false;
+                $scope.showUserMenuOptions = $scope.showUserMenuOptions ? false : true;
+            };            
+
         }
     ]);
 });

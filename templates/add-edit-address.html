@@ -45,6 +45,13 @@
 						class="place-color reg-list-input">
 				</li>
 				<li class="reg-list">
+					<span class="reg-list-text">Phone</span><br>
+					<input type="text" placeholder="required"
+						data-ng-model="address.telephone"
+						value="{{address.telephone}}" 
+						class="place-color reg-list-input">
+				</li>
+				<li class="reg-list">
 					<span class="reg-list-text">Pincode</span><br>
 					<input type="text" placeholder="required"
 						data-ng-model="address.postcode"
@@ -66,7 +73,11 @@
 	<div class="row margin0 margin-top32">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" >
 			<button type="button" class="reg-bot-btn"
-				data-ng-click="updateAddress()">SAVE</button>
+				data-ng-show="addressId"
+				data-ng-click="saveAddress()">SAVE</button>
+			<button type="button" class="reg-bot-btn"
+				data-ng-show="!addressId"
+				data-ng-click="saveAddress()">SAVE</button>
 		</div>
 	</div>
 </section>
