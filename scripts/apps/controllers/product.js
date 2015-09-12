@@ -1,20 +1,27 @@
 define(['app'], function(app) {
 	app.controller('productController',  [
         '$scope', '$rootScope', '$routeParams', '$location', 'productService', 'utility', 
-        function($scope, $rootScope, $routeParams, $location, productService, utility) {
-                        
-        	$scope.products = null;
-            $scope.productDetails = null;
-            $scope.categoryId = angular.isDefined($routeParams.categoryId) ? $routeParams.categoryId : null ;
-            $scope.productId = angular.isDefined($routeParams.productId) ? $routeParams.productId : null ;
+        function($scope, $rootScope, $routeParams, $location, productService, utility) {            
             $scope.showSearchBar = false;
             $scope.showSearchIcon = false;
-            $scope.showMoreIcon = true;            
-            
-            var jstorageKeyProducts = "products_" + $routeParams.categoryId,
-                jstorageKeyProductDetails = "productDetails_" + $routeParams.productId;        	            
+            $scope.showMoreIcon = true; 
+            $scope.categoryName = "web service cat";
+            $scope.columnSize = 4;       	
 
+            $scope.categoryId = angular.isDefined($routeParams.categoryId) ? $routeParams.categoryId : null ;
+            $scope.productId = angular.isDefined($routeParams.productId) ? $routeParams.productId : null ;
+            $scope.quoteId = angular.isDefined($routeParams.quoteId) ? $routeParams.quoteId : null ;
+            
+            console.log("quoteId = " + $scope.quoteId);
+            
+            $scope.products = null;
+            $scope.productDetails = null;
+            $scope.cartItems = [];
+            $scope.cartItemCount = 0;
+            
             $scope.getProductList = function() {
+                var jstorageKeyProducts = "products_" + $routeParams.categoryId;
+
                 if (utility.getJStorageKey(jstorageKeyProducts)) {
                     $scope.products = utility.getJStorageKey(jstorageKeyProducts);
                 } else {
@@ -31,6 +38,7 @@ define(['app'], function(app) {
             }
 
             $scope.getProductDetails = function() {
+                var jstorageKeyProductDetails = "productDetails_" + $routeParams.productId;
                 if (utility.getJStorageKey(jstorageKeyProductDetails)) {
                     $scope.productDetails = utility.getJStorageKey(jstorageKeyProductDetails);
                     console.log($scope.productDetails);
@@ -58,11 +66,7 @@ define(['app'], function(app) {
 
             $scope.getPriceDifference = function(price, salePrice) {
                 return  (price - salePrice);    
-            };
-
-            $scope.categoryName = "web service cat";
-            $scope.columnSize = 4;
-            $scope.cartItems = [];
+            };            
 
             buildCartObject = function(product) {
                 return {
@@ -87,10 +91,8 @@ define(['app'], function(app) {
                 cartItems[quoteId] = [];
                 cartItems[quoteId].push(cartObject);
                 utility.setJStorageKey("cartItems", cartItems, 1);                
-            };
+            };            
             
-            $scope.cartItems = [];
-            $scope.cartItemCount = 0;
             getCartItems = function() {                
                 var quoteId = utility.getJStorageKey("quoteId"),
                     cartItems = utility.getJStorageKey("cartItems");
@@ -219,7 +221,7 @@ define(['app'], function(app) {
                 return qty;
             };
 
-            $scope.getCartDetails = function() {
+            $scope.addAllProductsToCart = function() {
                 if(angular.isDefined(utility.getJStorageKey("quoteId"))) {
                     var quoteId = utility.getJStorageKey("quoteId"),
                         cartItemObject = utility.getJStorageKey("cartItems"),
