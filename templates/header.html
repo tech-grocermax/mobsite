@@ -7,9 +7,20 @@
                     class="img-responsive"></a>
             </div>
             <div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 margin-lt22p" 
-                data-ng-show="columnSize == 1">
+                data-ng-show="columnSize == 1"
+                data-ng-click="showUserMenu()">
                 <a><img src="images/header-icon/profile.png" alt="" 
                         class="img-responsive"></a>
+                <ul class="list-unstyled drop-box"
+                    data-ng-show="showUserMenuOptions"                    
+                    style="position: absolute; z-index: 100; top: 24%; width:auto;">
+                    <li data-ng-show="!isUserLoggedIn">
+                        <a href="#/user/register">Register</a></li>
+                    <li  data-ng-show="!isUserLoggedIn">
+                        <a href="#/user/login">Login</a></li>
+                    <li data-ng-show="isUserLoggedIn">
+                        <a href="#/user/profile">Profile</a></li>
+                </ul>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd0" 
                 data-ng-show="columnSize == 4"

@@ -40,7 +40,7 @@ define([], function() {
                     appURL + 'controllers/product'
                 ]
             },
-            '/product/:quoteId': {
+            '/cart/:quoteId': {
                 templateUrl: templateURL + 'cart.html',
                 dependencies: [
                     appURL + 'services/serverUtility',

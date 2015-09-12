@@ -23,6 +23,12 @@ define(['app'], function (app) {
 		    	return serverUtility.getWebService(url)
 		    		.then(function(data){return data}, function(error){return error});
 		    };
+
+		    this.getCartItemDetails = function(quoteId) {
+		    	var url = getAPIUrl() + "cartdetail?quote_id=" + quoteId;
+		    	return serverUtility.getWebService(url)
+		    		.then(function(data){return data}, function(error){return error});
+		    };
 	    
 	    	return this;
     	}

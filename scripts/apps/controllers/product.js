@@ -11,15 +11,13 @@ define(['app'], function(app) {
             $scope.categoryId = angular.isDefined($routeParams.categoryId) ? $routeParams.categoryId : null ;
             $scope.productId = angular.isDefined($routeParams.productId) ? $routeParams.productId : null ;
             $scope.quoteId = angular.isDefined($routeParams.quoteId) ? $routeParams.quoteId : null ;
-            
-            console.log("quoteId = " + $scope.quoteId);
-            
+                                   
             $scope.products = null;
             $scope.productDetails = null;
             $scope.cartItems = [];
             $scope.cartItemCount = 0;
             
-            $scope.getProductList = function() {
+            getProductList = function() {
                 var jstorageKeyProducts = "products_" + $routeParams.categoryId;
 
                 if (utility.getJStorageKey(jstorageKeyProducts)) {
@@ -34,10 +32,10 @@ define(['app'], function(app) {
             };
 
             if($scope.categoryId){
-               $scope.getProductList(); 
+               getProductList(); 
             }
 
-            $scope.getProductDetails = function() {
+            getProductDetails = function() {
                 var jstorageKeyProductDetails = "productDetails_" + $routeParams.productId;
                 if (utility.getJStorageKey(jstorageKeyProductDetails)) {
                     $scope.productDetails = utility.getJStorageKey(jstorageKeyProductDetails);
@@ -52,21 +50,8 @@ define(['app'], function(app) {
             };            
 
             if($scope.productId){
-               $scope.getProductDetails(); 
+               getProductDetails(); 
             }
-
-            $scope.routerChange = function(route, id) {
-                $location.url(route + "/" + id);
-            };
-
-            $scope.replaceImageUrl = function(src) {
-                return src.indexOf("placeholder") >= 0 
-                    ? "images/small_image_1_2_1.jpg" : src.replace("image/", "small_image/190x190/");
-            };
-
-            $scope.getPriceDifference = function(price, salePrice) {
-                return  (price - salePrice);    
-            };            
 
             buildCartObject = function(product) {
                 return {
@@ -231,10 +216,37 @@ define(['app'], function(app) {
                         .then(function(data){
                             if(data.flag == 1 || data.flag == "1"){
                                 console.log("cart detail redirection");
+                                $location.url("cart" + "/" + quoteId);
                             }                            
                         });                    
                 }
             };
+
+            $scope.routerChange = function(route, id) {
+                $location.url(route + "/" + id);
+            };
+
+            $scope.replaceImageUrl = function(src) {
+                return src.indexOf("placeholder") >= 0 
+                    ? "images/small_image_1_2_1.jpg" : src.replace("image/", "small_image/190x190/");
+            };
+
+            $scope.getPriceDifference = function(price, salePrice) {
+                return  (price - salePrice);    
+            };
+
+            getCartItemDetails = function() {
+                productService.getCartItemDetails($scope.quoteId)
+                        .then(function(data){                            
+                            $scope.cartItems = data.CartDetail.items;
+                            console.log($scope.cartItems);
+                        });
+            };  
+
+            if($scope.quoteId){
+                console.log("quoteId = " + $scope.quoteId);
+                getCartItemDetails(); 
+            }    
         }
     ]);
 });
