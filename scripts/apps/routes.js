@@ -7,7 +7,8 @@ define([], function() {
                 dependencies: [
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',
-                    appURL + 'services/category',                    
+                    appURL + 'services/category',
+                    appURL + 'directives/generic',                    
                     appURL + 'controllers/category'
                 ]
             },
@@ -16,7 +17,8 @@ define([], function() {
                 dependencies: [
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',
-                    appURL + 'services/category',                    
+                    appURL + 'services/category',
+                    appURL + 'directives/generic',                    
                     appURL + 'controllers/category'
                 ]
             },
@@ -27,6 +29,7 @@ define([], function() {
                     appURL + 'services/utility',
                     appURL + 'services/product',
                     appURL + 'filter/product',
+                    appURL + 'directives/generic',
                     appURL + 'controllers/product'
                 ]
             },
@@ -37,6 +40,7 @@ define([], function() {
                     appURL + 'services/utility',
                     appURL + 'services/product',
                     appURL + 'filter/product',
+                    appURL + 'directives/generic',
                     appURL + 'controllers/product'
                 ]
             },
@@ -47,12 +51,14 @@ define([], function() {
                     appURL + 'services/utility',
                     appURL + 'services/product',
                     appURL + 'filter/product',
+                    appURL + 'directives/generic',
                     appURL + 'controllers/product'
                 ]
             },
             '/page/:pageName': {
                 templateUrl: templateURL + 'page.html',
                 dependencies: [
+                    appURL + 'directives/generic',
                     appURL + 'controllers/page'
                 ]
             },
@@ -62,6 +68,7 @@ define([], function() {
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',
                     appURL + 'services/user',
+                    appURL + 'directives/generic',
                     appURL + 'controllers/user'
                 ]
             }

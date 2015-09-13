@@ -21,7 +21,6 @@ define(['app'], function(app) {
 
             if (utility.getJStorageKey(jstorageKey)) {
                 $scope.categories = utility.getJStorageKey(jstorageKey);
-                console.log($scope.categories);
             } else {
         	   categoryService.getCategoryList()
                     .then(function(data){
@@ -33,7 +32,6 @@ define(['app'], function(app) {
             if ($routeParams.categoryId) {
                 $scope.subCategoryList = categoryService.getSubCategoryList($scope.categories, $routeParams.categoryId);
                 $scope.categoryName = categoryService.getCategoryName($scope.categories, $routeParams.categoryId);
-                console.log($scope.categoryName);
                 $scope.columnSize = 4;
             }else{
                 $scope.columnSize = 1;
@@ -47,15 +45,11 @@ define(['app'], function(app) {
             $scope.toggleCategoryMenu = function() {
                 $scope.showSubCategoryMenu = false;
                 $scope.showCategoryMenu = $scope.showCategoryMenu ? false : true;
-                console.log($scope.showCategoryMenu);
             };
 
-            $scope.toggleSubCategoryMenu = function(categoryId) {
-                console.log($scope.categories);
-                console.log(categoryId);
+            $scope.toggleSubCategoryMenu = function(categoryId) {                
                 $scope.showCategoryMenu = false;
                 $scope.showSubCategoryMenu = $scope.showSubCategoryMenu ? false : true;
-                console.log($scope.showSubCategoryMenu);
                 $scope.categoryName = categoryService.getCategoryName($scope.categories, categoryId);
                 $scope.subCategories = categoryService.getSubCategoryList($scope.categories, categoryId);
             };
@@ -77,10 +71,10 @@ define(['app'], function(app) {
                 var strCategory = "";
 
                 angular.forEach(childCategories, function(value, key){
-                    if(key <= 1){
+                    if(key <= 0){
                         strCategory+=value.name;
                     }
-                    if(key < 1){
+                    if(key < 0){
                         strCategory+=", ";
                     }
                 });
@@ -96,6 +90,13 @@ define(['app'], function(app) {
             $scope.showUserMenu = function() {
                 $scope.showMoreMenuOptions = false;
                 $scope.showUserMenuOptions = $scope.showUserMenuOptions ? false : true;
+            };
+
+            $scope.handleOutSideClick = function() {
+                $scope.showUserMenuOptions = false;
+                $scope.showMoreMenuOptions = false;
+                //$scope.showCategoryMenu = false;
+                //$scope.showSubCategoryMenu = false;
             };
 
         }

@@ -2,7 +2,6 @@ define(['app'], function(app) {
 	app.controller('userController',  [
         '$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'userService', 'utility', 
         function($scope, $rootScope, $routeParams, $location, $timeout, userService, utility) {
-            
             $scope.sectionName = $routeParams.sectionName; 
             $scope.addressId = angular.isDefined($routeParams.addressId) ? $routeParams.addressId : null;         
         	$scope.showSearchBar = false;
@@ -15,7 +14,6 @@ define(['app'], function(app) {
             $scope.showUserResponse = false;
             $scope.userResponseMessage = "";
             $scope.isUserLoggedIn = false;
-
             $scope.className = {
                 "success" : false,
                 "info" : false,
@@ -32,8 +30,7 @@ define(['app'], function(app) {
                 "editaddress" : false,
                 "orderhistory" : false
             };
-            $scope.section[$scope.sectionName] = true
-
+            $scope.section[$scope.sectionName] = true;
             $scope.user = {
                 uemail: null,
                 password: null,
@@ -41,7 +38,6 @@ define(['app'], function(app) {
                 lname: null,
                 number: null
             };
-
             $scope.password = {
                 caption: "Show",
                 type: "password"
@@ -50,7 +46,6 @@ define(['app'], function(app) {
             $scope.addressList = [];
             $scope.address = null;
             $scope.orderHistory = null;
-
             $scope.address = {
                 firstname: null,
                 lastname: null,
@@ -64,11 +59,7 @@ define(['app'], function(app) {
                 is_default_shipping: false
             };        
 
-            $scope.togglePasswordField = function() {
-                console.log("togglePasswordField");
-                $scope.password.type == "password" ? "text" : "password";
-                $scope.password.caption == "Show" ? "Hide" : "Show";
-            };
+            
 
             updateClassName = function(keyName) {
                 angular.forEach($scope.className, function(value, key){
@@ -216,6 +207,18 @@ define(['app'], function(app) {
             if($scope.sectionName == "orderhistory"){
                 getOrderHistory();
             }
+
+            $scope.togglePasswordField = function() {
+                $scope.password.type == "password" ? "text" : "password";
+                $scope.password.caption == "Show" ? "Hide" : "Show";
+            };
+
+            $scope.handleOutSideClick = function() {
+                $scope.showUserMenuOptions = false;
+                $scope.showMoreMenuOptions = false;
+                //$scope.showCategoryMenu = false;
+                //$scope.showSubCategoryMenu = false;
+            };
 
         }
     ]);

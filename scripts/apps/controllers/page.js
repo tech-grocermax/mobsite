@@ -28,6 +28,13 @@ define(['app'], function(app) {
                 $scope.showUserMenuOptions = $scope.showUserMenuOptions ? false : true;
             };
 
+            $scope.handleOutSideClick = function() {
+                $scope.showUserMenuOptions = false;
+                $scope.showMoreMenuOptions = false;
+                //$scope.showCategoryMenu = false;
+                //$scope.showSubCategoryMenu = false;
+            };
+
         }
     ]);
 });

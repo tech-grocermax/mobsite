@@ -9,7 +9,8 @@
             </div>
             <div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 margin-lt22p" 
                 data-ng-show="columnSize == 1"
-                data-ng-click="showUserMenu()">
+                data-ng-click="showUserMenu()"
+                outsideclick="handleOutSideClick()">
                 <a href="javascript:void(0);">
                     <img src="images/header-icon/profile.png" 
                         title="User" class="img-responsive"></a>                
@@ -45,7 +46,8 @@
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 float-rt more-icon-mrg"
                 data-ng-show="showMoreIcon"
-                data-ng-click="showMoreMenu()">
+                data-ng-click="showMoreMenu()"
+                outsideclick="handleOutSideClick()">
                 <a href="javascript:void(0);">
                     <img src="images/header-icon/more-icon.png" title="More" 
                         class="img-responsive"></a>                

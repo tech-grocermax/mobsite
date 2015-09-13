@@ -2,3 +2,6 @@
 http://dev.grocermax.com/webservice/new_services/addaddress?userid=323&fname=Binit&lname=Katiyar&addressline1=Gurgaon&addressline2=B-45&city=Gurgaon&state=NCR&pin=122001&countrycode=IN&phone=09540955646&default_billing=1&default_shipping=1
 
 http://dev.grocermax.com/webservice/new_services/deleteitem?userid=5138&productid=[15062,10139]"&quote_id=15887&updateid=[{"productid":"15907","quantity":2},{"productid":"10129","quantity":2}]
+
+Screen1/Screen2/Screen3/Screen4
+	Home/User/Cart/More

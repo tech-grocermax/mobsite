@@ -19,7 +19,6 @@ define(['app'], function(app) {
             
             getProductList = function() {
                 var jstorageKeyProducts = "products_" + $routeParams.categoryId;
-
                 if (utility.getJStorageKey(jstorageKeyProducts)) {
                     $scope.products = utility.getJStorageKey(jstorageKeyProducts);
                 } else {
@@ -39,7 +38,6 @@ define(['app'], function(app) {
                 var jstorageKeyProductDetails = "productDetails_" + $routeParams.productId;
                 if (utility.getJStorageKey(jstorageKeyProductDetails)) {
                     $scope.productDetails = utility.getJStorageKey(jstorageKeyProductDetails);
-                    console.log($scope.productDetails);
                 } else {
                     productService.getProductDetails($scope.productId)
                         .then(function(data){
@@ -99,10 +97,8 @@ define(['app'], function(app) {
             };
             if(angular.isDefined(utility.getJStorageKey("quoteId")) 
                 && utility.getJStorageKey("quoteId")) {
-                console.log(utility.getJStorageKey("quoteId"));
                 getCartDetails();
             }
-            //console.log($scope.cartItems);
 
             updateProductToJStorage = function(quoteId, product) {
                 var cartItemObject = utility.getJStorageKey("cartItems"),
@@ -247,7 +243,6 @@ define(['app'], function(app) {
             };  
 
             if($scope.quoteId){
-                console.log("quoteId = " + $scope.quoteId);
                 getCartItemDetails(); 
             }   
 
@@ -259,7 +254,14 @@ define(['app'], function(app) {
             $scope.showUserMenu = function() {
                 $scope.showMoreMenuOptions = false;
                 $scope.showUserMenuOptions = $scope.showUserMenuOptions ? false : true;
-            };            
+            };          
+
+            $scope.handleOutSideClick = function() {
+                $scope.showUserMenuOptions = false;
+                $scope.showMoreMenuOptions = false;
+                //$scope.showCategoryMenu = false;
+                //$scope.showSubCategoryMenu = false;
+            };  
 
         }
     ]);
