@@ -1,0 +1,83 @@
+<section>
+	<div class="row margin0">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 back-white">
+			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd0">
+				<img src="images/app_bar_icons/left-icon.png" alt="" 
+					class="img-responsive b-left-icon">
+				<h1 class="bill-head">SELECT SHIPPING ADDRESS</h1>
+			</div>
+			<div class="bill-O-box">
+				<div class="bill-O bill-O-active"></div>
+				<div class="bill-O"></div>
+				<div class="bill-O"></div>
+				<div class="bill-O"></div>
+			</div>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="row margin0 pad-ltr16 pad-ltr8-m" style="font-family: roboto;">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 pad-rt16"
+			data-ng-show="addressList.length" 
+			data-ng-repeat="address in addressList"
+			style="box-shadow: 0px 2px 8px -5px;">
+			<ul class="list-unstyled margin0 pad-tlb16" 
+				style="border-bottom: 1px solid #e4e4e4;">
+				<li style="font-size:3.4vw; color:#7d7d76;">
+					<!-- <span>Home</span> -->
+					<input type="radio" name="selectAddress" 
+						data-ng-model="address.is_default_shipping" 
+						class="img-responsive float-rt bill-check-img"/>
+				</li>
+				<li style="font-size:4.3vw; color:#2d2d2d;">
+					<span>{{address.firstname}} {{address.lastname}}</span>
+					<span>{{address.street}}</span>
+					<span>{{address.city}} - {{address.postcode}}</span>
+				</li>
+				<li></li>
+			</ul>
+			<ul class="list-unstyled margin0 pad-tlb16">
+				<li style="font-size:3.4vw; color:#7d7d76;"
+					data-ng-click="editAddress(address.customer_address_id)">
+					<span>Edit address</span>
+					<img src="images/app_bar_icons/p-right-icon.png" alt="" 
+						class="img-responsive float-rt bill-right-img">
+				</li>
+			</ul>
+		</div>
+	</div>	
+	<div class="row margin0 pad-ltr16 pad-ltr8-m" style="font-family: roboto;">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 pad-rt16" 
+			style="box-shadow: 0px 2px 8px -5px;">
+			<ul class="list-unstyled margin0 pad-tlb16">
+				<li style="font-size:3.4vw; color:#2d2d2d;"
+					data-ng-click="navigateTo('user/addaddress?isReferrer=checkout&addressType=shipping')">
+					<span>Add new address</span>
+					<img src="images/app_bar_icons/plus.png" alt="" 
+						class="img-responsive float-rt bill-plus-img">
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row margin0" style="margin-top:10%;">
+		<div class="row margin0 pad-ltr16 pad-ltr8-m" 
+			data-ng-show="addressList.length"
+			style="font-family: roboto;">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 pad-rt16" 
+				style="box-shadow: 0px 2px 8px -5px;">
+				<ul class="list-unstyled margin0 pad-tlb16">
+					<li style="font-size:3.4vw; color:#2d2d2d;">
+						<span>Use Shipping address as Billing address</span>
+						<input type="checkbox" name="billingAsShipping" 
+							data-ng-model="billingAsShipping"
+							class="img-responsive float-rt bill-check-img" />						
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0  margin-top15" >
+			<button type="button" class="reg-bot-btn"
+				data-ng-click="selectShippingAddress()">SELECT SHIPPING ADDRESS</button>
+		</div>		
+	</div>
+</section>

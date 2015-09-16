@@ -16,6 +16,8 @@ define(['app'], function(app) {
             $scope.cartItemCount = 0;
             $scope.showMoreMenuOptions = false;
             $scope.showUserMenuOptions = false;
+            $scope.youSaved = 0;
+            $scope.totalCartQty = 0;
             
             getProductList = function() {
                 var jstorageKeyProducts = "products_" + $routeParams.categoryId;
@@ -204,6 +206,18 @@ define(['app'], function(app) {
                 return qty;
             };
 
+            $scope.getCartProductQuantity = function(productId) {
+                var qty = 0;
+                if($scope.cartItems.length) {
+                    angular.forEach($scope.cartItems, function(value, key) {
+                        if(productId == value.product_id){
+                            qty = value.quantity;
+                        }
+                    });
+                }
+                return qty;
+            };
+
             $scope.cartUpdateProducts = function() {
                 if(angular.isDefined(utility.getJStorageKey("quoteId"))) {
                     var quoteId = utility.getJStorageKey("quoteId"),
@@ -226,6 +240,9 @@ define(['app'], function(app) {
             };
 
             $scope.replaceImageUrl = function(src) {
+                if(angular.isUndefined(src)){
+                    return "";
+                }
                 return src.indexOf("placeholder") >= 0 
                     ? "images/small_image_1_2_1.jpg" : src.replace("image/", "small_image/190x190/");
             };
@@ -233,13 +250,25 @@ define(['app'], function(app) {
             $scope.getPriceDifference = function(price, salePrice) {
                 return  (price - salePrice);    
             };
+            
+            getYouSaveAmout = function() {
+                var savedAmont = 0,
+                    qty = 0;
+
+                angular.forEach($scope.cartDetails.items, function(value, key) {
+                    savedAmont = savedAmont + parseFloat($scope.getPriceDifference(value.mrp, value.price));
+                    qty = qty + parseInt(value.qty);
+                });
+                $scope.youSaved = savedAmont;
+                $scope.totalCartQty = qty;
+            };
 
             getCartItemDetails = function() {
                 productService.getCartItemDetails($scope.quoteId)
-                        .then(function(data){                            
-                            $scope.cartItems = data.CartDetail.items;
-                            console.log($scope.cartItems);
-                        });
+                    .then(function(data){              
+                        $scope.cartDetails = data.CartDetail;              
+                        getYouSaveAmout();
+                    });
             };  
 
             if($scope.quoteId){
@@ -262,6 +291,17 @@ define(['app'], function(app) {
                 //$scope.showCategoryMenu = false;
                 //$scope.showSubCategoryMenu = false;
             };  
+            
+            $scope.toFixed = function(amt) {
+                if(angular.isUndefined(amt)) {
+                    return 0.00;
+                }
+                return amt.toFixed(2);
+            };
+
+            $scope.navigateToShipping = function() {
+                $location.url("checkout/shipping");
+            };
 
         }
     ]);

@@ -2,9 +2,23 @@ define(['app'], function(app) {
 	app.controller('userController',  [
         '$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'userService', 'utility', 
         function($scope, $rootScope, $routeParams, $location, $timeout, userService, utility) {
-            $scope.sectionName = $routeParams.sectionName; 
+            $scope.sectionName = $routeParams.sectionName;
+
+            if((angular.isUndefined(utility.getJStorageKey("userId")) 
+                || !utility.getJStorageKey("userId"))
+                && ($scope.sectionName == "profile" 
+                    || $scope.sectionName == "editprofile"
+                    || $scope.sectionName == "address"
+                    || $scope.sectionName == "addaddress"
+                    || $scope.sectionName == "editaddress"
+                    || $scope.sectionName == "orderhistory")){
+                $location.url("user/login");
+            }
+
             $scope.addressId = angular.isDefined($routeParams.addressId) ? $routeParams.addressId : null;         
-        	$scope.showSearchBar = false;
+            $scope.isReferrer = angular.isDefined($routeParams.isReferrer) ? $routeParams.isReferrer : null;
+            $scope.addressType = angular.isDefined($routeParams.addressType) ? $routeParams.addressType : null;
+            $scope.showSearchBar = false;
             $scope.columnSize = 1;
             $scope.pageName = $routeParams.pageName;
             $scope.showSearchIcon = true;
@@ -49,17 +63,15 @@ define(['app'], function(app) {
             $scope.address = {
                 firstname: null,
                 lastname: null,
-                city: null,
-                region: null,
+                city: "Gurgaon",
+                region: "Haryana",
                 street: null,
                 postcode: null,
                 country_id: "IN",
                 telephone: null,
                 is_default_billing: false,
                 is_default_shipping: false
-            };        
-
-            
+            };
 
             updateClassName = function(keyName) {
                 angular.forEach($scope.className, function(value, key){
@@ -78,6 +90,10 @@ define(['app'], function(app) {
                     $scope.userResponseMessage = data.Result;
                     updateClassName("danger");
                 }
+
+                if($scope.isReferrer == "checkout") {
+                    $location.url("checkout/shipping"); 
+                }
             };
 
             $scope.createUser = function() {
@@ -92,6 +108,11 @@ define(['app'], function(app) {
                     uemail: $scope.user.uemail,
                     password: $scope.user.password
                 };
+
+                if(angular.isDefined(utility.getJStorageKey("quoteId")) 
+                && utility.getJStorageKey("quoteId")) {
+                    input.quote_id = utility.getJStorageKey("quoteId");
+                }
 
                 userService.loginUser(input)
                     .then(function(data){
@@ -192,7 +213,12 @@ define(['app'], function(app) {
                     utility.getJStorageKey("userId"), $scope.addressId)
                     .then(function(data){
                         if(data.flag == 1 || data.flag == "1") {
-                            $location.url('user/address');
+                            if($scope.isReferrer == "checkout") {
+                                //$scope.address will be either shipping or billing
+                                $location.url("checkout/" + $scope.addressType); 
+                            } else {
+                                $location.url('user/address');
+                            }
                         }
                     });
             };

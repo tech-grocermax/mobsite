@@ -71,6 +71,16 @@ define([], function() {
                     appURL + 'directives/generic',
                     appURL + 'controllers/user'
                 ]
+            },
+            '/checkout/:sectionName': {
+                templateUrl: templateURL + 'checkout.html',
+                dependencies: [
+                    appURL + 'services/serverUtility',
+                    appURL + 'services/utility',
+                    appURL + 'services/user',
+                    appURL + 'directives/generic',
+                    appURL + 'controllers/checkout'
+                ]
             }
         }
     };

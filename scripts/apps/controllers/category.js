@@ -99,6 +99,10 @@ define(['app'], function(app) {
                 //$scope.showSubCategoryMenu = false;
             };
 
+            $scope.logout = function() {
+
+            };
+
         }
     ]);
 });

@@ -1,36 +1,134 @@
 <div ng-controller="productController">
+    <header data-ng-include="'templates/header.html'"></header>
+    <div class="row margin0 ">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pmeth-h back-white">YOUR CART</div>
+    </div>
+    <div class="row margin0 pad-ltr16 pad-ltr8-m">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" 
+            style="font-size:3vw; color:2d2d2d;">
+            <span>ITEMS ({{totalCartQty}})</span>
+            <span class="float-rt">
+                <span>TOTAL:</span> <span>Rs. {{cartDetails.subtotal}}</span>
+            </span>
+        </div>
+    </div>
+    <div class="row margin0 pad16 pad8-m">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box"
+            data-ng-repeat="product in cartDetails.items">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 margin-tp-5p">
+                <!-- <img src="images/product.png" alt="" class="img-responsive"> -->
+                <img src="{{replaceImageUrl(product.product_thumbnail)}}" 
+                        alt="" class="img-responsive">
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd0">
+                <ul class="list-unstyled">
+                    <li class="prod-list-h">{{product.p_brand}}</li>
+                    <li class="cat-list-name">{{product.name}}</li>
+                    <li class="prod-list-qnty">{{product.p_pack}}</li>
+                    <li class="font-3"><span class="product-qnty">₹ {{product.mrp}} |</span> <span class="prod-new-price">₹ {{product.price}}</span></li>
+                    <li class="product-qnty">₹ {{getPriceDifference(product.mrp, product.price)}}</li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cat-list-box">
+                <ul class="list-unstyled cat-list">
+                    <li class="cat-minus" 
+                        data-ng-click="removeProductWrapper(product)">-</li>
+                    <li class="cat-input-box">
+                        <input type="text" placeholder="1" class="cat-input-text"
+                            value="{{getCartProductQuantity(product.product_id)}}" >
+                    </li>
+                    <li class="cat-plus" 
+                        data-ng-click="addProductWrapper(product)">+</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row margin0 pad-lt16 pad-lt-rt8-m">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" 
+            style="font-size:3vw; color:2d2d2d;">
+            <span>PRICE DETAILS</span>
+        </div>
+    </div>
+    <div class="row margin0 pad-lt16 pad-rt16 pad-ltr8-m margin-top10">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0" 
+            style="box-shadow:0px 2px 8px -5px; border-radius:4px;">
+            <ul class="list-unstyled margin0 pad-lt16 pad-rt16 font4-3">
+                <ul class="list-unstyled margin0 pmeth-card">
+                    <li>
+                        <span>Sub total:</span>
+                        <span class="float-rt">Rs. {{cartDetails.subtotal}}</span>
+                    </li>
+                    <li>
+                        <span>Shipping charges:</span>
+                        <span class="float-rt">Rs. {{cartDetails.shipping_address.shipping_amount}}</span>
+                    </li>
+                    <li>
+                        <span>You Saved:</span>
+                        <span class="float-rt pmeth-card-font">Rs. {{youSaved}}</span>
+                    </li>
+                    <li>
+                        <span>Total:</span>
+                        <span class="float-rt">Rs. {{cartDetails.subtotal}}</span>
+                    </li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" 
+        style="margin-top:100px;">
+        <button type="button" class="reg-bot-btn"
+            data-ng-click="navigateToShipping()">CHECKOUT</button>
+    </div>
+</div>
+<!-- <div ng-controller="productController">
     <header data-ng-include="'templates/header.html'"></header>    
 	<article class="margin-bot15">
         <div class="row margin0 pad16 pad8-m">
-        console.log("here");
-            <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box"
-                data-ng-repeat="product in products">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 margin-tp-5p">
-                    <img src="{{replaceImageUrl(product.Image)}}" 
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box"
+                data-ng-repeat="product in cartDetails.items">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 margin-tp-5p">
+                    <img src="{{replaceImageUrl(product.product_thumbnail)}}" 
                         alt="" class="img-responsive">
                 </div>
-                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 padd0">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd0">
                     <ul class="list-unstyled">
                         <li class="prod-list-h">{{product.p_brand}}</li>
-                        <li class="cat-list-name">{{product.Name}}</li>
+                        <li class="cat-list-name">{{product.name}}</li>
                         <li class="prod-list-qnty">{{product.p_pack}}</li>
-                        <li class="font-3"><span class="product-qnty">₹ {{product.Price}} |</span> <span class="prod-new-price">₹ {{product.sale_price}}</span></li>
-                        <li class="product-qnty">₹ {{getPriceDifference(product.Price, product.sale_price)}}</li>
+                        <li class="font-3"><span class="product-qnty">₹ {{product.mrp}} |</span> <span class="prod-new-price">₹ {{product.price}}</span></li>
+                        <li class="product-qnty">₹ {{getPriceDifference(product.mrp, product.price)}}</li>
                     </ul>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cat-list-box"
-                    data-ng-show="product.Status == 'In stock'">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cat-list-box">
                     <ul class="list-unstyled cat-list">
-                        <li class="cat-minus" data-ng-click="removeProduct(product)">-</li>
+                        <li class="cat-minus" 
+                            data-ng-click="removeProductWrapper(product)">-</li>
                         <li class="cat-input-box">
                             <input type="text" placeholder="1" 
-                                value="{{getProductQuantity(product.productid)}}" 
+                                value="{{getCartProductQuantity(product.product_id)}}" 
                                 class="cat-input-text">
                         </li>
-                        <li class="cat-plus" data-ng-click="addProduct(product)">+</li>
+                        <li class="cat-plus" data-ng-click="addProductWrapper(product)">+</li>
                     </ul>
                 </div>
-            </div> -->            
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd0">
+                    <ul class="list-unstyled">
+                        <li class="cat-list-name">Sub total:</li>
+                        <li class="cat-list-name">Shipping Charges:</li>
+                        <li class="cat-list-name">You Saved:</li>
+                    </ul>
+                </div> 
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
+                    <ul class="list-unstyled">
+                        <li class="cat-list-name">Rs. {{cartDetails.subtotal}}</li>
+                        <li class="cat-list-name">
+                            Rs. {{cartDetails.shipping_address.shipping_amount}}</li>
+                        <li class="cat-list-name">Rs. {{youSaved}}</li>
+                    </ul>
+                </div>               
+            </div>           
         </div>
     </article>
-</div>
+</div> -->

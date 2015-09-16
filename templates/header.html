@@ -18,9 +18,15 @@
             <div data-ng-show="showUserMenuOptions"
                 style=" position: absolute; top: 110%; width: 300px; z-index: 100; left:-15%;">
                 <ul class="list-unstyled drop-box">
-                    <li><a href="#/user/register">Register</a></li>
-                    <li><a href="#/user/login">Login</a></li>
-                    <li><a href="#/user/profile">Profile</a></li>
+                    <li><a href="#/user/register"
+                        data-ng-show="!isUserLoggedIn">Register</a></li>
+                    <li><a href="#/user/login"
+                        data-ng-show="!isUserLoggedIn">Login</a></li>
+                    <li><a href="#/user/profile"
+                        data-ng-show="isUserLoggedIn">Profile</a></li>
+                    <li><a href="javascript:void(0);"
+                        data-ng-show="isUserLoggedIn"
+                        data-ng-click="logout()">Logout</a></li>
                 </ul>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd0" 

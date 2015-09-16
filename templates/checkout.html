@@ -1,0 +1,15 @@
+<div ng-controller="checkoutController">
+	<header data-ng-include="'templates/header.html'"></header>
+
+	<article data-ng-include="'templates/shipping-address.html'"
+		data-ng-show="section.shipping"></article>
+
+	<article data-ng-include="'templates/billing-address.html'"
+		data-ng-show="section.billing"></article>
+
+	<article data-ng-include="'templates/delivery-details.html'"
+		data-ng-show="section.delivery"></article>
+
+	<article data-ng-include="'templates/payment-methods.html'"
+		data-ng-show="section.payment"></article>
+</div>
