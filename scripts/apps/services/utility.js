@@ -15,6 +15,23 @@ define(['app'], function (app) {
 	    this.deleteJStorageKey = function(key) {
 	    	$.jStorage.deleteKey(key);
 	    };
+
+	    this.getCurrentDate = function() {
+	        var today = new Date();
+	        var dd = today.getDate();
+	        var mm = today.getMonth()+1; //January is 0!
+
+	        var yyyy = today.getFullYear();
+	        if(dd<10){
+	            dd='0'+dd
+	        } 
+	        if(mm<10){
+	            mm='0'+mm
+	        } 
+	        //var today = dd+'/'+mm+'/'+yyyy;
+	        var today = yyyy + '-' + mm + '-' + dd;
+	        return today;
+	    };
 	    
 	    return this;
     });

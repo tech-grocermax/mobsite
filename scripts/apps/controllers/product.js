@@ -227,10 +227,10 @@ define(['app'], function(app) {
 
                     productService.cartUpdateProduct(cartItems, quoteId, firstAddedProduct)
                         .then(function(data){
-                            if(data.flag == 1 || data.flag == "1"){
+                            //if(data.flag == 1 || data.flag == "1"){
                                 console.log("cart detail redirection");
                                 $location.url("cart" + "/" + quoteId);
-                            }                            
+                            //}                            
                         });                    
                 }
             };

@@ -49,22 +49,32 @@ define(['app'], function(app) {
                 };
             };
 
+            $scope.deliverySlots = null;
             successCallbackDeliverySlots = function(data) {
-                $scope.deliverySlots = {};                
+                $scope.deliverySlots = [];
+                $scope.deliverySlotIndex = 0;                
                 var dateList = [];
                 angular.forEach(data, function(value, key){
-                    if(dateList.length && dateList.indexOf(value.Date) >= 0) {                        
-                        $scope.deliverySlots[value.Date].push(buildDeliverySlotObject(value));
-                    } else {
+                    if(dateList.indexOf(value.Date) == -1) {
                         dateList.push(value.Date);
-                        $scope.deliverySlots[value.Date] = [];                        
-                        $scope.deliverySlots[value.Date].push(buildDeliverySlotObject(value));
+                        $scope.deliverySlots.push({date: value.Date});
                     }
+                });
+
+                angular.forEach($scope.deliverySlots, function(value, key) {
+                    value.timeSlots = null;
+                    var timeslots = [];
+                    angular.forEach(data, function(innerValue, innerKey){
+                        if(innerValue.Date == value.date) {
+                            timeslots.push(buildDeliverySlotObject(innerValue));
+                        }
+                    });
+                    value.timeSlots = timeslots;
                 });
                 console.log($scope.deliverySlots);
             };
 
-            $scope.deliverySlots = null;
+            
             getDeliverySlots = function() {
                 userService.getDeliverySlots(utility.getJStorageKey("userId"))
                     .then(function(data){
@@ -105,7 +115,7 @@ define(['app'], function(app) {
                 address[keyName] = true;
             };
 
-            //console.log(utility.getJStorageKey("checkoutDetails"));
+            console.log(utility.getJStorageKey("checkoutDetails"));
             //console.log(utility.getJStorageKey("userId"));
 
             $scope.selectShippingAddress = function() {
@@ -164,6 +174,63 @@ define(['app'], function(app) {
             $scope.setBillingAsShipping = function(model) {
                 $scope.billingAsShipping = model;
             };  
+
+            $scope.selectedDeliveryDate = utility.getCurrentDate();
+            $scope.selectedDeliveryTime = null;
+            $scope.parentIndex = null;
+
+            $scope.isDeliveryProceedEnabled = function() {
+                return $scope.selectedDeliveryDate && $scope.selectedDeliveryTime
+                    && $scope.parentIndex;
+            };
+
+            $scope.navigateToPayment = function() {
+                var quoteId = utility.getJStorageKey("quoteId");
+                var checkoutDetails = utility.getJStorageKey("checkoutDetails");
+
+                checkoutDetails[quoteId]["deliveryDate"] = $scope.selectedDeliveryDate;
+                checkoutDetails[quoteId]["deliveryTime"] = $scope.selectedDeliveryTime;
+
+                utility.setJStorageKey("checkoutDetails", checkoutDetails, 1);
+                $location.url("checkout/payment");
+            };
+
+            getSelectedDeliveryDate = function(currentIndex) {
+                var deliveryDate = null;
+                angular.forEach($scope.deliverySlots, function(value, key){
+                    if(key == currentIndex) {
+                        deliveryDate = value.date;
+                    }
+                });
+                return deliveryDate;
+            };
+
+            $scope.getPreviousDaySlot = function(index) {
+                if(index > 0) {                    
+                    $scope.deliverySlotIndex = $scope.deliverySlotIndex - 1;       
+                    $scope.selectedDeliveryDate = getSelectedDeliveryDate($scope.deliverySlotIndex);             
+                }
+            };
+
+            $scope.getNextDaySlot = function(index) {
+                if(index < $scope.deliverySlots.length -1) {                    
+                    $scope.deliverySlotIndex = $scope.deliverySlotIndex + 1;
+                    $scope.selectedDeliveryDate = getSelectedDeliveryDate($scope.deliverySlotIndex);
+                }
+            };
+
+            $scope.renderDeliveryDate = function(deliveryDate) {
+                return (utility.getCurrentDate() == deliveryDate) ? "Today" : deliveryDate;
+            };
+
+            $scope.setDeliveryTime = function(data, parentIndex) {
+                if(data.available) {
+                    $scope.selectedDeliveryTime = data.timeSlot;
+                    $scope.parentIndex = parentIndex;
+                }
+                //console.log(parentIndex);
+                //console.log($scope.selectedDeliveryTime);
+            };
 
             $scope.showMoreMenu = function() {
                 $scope.showUserMenuOptions = false;

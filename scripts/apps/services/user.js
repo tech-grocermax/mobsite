@@ -109,7 +109,6 @@ define(['app'], function (app) {
 		    };
 
 		    this.getDeliverySlots = function(userId) {
-		    	console.log("getDeliverySlots");
 		    	var url = getAPIUrl() + "getaddresswithtimeslot?userid=" + userId;
 		    	return serverUtility.getWebService(url)
 		    		.then(

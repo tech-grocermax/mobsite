@@ -67,3 +67,15 @@ Screen7: (product lisitng)
 Screen8: Prodcut description
 	Prod Desc/Search/Cart
 Screen9: 
+
+
+angular.forEach(data, function(value, key){
+                    if(dateList.length && dateList.indexOf(value.Date) >= 0) {                        
+                        //$scope.deliverySlots[value.Date].push(buildDeliverySlotObject(value));
+                    } else {
+                        dateList.push(value.Date);
+                        $scope.deliverySlots.push({date: value.Date});
+                        //$scope.deliverySlots[value.Date] = [];                        
+                        //$scope.deliverySlots[value.Date].push(buildDeliverySlotObject(value));
+                    }
+                });
