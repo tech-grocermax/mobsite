@@ -24,9 +24,11 @@
 			<ul class="list-unstyled margin0 pad-tlb16" 
 				style="border-bottom: 1px solid #e4e4e4;">
 				<li style="font-size:3.4vw; color:#7d7d76;">
-					<!-- <span>Home</span> -->
-					<input type="radio" name="selectAddress" 
-						data-ng-model="address.is_default_shipping" 
+					<!-- <span>Home</span> ng-value="address.is_default_shipping" -->
+					<input type="radio" name="selectAddress"
+						data-ng-change="changeDefaultSelection(address, 'is_default_shipping')" 
+						data-ng-model="address.is_default_shipping"
+						value="{{address.is_default_shipping}}"						
 						class="img-responsive float-rt bill-check-img"/>
 				</li>
 				<li style="font-size:4.3vw; color:#2d2d2d;">
@@ -37,8 +39,8 @@
 				<li></li>
 			</ul>
 			<ul class="list-unstyled margin0 pad-tlb16">
-				<li style="font-size:3.4vw; color:#7d7d76;"
-					data-ng-click="editAddress(address.customer_address_id)">
+				<li style="font-size:3.4vw; color:#7d7d76; cursor:pointer; "
+					data-ng-click="editAddress(address.customer_address_id, 'shipping')">
 					<span>Edit address</span>
 					<img src="images/app_bar_icons/p-right-icon.png" alt="" 
 						class="img-responsive float-rt bill-right-img">
@@ -50,7 +52,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 pad-rt16" 
 			style="box-shadow: 0px 2px 8px -5px;">
 			<ul class="list-unstyled margin0 pad-tlb16">
-				<li style="font-size:3.4vw; color:#2d2d2d;"
+				<li style="font-size:3.4vw; color:#2d2d2d; cursor:pointer; "
 					data-ng-click="navigateTo('user/addaddress?isReferrer=checkout&addressType=shipping')">
 					<span>Add new address</span>
 					<img src="images/app_bar_icons/plus.png" alt="" 
@@ -69,7 +71,9 @@
 					<li style="font-size:3.4vw; color:#2d2d2d;">
 						<span>Use Shipping address as Billing address</span>
 						<input type="checkbox" name="billingAsShipping" 
-							data-ng-model="billingAsShipping"
+							ng-model="billingAsShipping"
+							data-ng-change="setBillingAsShipping(billingAsShipping)"
+							ng-true-value="true" ng-false-value="false"
 							class="img-responsive float-rt bill-check-img" />						
 					</li>
 				</ul>
@@ -77,6 +81,7 @@
 		</div>
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0  margin-top15" >
 			<button type="button" class="reg-bot-btn"
+				data-ng-disabled="isSelectButtonDisabled('is_default_shipping')"
 				data-ng-click="selectShippingAddress()">SELECT SHIPPING ADDRESS</button>
 		</div>		
 	</div>

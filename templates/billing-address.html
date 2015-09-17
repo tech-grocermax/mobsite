@@ -8,7 +8,7 @@
 			</div>
 			<div class="bill-O-box">
 				<div class="bill-O bill-O-active"></div>
-				<div class="bill-O bill-O-active"></div>
+				<div class="bill-O"></div>
 				<div class="bill-O"></div>
 				<div class="bill-O"></div>
 			</div>
@@ -17,35 +17,43 @@
 </section>
 <section>
 	<div class="row margin0 pad-ltr16 pad-ltr8-m" style="font-family: roboto;">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 pad-rt16" 
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 pad-rt16"
+			data-ng-show="addressList.length" 
+			data-ng-repeat="address in addressList"
 			style="box-shadow: 0px 2px 8px -5px;">
 			<ul class="list-unstyled margin0 pad-tlb16" 
 				style="border-bottom: 1px solid #e4e4e4;">
 				<li style="font-size:3.4vw; color:#7d7d76;">
-					<span>Home</span>
-					<img src="images/app_bar_icons/check-box.png" alt="" 
-						class="img-responsive float-rt bill-check-img">
+					<!-- <span>Home</span> -->
+					<input type="radio" name="selectAddress"
+						data-ng-change="changeDefaultSelection(address, 'is_default_billing')" 
+						data-ng-model="address.is_default_billing"
+						ng-value="address.is_default_billing"
+						class="img-responsive float-rt bill-check-img"/>
 				</li>
 				<li style="font-size:4.3vw; color:#2d2d2d;">
-					<span>B - 323, Columbia Blvd W, Near 7/11,</span>
-					<span>Lethbridge, T1K4B8</span>
+					<span>{{address.firstname}} {{address.lastname}}</span>
+					<span>{{address.street}}</span>
+					<span>{{address.city}} - {{address.postcode}}</span>
 				</li>
 				<li></li>
 			</ul>
 			<ul class="list-unstyled margin0 pad-tlb16">
-				<li style="font-size:3.4vw; color:#7d7d76;">
+				<li style="font-size:3.4vw; color:#7d7d76; cursor:pointer; "
+					data-ng-click="editAddress(address.customer_address_id, 'billing')">
 					<span>Edit address</span>
 					<img src="images/app_bar_icons/p-right-icon.png" alt="" 
 						class="img-responsive float-rt bill-right-img">
 				</li>
 			</ul>
 		</div>
-	</div>
+	</div>	
 	<div class="row margin0 pad-ltr16 pad-ltr8-m" style="font-family: roboto;">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 pad-rt16" 
 			style="box-shadow: 0px 2px 8px -5px;">
 			<ul class="list-unstyled margin0 pad-tlb16">
-				<li style="font-size:3.4vw; color:#2d2d2d;">
+				<li style="font-size:3.4vw; color:#2d2d2d; cursor:pointer; "
+					data-ng-click="navigateTo('user/addaddress?isReferrer=checkout&addressType=shipping')">
 					<span>Add new address</span>
 					<img src="images/app_bar_icons/plus.png" alt="" 
 						class="img-responsive float-rt bill-plus-img">
@@ -55,7 +63,9 @@
 	</div>
 	<div class="row margin0" style="margin-top:10%;">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0  margin-top15" >
-			<button type="button" class="reg-bot-btn">SELECT BIILING ADDRESS</button>
-		</div>
+			<button type="button" class="reg-bot-btn"
+				data-ng-disabled="isSelectButtonDisabled('is_default_billing')"
+				data-ng-click="selectBillingAddress()">SELECT BILLING ADDRESS</button>
+		</div>		
 	</div>
 </section>

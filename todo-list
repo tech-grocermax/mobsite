@@ -1,5 +1,52 @@
-Checkout landing page
+1. City Selection
+	2 hrs
 
+2. Registration with OTP
+	2 hrs
+
+3. Category (need to remove on level + last level category listing in blue bar)
+	For Example:
+		Main Catergory (staples)
+			Sub Category (Oil Ghee)
+				Sub Sub Category (Cooking Oil)
+					now Sub Sub Sub category need to display in blue bar
+					dry fruit is one exceptinoal case
+
+	8 hrs
+
+4. Checkout Flow
+	8 hrs
+
+5. Cart Add/Update/Delete
+	4 hrs
+
+6. Order History Details Page
+	1 hrs
+
+7. Category image (required)
+	2 hrs
+
+8. Hot Offers & promotions
+	8 hrs
+
+9 .Social Login
+	4 hrs
+
+10. Appropriate Header Section Listing
+	4 hrs
+
+11. Validations & Error message throughout site
+	6 hrs
+
+12. Search Functionality
+	4 hrs
+
+13. Integartion Pending work
+	8 hrs
+
+Approx 60 hrs
+
+Checkout landing page
 Register + OTP
 Login
  	then redirect it to shipping address page

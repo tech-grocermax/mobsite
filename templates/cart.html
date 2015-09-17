@@ -25,7 +25,10 @@
                     <li class="prod-list-h">{{product.p_brand}}</li>
                     <li class="cat-list-name">{{product.name}}</li>
                     <li class="prod-list-qnty">{{product.p_pack}}</li>
-                    <li class="font-3"><span class="product-qnty">₹ {{product.mrp}} |</span> <span class="prod-new-price">₹ {{product.price}}</span></li>
+                    <li class="font-3">
+                        <span class="product-qnty" 
+                            style="color:#e5390e; text-decoration:line-through;">₹ {{product.mrp}}</span> 
+                        <span class="prod-new-price"> | ₹ {{product.price}}</span></li>
                     <li class="product-qnty">₹ {{getPriceDifference(product.mrp, product.price)}}</li>
                 </ul>
             </div>

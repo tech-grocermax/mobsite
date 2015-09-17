@@ -124,7 +124,7 @@ body{background: #f4f4f4; font-family: roboto;}
 /*========== PRODUCT LISTING ==========*/
 .prod-list-h{font-size:3.4vw; color:#df4a32;}
 .prod-list-qnty{font-size: 3.4vw; color:#7d7d76;}
-.prod-new-price{color:#e5390e; padding-left:5px; text-decoration:line-through;}
+.prod-new-price{padding-left:5px; }
 .header-middle-prod{background: #ee2d09 none repeat scroll 0 0;padding: 30px 16px 0;}
 .nav-red{overflow:auto; background: #ee2d09 none repeat scroll 0 0;box-shadow: 0 7px 5px rgba(0, 0, 0, 0.2);}
 .prod-nav-li{color: #fff; padding: 26px 29px;}
