@@ -50,7 +50,8 @@ define(['app'], function(app) {
                 password: null,
                 fname: null,
                 lname: null,
-                number: null
+                number: null,
+                otp: 0
             };
             $scope.password = {
                 caption: "Show",
@@ -72,6 +73,8 @@ define(['app'], function(app) {
                 is_default_billing: false,
                 is_default_shipping: false
             };
+            $scope.registrationStep = 2;
+            $scope.otp = angular.isDefined(utility.getJStorageKey("otp")) ? utility.getJStorageKey("otp") : "";
 
             updateClassName = function(keyName) {
                 angular.forEach($scope.className, function(value, key){
@@ -96,11 +99,42 @@ define(['app'], function(app) {
                 }
             };
 
+            if($scope.section.register){
+                utility.setJStorageKey("otp", 1234, 1);
+                var opt = utility.getJStorageKey("otp");
+                console.log(opt);
+                $scope.otp = opt;
+            }
+
             $scope.createUser = function() {
+                utility.setJStorageKey("registrationDetails", $scope.user, 1);
                 userService.createUser($scope.user)
                     .then(function(data){
-                        successCallbackUser(data);
+                        utility.setJStorageKey("otp", data.otp, 1);
+                        $scope.registrationStep = 2;
+                        $scope.otp = data.otp; 
                     });
+            };
+
+            $scope.verifyOTP = function() { 
+                console.log($scope.otp, utility.getJStorageKey("otp"));               
+                if($scope.otp == utility.getJStorageKey("otp")) {
+                    angular.copy($scope.user, utility.getJStorageKey("registrationDetails"));
+                    $scope.user.otp = 1;
+                    userService.createUser($scope.user)
+                        .then(function(data){
+                            if(data.flag == 1){
+                                utility.deleteJStorageKey("otp");
+                                utility.deleteJStorageKey("registrationDetails");
+                                successCallbackUser(data);
+                            }                                                                           
+                        });
+                } else {
+                    console.log("here");
+                    $scope.showUserResponse = true;
+                    $scope.userResponseMessage = "Invalid OTP, Please try again.";
+                    updateClassName("danger");
+                }
             };
 
             $scope.loginUser = function() {
