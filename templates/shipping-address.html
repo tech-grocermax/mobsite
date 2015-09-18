@@ -24,11 +24,10 @@
 			<ul class="list-unstyled margin0 pad-tlb16" 
 				style="border-bottom: 1px solid #e4e4e4;">
 				<li style="font-size:3.4vw; color:#7d7d76;">
-					<!-- <span>Home</span> ng-value="address.is_default_shipping" -->
-					<input type="radio" name="selectAddress"
+					<!-- <span>Home</span> -->
+					<input type="checkbox" name="selectAddress"
 						data-ng-change="changeDefaultSelection(address, 'is_default_shipping')" 
 						data-ng-model="address.is_default_shipping"
-						value="{{address.is_default_shipping}}"						
 						class="img-responsive float-rt bill-check-img"/>
 				</li>
 				<li style="font-size:4.3vw; color:#2d2d2d;">

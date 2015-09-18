@@ -17,20 +17,18 @@ define(['app'], function (app) {
 	    };
 
 	    this.getCurrentDate = function() {
-	        var today = new Date();
-	        var dd = today.getDate();
-	        var mm = today.getMonth()+1; //January is 0!
+	        var today = new Date(),
+	        	dd = today.getDate(),
+	        	mm = today.getMonth()+1,
+	        	yyyy = today.getFullYear();
 
-	        var yyyy = today.getFullYear();
-	        if(dd<10){
-	            dd='0'+dd
+	        if(dd < 10){
+	            dd = '0' + dd
 	        } 
-	        if(mm<10){
-	            mm='0'+mm
+	        if(mm < 10){
+	            mm = '0' + mm
 	        } 
-	        //var today = dd+'/'+mm+'/'+yyyy;
-	        var today = yyyy + '-' + mm + '-' + dd;
-	        return today;
+	        return (yyyy + '-' + mm + '-' + dd);
 	    };
 	    
 	    return this;
