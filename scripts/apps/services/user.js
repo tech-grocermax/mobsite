@@ -126,6 +126,16 @@ define(['app'], function (app) {
 		    		);
 		    };
 
+		    this.changePassword = function(input) {
+		    	//var url = getAPIUrl() + "forgotpassword?uemail=" + email;
+		    	var url = getAPIUrl() + "changepassword?" + $.param( input );
+		    	return serverUtility.getWebService(url)
+		    		.then(
+		    			function(data){return data; },
+		    			function(error){return error; }
+		    		);
+		    };
+
 	    	return this;
     	}
     ]);

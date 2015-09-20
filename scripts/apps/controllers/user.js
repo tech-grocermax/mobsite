@@ -37,7 +37,8 @@ define(['app'], function(app) {
             $scope.section = {
                 "login" : false,
                 "register" : false,
-                "forgot" : false,
+                "forgotpassword" : false,
+                "changepassword": false,
                 "profile" : false,
                 "editprofile": false,
                 "address" : false,
@@ -297,6 +298,16 @@ define(['app'], function(app) {
                 $location.url(route);
             };
 
+            $scope.password = {
+                "old": null,
+                "new": null,
+                "confirm": null
+            };
+
+            $scope.changePassword = function(keyName, model) {
+                $scope.password[keyName] = model;
+            };
+            
             $scope.changeForgotPassword = function(model) {
                 $scope.email = model;
             };
@@ -320,6 +331,37 @@ define(['app'], function(app) {
                     .then(function(data){
                            successCallbackForgotPassword(data);                    
                     });
+            };
+
+            $scope.changePassword = function() {
+                console.log($scope.password);
+                if(!$scope.password["old"]
+                    || !$scope.password["new"]
+                    || !$scope.password["confirm"]) {
+                    $scope.showUserResponse = true;
+                    $scope.userResponseMessage = "Please fill missing fields first";
+                    updateClassName("danger");
+                } else if($scope.password["new"] == $scope.password["confirm"]) {
+                    var input = {
+                        userid:utility.getJStorageKey("userId"),
+                        password:$scope.password["new"],
+                        old_password:$scope.password["old"]
+                    };
+                    userService.changePassword(input)
+                        .then(function(data){
+                            if(data.flag == "1") {
+                                $location.url("user/profile");
+                            } else {
+                                $scope.showUserResponse = true;
+                                $scope.userResponseMessage = data.Result;
+                                updateClassName("danger");
+                            }                   
+                        });
+                } else {
+                    $scope.showUserResponse = true;
+                    $scope.userResponseMessage = "New & conirm password mismatch";
+                    updateClassName("danger");
+                }
             };
 
             $scope.openCitySelectionModal = function() {
