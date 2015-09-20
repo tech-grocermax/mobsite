@@ -1,9 +1,8 @@
 define(['app'], function(app) {
 	app.controller('categoryController',  [
-        '$scope', '$rootScope', '$location', '$routeParams', 'categoryService', 'utility', 
-        function($scope, $rootScope, $location, $routeParams, categoryService, utility){
-        	var jstorageKey = "categories";
-            $scope.categories = null;
+        '$scope', '$rootScope', '$location', '$timeout', '$routeParams', 'categoryService', 'utility', 
+        function($scope, $rootScope, $location, $timeout, $routeParams, categoryService, utility){
+        	$scope.categories = null;
             $scope.categoryIndex = -1;
             $scope.subCategoryIndex = -1;
             $scope.categoryName = null;
@@ -18,14 +17,50 @@ define(['app'], function(app) {
             $scope.showMoreIcon = true;
             $scope.showMoreMenuOptions = false;
             $scope.showUserMenuOptions = false;
+            $scope.cityLocation = {
+                "delhi": false,
+                "gurgaon": false,
+                "noida": false
+            };
 
-            if (utility.getJStorageKey(jstorageKey)) {
-                $scope.categories = utility.getJStorageKey(jstorageKey);
+            openCitySelectionModal = function() {
+                $timeout(function(){
+                    $('#myModal').modal({
+                        backdrop: false,
+                        keyboard: false,
+                        show: true
+                    });
+                }, 1000);
+            };
+
+            hideCitySelectionModal = function() {
+                $('#myModal').modal('hide');
+            };
+
+            angular.element(document).ready(function () {
+                console.log('Hello World');
+                if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
+                    || !utility.getJStorageKey("selectedCity")) {
+                    openCitySelectionModal();
+                }                  
+            });     
+
+            $scope.setCityLocation = function(city) {
+                angular.forEach($scope.cityLocation, function(value, key){
+                    $scope.cityLocation[key] = false;
+                });
+                $scope.cityLocation[city] = true;
+                utility.setJStorageKey("selectedCity", city, 1);
+                hideCitySelectionModal();
+            };
+
+            if (utility.getJStorageKey("categories")) {
+                $scope.categories = utility.getJStorageKey("categories");
             } else {
-        	   categoryService.getCategoryList()
+        	    categoryService.getCategoryList()
                     .then(function(data){
                         $scope.categories = data.Category.children[0].children; 
-                        utility.setJStorageKey(jstorageKey, $scope.categories, 1);
+                        utility.setJStorageKey("categories", $scope.categories, 1);
                     });
             }
 
@@ -41,7 +76,7 @@ define(['app'], function(app) {
                 route = angular.isDefined(id) ? route + ("/" + id) : route;
                 $location.url(route);
             };
-
+            
             $scope.toggleCategoryMenu = function() {
                 $scope.showSubCategoryMenu = false;
                 $scope.showCategoryMenu = $scope.showCategoryMenu ? false : true;
@@ -52,6 +87,7 @@ define(['app'], function(app) {
                 $scope.showSubCategoryMenu = $scope.showSubCategoryMenu ? false : true;
                 $scope.categoryName = categoryService.getCategoryName($scope.categories, categoryId);
                 $scope.subCategories = categoryService.getSubCategoryList($scope.categories, categoryId);
+                console.log($scope.subCategories);
             };
 
             $scope.toggleSubSubCategory = function(categoryId){
@@ -97,6 +133,10 @@ define(['app'], function(app) {
                 $scope.showMoreMenuOptions = false;
                 //$scope.showCategoryMenu = false;
                 //$scope.showSubCategoryMenu = false;
+            };
+
+            $scope.isSpecialCategory = function(categoryId) {
+                return categoryService.isSpecialCategory(categoryId);
             };
 
             $scope.logout = function() {

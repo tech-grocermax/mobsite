@@ -28,6 +28,7 @@ define([], function() {
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',
                     appURL + 'services/product',
+                    appURL + 'services/category',
                     appURL + 'filter/product',
                     appURL + 'directives/generic',
                     appURL + 'controllers/product'

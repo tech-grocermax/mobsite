@@ -1,7 +1,7 @@
 define(['app'], function(app) {
 	app.controller('productController',  [
-        '$scope', '$rootScope', '$routeParams', '$location', 'productService', 'utility', 
-        function($scope, $rootScope, $routeParams, $location, productService, utility) {            
+        '$scope', '$rootScope', '$routeParams', '$location',  '$timeout', 'productService', 'categoryService', 'utility', 
+        function($scope, $rootScope, $routeParams, $location, $timeout, productService, categoryService, utility) {            
             $scope.showSearchBar = false;
             $scope.showSearchIcon = false;
             $scope.showMoreIcon = true; 
@@ -10,6 +10,8 @@ define(['app'], function(app) {
             $scope.categoryId = angular.isDefined($routeParams.categoryId) ? $routeParams.categoryId : null ;
             $scope.productId = angular.isDefined($routeParams.productId) ? $routeParams.productId : null ;
             $scope.quoteId = angular.isDefined($routeParams.quoteId) ? $routeParams.quoteId : null ;
+            $scope.parentCatId = angular.isDefined($routeParams.parentId) ? $routeParams.parentId : null ;
+
             $scope.products = null;
             $scope.productDetails = null;
             $scope.cartItems = [];
@@ -18,7 +20,8 @@ define(['app'], function(app) {
             $scope.showUserMenuOptions = false;
             $scope.youSaved = 0;
             $scope.totalCartQty = 0;
-            
+            $scope.lastChildCategoryList = null;
+
             getProductList = function() {
                 var jstorageKeyProducts = "products_" + $routeParams.categoryId;
                 if (utility.getJStorageKey(jstorageKeyProducts)) {
@@ -31,9 +34,28 @@ define(['app'], function(app) {
                         });
                 }
             };
+            
+            getLastChildCategoryList = function() {
+                if (utility.getJStorageKey("categories")) {
+                    $scope.categories = utility.getJStorageKey("categories");
+                    console.log($scope.categories);
+                    var catId = $scope.parentCatId ? $scope.parentCatId : $scope.categoryId; 
+                    $scope.lastChildCategoryList = categoryService.getLastChildCategoryList($scope.categories, catId);
+                    console.log($scope.lastChildCategoryList);
+                } else {
+                    categoryService.getCategoryList()
+                        .then(function(data){
+                            $scope.categories = data.Category.children[0].children;                        
+                            utility.setJStorageKey("categories", $scope.categories, 1);
+                            var catId = $scope.parentCatId ? parentCatId : $scope.categoryId;
+                            $scope.lastChildCategoryList = categoryService.getLastChildCategoryList($scope.categories, catId);
+                        });
+                }
+            };
 
             if($scope.categoryId){
-               getProductList(); 
+               getLastChildCategoryList(); 
+               getProductList();
             }
 
             getProductDetails = function() {
@@ -237,6 +259,11 @@ define(['app'], function(app) {
 
             $scope.routerChange = function(route, id) {
                 $location.url(route + "/" + id);
+            };  
+
+            $scope.routerChangeChild = function(route, id, parentId) {
+                console.log(route, id, parentId);
+                $location.url("product/" + id + "?parentId="+parentId);                
             };
 
             $scope.replaceImageUrl = function(src) {
@@ -302,6 +329,8 @@ define(['app'], function(app) {
             $scope.navigateToShipping = function() {
                 $location.url("checkout/shipping");
             };
+
+            
 
         }
     ]);
