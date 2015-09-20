@@ -34,6 +34,18 @@ define([], function() {
                     appURL + 'controllers/product'
                 ]
             },
+            '/product': {
+                templateUrl: templateURL + 'product.html',
+                dependencies: [
+                    appURL + 'services/serverUtility',
+                    appURL + 'services/utility',
+                    appURL + 'services/product',
+                    appURL + 'services/category',
+                    appURL + 'filter/product',
+                    appURL + 'directives/generic',
+                    appURL + 'controllers/product'
+                ]
+            },
             '/product/details/:productId': {
                 templateUrl: templateURL + 'product-details.html',
                 dependencies: [

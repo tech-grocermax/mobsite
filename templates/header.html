@@ -83,7 +83,9 @@
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 padd0">
                     <input type="text" placeholder="Search and buy from here..." 
-                        class="search-bar">
+                        data-ng-model="searchKeyword"
+                        data-ng-change="changeSearchKeyword(searchKeyword)"
+                        class="search-bar" search>
                 </div>
                 <!-- search-icon -->
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 " 

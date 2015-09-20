@@ -25,7 +25,8 @@ define(['app'], function(app) {
                 "gurgaon": false,
                 "noida": false
             };
-
+            $scope.keyword = angular.isDefined($routeParams.keyword) ? $routeParams.keyword : null ;
+            
             openCitySelectionModal = function() {
                 $timeout(function(){
                     $('#myModal').modal({
@@ -69,9 +70,21 @@ define(['app'], function(app) {
                 }
             };
 
+            getProductListBySearch = function() {
+                productService.getProductListBySearch($scope.keyword)
+                    .then(function(data){
+                        $scope.products = data.Product; 
+                        //utility.setJStorageKey(jstorageKeyProducts, $scope.products, 1);
+                    });
+            };
+
             if($scope.categoryId){
                getLastChildCategoryList(); 
                getProductList();
+            }
+
+            if($scope.keyword) {
+                getProductListBySearch();
             }
 
             getProductDetails = function() {
@@ -258,17 +271,31 @@ define(['app'], function(app) {
             $scope.cartUpdateProducts = function() {
                 if(angular.isDefined(utility.getJStorageKey("cartItems"))) {
                     var quoteId = utility.getJStorageKey("quoteId"),
-                        cartItems = utility.getJStorageKey("cartItems"),
-                        firstAddedProduct = utility.getJStorageKey("firstAddedProduct");
+                        cartItems = utility.getJStorageKey("cartItems");
 
-                    productService.cartUpdateProduct(cartItems, quoteId, firstAddedProduct)
+                    console.log(cartItems);
+
+                    /*productService.cartUpdateProduct(cartItems, quoteId, firstAddedProduct)
                         .then(function(data){
                             //if(data.flag == 1 || data.flag == "1"){
-                                console.log("cart detail redirection");
-                                $location.url("cart" + "/" + quoteId);
+                                //console.log("cart detail redirection");
+                                //$location.url("cart" + "/" + quoteId);
                             //}                            
-                        });                    
+                        });*/                    
                 }
+            };
+
+            $scope.checkout = function() {
+                var cartItems = utility.getJStorageKey("cartItems");
+                console.log(cartItems);
+                console.log($scope.productIds);
+                /*console.log(utility.getJStorageKey("userId"));
+                if(angular.isDefined(utility.getJStorageKey("userId"))
+                    && utility.getJStorageKey("userId")) {
+
+                } else {
+                    $location.url("user/login");
+                }*/
             };
 
             $scope.routerChange = function(route, id) {
@@ -304,10 +331,22 @@ define(['app'], function(app) {
                 $scope.totalCartQty = qty;
             };
 
+            $scope.productIds = [];
+
+            getCartProductIds = function() {
+                var productIds = [];
+                var cartItems = utility.getJStorageKey("cartItems");
+                angular.forEach(cartItems, function(value, key) {
+                    productIds.push(value.productid);
+                });
+                $scope.productIds = productIds;
+            };
+
             getCartItemDetails = function() {
                 productService.getCartItemDetails($scope.quoteId)
                     .then(function(data){              
-                        $scope.cartDetails = data.CartDetail;              
+                        $scope.cartDetails = data.CartDetail; 
+                        getCartProductIds();             
                         getYouSaveAmout();
                     });
             };  

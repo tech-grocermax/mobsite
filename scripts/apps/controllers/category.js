@@ -22,6 +22,7 @@ define(['app'], function(app) {
                 "gurgaon": false,
                 "noida": false
             };
+            $scope.searchKeyword = "";
 
             openCitySelectionModal = function() {
                 $timeout(function(){
@@ -133,6 +134,14 @@ define(['app'], function(app) {
                 $scope.cityLocation[city] = true;
                 utility.setJStorageKey("selectedCity", city, 1);
                 hideCitySelectionModal();
+            };
+
+            $scope.changeSearchKeyword = function(model) {
+                $scope.searchKeyword = model;
+            };
+
+            $scope.handleSearchKeyEnter = function() {
+                $location.url("product?keyword=" + $scope.searchKeyword)
             };
 
             angular.element(document).ready(function () {

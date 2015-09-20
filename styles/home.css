@@ -230,7 +230,7 @@ body{background: #f4f4f4; font-family: roboto;}
 	.img-text-box{bottom: 50px;}
 	.slide-img{width: 210px;}
 	.li-border {height:120px;margin-left: 12px;margin-right: 12px;}
-	.slide-text {width:150px; margin-bottom: 45px; margin-top:12px;margin-bottom: 12px;}
+	.slide-text {width: 100%; margin-bottom: 45px; margin-top:12px;margin-bottom: 12px;}
 	.ul-height{height:120px;}
 	.header-middle {padding: 15px 8px 8px;}
 	.margin-top16-m{margin-top:16px;}

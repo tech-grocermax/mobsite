@@ -40,6 +40,12 @@ define(['app'], function (app) {
 		    	return serverUtility.getWebService(url)
 		    		.then(function(data){return data}, function(error){return error});
 		    };
+		    
+		    this.getProductListBySearch = function(keyword) {
+		    	var url = getAPIUrl() + "search?keyword=" + keyword;
+		    	return serverUtility.getWebService(url)
+		    		.then(function(data){return data}, function(error){return error});
+		    };
 	    
 	    	return this;
     	}
