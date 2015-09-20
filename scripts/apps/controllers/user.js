@@ -77,13 +77,13 @@ define(['app'], function(app) {
             $scope.registrationStep = 2;
             $scope.otp = angular.isDefined(utility.getJStorageKey("otp")) ? utility.getJStorageKey("otp") : "";
             $scope.cityLocation = {
-                "delhi": false,
-                "gurgaon": false,
-                "noida": false
+                "delhi": angular.isDefined(utility.getJStorageKey("selectedCity")) && utility.getJStorageKey("selectedCity") == "delhi" ? true : false,
+                "gurgaon": angular.isDefined(utility.getJStorageKey("selectedCity")) && utility.getJStorageKey("selectedCity") == "gurgaon" ? true : false,
+                "noida": angular.isDefined(utility.getJStorageKey("selectedCity")) && utility.getJStorageKey("selectedCity") == "noida" ? true : false
             };
             $scope.email = null;
 
-            openCitySelectionModal = function() {
+            $scope.openCitySelectionModal = function() {
                 $timeout(function(){
                     $('#myModal').modal({
                         backdrop: false,
@@ -100,7 +100,7 @@ define(['app'], function(app) {
             angular.element(document).ready(function () {
                 if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
                     || !utility.getJStorageKey("selectedCity")) {
-                    openCitySelectionModal();
+                    $scope.openCitySelectionModal();
                 }                  
             });     
 
@@ -126,13 +126,15 @@ define(['app'], function(app) {
                     utility.setJStorageKey("userId", data.UserID, 1);
                     $scope.userResponseMessage = data.Result;
                     updateClassName("success");
+
+                    if($scope.isReferrer == "checkout") {
+                        $location.url("checkout/shipping"); 
+                    } else {
+                        $location.url("user/profile");
+                    }
                 } else {
                     $scope.userResponseMessage = data.Result;
                     updateClassName("danger");
-                }
-
-                if($scope.isReferrer == "checkout") {
-                    $location.url("checkout/shipping"); 
                 }
             };
 
