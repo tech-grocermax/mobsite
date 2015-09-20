@@ -117,6 +117,15 @@ define(['app'], function (app) {
 		    		);
 		    };
 
+		    this.forgotPassword = function(email) {
+		    	var url = getAPIUrl() + "forgotpassword?uemail=" + email;
+		    	return serverUtility.getWebService(url)
+		    		.then(
+		    			function(data){return data; },
+		    			function(error){return error; }
+		    		);
+		    };
+
 	    	return this;
     	}
     ]);

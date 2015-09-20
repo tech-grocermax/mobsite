@@ -81,10 +81,12 @@
 		<div class="col-md-12 col-sm-12 col-xs-12 padd0 otp-text">
 			<span>Enter your one time password (OTP)</span>
 		</div>
-		<div class="col-md-12 col-sm-12 col-xs-12 pad16 margin-top15 otp-pass">
+		<div class="col-md-12 col-sm1234-12 col-xs-12 pad16 margin-top15 otp-pass">
 			<input type="text" name="otp" 
 				data-ng-model="otp"
-				value="22222"
+				data-ng-change="changeOTP(otp)"
+				value=""
+				maxlength="4" 
 				class="place-color reg-list-input">				
 		</div>
 		<div class="col-md-12 col-sm-12 col-xs-12 padd0 margin-top15">

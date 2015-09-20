@@ -22,6 +22,42 @@ define(['app'], function(app) {
             $scope.totalCartQty = 0;
             $scope.lastChildCategoryList = null;
 
+            $scope.cityLocation = {
+                "delhi": false,
+                "gurgaon": false,
+                "noida": false
+            };
+
+            openCitySelectionModal = function() {
+                $timeout(function(){
+                    $('#myModal').modal({
+                        backdrop: false,
+                        keyboard: false,
+                        show: true
+                    });
+                }, 1000);
+            };
+
+            hideCitySelectionModal = function() {
+                $('#myModal').modal('hide');
+            };
+
+            angular.element(document).ready(function () {
+                if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
+                    || !utility.getJStorageKey("selectedCity")) {
+                    openCitySelectionModal();
+                }                  
+            });     
+
+            $scope.setCityLocation = function(city) {
+                angular.forEach($scope.cityLocation, function(value, key){
+                    $scope.cityLocation[key] = false;
+                });
+                $scope.cityLocation[city] = true;
+                utility.setJStorageKey("selectedCity", city, 1);
+                hideCitySelectionModal();
+            };
+
             getProductList = function() {
                 var jstorageKeyProducts = "products_" + $routeParams.categoryId;
                 if (utility.getJStorageKey(jstorageKeyProducts)) {

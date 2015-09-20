@@ -38,7 +38,6 @@ define(['app'], function(app) {
             };
 
             angular.element(document).ready(function () {
-                console.log('Hello World');
                 if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
                     || !utility.getJStorageKey("selectedCity")) {
                     openCitySelectionModal();

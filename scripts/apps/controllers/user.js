@@ -37,6 +37,7 @@ define(['app'], function(app) {
             $scope.section = {
                 "login" : false,
                 "register" : false,
+                "forgot" : false,
                 "profile" : false,
                 "editprofile": false,
                 "address" : false,
@@ -75,6 +76,42 @@ define(['app'], function(app) {
             };
             $scope.registrationStep = 2;
             $scope.otp = angular.isDefined(utility.getJStorageKey("otp")) ? utility.getJStorageKey("otp") : "";
+            $scope.cityLocation = {
+                "delhi": false,
+                "gurgaon": false,
+                "noida": false
+            };
+            $scope.email = null;
+
+            openCitySelectionModal = function() {
+                $timeout(function(){
+                    $('#myModal').modal({
+                        backdrop: false,
+                        keyboard: false,
+                        show: true
+                    });
+                }, 1000);
+            };
+
+            hideCitySelectionModal = function() {
+                $('#myModal').modal('hide');
+            };
+
+            angular.element(document).ready(function () {
+                if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
+                    || !utility.getJStorageKey("selectedCity")) {
+                    openCitySelectionModal();
+                }                  
+            });     
+
+            $scope.setCityLocation = function(city) {
+                angular.forEach($scope.cityLocation, function(value, key){
+                    $scope.cityLocation[key] = false;
+                });
+                $scope.cityLocation[city] = true;
+                utility.setJStorageKey("selectedCity", city, 1);
+                hideCitySelectionModal();
+            };
 
             updateClassName = function(keyName) {
                 angular.forEach($scope.className, function(value, key){
@@ -135,6 +172,10 @@ define(['app'], function(app) {
                     $scope.userResponseMessage = "Invalid OTP, Please try again.";
                     updateClassName("danger");
                 }
+            };
+
+            $scope.changeOTP = function(model) {
+                $scope.otp = model;
             };
 
             $scope.loginUser = function() {
@@ -278,6 +319,35 @@ define(['app'], function(app) {
                 $scope.showMoreMenuOptions = false;
                 //$scope.showCategoryMenu = false;
                 //$scope.showSubCategoryMenu = false;
+            };
+
+            $scope.navigateTo = function(route) {
+                $location.url(route);
+            };
+
+            $scope.changeForgotPassword = function(model) {
+                $scope.email = model;
+            };
+
+            successCallbackForgotPassword = function(data) {
+                $scope.showUserResponse = true;
+                if(data.flag == "1") {
+                    $scope.userResponseMessage = data.Result;
+                    updateClassName("success");
+                    $timeout(function() {
+                        $location.url("user/login");
+                    }, 1000);
+                } else {
+                    $scope.userResponseMessage = data.Result;
+                    updateClassName("danger");
+                }
+            };
+
+            $scope.forgotPassword = function() {
+                userService.forgotPassword($scope.email)
+                    .then(function(data){
+                           successCallbackForgotPassword(data);                    
+                    });
             };
 
         }
