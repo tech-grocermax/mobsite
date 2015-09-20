@@ -36,23 +36,7 @@ define(['app'], function(app) {
             hideCitySelectionModal = function() {
                 $('#myModal').modal('hide');
             };
-
-            angular.element(document).ready(function () {
-                if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
-                    || !utility.getJStorageKey("selectedCity")) {
-                    openCitySelectionModal();
-                }                  
-            });     
-
-            $scope.setCityLocation = function(city) {
-                angular.forEach($scope.cityLocation, function(value, key){
-                    $scope.cityLocation[key] = false;
-                });
-                $scope.cityLocation[city] = true;
-                utility.setJStorageKey("selectedCity", city, 1);
-                hideCitySelectionModal();
-            };
-
+            
             $scope.showMoreMenu = function() {
                 $scope.showUserMenuOptions = false;
                 $scope.showMoreMenuOptions = $scope.showMoreMenuOptions ? false : true;
@@ -70,6 +54,21 @@ define(['app'], function(app) {
                 //$scope.showSubCategoryMenu = false;
             };
 
+            $scope.setCityLocation = function(city) {
+                angular.forEach($scope.cityLocation, function(value, key){
+                    $scope.cityLocation[key] = false;
+                });
+                $scope.cityLocation[city] = true;
+                utility.setJStorageKey("selectedCity", city, 1);
+                hideCitySelectionModal();
+            };
+
+            angular.element(document).ready(function () {
+                if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
+                    || !utility.getJStorageKey("selectedCity")) {
+                    openCitySelectionModal();
+                }                  
+            });
         }
     ]);
 });

@@ -75,43 +75,19 @@ define(['app'], function(app) {
                 is_default_shipping: false
             };
             $scope.registrationStep = 2;
-            $scope.otp = angular.isDefined(utility.getJStorageKey("otp")) ? utility.getJStorageKey("otp") : "";
+            $scope.otp = "";
             $scope.cityLocation = {
                 "delhi": angular.isDefined(utility.getJStorageKey("selectedCity")) && utility.getJStorageKey("selectedCity") == "delhi" ? true : false,
                 "gurgaon": angular.isDefined(utility.getJStorageKey("selectedCity")) && utility.getJStorageKey("selectedCity") == "gurgaon" ? true : false,
                 "noida": angular.isDefined(utility.getJStorageKey("selectedCity")) && utility.getJStorageKey("selectedCity") == "noida" ? true : false
             };
-            $scope.email = null;
-
-            $scope.openCitySelectionModal = function() {
-                $timeout(function(){
-                    $('#myModal').modal({
-                        backdrop: false,
-                        keyboard: false,
-                        show: true
-                    });
-                }, 1000);
-            };
+            $scope.email = null;           
 
             hideCitySelectionModal = function() {
                 $('#myModal').modal('hide');
             };
 
-            angular.element(document).ready(function () {
-                if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
-                    || !utility.getJStorageKey("selectedCity")) {
-                    $scope.openCitySelectionModal();
-                }                  
-            });     
-
-            $scope.setCityLocation = function(city) {
-                angular.forEach($scope.cityLocation, function(value, key){
-                    $scope.cityLocation[key] = false;
-                });
-                $scope.cityLocation[city] = true;
-                utility.setJStorageKey("selectedCity", city, 1);
-                hideCitySelectionModal();
-            };
+            
 
             updateClassName = function(keyName) {
                 angular.forEach($scope.className, function(value, key){
@@ -139,11 +115,37 @@ define(['app'], function(app) {
             };
 
             if($scope.section.register){
-                utility.setJStorageKey("otp", 1234, 1);
-                var opt = utility.getJStorageKey("otp");
-                console.log(opt);
-                $scope.otp = opt;
-            }
+                //utility.setJStorageKey("otp", 1234, 1);
+            }            
+
+            syncModelData = function(data) {
+                $scope.user.fname = data.firstname;
+                $scope.user.lname = data.lastname;
+                $scope.user.number = data.mobile;
+                $scope.user.uemail = data.email;
+            };
+
+            successCallbackProfile = function(data) {
+                $scope.userProfile.personalInfo = data["Personal Info"];
+                $scope.userProfile.billingAddress = data.BillingAddress;
+                $scope.userProfile.shippingAddress = data.ShippingAddress;
+                if($scope.sectionName == "editprofile") {
+                    syncModelData($scope.userProfile.personalInfo);
+                }                
+            };
+
+            getUserProfile = function(userId) {
+                userService.getUserProfile(userId)
+                    .then(function(data){
+                        successCallbackProfile(data);
+                    });
+            };
+
+            if(angular.isDefined(utility.getJStorageKey("userId")) 
+                && utility.getJStorageKey("userId")){
+                $scope.isUserLoggedIn = true;
+                getUserProfile(utility.getJStorageKey("userId"));
+            }   
 
             $scope.createUser = function() {
                 utility.setJStorageKey("registrationDetails", $scope.user, 1);
@@ -195,38 +197,7 @@ define(['app'], function(app) {
                     .then(function(data){
                         successCallbackUser(data);
                     });
-            };
-
-            //utility.setJStorageKey("userId", 323, 1);
-
-            syncModelData = function(data) {
-                $scope.user.fname = data.firstname;
-                $scope.user.lname = data.lastname;
-                $scope.user.number = data.mobile;
-                $scope.user.uemail = data.email;
-            };
-
-            successCallbackProfile = function(data) {
-                $scope.userProfile.personalInfo = data["Personal Info"];
-                $scope.userProfile.billingAddress = data.BillingAddress;
-                $scope.userProfile.shippingAddress = data.ShippingAddress;
-                if($scope.sectionName == "editprofile") {
-                    syncModelData($scope.userProfile.personalInfo);
-                }                
-            };
-
-            getUserProfile = function(userId) {
-                userService.getUserProfile(userId)
-                    .then(function(data){
-                        successCallbackProfile(data);
-                    });
-            };
-
-            if(angular.isDefined(utility.getJStorageKey("userId")) 
-                && utility.getJStorageKey("userId")){
-                $scope.isUserLoggedIn = true;
-                getUserProfile(utility.getJStorageKey("userId"));
-            }            
+            };         
 
             $scope.showMoreMenu = function() {
                 $scope.showUserMenuOptions = false;
@@ -263,7 +234,6 @@ define(['app'], function(app) {
                     });
             };
 
-            
             getAddressList = function() {
                 userService.getAddressList(utility.getJStorageKey("userId"))
                     .then(function(data){
@@ -351,6 +321,32 @@ define(['app'], function(app) {
                            successCallbackForgotPassword(data);                    
                     });
             };
+
+            $scope.openCitySelectionModal = function() {
+                $timeout(function(){
+                    $('#myModal').modal({
+                        backdrop: false,
+                        keyboard: false,
+                        show: true
+                    });
+                }, 1000);
+            };
+
+            $scope.setCityLocation = function(city) {
+                angular.forEach($scope.cityLocation, function(value, key){
+                    $scope.cityLocation[key] = false;
+                });
+                $scope.cityLocation[city] = true;
+                utility.setJStorageKey("selectedCity", city, 1);
+                hideCitySelectionModal();
+            };
+
+            angular.element(document).ready(function () {
+                if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
+                    || !utility.getJStorageKey("selectedCity")) {
+                    $scope.openCitySelectionModal();
+                }                  
+            });
 
         }
     ]);

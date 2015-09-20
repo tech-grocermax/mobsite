@@ -5,17 +5,11 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
                 <ul class="list-unstyled nav-list">
                     <li class="prod-nav-li nav-active">ALL</li>
-                    <!-- <li class="prod-nav-li">HOT-OFFERS</li> -->
                     <li class="prod-nav-li"
                         style="text-transform: uppercase;"
                         data-ng-click="routerChangeChild('product', lastChild.category_id, lastChild.parent_id)"
                         data-ng-repeat="lastChild in lastChildCategoryList">
-                        {{lastChild.name}}</li>
-                    <!-- <li class="prod-nav-li">CASHEWS</li>
-                    <li class="prod-nav-li">BEVERAGES</li>
-                    <li class="prod-nav-li">ALMODS</li>
-                    <li class="prod-nav-li">CASHEWS</li>
-                    <li class="prod-nav-li">BEVERAGES</li> -->
+                        {{lastChild.name}}</li>                    
                 </ul>
             </div>
         </div>
