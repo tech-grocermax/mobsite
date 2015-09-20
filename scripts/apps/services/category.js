@@ -55,13 +55,11 @@ define(['app'], function (app) {
 		    			angular.forEach(value.children, function(innerValue, innerKey) {
 		    				var isSpecial = that.isSpecialCategory(categoryId);
 		    				if(isSpecial) {
-		    					console.log(innerValue.category_id, categoryId);
 				    			if(innerValue.category_id == categoryId){
 									lastChildCategoryList = innerValue.children;
 				    			}
 		    				} else {
 		    					angular.forEach(innerValue.children, function(lastValue, lastKey) {
-		    						console.log(lastValue.category_id, categoryId);
 					    			if(lastValue.category_id == categoryId){
 										lastChildCategoryList = lastValue.children;
 					    			}

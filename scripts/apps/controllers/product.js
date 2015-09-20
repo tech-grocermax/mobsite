@@ -56,10 +56,8 @@ define(['app'], function(app) {
             getLastChildCategoryList = function() {
                 if (utility.getJStorageKey("categories")) {
                     $scope.categories = utility.getJStorageKey("categories");
-                    console.log($scope.categories);
                     var catId = $scope.parentCatId ? $scope.parentCatId : $scope.categoryId; 
                     $scope.lastChildCategoryList = categoryService.getLastChildCategoryList($scope.categories, catId);
-                    console.log($scope.lastChildCategoryList);
                 } else {
                     categoryService.getCategoryList()
                         .then(function(data){
@@ -109,20 +107,14 @@ define(['app'], function(app) {
             };
 
             addProductToJStorage = function(product) {
-                var quoteId = utility.getJStorageKey("quoteId"),
-                    cartObject = buildCartObject(product),
-                    cartItems = {};
-
-                cartItems[quoteId] = [];
-                cartItems[quoteId].push(cartObject);
+                var cartItems = [];
+                cartItems.push(buildCartObject(product));
                 utility.setJStorageKey("cartItems", cartItems, 1);                
             };            
             
             getCartItems = function() {                
-                var quoteId = utility.getJStorageKey("quoteId"),
-                    cartItems = utility.getJStorageKey("cartItems");
-
-                return quoteId ? cartItems[quoteId] : [];                
+                var cartItems = utility.getJStorageKey("cartItems");
+                return cartItems.length ? cartItems : [];                
             };
 
             getCartItemCounter = function() {
@@ -137,14 +129,13 @@ define(['app'], function(app) {
                 $scope.cartItems = getCartItems();
                 $scope.cartItemCount = getCartItemCounter();                
             };
-            if(angular.isDefined(utility.getJStorageKey("quoteId")) 
-                && utility.getJStorageKey("quoteId")) {
+            if(angular.isDefined(utility.getJStorageKey("cartItems")) 
+                && utility.getJStorageKey("cartItems")) {
                 getCartDetails();
             }
 
-            updateProductToJStorage = function(quoteId, product) {
-                var cartItemObject = utility.getJStorageKey("cartItems"),
-                    cartItems = cartItemObject[quoteId],
+            updateProductToJStorage = function(product) {
+                var cartItems = utility.getJStorageKey("cartItems"),
                     isOperated = false,
                     findKey = null,
                     obj = {};
@@ -166,14 +157,12 @@ define(['app'], function(app) {
                     cartItems.push(cartObject);
                 }
                 
-                obj[quoteId] = cartItems;
-                utility.setJStorageKey("cartItems", obj, 1);
+                utility.setJStorageKey("cartItems", cartItems, 1);
                 getCartDetails();
             };
 
-            removeProductFromCart = function(quoteId, product) {
-                var cartItemObject = utility.getJStorageKey("cartItems"),
-                    cartItems = cartItemObject[quoteId],
+            removeProductFromCart = function(product) {
+                var cartItems = utility.getJStorageKey("cartItems"),
                     isOperated = false,
                     obj = {};
 
@@ -192,35 +181,25 @@ define(['app'], function(app) {
                         }                      
                     }
                 });
-                obj[quoteId] = cartItems;
-                utility.setJStorageKey("cartItems", obj, 1);
+                utility.setJStorageKey("cartItems", cartItems, 1);
                 getCartDetails();
             };
 
             //utility.deleteJStorageKey("quoteId");
             $scope.addProduct = function(product) {
-                if(angular.isUndefined(utility.getJStorageKey("quoteId")) 
-                    || !utility.getJStorageKey("quoteId")) {
-                    productService.cartAddProduct(buildAddProductObject(product))
-                        .then(function(data){
-                            if(data.flag == 1 || data.flag == "1"){
-                                utility.setJStorageKey("quoteId", data.QuoteId, 1);
-                                utility.setJStorageKey("firstAddedProduct",
-                                    product.productid, 1);
-                                addProductToJStorage(product);
-                                getCartDetails();
-                            }                            
-                        });
+                if(angular.isDefined(utility.getJStorageKey("cartItems"))
+                    && utility.getJStorageKey("cartItems")) {
+                     updateProductToJStorage(product);
                 } else {
-                    var quoteId = utility.getJStorageKey("quoteId");
-                    updateProductToJStorage(quoteId, product);
+                    addProductToJStorage(product);
+                    getCartDetails();
                 }
             };
 
             $scope.removeProduct = function(product) {                
-                if(angular.isDefined(utility.getJStorageKey("quoteId"))) {
-                    var quoteId = utility.getJStorageKey("quoteId");
-                    removeProductFromCart(quoteId, product);
+                if(angular.isDefined(utility.getJStorageKey("cartItems"))
+                    && utility.getJStorageKey("cartItems")) {
+                    removeProductFromCart(product);
                 }
             };
 
@@ -232,6 +211,22 @@ define(['app'], function(app) {
             $scope.removeProductWrapper = function(product) {
                 product.productid = product.product_id;
                 $scope.removeProduct(product);
+            };
+
+            $scope.guestAddProduct = function() {
+                if(angular.isDefined(utility.getJStorageKey("cartItems")) 
+                    || utility.getJStorageKey("cartItems")) {                    
+                    productService.cartAddProduct(utility.getJStorageKey("cartItems"))
+                        .then(function(data){
+                            if(data.flag == 1 || data.flag == "1"){
+                                utility.setJStorageKey("quoteId", data.QuoteId, 1);
+                                console.log("cart detail redirection");
+                                $location.url("cart" + "/" + data.QuoteId);
+                            }                            
+                        });
+                } else {
+                    console.log("do nothing...");
+                }
             };
 
             $scope.getProductQuantity = function(productId) {
@@ -246,11 +241,13 @@ define(['app'], function(app) {
                 return qty;
             };
 
+            //Right now for cart item count we are relying on local storaye variable,
+            // but in near future we might need to change it
             $scope.getCartProductQuantity = function(productId) {
-                var qty = 0;
+                var qty = 1;
                 if($scope.cartItems.length) {
                     angular.forEach($scope.cartItems, function(value, key) {
-                        if(productId == value.product_id){
+                        if(productId == value.productid){
                             qty = value.quantity;
                         }
                     });
@@ -259,10 +256,9 @@ define(['app'], function(app) {
             };
 
             $scope.cartUpdateProducts = function() {
-                if(angular.isDefined(utility.getJStorageKey("quoteId"))) {
+                if(angular.isDefined(utility.getJStorageKey("cartItems"))) {
                     var quoteId = utility.getJStorageKey("quoteId"),
-                        cartItemObject = utility.getJStorageKey("cartItems"),
-                        cartItems = cartItemObject[quoteId],
+                        cartItems = utility.getJStorageKey("cartItems"),
                         firstAddedProduct = utility.getJStorageKey("firstAddedProduct");
 
                     productService.cartUpdateProduct(cartItems, quoteId, firstAddedProduct)
