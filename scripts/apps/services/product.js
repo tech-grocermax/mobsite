@@ -23,13 +23,10 @@ define(['app'], function (app) {
 		    		.then(function(data){return data}, function(error){return error});
 		    };
 
-		    this.cartUpdateProduct = function(products, quoteId, firstAddedProduct) {
-		    	var strProducts = JSON.stringify(products),
-		    		productid = new Array(firstAddedProduct),
-		    		strProductId = JSON.stringify(productid),
-		    		url = getAPIUrl() + "deleteitem?productid=" + strProductId 
+		    this.cartUpdateProduct = function(quoteId, products, productid) {
+		    	var url = getAPIUrl() + "deleteitem?productid=" + JSON.stringify(productid) 
 		    		+ "&quote_id=" + quoteId 
-		    		+ "&updateid=" + strProducts;
+		    		+ "&updateid=" + JSON.stringify(products);
 
 		    	return serverUtility.getWebService(url)
 		    		.then(function(data){return data}, function(error){return error});
