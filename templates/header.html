@@ -4,20 +4,20 @@
       Launch demo modal
     </button> -->
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-middle">
-        <div class="row margin0" 
-            style="padding-left: 16px; padding-right: 16px; position:relative;">
+        <div class="row margin0 pad16 pad8-m">
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0" 
                 data-ng-show="columnSize == 1">
-                <a href="#/"><img src="images/header-icon/home.png" title="Home" 
-                    class="img-responsive"></a>
+                <a href="#/"><!--<img src="images/header-icon/home.png" title="Home" class="img-responsive">-->
+					<img class="logo-icon" title="Home" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAwAQMAAACyghHbAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgF1AQAAVAAATS4OtkAAAAASUVORK5CYII="></a>
             </div>
-            <div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 margin-lt22p" 
+            <div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 margin-lt22p icon-margin" 
                 data-ng-show="columnSize == 1"
                 data-ng-click="showUserMenu()"
                 outsideclick="handleOutSideClick()">
                 <a href="javascript:void(0);">
-                    <img src="images/header-icon/profile.png" 
-                        title="User" class="img-responsive"></a>                
+                    <!--<img src="images/header-icon/profile.png" title="User" class="img-responsive">-->
+					<img class="profile" alt="" title="User" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqAQMAAAD/DVsYAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFhAEAASYAARfcVj8AAAAASUVORK5CYII=">
+					</a>                
             </div>
             <div data-ng-show="showUserMenuOptions"
                 style=" position: absolute; top: 110%; width: 300px; z-index: 100; left:-15%;">
@@ -47,20 +47,22 @@
                     <img class="img-responsive" src="images/header-icon/search1.png" 
                         title="Search"></a>
             </div>
-            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 margin-lt22p">
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 margin-lt22p icon-margin">
                 <a href="javascript:void(0);">
-                    <img src="images/header-icon/cart.png" title="Cart" 
-                        class="img-responsive"></a>
+                    <!--<img src="images/header-icon/cart.png" title="Cart" class="img-responsive">-->
+					<img class="cart" alt="" title="Cart" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAApAQMAAAB5mSm2AAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFeAAAAR8AAVTkCygAAAAASUVORK5CYII=">
+				</a>
                 <div class="header-O" 
                     data-ng-click="guestAddProduct()">{{cartItemCount}}</div>
             </div>
-            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 float-rt more-icon-mrg"
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 float-rt"
                 data-ng-show="showMoreIcon"
                 data-ng-click="showMoreMenu()"
                 outsideclick="handleOutSideClick()">
                 <a href="javascript:void(0);">
-                    <img src="images/header-icon/more-icon.png" title="More" 
-                        class="img-responsive"></a>                
+                    <!--<img src="images/header-icon/more-icon.png" title="More" class="img-responsive">-->
+					<img class="more-icon more-icon-mrg" alt="" title="More" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAANAQMAAAADjaXSAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAAxJREFUeNpjYKAZAAAAWwABrFxQuwAAAABJRU5ErkJggg==">
+				</a>                
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top15 padd0"
                 data-ng-show="showMoreMenuOptions"
@@ -74,30 +76,41 @@
                 </ul>
             </div>
         </div>
-        <div class="row margin0 margin-top32"
+		
+		
+		
+		
+		
+        <div class="row margin0 margin-top32 margin-top16-m"
             data-ng-show="showSearchBar">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white border-rad">
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 padd0 list-icon" 
                     data-ng-click="toggleCategoryMenu()">
-                    <img src="images/app_bar_icons/list.png" alt="" class="img-responsive">
+                    <!--<img src="images/app_bar_icons/list.png" alt="" class="img-responsive">-->
+					<img class="list" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAwAQMAAAC/nGGcAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgF1AQAAVAAATS4OtkAAAAASUVORK5CYII=">
                 </div>
-                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 padd0">
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 padd0">
                     <input type="text" placeholder="Search and buy from here..." 
                         data-ng-model="searchKeyword"
                         data-ng-change="changeSearchKeyword(searchKeyword)"
                         class="search-bar" search>
                 </div>
                 <!-- search-icon -->
-                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 " 
-                    style="float: right; top: 12px;">
-                    <img src="images/app_bar_icons/search_icon.jpg" alt="" 
-                        class="img-responsive float-rt">
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 search-icon-pos">
+                    <!--<img src="images/app_bar_icons/search_icon.jpg" alt="" class="img-responsive float-rt">-->
+					<img class="search-icon" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAlAQMAAAD/ULJAAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAAxJREFUeNpjYBjOAAAA3gABINV5CQAAAABJRU5ErkJggg==">
                 </div>
             </div>
         </div>
+		
+		
+		
+		
+		
+		
+		
     </div> 
-    <div class="left-menu" data-ng-show="showCategoryMenu" 
-        style="position: absolute; z-index: 100; top: 24%;">
+    <div class="left-menu"  ng-class="{'left-menu-out':showCategoryMenu}">
         <div class="menu-item-h">HOME</div>
         <ul class="list-unstyled pad-lt32 back-white">
             <li class="item-shop">SHOP FOR</li>
@@ -109,8 +122,7 @@
             </li>            
         </ul>
     </div>
-    <div class="left-menu" data-ng-show="showSubCategoryMenu"
-        style="position: absolute; z-index: 100; top: 24%;">
+    <div class="left-menu" ng-class="{'left-menu-out':showSubCategoryMenu}">
         <div class="menu-item-h" data-ng-click="toggleCategoryMenu()">
             <img src="images/app_bar_icons/back-icon.png" alt="" class="img-responsive" 
                 style="display:inline; ">

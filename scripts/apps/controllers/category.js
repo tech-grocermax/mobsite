@@ -71,7 +71,8 @@ define(['app'], function(app) {
                 $scope.showSubCategoryMenu = $scope.showSubCategoryMenu ? false : true;
                 $scope.categoryName = categoryService.getCategoryName($scope.categories, categoryId);
                 $scope.subCategories = categoryService.getSubCategoryList($scope.categories, categoryId);
-                console.log($scope.subCategories);
+                console.log($scope.showCategoryMenu);
+                console.log($scope.showSubCategoryMenu);
             };
 
             $scope.toggleSubSubCategory = function(categoryId){
@@ -150,7 +151,7 @@ define(['app'], function(app) {
                     openCitySelectionModal();
                 }                  
             });
-
+			
         }
     ]);
 });
