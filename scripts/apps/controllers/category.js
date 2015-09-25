@@ -23,6 +23,8 @@ define(['app'], function(app) {
                 "noida": false
             };
             $scope.searchKeyword = "";
+            $scope.moreCategoryIndex = -1;
+            $scope.preserveMoreCategoryId = null;
 
             openCitySelectionModal = function() {
                 $timeout(function(){
@@ -142,6 +144,22 @@ define(['app'], function(app) {
 
             $scope.handleSearchKeyEnter = function() {
                 $location.url("product?keyword=" + $scope.searchKeyword)
+            };
+
+            
+            $scope.showMoreCategory = function(category) {
+                console.log(category);
+                
+                if($scope.moreCategoryIndex == -1) {
+                    $scope.moreCategoryIndex = category.category_id;
+                    $scope.preserveMoreCategoryId = category.category_id;
+                }else{
+                    if($scope.preserveMoreCategoryId == category.category_id){
+                        $scope.moreCategoryIndex = -1;
+                    }else{
+                        $scope.moreCategoryIndex = category.category_id;
+                    }                    
+                }
             };
 
             angular.element(document).ready(function () {

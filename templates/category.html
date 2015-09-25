@@ -1,5 +1,38 @@
 <div ng-controller="categoryController">
 	<header data-ng-include="'templates/header.html'"></header>
-	<article class="margin-bot15" 
-		data-ng-include="'templates/subcategory.html'"></article>	
+	<article class="margin-bot15">
+		<div class="row margin0 margin-top15">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0"
+				data-ng-show="category.is_active && subCategoryList.length" 
+		    	data-ng-repeat="category in subCategoryList | filter:searchText">
+				<div class="pad4 img-box margin-lt15 imgbox-rt-margin"					
+					style="height:172px;">
+					<img src="images/silder-img1.jpg" 
+						title="{{category.name}}" class="img-responsive">
+						<!--shutterstock{{$index > 5 ? 6 : $index+1}}.png-->
+					<div class="img-text-box" 
+						data-ng-click="routerChange('product', category.category_id)"
+						style="line-height:15px; bottom: 90px;">
+						<span class="img-text-h" style="font-size:24px; ">
+							{{category.name}}</span>
+						<!-- <span class="img-text" data-ng-show="category.children.length">
+							{{renderChildrenCategory(category.children)}}
+						</span> -->
+					</div>
+					<div class="img-text-box" 
+						data-ng-click="showMoreCategory(category)"
+						style="background-color: #000; border-radius: 3px; bottom: 54px; line-height: 15px; margin-left: 0; width: 100%; padding:10px; text-align:center; cursor:pointer; color:#FFF; ">
+						Select Category
+					</div>
+				</div>
+				<div class="pad4 margin-lt15 imgbox-rt-margin"
+					data-ng-show="category.children.length && moreCategoryIndex == category.category_id">
+					<a href="javascript:void(0)" role="button" class="btn btn-default" 
+						data-ng-click="routerChange('product', subCategory.category_id)"
+						data-ng-repeat="subCategory in category.children">{{subCategory.name}}</a>
+				</div>
+				<div class="margin-top15"></div>		
+			</div>
+		</div>
+	</article>	
 </div>
