@@ -50,13 +50,66 @@ define(['app'], function(app) {
                     });
             }
 
+            if (utility.getJStorageKey("offerCategories")) {
+                $scope.offerCategories = utility.getJStorageKey("offerCategories");
+            } else {
+                categoryService.getCategoryOfferList()
+                    .then(function(data){
+                        $scope.offerCategories = data.category; 
+                        utility.setJStorageKey("offerCategories", $scope.offerCategories, 1);
+                    });
+            }
+
+            if (utility.getJStorageKey("deals")) {
+                $scope.deals = utility.getJStorageKey("deals");
+            } else {
+                categoryService.getDealList()
+                    .then(function(data){
+                        $scope.deals = data.deal_type; 
+                        utility.setJStorageKey("deals", $scope.deals, 1);
+                    });
+            }
+
+            $scope.dealCategoryList = [];
+            $scope.dealCategoryItemList = {};
+            $scope.dealItems = null;
+            $scope.activeDealCategory = "all";
+
+            getDealItemList = function(data) {
+                console.log(data.category);
+                $scope.dealCategoryList = [];
+                $scope.dealCategoryList.push({id: "all", label: "All"});
+                $scope.dealCategoryItemList["all"] = data["all"];
+                $scope.dealItems = data["all"];
+                angular.forEach(data.category, function(value, key) {
+                    if(value.is_active == "1") {
+                        $scope.dealCategoryList.push({
+                            id: value.category_id, 
+                            label: value.name
+                        });
+                        $scope.dealCategoryItemList[value.category_id] = value.deals;
+                    }                                        
+                });
+            }
+
             if ($routeParams.categoryId) {
                 $scope.subCategoryList = categoryService.getSubCategoryList($scope.categories, $routeParams.categoryId);
                 $scope.categoryName = categoryService.getCategoryName($scope.categories, $routeParams.categoryId);
                 $scope.columnSize = 4;
-            }else{
+            } else if ($routeParams.dealId) {
+                categoryService.getDealsByType($routeParams.dealId)
+                    .then(function(data){
+                        
+                        getDealItemList(data.dealcategory);
+                    });
+            } else{
                 $scope.columnSize = 1;
             }
+
+            $scope.getDealCategoryItemList = function(category) {
+                $scope.activeDealCategory = category.id;
+                $scope.dealItems = $scope.dealCategoryItemList[category.id];
+            };
 
             $scope.routerChange = function(route, id) {
                 route = angular.isDefined(id) ? route + ("/" + id) : route;

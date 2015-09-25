@@ -1,11 +1,56 @@
 <div ng-controller="categoryController">    
     <header data-ng-include="'templates/header.html'"></header>
     <article style="margin-bottom: 35px;">
-        <div class="row margin0" style="padding: 16px;" 
-        	data-ng-include="'templates/banner.html'"></div>
-        <div class="row margin0 slider" 
-        	data-ng-include="'templates/home-category.html'"></div>
-        <!-- <div class="row margin0 slider margin-top15"
-        	data-ng-include="'templates/deals.html'"></div> -->
+        <section>
+			<div class="row margin0 pad16 pad8-m">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
+					<div class="pad4 img-box">
+						<img src="images/banner-img.png" alt="" class="img-responsive">
+					</div>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="row margin0 back-white slide-shadow">
+				<div class="slider-text margin-tp22 margin-bt22 margin-lt15 margin-tp6-m margin-bt10-m margin-lt8-m">Shop by Categories</div>
+				<div class="row margin0" style="overflow: auto;">
+					<ul class="list-unstyled pad-lt32 view-inline ul-height pad-lt16-m margin0">
+						<li data-ng-show="category.is_active" 
+	    					data-ng-repeat="category in offerCategories">
+							<img src="images/silder-img1.png" title="{{category.name}}" 
+								class="slide-img" style="margin-right:24px; "
+								data-ng-click="routerChange('category', category.category_id)">
+							<div class="img-text-box">
+								<span class="img-text-h">{{category.name}}</span><br>
+								<!-- <span class="img-text"
+									data-ng-show="category.children.length">{{renderChildrenCategory(category.children)}}</span> -->
+							</div>
+							<div class="slide-text margin-rt25 margin-rt12-m " 
+								style="width:89%; ">{{category.offercount}} OFFERS</div>
+						</li>
+						<!-- <li class="li-border"></li> -->						
+					</ul>					
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="row margin0 back-white slide-shadow">
+				<div class="slider-text margin-tp22 margin-bt22 margin-lt15 margin-tp6-m margin-bt10-m margin-lt8-m">Shop by Deals</div>
+				<div class="row margin0" style="overflow: auto;">
+					<ul class="list-unstyled pad-lt32 view-inline ul-height pad-lt16-m margin0">
+						<li data-ng-show="deals.length" 
+	    					data-ng-repeat="deal in deals"
+	    					data-ng-click="routerChange('deals', deal.id)">
+							<img src="images/silder-img1.png" title="{{deal.dealType}}" 
+								class="slide-img" style="margin-right:24px; ">
+							<div class="img-text-box">
+								<span class="img-text-h">{{deal.dealType}}</span>
+							</div>
+						</li>
+						<!-- <li class="li-border"></li> -->						
+					</ul>					
+				</div>
+			</div>
+		</section>
     </article>		
 </div>

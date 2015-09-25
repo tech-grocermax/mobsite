@@ -71,6 +71,33 @@ define(['app'], function (app) {
 		    	}
 		    	return lastChildCategoryList;
 		    };
+
+		    this.getDealList = function() {		    	
+	    		var url = getAPIUrl() + "shopbydealtype";
+		    	return serverUtility.getWebService(url)
+		    		.then(
+		    			function(data){return data; },
+		    			function(error){return error; }
+		    		);		    			    	
+		    };
+
+		    this.getCategoryOfferList = function() {		    	
+	    		var url = getAPIUrl() + "shopbycategory";
+		    	return serverUtility.getWebService(url)
+		    		.then(
+		    			function(data){return data; },
+		    			function(error){return error; }
+		    		);		    			    	
+		    };
+
+		    this.getDealsByType = function(dealId) {		    	
+	    		var url = getAPIUrl() + "dealsbydealtype?deal_type_id=" + dealId;
+		    	return serverUtility.getWebService(url)
+		    		.then(
+		    			function(data){return data; },
+		    			function(error){return error; }
+		    		);		    			    	
+		    };
 	    
 	    	return this;
     	}

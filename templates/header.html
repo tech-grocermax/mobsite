@@ -164,19 +164,23 @@
                         <div class="col-md-12 col-sm-12 col-xs-12 padd0">
                             <ul class="list-unstyled">
                                 <li style="padding-top: 25px; ">
-                                    <span class="location-city" 
-                                        data-ng-class="{'active': cityLocation.delhi}"
-                                        data-ng-click="setCityLocation('delhi')">Delhi</span>
+                                    <a href="javascript:void(0);" class="btn btn-default"
+                                        data-ng-class="{'btn-primary': cityLocation.delhi}"
+                                        data-ng-click="setCityLocation('delhi')"
+                                        role="button">Delhi</a>            
                                 </li>
                                 <li style="padding-top: 25px; ">
-                                    <span class="location-city"
-                                        data-ng-class="{'active': cityLocation.gurgaon}"
-                                        data-ng-click="setCityLocation('gurgaon')">Gurgaon</span>
+                                    <a href="javascript:void(0);" class="btn btn-default" 
+                                        data-ng-class="{'btn-primary': cityLocation.gurgaon}"
+                                        data-ng-click="setCityLocation('gurgaon')"
+                                        role="button">Gurgaon</a>
                                 </li>
                                 <li style="padding-top: 25px; ">
-                                    <span class="location-city"
-                                        data-ng-class="{'active': cityLocation.noida}"
-                                        data-ng-click="setCityLocation('noida')">Noida</span>
+                                    <a href="javascript:void(0); " 
+                                        class="btn btn-default" 
+                                        data-ng-class="{'btn-primary': cityLocation.noida}"
+                                        data-ng-click="setCityLocation('noida')"
+                                        role="button">Noida</a>
                                 </li>
                             </ul>
                         </div>

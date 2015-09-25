@@ -96,6 +96,26 @@ define([], function() {
                     appURL + 'directives/generic',
                     appURL + 'controllers/checkout'
                 ]
+            },
+            '/hot-offers': {
+                templateUrl: templateURL + 'hot-offers.html',
+                dependencies: [
+                    appURL + 'services/serverUtility',
+                    appURL + 'services/utility',
+                    appURL + 'services/category',
+                    appURL + 'directives/generic',                    
+                    appURL + 'controllers/category'
+                ]
+            },
+            '/deals/:dealId': {
+                templateUrl: templateURL + 'deals.html',
+                dependencies: [
+                    appURL + 'services/serverUtility',
+                    appURL + 'services/utility',
+                    appURL + 'services/category',
+                    appURL + 'directives/generic',                    
+                    appURL + 'controllers/category'
+                ]
             }
         }
     };

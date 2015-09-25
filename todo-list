@@ -1,3 +1,28 @@
+home page on count offer in category
+http://dev.grocermax.com/webservice/new_services/shopbycategory
+
+This api use click on offer link home page  then show deals page
+http://dev.grocermax.com/webservice/new_services/offerbydealtype?cat_id=?
+
+all one level other 2 level
+
+Shop by deals
+http://dev.grocermax.com/webservice/new_services/shopbydealtype
+
+need to make a seperate route for this: and display all deals
+
+when user will click on shop by deal
+http://dev.grocermax.com/webservice/new_services/dealsbydealtype?deal_type_id=321
+
+
+
+
+
+
+
+
+
+
 1. City Selection
 	2 hrs
 

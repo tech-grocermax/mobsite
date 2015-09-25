@@ -1,14 +1,33 @@
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 slider-text margin-tp22 margin-bt22 margin-lt15">Shop by Deals</div>
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
-    <ul class="list-unstyled slider-list">
-        <li class="width-100">
-            <img src="images/silder-img1.jpg" alt="" class="width-100">
-            <div class="slide-text"><span>20 OFFERS</span></div>
-        </li>
-        <li class="margin-lt25 li-border"></li>
-        <li class="width-100">
-            <img src="images/slider-img2.jpg" alt="" class="width-100 margin-lt25">
-            <div class="slide-text margin-lt25"><span>30 OFFERS</span></div>
-        </li>
-    </ul>
+<div ng-controller="categoryController">    
+    <header data-ng-include="'templates/header.html'"></header>
+    <article>
+		<section>
+			<div class="row margin0 nav-blue">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-lt-rt8-m">
+					<ul class="list-unstyled nav-list">
+						<li class="nav-li"
+							data-ng-class="{'nav-active': category.id == activeDealCategory}"
+							data-ng-show="dealCategoryList.length" 
+							data-ng-click="getDealCategoryItemList(category)"
+							data-ng-repeat="category in dealCategoryList"
+							style="cursor:pointer; ">{{category.label}}</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row margin0 margin-top15">
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0"
+					data-ng-show="dealItems.length" 
+					data-ng-repeat="item in dealItems">
+					<div class="pad4 img-box margin-lt15 imgbox-rt-margin"
+						data-ng-click="routerChange('product', item.category_id)">
+						<img src="images/shutterstock1.png" alt="" class="img-responsive">
+						<div class="img-block">
+							<span class="img-text-h">{{item.dealName}}</span>
+							<!-- <br><span class="img-text">Cooking Oil & Ghee</span> -->
+						</div>
+					</div>					
+				</div>				
+			</div>						
+		</section>
+	</article>		
 </div>
