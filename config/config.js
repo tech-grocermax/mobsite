@@ -6,19 +6,19 @@ var env = "local",
 			"protocol": "http",
 			"domainName": "localhost/grocermax/",
 			"port": "",			
-			"apiUrl": "http://dev.grocermax.com/webservice/new_services/"
+			"apiUrl": "http://staging.grocermax.com/webservice/new_services/"
 		},
 		"qa": {			
 			"protocol": "http",
 			"domainName": "localhost/grocermax/",
 			"port": "",			
-			"apiUrl": "http://localhost/grocermax-api/"
+			"apiUrl": "http://staging.grocermax.com/webservice/new_services/"
 		},
 		"prod": {			
 			"protocol": "http",
 			"domainName": "localhost/grocermax/",
 			"port": "",			
-			"apiUrl": "http://localhost/grocermax-api/"
+			"apiUrl": "http://staging.grocermax.com/webservice/new_services/"
 		}
 	};
 
