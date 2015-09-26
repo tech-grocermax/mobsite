@@ -19,7 +19,7 @@
 					data-ng-show="dealItems.length" 
 					data-ng-repeat="item in dealItems">
 					<div class="pad4 img-box margin-lt15 imgbox-rt-margin"
-						data-ng-click="routerChange('product', item.category_id)">
+						data-ng-click="navigateToProduct('product', item)">
 						<img src="images/shutterstock1.png" alt="" class="img-responsive">
 						<div class="img-block">
 							<span class="img-text-h">{{item.dealName}}</span>

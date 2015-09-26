@@ -94,9 +94,9 @@ define(['app'], function(app) {
             getDealItemListByOffer = function(data) {
                 $scope.dealCategoryList = [];
                 $scope.dealCategoryList.push({id: "all", label: "All"});
-                $scope.dealCategoryItemList["all"] = data["all"];
-                $scope.dealItems = data["all"];
+                $scope.dealCategoryItemList["all"] = data["all"];                
                 $scope.activeDealCategory = $routeParams.dealCategoryId;
+                $scope.dealItems = data["all"];
                 angular.forEach(data.dealsCategory, function(value, key) {
                     $scope.dealCategoryList.push({
                         id: key, 
@@ -104,6 +104,8 @@ define(['app'], function(app) {
                     });
                     $scope.dealCategoryItemList[key] = value.deals;                                                           
                 });
+                //$scope.dealItems = $scope.dealCategoryItemList[$routeParams.dealCategoryId];
+                //TODO: we have used all key for time being due to unavailability of real category id, will uncomment it
             };
 
             if ($routeParams.categoryId) {
@@ -136,6 +138,11 @@ define(['app'], function(app) {
             $scope.routerChange = function(route, id) {
                 route = angular.isDefined(id) ? route + ("/" + id) : route;
                 $location.url(route);
+            };
+
+            $scope.navigateToProduct = function(route, item) {
+                id = angular.isDefined(item.category_id) ? item.category_id : item.id;
+                $location.url(route + "/" + id);
             };
             
             $scope.toggleCategoryMenu = function() {
