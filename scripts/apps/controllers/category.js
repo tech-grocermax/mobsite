@@ -76,7 +76,6 @@ define(['app'], function(app) {
             $scope.activeDealCategory = "all";
 
             getDealItemList = function(data) {
-                console.log(data.category);
                 $scope.dealCategoryList = [];
                 $scope.dealCategoryList.push({id: "all", label: "All"});
                 $scope.dealCategoryItemList["all"] = data["all"];
@@ -92,15 +91,38 @@ define(['app'], function(app) {
                 });
             }
 
+            getDealItemListByOffer = function(data) {
+                $scope.dealCategoryList = [];
+                $scope.dealCategoryList.push({id: "all", label: "All"});
+                $scope.dealCategoryItemList["all"] = data["all"];
+                $scope.dealItems = data["all"];
+                $scope.activeDealCategory = $routeParams.dealCategoryId;
+                angular.forEach(data.dealsCategory, function(value, key) {
+                    $scope.dealCategoryList.push({
+                        id: key, 
+                        label: value.dealType
+                    });
+                    $scope.dealCategoryItemList[key] = value.deals;                                                           
+                });
+            };
+
             if ($routeParams.categoryId) {
                 $scope.subCategoryList = categoryService.getSubCategoryList($scope.categories, $routeParams.categoryId);
                 $scope.categoryName = categoryService.getCategoryName($scope.categories, $routeParams.categoryId);
                 $scope.columnSize = 4;
             } else if ($routeParams.dealId) {
-                categoryService.getDealsByType($routeParams.dealId)
-                    .then(function(data){
-                        
-                        getDealItemList(data.dealcategory);
+                categoryService.getDealsByDealId($routeParams.dealId)
+                    .then(function(data){  
+                        if(data.flag == 1) {                      
+                            getDealItemList(data.dealcategory);
+                        }
+                    });
+            }  else if ($routeParams.dealCategoryId) {
+                categoryService.getDealsByDealCategoryId($routeParams.dealCategoryId)
+                    .then(function(data){      
+                        if(data.flag == 1) {
+                            getDealItemListByOffer(data.dealcategorylisting);
+                        }                                  
                     });
             } else{
                 $scope.columnSize = 1;

@@ -116,6 +116,16 @@ define([], function() {
                     appURL + 'directives/generic',                    
                     appURL + 'controllers/category'
                 ]
+            },
+            '/category/offers/:dealCategoryId': {
+                templateUrl: templateURL + 'deals.html',
+                dependencies: [
+                    appURL + 'services/serverUtility',
+                    appURL + 'services/utility',
+                    appURL + 'services/category',
+                    appURL + 'directives/generic',                    
+                    appURL + 'controllers/category'
+                ]
             }
         }
     };

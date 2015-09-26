@@ -25,7 +25,8 @@
 								<!-- <span class="img-text"
 									data-ng-show="category.children.length">{{renderChildrenCategory(category.children)}}</span> -->
 							</div>
-							<div class="slide-text margin-rt25 margin-rt12-m " 
+							<div class="slide-text margin-rt25 margin-rt12-m "
+								data-ng-click="routerChange('category/offers', category.category_id)"
 								style="width:89%; ">{{category.offercount}} OFFERS</div>
 						</li>
 						<!-- <li class="li-border"></li> -->						

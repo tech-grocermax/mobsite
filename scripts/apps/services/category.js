@@ -90,8 +90,17 @@ define(['app'], function (app) {
 		    		);		    			    	
 		    };
 
-		    this.getDealsByType = function(dealId) {		    	
+		    this.getDealsByDealId = function(dealId) {		    	
 	    		var url = getAPIUrl() + "dealsbydealtype?deal_type_id=" + dealId;
+		    	return serverUtility.getWebService(url)
+		    		.then(
+		    			function(data){return data; },
+		    			function(error){return error; }
+		    		);		    			    	
+		    };
+
+		    this.getDealsByDealCategoryId = function(dealCategoryId) {		    	
+	    		var url = getAPIUrl() + "offerbydealtype?cat_id=" + dealCategoryId;
 		    	return serverUtility.getWebService(url)
 		    		.then(
 		    			function(data){return data; },
