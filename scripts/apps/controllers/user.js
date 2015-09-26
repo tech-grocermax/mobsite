@@ -75,7 +75,7 @@ define(['app'], function(app) {
                 is_default_billing: false,
                 is_default_shipping: false
             };
-            $scope.registrationStep = 2;
+            $scope.registrationStep = angular.isDefined(utility.getJStorageKey("otp")) && utility.getJStorageKey("otp") ? 2 : 1;
             $scope.otp = "";
             $scope.cityLocation = {
                 "delhi": angular.isDefined(utility.getJStorageKey("selectedCity")) && utility.getJStorageKey("selectedCity") == "delhi" ? true : false,
@@ -87,8 +87,6 @@ define(['app'], function(app) {
             hideCitySelectionModal = function() {
                 $('#myModal').modal('hide');
             };
-
-            
 
             updateClassName = function(keyName) {
                 angular.forEach($scope.className, function(value, key){
@@ -381,6 +379,17 @@ define(['app'], function(app) {
                 $scope.cityLocation[city] = true;
                 utility.setJStorageKey("selectedCity", city, 1);
                 hideCitySelectionModal();
+            };
+
+            $scope.logout = function() {
+                var userId = utility.getJStorageKey("userId");
+                userService.logout(userId)
+                    .then(function(data){
+                        if(data.flag == "1") {
+                            utility.deleteJStorageKey("userId");
+                            $location.url("user/login");
+                        }                  
+                    })
             };
 
             angular.element(document).ready(function () {

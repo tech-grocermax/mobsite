@@ -136,6 +136,15 @@ define(['app'], function (app) {
 		    		);
 		    };
 
+		    this.logout = function(userId) {
+		    	var url = getAPIUrl() + "logout?userid=" + userId;
+		    	return serverUtility.getWebService(url)
+		    		.then(
+		    			function(data){return data; },
+		    			function(error){return error; }
+		    		);
+		    };
+
 	    	return this;
     	}
     ]);
