@@ -64,7 +64,7 @@ define(['app'], function(app) {
             $scope.addressList = [];
             $scope.address = null;
             $scope.orderHistory = null;
-            $scope.address = {
+            /*$scope.address = {
                 firstname: null,
                 lastname: null,
                 city: "Gurgaon",
@@ -75,7 +75,24 @@ define(['app'], function(app) {
                 telephone: null,
                 is_default_billing: false,
                 is_default_shipping: false
+            };*/
+
+            $scope.address = {
+                fname: null,
+                lname: null,
+                addressline1: null,
+                addressline2: null,
+                addressline3: null,
+                city: "gurgaon",
+                state: "HR",                
+                pin: null,
+                countrycode: "IN",                
+                phone: null,                
+                default_billing: false,
+                default_shipping: false,
+                cityid: 1
             };
+
             $scope.registrationStep = 1;
             $scope.otp = "";
             $scope.cityLocation = {
@@ -83,7 +100,16 @@ define(['app'], function(app) {
                 "gurgaon": angular.isDefined(utility.getJStorageKey("selectedCity")) && utility.getJStorageKey("selectedCity") == "gurgaon" ? true : false,
                 "noida": angular.isDefined(utility.getJStorageKey("selectedCity")) && utility.getJStorageKey("selectedCity") == "noida" ? true : false
             };
-            $scope.email = null;           
+            $scope.email = null;
+            $scope.locationList = [];
+
+            getLocationList = function() {
+                userService.getLocationList(1)
+                    .then(function(data){
+                        $scope.locationList = data.locality;                                          
+                    });
+            };
+            getLocationList();
 
             hideCitySelectionModal = function() {
                 $('#myModal').modal('hide');
@@ -96,10 +122,13 @@ define(['app'], function(app) {
                 $scope.className[keyName] = true;
             };
 
-            successCallbackUser = function(data) {
+            successCallbackUser = function(data, email) {
                 $scope.showUserResponse = true;
                 if(data.flag == "1") {
                     utility.setJStorageKey("userId", data.UserID, 1);
+                    utility.setJStorageKey("email", email, 1);
+
+                    console.log(utility.getJStorageKey("email"));
                     $scope.userResponseMessage = data.Result;
                     updateClassName("success");
 
@@ -153,7 +182,7 @@ define(['app'], function(app) {
                     .then(function(data){
                         utility.setJStorageKey("otp", data.otp, 1);
                         $scope.registrationStep = 2;
-                        $scope.otp = data.otp; 
+                        //$scope.otp = data.otp; 
                     });
             };
 
@@ -161,13 +190,14 @@ define(['app'], function(app) {
                 console.log($scope.otp, utility.getJStorageKey("otp"));               
                 if($scope.otp == utility.getJStorageKey("otp")) {
                     angular.copy($scope.user, utility.getJStorageKey("registrationDetails"));
+                    var email = $scope.user.uemail;
                     $scope.user.otp = 1;
                     userService.createUser($scope.user)
                         .then(function(data){
                             if(data.flag == 1){
                                 utility.deleteJStorageKey("otp");
                                 utility.deleteJStorageKey("registrationDetails");
-                                successCallbackUser(data);
+                                successCallbackUser(data, email);
                             }                                                                           
                         });
                 } else {
@@ -188,6 +218,8 @@ define(['app'], function(app) {
                     password: $scope.user.password
                 };
 
+                var email = $scope.user.uemail;
+
                 if(angular.isDefined(utility.getJStorageKey("quoteId")) 
                 && utility.getJStorageKey("quoteId")) {
                     input.quote_id = utility.getJStorageKey("quoteId");
@@ -195,7 +227,7 @@ define(['app'], function(app) {
 
                 userService.loginUser(input)
                     .then(function(data){
-                        successCallbackUser(data);
+                        successCallbackUser(data, email);
                     });
             };         
 
@@ -234,13 +266,32 @@ define(['app'], function(app) {
                     });
             };
 
+            rebuildAddressObject = function(address) {
+                var arrStreet = address.street.split("\n");
+                return {
+                    fname : address.firstname,
+                    lname : address.lastname,
+                    addressline1 : arrStreet[0],
+                    addressline2 : arrStreet[1],
+                    addressline3 : arrStreet[2],
+                    city : address.city,
+                    state : address.region,
+                    pin : address.postcode,
+                    countrycode : address.country_id,
+                    phone : address.telephone,
+                    default_billing : address.is_default_billing ? 1 : 0,
+                    default_shipping : address.is_default_shipping ? 1 : 0
+                };
+            };
+
             getAddressList = function() {
                 userService.getAddressList(utility.getJStorageKey("userId"))
                     .then(function(data){
                         $scope.addressList = data.Address;
                         if($scope.addressId) {
-                            $scope.address = userService.extractAddressById(data.Address, 
+                            var address = userService.extractAddressById(data.Address, 
                                 $scope.addressId);
+                            $scope.address = rebuildAddressObject(address);
                         }
                     });
             };
@@ -256,23 +307,24 @@ define(['app'], function(app) {
             };
 
             $scope.saveAddress = function() {
+                console.log($scope.address);
                 userService.saveAddress($scope.address, 
                     utility.getJStorageKey("userId"), $scope.addressId)
-                    .then(function(data){
-                        if(data.flag == 1 || data.flag == "1") {
-                            if($scope.isReferrer == "checkout") {
-                                //$scope.address will be either shipping or billing
-                                $location.url("checkout/" + $scope.addressType); 
-                            } else {
-                                $location.url('user/address');
+                        .then(function(data){
+                            if(data.flag == 1 || data.flag == "1") {
+                                if($scope.isReferrer == "checkout") {
+                                    //$scope.address will be either shipping or billing
+                                    $location.url("checkout/" + $scope.addressType); 
+                                } else {
+                                    $location.url('user/address');
+                                }
                             }
-                        }
-                    });
+                        });
             };
 
-            var email ="sharan.radhakrishnan@outlook.com";
+            var email =utility.getJStorageKey("email");
             getOrderHistory = function() {
-                userService.getOrderHistory(email)
+                userService.getOrderHistory(utility.getJStorageKey("email"))
                     .then(function(data){
                         $scope.orderHistory = data.orderhistory;                        
                     });
@@ -390,15 +442,19 @@ define(['app'], function(app) {
                             utility.deleteJStorageKey("userId");
                             $location.url("user/login");
                         }                  
-                    })
+                    });
             };
 
             angular.element(document).ready(function () {
                 if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
                     || !utility.getJStorageKey("selectedCity")) {
                     $scope.openCitySelectionModal();
-                }                  
-            });
+                }  
+
+                $timeout(function() {
+                    $("#e1").select2();
+                }, 2000);
+            });           
 
         }
     ]);

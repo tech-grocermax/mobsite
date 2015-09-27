@@ -203,14 +203,14 @@ define(['app'], function(app) {
             updateCartProducts = function(quoteId, cartItems) {
                 productService.cartUpdateProduct(quoteId, cartItems, $scope.productIds)
                     .then(function(data){
-                        if(data.flag == 1 || data.flag == "1"){
+                        //if(data.flag == 1 || data.flag == "1"){
                             if(angular.isDefined(utility.getJStorageKey("userId"))
                                 && utility.getJStorageKey("userId")) {
                                 $location.url("checkout/shipping");
                             } else {
-                                $location.url("user/login");
+                                $location.url("user/login?isReferrer=checkout");
                             }
-                        }                            
+                        //}                            
                     });
             };
             

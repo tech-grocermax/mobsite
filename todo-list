@@ -1,3 +1,25 @@
+http://staging.grocermax.com/webservice/new_services/checkout?userid=13815&quote_id=225&shipping=%7B%22customer_address_id%22%3A%229103%22%2C%22created_at%22%3A%222015-09-26+19%3A04%3A09%22%2C%22updated_at%22%3A%222015-09-27+12%3A47%3A28%22%2C%22city%22%3A%22Gurgaon%22%2C%22country_id%22%3A%22IN%22%2C%22firstname%22%3A%22Ansh%22%2C%22lastname%22%3A%22Katiyar%22%2C%22postcode%22%3A%22122002%22%2C%22region%22%3A%22Haryana%22%2C%22street%22%3A%22Sanjay+Gram%22%2C%22telephone%22%3A%229958066876%22%2C%22is_default_billing%22%3Afalse%2C%22is_default_shipping%22%3Atrue%2C%22%24%24hashKey%22%3A1187%7D&billing=%7B%22customer_address_id%22%3A%229103%22%2C%22created_at%22%3A%222015-09-26+19%3A04%3A09%22%2C%22updated_at%22%3A%222015-09-27+12%3A47%3A28%22%2C%22city%22%3A%22Gurgaon%22%2C%22country_id%22%3A%22IN%22%2C%22firstname%22%3A%22Ansh%22%2C%22lastname%22%3A%22Katiyar%22%2C%22postcode%22%3A%22122002%22%2C%22region%22%3A%22Haryana%22%2C%22street%22%3A%22Sanjay+Gram%22%2C%22telephone%22%3A%229958066876%22%2C%22is_default_billing%22%3Afalse%2C%22is_default_shipping%22%3Atrue%2C%22%24%24hashKey%22%3A1187%7D&payment_method=paytm_cc&shipping_method=tablerate_bestway&timeslot=08%3A00+AM+-+11%3A00+AM&date=2015-09-28
+
+
+http://dev.grocermax.com/webservice/new_services/checkout?
+
+
+shipping={"addressline2":"","default_billing":"0","lname":"yadav","addressline1":"address","country_id":"IN","postcode":"213456","telephone":"9999999999","default_shipping":"0","fname":"Abhi","city":"Gurgaon"}
+
+billing={"addressline2":"","default_billing":"0","lname":"yadav","addressline1":"5+nathupur+dlf+phase+3","country_id":"IN","postcode":"247001","telephone":"9999999999","default_shipping":"0","fname":"Abhi","city":"Gurgaon"}
+
+userid=9661
+quote_id=136
+timeslot=07:30 PM - 10:00 PM
+date=2015-09-21
+payment_method=paytm_cc
+shipping_method=tablerate_bestway
+
+
+http://dev.grocermax.com/webservice/new_services/checkout?
+
+userid=323&quote_id=###&shipping={JSON Data}&billing={JSON Data}&payment_method=&shipping_method=tablerate_bestway&timeslot=&date=
+
 home page on count offer in category
 http://dev.grocermax.com/webservice/new_services/shopbycategory
 

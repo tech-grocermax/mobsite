@@ -93,6 +93,7 @@ define([], function() {
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',
                     appURL + 'services/user',
+                    appURL + 'services/product',
                     appURL + 'directives/generic',
                     appURL + 'controllers/checkout'
                 ]
@@ -126,7 +127,16 @@ define([], function() {
                     appURL + 'directives/generic',                    
                     appURL + 'controllers/category'
                 ]
-            }
+            },
+            '/payment/success/:orderId': {
+                templateUrl: templateURL + 'payment-success.html',
+                dependencies: [
+                    appURL + 'services/serverUtility',
+                    appURL + 'services/utility',
+                    appURL + 'directives/generic',                    
+                    appURL + 'controllers/order'
+                ]
+            },
         }
     };
 });

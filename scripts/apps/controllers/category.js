@@ -177,6 +177,30 @@ define(['app'], function(app) {
                 getCartDetails();
             }
 
+            $scope.guestAddProduct = function() {
+                console.log(utility.getJStorageKey("quoteId"));
+                console.log(utility.getJStorageKey("cartItems"));
+
+                if(angular.isUndefined(utility.getJStorageKey("quoteId"))
+                    || !utility.getJStorageKey("quoteId")) {
+                    if(angular.isDefined(utility.getJStorageKey("cartItems")) 
+                        || utility.getJStorageKey("cartItems")) {                    
+                        productService.cartAddProduct(utility.getJStorageKey("cartItems"))
+                            .then(function(data){
+                                if(data.flag == 1 || data.flag == "1"){
+                                    utility.setJStorageKey("quoteId", data.QuoteId, 1);
+                                    console.log("cart detail redirection");
+                                    $location.url("cart" + "/" + data.QuoteId);
+                                }                            
+                            });
+                    } else {
+                        console.log("do nothing...");
+                    }
+                } else {
+                    $location.url("cart" + "/" + utility.getJStorageKey("quoteId"));
+                }
+            };
+
             $scope.getDealCategoryItemList = function(category) {
                 $scope.activeDealCategory = category.id;
                 $scope.dealItems = $scope.dealCategoryItemList[category.id];

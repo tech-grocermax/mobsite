@@ -24,23 +24,45 @@
 			<ul class="list-unstyled margin0 pmeth-list">
 				<li>
 					<span>Cash on delivery</span>
-					<img src="images/app_bar_icons/check-box.png" alt="" class="img-responsive float-rt pmeth-chek">
+					<input type="checkbox" name="paymentMethod"
+						data-ng-change="changePaymentMethod('cashondelivery', payment)" 
+						data-ng-model="payment.cashondelivery"
+						class="img-responsive float-rt bill-check-img"/>
+					<!-- <img src="images/app_bar_icons/check-box.png" alt="" class="img-responsive float-rt pmeth-chek"> -->
 				</li>
 				<li>
 					<span>Credit / Debit card</span>
-					<img src="images/app_bar_icons/check-box.png" alt="" class="img-responsive float-rt pmeth-chek">
+					<input type="checkbox" name="paymentMethod"
+						data-ng-change="changePaymentMethod('cc', payment)" 
+						data-ng-model="payment.cc"
+						class="img-responsive float-rt bill-check-img"/>
+					<!-- <img src="images/app_bar_icons/check-box.png" alt="" class="img-responsive float-rt pmeth-chek"> -->
 				</li>
 				<li>
 					<span>Sodexho coupons</span>
-					<img src="images/app_bar_icons/check-box.png" alt="" class="img-responsive float-rt pmeth-chek">
+					<input type="checkbox" name="paymentMethod"
+						data-ng-change="changePaymentMethod('sodexo', payment)" 
+						data-ng-model="payment.sodex_cc"
+						class="img-responsive float-rt bill-check-img"/>
+					<!-- <img src="images/app_bar_icons/check-box.png" alt="" class="img-responsive float-rt pmeth-chek"> -->
 				</li>
 				<li>
-					<img src="images/app_bar_icons/paytm-icon.png" alt="" class="img-responsive pmeth-icon">
-					<img src="images/app_bar_icons/check-box.png" alt="" class="img-responsive float-rt pmeth-chek" style="margin-top:-7.8%;">
+					<img src="images/app_bar_icons/paytm-icon.png" alt="" 
+						class="img-responsive pmeth-icon">
+					<input type="checkbox" name="paymentMethod"
+						data-ng-change="changePaymentMethod('paytm_cc', payment)" 
+						data-ng-model="payment.paytm_cc"
+						class="img-responsive float-rt bill-check-img"/>
+					<!-- <img src="images/app_bar_icons/check-box.png" alt="" class="img-responsive float-rt pmeth-chek" style="margin-top:-7.8%;"> -->
 				</li>
 				<li>
-					<img src="images/app_bar_icons/mobi-icon.png" alt="" class="img-responsive pmeth-mob-icon">
-					<img src="images/app_bar_icons/check-box.png" alt="" class="img-responsive float-rt pmeth-chek" style="margin-top:-7.8%;">
+					<img src="images/app_bar_icons/mobi-icon.png" alt="" 
+						class="img-responsive pmeth-mob-icon">
+					<input type="checkbox" name="paymentMethod"
+						data-ng-change="changePaymentMethod('mobikwik', payment)" 
+						data-ng-model="payment.mobikwik"
+						class="img-responsive float-rt bill-check-img"/>
+					<!-- <img src="images/app_bar_icons/check-box.png" alt="" class="img-responsive float-rt pmeth-chek" style="margin-top:-7.8%;"> -->
 				</li>
 			</ul>
 		</div>
@@ -55,29 +77,29 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0" style="box-shadow:0px 2px 8px -5px; border-radius:4px;">
 			<ul class="list-unstyled margin0 pad-lt16 pad-rt16 font4-3">
 				<li class="pmeth-card-h">
-					<span>1 item</span>
-					<span>$15</span>
+					<span>{{totalCartQty}} item</span>
+					<span>Rs. {{cartDetails.subtotal}}</span>
 				</li>
 				<ul class="list-unstyled margin0 pmeth-card">
 					<li>
 						<span>Sub total:</span>
-						<span class="float-rt">$15</span>
+						<span class="float-rt">Rs. {{cartDetails.subtotal}}</span>
 					</li>
 					<li>
 						<span>Shipping charges:</span>
-						<span class="float-rt">$3.50</span>
+						<span class="float-rt">Rs. {{cartDetails.shipping_address.shipping_amount}}</span>
 					</li>
 					<li>
 						<span>Coupon discount:</span>
-						<span class="float-rt pmeth-card-font">$1.25</span>
+						<span class="float-rt pmeth-card-font">Rs. 0.00</span>
 					</li>
 					<li>
 						<span>You Saved:</span>
-						<span class="float-rt pmeth-card-font">$2.25</span>
+						<span class="float-rt pmeth-card-font">Rs. {{youSaved}}</span>
 					</li>
 					<li>
 						<span>Total:</span>
-						<span class="float-rt">$18.50</span>
+						<span class="float-rt">Rs. {{cartDetails.subtotal}}</span>
 					</li>
 				</ul>
 			</ul>
@@ -90,11 +112,11 @@
 			</div>
 			<div class="col-md-4 col-sm-4 col-xs-4 padd0 pmeth-btn">
 				<button type="button">APPLY CODE</button>
-			</div>
-			
+			</div>			
 		</div>
 	</div>
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0  margin-top15" >
-		<button type="button" class="reg-bot-btn">SELECT DELIVERY DETAILS</button>
+		<button type="button" class="reg-bot-btn"
+			data-ng-click="placeOrder()">PLACE ORDER</button>
 	</div>
 </section>

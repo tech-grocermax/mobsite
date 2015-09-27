@@ -1,7 +1,7 @@
 define(['app'], function(app) {
     app.controller('checkoutController',  [
-        '$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'userService', 'utility', 
-        function($scope, $rootScope, $routeParams, $location, $timeout, userService, utility) {
+        '$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'userService', 'productService', 'utility', 
+        function($scope, $rootScope, $routeParams, $location, $timeout, userService, productService, utility) {
             $scope.sectionName = $routeParams.sectionName;
 
             if((angular.isUndefined(utility.getJStorageKey("userId")) 
@@ -38,6 +38,17 @@ define(['app'], function(app) {
             $scope.isUserLoggedIn = angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId") ? true : false;
             $scope.cartItems = [];
             $scope.cartItemCount = 0;
+            $scope.quoteId = utility.getJStorageKey("quoteId");
+            $scope.youSaved = 0;
+            $scope.totalCartQty = 0;
+            $scope.paymentMethod = null;
+            $scope.payment = {
+                cashondelivery: false,
+                cc: false,
+                sodexo: false,
+                paytm_cc: false,
+                mobikwik: false
+            };           
 
             openCitySelectionModal = function() {
                 $timeout(function(){
@@ -93,9 +104,8 @@ define(['app'], function(app) {
                     });
                     value.timeSlots = timeslots;
                 });
-                console.log($scope.deliverySlots);
+                //console.log($scope.deliverySlots);
             };
-
             
             getDeliverySlots = function() {
                 userService.getDeliverySlots(utility.getJStorageKey("userId"))
@@ -130,10 +140,46 @@ define(['app'], function(app) {
                 $scope.cartItemCount = getCartItemCounter();                
             };
 
+            $scope.getPriceDifference = function(price, salePrice) {
+                return  (price - salePrice);    
+            };
+
+            getYouSaveAmout = function() {
+                var savedAmont = 0,
+                    qty = 0;
+
+                angular.forEach($scope.cartDetails.items, function(value, key) {
+                    savedAmont = savedAmont + parseFloat($scope.getPriceDifference(value.mrp, value.price));
+                    qty = qty + parseInt(value.qty);
+                });
+                $scope.youSaved = savedAmont;
+                $scope.totalCartQty = qty;
+            };
+          
+            getCartItemDetails = function() {
+                productService.getCartItemDetails($scope.quoteId)
+                    .then(function(data){              
+                        $scope.cartDetails = data.CartDetail; 
+                        getYouSaveAmout();
+                    });
+            };  
+
+            if($location.url() == "/checkout/payment"){
+                getCartItemDetails(); 
+            }   
+
             if(angular.isDefined(utility.getJStorageKey("cartItems")) 
                 && utility.getJStorageKey("cartItems")) {
                 getCartDetails();
             }
+
+            $scope.changePaymentMethod = function(paymentMethod, model) {
+                angular.forEach($scope.payment, function(value, key){
+                    $scope.payment[key] = false;
+                });
+                $scope.payment[paymentMethod] = true;
+                $scope.paymentMethod = ($scope.payment.cc || $scope.payment.paytm_cc) ? "paytm_cc" : paymentMethod;                
+            };
 
             $scope.editAddress = function(addressId, addressType) {
                 $location.url("user/editaddress?addressId=" + addressId 
@@ -160,7 +206,7 @@ define(['app'], function(app) {
                 address[keyName] = true;
             };
 
-            console.log(utility.getJStorageKey("checkoutDetails"));
+            //console.log(utility.getJStorageKey("checkoutDetails"));
             //console.log(utility.getJStorageKey("userId"));
 
             $scope.selectShippingAddress = function() {
@@ -303,6 +349,44 @@ define(['app'], function(app) {
                 $scope.cityLocation[city] = true;
                 utility.setJStorageKey("selectedCity", city, 1);
                 hideCitySelectionModal();
+            };
+
+            hidePaymentFailedModal = function() {
+                $('#paymentFailed').modal('hide');
+            };
+
+            $scope.retryPayment = function() {
+                hidePaymentFailedModal();
+                $scope.placeOrder();
+            };
+
+            $scope.payViaCOD = function() {
+                hidePaymentFailedModal();
+                $scope.paymentMethod = "cashondelivery";
+                $scope.placeOrder();
+            };
+
+            $scope.placeOrder = function() {
+                var userId = utility.getJStorageKey("userId");
+                var checkoutDetails = utility.getJStorageKey("checkoutDetails");
+                //console.log(checkoutDetails);
+                //console.log($scope.paymentMethod);
+                
+                userService.checkout(userId, $scope.quoteId, checkoutDetails, $scope.paymentMethod)
+                    .then(function(data){              
+                        if(data.flag == 1){
+                            utility.deleteJStorageKey("checkoutDetails");
+                            utility.deleteJStorageKey("cartItems");
+                            utility.deleteJStorageKey("quoteId");
+                            $location.url("payment/success/" + data.OrderID);
+                        } else {
+                            $('#paymentFailed').modal({
+                                backdrop: false,
+                                keyboard: false,
+                                show: true
+                            });
+                        }
+                    });
             };
 
             angular.element(document).ready(function () {
