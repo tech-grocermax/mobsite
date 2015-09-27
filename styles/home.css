@@ -59,7 +59,8 @@ body{background: #f4f4f4; font-family: roboto;}
 .slide-shadow{box-shadow: 2px 2px 2px 3px #c7c7c7;}
 .ul-height{height:208px;}
 .O-border-rad{border-radius: 50%;}
-.header-O{background:#ffa800; position:absolute; border-radius:50%; top:-25%; right:-31%; font-size:3.5vw; color:#fff; padding:0 20%;}
+/*.header-O{background:#ffa800; position:absolute; border-radius:50%; top:-25%; right:-31%; font-size:3.5vw; color:#fff; padding:0 20%;}*/
+.header-O{background: #ffa800; position: absolute; border-radius: 50%; top: -33%; right: -41%; font-size: 1.5vw; color: #fff; padding: 8% 30%; width: 35px; height: 35px; cursor: pointer;}
 .btn-login{background:#0e69e5; border-radius:4px;}
 .btn-signup{background:#ffa800; border-radius:4px;}
 .font4-3{font-size:4.3vw;}

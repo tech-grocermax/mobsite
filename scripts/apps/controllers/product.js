@@ -4,9 +4,9 @@ define(['app'], function(app) {
         function($scope, $rootScope, $routeParams, $location, $timeout, productService, categoryService, utility) {            
             $scope.showSearchBar = false;
             $scope.showSearchIcon = false;
-            $scope.showMoreIcon = true; 
-            $scope.categoryName = "web service cat";
-            $scope.columnSize = 4;
+            $scope.showMoreIcon = false; 
+            $scope.categoryName = "Dynamic Name";
+            $scope.columnSize = 10;
             $scope.categoryId = angular.isDefined($routeParams.categoryId) ? $routeParams.categoryId : null ;
             $scope.productId = angular.isDefined($routeParams.productId) ? $routeParams.productId : null ;
             $scope.quoteId = angular.isDefined($routeParams.quoteId) ? $routeParams.quoteId : null ;
@@ -27,7 +27,8 @@ define(['app'], function(app) {
             };
             $scope.keyword = angular.isDefined($routeParams.keyword) ? $routeParams.keyword : null ;
             $scope.productIds = [];
-
+            $scope.isUserLoggedIn = angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId") ? true : false;
+            
             openCitySelectionModal = function() {
                 $timeout(function(){
                     $('#myModal').modal({

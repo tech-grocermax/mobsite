@@ -27,7 +27,8 @@ define(['app'], function(app) {
             $scope.showUserMenuOptions = false;
             $scope.showUserResponse = false;
             $scope.userResponseMessage = "";
-            $scope.isUserLoggedIn = false;
+            $scope.isUserLoggedIn = angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId") ? true : false;
+            console.log("isLoggedin = " + $scope.isUserLoggedIn);
             $scope.className = {
                 "success" : false,
                 "info" : false,
@@ -75,7 +76,7 @@ define(['app'], function(app) {
                 is_default_billing: false,
                 is_default_shipping: false
             };
-            $scope.registrationStep = angular.isDefined(utility.getJStorageKey("otp")) && utility.getJStorageKey("otp") ? 2 : 1;
+            $scope.registrationStep = 1;
             $scope.otp = "";
             $scope.cityLocation = {
                 "delhi": angular.isDefined(utility.getJStorageKey("selectedCity")) && utility.getJStorageKey("selectedCity") == "delhi" ? true : false,

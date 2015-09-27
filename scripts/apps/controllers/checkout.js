@@ -35,6 +35,9 @@ define(['app'], function(app) {
                 "gurgaon": false,
                 "noida": false
             };
+            $scope.isUserLoggedIn = angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId") ? true : false;
+            $scope.cartItems = [];
+            $scope.cartItemCount = 0;
 
             openCitySelectionModal = function() {
                 $timeout(function(){
@@ -107,6 +110,29 @@ define(['app'], function(app) {
             if($scope.sectionName == "shipping" 
                 || $scope.sectionName == "billing") {
                 getAddressList(); 
+            }
+
+            getCartItems = function() {                
+                var cartItems = utility.getJStorageKey("cartItems");
+                return cartItems.length ? cartItems : [];                
+            };
+
+            getCartItemCounter = function() {
+                var count = 0;
+                angular.forEach($scope.cartItems, function(value, key){
+                    count = count + parseInt(value.quantity, 10);
+                });
+                return count;
+            };
+
+            getCartDetails = function() {
+                $scope.cartItems = getCartItems();
+                $scope.cartItemCount = getCartItemCounter();                
+            };
+
+            if(angular.isDefined(utility.getJStorageKey("cartItems")) 
+                && utility.getJStorageKey("cartItems")) {
+                getCartDetails();
             }
 
             $scope.editAddress = function(addressId, addressType) {

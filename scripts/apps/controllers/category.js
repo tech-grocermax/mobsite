@@ -25,6 +25,10 @@ define(['app'], function(app) {
             $scope.searchKeyword = "";
             $scope.moreCategoryIndex = -1;
             $scope.preserveMoreCategoryId = null;
+            $scope.isUserLoggedIn = angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId") ? true : false;
+            $scope.cartItems = [];
+            $scope.cartItemCount = 0;
+            $scope.categoryName = "Dynamic Name";
 
             openCitySelectionModal = function() {
                 $timeout(function(){
@@ -78,8 +82,17 @@ define(['app'], function(app) {
             getDealItemList = function(data) {
                 $scope.dealCategoryList = [];
                 $scope.dealCategoryList.push({id: "all", label: "All"});
-                $scope.dealCategoryItemList["all"] = data["all"];
-                $scope.dealItems = data["all"];
+                
+                //$scope.dealCategoryItemList["all"] = data["all"];
+                //$scope.dealItems = data["all"];
+                
+                $scope.dealCategoryItemList["all"] = [];
+                angular.forEach(data.all, function(value, key) {
+                    $scope.dealCategoryItemList["all"].push(value);
+                });
+
+                $scope.dealItems = $scope.dealCategoryItemList["all"];
+
                 angular.forEach(data.category, function(value, key) {
                     if(value.is_active == "1") {
                         $scope.dealCategoryList.push({
@@ -111,8 +124,12 @@ define(['app'], function(app) {
             if ($routeParams.categoryId) {
                 $scope.subCategoryList = categoryService.getSubCategoryList($scope.categories, $routeParams.categoryId);
                 $scope.categoryName = categoryService.getCategoryName($scope.categories, $routeParams.categoryId);
-                $scope.columnSize = 4;
+                $scope.columnSize = 10;
+                $scope.showMoreIcon = false;
             } else if ($routeParams.dealId) {
+                $scope.columnSize = 10;
+                $scope.showMoreIcon = false;
+                $scope.categoryName = "Deal Name";
                 categoryService.getDealsByDealId($routeParams.dealId)
                     .then(function(data){  
                         if(data.flag == 1) {                      
@@ -120,14 +137,44 @@ define(['app'], function(app) {
                         }
                     });
             }  else if ($routeParams.dealCategoryId) {
+                $scope.columnSize = 10;
+                $scope.showMoreIcon = false;
+                $scope.categoryName = "Deal Category Name";
                 categoryService.getDealsByDealCategoryId($routeParams.dealCategoryId)
                     .then(function(data){      
                         if(data.flag == 1) {
                             getDealItemListByOffer(data.dealcategorylisting);
                         }                                  
                     });
-            } else{
+            } else if($location.url() == "/hot-offers") {
+                $scope.columnSize = 10;
+                $scope.showMoreIcon = false;
+                $scope.categoryName = "Hot Offers";
+            }else{
                 $scope.columnSize = 1;
+            }
+
+            getCartItems = function() {                
+                var cartItems = utility.getJStorageKey("cartItems");
+                return cartItems.length ? cartItems : [];                
+            };
+
+            getCartItemCounter = function() {
+                var count = 0;
+                angular.forEach($scope.cartItems, function(value, key){
+                    count = count + parseInt(value.quantity, 10);
+                });
+                return count;
+            };
+
+            getCartDetails = function() {
+                $scope.cartItems = getCartItems();
+                $scope.cartItemCount = getCartItemCounter();                
+            };
+
+            if(angular.isDefined(utility.getJStorageKey("cartItems")) 
+                && utility.getJStorageKey("cartItems")) {
+                getCartDetails();
             }
 
             $scope.getDealCategoryItemList = function(category) {
@@ -140,9 +187,9 @@ define(['app'], function(app) {
                 $location.url(route);
             };
 
-            $scope.navigateToProduct = function(route, item) {
-                id = angular.isDefined(item.category_id) ? item.category_id : item.id;
-                $location.url(route + "/" + id);
+            $scope.navigateToProduct = function(route, itemId) {
+                //id = angular.isDefined(item.category_id) ? item.category_id : item.id;
+                $location.url(route + "/" + itemId);
             };
             
             $scope.toggleCategoryMenu = function() {

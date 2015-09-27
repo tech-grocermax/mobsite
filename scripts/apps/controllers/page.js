@@ -22,7 +22,8 @@ define(['app'], function(app) {
                 "gurgaon": false,
                 "noida": false
             };
-
+            $scope.isUserLoggedIn = angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId") ? true : false;
+            
             openCitySelectionModal = function() {
                 $timeout(function(){
                     $('#myModal').modal({

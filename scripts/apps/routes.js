@@ -118,7 +118,7 @@ define([], function() {
                 ]
             },
             '/category/offers/:dealCategoryId': {
-                templateUrl: templateURL + 'deals.html',
+                templateUrl: templateURL + 'offer.html',
                 dependencies: [
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',
