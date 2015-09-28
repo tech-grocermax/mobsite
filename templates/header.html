@@ -8,19 +8,23 @@
             style="padding-left: 16px; padding-right: 16px; position:relative;">
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0" 
                 data-ng-show="columnSize == 1">
-                <a href="#/"><img src="images/header-icon/home.png" title="Home" 
-                    class="img-responsive"></a>
+                <a href="#/">
+					<!--<img src="images/header-icon/home.png" title="Home" class="img-responsive">-->
+					<img class="home"  title="Home" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqAQMAAAD/DVsYAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFhAEAASYAARfcVj8AAAAASUVORK5CYII=" alt="">
+				</a>
             </div>
             <!--data-ng-click="showUserMenu()"
                 outsideclick="handleOutSideClick()"-->
             <div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 margin-lt22p" 
                 data-ng-show="columnSize == 1">
                 <a href="#/user/profile" data-ng-show="isUserLoggedIn">
-                    <img src="images/header-icon/profile.png" 
-                        title="User" class="img-responsive"></a>
+                    <!--<img src="images/header-icon/profile.png" title="User" class="img-responsive">-->
+					<img class="profile" title="User" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqAQMAAAD/DVsYAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFhAEAASYAARfcVj8AAAAASUVORK5CYII=">
+				</a>
                 <a href="#/user/login" data-ng-show="!isUserLoggedIn">
-                    <img src="images/header-icon/profile.png" 
-                        title="User" class="img-responsive"></a>                
+                    <!--<img src="images/header-icon/profile.png" title="User" class="img-responsive">-->
+					<img class="profile" title="User" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqAQMAAAD/DVsYAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFhAEAASYAARfcVj8AAAAASUVORK5CYII=">
+				</a>                
             </div>
             <!-- <div data-ng-show="showUserMenuOptions"
                 style=" position: absolute; top: 110%; width: 300px; z-index: 100; left:-15%;">
@@ -41,7 +45,7 @@
                 <a href="javascript:void(0);">
                     <img src="images/app_bar_icons/back-icon.png" title="" 
                         class="img-responsive" style="display:inline; "> </a>
-                <span style="color:#FFFFFF; font-weight:bold; ">&nbsp;{{categoryName}}</span>
+						<span style="color:#FFFFFF; font-weight:bold; ">&nbsp;{{categoryName}}</span>
             </div>
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 padd0" 
                 data-ng-show="columnSize == 10" back>
@@ -58,24 +62,25 @@
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 "
                 data-ng-class="{'margin-lt22p': columnSize == 4 || columnSize == 1}">
-                <span data-ng-click="guestAddProduct()" style="position:relative; float:left;">
+                <span data-ng-click="guestAddProduct()">
                     <a href="javascript:void(0);">
-                        <img src="images/header-icon/cart.png" title="Cart" 
-                            class="img-responsive"></a>
+                        <!--<img src="images/header-icon/cart.png" title="Cart" class="img-responsive">-->
+						<img class="cart" alt="" title="Cart" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAApAQMAAAB5mSm2AAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFeAAAAR8AAVTkCygAAAAASUVORK5CYII=">
+					</a>
                     <div class="header-O" data-ng-show="cartItemCount > 0">{{cartItemCount}}</div>
                 </span>
             </div>
-            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 float-rt more-icon-mrg"
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 float-rt"
                 data-ng-show="showMoreIcon"
                 data-ng-click="showMoreMenu()"
                 outsideclick="handleOutSideClick()">
                 <a href="javascript:void(0);">
-                    <img src="images/header-icon/more-icon.png" title="More" 
-                        class="img-responsive"></a>                
+                    <!--<img src="images/header-icon/more-icon.png" title="More" class="img-responsive">-->
+					<img class="more-icon more-icon-mrg" title="More" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAANAQMAAAADjaXSAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAAxJREFUeNpjYKAZAAAAWwABrFxQuwAAAABJRU5ErkJggg==">
+				</a>                
             </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top15 padd0"
-                data-ng-show="showMoreMenuOptions"
-                style="position: absolute; z-index: 100; top: 24%;">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 show-more-menu"
+                data-ng-show="showMoreMenuOptions">
                 <ul class="list-unstyled drop-box">
                     <li><a href="#/page/faq">FAQ&apos;s</a></li>
                     <li><a href="#/page/contact">Contact Us</a></li>
@@ -106,73 +111,102 @@
                 </div>
             </div>
         </div>
-    </div> 
-    <div class="left-menu" data-ng-show="showCategoryMenu" 
-        style="position: absolute; z-index: 100; top: 24%;">
-        <div class="menu-item-h">HOME</div>
-        <ul class="list-unstyled pad-lt32 back-white">
-            <li class="item-shop">SHOP FOR</li>
-            <li class="menu-item" data-ng-repeat="category in categories"
-                data-ng-click="toggleSubCategoryMenu(category.category_id)">
-                {{category.name}}
-                <img src="images/app_bar_icons/RIGHT-ICON.png" alt="" 
-                    class="img-responsive" style="display:inline; float:right;">
-            </li>            
-        </ul>
-    </div>
-    <div class="left-menu" data-ng-show="showSubCategoryMenu"
-        style="position: absolute; z-index: 100; top: 24%;">
-        <div class="menu-item-h" data-ng-click="toggleCategoryMenu()">
-            <img src="images/app_bar_icons/back-icon.png" alt="" class="img-responsive" 
-                style="display:inline; ">
-            {{categoryName}}
-        </div>
-        <ul class="list-unstyled pad-lt32 back-white">
-            <!-- Special category handling -->
-            <li class="menu-item" data-ng-repeat="category in subCategories"
-                data-ng-show="isSpecialCategory(category.category_id)"
-                data-ng-click="routerChange('product', category.category_id)">
-                {{category.name}}
-            </li>
+		
+		<div class="left-menu" data-ng-show="showCategoryMenu">
+			<div class="menu-item-h">HOME</div>
+			<ul class="list-unstyled pad-lt32 back-white">
+				<li class="item-shop">SHOP FOR</li>
+				<li class="menu-item" data-ng-repeat="category in categories"
+					data-ng-click="toggleSubCategoryMenu(category.category_id)">
+					{{category.name}}
+					<img src="images/app_bar_icons/RIGHT-ICON.png" alt="" 
+						class="img-responsive" style="display:inline; float:right;">
+				</li>            
+			</ul>
+		</div>
+		
+		<div class="left-menu" data-ng-show="showSubCategoryMenu">
+			<div class="menu-subitem-h" data-ng-click="toggleCategoryMenu()">
+				<img src="images/app_bar_icons/gray-right-ico.png" alt="" 
+					style="display:inline; ">
+				{{categoryName}}
+			</div>
+			<ul class="list-unstyled pad-lt32 back-white">
+				<!-- Special category handling -->
+				<li class="menu-item" data-ng-repeat="category in subCategories"
+					data-ng-show="isSpecialCategory(category.category_id)"
+					data-ng-click="routerChange('product', category.category_id)">
+					{{category.name}}
+				</li>
 
-            <!-- Normal category handling -->
-            <li class="menu-item" data-ng-repeat="category in subCategories"
-                data-ng-show="!isSpecialCategory(category.category_id)"
-                data-ng-click="toggleSubSubCategory(category.category_id)">            
-                {{category.name}}
-                <img src="images/app_bar_icons/PLUS-ICON.png" alt="" class="img-responsive"
-                    data-ng-show="subSubCategoryIndex != category.category_id"
-                    style="display:inline; float:right;">
-                <img src="images/app_bar_icons/MINUS-ICON.png" alt="" class="img-responsive"
-                    data-ng-show="subSubCategoryIndex == category.category_id"
-                    style="display:inline; float:right;">
-                <ul class="list-unstyled" 
-                    data-ng-show="subSubCategoryIndex == category.category_id">
-                    <li class="sub-item" 
-                        data-ng-show="category.children.length"
-                        data-ng-repeat="subCategory in category.children"
-                        data-ng-click="routerChange('product', subCategory.category_id)">
-                        {{subCategory.name}}
-                    </li>                    
-                </ul>
-            </li>
-        </ul>
-    </div>
+				<!-- Normal category handling -->
+				<li class="menu-item" data-ng-repeat="category in subCategories"
+					data-ng-show="!isSpecialCategory(category.category_id)"
+					data-ng-click="toggleSubSubCategory(category.category_id)">            
+					{{category.name}}
+					<img src="images/app_bar_icons/PLUS-ICON.png" alt="" class="img-responsive"
+						data-ng-show="subSubCategoryIndex != category.category_id"
+						style="display:inline; float:right;">
+					<img src="images/app_bar_icons/MINUS-ICON.png" alt="" class="img-responsive"
+						data-ng-show="subSubCategoryIndex == category.category_id"
+						style="display:inline; float:right;">
+					<ul class="list-unstyled" 
+						data-ng-show="subSubCategoryIndex == category.category_id">
+						<li class="sub-item" 
+							data-ng-show="category.children.length"
+							data-ng-repeat="subCategory in category.children"
+							data-ng-click="routerChange('product', subCategory.category_id)">
+							{{subCategory.name}}
+						</li>                    
+					</ul>
+				</li>
+			</ul>
+		</div>
+    </div> 
+    
+    
 </div>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-body" 
-                style="background: #000000 none repeat scroll 0 0; color: #FFFFFF; ">
-                <div class="row margin0" style="color:#000;">
-                    <div class="col-md-12 col-sm-12 col-xs-12 padd0 center-box">
-                        <div class="col-md-12 col-sm-12 col-xs-12 padd0" 
-                            style="color: #FFFFFF; font-weight: bold; font-size: 18px; ">
-                            <span>Where do you want us to deliver your groceries?</span>
+            <div class="modal-body">
+                <div class="row margin0">
+                    <div class="col-md-12 col-sm-12 col-xs-12 padd0" style="text-align: center;">
+                        <div class="col-md-12 col-sm-12 col-xs-12 padd0 margin-tp-13p margin-tp-6p-m">
+                            <span class="loc-h">Where would you like us to deliver?</span>
                         </div>
-                        <div class="col-md-12 col-sm-12 col-xs-12 padd0">
+						<div class="col-md-12 col-sm-12 col-xs-12 padd0 margin-t40 margin-t20-m">
+							<a href="javascript:void(0);"
+								data-ng-class="{'btn-primary': cityLocation.delhi}"
+                                data-ng-click="setCityLocation('delhi')"
+                                role="button">
+								<img src="images/app_bar_icons/location-icon_-unselected.png" alt="" style="width: 10%;">
+								<div class="loc-place">Delhi</div>
+							</a>
+						</div>
+						<div class="col-md-12 col-sm-12 col-xs-12 padd0 margin-t40 margin-t20-m">
+							<a href="javascript:void(0);"
+								data-ng-class="{'btn-primary': cityLocation.gurgaon}"
+                                data-ng-click="setCityLocation('gurgaon')"
+                                role="button">
+								<img src="images/app_bar_icons/location-icon_-unselected.png" alt="" style="width: 10%;">
+								<div class="loc-place">Gurgaon</div>
+							</a>
+						</div>
+						<div class="col-md-12 col-sm-12 col-xs-12 padd0 margin-t40 margin-t20-m">
+							<a href="javascript:void(0);"
+								data-ng-class="{'btn-primary': cityLocation.noida}"
+                                data-ng-click="setCityLocation('noida')"
+                                role="button">
+								<img src="images/app_bar_icons/location-icon_-unselected.png" alt="" style="width: 10%;">
+								<div class="loc-place">Noida</div>
+							</a>
+						</div>
+						
+						
+                        <!--<div class="col-md-12 col-sm-12 col-xs-12 padd0">
                             <ul class="list-unstyled">
                                 <li style="padding-top: 25px; ">
                                     <a href="javascript:void(0);" class="btn btn-default"
@@ -194,7 +228,7 @@
                                         role="button">Noida</a>
                                 </li>
                             </ul>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>

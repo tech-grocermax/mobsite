@@ -1,15 +1,14 @@
-<section>
-	<div class="row margin0 pad-lt32 reg-bar pad-lt16-m"style="font-size: 4.1vw;">
+<section class="back-white">
+	<!--<div class="row margin0 pad-lt32 reg-bar pad-lt16-m"style="font-size: 4.1vw;">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
 			{{addressId ? 'EDIT' : 'CREATE'}} ADDRESS
 		</div>
-	</div>
+	</div>-->
 	
 	<div class="row margin0">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
-			<ul class="list-unstyled pad-lt32 margin0 pad-rt32 pad-lt-rt16-m" 
-				style="margin-top: 4px;">
-				<li class="reg-list">
+			<ul class="list-unstyled pad-lt32 margin0 pad-rt32 pad-lt-rt16-m">
+				<!--<li class="reg-list">
 					<span class="reg-list-text">First Name</span><br>
 					<input type="text" placeholder="required"
 						data-ng-model="address.fname"
@@ -22,7 +21,7 @@
 						data-ng-model="address.lname"
 						value="{{address.lname}}"
 						class="place-color reg-list-input">
-				</li>
+				</li>-->
 				<li class="reg-list">
 					<span class="reg-list-text">House No.</span><br>
 					<input type="text" placeholder="required"
@@ -55,10 +54,11 @@
 						value="{{address.city}}"
 						class="place-color reg-list-input">
 				</li>
-				<li class="reg-list">
+				<li class="reg-list" style="padding-bottom: 0px;">
 					<span class="reg-list-text">State</span><br>
 					<div>
-  						<select style="width:200px; " data-ng-model="address.state">
+						<img class="dropdown-img" alt="" src="images/header-icon/drop-img.png">
+  						<select data-ng-model="address.state" class="reg-list-select">
   							<option value="" style="display:none; ">Select</option>
 					        <option value="HR">Haryana</option>
 					        <option value="UP">Uttar Pradesh</option>
@@ -80,14 +80,14 @@
 						value="{{address.pin}}"  
 						class="place-color reg-list-input">
 				</li>
-				<li class="margin-top32">
+				<!--<li class="margin-top32">
 					<input type="checkbox" ng-model="address.default_billing" />
 					<div class="check-text">Make it my default billing address</div>
 				</li>
 				<li class="margin-top32">
 					<input type="checkbox" ng-model="address.default_shipping" />
 					<div class="check-text">Make it my default shipping address</div>
-				</li>
+				</li>-->
 			</ul>
 		</div>
 	</div>

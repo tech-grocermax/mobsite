@@ -5,7 +5,7 @@
 		</div>
 	</div>
 	
-	<div class="row margin0">
+	<div class="row margin0 back-white">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
 			<ul class="list-unstyled pad-lt32 margin0 pad-rt32 pad-lt-rt16-m" style="margin-top: 4px;">
 				<li class="reg-list">
@@ -32,10 +32,35 @@
 			</ul>
 		</div>
 	</div>
+	
+	<!--<div class="row margin0 pad-lt32 reg-bar pad-lt16-m"style="font-size: 3.5vw;">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" >
+			CHANGE PASSWORD
+		</div>
+	</div>
+	<div class="row margin0 back-white">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
+			<ul class="list-unstyled pad-lt32 margin0 pad-rt32 pad-lt-rt16-m" style="margin-top: 4px;">
+				<li class="reg-list">
+					<span class="reg-list-text">Old password</span><br>
+					<input type="text" placeholder="*********" class="place-color reg-list-input">
+				</li>
+				<li class="reg-list">
+					<span class="reg-list-text">New password</span><br>
+					<input type="text" placeholder="should be 8 characters long" class="place-color reg-list-input">
+				</li>
+				<li class="reg-list">
+					<span class="reg-list-text">Confirm password</span><br>
+					<input type="text" placeholder="required" class="place-color reg-list-input">
+				</li>
+			</ul>
+		</div>
+	</div>-->
+	
 	<div class="alert" role="alert"
 		data-ng-class="{'alert-success': className.success, 'alert-danger': className.danger}"
 		data-ng-show="showUserResponse">{{userResponseMessage}}</div>			
-	<div class="row margin0" data-ng-click="updateProfile()">
+	<div class="row margin0 btn-bottom" data-ng-click="updateProfile()">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" >
 			<button type="button" class="reg-bot-btn">UPDATE PROFILE</button>
 		</div>

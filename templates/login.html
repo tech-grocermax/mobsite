@@ -25,20 +25,18 @@
 		</div>
 	</div>
 	
-	<div class="row margin0">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
-			<ul class="list-unstyled pad-lt32 margin0 pad-rt32 pad-lt-rt16-m" style="margin-top: 4px;">
-				<li class="reg-list">
-					<span class="reg-list-text">Email</span><br>
-					<input type="text" placeholder="required" 
+	<div class="row margin0 pad16">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-lt-rt8-m">
+			<ul class="list-unstyled margin0 log-bo">
+				<li class="log-border">
+					<input type="text" placeholder="Email" 
 						data-ng-model="user.uemail"
-						class="place-color reg-list-input">
+						class="width-100 log-place log-input">
 				</li>
-				<li class="reg-list">
-					<span class="reg-list-text">Password</span><br>
-					<input type="password" placeholder="required" 
+				<li class="log-border margin-tp22">
+					<input type="password" placeholder="Password" 
 						data-ng-model="user.password"
-						class="place-color reg-list-input">
+						class="width-100 log-place log-input">
 				</li>				
 			</ul>
 		</div>
@@ -47,26 +45,39 @@
 		data-ng-class="{'alert-success': className.success, 'alert-danger': className.danger}"
 		data-ng-show="showUserResponse">{{userResponseMessage}}
 	</div>
-	<div class="row margin0" data-ng-click="loginUser()">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" >
-			<button type="button" class="reg-bot-btn">LOGIN</button>
+	<div class="row margin0 pad16 pad8-m" data-ng-click="loginUser()">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<button type="button" class="ord-btn btn-login">LOGIN</button>
+		</div>
+		
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top10" style="text-align: center;">
+			<a class="forgot-text" href="javascript:void(0);"
+				data-ng-click="navigateTo('user/forgotpassword')">Forgot your Password?</a>
+		</div>
+		
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 log-text">
+			<span class="forgot-text">DON&apos;T HAVE AN ACCOUNT?</span>
+		</div>
+		
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" data-ng-click="navigateTo('user/register')">
+			<button type="button" class="ord-btn btn-signup">SIGNUP</button>
 		</div>
 	</div>
-	<div class="row margin0" >
+	<!--<div class="row margin0" >
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 " style="text-align:center; margin: 10px 0px; " >
 			<a href="javascript:void(0);"
 				data-ng-click="navigateTo('user/forgotpassword')">Forgot your Password?</a>
 		</div>
-	</div>
+	</div>-->
 
-	<div class="row margin0 pad-lt32 reg-bar pad-lt16-m"style="font-size: 3.5vw;">
+	<!--<div class="row margin0 pad-lt32 reg-bar pad-lt16-m"style="font-size: 3.5vw;">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" >
 			DON&apos;T HAVE AN ACCOUNT?
 		</div>
-	</div>
-	<div class="row margin0" data-ng-click="navigateTo('user/register')">
+	</div>-->
+	<!--<div class="row margin0" data-ng-click="navigateTo('user/register')">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" >
 			<button type="button" class="reg-bot-btn">SIGNUP</button>
 		</div>
-	</div>
+	</div>-->
 </section>

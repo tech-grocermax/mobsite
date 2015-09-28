@@ -12,22 +12,22 @@
 		</section>
 		<section>
 			<div class="row margin0 back-white slide-shadow">
-				<div class="slider-text margin-tp22 margin-bt22 margin-lt15 margin-tp6-m margin-bt10-m margin-lt8-m">Shop by Categories</div>
+				<div class="slider-text margin-tp22 margin-bt20 margin-lt15 margin-tp6-m margin-bt10-m margin-lt8-m">Shop by Categories</div>
 				<div class="row margin0" style="overflow: auto;">
-					<ul class="list-unstyled pad-lt32 view-inline ul-height pad-lt16-m margin0">
+					<ul class="list-unstyled view-inline margin0 slide-ul">
 						<li data-ng-show="category.is_active" 
 	    					data-ng-repeat="category in offerCategories">
 							<img src="images/silder-img1.png" title="{{category.name}}" 
-								class="slide-img" style="margin-right:24px; "
+								class="slide-img"
 								data-ng-click="routerChange('category', category.category_id)">
 							<div class="img-text-box">
 								<span class="img-text-h">{{category.name}}</span><br>
 								<!-- <span class="img-text"
 									data-ng-show="category.children.length">{{renderChildrenCategory(category.children)}}</span> -->
 							</div>
-							<div class="slide-text margin-rt25 margin-rt12-m "
+							<div class="slide-text"
 								data-ng-click="routerChange('category/offers', category.category_id)"
-								style="width:89%; ">{{category.offercount}} OFFERS</div>
+								style="width:100%; ">{{category.offercount}} OFFERS</div>
 						</li>
 						<!-- <li class="li-border"></li> -->						
 					</ul>					
@@ -36,17 +36,20 @@
 		</section>
 		<section>
 			<div class="row margin0 back-white slide-shadow">
-				<div class="slider-text margin-tp22 margin-bt22 margin-lt15 margin-tp6-m margin-bt10-m margin-lt8-m">Shop by Deals</div>
+				<div class="slider-text margin-tp22 margin-bt20 margin-lt15 margin-tp6-m margin-bt10-m margin-lt8-m">Shop by Deals</div>
 				<div class="row margin0" style="overflow: auto;">
-					<ul class="list-unstyled pad-lt32 view-inline ul-height pad-lt16-m margin0">
+					<ul class="list-unstyled view-inline margin0 slide-ul">
 						<li data-ng-show="deals.length" 
 	    					data-ng-repeat="deal in deals"
 	    					data-ng-click="routerChange('deals', deal.id)">
 							<img src="images/silder-img1.png" title="{{deal.dealType}}" 
-								class="slide-img" style="margin-right:24px; ">
+								class="slide-img">
 							<div class="img-text-box">
 								<span class="img-text-h">{{deal.dealType}}</span>
 							</div>
+							<div class="slide-text"
+								data-ng-click="routerChange('category/offers', category.category_id)"
+								style="width:100%; ">VIEW DEALS</div>
 						</li>
 						<!-- <li class="li-border"></li> -->						
 					</ul>					
