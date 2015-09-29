@@ -138,6 +138,7 @@ define(['app'], function(app) {
                         $location.url("user/profile");
                     }
                 } else {
+                    $scope.showUserResponse = true;
                     $scope.userResponseMessage = data.Result;
                     updateClassName("danger");
                 }
@@ -212,23 +213,26 @@ define(['app'], function(app) {
                 $scope.otp = model;
             };
 
-            $scope.loginUser = function() {
-                var input = {
-                    uemail: $scope.user.uemail,
-                    password: $scope.user.password
-                };
+            $scope.loginUser = function(form) {
+                $scope.errorLogin = true;
+                if (form.$valid) { 
+                    var input = {
+                        uemail: $scope.user.uemail,
+                        password: $scope.user.password
+                    };
 
-                var email = $scope.user.uemail;
+                    var email = $scope.user.uemail;
 
-                if(angular.isDefined(utility.getJStorageKey("quoteId")) 
-                && utility.getJStorageKey("quoteId")) {
-                    input.quote_id = utility.getJStorageKey("quoteId");
+                    if(angular.isDefined(utility.getJStorageKey("quoteId")) 
+                    && utility.getJStorageKey("quoteId")) {
+                        input.quote_id = utility.getJStorageKey("quoteId");
+                    }
+
+                    userService.loginUser(input)
+                        .then(function(data){
+                            successCallbackUser(data, email);
+                        });
                 }
-
-                userService.loginUser(input)
-                    .then(function(data){
-                        successCallbackUser(data, email);
-                    });
             };         
 
             $scope.showMoreMenu = function() {

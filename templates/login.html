@@ -44,45 +44,56 @@
 			<!-- OR  LOGIN USING EMAIL
 		</div>
 	</div>-->
-	
-	<div class="row margin0 pad16">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-lt-rt8-m">
-			<ul class="list-unstyled margin0 log-bo">
-				<li class="log-border">
-					<input type="text" placeholder="Email" 
-						data-ng-model="user.uemail"
-						class="width-100 log-place log-input">
-				</li>
-				<li class="log-border margin-tp22">
-					<input type="password" placeholder="Password" 
-						data-ng-model="user.password"
-						class="width-100 log-place log-input">
-				</li>				
-			</ul>
+	<form name="frmLogin" novalidate>
+		<div class="row margin0 pad16">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-lt-rt8-m">
+				<ul class="list-unstyled margin0 log-bo">
+					<li class="log-border">
+						<input type="text" name="email" placeholder="Email" 
+							data-ng-model="user.uemail"
+							class="width-100 log-place log-input"
+							ng-pattern="/^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$/" 
+                            required my-max-length="40" validate-email>
+                        <div ng-messages="frmLogin.email.$error" 
+                        	data-ng-show="frmLogin.email.$dirty || (errorLogin && user.uemail == null)">
+                            <div ng-show="frmLogin.email.$error.required" 
+                            	class="error-message">Please enter your email address</div>
+                            <div ng-show="frmLogin.email.$error.pattern && frmLogin.email.$touched"
+                            	class="error-message">Please enter a valid email address</div>
+                        </div>
+					</li>
+					<li class="log-border margin-tp22">
+						<input type="password" name="password" placeholder="Password" 
+							data-ng-model="user.password" required my-min-length="6"
+							class="width-100 log-place log-input">
+					</li>				
+				</ul>
+			</div>
 		</div>
-	</div>
-	<div class="alert" role="alert"
-		data-ng-class="{'alert-success': className.success, 'alert-danger': className.danger}"
-		data-ng-show="showUserResponse">{{userResponseMessage}}
-	</div>
-	<div class="row margin0 pad16 pad8-m" data-ng-click="loginUser()">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<button type="button" class="ord-btn btn-login">LOGIN</button>
+		<div class="alert" role="alert"
+			data-ng-class="{'alert-success': className.success, 'alert-danger': className.danger}"
+			data-ng-show="showUserResponse">{{userResponseMessage}}
 		</div>
-		
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top10" style="text-align: center;">
-			<a class="forgot-text" href="javascript:void(0);"
-				data-ng-click="navigateTo('user/forgotpassword')">Forgot your Password?</a>
+		<div class="row margin0 pad16 pad8-m" >
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<button type="button" class="ord-btn btn-login"
+					data-ng-click="loginUser(frmLogin)">LOGIN</button>
+			</div>
+			
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top10" style="text-align: center;">
+				<a class="forgot-text" href="javascript:void(0);"
+					data-ng-click="navigateTo('user/forgotpassword')">Forgot your Password?</a>
+			</div>
+			
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 log-text">
+				<span class="forgot-text">DON&apos;T HAVE AN ACCOUNT?</span>
+			</div>
+			
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" data-ng-click="navigateTo('user/register')">
+				<button type="button" class="ord-btn btn-signup">SIGNUP</button>
+			</div>
 		</div>
-		
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 log-text">
-			<span class="forgot-text">DON&apos;T HAVE AN ACCOUNT?</span>
-		</div>
-		
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" data-ng-click="navigateTo('user/register')">
-			<button type="button" class="ord-btn btn-signup">SIGNUP</button>
-		</div>
-	</div>
+	</form>
 	<!--<div class="row margin0" >
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 " style="text-align:center; margin: 10px 0px; " >
 			<a href="javascript:void(0);"
