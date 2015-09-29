@@ -3,6 +3,15 @@ define(['app'], function (app) {
     	function ($http, $rootScope, serverUtility, utility) {
 		    'use strict';
 		   
+		   	this.getBannerList = function() {
+		   		var url = getAPIUrl() + "homebanner";
+		    	return serverUtility.getWebService(url)
+		    		.then(
+		    			function(data){return data; },
+		    			function(error){return error; }
+		    		);
+		   	};
+
 		    this.getCategoryList = function() {		    	
 	    		var url = getAPIUrl() + "category?parentid=0";
 		    	return serverUtility.getWebService(url)

@@ -19,8 +19,8 @@
                 data-ng-repeat="product in products">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 margin-tp-5p"
                     data-ng-click="routerChange('product/details', product.productid)">
-                    <img src="{{replaceImageUrl(product.Image)}}" 
-                        alt="" class="img-responsive">
+                    <img src="{{product.Image}}" 
+                        alt="{{product.Name}}" class="img-responsive">
                 </div>
                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 padd0"
                     data-ng-click="routerChange('product/details', product.productid)">

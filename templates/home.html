@@ -2,10 +2,12 @@
     <header data-ng-include="'templates/header.html'"></header>
     <article style="margin-bottom: 35px;">
         <section>
-			<div class="row margin0 pad16 pad8-m">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
+			<div class="row margin0 pad16 pad8-m slide-shadow" style="overflow-y: hidden; overflow-x:auto; height:150px; ">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0"
+					data-ng-repeat="banner in bannerList">
 					<div class="pad4 img-box">
-						<img src="images/banner-img.png" alt="" class="img-responsive">
+						<img src="{{banner.imageurl}}" title="{{banner.name}}" 
+							class="img-responsive">
 					</div>
 				</div>
 			</div>

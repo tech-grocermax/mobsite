@@ -266,7 +266,7 @@ define(['app'], function(app) {
                 $scope.billingAsShipping = model;
             };  
 
-            $scope.selectedDeliveryDate = utility.getCurrentDate();
+            //$scope.selectedDeliveryDate = utility.getCurrentDate();
             $scope.selectedDeliveryTime = null;
             $scope.parentIndex = null;
 
@@ -299,14 +299,14 @@ define(['app'], function(app) {
             $scope.getPreviousDaySlot = function(index) {
                 if(index > 0) {                    
                     $scope.deliverySlotIndex = $scope.deliverySlotIndex - 1;       
-                    $scope.selectedDeliveryDate = getSelectedDeliveryDate($scope.deliverySlotIndex);             
+                    //$scope.selectedDeliveryDate = getSelectedDeliveryDate($scope.deliverySlotIndex);             
                 }
             };
 
             $scope.getNextDaySlot = function(index) {
                 if(index < $scope.deliverySlots.length -1) {                    
                     $scope.deliverySlotIndex = $scope.deliverySlotIndex + 1;
-                    $scope.selectedDeliveryDate = getSelectedDeliveryDate($scope.deliverySlotIndex);
+                    //$scope.selectedDeliveryDate = getSelectedDeliveryDate($scope.deliverySlotIndex);
                 }
             };
 
@@ -317,10 +317,12 @@ define(['app'], function(app) {
             $scope.setDeliveryTime = function(data, parentIndex) {
                 if(data.available) {
                     $scope.selectedDeliveryTime = data.timeSlot;
+                    $scope.selectedDeliveryDate = getSelectedDeliveryDate(parentIndex);
                     $scope.parentIndex = parentIndex;
                 }
                 //console.log(parentIndex);
-                //console.log($scope.selectedDeliveryTime);
+                console.log($scope.selectedDeliveryDate);
+                console.log($scope.selectedDeliveryTime);
             };
 
             $scope.showMoreMenu = function() {

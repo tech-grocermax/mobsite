@@ -32,6 +32,20 @@ define(['app'], function(app){
 		}
 	]);
 
+	app.directive('searchBtn', [
+		'$document', '$location', '$timeout',
+		function($document, $location, $timeout){
+		    return {
+		    	link: function(scope, elem, attr, ctrl) {
+		        	elem.bind('click', function(event) {
+		            	if(angular.element(".search-bar").val().length > 2){		            		
+		            		scope.handleSearchKeyEnter();		            				            		   		            		
+		            	}
+		            });            
+		        }
+		    };
+		}
+	]);
 
 	app.directive('back', ['$window', function($window) {
         return {

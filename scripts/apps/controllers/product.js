@@ -8,6 +8,7 @@ define(['app'], function(app) {
             $scope.categoryName = "Dynamic Name";
             $scope.columnSize = 10;
             $scope.categoryId = angular.isDefined($routeParams.categoryId) ? $routeParams.categoryId : null ;
+            $scope.dealId = angular.isDefined($routeParams.dealId) ? $routeParams.dealId : null ;
             $scope.productId = angular.isDefined($routeParams.productId) ? $routeParams.productId : null ;
             $scope.quoteId = angular.isDefined($routeParams.quoteId) ? $routeParams.quoteId : null ;
             $scope.parentCatId = angular.isDefined($routeParams.parentId) ? $routeParams.parentId : null ;
@@ -43,17 +44,24 @@ define(['app'], function(app) {
                 $('#myModal').modal('hide');
             };
 
-            getProductList = function() {
+            getProductListByCategoryId = function() {
                 var jstorageKeyProducts = "products_" + $routeParams.categoryId;
                 if (utility.getJStorageKey(jstorageKeyProducts)) {
                     $scope.products = utility.getJStorageKey(jstorageKeyProducts);
                 } else {
-                    productService.getProductList($scope.categoryId)
+                    productService.getProductListByCategoryId($scope.categoryId)
                         .then(function(data){
                             $scope.products = data.Product; 
                             utility.setJStorageKey(jstorageKeyProducts, $scope.products, 1);
                         });
                 }
+            };
+
+            getProductListByDealId = function() {                
+                productService.getProductListByDealId($scope.dealId)
+                    .then(function(data){
+                        $scope.products = data.Product.items; 
+                    });                
             };
             
             getLastChildCategoryList = function() {
@@ -82,7 +90,11 @@ define(['app'], function(app) {
 
             if($scope.categoryId){
                getLastChildCategoryList(); 
-               getProductList();
+               getProductListByCategoryId();
+            }
+
+            if($scope.dealId){
+                getProductListByDealId();
             }
 
             if($scope.keyword) {
@@ -247,6 +259,8 @@ define(['app'], function(app) {
             };  
 
             if($scope.quoteId){
+                console.log($scope.quoteId);
+                console.log(utility.getJStorageKey("cartItems"));
                 getCartItemDetails(); 
             }          
 
@@ -316,11 +330,7 @@ define(['app'], function(app) {
             };
 
             $scope.replaceImageUrl = function(src) {
-                if(angular.isUndefined(src)){
-                    return "";
-                }
-                return src.indexOf("placeholder") >= 0 
-                    ? "images/small_image_1_2_1.jpg" : src.replace("image/", "small_image/190x190/");
+                return src;
             };
 
             $scope.getPriceDifference = function(price, salePrice) {
