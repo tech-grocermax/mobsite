@@ -1,43 +1,59 @@
 <div ng-controller="categoryController">
 	<header data-ng-include="'templates/header.html'"></header>
 	<article class="margin-bot15">
-		<div class="row margin0 pad16 pad8-m">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0"
-				data-ng-show="category.is_active && subCategoryList.length" 
-		    	data-ng-repeat="category in subCategoryList | filter:searchText">
-				<div class="pad4 img-box">
-					<img src="images/silder-img1.png" 
-						title="{{category.name}}" class="img-responsive">
-						<!--shutterstock{{$index > 5 ? 6 : $index+1}}.png-->
-					<!--mustakeem<div class="img-text-box" 
-						data-ng-click="routerChange('product', category.category_id)"
-						style="line-height:15px; bottom: 90px;">
-						<span class="img-text-h" style="font-size:24px; ">
-							{{category.name}}</span>
-						<!-- <span class="img-text" data-ng-show="category.children.length">
-							{{renderChildrenCategory(category.children)}}
-						</span> 
-					</div>-->
-					<!--mustakeem<div class="img-text-box" 
-						data-ng-click="showMoreCategory(category)"
-						style="background-color: #000; border-radius: 3px; bottom: 54px; line-height: 15px; margin-left: 0; width: 100%; padding:10px; text-align:center; cursor:pointer; color:#FFF; ">
-						Select Category
+		<section>
+			<div class="row margin0 pad16 pad8-m"data-ng-show="category.is_active && subCategoryList.length" 
+					data-ng-repeat="category in subCategoryList | filter:searchText">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0"
+					>
+					<div class="pad4 img-box">
+						<img src="images/silder-img1.png" 
+							title="{{category.name}}" class="img-responsive">
+							<!--shutterstock{{$index > 5 ? 6 : $index+1}}.png-->
+						<!--mustakeem<div class="img-text-box" 
+							data-ng-click="routerChange('product', category.category_id)"
+							style="line-height:15px; bottom: 90px;">
+							<span class="img-text-h" style="font-size:24px; ">
+								{{category.name}}</span>
+							<!-- <span class="img-text" data-ng-show="category.children.length">
+								{{renderChildrenCategory(category.children)}}
+							</span> 
+						</div>-->
+						<!--mustakeem<div class="img-text-box" 
+							data-ng-click="showMoreCategory(category)"
+							style="background-color: #000; border-radius: 3px; bottom: 54px; line-height: 15px; margin-left: 0; width: 100%; padding:10px; text-align:center; cursor:pointer; color:#FFF; ">
+							Select Category
+						</div>-->
+						<div class="subc-h1"
+							data-ng-click="showMoreCategory(category)">
+							Select category to view products
+						</div>
+						
+						<div class="align-center subc-h2">{{category.name}}</div>
+					</div>
+					<!--<div class="pad4 margin-lt15 imgbox-rt-margin"
+						data-ng-show="category.children.length && moreCategoryIndex == category.category_id">
+						<a href="javascript:void(0)" role="button" class="btn btn-default" 
+							data-ng-click="routerChange('product', subCategory.category_id)"
+							data-ng-repeat="subCategory in category.children">{{subCategory.name}}</a>
 					</div>-->
 					
-					<div class="subc-h1"
-						data-ng-click="showMoreCategory(category)">
-						Select category to view products
-					</div>
-					<div class="align-center subc-h2">{{category.name}}</div>
+					
+					<div class="margin-top15"></div>		
 				</div>
-				<div class="pad4 margin-lt15 imgbox-rt-margin"
+				<div class="row"
 					data-ng-show="category.children.length && moreCategoryIndex == category.category_id">
-					<a href="javascript:void(0)" role="button" class="btn btn-default" 
-						data-ng-click="routerChange('product', subCategory.category_id)"
-						data-ng-repeat="subCategory in category.children">{{subCategory.name}}</a>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white pad-b-15">
+						<a href="javascript:void(0)"
+							data-ng-click="routerChange('product', subCategory.category_id)"
+							data-ng-repeat="subCategory in category.children">
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 subcat-btn">
+								<button type="button" class="subc-btn">{{subCategory.name}}</button>
+							</div>
+						</a>
+					</div>
 				</div>
-				<div class="margin-top15"></div>		
 			</div>
-		</div>
+		</section>
 	</article>	
 </div>

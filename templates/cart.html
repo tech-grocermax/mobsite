@@ -22,7 +22,9 @@
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd0">
                 <ul class="list-unstyled">
-                    <li class="prod-list-h">{{product.p_brand}}</li>
+                    <li class="prod-list-h">{{product.p_brand}}
+					<img src="images/app_bar_icons/delete-icon.png" alt="" class="delet-icon">
+					</li>
                     <li class="cat-list-name">{{product.name}}</li>
                     <li class="prod-list-qnty">{{product.p_pack}}</li>
                     <li class="font-3">
@@ -80,7 +82,7 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" 
         style="margin-top:100px;">
         <button type="button" class="reg-bot-btn"
-            data-ng-click="checkout()">CHECKOUT</button>
+            data-ng-click="checkout()">PROCEED</button>
     </div>
 </div>
 <!-- <div ng-controller="productController">
