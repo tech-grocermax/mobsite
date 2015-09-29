@@ -293,7 +293,7 @@ a,a:hover {text-decoration: none;}
 .modal-body{background-image:url('../images/location-back.png'); background-attachment:fixed; background-position:center center; background-repeat:no-repeat; background-size:cover;}
 .subcat-btn{padding: 20px 5px 0;}
 .delet-icon{float: right; margin-right: 16px;}
-
+.slide-img{width: 368px;}
 @media  (max-width: 460px){
 	.img-text-box{bottom: 50px;}
 	.slide-img{width: 210px;}
