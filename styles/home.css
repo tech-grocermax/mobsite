@@ -283,8 +283,8 @@ a,a:hover {text-decoration: none;}
 .ao-text3{font-size:8vw; color:#fff;font-weight: 200; margin-top: -3.5%;line-height: 1.1;}
 
 /*========== ORDER SUCCESS ==========*/
-.subc-h1{width:98.7%; background: #000; bottom: 4px; display: block; position: absolute; opacity: 0.8;font-size: 3.5vw; color:#fff;text-align:center; padding: 12px 0;content: "";}
-.subc-h2{font-size: 5.6vw;padding-left: 26px;font-weight: 100;}
+.subc-h1{width:98.7%; background: #000; bottom: 19px; display: block; position: absolute; opacity: 0.8;font-size: 3.5vw; color:#fff;text-align:center; padding: 13px 0;content: "";}
+.subc-h2{font-size: 5.6vw;padding-left: 26px;font-weight: 100;color:#fff;}
 .subc-btn{padding: 10px 0;font-size:3.8vw; background:#fff; border:none; border-radius:4px; width:100%;box-shadow: 0 1px 5px -1px;}
 
 .btn-bottom{position: absolute; left: 0px; right: 0px; bottom: 0px;}
@@ -383,6 +383,7 @@ a,a:hover {text-decoration: none;}
 
 @media  (max-width: 360px){
 	.more-icon-mrg {margin-top: 6%;}
+	.subc-h1 {width: 97.4%;}
 }
 
 /*------------------------- SPRITE IMAGE -------------------------*/
