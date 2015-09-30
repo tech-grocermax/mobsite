@@ -19,11 +19,11 @@
 					<ul class="list-unstyled view-inline margin0 slide-ul">
 						<li data-ng-show="category.is_active" 
 	    					data-ng-repeat="category in offerCategories">
-							<img src="images/Category Images/beverages.png" title="{{category.name}}" 
+							<img src="{{category.images}}" title="{{category.name}}" 
 								class="slide-img"
 								data-ng-click="routerChange('category', category.category_id)">
 							<div class="img-text-box">
-								<span class="img-text-h">{{category.name}}</span><br>
+								<span class="img-text-h">&nbsp</span><br>
 								<!-- <span class="img-text"
 									data-ng-show="category.children.length">{{renderChildrenCategory(category.children)}}</span> -->
 							</div>
@@ -44,10 +44,10 @@
 						<li data-ng-show="deals.length" 
 	    					data-ng-repeat="deal in deals"
 	    					data-ng-click="routerChange('deals', deal.id)">
-							<img src="images/Deal Images/buy-1-get-free.png" title="{{deal.dealType}}" 
+							<img src="images/Deal Images/{{deal.dealType}}.png" title="{{deal.dealType}}" 
 								class="slide-img">
 							<div class="img-text-box">
-								<span class="img-text-h">{{deal.dealType}}</span>
+								<span class="img-text-h">&nbsp</span>
 							</div>
 							<div class="slide-text"
 								data-ng-click="routerChange('category/offers', category.category_id)"
