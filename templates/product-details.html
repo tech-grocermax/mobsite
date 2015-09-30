@@ -32,25 +32,9 @@
             </div>
         </div>
     </article>
-</div>
-<!-- <div class="row">       
-    <div class="col-xs-6 col-md-3">
-        <div class="thumbnail">
-            <div style="margin:0 auto; ">
-                <img src="{{productDetails.product_thumbnail}}">
-            </div>
-            <div class="caption" style="text-align: center; ">                  
-                <div class="product-name" title="{{productDetails.product_name}}">
-                    <p class="p_brand">{{productDetails.p_brand}}</p>
-                    <p class="p_name" style=" ">{{productDetails.product_name}}</p>
-                    <p class="p_pack">{{productDetails.p_pack}}</p>
-                    <div >
-                        <span style="color: #999; text-decoration: line-through;">₹{{productDetails.product_price}}</span>&nbsp;|&nbsp;<span style="font-weight:bold; ">₹{{productDetails.sale_price}}<span>
-                    </div>
-                </div>
-                <p data-ng-class="{'outStock': productDetails.Status== 'Out of stock'}">
-                    {{productDetails.Status}}</p>                    
-            </div>                  
-        </div>
+    <div class="popupcontainerloader" style="position:fixed;"
+        data-ng-show="displayLoader">        
+        <div style="text-align:center; width:100%; "><img src="images/ajax-loader.gif" /></div>
     </div>
-</div> -->
+    <div data-ng-show="displayLoader" class="black_shade"></div>
+</div>

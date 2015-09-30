@@ -30,6 +30,10 @@ define(['app'], function(app) {
             $scope.productIds = [];
             $scope.isUserLoggedIn = angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId") ? true : false;
             
+            toggleLoader = function(flag) {
+                $scope.displayLoader = flag;
+            };
+
             openCitySelectionModal = function() {
                 $timeout(function(){
                     $('#myModal').modal({
@@ -49,18 +53,22 @@ define(['app'], function(app) {
                 if (utility.getJStorageKey(jstorageKeyProducts)) {
                     $scope.products = utility.getJStorageKey(jstorageKeyProducts);
                 } else {
+                    toggleLoader(true);
                     productService.getProductListByCategoryId($scope.categoryId)
                         .then(function(data){
                             $scope.products = data.Product; 
                             utility.setJStorageKey(jstorageKeyProducts, $scope.products, 1);
+                            toggleLoader(false);
                         });
                 }
             };
 
-            getProductListByDealId = function() {                
+            getProductListByDealId = function() {       
+                toggleLoader(true);         
                 productService.getProductListByDealId($scope.dealId)
                     .then(function(data){
                         $scope.products = data.Product.items; 
+                        toggleLoader(false);
                     });                
             };
             
@@ -81,10 +89,11 @@ define(['app'], function(app) {
             };
 
             getProductListBySearch = function() {
+                toggleLoader(true);
                 productService.getProductListBySearch($scope.keyword)
                     .then(function(data){
                         $scope.products = data.Product; 
-                        //utility.setJStorageKey(jstorageKeyProducts, $scope.products, 1);
+                        toggleLoader(false);
                     });
             };
 
@@ -106,10 +115,12 @@ define(['app'], function(app) {
                 if (utility.getJStorageKey(jstorageKeyProductDetails)) {
                     $scope.productDetails = utility.getJStorageKey(jstorageKeyProductDetails);
                 } else {
+                    toggleLoader(true);
                     productService.getProductDetails($scope.productId)
                         .then(function(data){
                             $scope.productDetails = data.Product_Detail[0]; 
                             utility.setJStorageKey(jstorageKeyProductDetails, $scope.productDetails, 1);
+                            toggleLoader(false);
                         });
                 }
             };            

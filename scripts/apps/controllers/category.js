@@ -31,6 +31,10 @@ define(['app'], function(app) {
             $scope.categoryName = "Dynamic Name";
             $scope.bannerList = null;
 
+            toggleLoader = function(flag) {
+                $scope.displayLoader = flag;
+            };
+
             openCitySelectionModal = function() {
                 $timeout(function(){
                     $('#myModal').modal({
@@ -68,20 +72,24 @@ define(['app'], function(app) {
             if (utility.getJStorageKey("offerCategories")) {
                 $scope.offerCategories = utility.getJStorageKey("offerCategories");
             } else {
+                toggleLoader(true);
                 categoryService.getCategoryOfferList()
                     .then(function(data){
                         $scope.offerCategories = data.category; 
                         utility.setJStorageKey("offerCategories", $scope.offerCategories, 1);
+                        toggleLoader(false);
                     });
             }
 
             if (utility.getJStorageKey("deals")) {
                 $scope.deals = utility.getJStorageKey("deals");
             } else {
+                toggleLoader(true);
                 categoryService.getDealList()
                     .then(function(data){
                         $scope.deals = data.deal_type; 
                         utility.setJStorageKey("deals", $scope.deals, 1);
+                        toggleLoader(false);
                     });
             }
 
@@ -98,15 +106,15 @@ define(['app'], function(app) {
                 //$scope.dealItems = data["all"];
                 
                 $scope.dealCategoryItemList["all"] = [];
-                angular.forEach(data.all, function(outerValue, outerKey) {
-                    angular.forEach(outerValue, function(value, key) {
+                //angular.forEach(data.all, function(outerValue, outerKey) {
+                    angular.forEach(data.all, function(value, key) {
                         $scope.dealCategoryItemList["all"].push(value);
                     });
-                });
+                //});
 
                 $scope.dealItems = $scope.dealCategoryItemList["all"];
-                angular.forEach(data.category, function(outerValue, outerKey) {
-                    angular.forEach(outerValue, function(value, key) {
+                //angular.forEach(data.category, function(outerValue, outerKey) {
+                    angular.forEach(data.category, function(value, key) {
                         //console.log(value);
                         if(value.is_active == "1") {
                             $scope.dealCategoryList.push({
@@ -116,7 +124,7 @@ define(['app'], function(app) {
                             $scope.dealCategoryItemList[value.category_id] = value.deals;
                         }                                        
                     });
-                });
+                //});
             }
 
             getDealItemListByOffer = function(data) {
@@ -145,21 +153,25 @@ define(['app'], function(app) {
                 $scope.columnSize = 10;
                 $scope.showMoreIcon = false;
                 $scope.categoryName = "Deal Name";
+                toggleLoader(true);
                 categoryService.getDealsByDealId($routeParams.dealId)
                     .then(function(data){  
                         if(data.flag == 1) {                      
                             getDealItemList(data.dealcategory);
                         }
+                        toggleLoader(false);
                     });
             }  else if ($routeParams.dealCategoryId) {
                 $scope.columnSize = 10;
                 $scope.showMoreIcon = false;
                 $scope.categoryName = "Deal Category Name";
+                toggleLoader(true);
                 categoryService.getDealsByDealCategoryId($routeParams.dealCategoryId)
                     .then(function(data){      
                         if(data.flag == 1) {
                             getDealItemListByOffer(data.dealcategorylisting);
-                        }                                  
+                        }
+                        toggleLoader(false);                                  
                     });
             } else if($location.url() == "/hot-offers") {
                 $scope.columnSize = 10;
