@@ -28,11 +28,11 @@
 					<input type="checkbox" name="selectAddress"
 						data-ng-change="changeDefaultSelection(address, 'is_default_billing')" 
 						data-ng-model="address.is_default_billing"
-						class="img-responsive float-rt bill-check-img"/>
+						class="img-responsive float-rt bill-checkbox"/>
 				</li>
 				<li style="font-size:4.3vw; color:#2d2d2d;">
 					<span>{{address.firstname}} {{address.lastname}}</span>
-					<span>{{address.street}}</span>
+					<span>{{address.street}}</span><br>
 					<span>{{address.city}} - {{address.postcode}}</span>
 				</li>
 				<li></li>

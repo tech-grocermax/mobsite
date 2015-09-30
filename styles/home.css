@@ -1,4 +1,4 @@
-body{background: #f4f4f4; font-family: roboto; font-size:0px;}
+body{background: #f4f4f4; font-family: roboto;}
 a,a:hover {text-decoration: none;}
 /*.header-top{background: #B22603; height: 48px;}*/
 .header-middle{padding: 30px 16px 16px; background: #EE2D09; box-shadow:0 7px 5px rgba(0, 0, 0, 0.2);}
@@ -295,11 +295,14 @@ a,a:hover {text-decoration: none;}
 .delet-icon{float: right; margin-right: 16px;}
 .slide-img{width: 368px;}
 .dot-border{box-shadow:0px 2px 8px -5px; border-radius:4px; border:1px dashed #f07d67;}
-.succes-back{background-image:url('../images/order-back.png'); background-attachment:fixed; background-position:center center; background-repeat:no-repeat; background-size:cover;}
+.succes-back{background-image:url('../images/order-back.png'); background-attachment:fixed; background-position:center center; background-repeat:no-repeat; background-size:cover;padding-bottom: 30px;}
 .cart-image{position: absolute;right: 16px; top: 0;}
 .cart-txt{font-size: 3.6vw; position: absolute; right: 23px; top: -1%;}
 .add-btn{background: #0e69e5;border: medium none;border-radius: 4px;color: #fff;font-size: 4vw;padding: 7px;width: 100%;}
 .add-btn-box{position: absolute; right: 16px;}
+.bill-checkbox{margin-top: 9px !important; transform: scale(2);}
+.pmt-checkbox{margin-top: 12px !important; transform: scale(2);}
+.paytm-check{margin-top: -30px !important;transform: scale(2);}
 
 @media  (max-width: 460px){
 	.img-text-box{bottom: 50px;}
@@ -393,6 +396,8 @@ a,a:hover {text-decoration: none;}
 	.delet-icon{width:7.5%;}
 	.cart-image{width:11%;}
 	.cart-txt {right: 20px;}
+	.bill-checkbox{margin-top: 4px !important;}
+	.pmt-checkbox {margin-top: 7px !important;}
 	
 	
 }
@@ -402,6 +407,7 @@ a,a:hover {text-decoration: none;}
 	.subc-h1 {width: 97.4%;}
 	.cat-minus{padding-top:5px;}
 	.cat-plus{padding-top: 5px;}
+	.bill-checkbox{margin-top: 2px !important;}
 }
 
 /*------------------------- SPRITE IMAGE -------------------------*/

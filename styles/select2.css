@@ -273,16 +273,16 @@ html[dir="rtl"] .select2-search input {
     background: url('select2-spinner.gif') no-repeat 100%, linear-gradient(to bottom, #fff 85%, #eee 99%) 0 0;
 }
 
-.select2-container-active .select2-choice,
+/*.select2-container-active .select2-choice,
 .select2-container-active .select2-choices {
     border: 1px solid #5897fb;
     outline: none;
 
     -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .3);
             box-shadow: 0 0 5px rgba(0, 0, 0, .3);
-}
+}*/
 
-.select2-dropdown-open .select2-choice {
+/*.select2-dropdown-open .select2-choice {
     border-bottom-color: transparent;
     -webkit-box-shadow: 0 1px 0 #fff inset;
             box-shadow: 0 1px 0 #fff inset;
@@ -297,8 +297,8 @@ html[dir="rtl"] .select2-search input {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#ffffff', GradientType=0);
     background-image: linear-gradient(to top, #fff 0%, #eee 50%);
 }
-
-.select2-dropdown-open.select2-drop-above .select2-choice,
+*/
+/*.select2-dropdown-open.select2-drop-above .select2-choice,
 .select2-dropdown-open.select2-drop-above .select2-choices {
     border: 1px solid #5897fb;
     border-top-color: transparent;
@@ -308,7 +308,7 @@ html[dir="rtl"] .select2-search input {
     background-image: -moz-linear-gradient(center top, #fff 0%, #eee 50%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#ffffff', GradientType=0);
     background-image: linear-gradient(to bottom, #fff 0%, #eee 50%);
-}
+}*/
 
 .select2-dropdown-open .select2-choice .select2-arrow {
     background: transparent;
@@ -393,7 +393,7 @@ html[dir="rtl"] .select2-results {
 
 .select2-results .select2-highlighted {
     background: #3875d7;
-    color: #fff;
+    color: #2d2d2d;
 }
 
 .select2-results li em {
