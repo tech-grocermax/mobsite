@@ -22,28 +22,36 @@
                     <img src="{{product.Image}}" 
                         alt="{{product.Name}}" class="img-responsive">
                 </div>
-                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 padd0"
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 padd0"
                     data-ng-click="routerChange('product/details', product.productid)">
                     <ul class="list-unstyled">
-                        <li class="prod-list-h">{{product.p_brand}}</li>
+                        <li class="prod-list-h">
+							{{product.p_brand}}							
+							<img src="images/app_bar_icons/cart_add_quantity.png" alt="{{product.Name}}" class="img-responsive cart-image">
+							<span class="cart-txt">10</span>
+						</li>
                         <li class="cat-list-name">{{product.Name}}</li>
                         <li class="prod-list-qnty">{{product.p_pack}}</li>
                         <li class="font-3"><span class="product-qnty">₹ {{product.Price}} |</span> <span class="prod-new-price">₹ {{product.sale_price}}</span></li>
                         <li class="product-qnty">₹ {{getPriceDifference(product.Price, product.sale_price)}}</li>
                     </ul>
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd0"
+						data-ng-show="product.Status == 'In stock'">
+						<ul class="list-unstyled cat-list">
+							<li class="cat-minus" data-ng-click="removeProduct(product)">-</li>
+							<li class="cat-input-box">
+								<input type="text" placeholder="1" 
+									value="{{getProductQuantity(product.productid)}}" 
+									class="cat-input-text">
+							</li>
+							<li class="cat-plus" data-ng-click="addProduct(product)">+</li>
+						</ul>
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 padd0 add-btn-box">
+						<button type="button" class="add-btn">ADD</button>
+					</div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cat-list-box"
-                    data-ng-show="product.Status == 'In stock'">
-                    <ul class="list-unstyled cat-list">
-                        <li class="cat-minus" data-ng-click="removeProduct(product)">-</li>
-                        <li class="cat-input-box">
-                            <input type="text" placeholder="1" 
-                                value="{{getProductQuantity(product.productid)}}" 
-                                class="cat-input-text">
-                        </li>
-                        <li class="cat-plus" data-ng-click="addProduct(product)">+</li>
-                    </ul>
-                </div>
+                
             </div>            
         </div>
     </article>
