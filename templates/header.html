@@ -51,8 +51,8 @@
                 data-ng-show="columnSize == 10" back>
                 <a href="javascript:void(0);">
                     <img src="images/app_bar_icons/back-icon.png" title="" 
-                        class="img-responsive" style="display:inline; "> </a>
-                <span style="color:#FFFFFF; font-weight:bold; ">&nbsp;{{categoryName}}</span>
+                        class="img-responsive back-img-mr"> </a>
+                <span class="head-text">&nbsp;{{categoryName}}</span>
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 margin-lt22p"
                 data-ng-show="showSearchIcon">
@@ -128,21 +128,22 @@
 		<div class="left-menu" data-ng-show="showSubCategoryMenu">
 			<div class="menu-subitem-h" data-ng-click="toggleCategoryMenu()">
 				<img src="images/app_bar_icons/gray-right-ico.png" alt="" 
-					style="display:inline; ">
-				{{categoryName}}
+					style="display:inline;">
+				<span style="text-transform: uppercase;">{{categoryName}}</span>
 			</div>
 			<ul class="list-unstyled pad-lt32 back-white">
 				<!-- Special category handling -->
-				<li class="menu-item" data-ng-repeat="category in subCategories"
+				<li class="menu-item sub-menu" data-ng-repeat="category in subCategories"
 					data-ng-show="isSpecialCategory(category.category_id)"
 					data-ng-click="routerChange('product', category.category_id)">
 					{{category.name}}
 				</li>
 
 				<!-- Normal category handling -->
-				<li class="menu-item" data-ng-repeat="category in subCategories"
+				<li class="menu-item sub-menu" data-ng-repeat="category in subCategories"
 					data-ng-show="!isSpecialCategory(category.category_id)"
-					data-ng-click="toggleSubSubCategory(category.category_id)">            
+					data-ng-click="toggleSubSubCategory(category.category_id)"
+					data-ng-class="{'ss-menu':subSubCategoryIndex == category.category_id}">            
 					{{category.name}}
 					<img src="images/app_bar_icons/PLUS-ICON.png" alt="" class="img-responsive"
 						data-ng-show="subSubCategoryIndex != category.category_id"
@@ -150,7 +151,7 @@
 					<img src="images/app_bar_icons/MINUS-ICON.png" alt="" class="img-responsive"
 						data-ng-show="subSubCategoryIndex == category.category_id"
 						style="display:inline; float:right;">
-					<ul class="list-unstyled" 
+					<ul class="list-unstyled pad-top24" 
 						data-ng-show="subSubCategoryIndex == category.category_id">
 						<li class="sub-item" 
 							data-ng-show="category.children.length"

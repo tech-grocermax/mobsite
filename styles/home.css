@@ -11,6 +11,7 @@ a,a:hover {text-decoration: none;}
 .pad-ltr16{padding: 16px 16px 0;}
 .pad-tlb16{padding: 16px 0 16px 16px;}
 .pad-lt16{padding-left:16px;}
+.pad-top24{padding-top:24px;}
 .pad-lt26{padding-left:26px;}
 .pad-rt26{padding-right:26px;}
 .pad-rt16{padding-right:16px;}
@@ -83,11 +84,13 @@ a,a:hover {text-decoration: none;}
 .menu-subitem-h > img{margin-right: 8px;}
 .item-shop{background: #fff;font-size: 22px; padding-top: 25px;letter-spacing: 2px;font-family: sans-serif;}
 .menu-item{background:#fff; font-size:4.1vw; padding: 24px 0; border-bottom:1px solid #d2d2d2; font-weight:bold;}
+.sub-menu{font-weight:400;}
 .menu-item .plus-sign{color: #acacac;float: right;font-size: 5.2vw;font-weight: 300;margin-right: 30px;margin-top: -5px;}
 .menu-item .minus-sign{color: #acacac;float: right;font-size: 4vw;margin-right: 30px;text-transform: full-width;}
 .menu-item ul{padding-left:32px;}
 .menu-item img{margin-right:30px; margin-top:10px;}
-.sub-item{background:#fff; font-size:3.5vw; border-bottom:1px solid #d2d2d2; font-weight:normal; padding: 32px 0;}
+.menu-item img:nth-child(2){margin-top:14px;}
+.sub-item{background:#fff; font-size:3.5vw; border-top:1px solid #d2d2d2; font-weight:normal; padding: 24px 0;}
 
 /*========== NAV BAR ==========*/
 .nav-blue{margin-top:16px; overflow:auto; background:#0d69e4 none repeat scroll 0 0;}
@@ -126,7 +129,7 @@ a,a:hover {text-decoration: none;}
 .drop-box li{padding-top: 20px;padding-bottom: 22px;}
 
 /*========== CATEGORY ==========*/
-.cat-box{/*margin-bottom:16px;*/ border-radius:4px; border-radius:4px; padding-top:20px; padding-bottom:20px;margin-top: 5px;}
+.cat-box{/*margin-bottom:16px;*/ border-radius:4px; border-radius:4px; padding-top:20px; padding-bottom:5px;margin-top: 5px;}
 .cat-list-h{font-size:3.4vw; color:#7a7a7a;}
 .cat-list-name{font-size: 3.7vw; color:#4d4d4d;}
 .font-3{font-size:3.4vw;}
@@ -296,20 +299,23 @@ a,a:hover {text-decoration: none;}
 .slide-img{width: 368px;}
 .dot-border{box-shadow:0px 2px 8px -5px; border-radius:4px; border:1px dashed #f07d67;}
 .succes-back{background-image:url('../images/order-back.png'); background-attachment:fixed; background-position:center center; background-repeat:no-repeat; background-size:cover;padding-bottom: 30px;}
-.cart-image{position: absolute;right: 16px; top: 0;}
-.cart-txt{font-size: 3.6vw; position: absolute; right: 23px; top: -1%;}
+.cart-image{position: absolute;right: 16px; top: -4%;}
+.cart-txt{font-size: 3.6vw; position: absolute; right: 23px; top: -5%;}
 .add-btn{background: #0e69e5;border: medium none;border-radius: 4px;color: #fff;font-size: 4vw;padding: 7px;width: 100%;}
 .add-btn-box{position: absolute; right: 16px;}
 .bill-checkbox{margin-top: 9px !important; transform: scale(2);}
 .pmt-checkbox{margin-top: 12px !important; transform: scale(2);}
 .paytm-check{margin-top: -30px !important;transform: scale(2);}
+.back-img-mr{display:inline; margin-top:-10px;}
+.ss-menu{padding-bottom:0 !important; font-weight: bold;}
 
 @media  (max-width: 460px){
+	.margin-0-m{margin:0}
 	.img-text-box{bottom: 50px;}
 	.slide-img{width: 210px;}
 	.li-border {height:120px;margin-left: 12px;margin-right: 12px;}
 	.ul-height{height:120px;}
-	.header-middle {padding: 15px 8px 8px;}
+	.header-middle {padding: 30px 8px 16px;}
 	.margin-top16-m{margin-top:16px;}
 	.padd0-m{padding:0px;}
 	.pad8-m{padding:8px;}
@@ -332,7 +338,7 @@ a,a:hover {text-decoration: none;}
 	.menu-item {padding: 16px 0;}
 	.menu-item-h {padding: 24px 0 17px 16px;}
 	.menu-item ul {padding-left: 16px;}
-	.menu-item img{margin-right:15px; margin-top:5px; width:4%;}
+	.menu-item img{margin-right:15px; margin-top:6px; width:5%;}
 	.sub-item {padding: 16px 0;}
 	.item-shop {padding-top: 16px;}	
 	.drop-box{padding-left:11px;}
@@ -398,7 +404,9 @@ a,a:hover {text-decoration: none;}
 	.cart-txt {right: 20px;}
 	.bill-checkbox{margin-top: 4px !important;}
 	.pmt-checkbox {margin-top: 7px !important;}
-	
+	.back-img-mr{width:8%;margin-top:-5px;}
+	.margin-t16-m{margin-top: 16px;}
+	.subc-h1 {width: 98.1%;}
 	
 }
 
@@ -408,6 +416,7 @@ a,a:hover {text-decoration: none;}
 	.cat-minus{padding-top:5px;}
 	.cat-plus{padding-top: 5px;}
 	.bill-checkbox{margin-top: 2px !important;}
+	.menu-item img:nth-child(2){margin-top:10px;}
 }
 
 /*------------------------- SPRITE IMAGE -------------------------*/
