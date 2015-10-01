@@ -66,6 +66,11 @@
 						<input type="password" name="password" placeholder="Password" 
 							data-ng-model="user.password" required my-min-length="6"
 							class="width-100 log-place log-input">
+						<div ng-messages="frmLogin.password.$error" 
+                        	data-ng-show="frmLogin.password.$dirty || (errorLogin && user.password == null)">
+                            <div ng-show="frmLogin.password.$error.required" 
+                            	class="error-message">Please enter your password</div>
+                        </div>
 					</li>				
 				</ul>
 			</div>

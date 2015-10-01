@@ -177,14 +177,18 @@ define(['app'], function(app) {
                 getUserProfile(utility.getJStorageKey("userId"));
             }   
 
-            $scope.createUser = function() {
-                utility.setJStorageKey("registrationDetails", $scope.user, 1);
-                userService.createUser($scope.user)
-                    .then(function(data){
-                        utility.setJStorageKey("otp", data.otp, 1);
-                        $scope.registrationStep = 2;
-                        //$scope.otp = data.otp; 
-                    });
+            $scope.createUser = function(form) {
+                $scope.errorRegistration = true;
+                console.log(form.$valid);
+                if (form.$valid) {
+                    utility.setJStorageKey("registrationDetails", $scope.user, 1);
+                    userService.createUser($scope.user)
+                        .then(function(data){
+                            utility.setJStorageKey("otp", data.otp, 1);
+                            $scope.registrationStep = 2;
+                            //$scope.otp = data.otp; 
+                        });
+                }
             };
 
             $scope.verifyOTP = function() { 
