@@ -345,7 +345,10 @@ define(['app'], function(app) {
             };
 
             $scope.getPriceDifference = function(price, salePrice) {
-                return  (price - salePrice);    
+                //price.replace(",", "");
+                //return  (price - salePrice); 
+                console.log(price, salePrice);   
+                return price.replace(",", "") - salePrice.replace(",", "")
             };
             
             $scope.getCartProductQuantity = function(productId) {
