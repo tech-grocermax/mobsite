@@ -349,8 +349,8 @@ a,a:hover {text-decoration: none;}
 	.drop-box li:last-child{padding-bottom: 13px;}
 	.drop-box li{padding-top: 4px;padding-bottom: 11px;}	
 	.back-icon-mrg img{width:70%;}
-	.cat-minus{padding-top:4px;}
-	.cat-plus{padding-top: 4px;}	
+	.cat-minus{padding-top:2px;}
+	.cat-plus{padding-top: 2px;}	
 	.header-middle-reg{padding: 15px 8px;}
 	.reg-list {padding-bottom: 7px;padding-top: 7px;}
 	.reg-para {padding-bottom: 5px; padding-top: 20px;}
