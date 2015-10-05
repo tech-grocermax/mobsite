@@ -18,32 +18,42 @@
 			</button>	
 		</div>
 	</div> -->
-	<div class="row margin0 pad-lt16">
-		<div class="col-md-9 col-sm-9 col-xs-9 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 logo-box">
-			<img src="images/logo-msite.png" alt="" class="img-responsive float-rt">
+	<div class="row margin0">
+		<div class="col-md-12 col-sm-12 col-xs-12 logo-box center-align">
+			<!--<img src="images/logo-msite.png" alt="" class="img-responsive float-rt">-->
+			<span style="font-family: roboto-light; color: #fff; font-size: 7.2vw;">Hello again</span>
 		</div>
 	</div>
 	<div class="row margin0 pad-rt16 pad-lt16">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-lt-rt8-m" style="margin-bottom: 10px;">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-lt-rt8-m" style="margin-bottom: 7px;">
 			<span class="log-input">Login using</span>
 		</div>
-		<!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-lt-rt8-m">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-lt-rt8-m">
 			<button type="button" class="reg-btn btn-fb">
-				<img src="images/app_bar_icons/fb.png" alt="" class="pull-left img-responsive log-btn-img">
+				<img src="images/app_bar_icons/fb-icon.png" alt="" class="pull-left img-responsive">
 				Facebook
 			</button>
 			
 			<button type="button" class="reg-btn btn-google">
-				<img src="images/app_bar_icons/google.png" alt="" class="pull-left img-responsive log-btn-img">
+				<img src="images/app_bar_icons/google-icon.png" alt="" class="pull-left img-responsive">
 				Google
 			</button>	
-		</div>-->
+		</div>
 	</div>
 	<!--<div class="row margin0 pad-lt32 reg-bar pad-lt16-m"style="font-size: 3.5vw;">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" >
 			<!-- OR  LOGIN USING EMAIL
 		</div>
 	</div>-->
+	<div class="row margin0 pad-rt16 pad-lt16">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-box">
+			<div class="col-md-5 col-sm-5 col-xs-5 text-line"></div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pad-lt-rt8-m">
+				<span class="login-text">OR</span>
+			</div>
+			<div class="col-md-5 col-sm-5 col-xs-5 text-line"></div>
+		</div>
+	</div>
 	<form name="frmLogin" novalidate>
 		<div class="row margin0 pad16">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-lt-rt8-m">
@@ -62,7 +72,7 @@
                             	class="error-message">Please enter a valid email address</div>
                         </div>
 					</li>
-					<li class="log-border margin-tp22">
+					<li class="log-border margin-tp36">
 						<input type="password" name="password" placeholder="Password" 
 							data-ng-model="user.password" required my-min-length="6"
 							class="width-100 log-place log-input">
@@ -90,10 +100,10 @@
 					data-ng-click="navigateTo('user/forgotpassword')">Forgot your Password?</a>
 			</div>
 			
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 log-text">
-				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-line"></div>
-				<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 forgot-text padd0-m">DON&apos;T HAVE AN ACCOUNT?</div>
-				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-line"></div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 log-text center-align">
+				
+				<span class="forgot-text padd0-m">DON&apos;T HAVE AN ACCOUNT?</span>
+				
 			</div>
 			
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" data-ng-click="navigateTo('user/register')">
