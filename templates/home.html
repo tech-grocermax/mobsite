@@ -1,20 +1,27 @@
 <div ng-controller="categoryController">    
     <header data-ng-include="'templates/header.html'"></header>
-    <article>
+    <article style="margin">
         <section>
-			<div class="row margin0 pad16 pad8-m slide-shadow" style="overflow-y: hidden; overflow-x:auto; height:150px; ">
+			<div class="row margin0" style="overflow-y: hidden; overflow-x:auto; height:280px; ">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0"
 					data-ng-repeat="banner in bannerList">
-					<div class="pad4 img-box">
+					<div class="">
 						<img src="{{banner.imageurl}}" title="{{banner.name}}" 
-							class="img-responsive">
+							class="img-responsive width-100">
 					</div>
 				</div>
 			</div>
 		</section>
 		<section>
-			<div class="row margin0 back-white slide-shadow">
-				<div class="slider-text margin-tp22 margin-bt20 margin-lt15 margin-tp6-m margin-bt10-m margin-lt8-m">Shop by Categories</div>
+			<div class="row margin0 pad-l-9p">
+				<div class="col-md-12 col-sm-12 col-xs-12 slider-text center-align padd0">
+					<div class="col-md-1 col-sm-1 col-xs-1 padd0 slide-border"></div>
+					<div class="col-md-9 col-sm-9 col-xs-9 padd0">SHOP BY CATEGORIES</div>
+					<div class="col-md-1 col-sm-1 col-xs-1 padd0 slide-border"></div>
+				</div>
+				
+			</div>
+			<div class="row margin0">
 				<div class="row margin0" style="overflow: auto;">
 					<ul class="list-unstyled view-inline margin0 slide-ul">
 						<li data-ng-show="category.is_active" 
@@ -22,11 +29,11 @@
 							<img src="{{category.images}}" title="{{category.name}}" 
 								class="slide-img"
 								data-ng-click="routerChange('category', category.category_id)">
-							<div class="img-text-box">
+							<!--<div class="img-text-box">
 								<span class="img-text-h">&nbsp</span><br>
-								<!-- <span class="img-text"
-									data-ng-show="category.children.length">{{renderChildrenCategory(category.children)}}</span> -->
-							</div>
+								 <span class="img-text"
+									data-ng-show="category.children.length">{{renderChildrenCategory(category.children)}}</span>
+							</div> -->
 							<div class="slide-text"
 								data-ng-click="routerChange('category/offers', category.category_id)"
 								style="width:100%; ">{{category.offercount}} OFFERS</div>
@@ -37,8 +44,14 @@
 			</div>
 		</section>
 		<section>
-			<div class="row margin0 back-white slide-shadow">
-				<div class="slider-text margin-tp22 margin-bt20 margin-lt15 margin-tp6-m margin-bt10-m margin-lt8-m">Shop by Deals</div>
+			<div class="row margin0 pad-l-9p">
+				<div class="col-md-12 col-sm-12 col-xs-12 slider-text center-align padd0">
+					<div class="col-md-1 col-sm-1 col-xs-1 padd0 slide-border"></div>
+					<div class="col-md-9 col-sm-9 col-xs-9 padd0">SHOP BY DEALS</div>
+					<div class="col-md-1 col-sm-1 col-xs-1 padd0 slide-border"></div>
+				</div>
+			</div>
+			<div class="row margin0">
 				<div class="row margin0" style="overflow: auto;">
 					<ul class="list-unstyled view-inline margin0 slide-ul">
 						<li data-ng-show="deals.length" 
@@ -46,9 +59,9 @@
 	    					data-ng-click="routerChange('deals', deal.id)">
 							<img src="images/Deal Images/{{deal.dealType}}.png" title="{{deal.dealType}}" 
 								class="slide-img">
-							<div class="img-text-box">
+							<!--<div class="img-text-box">
 								<span class="img-text-h">&nbsp</span>
-							</div>
+							</div>-->
 							<div class="slide-text"
 								data-ng-click="routerChange('category/offers', category.category_id)"
 								style="width:100%; ">VIEW DEALS</div>
@@ -58,10 +71,5 @@
 				</div>
 			</div>
 		</section>
-    </article>	
-    <div class="popupcontainerloader" style="position:fixed;"
-        data-ng-show="displayLoader">        
-        <div style="text-align:center; width:100%; "><img src="images/ajax-loader.gif" /></div>
-    </div>
-    <div data-ng-show="displayLoader" class="black_shade"></div>	
+    </article>		
 </div>
