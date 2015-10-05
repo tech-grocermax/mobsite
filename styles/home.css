@@ -7,7 +7,32 @@ a,a:hover {text-decoration: none;}
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+	font-family:'Lato-Light';
+	src: url('../font/Lato-Light_gdi.eot');
+	src: url('../font/Lato-Light_gdi.eot?#iefix') format('embedded-opentype'),
+		url('../font/Lato-Light_gdi.woff') format('woff'),
+		url('../font/Lato-Light_gdi.ttf') format('truetype'),
+		url('../font/Lato-Light_gdi.svg#Lato-Light') format('svg');
+	font-weight: 300;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0020-25CA;
+}
 
+
+@font-face {
+	font-family:'HelveticaNeue-Regular';
+	src: url('../font/HelveticaNeue_gdi.eot');
+	src: url('../font/HelveticaNeue_gdi.eot?#iefix') format('embedded-opentype'),
+		url('../font/HelveticaNeue_gdi.woff') format('woff'),
+		url('../font/HelveticaNeue_gdi.ttf') format('truetype'),
+		url('../font/HelveticaNeue_gdi.svg#HelveticaNeue-Regular') format('svg');
+	font-weight: 400;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0-10FFFF;
+}
 
 
 /*.header-top{background: #B22603; height: 48px;}*/
@@ -91,19 +116,19 @@ a,a:hover {text-decoration: none;}
 .dropdown-img{position:absolute; right:32px; margin-top:15px;z-index:1;}
 
 /*========== LEFT PANEL ==========*/
-.left-menu{background: #f4f4f4; width: 62%; box-shadow: 0px 0px 20px 2px; font-family: roboto; color: #8e8e8e;left: 0; position: absolute; top: 100%; z-index: 100;}
+.left-menu{background-image:url('../images/drawer_bg.png'); background-attachment:fixed; background-position:center center; background-repeat:no-repeat; background-size:cover; width: 77%; box-shadow: 0px 0px 20px 2px; font-family: roboto; color: #8e8e8e;left: 0; position: absolute; top: 100%; z-index: 100;}
 .menu-item-h{font-size: 4.4vw; padding: 38px 0 24px 32px;border-bottom: 2px solid #d2d2d2;}
-.menu-subitem-h{font-size: 4.4vw; padding: 38px 0 24px 16px;border-bottom: 2px solid #d2d2d2;}
+.menu-subitem-h{font-size: 4.4vw; padding: 21px 0 21px 16px;border-bottom: 2px solid #413428;font-family: helveticaNeue-Regular;color:#fff;}
 .menu-subitem-h > img{margin-right: 8px;}
-.item-shop{background: #fff;font-size: 22px; padding-top: 25px;letter-spacing: 2px;font-family: sans-serif;}
-.menu-item{background:#fff; font-size:4.1vw; padding: 24px 0; border-bottom:1px solid #d2d2d2; font-weight:bold;}
+.item-shop{/*background: #fff;*/font-size: 3.4vw;color: #fff; padding-top: 25px;letter-spacing: 2px;font-family: lato-light;}
+.menu-item{/*background:#fff; */font-family: helveticaNeue-Regular;color: #fff;font-size:4.1vw; padding: 24px 0;/* border-bottom:1px solid #d2d2d2;*/}
 .sub-menu{font-weight:400;}
 .menu-item .plus-sign{color: #acacac;float: right;font-size: 5.2vw;font-weight: 300;margin-right: 30px;margin-top: -5px;}
 .menu-item .minus-sign{color: #acacac;float: right;font-size: 4vw;margin-right: 30px;text-transform: full-width;}
 .menu-item ul{padding-left:32px;}
 .menu-item img{margin-right:30px; margin-top:10px;}
 .menu-item img:nth-child(2){margin-top:14px;}
-.sub-item{background:#fff; font-size:3.5vw; border-top:1px solid #d2d2d2; font-weight:normal; padding: 24px 0;}
+.sub-item{/*background:#fff; */ border-bottom:1px solid #423226; border-top: 1px solid #423226; margin-top: -1px;font-size:3.5vw;font-weight:normal; padding: 24px 0;}
 
 /*========== NAV BAR ==========*/
 .nav-blue{margin-top:16px; overflow:auto; background:#0d69e4 none repeat scroll 0 0;}
@@ -320,7 +345,7 @@ a,a:hover {text-decoration: none;}
 .pmt-checkbox{margin-top: 12px !important; transform: scale(2);}
 .paytm-check{margin-top: -30px !important;transform: scale(2);}
 .back-img-mr{display:inline; margin-top:-10px;}
-.ss-menu{padding-bottom:0 !important; font-weight: bold;}
+.ss-menu{padding-bottom:0 !important;/* font-weight: bold;*/}
 .log-text>.text-line{width:20.5%;}
 
 
@@ -354,7 +379,7 @@ a,a:hover {text-decoration: none;}
 	.menu-item {padding: 16px 0;}
 	.menu-item-h {padding: 24px 0 17px 16px;}
 	.menu-item ul {padding-left: 16px;}
-	.menu-item img{margin-right:15px; margin-top:6px; width:5%;}
+	.menu-item img{margin-right:15px; margin-top:4px;}
 	.sub-item {padding: 16px 0;}
 	.item-shop {padding-top: 16px;}	
 	.drop-box{padding-left:11px;}
@@ -433,6 +458,8 @@ a,a:hover {text-decoration: none;}
 	.cat-plus{padding-top: 5px;}
 	.bill-checkbox{margin-top: 2px !important;}
 	.menu-item img:nth-child(2){margin-top:10px;}
+	/*.menu-item img {width: 3.5%;}*/
+	.menu-item img{/*margin-right:15px; */margin-top:2px;}
 }
 
 /*------------------------- SPRITE IMAGE -------------------------*/
