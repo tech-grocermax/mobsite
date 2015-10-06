@@ -2153,6 +2153,7 @@ the specific language governing permissions and limitations under the Apache Lic
                 "   <ul class='select2-results' role='listbox'>",
                 "   </ul>",
                 "</div>"].join(""));
+				$(".myselect").parents('li').css("border-bottom", "none");
             return container;
         },
 
@@ -3725,5 +3726,6 @@ the specific language governing permissions and limitations under the Apache Lic
             "multi": MultiSelect2
         }
     };
+
 
 }(jQuery));
