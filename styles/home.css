@@ -45,6 +45,7 @@ input , button, select{outline:none;}
 .padd0{padding:0px;}
 .pad4{padding:4px;}
 .pad16{padding: 16px;}
+.padtb16{padding-bottom:16px; padding-top:16px;}
 .pad-ltr16{padding: 16px 16px 0;}
 .pad-tlb16{padding: 16px 0 16px 16px;}
 .pad-lt16{padding-left:16px;}
@@ -111,8 +112,10 @@ input , button, select{outline:none;}
 .show-more-menu{position: absolute; z-index: 100; top: 100%;}
 .center-align{text-align: center;}
 .myselect{margin-bottom:3%;}
-.bot-foot{position:fixed; bottom:0;}
-
+.bot-foot{position:fixed; bottom:0; height: 75px;}
+.top-head  .header-middle{position: fixed; z-index: 1; left: 0; right: 0; height: 88px;}
+.wrapper{margin-top: 88px; margin-bottom: 75px;}
+.user-wrapper{margin-top: 88px;}
 
 /*.header-O{background:#ffa800; position:absolute; border-radius:50%; top:-25%; right:-31%; font-size:3.5vw; color:#fff; padding:0 20%;}*/
 .header-O{background: #ffa800 none repeat scroll 0 0; border-radius:50%; color:#fff; cursor:pointer; font-size:3vw; padding:4% 12.5%; position:absolute; right:-30%; text-align:center; top:-26%;width: 70%}
@@ -422,8 +425,8 @@ input , button, select{outline:none;}
 	.user-icon-arr{width:3%; margin-top:.6%;}
 	.order-li {padding: 5px 0;}	
 	.check-img{width: 13.5%}	
-	.bill-O-box {margin-right:3.5%;}
-	.bill-O {margin: 0 1.9%;}
+	/*.bill-O-box {margin-right:3.5%;}*/
+	/*-bill-O {margin: 0 1.9%;}*/
 	.bill-check-img{width:10%}
 	.bill-plus-img{width:7%;margin-top: -1%;}
 	.bill-right-img{width:3.5%;}
@@ -439,7 +442,7 @@ input , button, select{outline:none;}
 	.pmeth-chek{width: 8%;}
 	.pmeth-icon{width: 19%;}
 	.pmeth-mob-icon{width: 33%;}
-	.pmeth-h {padding: 10px 16px 7px;}
+	/*.pmeth-h {padding: 10px 16px 7px;}*/
 	.pmeth-btn button {padding: 16px 0;}
 	.card-input {padding: 6px;}
 	.card-input input {padding: 8px;}

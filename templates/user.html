@@ -1,5 +1,5 @@
 <div ng-controller="userController">
-	<header data-ng-include="'templates/header.html'"></header>
+	<header data-ng-include="'templates/header.html'" class="top-head"></header>
 	
 	<article data-ng-include="'templates/login.html'"
 		data-ng-show="section.login"></article>
@@ -8,23 +8,23 @@
 		data-ng-show="section.register"></article>
 
 	<article data-ng-include="'templates/profile.html'"
-		data-ng-show="section.profile"></article>
+		data-ng-show="section.profile" class="user-wrapper"></article>
 
 	<article data-ng-include="'templates/edit-profile.html'"
-		data-ng-show="section.editprofile"></article>
+		data-ng-show="section.editprofile" class="wrapper"></article>
 
 	<article data-ng-include="'templates/address.html'"
-		data-ng-show="section.address"></article>
+		data-ng-show="section.address" class="wrapper"></article>
 
 	<article data-ng-include="'templates/add-edit-address.html'"
-		data-ng-show="section.addaddress || section.editaddress"></article>	
+		data-ng-show="section.addaddress || section.editaddress" class="wrapper"></article>	
 
 	<article data-ng-include="'templates/order-history.html'"
-		data-ng-show="section.orderhistory"></article>
+		data-ng-show="section.orderhistory" class="user-wrapper"></article>
 
 	<article data-ng-include="'templates/forgot-password.html'"
 		data-ng-show="section.forgotpassword"></article>
 
 	<article data-ng-include="'templates/change-password.html'"
-		data-ng-show="section.changepassword"></article>
+		data-ng-show="section.changepassword" class="wrapper"></article>
 </div>
