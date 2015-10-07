@@ -1,7 +1,7 @@
 <div ng-controller="productController">
-    <header data-ng-include="'templates/header.html'"></header>
+    <header data-ng-include="'templates/header.html'" class="top-head"></header>
     <section data-ng-show="lastChildCategoryList.length">
-        <div class="row margin0 nav-red">
+        <div class="row margin0 nav-red top-subhead">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
                 <ul class="list-unstyled nav-list">
                     <li class="prod-nav-li">ALL</li>
@@ -15,14 +15,14 @@
             </div>
         </div>
     </section>    
-	<article>
+	<article class="inner-body">
         <div class="row margin0 pad16 pad8-m">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box"
                 data-ng-repeat="product in products">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 margin-tp-5p"
                     data-ng-click="routerChange('product/details', product.productid)">
                     <img src="{{product.Image}}" 
-                        alt="{{product.Name}}" class="img-responsive">
+                        alt="{{product.Name}}" class="img-responsive" style="height:100px;">
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 padd0"
                     data-ng-click="routerChange('product/details', product.productid)">
@@ -32,7 +32,7 @@
 							<img src="images/app_bar_icons/cart_add_quantity.png" alt="{{product.Name}}" class="img-responsive cart-image">
 							<span class="cart-txt">{{getProductQuantity(product.productid)}}</span>
 						</li>
-                        <li class="cat-list-name">{{product.Name}}</li>
+                        <li class="cat-list-name">{{product.p_name}}</li>
                         <li class="prod-list-qnty">{{product.p_pack}}</li>
                         <li class="font-3"><span class="product-qnty">₹ {{product.sale_price}} |</span> <span class="prod-new-price">₹ {{product.Price}}</span></li>
                         <li class="product-qnty">₹ {{getPriceDifference(product.Price, product.sale_price)}}</li>
@@ -40,7 +40,7 @@
                 </div>
 				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 col-md-offset-3 col-sm-offset-3 col-xs-offset-3 padd0">
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd0"
-						data-ng-show="product.Status == 'In stock'"  style="margin-left: 40%;">
+						data-ng-show="product.Status == 'In stock'">
 						<ul class="list-unstyled cat-list">
 							<li class="cat-minus" data-ng-click="removeProduct(product)">-</li>
 							<li class="cat-input-box">
