@@ -1,6 +1,6 @@
 <div ng-controller="productController">
     <header data-ng-include="'templates/header.html'"></header>
-    <div class="row margin0 ">
+    <!--<div class="row margin0 ">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pmeth-h back-white">YOUR CART</div>
     </div>
     <div class="row margin0 pad-ltr16 pad-ltr8-m">
@@ -11,7 +11,7 @@
                 <span>TOTAL:</span> <span>Rs. {{cartDetails.subtotal}}</span>
             </span>
         </div>
-    </div>
+    </div>-->
     <div class="row margin0 pad16 pad8-m">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box"
             data-ng-repeat="product in cartDetails.items">
@@ -47,12 +47,12 @@
             </div>
         </div>
     </div>
-    <div class="row margin0 pad-lt16 pad-lt-rt8-m">
+    <!--<div class="row margin0 pad-lt16 pad-lt-rt8-m">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" 
             style="font-size:3vw; color:2d2d2d;">
             <span>PRICE DETAILS</span>
         </div>
-    </div>
+    </div>-->
     <div class="row margin0 pad-lt16 pad-rt16 pad-ltr8-m margin-top10 margin-0-m">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 dot-border">
             <ul class="list-unstyled margin0 pad-lt16 pad-rt16 font4-3">
@@ -79,7 +79,7 @@
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" 
         style="margin-top:100px;">
-        <button type="button" class="reg-bot-btn"
+        <button type="button" class="reg-bot-btn bot-foot"
             data-ng-click="checkout()">PROCEED</button>
     </div>
 </div>
