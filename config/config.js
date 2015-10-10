@@ -4,7 +4,7 @@ var env = "local",
 	config = {
 		"local": {			
 			"protocol": "http",
-			"domainName": "localhost/grocermax/",
+			"domainName": "localhost/staging.grocermax/",
 			"port": "",			
 			"apiUrl": "http://staging.grocermax.com/api/"
 		},
@@ -18,7 +18,7 @@ var env = "local",
 			"protocol": "http",
 			"domainName": "localhost/grocermax/",
 			"port": "",			
-			"apiUrl": "http://staging.grocermax.com/webservice/new_services/"
+			"apiUrl": "http://staging.grocermax.com/api/"
 		}
 	};
 
