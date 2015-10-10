@@ -2,10 +2,10 @@
     <header data-ng-include="'templates/header.html'"></header>
     <article style="margin">
         <section>
-			<div class="row margin0" style="overflow-y: hidden; overflow-x:auto; height:280px; ">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0"
-					data-ng-repeat="banner in bannerList">
-					<div class="">
+			<div class="row margin0" style="overflow-y: hidden; overflow-x:auto; height:310px; ">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
+					<div class="" data-ng-repeat="banner in bannerList" 
+						style="padding:10px 16px; ">
 						<img src="{{banner.imageurl}}" title="{{banner.name}}" 
 							class="img-responsive width-100">
 					</div>
@@ -18,8 +18,7 @@
 					<div class="col-md-1 col-sm-1 col-xs-1 padd0 slide-border"></div>
 					<div class="col-md-9 col-sm-9 col-xs-9 padd0">SHOP BY CATEGORIES</div>
 					<div class="col-md-1 col-sm-1 col-xs-1 padd0 slide-border"></div>
-				</div>
-				
+				</div>				
 			</div>
 			<div class="row margin0">
 				<div class="row margin0" style="overflow: auto;">
