@@ -1,3 +1,19 @@
+$app->post('/login', function(){ $GLOBALS['apiObj']->loginUser();});
+$app->post('/createuser', function(){ $GLOBALS['apiObj']->createUser();});
+$app->post('/fbregister', function(){ $GLOBALS['apiObj']->fbRegisterUser();});
+$app->post('/forgotpassword', function(){ $GLOBALS['apiObj']->forgotpasswordUser();});
+$app->post('/changepassword', function(){ $GLOBALS['apiObj']->changepasswordUser();});
+$app->post('/editprofile', function(){ $GLOBALS['apiObj']->editprofileUser();});
+$app->post('/addaddress', function(){ $GLOBALS['apiObj']->addaddressUser();});
+$app->post('/editaddress', function(){ $GLOBALS['apiObj']->editaddressUser();});
+$app->post('/addtocart', function(){ $GLOBALS['apiObj']->addtocartOrder();});
+$app->post('/updatecart', function(){ $GLOBALS['apiObj']->updatecartOrder();});
+$app->post('/deleteitem', function(){ $GLOBALS['apiObj']->deleteitemOrder();});
+$app->post('/checkout', function(){ $GLOBALS['apiObj']->checkoutOrder();});
+$app->post('/success', function(){ $GLOBALS['apiObj']->successPayment();});
+$app->post('/fail', function(){ $GLOBALS['apiObj']->failPayment();});
+$app->post('/addtocartgust', function(){ $GLOBALS['apiObj']->addtocartgustOrder();});
+
 3*** Header Section ***
 5*** Validation ***
 4*** Loader ****

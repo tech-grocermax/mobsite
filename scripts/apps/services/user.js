@@ -4,8 +4,9 @@ define(['app'], function (app) {
 		    'use strict';
 		    
 		    this.createUser = function(input) {		    	
-	    		var url = getAPIUrl() + "createuser?" + $.param( input );
-		    	return serverUtility.getWebService(url)
+	    		//var url = getAPIUrl() + "createuser?" + $.param( input );
+	    		var url = getAPIUrl() + "createuser";
+		    	return serverUtility.postWebService(url, input)
 		    		.then(
 		    			function(data){return data; },
 		    			function(error){return error; }
@@ -13,8 +14,9 @@ define(['app'], function (app) {
 		    }; 
 
 		    this.loginUser = function(input) {		    	
-	    		var url = getAPIUrl() + "login?" + $.param( input );
-		    	return serverUtility.getWebService(url)
+	    		//var url = getAPIUrl() + "login?" + $.param( input );
+	    		var url = getAPIUrl() + "login";
+		    	return serverUtility.postWebService(url, input)
 		    		.then(
 		    			function(data){return data; },
 		    			function(error){return error; }
