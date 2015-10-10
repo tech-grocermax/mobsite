@@ -25,7 +25,7 @@ define(['app'], function (app) {
 		    	var strProducts = JSON.stringify(products),
 		    		url = getAPIUrl() + "addtocartgust?products=" + strProducts;
 
-		    	return serverUtility.getWebService(url)
+		    	return serverUtility.postWebService(url)
 		    		.then(function(data){return data}, function(error){return error});
 		    };
 
@@ -34,7 +34,7 @@ define(['app'], function (app) {
 		    		+ "&quote_id=" + quoteId 
 		    		+ "&updateid=" + JSON.stringify(products);
 
-		    	return serverUtility.getWebService(url)
+		    	return serverUtility.postWebService(url)
 		    		.then(function(data){return data}, function(error){return error});
 		    };
 

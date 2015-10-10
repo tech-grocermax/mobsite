@@ -1,5 +1,6 @@
-var appURL = '/grocermax/scripts/apps/';
-var templateURL = '/grocermax/templates/'
+var appURL = '/grocermax/scripts/apps/',
+	templateURL = '/grocermax/templates/';
+	
 require.config({
     baseUrl: '',
     paths: {

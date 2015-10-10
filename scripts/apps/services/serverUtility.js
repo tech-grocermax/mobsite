@@ -11,8 +11,8 @@ define(['app'], function (app) {
 	    this.postWebService = function(url, input) {
 	    	return $http.post(url, input)
 	    		.then(function(response){return response.data}, function(error){return error});
-	    };     
-	    
+	    };	    
+
 	    return this;
     });
 });
