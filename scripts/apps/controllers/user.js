@@ -100,7 +100,7 @@ define(['app'], function(app) {
                 $scope.categoryName = "My Address";
                 $scope.columnSize = 10;
             } else if ($scope.section.addaddress) {
-                $scope.categoryName = "Add Address";
+                $scope.categoryName = "Create Address";
                 $scope.columnSize = 10;
             } else if ($scope.section.editaddress) {
                 $scope.categoryName = "Edit Address";
