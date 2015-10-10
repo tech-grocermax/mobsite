@@ -336,7 +336,6 @@ define(['app'], function(app) {
             };  
 
             $scope.routerChangeChild = function(route, id, parentId) {
-                console.log(route, id, parentId);
                 $location.url("product/" + id + "?parentId="+parentId);                
             };
 
@@ -345,9 +344,6 @@ define(['app'], function(app) {
             };
 
             $scope.getPriceDifference = function(price, salePrice) {
-                //price.replace(",", "");
-                //return  (price - salePrice); 
-                console.log(price, salePrice);   
                 return price.replace(",", "") - salePrice.replace(",", "")
             };
             
