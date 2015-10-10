@@ -7,23 +7,24 @@ define(['app'], function(app) {
             if((angular.isUndefined(utility.getJStorageKey("userId")) 
                 || !utility.getJStorageKey("userId"))
                 && ($scope.sectionName == "shipping" 
-                    || $scope.sectionName == "biling"
+                    || $scope.sectionName == "billing"
                     || $scope.sectionName == "delivery"
                     || $scope.sectionName == "payment")){
                 $location.url("user/login?isReferrer=checkout");
             }
 
             $scope.showSearchBar = false;
-            $scope.columnSize = 1;
-            $scope.showSearchIcon = true;
+            $scope.columnSize = 0;
+            $scope.showSearchIcon = false;
             $scope.showMoreIcon = false;
+            $scope.hideCartIcon = true;
             $scope.showMoreMenuOptions = false;
             $scope.showUserMenuOptions = false;
             $scope.showUserResponse = false;
             $scope.isUserLoggedIn = false;            
             $scope.section = {
                 "shipping" : false,
-                "biling" : false,
+                "billing" : false,
                 "delivery" : false,
                 "payment": false
             };
@@ -48,7 +49,22 @@ define(['app'], function(app) {
                 sodexo: false,
                 paytm_cc: false,
                 mobikwik: false
-            };           
+            };   
+
+            if($scope.section.shipping) {
+                $scope.categoryName = "Select Shipping Address";
+                $scope.columnSize = 10;
+            } else if($scope.section.billing) {
+                console.log("here");
+                $scope.categoryName = "Select Billing Address";
+                $scope.columnSize = 10;
+            } else if ($scope.section.delivery) {
+                $scope.categoryName = "Select Delivery Details";
+                $scope.columnSize = 10;
+            } else if ($scope.section.payment) {
+                $scope.categoryName = "Select Payment Method";
+                $scope.columnSize = 10;
+            }        
 
             openCitySelectionModal = function() {
                 $timeout(function(){
@@ -320,9 +336,6 @@ define(['app'], function(app) {
                     $scope.selectedDeliveryDate = getSelectedDeliveryDate(parentIndex);
                     $scope.parentIndex = parentIndex;
                 }
-                //console.log(parentIndex);
-                console.log($scope.selectedDeliveryDate);
-                console.log($scope.selectedDeliveryTime);
             };
 
             $scope.showMoreMenu = function() {

@@ -47,7 +47,7 @@
                         class="img-responsive" style="display:inline; "> </a>
 						<span style="color:#FFFFFF; font-weight:bold; ">&nbsp;{{categoryName}}</span>
             </div>
-            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 padd0" 
+            <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 padd0" 
                 data-ng-show="columnSize == 10" back>
                 <a href="javascript:void(0);">
                     <img src="images/app_bar_icons/back-icon.png" title="" 
@@ -61,13 +61,16 @@
                         title="Search"></a>
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 "
-                data-ng-class="{'margin-lt22p': columnSize == 4 || columnSize == 1}">
-                <span data-ng-click="guestAddProduct()">
+                data-ng-hide="hideCartIcon"
+                data-ng-class="{'margin-lt22p': (columnSize == 4 || columnSize == 1)}">
+                <span data-ng-click="navigateToCart()">
                     <a href="javascript:void(0);">
                         <!--<img src="images/header-icon/cart.png" title="Cart" class="img-responsive">-->
 						<img class="cart" alt="" title="Cart" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAApAQMAAAB5mSm2AAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFeAAAAR8AAVTkCygAAAAASUVORK5CYII=">
 					</a>
-                    <div class="header-O" data-ng-show="cartItemCount > 0">{{cartItemCount}}</div>
+                    <div class="header-O" data-ng-show="cartItemCount > 0">
+                        {{cartItemCount}}</div>
+                    <div class="header-O" data-ng-show="cartItemCount == 0">&nbsp;</div>
                 </span>
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 float-rt"
@@ -95,7 +98,9 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white border-rad">
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 padd0 list-icon" 
                     data-ng-click="toggleCategoryMenu()">
-                    <img src="images/app_bar_icons/list.png" alt="" class="img-responsive">
+                    <img src="images/app_bar_icons/list.png" 
+                        title="Click here to see more categories" 
+                        class="img-responsive" style="cursor:pointer; ">
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 padd0">
                     <input type="text" placeholder="Search and buy from here..." 
@@ -107,7 +112,7 @@
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 " 
                     style="float: right; top: 12px;">
                     <img src="images/app_bar_icons/search_icon.jpg" alt="" 
-                        class="img-responsive float-rt" search-btn>
+                        class="img-responsive float-rt" search-btn style="cursor:pointer; ">
                 </div>
             </div>
         </div>

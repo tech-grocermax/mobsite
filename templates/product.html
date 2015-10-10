@@ -42,17 +42,20 @@
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd0"
 						data-ng-show="product.Status == 'In stock'">
 						<ul class="list-unstyled cat-list">
-							<li class="cat-minus" data-ng-click="removeProduct(product)">-</li>
+							<li class="cat-minus" 
+                                data-ng-click="decreaseProductQuantity(product.productid, 'productid')">-</li>
 							<li class="cat-input-box">
-								<input type="text" placeholder="1" 
-									value="{{getProductQuantity(product.productid)}}" 
-									class="cat-input-text">
+                                <!-- {{getProductQuantity(product.productid)}} -->
+								<input type="text" value="{{product.quantity}}" 
+                                    class="cat-input-text">
 							</li>
-							<li class="cat-plus" data-ng-click="addProduct(product)">+</li>
+							<li class="cat-plus" 
+                                data-ng-click="increaseProductQuantity(product.productid, 'productid')">+</li>
 						</ul>
 					</div>
 					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 padd0 add-btn-box">
-						<button type="button" class="add-btn">ADD</button>
+						<button type="button" class="add-btn" 
+                            data-ng-click="addProductOneByOne(product)">ADD</button>
 					</div>
                 </div>
             </div>            

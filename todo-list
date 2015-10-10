@@ -1,33 +1,23 @@
+DONE
 $app->post('/login', function(){ $GLOBALS['apiObj']->loginUser();});
-	DONE
 $app->post('/createuser', function(){ $GLOBALS['apiObj']->createUser();});
-	DONE
-$app->post('/fbregister', function(){ $GLOBALS['apiObj']->fbRegisterUser();});
-	PENDING
 $app->post('/forgotpassword', function(){ $GLOBALS['apiObj']->forgotpasswordUser();});
-	DONE
 $app->post('/changepassword', function(){ $GLOBALS['apiObj']->changepasswordUser();});
-	DONE
 $app->post('/editprofile', function(){ $GLOBALS['apiObj']->editprofileUser();});
-	DONE
 $app->post('/addaddress', function(){ $GLOBALS['apiObj']->addaddressUser();});
-	DONE
 $app->post('/editaddress', function(){ $GLOBALS['apiObj']->editaddressUser();});
-	DONE
-$app->post('/addtocart', function(){ $GLOBALS['apiObj']->addtocartOrder();});
-	NOT IN USE
-$app->post('/updatecart', function(){ $GLOBALS['apiObj']->updatecartOrder();});
-	NOT IN USE
-$app->post('/deleteitem', function(){ $GLOBALS['apiObj']->deleteitemOrder();});
-	PENDING
 $app->post('/checkout', function(){ $GLOBALS['apiObj']->checkoutOrder();});
-	DONE
-$app->post('/success', function(){ $GLOBALS['apiObj']->successPayment();});
-	PENDING
-$app->post('/fail', function(){ $GLOBALS['apiObj']->failPayment();});
-	PENDING
 $app->post('/addtocartgust', function(){ $GLOBALS['apiObj']->addtocartgustOrder();});
-	DONE
+
+PENDING
+$app->post('/fbregister', function(){ $GLOBALS['apiObj']->fbRegisterUser();});
+$app->post('/deleteitem', function(){ $GLOBALS['apiObj']->deleteitemOrder();});
+$app->post('/success', function(){ $GLOBALS['apiObj']->successPayment();});
+$app->post('/fail', function(){ $GLOBALS['apiObj']->failPayment();});
+
+NOT IN USE
+$app->post('/addtocart', function(){ $GLOBALS['apiObj']->addtocartOrder();});
+$app->post('/updatecart', function(){ $GLOBALS['apiObj']->updatecartOrder();});
 
 3*** Header Section ***
 5*** Validation ***
@@ -35,9 +25,6 @@ $app->post('/addtocartgust', function(){ $GLOBALS['apiObj']->addtocartgustOrder(
 2*** Deals/Offer Image"
 1*** Create Address: fname + lname using profile ***
 6*** Cart +1 without quote id then with quote id but always +1 ***
-
-
-
 
 <!-- Start Loader Popup -->
 	<div data-ng-show="displayLoader" class="popupcontainerloader popcontainerwid" data-ng-include="'apps/quotes/views/popup/loader.html'" style="position:fixed;"></div>

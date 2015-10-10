@@ -91,7 +91,7 @@ input , button, select{outline:none;}
 .search-bar{width: 100%; font-family: roboto; font-size: 3.5vw; padding: 15px 0 15px 10px; border: medium none;}
 .list-icon{margin-top: 8px;  width: 8.5%;}
 .search-icon-pos{width: 7%; margin-top: 12px;}
-.head-text{color:#fff; font-size:5vw;}
+.head-text{color:#fff; font-size:5vw; cursor:pointer;}
 /*.img-box{background: #fff;border-radius: 3px;box-shadow:0 7px 5px rgba(0, 0, 0, 0.2);}*/
 .imgbox-margin{margin: 7.5px;}
 .imgbox-lt-margin{margin-left: 7.5px;}
@@ -213,7 +213,7 @@ input , button, select{outline:none;}
 .user-details{font-size: 3.7vw; color:#7d7d76; font-family: helveticaNeue-Regular;}
 .profile-box{background: #fff; box-shadow: 0 8px 6px -8px #999;}
 .user-ul{font-size: 3.7vw; color: #2d2d2d;font-family: helveticaNeue-Regular;}
-.user-info{border-bottom: 1px solid #e4e4e4;padding: 22px 30px;}
+.user-info{border-bottom: 1px solid #e4e4e4;padding: 22px 30px; cursor: pointer;}
 .user-icon-arr{margin-top:1%;}
 .user-card{padding: 40px 30px;}
 .edit-font{font-family: helveticaNeue-Regular;font-size:3.4vw; color:#7d7d76;}

@@ -1,5 +1,6 @@
 <div ng-controller="userController">
-	<header data-ng-include="'templates/header.html'" class="top-head"></header>
+	<header data-ng-include="'templates/header.html'" class="top-head"
+		data-ng-hide="section.login"></header>
 	
 	<article data-ng-include="'templates/login.html'"
 		data-ng-show="section.login"></article>

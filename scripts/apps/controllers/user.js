@@ -18,10 +18,9 @@ define(['app'], function(app) {
             $scope.addressId = angular.isDefined($routeParams.addressId) ? $routeParams.addressId : null;         
             $scope.isReferrer = angular.isDefined($routeParams.isReferrer) ? $routeParams.isReferrer : null;
             $scope.addressType = angular.isDefined($routeParams.addressType) ? $routeParams.addressType : null;
-            $scope.showSearchBar = false;
-            $scope.columnSize = 1;
+            $scope.showSearchBar = false;            
             $scope.pageName = $routeParams.pageName;
-            $scope.showSearchIcon = true;
+            $scope.showSearchIcon = false;
             $scope.showMoreIcon = false;
             $scope.showMoreMenuOptions = false;
             $scope.showUserMenuOptions = false;
@@ -64,19 +63,6 @@ define(['app'], function(app) {
             $scope.addressList = [];
             $scope.address = null;
             $scope.orderHistory = null;
-            /*$scope.address = {
-                firstname: null,
-                lastname: null,
-                city: "Gurgaon",
-                region: "Haryana",
-                street: null,
-                postcode: null,
-                country_id: "IN",
-                telephone: null,
-                is_default_billing: false,
-                is_default_shipping: false
-            };*/
-
             $scope.address = {
                 fname: null,
                 lname: null,
@@ -101,8 +87,39 @@ define(['app'], function(app) {
                 "noida": angular.isDefined(utility.getJStorageKey("selectedCity")) && utility.getJStorageKey("selectedCity") == "noida" ? true : false
             };
             $scope.email = null;
-            $scope.locationList = [];
+            $scope.locationList = [];            
+            $scope.cartItemCount = 0;
 
+            if($scope.section.profile) {
+                $scope.categoryName = "My Profile";
+                $scope.columnSize = 10;
+            } else if($scope.section.editprofile) {
+                $scope.categoryName = "Edit My Profile";
+                $scope.columnSize = 10;
+            } else if ($scope.section.address) {
+                $scope.categoryName = "My Address";
+                $scope.columnSize = 10;
+            } else if ($scope.section.addaddress) {
+                $scope.categoryName = "Add Address";
+                $scope.columnSize = 10;
+            } else if ($scope.section.editaddress) {
+                $scope.categoryName = "Edit Address";
+                $scope.columnSize = 10;
+            } else if ($scope.section.orderhistory) {
+                $scope.categoryName = "Order History";
+                $scope.columnSize = 10;
+            } else if ($scope.section.forgotpassword || $scope.section.changepassword) {
+                $scope.columnSize = 1;
+                $scope.showSearchIcon = true;
+            } else if ($scope.section.login) {
+                $scope.columnSize = 0;
+            } else if ($scope.section.register) {
+                $scope.categoryName = "Register";
+                $scope.columnSize = 10;
+            } else {
+                $scope.columnSize = 1;
+            }
+            
             getLocationList = function() {
                 userService.getLocationList(1)
                     .then(function(data){
@@ -175,6 +192,23 @@ define(['app'], function(app) {
                 && utility.getJStorageKey("userId")){
                 $scope.isUserLoggedIn = true;
                 getUserProfile(utility.getJStorageKey("userId"));
+            }
+
+            getCartItemCounter = function() {
+                var count = 0;
+                angular.forEach($scope.cartItems, function(value, key){
+                    count = count + parseInt(value.quantity, 10);
+                });
+                return count;
+            };
+
+            getCartDetails = function() {
+                $scope.cartItems = getCartItems();
+                $scope.cartItemCount = getCartItemCounter();                
+            };
+            if(angular.isDefined(utility.getJStorageKey("cartItems")) 
+                && utility.getJStorageKey("cartItems")) {
+                getCartDetails();
             }   
 
             $scope.createUser = function(form) {
