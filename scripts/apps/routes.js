@@ -8,6 +8,7 @@ define([], function() {
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',
                     appURL + 'services/category',
+                    appURL + 'services/product',
                     appURL + 'directives/generic',                    
                     appURL + 'controllers/category'
                 ]
@@ -18,6 +19,7 @@ define([], function() {
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',
                     appURL + 'services/category',
+                    appURL + 'services/product',
                     appURL + 'directives/generic',                    
                     appURL + 'controllers/category'
                 ]

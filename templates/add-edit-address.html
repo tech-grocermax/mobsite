@@ -48,16 +48,14 @@
 							data-ng-show="!(isReferrer == 'checkout' && addressType == 'billing')">
 							<img class="dropdown-img" alt="" src="images/header-icon/drop-img.png">
 	  						<select id="e1" style="width:100%;" 
-	  							name="addressline2" required
+	  							name="addressline2"
 	  							data-ng-model="address.addressline2">
+	  							<option value="" style="display:none;">
+	  								Select Street Address</option>
 						        <option value="{{location.area_name}}" 
 						        	data-ng-repeat="location in locationList">{{location.area_name}}
 						        </option>
-						    </select>
-						    <div ng-messages="frmRegistration.addressline2.$error" 
-                        		data-ng-show="frmRegistration.addressline2.$dirty || (errorRegistration && address.addressline2 == null)">
-                            <div ng-show="frmRegistration.addressline2.$error.required" 
-                            	class="error-message">Please enter street address/locality</div>
+						    </select>						    
 						</div>
 						<div class="myselect"
 							data-ng-show="isReferrer == 'checkout' && addressType == 'billing' ">

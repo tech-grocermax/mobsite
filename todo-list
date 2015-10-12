@@ -1,3 +1,13 @@
+Important Point related quote
+
+addToCartGust
+
+remove quote_id & cart while logout
+remove quote_id & cart after checkout
+while login sent quote_id if exists
+add product to cart sent quote_id if exists otherwise sent it to null
+
+
 DONE
 $app->post('/login', function(){ $GLOBALS['apiObj']->loginUser();});
 $app->post('/createuser', function(){ $GLOBALS['apiObj']->createUser();});
@@ -16,7 +26,7 @@ $app->post('/success', function(){ $GLOBALS['apiObj']->successPayment();});
 $app->post('/fail', function(){ $GLOBALS['apiObj']->failPayment();});
 
 NOT IN USE
-$app->post('/addtocart', function(){ $GLOBALS['apiObj']->addtocartOrder();});
+$app->post('/addtocart', function(){te $GLOBALS['apiObj']->addtocartOrder();});
 $app->post('/updatecart', function(){ $GLOBALS['apiObj']->updatecartOrder();});
 
 3*** Header Section ***
@@ -142,12 +152,127 @@ Screen9:
 
 
 angular.forEach(data, function(value, key){
-                    if(dateList.length && dateList.indexOf(value.Date) >= 0) {                        
-                        //$scope.deliverySlots[value.Date].push(buildDeliverySlotObject(value));
-                    } else {
-                        dateList.push(value.Date);
-                        $scope.deliverySlots.push({date: value.Date});
-                        //$scope.deliverySlots[value.Date] = [];                        
-                        //$scope.deliverySlots[value.Date].push(buildDeliverySlotObject(value));
-                    }
-                });
+    if(dateList.length && dateList.indexOf(value.Date) >= 0) {                        
+        //$scope.deliverySlots[value.Date].push(buildDeliverySlotObject(value));
+    } else {
+        dateList.push(value.Date);
+        $scope.deliverySlots.push({date: value.Date});
+        //$scope.deliverySlots[value.Date] = [];                        
+        //$scope.deliverySlots[value.Date].push(buildDeliverySlotObject(value));
+    }
+});
+
+/*buildCartObject = function(product) {
+    return {
+        "productid": parseInt(product.productid, 10),
+        "quantity": 1
+    };
+};*/
+
+/*buildAddProductObject = function(product) {
+    var products = [],
+        cartObject = buildCartObject(product);
+        
+    products.push(cartObject);                
+    return products;
+};*/
+
+/*addProductToJStorage = function(product) {
+    var cartItems = [];
+    cartItems.push(buildCartObject(product));
+    utility.setJStorageKey("cartItems", cartItems, 1);                
+};*/            
+
+/*updateProductToJStorage = function(product) {
+    var cartItems = utility.getJStorageKey("cartItems"),
+        isOperated = false,
+        findKey = null,
+        obj = {};
+
+    if(cartItems.length) {
+        angular.forEach(cartItems, function(value, key) {
+            if(parseInt(product.productid, 10) == parseInt(value.productid, 10)) {
+                value.quantity = parseInt(value.quantity, 10) + 1;
+                isOperated = true;
+            }
+        });
+        if(!isOperated) {
+            var cartObject = buildCartObject(product);
+            cartItems.push(cartObject);  
+            isOperated = true;
+        }
+    } else {
+        var cartObject = buildCartObject(product);
+        cartItems.push(cartObject);
+    }
+    
+    utility.setJStorageKey("cartItems", cartItems, 1);
+    getCartDetails();
+};*/
+
+/*removeProductFromCart = function(product) {
+    var cartItems = utility.getJStorageKey("cartItems"),
+        isOperated = false,
+        obj = {};
+
+    angular.forEach(cartItems, function(value, key){
+        if(parseInt(product.productid, 10) == parseInt(value.productid, 10)) {
+            if(value.quantity > 1) {
+                if(!isOperated) {
+                    value.quantity = parseInt(value.quantity, 10) - 1;
+                    isOperated = true;
+                } 
+            } else {
+                if(!isOperated) {
+                    cartItems.splice(key, 1);
+                    isOperated = true;
+                }
+            }                      
+        }
+    });
+    utility.setJStorageKey("cartItems", cartItems, 1);
+    getCartDetails();
+};*/
+
+/*$scope.addProduct = function(product) {
+    if(angular.isDefined(utility.getJStorageKey("cartItems"))
+        && utility.getJStorageKey("cartItems")) {
+         updateProductToJStorage(product);
+    } else {
+        addProductToJStorage(product);
+        getCartDetails();
+    }
+};*/
+
+/*$scope.removeProduct = function(product) {                
+    if(angular.isDefined(utility.getJStorageKey("cartItems"))
+        && utility.getJStorageKey("cartItems")) {
+        removeProductFromCart(product);
+    }
+};*/
+
+/*$scope.addProductWrapper = function(product) {
+    product.productid = product.product_id;
+    $scope.addProduct(product);
+};*/
+
+/*$scope.removeProductWrapper = function(product) {
+    product.productid = product.product_id;
+    $scope.removeProduct(product);
+};*/
+
+/*$scope.guestAddProduct = function() {
+    if(angular.isDefined(utility.getJStorageKey("cartItems")) 
+        && utility.getJStorageKey("cartItems")) {                    
+        productService.cartAddProduct(utility.getJStorageKey("cartItems"))
+            .then(function(data){
+                if(data.flag == 1 || data.flag == "1"){
+                    utility.setJStorageKey("quoteId", data.QuoteId, 1);
+                    console.log("cart detail redirection");
+                    $location.url("cart" + "/" + data.QuoteId);
+                }                            
+            });
+    } else {
+        console.log("do nothing...");
+    }
+};*/

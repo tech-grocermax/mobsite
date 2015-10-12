@@ -140,113 +140,19 @@ define(['app'], function(app) {
 
             if($scope.productId){
                getProductDetails(); 
-            }
-
-            buildCartObject = function(product) {
-                return {
-                    "productid": parseInt(product.productid, 10),
-                    "quantity": 1
-                };
-            };
-
-            buildAddProductObject = function(product) {
-                var products = [],
-                    cartObject = buildCartObject(product);
-                    
-                products.push(cartObject);                
-                return products;
-            };
-
-            addProductToJStorage = function(product) {
-                var cartItems = [];
-                cartItems.push(buildCartObject(product));
-                utility.setJStorageKey("cartItems", cartItems, 1);                
-            };            
-            
-            getCartItems = function() {                
-                var cartItems = utility.getJStorageKey("cartItems");
-                return cartItems.length ? cartItems : [];                
-            };
-
-            getCartItemCounter = function() {
-                var count = 0;
-                angular.forEach($scope.cartItems, function(value, key){
-                    count = count + parseInt(value.quantity, 10);
-                });
-                return count;
-            };
-
-            getCartDetails = function() {
-                $scope.cartItems = getCartItems();
-                $scope.cartItemCount = getCartItemCounter();                
-            };
-            if(angular.isDefined(utility.getJStorageKey("cartItems")) 
-                && utility.getJStorageKey("cartItems")) {
-                getCartDetails();
-            }
-
-            updateProductToJStorage = function(product) {
-                var cartItems = utility.getJStorageKey("cartItems"),
-                    isOperated = false,
-                    findKey = null,
-                    obj = {};
-
-                if(cartItems.length) {
-                    angular.forEach(cartItems, function(value, key) {
-                        if(parseInt(product.productid, 10) == parseInt(value.productid, 10)) {
-                            value.quantity = parseInt(value.quantity, 10) + 1;
-                            isOperated = true;
-                        }
-                    });
-                    if(!isOperated) {
-                        var cartObject = buildCartObject(product);
-                        cartItems.push(cartObject);  
-                        isOperated = true;
-                    }
-                } else {
-                    var cartObject = buildCartObject(product);
-                    cartItems.push(cartObject);
-                }
-                
-                utility.setJStorageKey("cartItems", cartItems, 1);
-                getCartDetails();
-            };
-
-            removeProductFromCart = function(product) {
-                var cartItems = utility.getJStorageKey("cartItems"),
-                    isOperated = false,
-                    obj = {};
-
-                angular.forEach(cartItems, function(value, key){
-                    if(parseInt(product.productid, 10) == parseInt(value.productid, 10)) {
-                        if(value.quantity > 1) {
-                            if(!isOperated) {
-                                value.quantity = parseInt(value.quantity, 10) - 1;
-                                isOperated = true;
-                            } 
-                        } else {
-                            if(!isOperated) {
-                                cartItems.splice(key, 1);
-                                isOperated = true;
-                            }
-                        }                      
-                    }
-                });
-                utility.setJStorageKey("cartItems", cartItems, 1);
-                getCartDetails();
-            };  
+            }              
 
             updateCartProducts = function(quoteId, cartItems) {
                 productService.cartUpdateProduct(quoteId, cartItems, $scope.productIds)
                     .then(function(data){
-                        //if(data.flag == 1 || data.flag == "1"){
+                        if(data.flag == 1 || data.flag == "1"){
                             if(angular.isDefined(utility.getJStorageKey("userId"))
                                 && utility.getJStorageKey("userId")) {
                                 $location.url("checkout/shipping");
                             } else {
                                 $location.url("user/login?isReferrer=checkout");
                             }
-                        //}                            
+                        }                            
                     });
             };
             
@@ -261,23 +167,14 @@ define(['app'], function(app) {
                 $scope.youSaved = savedAmont;
                 $scope.totalCartQty = qty;
             };
-
-            getCartProductIds = function() {
-                var productIds = [];
-                angular.forEach($scope.cartDetails.items, function(value, key) {
-                    if(value.apply_rule == "0") {
-                        productIds.push(parseInt(value.product_id, 10));
-                    }                    
-                });
-                $scope.productIds = productIds;
-                console.log($scope.productIds);
-            };
-
+            
             getCartItemDetails = function() {
+                toggleLoader(true);
                 productService.getCartItemDetails($scope.quoteId)
-                    .then(function(data){              
-                        $scope.cartDetails = data.CartDetail; 
-                        getCartProductIds();             
+                    .then(function(data){ 
+                        toggleLoader(false);             
+                        $scope.cartDetails = data.CartDetail;                         
+                        $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);                          
                         getYouSaveAmout();
                     });
             };  
@@ -285,51 +182,21 @@ define(['app'], function(app) {
             if($scope.quoteId){
                 getCartItemDetails(); 
                 $scope.categoryName = "Your Cart";
-            }          
+            } 
+
+            $scope.getCartProductQuantity = function(productId) {
+                var qty = 1;
+                if($scope.cartDetails.items.length) {
+                    angular.forEach($scope.cartDetails.items, function(value, key) {
+                        if(productId == value.product_id){
+                            qty = value.qty;
+                        }
+                    });
+                }
+                return qty;
+            };         
 
             //utility.deleteJStorageKey("quoteId");
-            $scope.addProduct = function(product) {
-                if(angular.isDefined(utility.getJStorageKey("cartItems"))
-                    && utility.getJStorageKey("cartItems")) {
-                     updateProductToJStorage(product);
-                } else {
-                    addProductToJStorage(product);
-                    getCartDetails();
-                }
-            };
-
-            $scope.removeProduct = function(product) {                
-                if(angular.isDefined(utility.getJStorageKey("cartItems"))
-                    && utility.getJStorageKey("cartItems")) {
-                    removeProductFromCart(product);
-                }
-            };
-
-            $scope.addProductWrapper = function(product) {
-                product.productid = product.product_id;
-                $scope.addProduct(product);
-            };
-
-            $scope.removeProductWrapper = function(product) {
-                product.productid = product.product_id;
-                $scope.removeProduct(product);
-            };
-
-            $scope.guestAddProduct = function() {
-                if(angular.isDefined(utility.getJStorageKey("cartItems")) 
-                    && utility.getJStorageKey("cartItems")) {                    
-                    productService.cartAddProduct(utility.getJStorageKey("cartItems"))
-                        .then(function(data){
-                            if(data.flag == 1 || data.flag == "1"){
-                                utility.setJStorageKey("quoteId", data.QuoteId, 1);
-                                console.log("cart detail redirection");
-                                $location.url("cart" + "/" + data.QuoteId);
-                            }                            
-                        });
-                } else {
-                    console.log("do nothing...");
-                }
-            };
 
             $scope.navigateToCart = function() {
                 if(angular.isDefined(utility.getJStorageKey("quoteId")) 
@@ -358,7 +225,9 @@ define(['app'], function(app) {
                 productService.cartAddProduct(productObject, quoteId)
                         .then(function(data){
                             if(data.flag == 1 || data.flag == "1"){
-                                utility.setJStorageKey("quoteId", data.QuoteId, 1);
+                                if(!quoteId) {
+                                    utility.setJStorageKey("quoteId", data.QuoteId, 1);
+                                }                                
                                 console.log("product added successfully");
                                 //$location.url("cart" + "/" + data.QuoteId);
                             }                            
@@ -391,19 +260,7 @@ define(['app'], function(app) {
 
             $scope.getPriceDifference = function(price, salePrice) {
                 return price.replace(",", "") - salePrice.replace(",", "")
-            };
-            
-            $scope.getCartProductQuantity = function(productId) {
-                var qty = 1;
-                if($scope.cartItems.length) {
-                    angular.forEach($scope.cartItems, function(value, key) {
-                        if(productId == value.productid){
-                            qty = value.quantity;
-                        }
-                    });
-                }
-                return qty;
-            };            
+            };          
 
             $scope.checkout = function() {
                 var quoteId = utility.getJStorageKey("quoteId"),
@@ -437,15 +294,16 @@ define(['app'], function(app) {
             $scope.handleOutSideClick = function() {
                 $scope.showUserMenuOptions = false;
                 $scope.showMoreMenuOptions = false;
-                //$scope.showCategoryMenu = false;
-                //$scope.showSubCategoryMenu = false;
             };  
             
-            $scope.toFixed = function(amt) {
-                if(angular.isUndefined(amt)) {
+            $scope.toFixedDecimal = function(num) {
+                if(angular.isUndefined(num)) {
                     return 0.00;
                 }
-                return amt.toFixed(2);
+                //return num.toFixed(2);
+                num = parseFloat(num);
+                var n = num.toFixed(2);
+                return n;
             };
 
             $scope.navigateToShipping = function() {

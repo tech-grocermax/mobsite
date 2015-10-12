@@ -23,8 +23,8 @@ define(['app'], function (app) {
 
 		    this.cartAddProduct = function(products, quoteId) {
 		    	var strProducts = JSON.stringify(products),
-		    		url = getAPIUrl() + "addtocartgust?products=" + strProducts;
-		    			//+ "&quote_id=" + quoteId;
+		    		url = getAPIUrl() + "addtocartgust?products=" + strProducts 
+		    			+ "&quote_id=" + quoteId;
 
 		    	return serverUtility.postWebService(url)
 		    		.then(function(data){return data}, function(error){return error});
@@ -50,6 +50,14 @@ define(['app'], function (app) {
 		    	return serverUtility.getWebService(url)
 		    		.then(function(data){return data}, function(error){return error});
 		    };
+
+		    this.getCartItemCount = function(items) {
+                var count = 0;
+                angular.forEach(items, function(value, key) {
+                    count = count + parseInt(value.qty, 10);        
+                });
+                return count;
+            };
 	    
 	    	return this;
     	}

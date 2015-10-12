@@ -23,19 +23,21 @@
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd0">
                 <ul class="list-unstyled">
                     <li class="prod-list-h">{{product.p_brand}}
-					<img src="images/app_bar_icons/delete-icon.png" alt="" class="delet-icon">
-					</li>
+					   <img src="images/app_bar_icons/delete-icon.png" alt="" 
+                        class="delet-icon">
+                    </li>
                     <li class="cat-list-name">{{product.name}}</li>
                     <li class="prod-list-qnty">{{product.p_pack}}</li>
                     <li class="font-3">
-                        <span class="product-qnty">₹ {{product.price}}</span> 
+                        <span class="product-qnty">₹ {{toFixedDecimal(product.price)}}</span> 
                         <span class="prod-new-price"> | ₹ {{product.mrp}}</span></li>
                     <li class="product-qnty">₹ {{getPriceDifference(product.mrp, product.price)}}</li>
                 </ul>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cat-list-box float-rt">
-                <ul class="list-unstyled cat-list">
-                    <li class="cat-minus" 
+                <ul class="list-unstyled cat-list" 
+                    data-ng-show="product.apply_rule == 0">
+                    <li class="cat-minus"                         
                         data-ng-click="removeProductWrapper(product)">-</li>
                     <li class="cat-input-box">
                         <input type="text" placeholder="1" class="cat-input-text"
@@ -43,6 +45,16 @@
                     </li>
                     <li class="cat-plus" 
                         data-ng-click="addProductWrapper(product)">+</li>
+                </ul>
+                <ul class="list-unstyled cat-list"
+                    data-ng-show="product.apply_rule == 1">
+                    <li class="cat-minus">-</li>
+                    <li class="cat-input-box">
+                        <input type="text" placeholder="1" 
+                            class="cat-input-text" readonly
+                            value="{{getCartProductQuantity(product.product_id)}}" >
+                    </li>
+                    <li class="cat-plus">+</li>
                 </ul>
             </div>
         </div>
@@ -82,6 +94,12 @@
         <button type="button" class="reg-bot-btn bot-foot"
             data-ng-click="checkout()">PROCEED</button>
     </div>
+
+    <div class="popupcontainerloader" style="position:fixed;"
+        data-ng-show="displayLoader">        
+        <div style="text-align:center; width:100%; "><img src="images/ajax-loader.gif" /></div>
+    </div>
+    <div data-ng-show="displayLoader" class="black_shade"></div>
 </div>
 <!-- <div ng-controller="productController">
     <header data-ng-include="'templates/header.html'"></header>    

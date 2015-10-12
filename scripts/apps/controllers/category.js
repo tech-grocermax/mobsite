@@ -1,7 +1,7 @@
 define(['app'], function(app) {
 	app.controller('categoryController',  [
-        '$scope', '$rootScope', '$location', '$timeout', '$routeParams', 'categoryService', 'utility', 
-        function($scope, $rootScope, $location, $timeout, $routeParams, categoryService, utility){
+        '$scope', '$rootScope', '$location', '$timeout', '$routeParams', 'categoryService', 'productService', 'utility', 
+        function($scope, $rootScope, $location, $timeout, $routeParams, categoryService, productService, utility){
         	$scope.categories = null;
             $scope.categoryIndex = -1;
             $scope.subCategoryIndex = -1;
@@ -30,6 +30,7 @@ define(['app'], function(app) {
             $scope.cartItemCount = 0;
             $scope.categoryName = "Dynamic Name";
             $scope.bannerList = null;
+            $scope.quoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
 
             toggleLoader = function(flag) {
                 $scope.displayLoader = flag;
@@ -179,54 +180,21 @@ define(['app'], function(app) {
                 $scope.categoryName = "Hot Offers";
             }else{
                 $scope.columnSize = 1;
+            }            
+
+            getCartItemDetails = function() {
+                toggleLoader(true);
+                productService.getCartItemDetails($scope.quoteId)
+                    .then(function(data){ 
+                        toggleLoader(false);             
+                        $scope.cartDetails = data.CartDetail;                         
+                        $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);             
+                    });
+            };  
+
+            if($scope.quoteId){
+                getCartItemDetails(); 
             }
-
-            getCartItems = function() {                
-                var cartItems = utility.getJStorageKey("cartItems");
-                return cartItems.length ? cartItems : [];                
-            };
-
-            getCartItemCounter = function() {
-                var count = 0;
-                angular.forEach($scope.cartItems, function(value, key){
-                    count = count + parseInt(value.quantity, 10);
-                });
-                return count;
-            };
-
-            getCartDetails = function() {
-                $scope.cartItems = getCartItems();
-                $scope.cartItemCount = getCartItemCounter();                
-            };
-
-            if(angular.isDefined(utility.getJStorageKey("cartItems")) 
-                && utility.getJStorageKey("cartItems")) {
-                getCartDetails();
-            }
-
-            $scope.guestAddProduct = function() {
-                console.log(utility.getJStorageKey("quoteId"));
-                console.log(utility.getJStorageKey("cartItems"));
-
-                if(angular.isUndefined(utility.getJStorageKey("quoteId"))
-                    || !utility.getJStorageKey("quoteId")) {
-                    if(angular.isDefined(utility.getJStorageKey("cartItems")) 
-                        || utility.getJStorageKey("cartItems")) {                    
-                        productService.cartAddProduct(utility.getJStorageKey("cartItems"))
-                            .then(function(data){
-                                if(data.flag == 1 || data.flag == "1"){
-                                    utility.setJStorageKey("quoteId", data.QuoteId, 1);
-                                    console.log("cart detail redirection");
-                                    $location.url("cart" + "/" + data.QuoteId);
-                                }                            
-                            });
-                    } else {
-                        console.log("do nothing...");
-                    }
-                } else {
-                    $location.url("cart" + "/" + utility.getJStorageKey("quoteId"));
-                }
-            };
 
             $scope.getDealCategoryItemList = function(category) {
                 $scope.activeDealCategory = category.id;
@@ -239,7 +207,6 @@ define(['app'], function(app) {
             };
 
             $scope.navigateToProduct = function(route, itemId) {
-                //id = angular.isDefined(item.category_id) ? item.category_id : item.id;
                 $location.url(route + "/deal/" + itemId);
             };
             
@@ -253,7 +220,6 @@ define(['app'], function(app) {
                 $scope.showSubCategoryMenu = $scope.showSubCategoryMenu ? false : true;
                 $scope.categoryName = categoryService.getCategoryName($scope.categories, categoryId);
                 $scope.subCategories = categoryService.getSubCategoryList($scope.categories, categoryId);
-                console.log($scope.subCategories);
             };
 
             $scope.toggleSubSubCategory = function(categoryId){
@@ -297,8 +263,6 @@ define(['app'], function(app) {
             $scope.handleOutSideClick = function() {
                 $scope.showUserMenuOptions = false;
                 $scope.showMoreMenuOptions = false;
-                //$scope.showCategoryMenu = false;
-                //$scope.showSubCategoryMenu = false;
             };
 
             $scope.isSpecialCategory = function(categoryId) {
@@ -327,8 +291,6 @@ define(['app'], function(app) {
             };
             
             $scope.showMoreCategory = function(category) {
-                console.log(category);
-                
                 if($scope.moreCategoryIndex == -1) {
                     $scope.moreCategoryIndex = category.category_id;
                     $scope.preserveMoreCategoryId = category.category_id;

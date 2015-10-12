@@ -27,7 +27,6 @@ define(['app'], function(app) {
             $scope.showUserResponse = false;
             $scope.userResponseMessage = "";
             $scope.isUserLoggedIn = angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId") ? true : false;
-            console.log("isLoggedin = " + $scope.isUserLoggedIn);
             $scope.className = {
                 "success" : false,
                 "info" : false,
@@ -121,7 +120,6 @@ define(['app'], function(app) {
             }
             
             toggleLoader = function(flag) {
-                console.log("here");
                 $scope.displayLoader = flag;
             };
 
