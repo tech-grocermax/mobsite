@@ -120,6 +120,11 @@ define(['app'], function(app) {
                 $scope.columnSize = 1;
             }
             
+            toggleLoader = function(flag) {
+                console.log("here");
+                $scope.displayLoader = flag;
+            };
+
             getLocationList = function() {
                 userService.getLocationList(1)
                     .then(function(data){
@@ -140,6 +145,7 @@ define(['app'], function(app) {
             };
 
             successCallbackUser = function(data, email) {
+                toggleLoader(false);
                 $scope.showUserResponse = true;
                 if(data.flag == "1") {
                     utility.setJStorageKey("userId", data.UserID, 1);
@@ -214,10 +220,12 @@ define(['app'], function(app) {
             $scope.createUser = function(form) {
                 $scope.errorRegistration = true;
                 console.log(form.$valid);
+                toggleLoader(true);
                 if (form.$valid) {
                     utility.setJStorageKey("registrationDetails", $scope.user, 1);
                     userService.createUser($scope.user)
                         .then(function(data){
+                            toggleLoader(false);
                             utility.setJStorageKey("otp", data.otp, 1);
                             $scope.registrationStep = 2;
                             //$scope.otp = data.otp; 
@@ -228,6 +236,7 @@ define(['app'], function(app) {
             $scope.verifyOTP = function() { 
                 console.log($scope.otp, utility.getJStorageKey("otp"));               
                 if($scope.otp == utility.getJStorageKey("otp")) {
+                    toggleLoader(true);
                     angular.copy($scope.user, utility.getJStorageKey("registrationDetails"));
                     var email = $scope.user.uemail;
                     $scope.user.otp = 1;
@@ -254,6 +263,7 @@ define(['app'], function(app) {
             $scope.loginUser = function(form) {
                 $scope.errorLogin = true;
                 if (form.$valid) { 
+                    toggleLoader(true);
                     var input = {
                         uemail: $scope.user.uemail,
                         password: $scope.user.password
@@ -288,6 +298,7 @@ define(['app'], function(app) {
             };
 
             successCallbackUpdateProfile = function(data) {
+                toggleLoader(false);
                 $scope.showUserResponse = true;
                 if(data.flag == "1") {
                     $scope.userResponseMessage = data.Result;
@@ -302,6 +313,7 @@ define(['app'], function(app) {
             };
 
             $scope.updateProfile = function() {
+                toggleLoader(true);
                 userService.updateProfile($scope.user, utility.getJStorageKey("userId"))
                     .then(function(data){
                         successCallbackUpdateProfile(data);
@@ -349,14 +361,13 @@ define(['app'], function(app) {
             };
 
             $scope.saveAddress = function(form) {
-                //console.log($scope.address);
-
                 $scope.errorRegistration = true;
-                console.log(form.$valid);
                 if (form.$valid) {
+                    toggleLoader(true);
                     userService.saveAddress($scope.address, 
                         utility.getJStorageKey("userId"), $scope.addressId)
                             .then(function(data){
+                                toggleLoader(false);
                                 if(data.flag == 1 || data.flag == "1") {
                                     if($scope.isReferrer == "checkout") {
                                         //$scope.address will be either shipping or billing
@@ -411,6 +422,7 @@ define(['app'], function(app) {
             };
 
             successCallbackForgotPassword = function(data) {
+                toggleLoader(false);
                 $scope.showUserResponse = true;
                 if(data.flag == "1") {
                     $scope.userResponseMessage = data.Result;
@@ -425,6 +437,7 @@ define(['app'], function(app) {
             };
 
             $scope.forgotPassword = function() {
+                toggleLoader(true);
                 userService.forgotPassword($scope.email)
                     .then(function(data){
                            successCallbackForgotPassword(data);                    
@@ -440,6 +453,7 @@ define(['app'], function(app) {
                     $scope.userResponseMessage = "Please fill missing fields first";
                     updateClassName("danger");
                 } else if($scope.password["new"] == $scope.password["confirm"]) {
+                    toggleLoader(true);
                     var input = {
                         userid:utility.getJStorageKey("userId"),
                         password:$scope.password["new"],
@@ -447,6 +461,7 @@ define(['app'], function(app) {
                     };
                     userService.changePassword(input)
                         .then(function(data){
+                            toggleLoader(false);
                             if(data.flag == "1") {
                                 $location.url("user/profile");
                             } else {
