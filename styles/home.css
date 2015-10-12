@@ -163,7 +163,7 @@ input , button, select{outline:none;}
 .reg-sub-list{padding-top:22px; padding-bottom:20px; border-bottom:1px solid #e4e4e4;padding-left: 24px;}
 .reg-list .active{background:#ffa800; color:#fff;}
 .reg-list-input{color: #2d2d2d; font-family: helveticaNeue-Regular; font-size: 5vw; font-weight: bold; border: none; width:100%;}
-.editaddress .reg-list-input{color: #cbcbc8; font-family: lato; font-size: 4.4vw; font-weight: normal; border: none; width:100%;}
+.editaddress .reg-list-input{/*color: #cbcbc8;*/ font-family: lato; font-size: 4.4vw; font-weight: normal; border: none; width:100%;}
 .reg-list-select{color: #cbcbc8; font-size: 4.4vw; border: none; width:100%;border-bottom: 2px solid #feb321;background-color:unset;}
 .reg-list-select:hover,.reg-list-select:focus,.reg-list-select:active{border: none;background-color:unset;border-bottom: 2px solid #feb321;}
 .reg-list-select option{border: none;}

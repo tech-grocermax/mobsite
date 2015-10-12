@@ -23,8 +23,8 @@ define(['app'], function (app) {
 
 		    this.cartAddProduct = function(products, quoteId) {
 		    	var strProducts = JSON.stringify(products),
-		    		url = getAPIUrl() + "addtocartgust?products=" + strProducts 
-		    			+ "&quote_id=" + quoteId;
+		    		url = getAPIUrl() + "addtocartgust?products=" + strProducts;
+		    			//+ "&quote_id=" + quoteId;
 
 		    	return serverUtility.postWebService(url)
 		    		.then(function(data){return data}, function(error){return error});

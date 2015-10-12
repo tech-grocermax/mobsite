@@ -1,24 +1,13 @@
 <section>
 	<div class="row margin0">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 back-white padtb16">
-			<!--<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd0">
-				<img src="images/app_bar_icons/left-icon.png" alt="" 
-					class="img-responsive b-left-icon">
-				<h1 class="bill-head">SELECT SHIPPING ADDRESS</h1>
-			</div>
 			<div class="bill-O-box">
 				<div class="bill-O bill-O-active"></div>
-				<div class="bill-O"></div>
-				<div class="bill-O"></div>
-				<div class="bill-O"></div>
-			</div>-->
-			<div class="bill-O-box">
+				<div class="bill-bar"></div>
 				<div class="bill-O bill-O-active"></div>
-					<div class="bill-bar"></div>
-				<div class="bill-O bill-O-active"></div>
-					<div class="bill-bar"></div>
+				<div class="bill-bar"></div>
 				<div class="bill-O"></div>
-					<div class="bill-bar"></div>
+				<div class="bill-bar"></div>
 				<div class="bill-O"></div>
 			</div>
 		</div>
@@ -33,7 +22,6 @@
 			<ul class="list-unstyled margin0 pad-tlb16" 
 				style="border-bottom: 1px solid #e4e4e4;">
 				<li style="font-size:3.4vw; color:#7d7d76;">
-					<!-- <span>Home</span> -->
 					<input type="checkbox" name="selectAddress"
 						data-ng-change="changeDefaultSelection(address, 'is_default_billing')" 
 						data-ng-model="address.is_default_billing"
@@ -73,7 +61,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0  margin-top15" >
 			<button type="button" class="reg-bot-btn bot-foot"
 				data-ng-disabled="isSelectButtonDisabled('is_default_billing')"
-				data-ng-click="selectBillingAddress()">SELECT BILLING ADDRESS</button>
+				data-ng-click="selectBillingAddress()">PROCEED</button>
 		</div>		
 	</div>
 </section>

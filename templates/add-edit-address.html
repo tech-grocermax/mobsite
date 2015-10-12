@@ -1,102 +1,152 @@
 <section class="back-white">
-	<!--<div class="row margin0 pad-lt32 reg-bar pad-lt16-m"style="font-size: 4.1vw;">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
-			{{addressId ? 'EDIT' : 'CREATE'}} ADDRESS
+	<form name="frmRegistration" novalidate>
+		<div class="row margin0 editaddress">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
+				<ul class="list-unstyled pad-lt32 margin0 pad-rt32 pad-lt-rt16-m">
+					<li class="reg-list">
+						<span class="reg-list-text">First Name</span><br>
+						<input type="text" name="fname" placeholder="required"
+							data-ng-model="address.fname"
+							value="{{address.fname}}" 
+							required my-max-length="15" only-alphabets-with-space
+							class="place-color reg-list-input">
+						<div ng-messages="frmRegistration.fname.$error" 
+                        	data-ng-show="frmRegistration.fname.$dirty || (errorRegistration && address.fname == null)">
+                            <div ng-show="frmRegistration.fname.$error.required" 
+                            	class="error-message">Please enter your first name</div>
+                        </div>
+					</li>
+					<li class="reg-list">
+						<span class="reg-list-text">Last Name</span><br>
+						<input type="text" name="lname" placeholder="required" 
+							data-ng-model="address.lname"
+							value="{{address.lname}}"
+							required my-max-length="15" only-alphabets-with-space
+							class="place-color reg-list-input">
+						<div ng-messages="frmRegistration.lname.$error" 
+                        	data-ng-show="frmRegistration.lname.$dirty || (errorRegistration && address.lname == null)">
+                            <div ng-show="frmRegistration.lname.$error.required" 
+                            	class="error-message">Please enter your last name</div>
+                        </div>
+					</li>
+					<li class="reg-list">
+						<span class="reg-list-text">House No.</span><br>
+						<input type="text" name="addressline1" 
+							data-ng-model="address.addressline1"
+							value="{{address.addressline1}}" 
+							required placeholder="required"
+							class="place-color reg-list-input">
+						<div ng-messages="frmRegistration.addressline1.$error" 
+                        	data-ng-show="frmRegistration.addressline1.$dirty || (errorRegistration && address.addressline1 == null)">
+                            <div ng-show="frmRegistration.addressline1.$error.required" 
+                            	class="error-message">Please enter House No.</div>
+                        </div>
+					</li>
+					<li class="reg-list">
+						<span class="reg-list-text">Street Address/Locality</span><br>
+						<div class="myselect" 
+							data-ng-show="!(isReferrer == 'checkout' && addressType == 'billing')">
+							<img class="dropdown-img" alt="" src="images/header-icon/drop-img.png">
+	  						<select id="e1" style="width:100%;" 
+	  							name="addressline2" required
+	  							data-ng-model="address.addressline2">
+						        <option value="{{location.area_name}}" 
+						        	data-ng-repeat="location in locationList">{{location.area_name}}
+						        </option>
+						    </select>
+						    <div ng-messages="frmRegistration.addressline2.$error" 
+                        		data-ng-show="frmRegistration.addressline2.$dirty || (errorRegistration && address.addressline2 == null)">
+                            <div ng-show="frmRegistration.addressline2.$error.required" 
+                            	class="error-message">Please enter street address/locality</div>
+						</div>
+						<div class="myselect"
+							data-ng-show="isReferrer == 'checkout' && addressType == 'billing' ">
+							<input type="text" name="addressline2" 
+								required placeholder="required"
+	  							data-ng-model="address.addressline2"
+	  							value="{{address.addressline2}}"
+	  							class="place-color reg-list-input">	
+	  						<div ng-messages="frmRegistration.addressline2.$error" 
+                        		data-ng-show="frmRegistration.addressline2.$dirty || (errorRegistration && address.addressline2 == null)">
+                            <div ng-show="frmRegistration.addressline2.$error.required" 
+                            	class="error-message">Please enter street address/locality</div>
+                        </div>				        
+						</div>
+					</li>
+					<li class="reg-list">
+						<span class="reg-list-text">Closest Landmark</span><br>
+						<input type="text" placeholder="required"
+							data-ng-model="address.addressline3"
+							value="{{address.addressline3}}" 
+							class="place-color reg-list-input">
+					</li>
+					<li class="reg-list">
+						<span class="reg-list-text">City</span><br>
+						<input type="text" name="city" placeholder="required" 
+							required my-max-length="20" only-alphabets-with-space
+							data-ng-model="address.city"
+							value="{{address.city}}"
+							class="place-color reg-list-input">
+						<div ng-messages="frmRegistration.city.$error" 
+                        	data-ng-show="frmRegistration.city.$dirty || (errorRegistration && address.city == null)">
+                            <div ng-show="frmRegistration.city.$error.required" 
+                            	class="error-message">Please enter city</div>
+					</li>
+					<li class="reg-list" style="padding-bottom: 0px;">
+						<span class="reg-list-text">State</span><br>
+						<div class="myselect">
+							<img class="dropdown-img" alt="" src="images/header-icon/drop-img.png">
+	  						<select data-ng-model="address.state" class="reg-list-select">
+	  							<option value="" style="display:none; ">Select</option>
+						        <option value="HR">Haryana</option>
+						        <option value="UP">Uttar Pradesh</option>
+						        <option value="DL">New Delhi</option>
+						    </select>
+						</div>
+					</li>				
+					<li class="reg-list">
+						<span class="reg-list-text">Phone</span><br>
+						<input type="text" name="phone" placeholder="required"
+							data-ng-model="address.phone"
+							value="{{address.phone}}" 
+							required my-max-length="40" only-digits
+							class="place-color reg-list-input">
+						<div ng-messages="frmRegistration.phone.$error" 
+                        	data-ng-show="frmRegistration.phone.$dirty || (errorRegistration && address.phone == null)">
+                            <div ng-show="frmRegistration.phone.$error.required" 
+                            	class="error-message">Please enter your contact number</div>
+                        </div>
+					</li>
+					<li class="reg-list">
+						<span class="reg-list-text">Pincode</span><br>
+						<input type="text" name="pincode" placeholder="required"
+							data-ng-model="address.pin"
+							value="{{address.pin}}"  
+							required my-max-length="6" only-digits
+							class="place-color reg-list-input">
+						<div ng-messages="frmRegistration.pincode.$error" 
+                        	data-ng-show="frmRegistration.pincode.$dirty || (errorRegistration && address.pin == null)">
+                            <div ng-show="frmRegistration.pincode.$error.required" 
+                            	class="error-message">Please enter your pincode</div>
+                        </div>
+					</li>
+					<!--<li class="margin-top32">
+						<input type="checkbox" ng-model="address.default_billing" />
+						<div class="check-text">Make it my default billing address</div>
+					</li>
+					<li class="margin-top32">
+						<input type="checkbox" ng-model="address.default_shipping" />
+						<div class="check-text">Make it my default shipping address</div>
+					</li>-->
+				</ul>
+			</div>
 		</div>
-	</div>-->
-	
-	<div class="row margin0 editaddress">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
-			<ul class="list-unstyled pad-lt32 margin0 pad-rt32 pad-lt-rt16-m">
-				<li class="reg-list">
-					<span class="reg-list-text">First Name</span><br>
-					<input type="text" placeholder="required"
-						data-ng-model="address.fname"
-						value="{{address.fname}}" 
-						class="place-color reg-list-input">
-				</li>
-				<li class="reg-list">
-					<span class="reg-list-text">Last Name</span><br>
-					<input type="text" placeholder="required" 
-						data-ng-model="address.lname"
-						value="{{address.lname}}"
-						class="place-color reg-list-input">
-				</li>
-				<li class="reg-list">
-					<span class="reg-list-text">House No.</span><br>
-					<input type="text" placeholder="required"
-						data-ng-model="address.addressline1"
-						value="{{address.addressline1}}" 
-						class="place-color reg-list-input">
-				</li>
-				<li class="reg-list">
-					<span class="reg-list-text">Street Address/Locality</span><br>
-					<div class="myselect">
-						<img class="dropdown-img" alt="" src="images/header-icon/drop-img.png">
-  						<select id="e1" style="width:100%;" 
-  							data-ng-model="address.addressline2">
-					        <option value="{{location.area_name}}" 
-					        	data-ng-repeat="location in locationList">{{location.area_name}}
-					        </option>
-					    </select>
-					</div>
-				</li>
-				<li class="reg-list">
-					<span class="reg-list-text">Closest Landmark</span><br>
-					<input type="text" placeholder="required"
-						data-ng-model="address.addressline3"
-						value="{{address.addressline3}}" 
-						class="place-color reg-list-input">
-				</li>
-				<li class="reg-list">
-					<span class="reg-list-text">City</span><br>
-					<input type="text" placeholder="required" 
-						data-ng-model="address.city"
-						value="{{address.city}}"
-						class="place-color reg-list-input">
-				</li>
-				<li class="reg-list" style="padding-bottom: 0px;">
-					<span class="reg-list-text">State</span><br>
-					<div class="myselect">
-						<img class="dropdown-img" alt="" src="images/header-icon/drop-img.png">
-  						<select data-ng-model="address.state" class="reg-list-select">
-  							<option value="" style="display:none; ">Select</option>
-					        <option value="HR">Haryana</option>
-					        <option value="UP">Uttar Pradesh</option>
-					        <option value="DL">New Delhi</option>
-					    </select>
-					</div>
-				</li>				
-				<li class="reg-list">
-					<span class="reg-list-text">Phone</span><br>
-					<input type="text" placeholder="required"
-						data-ng-model="address.phone"
-						value="{{address.phone}}" 
-						class="place-color reg-list-input">
-				</li>
-				<li class="reg-list">
-					<span class="reg-list-text">Pincode</span><br>
-					<input type="text" placeholder="required"
-						data-ng-model="address.pin"
-						value="{{address.pin}}"  
-						class="place-color reg-list-input">
-				</li>
-				<!--<li class="margin-top32">
-					<input type="checkbox" ng-model="address.default_billing" />
-					<div class="check-text">Make it my default billing address</div>
-				</li>
-				<li class="margin-top32">
-					<input type="checkbox" ng-model="address.default_shipping" />
-					<div class="check-text">Make it my default shipping address</div>
-				</li>-->
-			</ul>
+		
+		<div class="row margin0 margin-top32">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" >
+				<button type="button" class="reg-bot-btn bot-foot"
+					data-ng-click="saveAddress(frmRegistration)">SAVE</button>
+			</div>
 		</div>
-	</div>
-	
-	<div class="row margin0 margin-top32">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" >
-			<button type="button" class="reg-bot-btn bot-foot"
-				data-ng-click="saveAddress()">SAVE</button>
-		</div>
-	</div>
+	</form>
 </section>

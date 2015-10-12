@@ -348,20 +348,25 @@ define(['app'], function(app) {
                 $location.url("user/editaddress?addressId=" + addressId);
             };
 
-            $scope.saveAddress = function() {
-                console.log($scope.address);
-                userService.saveAddress($scope.address, 
-                    utility.getJStorageKey("userId"), $scope.addressId)
-                        .then(function(data){
-                            if(data.flag == 1 || data.flag == "1") {
-                                if($scope.isReferrer == "checkout") {
-                                    //$scope.address will be either shipping or billing
-                                    $location.url("checkout/" + $scope.addressType); 
-                                } else {
-                                    $location.url('user/address');
+            $scope.saveAddress = function(form) {
+                //console.log($scope.address);
+
+                $scope.errorRegistration = true;
+                console.log(form.$valid);
+                if (form.$valid) {
+                    userService.saveAddress($scope.address, 
+                        utility.getJStorageKey("userId"), $scope.addressId)
+                            .then(function(data){
+                                if(data.flag == 1 || data.flag == "1") {
+                                    if($scope.isReferrer == "checkout") {
+                                        //$scope.address will be either shipping or billing
+                                        $location.url("checkout/" + $scope.addressType); 
+                                    } else {
+                                        $location.url('user/address');
+                                    }
                                 }
-                            }
-                        });
+                            });
+                }
             };
 
             var email =utility.getJStorageKey("email");
