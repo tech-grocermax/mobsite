@@ -1,7 +1,7 @@
 define(['app'], function(app) {
 	app.controller('userController',  [
-        '$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'userService', 'utility', 
-        function($scope, $rootScope, $routeParams, $location, $timeout, userService, utility) {
+        '$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'userService', 'productService', 'utility', 
+        function($scope, $rootScope, $routeParams, $location, $timeout, userService, productService, utility) {
             $scope.sectionName = $routeParams.sectionName;
 
             if((angular.isUndefined(utility.getJStorageKey("userId")) 
@@ -88,6 +88,7 @@ define(['app'], function(app) {
             $scope.email = null;
             $scope.locationList = [];            
             $scope.cartItemCount = 0;
+            $scope.quoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
 
             if($scope.section.profile) {
                 $scope.categoryName = "My Profile";
@@ -198,21 +199,18 @@ define(['app'], function(app) {
                 getUserProfile(utility.getJStorageKey("userId"));
             }
 
-            getCartItemCounter = function() {
-                var count = 0;
-                angular.forEach($scope.cartItems, function(value, key){
-                    count = count + parseInt(value.quantity, 10);
-                });
-                return count;
-            };
+            getCartItemDetails = function() {
+                toggleLoader(true);
+                productService.getCartItemDetails($scope.quoteId)
+                    .then(function(data){ 
+                        toggleLoader(false);             
+                        $scope.cartDetails = data.CartDetail;                         
+                        $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);             
+                    });
+            };  
 
-            getCartDetails = function() {
-                $scope.cartItems = getCartItems();
-                $scope.cartItemCount = getCartItemCounter();                
-            };
-            if(angular.isDefined(utility.getJStorageKey("cartItems")) 
-                && utility.getJStorageKey("cartItems")) {
-                getCartDetails();
+            if($scope.quoteId){
+                getCartItemDetails(); 
             }   
 
             $scope.createUser = function(form) {

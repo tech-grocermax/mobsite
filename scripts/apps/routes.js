@@ -97,6 +97,7 @@ define([], function() {
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',
                     appURL + 'services/user',
+                    appURL + 'services/product',
                     appURL + 'directives/generic',
                     appURL + 'controllers/user'
                 ]

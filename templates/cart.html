@@ -23,8 +23,9 @@
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd0">
                 <ul class="list-unstyled">
                     <li class="prod-list-h">{{product.p_brand}}
-					   <img src="images/app_bar_icons/delete-icon.png" alt="" 
-                        class="delet-icon">
+					   <img src="images/app_bar_icons/delete-icon.png"
+                            data-ng-click="removeCartItem(product)" 
+                            alt="" class="delet-icon">
                     </li>
                     <li class="cat-list-name">{{product.name}}</li>
                     <li class="prod-list-qnty">{{product.p_pack}}</li>
@@ -38,13 +39,13 @@
                 <ul class="list-unstyled cat-list" 
                     data-ng-show="product.apply_rule == 0">
                     <li class="cat-minus"                         
-                        data-ng-click="removeProductWrapper(product)">-</li>
+                        data-ng-click="decreaseCartProductQuantity(product, 'product_id')">-</li>
                     <li class="cat-input-box">
                         <input type="text" placeholder="1" class="cat-input-text"
                             value="{{getCartProductQuantity(product.product_id)}}" >
                     </li>
                     <li class="cat-plus" 
-                        data-ng-click="addProductWrapper(product)">+</li>
+                        data-ng-click="increaseCartProductQuantity(product, 'product_id')">+</li>
                 </ul>
                 <ul class="list-unstyled cat-list"
                     data-ng-show="product.apply_rule == 1">
@@ -92,6 +93,10 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" 
         style="margin-top:100px;">
         <button type="button" class="reg-bot-btn bot-foot"
+            data-ng-show="isCartUpdated"
+            data-ng-click="checkout()">UPDATE CART</button>
+        <button type="button" class="reg-bot-btn bot-foot"
+            data-ng-show="!isCartUpdated"
             data-ng-click="checkout()">PROCEED</button>
     </div>
 
