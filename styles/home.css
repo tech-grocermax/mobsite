@@ -96,7 +96,7 @@ input , button, select{outline:none;}
 /*.img-box{background: #fff;border-radius: 3px;box-shadow:0 7px 5px rgba(0, 0, 0, 0.2);}*/
 .imgbox-margin{margin: 7.5px;}
 .deals-img{margin-top:190px;}
-.cat-img-mrg{margin-top:192px;}
+.cat-img-mrg{margin-top:165px;}/*home change*/
 .imgbox-lt-margin{margin-left: 7.5px;}
 .slider-text{font-family: lato;font-weight: bold; font-size: 4.4vw; color: #2d2d2d;letter-spacing: 5px;margin-bottom: 31px;margin-top: 46px;}
 .slide-text{border:1px solid #F7EBE9; text-align:center; /*border-radius:4px; margin-top:-8px;margin-bottom:24px;*/ color:#e78e78; font-family:roboto; font-size: 3.4vw; letter-spacing:2px; padding:9px 0 6px; width: 368px;}
@@ -117,7 +117,7 @@ input , button, select{outline:none;}
 .myselect{margin-bottom:3%;}
 .bot-foot{position:fixed; bottom:0; height: 75px;z-index: 2;}
 .top-head  .header-middle{position: fixed; z-index: 2; left: 0; right: 0; height: 88px;}
-.top-subhead{position: fixed; z-index: 2; left: 0; right: 0; height: 104px;top:88px;}
+.top-subhead{position: fixed; z-index: 2; left: 0; right: 0; height: 100px;top:88px;}
 .wrapper{margin-top: 88px; margin-bottom: 75px;}
 .user-wrapper{margin-top: 88px;}
 .inner-body{margin-top:88px;}
@@ -134,7 +134,7 @@ input , button, select{outline:none;}
 .dropdown-img{position:absolute; right:32px; margin-top:15px;z-index:1;}
 
 /*========== LEFT PANEL ==========*/
-.left-menu{background-image:url('../images/drawer_bg.png'); background-attachment:fixed; background-position:center center; background-repeat:no-repeat; background-size:cover; width: 77%; /*box-shadow: 0px 0px 20px 2px; font-family: roboto; color: #8e8e8e;*/left: 0; position: absolute; top: 100%; z-index: 100;}
+.left-menu{background-image:url('../images/drawer_bg.png'); background-attachment:fixed; background-position:center center; background-repeat:no-repeat; background-size:cover; width: 77%; /*box-shadow: 0px 0px 20px 2px; font-family: roboto; color: #8e8e8e;*/left: 0; position: absolute; top: 91%; z-index: 100;}
 .menu-item-h{font-size: 4.4vw; padding: 38px 0 24px 32px;border-bottom: 2px solid #d2d2d2;}
 .menu-subitem-h{font-size: 4.4vw; padding: 21px 0 21px 16px;border-bottom: 2px solid #413428;font-family: helveticaNeue-Regular;color:#fff;}
 .menu-subitem-h > img{margin-right: 8px;}
@@ -209,7 +209,7 @@ input , button, select{outline:none;}
 .prod-new-price{color:#e5390e; padding-left:5px; text-decoration:line-through;}
 .header-middle-prod{background: #ee2d09 none repeat scroll 0 0;padding: 30px 16px 0;}
 .nav-red{overflow:auto; background: #ee2d09 none repeat scroll 0 0;/*box-shadow: 0 7px 5px rgba(0, 0, 0, 0.2);*/}
-.prod-nav-li{color: #fff; padding: 29px;text-transform: uppercase;white-space: nowrap;}
+.prod-nav-li{color: #fff; padding: 30px;text-transform: uppercase;white-space: nowrap;}
 
 /*========== PRODUCT DESCRIPTION ==========*/
 .header-middle-des{background: #ee2d09 none repeat scroll 0 0;padding: 30px 16px;box-shadow: 0 7px 5px rgba(0, 0, 0, 0.2);}
@@ -399,8 +399,9 @@ input , button, select{outline:none;}
 	.margin-t20-m{margin-top:20px;}
 	.back-icon-mrg {margin-top: 0.7%;}
 	.header-middle-cadd{padding: 15px 8px;}	
-	.nav-li{padding: 16px 29px;}
+	/*.nav-li{padding: 16px 29px;}*/
 	/*.nav-list li:nth-child(1) {padding: 17px 12px 11px 16px;}*/
+	.nav-li {padding: 15px;}
 	.menu-item .plus-sign {margin-top: -3px; margin-right:15px;}
 	.menu-item {padding: 16px 0;}
 	.menu-item-h {padding: 24px 0 17px 16px;}
@@ -474,9 +475,11 @@ input , button, select{outline:none;}
 	.back-img-mr{width:8%;margin-top:-5px;}
 	.margin-t16-m{margin-top: 16px;}
 	.subc-h1 {width: 97.4%;}
-	/*.top-subhead {height: 65px;}*/
 	/*.cat-img-mrg {margin-top: 165px;}*/
 	/*.prod-sec{margin-bottom: 153px;}*/
+	.left-menu{top: 90%;}
+	.top-subhead {height: 59px;}
+	.prod-nav-li {padding: 15px;}
 	
 }
 
@@ -493,6 +496,8 @@ input , button, select{outline:none;}
 	/*.top-subhead {height: 56px;}*/
 	/*.cat-img-mrg {margin-top: 148px;}*/
 	/*.prod-sec{margin-bottom: 153px;}*/
+	.left-menu{top: 89.5%;}
+	.top-subhead {top: 84px;}
 }
 
 /*------------------------- SPRITE IMAGE -------------------------*/
