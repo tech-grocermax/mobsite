@@ -173,7 +173,7 @@ input , button, select{outline:none;}
 .reg-list-select{color: #cbcbc8; font-size: 4.4vw; border: none; width:100%;border-bottom: 2px solid #feb321;background-color:unset;}
 .reg-list-select:hover,.reg-list-select:focus,.reg-list-select:active{border: none;background-color:unset;border-bottom: 2px solid #feb321;}
 .reg-list-select option{border: none;}
-.reg-list-text{color: #c8c8c8; font-family: lato; font-size: 4.4vw; font-weight: bold;}
+.reg-list-text{color: #7c7d75; font-family: helveticaNeue-Regular; font-size: 4.4vw; /*font-weight: bold;*/}
 .editaddress .reg-list-text{color: #7d7d76; font-family: helveticaNeue-Regular; font-size: 3.8vw; font-weight: normal;}
 .reg-list label{font-size: 4.3vw; font-family: roboto; color: #2d2d2d;margin-right: 46px;font-weight: 400;}
 .reg-para{font-size: 3.5vw; color: #cbcbc8; padding-bottom: 7px; padding-top: 38px;}
@@ -480,6 +480,8 @@ input , button, select{outline:none;}
 	.left-menu{top: 90%;}
 	.top-subhead {height: 59px;}
 	.prod-nav-li {padding: 15px;}
+	.reg-btn {padding: 3.8% 0 4% 5%;font-size: 5vw;}
+	.reg-btn>img {margin-top: -5px;margin-bottom: -5px;}
 	
 }
 
@@ -498,6 +500,8 @@ input , button, select{outline:none;}
 	/*.prod-sec{margin-bottom: 153px;}*/
 	.left-menu{top: 89.5%;}
 	.top-subhead {top: 84px;}
+	.reg-btn {padding: 5% 0 5% 5%;}
+	.reg-btn>img {margin-top: -8px;margin-bottom: -8px;}
 }
 
 /*------------------------- SPRITE IMAGE -------------------------*/
