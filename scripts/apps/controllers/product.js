@@ -210,15 +210,15 @@ define(['app'], function(app) {
                 }              
 
                 productService.cartAddProduct(productObject, quoteId)
-                        .then(function(data){
-                            if(data.flag == 1 || data.flag == "1"){
-                                if(!quoteId) {
-                                    utility.setJStorageKey("quoteId", data.QuoteId, 1);
-                                }                                
-                                console.log("product added successfully");
-                                //$location.url("cart" + "/" + data.QuoteId);
-                            }                            
-                        });
+                    .then(function(data){
+                        if(data.flag == 1 || data.flag == "1"){
+                            if(!quoteId) {
+                                utility.setJStorageKey("quoteId", data.QuoteId, 1);
+                                $scope.quoteId = data.QuoteId;
+                            }
+                            getCartItemDetails();                                
+                        }                            
+                    });
             };
 
             $scope.getProductQuantity = function(productId) {

@@ -222,9 +222,16 @@ define(['app'], function(app) {
                     userService.createUser($scope.user)
                         .then(function(data){
                             toggleLoader(false);
-                            utility.setJStorageKey("otp", data.otp, 1);
-                            $scope.registrationStep = 2;
-                            //$scope.otp = data.otp; 
+                            if(data.flag == 1){
+                                $scope.showUserResponse = false;
+                                $scope.userResponseMessage = "";
+                                utility.setJStorageKey("otp", data.otp, 1);
+                                $scope.registrationStep = 2;
+                            } else {
+                                $scope.showUserResponse = true;
+                                $scope.userResponseMessage = data.Result;
+                                updateClassName("danger");
+                            }                            
                         });
                 }
             };
@@ -261,11 +268,10 @@ define(['app'], function(app) {
                 if (form.$valid) { 
                     toggleLoader(true);
                     var input = {
-                        uemail: $scope.user.uemail,
-                        password: $scope.user.password
-                    };
-
-                    var email = $scope.user.uemail;
+                            uemail: $scope.user.uemail,
+                            password: $scope.user.password
+                        },
+                        email = $scope.user.uemail;
 
                     if(angular.isDefined(utility.getJStorageKey("quoteId")) 
                     && utility.getJStorageKey("quoteId")) {
