@@ -16,12 +16,7 @@ define(['app'], function(app) {
             $scope.showSearchIcon = false;
             $scope.showMoreIcon = true;
             $scope.showMoreMenuOptions = false;
-            $scope.showUserMenuOptions = false;
-            $scope.cityLocation = {
-                "delhi": false,
-                "gurgaon": false,
-                "noida": false
-            };
+            $scope.showUserMenuOptions = false;            
             $scope.searchKeyword = "";
             $scope.moreCategoryIndex = -1;
             $scope.preserveMoreCategoryId = null;
@@ -31,32 +26,11 @@ define(['app'], function(app) {
             $scope.categoryName = "Dynamic Name";
             $scope.bannerList = null;
             $scope.quoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
-            $scope.locationList = null;
-            
+            $scope.cityList = null;
+            $scope.cityLocation = {};
+
             toggleLoader = function(flag) {
                 $scope.displayLoader = flag;
-            };
-
-            getLocationList = function() {
-                /*categoryService.getCategoryList()
-                    .then(function(data){
-                        $scope.categories = data.Category.children[0].children; 
-                        utility.setJStorageKey("categories", $scope.categories, 1);
-                    });*/
-            };
-
-            openCitySelectionModal = function() {
-                $timeout(function(){
-                    $('#myModal').modal({
-                        backdrop: false,
-                        keyboard: false,
-                        show: true
-                    });
-                }, 1000);
-            };
-
-            hideCitySelectionModal = function() {
-                $('#myModal').modal('hide');
             };
 
             getBannerList = function() {
@@ -282,15 +256,6 @@ define(['app'], function(app) {
 
             };
 
-            $scope.setCityLocation = function(city) {
-                angular.forEach($scope.cityLocation, function(value, key){
-                    $scope.cityLocation[key] = false;
-                });
-                $scope.cityLocation[city] = true;
-                utility.setJStorageKey("selectedCity", city, 1);
-                hideCitySelectionModal();
-            };
-
             $scope.changeSearchKeyword = function(model) {
                 $scope.searchKeyword = model;
             };
@@ -312,10 +277,50 @@ define(['app'], function(app) {
                 }
             };
 
+            openCitySelectionModal = function() {
+                $timeout(function(){
+                    $('#myModal').modal({
+                        backdrop: false,
+                        keyboard: false,
+                        show: true
+                    });
+                }, 1000);
+            };
+
+            getCityList = function() {
+                utility.getCityList()
+                    .then(function(data){
+                        $scope.cityList = data.location;
+                        angular.forEach($scope.cityList, function(value, key) {
+                            var city = value.city_name.toLowerCase();
+                            $scope.cityLocation[city] = false;
+                        });
+                        console.log($scope.cityLocation);
+                        openCitySelectionModal();
+                    });
+            };
+
+            hideCitySelectionModal = function() {
+                $('#myModal').modal('hide');
+            };
+
+            $scope.setCityLocation = function(location) {
+                var city = location.city_name.toLowerCase(),
+                    cityId = location.id;
+
+                angular.forEach($scope.cityLocation, function(value, key){
+                    $scope.cityLocation[key] = false;
+                });
+                $scope.cityLocation[city] = true;
+                utility.setJStorageKey("selectedCity", city, 1);
+                utility.setJStorageKey("selectedCityId", location.id, 1);
+                hideCitySelectionModal();
+            };
+
             angular.element(document).ready(function () {
                 if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
                     || !utility.getJStorageKey("selectedCity")) {
-                    openCitySelectionModal();
+                    getcityList();
                 }                  
             });
 

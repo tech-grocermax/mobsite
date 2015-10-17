@@ -31,11 +31,6 @@ define(['app'], function(app) {
             $scope.section[$scope.sectionName] = true;
             $scope.addressList = [];
             $scope.billingAsShipping = false;
-            $scope.cityLocation = {
-                "delhi": false,
-                "gurgaon": false,
-                "noida": false
-            };
             $scope.isUserLoggedIn = angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId") ? true : false;
             $scope.cartItems = [];
             $scope.cartItemCount = 0;
@@ -49,7 +44,9 @@ define(['app'], function(app) {
                 sodexo: false,
                 paytm_cc: false,
                 mobikwik: false
-            };   
+            }; 
+            $scope.cityList = null;
+            $scope.cityLocation = {};  
 
             if($scope.section.shipping) {
                 $scope.categoryName = "Select Shipping Address";
@@ -65,20 +62,6 @@ define(['app'], function(app) {
                 $scope.categoryName = "Select Payment Method";
                 $scope.columnSize = 10;
             }        
-
-            openCitySelectionModal = function() {
-                $timeout(function(){
-                    $('#myModal').modal({
-                        backdrop: false,
-                        keyboard: false,
-                        show: true
-                    });
-                }, 1000);
-            };
-
-            hideCitySelectionModal = function() {
-                $('#myModal').modal('hide');
-            };
 
             getAddressList = function() {
                 userService.getAddressList(utility.getJStorageKey("userId"))
@@ -357,15 +340,6 @@ define(['app'], function(app) {
                 $location.url(route);
             };
 
-            $scope.setCityLocation = function(city) {
-                angular.forEach($scope.cityLocation, function(value, key){
-                    $scope.cityLocation[key] = false;
-                });
-                $scope.cityLocation[city] = true;
-                utility.setJStorageKey("selectedCity", city, 1);
-                hideCitySelectionModal();
-            };
-
             hidePaymentFailedModal = function() {
                 $('#paymentFailed').modal('hide');
             };
@@ -382,10 +356,8 @@ define(['app'], function(app) {
             };
 
             $scope.placeOrder = function() {
-                var userId = utility.getJStorageKey("userId");
-                var checkoutDetails = utility.getJStorageKey("checkoutDetails");
-                //console.log(checkoutDetails);
-                //console.log($scope.paymentMethod);
+                var userId = utility.getJStorageKey("userId"),
+                    checkoutDetails = utility.getJStorageKey("checkoutDetails");
                 
                 userService.checkout(userId, $scope.quoteId, checkoutDetails, $scope.paymentMethod)
                     .then(function(data){              
@@ -404,10 +376,50 @@ define(['app'], function(app) {
                     });
             };
 
+            openCitySelectionModal = function() {
+                $timeout(function(){
+                    $('#myModal').modal({
+                        backdrop: false,
+                        keyboard: false,
+                        show: true
+                    });
+                }, 1000);
+            };
+
+            getCityList = function() {
+                utility.getCityList()
+                    .then(function(data){
+                        $scope.cityList = data.location;
+                        angular.forEach($scope.cityList, function(value, key) {
+                            var city = value.city_name.toLowerCase();
+                            $scope.cityLocation[city] = false;
+                        });
+                        console.log($scope.cityLocation);
+                        openCitySelectionModal();
+                    });
+            };
+
+            hideCitySelectionModal = function() {
+                $('#myModal').modal('hide');
+            };
+
+            $scope.setCityLocation = function(location) {
+                var city = location.city_name.toLowerCase(),
+                    cityId = location.id;
+
+                angular.forEach($scope.cityLocation, function(value, key){
+                    $scope.cityLocation[key] = false;
+                });
+                $scope.cityLocation[city] = true;
+                utility.setJStorageKey("selectedCity", city, 1);
+                utility.setJStorageKey("selectedCityId", location.id, 1);
+                hideCitySelectionModal();
+            };
+
             angular.element(document).ready(function () {
                 if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
                     || !utility.getJStorageKey("selectedCity")) {
-                    openCitySelectionModal();
+                    getcityList();
                 }                  
             });
 
