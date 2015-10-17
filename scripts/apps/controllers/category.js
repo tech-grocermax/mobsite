@@ -31,9 +31,18 @@ define(['app'], function(app) {
             $scope.categoryName = "Dynamic Name";
             $scope.bannerList = null;
             $scope.quoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
-
+            $scope.locationList = null;
+            
             toggleLoader = function(flag) {
                 $scope.displayLoader = flag;
+            };
+
+            getLocationList = function() {
+                /*categoryService.getCategoryList()
+                    .then(function(data){
+                        $scope.categories = data.Category.children[0].children; 
+                        utility.setJStorageKey("categories", $scope.categories, 1);
+                    });*/
             };
 
             openCitySelectionModal = function() {

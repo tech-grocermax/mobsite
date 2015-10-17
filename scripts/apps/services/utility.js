@@ -30,6 +30,15 @@ define(['app'], function (app) {
 	        } 
 	        return (yyyy + '-' + mm + '-' + dd);
 	    };
+
+	    this.getLocationList = function() {
+		   		var url = getAPIUrl() + "getlocation";
+		    	return serverUtility.getWebService(url)
+		    		.then(
+		    			function(data){return data; },
+		    			function(error){return error; }
+		    		);
+		   	};
 	    
 	    return this;
     });
