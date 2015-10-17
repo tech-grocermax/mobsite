@@ -351,7 +351,7 @@ input , button, select{outline:none;}
 .ao-text3{font-size:8vw; color:#fff;font-weight: 200; margin-top: -3.5%;line-height: 1.1;}
 
 /*========== ORDER SUCCESS ==========*/
-.subc-h1{width:98%; background: #000; bottom: 6px; display: block; position: absolute; opacity: 0.8;font-size: 3.5vw; color:#fff;text-align:center; padding: 13px 0;content: "";}
+.subc-h1{width:98%; background: #000; bottom: 5px; display: block; position: absolute; opacity: 0.8;font-size: 3.5vw; color:#fff;text-align:center; padding: 13px 0;content: "";}
 .subc-h2{font-size: 5.6vw;padding-left: 26px;font-weight: 100;color:#fff;}
 .subc-btn{padding: 10px 0;font-size:2.8vw; background:#fff; border: 1px solid #d7d7d7; border-radius:4px; width:100%;box-shadow: 2px 2px 3px -2px; color:#2d2d2d;}
 
