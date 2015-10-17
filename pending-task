@@ -39,3 +39,9 @@ Static Page Content required
 	http://localhost/mobsite/#/product/deal/238
 
 Deal/Catery name required
+
+Location Popup
+	Integrated web service
+	also logged cityId
+	use cityId for get locality within shipping address
+	use selected/unseleted image approporately

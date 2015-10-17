@@ -50,7 +50,7 @@ define(['app'], function (app) {
                     "2282", "2392", "2395", "2399",
                     "2269", "2258", "2248", "2265", "2254",
                     "2347", "2335", "2343", "2355",
-                    "2360", "2372", "2382", "2380", "2387"];
+                    "2360", "2372", "2382", "2380", "2387", "2613"];
 
                 return angular.isDefined(categoryId) && 
                     specialCatList.indexOf(categoryId) >= 0 ? true : false;
