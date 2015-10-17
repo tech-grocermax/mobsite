@@ -1,7 +1,7 @@
 define(['app'], function(app) {
 	app.controller('productController',  [
-        '$scope', '$rootScope', '$routeParams', '$location',  '$timeout', 'productService', 'categoryService', 'utility', 
-        function($scope, $rootScope, $routeParams, $location, $timeout, productService, categoryService, utility) {            
+        '$scope', '$rootScope', '$http', '$routeParams', '$location',  '$timeout', 'productService', 'categoryService', 'utility', 
+        function($scope, $rootScope, $http, $routeParams, $location, $timeout, productService, categoryService, utility) {            
             $scope.showSearchBar = false;
             $scope.showSearchIcon = false;
             $scope.showMoreIcon = false; 
@@ -12,7 +12,7 @@ define(['app'], function(app) {
             $scope.productId = angular.isDefined($routeParams.productId) ? $routeParams.productId : null ;
             $scope.quoteId = angular.isDefined($routeParams.quoteId) ? $routeParams.quoteId : (angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null) ;
             $scope.parentCatId = angular.isDefined($routeParams.parentId) ? $routeParams.parentId : null ;
-            $scope.products = null;
+            $scope.products = [];
             $scope.productDetails = null;
             $scope.cartItems = [];
             $scope.cartItemCount = 0;
@@ -29,9 +29,14 @@ define(['app'], function(app) {
             $scope.cityList = null;
             $scope.cityLocation = {};
 
+            $scope.pagination = {
+                current_page : 1,
+                total_pages : 0
+            };
+
             toggleLoader = function(flag) {
                 $scope.displayLoader = flag;
-            };
+            };           
 
             setDefaultProductQuantity = function() {
                 if($scope.products.length) {
@@ -41,21 +46,20 @@ define(['app'], function(app) {
                 }
             };
 
-            getProductListByCategoryId = function() {
-                var jstorageKeyProducts = "products_" + $routeParams.categoryId;
-                if (utility.getJStorageKey(jstorageKeyProducts)) {
-                    $scope.products = utility.getJStorageKey(jstorageKeyProducts);
-                    setDefaultProductQuantity();
-                } else {
-                    toggleLoader(true);
-                    productService.getProductListByCategoryId($scope.categoryId)
-                        .then(function(data){
-                            $scope.products = data.Product; 
-                            setDefaultProductQuantity();
-                            utility.setJStorageKey(jstorageKeyProducts, $scope.products, 1);
-                            toggleLoader(false);
-                        });
-                }
+            setPaginationTotal = function(totalCount) {
+                $scope.pagination.total_pages = Math.ceil(totalCount/10)
+            };
+
+            getProductListByCategoryId = function() {                
+                toggleLoader(true);
+                productService.getProductListByCategoryId($scope.categoryId, $scope.pagination.current_page)
+                    .then(function(data){
+                        $scope.products = $scope.products || [];
+                        $scope.products.push.apply($scope.products, data.Product);
+                        setPaginationTotal(data.Totalcount);
+                        setDefaultProductQuantity();
+                        toggleLoader(false);
+                    });                
             };
 
             getProductListByDealId = function() {       
@@ -403,6 +407,18 @@ define(['app'], function(app) {
                     return '-unselected.png';
                 }                
             };
+
+            // Register event handler
+            $scope.$on('endlessScroll:next', function() {
+                console.log("endlessScroll:next");                
+                if($scope.pagination.current_page < $scope.pagination.total_pages) {                    
+                    $scope.pagination.current_page = $scope.pagination.current_page + 1;
+                    console.log("page=" + $scope.pagination.current_page);
+                    if($scope.categoryId){
+                       getProductListByCategoryId();
+                    }
+                }                
+            });
 
             angular.element(document).ready(function () {
                 if(angular.isUndefined(utility.getJStorageKey("selectedCity"))

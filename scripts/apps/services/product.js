@@ -3,8 +3,8 @@ define(['app'], function (app) {
     	function ($http, $rootScope, serverUtility) {
 		    'use strict';
 		    
-		    this.getProductListByCategoryId = function(categoryId) {
-		    	var url = getAPIUrl() + "productlist?cat_id=" + categoryId;
+		    this.getProductListByCategoryId = function(categoryId, page) {
+		    	var url = getAPIUrl() + "productlist?cat_id=" + categoryId + "&page=" + page;
 		    	return serverUtility.getWebService(url)
 		    		.then(function(data){return data}, function(error){return error});
 		    };	
