@@ -504,7 +504,7 @@ define(['app'], function(app) {
                         $scope.cityList = data.location;
                         angular.forEach($scope.cityList, function(value, key) {
                             var city = value.city_name.toLowerCase();
-                            $scope.cityLocation[city] = false;
+                            $scope.cityLocation[city] = angular.isDefined(utility.getJStorageKey("selectedCity")) && utility.getJStorageKey("selectedCity") == city ? true : false;                            
                         });
                         openCitySelectionModal();
                         toggleLoader(false);
@@ -530,6 +530,15 @@ define(['app'], function(app) {
                 utility.setJStorageKey("selectedCity", city, 1);
                 utility.setJStorageKey("selectedCityId", location.id, 1);
                 hideCitySelectionModal();
+            };
+
+            $scope.getCityImgSrc = function(location) {
+                if(angular.isDefined(location)) {
+                    var city = location.city_name.toLowerCase();
+                    return $scope.cityLocation[city] ? 'selected.png' : '-unselected.png';
+                } else {
+                    return '-unselected.png';
+                }                
             };
 
             angular.element(document).ready(function () {

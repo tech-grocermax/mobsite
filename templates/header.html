@@ -168,28 +168,10 @@
                             >
 							<a href="javascript:void(0);"
 								data-ng-click="setCityLocation(location)" role="button">
-								<img ng-src="{{'images/app_bar_icons/location-icon_-unselected.png'}}" alt="" style="width: 10%;">
-								<div class="loc-place">{{location.city_name}}</div>
+								<img ng-src="images/app_bar_icons/location-icon_{{getCityImgSrc(location)}}" alt="" style="width: 10%;">
+                                <div class="loc-place">{{location.city_name}}</div>
 							</a>
-						</div>
-						<!-- <div class="col-md-12 col-sm-12 col-xs-12 padd0 margin-t40 margin-t20-m">
-							<a href="javascript:void(0);"
-								data-ng-class="{'btn-primary': cityLocation.gurgaon}"
-                                data-ng-click="setCityLocation('gurgaon')"
-                                role="button">
-								<img ng-src="{{cityLocation.gurgaon && 'images/app_bar_icons/location-icon_selected.png' || 'images/app_bar_icons/location-icon_-unselected.png'}}" alt="" style="width: 10%;">
-								<div class="loc-place">Gurgaon</div>
-							</a>
-						</div>
-						<div class="col-md-12 col-sm-12 col-xs-12 padd0 margin-t40 margin-t20-m">
-							<a href="javascript:void(0);"
-								data-ng-class="{'btn-primary': cityLocation.noida}"
-                                data-ng-click="setCityLocation('noida')"
-                                role="button">
-								<img ng-src="{{cityLocation.noida && 'images/app_bar_icons/location-icon_selected.png' || 'images/app_bar_icons/location-icon_-unselected.png'}}" alt="" style="width: 10%;">
-								<div class="loc-place">Noida</div>
-							</a>
-						</div> -->                        
+						</div>						                        
                     </div>
                 </div>
             </div>
