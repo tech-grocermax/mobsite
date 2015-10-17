@@ -4,8 +4,8 @@ define(['app'], function (app) {
 		    'use strict';
 		    
 		    this.createUser = function(input) {		    	
-	    		var url = getAPIUrl() + "createuser?" + $.param( input );
-	    		return serverUtility.postWebService(url)
+	    		var url = getAPIUrl() + "createuser";
+	    		return serverUtility.postWebService(url, input)
 		    		.then(
 		    			function(data){return data; },
 		    			function(error){return error; }
@@ -13,8 +13,8 @@ define(['app'], function (app) {
 		    }; 
 
 		    this.loginUser = function(input) {		    	
-	    		var url = getAPIUrl() + "login?" + $.param( input );
-	    		return serverUtility.postWebService(url)
+	    		var url = getAPIUrl() + "login";
+	    		return serverUtility.postWebService(url, input)
 		    		.then(
 		    			function(data){return data; },
 		    			function(error){return error; }
@@ -88,15 +88,16 @@ define(['app'], function (app) {
 		    	return obeject;
 		    };
 	    	
-	    	this.saveAddress = function(data, userId, addressId) {
+	    	this.saveAddress = function(input, userId, addressId) {
 	    		//this.buildSaveUpdateAddressObject(data, userId, addressId
-	    		data.userid = userId;
+	    		input.userid = userId;
 	    		if(addressId){
-		    		data.addressid = addressId;
+		    		input.addressid = addressId;
 		    	}
 	    		var actionUrl = addressId ? "editaddress" : "addaddress",
-	    			url = getAPIUrl() + actionUrl + "?" + $.param(data);
-		    	return serverUtility.postWebService(url)
+	    			url = getAPIUrl() + actionUrl;
+
+		    	return serverUtility.postWebService(url, input)
 		    		.then(
 		    			function(data){return data; },
 		    			function(error){return error; }
@@ -122,8 +123,11 @@ define(['app'], function (app) {
 		    };
 
 		    this.forgotPassword = function(email) {
-		    	var url = getAPIUrl() + "forgotpassword?uemail=" + email;
-		    	return serverUtility.postWebService(url)
+		    	var input = {
+			    		uemail: email
+			    	},
+			    	url = getAPIUrl() + "forgotpassword";
+		    	return serverUtility.postWebService(url, input)
 		    		.then(
 		    			function(data){return data; },
 		    			function(error){return error; }
@@ -131,8 +135,8 @@ define(['app'], function (app) {
 		    };
 
 		    this.changePassword = function(input) {
-		    	var url = getAPIUrl() + "changepassword?" + $.param( input );
-		    	return serverUtility.postWebService(url)
+		    	var url = getAPIUrl() + "changepassword";
+		    	return serverUtility.postWebService(url, input)
 		    		.then(
 		    			function(data){return data; },
 		    			function(error){return error; }
@@ -191,8 +195,8 @@ define(['app'], function (app) {
 		    this.buildCheckoutObject = function(userId, quoteId, checkoutDetails, paymentMethod) {
 		    	var shippingObject = this.buildShippingObject(checkoutDetails[quoteId]["shippingAddress"]),
 		    		billingObject = this.buildBillingObject(checkoutDetails[quoteId]["billingAddress"]),
-		    		shipping = JSON.stringify(shippingObject),
-		    		billing = JSON.stringify(billingObject);
+		    		shipping = shippingObject,
+		    		billing = billingObject;
 
 		    	return {
 		    		userid:userId,
@@ -207,10 +211,13 @@ define(['app'], function (app) {
 		    };
 
 		    this.checkout = function(userId, quoteId, checkoutDetails, paymentMethod) {
-		    	var input = $.param(this.buildCheckoutObject(userId, quoteId, checkoutDetails, paymentMethod)),
-		    		url = getAPIUrl() + "checkout?" + input;
+		    	/*var input = $.param(this.buildCheckoutObject(userId, quoteId, checkoutDetails, paymentMethod)),
+		    		url = getAPIUrl() + "checkout?" + input;*/
 
-		    	return serverUtility.postWebService(url)
+		    	var input = this.buildCheckoutObject(userId, quoteId, checkoutDetails, paymentMethod),
+		    		url = getAPIUrl() + "checkout";
+
+		    	return serverUtility.postWebService(url, input)
 		    		.then(
 		    			function(data){return data; },
 		    			function(error){return error; }

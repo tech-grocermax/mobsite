@@ -1,15 +1,10 @@
 <div class="row margin0">
-    <!-- Button trigger modal -->
-    <!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-      Launch demo modal
-    </button> -->
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-middle">
         <div class="row margin0" 
             style="padding-left: 16px; padding-right: 16px; position:relative;">
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0" 
                 data-ng-show="columnSize == 1">
                 <a href="#/">
-					<!--<img src="images/header-icon/home.png" title="Home" class="img-responsive">-->
 					<img class="home"  title="Home" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqAQMAAAD/DVsYAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFhAEAASYAARfcVj8AAAAASUVORK5CYII=" alt="">
 				</a>
             </div>
@@ -18,28 +13,12 @@
             <div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 margin-lt22p" 
                 data-ng-show="columnSize == 1">
                 <a href="#/user/profile" data-ng-show="isUserLoggedIn">
-                    <!--<img src="images/header-icon/profile.png" title="User" class="img-responsive">-->
-					<img class="profile" title="User" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqAQMAAAD/DVsYAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFhAEAASYAARfcVj8AAAAASUVORK5CYII=">
+                    <img class="profile" title="User" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqAQMAAAD/DVsYAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFhAEAASYAARfcVj8AAAAASUVORK5CYII=">
 				</a>
                 <a href="#/user/login" data-ng-show="!isUserLoggedIn">
-                    <!--<img src="images/header-icon/profile.png" title="User" class="img-responsive">-->
-					<img class="profile" title="User" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqAQMAAAD/DVsYAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFhAEAASYAARfcVj8AAAAASUVORK5CYII=">
+                    <img class="profile" title="User" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqAQMAAAD/DVsYAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFhAEAASYAARfcVj8AAAAASUVORK5CYII=">
 				</a>                
             </div>
-            <!-- <div data-ng-show="showUserMenuOptions"
-                style=" position: absolute; top: 110%; width: 300px; z-index: 100; left:-15%;">
-                <ul class="list-unstyled drop-box">
-                    <li><a href="#/user/register"
-                        data-ng-show="!isUserLoggedIn">Register</a></li>
-                    <li><a href="#/user/login"
-                        data-ng-show="!isUserLoggedIn">Login</a></li>
-                    <li><a href="#/user/profile"
-                        data-ng-show="isUserLoggedIn">Profile</a></li>
-                    <li><a href="javascript:void(0);"
-                        data-ng-show="isUserLoggedIn"
-                        data-ng-click="logout()">Logout</a></li>
-                </ul>
-            </div> -->
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd0" 
                 data-ng-show="columnSize == 4" back>
                 <a href="javascript:void(0);">
@@ -168,31 +147,32 @@
 				</li>
 			</ul>
 		</div>
-    </div> 
-    
-    
+    </div>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
+    aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="row margin0">
-                    <div class="col-md-12 col-sm-12 col-xs-12 padd0" style="text-align: center;">
+                    <div class="col-md-12 col-sm-12 col-xs-12 padd0" 
+                        style="text-align: center;">
                         <div class="col-md-12 col-sm-12 col-xs-12 padd0 margin-tp-13p margin-tp-6p-m">
                             <span class="loc-h">Where would you like us to deliver?</span>
                         </div>
-						<div class="col-md-12 col-sm-12 col-xs-12 padd0 margin-t40 margin-t20-m">
+						<div class="col-md-12 col-sm-12 col-xs-12 padd0 margin-t40 
+                            margin-t20-m"
+                            data-ng-repeat="location in cityList"
+                            >
 							<a href="javascript:void(0);"
-								data-ng-class="{'btn-primary': cityLocation.delhi}"
-                                data-ng-click="setCityLocation('delhi')"
-                                role="button">
-								<img ng-src="{{cityLocation.delhi && 'images/app_bar_icons/location-icon_selected.png' || 'images/app_bar_icons/location-icon_-unselected.png'}}" alt="" style="width: 10%;">
-								<div class="loc-place">Delhi</div>
+								data-ng-click="setCityLocation(location)" role="button">
+								<img ng-src="{{'images/app_bar_icons/location-icon_-unselected.png'}}" alt="" style="width: 10%;">
+								<div class="loc-place">{{location.city_name}}</div>
 							</a>
 						</div>
-						<div class="col-md-12 col-sm-12 col-xs-12 padd0 margin-t40 margin-t20-m">
+						<!-- <div class="col-md-12 col-sm-12 col-xs-12 padd0 margin-t40 margin-t20-m">
 							<a href="javascript:void(0);"
 								data-ng-class="{'btn-primary': cityLocation.gurgaon}"
                                 data-ng-click="setCityLocation('gurgaon')"
@@ -209,32 +189,7 @@
 								<img ng-src="{{cityLocation.noida && 'images/app_bar_icons/location-icon_selected.png' || 'images/app_bar_icons/location-icon_-unselected.png'}}" alt="" style="width: 10%;">
 								<div class="loc-place">Noida</div>
 							</a>
-						</div>
-						
-						
-                        <!--<div class="col-md-12 col-sm-12 col-xs-12 padd0">
-                            <ul class="list-unstyled">
-                                <li style="padding-top: 25px; ">
-                                    <a href="javascript:void(0);" class="btn btn-default"
-                                        data-ng-class="{'btn-primary': cityLocation.delhi}"
-                                        data-ng-click="setCityLocation('delhi')"
-                                        role="button">Delhi</a>            
-                                </li>
-                                <li style="padding-top: 25px; ">
-                                    <a href="javascript:void(0);" class="btn btn-default" 
-                                        data-ng-class="{'btn-primary': cityLocation.gurgaon}"
-                                        data-ng-click="setCityLocation('gurgaon')"
-                                        role="button">Gurgaon</a>
-                                </li>
-                                <li style="padding-top: 25px; ">
-                                    <a href="javascript:void(0); " 
-                                        class="btn btn-default" 
-                                        data-ng-class="{'btn-primary': cityLocation.noida}"
-                                        data-ng-click="setCityLocation('noida')"
-                                        role="button">Noida</a>
-                                </li>
-                            </ul>
-                        </div>-->
+						</div> -->                        
                     </div>
                 </div>
             </div>

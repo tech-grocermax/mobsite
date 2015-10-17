@@ -1,0 +1,40 @@
+Location Popup
+	Use location API for popup
+	use id & display value both  as per API & use it within entire system
+Home Page Flow1
+
+For category listing:
+	need to display only isActive categories
+	staples - combo - need to redirect it to product page
+
+Category pop need to be closed on outside click
+
+Home Banner
+	need to display one at a time
+
+Shop By Category
+
+Cart Item Counter
+	Need to use local storage
+
+Category Image need to displayed through web service
+its click event is not functioning
+	category/2180
+
+By Offer: items not displaying
+By Deal : items not displaying
+
+Prduct Listing
+	basket sync on add
+	numbers: 2 decimal restrict
+	paging
+Product Detail
+	Cart add functionality need to be implemented
+
+Static Page Content required	
+	http://localhost/magento/api/dealsbydealtype?deal_type_id=2
+	http://localhost/magento/api/offerbydealtype?cat_id=2180
+	http://localhost/mobsite/#/product/2205
+	http://localhost/mobsite/#/product/deal/238
+
+Deal/Catery name required

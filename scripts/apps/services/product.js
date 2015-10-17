@@ -22,20 +22,25 @@ define(['app'], function (app) {
 		    };  
 
 		    this.cartAddProduct = function(products, quoteId) {
-		    	var strProducts = JSON.stringify(products),
-		    		url = getAPIUrl() + "addtocartgust?products=" + strProducts 
-		    			+ "&quote_id=" + quoteId;
-
-		    	return serverUtility.postWebService(url)
+		    	var input = {
+			    		quote_id: quoteId,
+			    		products: products
+			    	},
+			    	url = getAPIUrl() + "addtocartgust";
+			    	
+		    	return serverUtility.postWebService(url, input)
 		    		.then(function(data){return data}, function(error){return error});
 		    };
 
 		    this.cartUpdateProduct = function(quoteId, products, productid) {
-		    	var url = getAPIUrl() + "deleteitem?productid=" + JSON.stringify(productid) 
-		    		+ "&quote_id=" + quoteId 
-		    		+ "&updateid=" + JSON.stringify(products);
+		    	var input = {
+			    		productid: productid,
+			    		quote_id: quoteId,
+			    		updateid: products
+			    	},
+			    	url = getAPIUrl() + "deleteitem";
 
-		    	return serverUtility.postWebService(url)
+		    	return serverUtility.postWebService(url, input)
 		    		.then(function(data){return data}, function(error){return error});
 		    };
 
