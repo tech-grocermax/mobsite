@@ -280,3 +280,5 @@ angular.forEach(data, function(value, key){
         console.log("do nothing...");
     }
 };*/
+
+{"userid":"4156","quote_id":"84627","shipping":"{"addressline2":"","default_billing":"0","lname":"Gupta","addressline1":"5 Nathupur\\nDLF City Phase 3\\nNear Guru Dronacharya Metro Station","country_id":"IN","postcode":"122011","telephone":"9958990470","default_shipping":true,"fname":"Praddeep","city":"Gurgaon"}","billing":"{"addressline2":"","default_billing":true,"lname":"gupta","addressline1":"123890\\naliganj\\ndaryaganj","country_id":"IN","postcode":"123456","telephone":"9958990470","default_shipping":false,"fname":"pradeeeep","city":"Gurgaon"}","payment_method":"paytm_cc","shipping_method":"tablerate_bestway","timeslot":"07:30 PM - 10:00 PM","date":"2015-10-19"}

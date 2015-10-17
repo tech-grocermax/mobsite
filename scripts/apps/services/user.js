@@ -94,9 +94,6 @@ define(['app'], function (app) {
 	    		if(addressId){
 		    		input.addressid = addressId;
 		    	}
-	    		/*var actionUrl = addressId ? "editaddress" : "addaddress",
-	    			url = getAPIUrl() + actionUrl + "?" + $.param(input);*/
-
 	    		var actionUrl = addressId ? "editaddress" : "addaddress",
 	    			url = getAPIUrl() + actionUrl;
 
@@ -126,8 +123,11 @@ define(['app'], function (app) {
 		    };
 
 		    this.forgotPassword = function(email) {
-		    	var url = getAPIUrl() + "forgotpassword?uemail=" + email;
-		    	return serverUtility.postWebService(url)
+		    	var input = {
+			    		uemail: email
+			    	},
+			    	url = getAPIUrl() + "forgotpassword";
+		    	return serverUtility.postWebService(url, input)
 		    		.then(
 		    			function(data){return data; },
 		    			function(error){return error; }
@@ -135,8 +135,8 @@ define(['app'], function (app) {
 		    };
 
 		    this.changePassword = function(input) {
-		    	var url = getAPIUrl() + "changepassword?" + $.param( input );
-		    	return serverUtility.postWebService(url)
+		    	var url = getAPIUrl() + "changepassword";
+		    	return serverUtility.postWebService(url, input)
 		    		.then(
 		    			function(data){return data; },
 		    			function(error){return error; }
