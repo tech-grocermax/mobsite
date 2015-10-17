@@ -32,7 +32,7 @@ define(['app'], function (app) {
 		        return (yyyy + '-' + mm + '-' + dd);
 		    };
 
-		    this.getLocationList = function() {
+		    this.getCityList = function() {
 		   		var url = getAPIUrl() + "getlocation";
 		    	return serverUtility.getWebService(url)
 		    		.then(

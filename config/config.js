@@ -6,20 +6,20 @@ var env = "local",
 			"protocol": "http",
 			"domainName": "localhost/staging.grocermax/",
 			"port": "",			
-			"apiUrl": "http://localhost/magento/api/"
-			//"apiUrl": "http://staging.grocermax.com/api/"
+			//"apiUrl": "http://localhost/magento/api/"
+			"apiUrl": "http://staging.grocermax.com/api/"
 		},
 		"qa": {			
 			"protocol": "http",
 			"domainName": "localhost/grocermax/",
 			"port": "",			
-			"apiUrl": "http://localhost/magento/api/"
+			"apiUrl": "http://staging.grocermax.com/api/"
 		},
 		"prod": {			
 			"protocol": "http",
 			"domainName": "localhost/grocermax/",
 			"port": "",			
-			"apiUrl": "http://localhost/magento/api/"
+			"apiUrl": "http://staging.grocermax.com/api/"
 		}
 	};
 

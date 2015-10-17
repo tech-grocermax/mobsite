@@ -81,7 +81,7 @@ define(['app'], function(app) {
             angular.element(document).ready(function () {
                 if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
                     || !utility.getJStorageKey("selectedCity")) {
-                    getcityList();
+                    getCityList();
                 }                  
             });
         }
