@@ -1,5 +1,5 @@
-var appURL = '/mobsite/scripts/apps/',
-	templateURL = '/mobsite/templates/';
+var appURL = '/grocermax/scripts/apps/',
+	templateURL = '/grocermax/templates/'; //mobsite
 
 require.config({
     baseUrl: '',

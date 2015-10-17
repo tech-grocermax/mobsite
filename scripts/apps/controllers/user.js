@@ -127,7 +127,8 @@ define(['app'], function(app) {
             };
 
             getLocationList = function() {
-                userService.getLocationList(1)
+                var cityId = utility.getJStorageKey("selectedCityId");
+                userService.getLocationList(cityId)
                     .then(function(data){
                         $scope.locationList = data.locality;                                          
                     });
@@ -487,29 +488,17 @@ define(['app'], function(app) {
                         }                  
                     });
             };
-
-            angular.element(document).ready(function () {
-                if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
-                    || !utility.getJStorageKey("selectedCity")) {
-                    $scope.openCitySelectionModal();
-                }  
-
-                $timeout(function() {
-                    $("#e1").select2();
-                }, 2000);
-            }); 
-
+            
             openCitySelectionModal = function() {
-                $timeout(function(){
-                    $('#myModal').modal({
-                        backdrop: false,
-                        keyboard: false,
-                        show: true
-                    });
-                }, 1000);
+                $('#myModal').modal({
+                    backdrop: false,
+                    keyboard: false,
+                    show: true
+                });
             };
 
             getCityList = function() {
+                toggleLoader(true);
                 utility.getCityList()
                     .then(function(data){
                         $scope.cityList = data.location;
@@ -517,9 +506,13 @@ define(['app'], function(app) {
                             var city = value.city_name.toLowerCase();
                             $scope.cityLocation[city] = false;
                         });
-                        console.log($scope.cityLocation);
                         openCitySelectionModal();
+                        toggleLoader(false);
                     });
+            };
+
+            $scope.changeCity = function() {
+                getCityList();
             };
 
             hideCitySelectionModal = function() {

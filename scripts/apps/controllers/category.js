@@ -2,7 +2,7 @@ define(['app'], function(app) {
 	app.controller('categoryController',  [
         '$scope', '$rootScope', '$location', '$timeout', '$routeParams', 'categoryService', 'productService', 'utility', 
         function($scope, $rootScope, $location, $timeout, $routeParams, categoryService, productService, utility){
-        	$scope.categories = null;
+            $scope.categories = null;
             $scope.categoryIndex = -1;
             $scope.subCategoryIndex = -1;
             $scope.categoryName = null;
