@@ -416,6 +416,15 @@ define(['app'], function(app) {
                 hideCitySelectionModal();
             };
 
+            $scope.getCityImgSrc = function(location) {
+                if(angular.isDefined(location)) {
+                    var city = location.city_name.toLowerCase();
+                    return $scope.cityLocation[city] ? 'selected.png' : '-unselected.png';
+                } else {
+                    return '-unselected.png';
+                }                
+            };
+
             angular.element(document).ready(function () {
                 if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
                     || !utility.getJStorageKey("selectedCity")) {
