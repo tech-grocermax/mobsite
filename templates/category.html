@@ -30,7 +30,8 @@
 							data-ng-show="!category.children.length">
 							No more category available
 						</div>					
-						<div class="align-center subc-h2">{{category.name}}</div>
+						<div class="align-center subc-h2"
+							data-ng-click="routerChange('product', category.category_id)">{{category.name}}</div>
 					</div>
 					<!--<div class="pad4 margin-lt15 imgbox-rt-margin"
 						data-ng-show="category.children.length && moreCategoryIndex == category.category_id">
