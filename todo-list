@@ -1,16 +1,13 @@
 Place Order: for paytm & cash on delivery itsnotworking
 Registration: user added successfully, but returning empty user_id
 
-
 Important Point related quote
 
 addToCartGust
-
-remove quote_id & cart while logout
-remove quote_id & cart after checkout
-while login sent quote_id if exists
-add product to cart sent quote_id if exists otherwise sent it to null
-
+    remove quote_id & cart while logout
+    remove quote_id & cart after checkout
+    while login sent quote_id if exists
+    add product to cart sent quote_id if exists otherwise sent it to null
 
 DONE
 $app->post('/login', function(){ $GLOBALS['apiObj']->loginUser();});

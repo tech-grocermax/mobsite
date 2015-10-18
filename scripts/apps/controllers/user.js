@@ -484,6 +484,7 @@ define(['app'], function(app) {
                     .then(function(data){
                         if(data.flag == "1") {
                             utility.deleteJStorageKey("userId");
+                            utility.deleteJStorageKey("quoteId")
                             $location.url("user/login");
                         }                  
                     });

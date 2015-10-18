@@ -277,6 +277,10 @@ define(['app'], function(app) {
                 });
             };
 
+            $scope.removeCartItem = function(product) {
+                $scope.productIds.push(product.product_id);
+            };
+
             checkoutSuccessCallback = function(data, flag) {
                 if(flag == "update") {
                     $scope.isCartUpdated = false;
@@ -317,10 +321,6 @@ define(['app'], function(app) {
                             checkoutSuccessCallback(data, flag);                            
                         }                            
                     });
-            };    
-
-            $scope.removeCartItem = function(product) {
-                $scope.productIds.push(product.product_id);
             };
 
             /*$scope.checkout = function() {

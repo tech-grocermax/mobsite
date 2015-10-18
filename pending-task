@@ -34,6 +34,8 @@ Prduct Listing
 Product Detail
 	Cart add functionality need to be implemented
 
+Header Search Icon should ne functional
+
 Static Page Content required	
 	http://localhost/magento/api/dealsbydealtype?deal_type_id=2
 	http://localhost/magento/api/offerbydealtype?cat_id=2180
