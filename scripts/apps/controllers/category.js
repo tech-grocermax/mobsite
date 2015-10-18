@@ -248,6 +248,14 @@ define(['app'], function(app) {
                 $scope.showMoreMenuOptions = false;
             };
 
+            $scope.handleMenuCategoryOutsideClick = function() {
+                $scope.showCategoryMenu = false;
+            };
+
+            $scope.handleSubMenuCategoryOutsideClick = function() {
+                $scope.showSubCategoryMenu = false;
+            };
+
             $scope.isSpecialCategory = function(categoryId) {
                 return categoryService.isSpecialCategory(categoryId);
             };
