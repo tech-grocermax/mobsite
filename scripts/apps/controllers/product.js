@@ -184,8 +184,10 @@ define(['app'], function(app) {
                     quoteId = utility.getJStorageKey("quoteId");
                 }              
 
+                toggleLoader(true);
                 productService.cartAddProduct(productObject, quoteId)
                     .then(function(data){
+                        toggleLoader(false);
                         if(data.flag == 1 || data.flag == "1"){
                             if(!quoteId) {
                                 utility.setJStorageKey("quoteId", data.QuoteId, 1);

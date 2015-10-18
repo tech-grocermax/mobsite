@@ -38,8 +38,8 @@
 						</li>
                         <li class="cat-list-name">{{product.p_name}}</li>
                         <li class="prod-list-qnty">{{product.p_pack}}</li>
-                        <li class="font-3"><span class="product-qnty">₹ {{product.sale_price}} |</span> <span class="prod-new-price">₹ {{product.Price}}</span></li>
-                        <li class="product-qnty">₹ {{getPriceDifference(product.Price, product.sale_price)}}</li>
+                        <li class="font-3"><span class="product-qnty">₹ {{toFixedDecimal(product.sale_price)}} |</span> <span class="prod-new-price">₹ {{toFixedDecimal(product.Price)}}</span></li>
+                        <li class="product-qnty">₹ {{toFixedDecimal(getPriceDifference(product.Price, product.sale_price))}}</li>
                     </ul>
                 </div>
 				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 col-md-offset-3 col-sm-offset-3 col-xs-offset-3 padd0">
