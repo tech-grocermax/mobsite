@@ -330,7 +330,8 @@ define(['app'], function(app) {
                 toggleLoader(true);
                 productService.cartUpdateProduct(quoteId, products, $scope.productIds)
                     .then(function(data){
-                        if(data.flag == 1 || data.flag == "1"){                            
+                        if(data.flag == 1 || data.flag == "1"){
+                            $scope.productIds = [];                           
                             checkoutSuccessCallback(data, flag);                            
                         }                            
                     });

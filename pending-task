@@ -1,4 +1,6 @@
 https://github.com/davidchin/angular-endless-scroll
+Within Cart need to handle single cart item delete
+(need to trigger)
 
 Location Popup
 	Use location API for popup
