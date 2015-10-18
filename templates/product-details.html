@@ -12,22 +12,44 @@
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 font-3">
-                    <span class="product-qnty">₹ {{productDetails.sale_price}} |</span> 
-                    <span class="prod-new-price">₹ {{productDetails.product_price}}</span><br>
-                    <span class="product-qnty">₹ {{getPriceDifference(productDetails.product_price, productDetails.sale_price)}}</span>
+                    <span class="product-qnty">
+                        ₹ {{toFixedDecimal(productDetails.sale_price)}} |</span> 
+                    <span class="prod-new-price">
+                        ₹ {{toFixedDecimal(productDetails.product_price)}}</span><br>
+                    <span class="product-qnty">
+                        ₹ {{toFixedDecimal(getPriceDifference(productDetails.product_price, productDetails.sale_price))}}</span>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 float-rt">
+                <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 float-rt">
                     <ul class="list-unstyled cat-list">
                         <li class="cat-minus" 
                             data-ng-click="removeProductWrapper(productDetails)">-</li>
                         <li class="cat-input-box">
-                            <input type="text" placeholder="1" 
-                                value="{{getProductQuantity(productDetails.product_id)}}" 
-                                class="cat-input-text">
+                            <input type="text" value="{{product.quantity}}" 
+                                    class="cat-input-text">
                         </li>
                         <li class="cat-plus" 
                             data-ng-click="addProductWrapper(productDetails)">+</li>
                     </ul>
+                </div> -->
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 col-md-offset-3 col-sm-offset-3 col-xs-offset-3 padd0">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd0"
+                    data-ng-show="productDetails.Status == 'In stock'">
+                    <ul class="list-unstyled cat-list">
+                        <li class="cat-minus" 
+                            data-ng-click="decreaseProductDetailQuantity()">-</li>
+                        <li class="cat-input-box">
+                            <!-- {{getProductQuantity(product.productid)}} -->
+                            <input type="text" value="{{productDetails.quantity}}" 
+                                class="cat-input-text">
+                        </li>
+                        <li class="cat-plus" 
+                            data-ng-click="increaseProductDetailQuantity()">+</li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 padd0 add-btn-box">
+                    <button type="button" class="add-btn" 
+                        data-ng-click="addProductOneByOne(productDetails)">ADD</button>
                 </div>
             </div>
         </div>

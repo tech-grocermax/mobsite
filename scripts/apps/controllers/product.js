@@ -112,19 +112,15 @@ define(['app'], function(app) {
             }
 
             getProductDetails = function() {
-                $scope.categoryName = "Product Description";
-                var jstorageKeyProductDetails = "productDetails_" + $routeParams.productId;
-                if (utility.getJStorageKey(jstorageKeyProductDetails)) {
-                    $scope.productDetails = utility.getJStorageKey(jstorageKeyProductDetails);
-                } else {
-                    toggleLoader(true);
-                    productService.getProductDetails($scope.productId)
-                        .then(function(data){
-                            $scope.productDetails = data.Product_Detail[0]; 
-                            utility.setJStorageKey(jstorageKeyProductDetails, $scope.productDetails, 1);
-                            toggleLoader(false);
-                        });
-                }
+                $scope.categoryName = "Product Description";                
+                toggleLoader(true);
+                productService.getProductDetails($scope.productId)
+                    .then(function(data){
+                        toggleLoader(false);
+                        $scope.productDetails = data.Product_Detail[0];                        
+                        $scope.productDetails.productid = $scope.productDetails.product_id;
+                        $scope.productDetails.quantity = 1;
+                    });                
             };            
 
             if($scope.productId){
@@ -237,7 +233,9 @@ define(['app'], function(app) {
             };
 
             $scope.getPriceDifference = function(price, salePrice) {
-                return price.replace(",", "") - salePrice.replace(",", "")
+                if(angular.isDefined(price) && angular.isDefined(salePrice)) {
+                    return price.replace(",", "") - salePrice.replace(",", "");
+                }                
             }; 
 
             $scope.increaseProductQuantity = function(productId, keyName) {
@@ -254,6 +252,16 @@ define(['app'], function(app) {
                         value["quantity"] = parseInt(value["quantity"], 10) - 1;
                     }                    
                 });
+            };
+
+            $scope.increaseProductDetailQuantity = function(productId, keyName) {
+                $scope.productDetails["quantity"] = parseInt($scope.productDetails["quantity"], 10) + 1;                    
+            };
+
+            $scope.decreaseProductDetailQuantity = function(productId, keyName) {
+                if($scope.productDetails["quantity"] > 1) {
+                    $scope.productDetails["quantity"] = parseInt($scope.productDetails["quantity"], 10) - 1;
+                }
             };
 
             $scope.increaseCartProductQuantity = function(item, keyName) {
