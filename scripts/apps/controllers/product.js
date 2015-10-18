@@ -67,6 +67,7 @@ define(['app'], function(app) {
                 productService.getProductListByDealId($scope.dealId)
                     .then(function(data){
                         $scope.products = data.Product.items; 
+                        $scope.categoryName = data.Product.dealtitle;
                         setDefaultProductQuantity();
                         toggleLoader(false);
                     });                
@@ -240,7 +241,6 @@ define(['app'], function(app) {
             }; 
 
             $scope.increaseProductQuantity = function(productId, keyName) {
-                console.log(productId, keyName);
                 angular.forEach($scope.products, function(value, key) {
                     if(value[keyName] == productId) {
                         value["quantity"] = parseInt(value["quantity"], 10) + 1;
@@ -249,7 +249,6 @@ define(['app'], function(app) {
             };
 
             $scope.decreaseProductQuantity = function(productId, keyName) {
-                console.log(productId, keyName);
                 angular.forEach($scope.products, function(value, key) {
                     if(value[keyName] == productId && value["quantity"] > 1) {
                         value["quantity"] = parseInt(value["quantity"], 10) - 1;
@@ -259,7 +258,6 @@ define(['app'], function(app) {
 
             $scope.increaseCartProductQuantity = function(item, keyName) {
                 $scope.isCartUpdated = true;
-                console.log(item, keyName);
                 var productId = item.product_id;
                 angular.forEach($scope.cartDetails.items, function(value, key) {
                     if(value[keyName] == productId) {
@@ -269,7 +267,6 @@ define(['app'], function(app) {
             };
 
             $scope.decreaseCartProductQuantity = function(item, keyName) {
-                console.log(item, keyName);
                 var productId = item.product_id;
                 angular.forEach($scope.cartDetails.items, function(value, key) {
                     if(value[keyName] == productId && value["qty"] > 1) {
@@ -280,7 +277,13 @@ define(['app'], function(app) {
             };
 
             $scope.removeCartItem = function(product) {
+                $scope.isCartUpdated = true;
                 $scope.productIds.push(product.product_id);
+            };
+
+            $scope.hideCartItem = function(product) {
+                var productId = parseInt(product.product_id, 10);
+                return $scope.productIds.indexOf(product.product_id) >= 0 ? true : false; 
             };
 
             checkoutSuccessCallback = function(data, flag) {
@@ -301,7 +304,8 @@ define(['app'], function(app) {
             buildProductObject = function() {
                 var products = [];
                 angular.forEach($scope.cartDetails.items, function(value, key) {
-                    if(value.apply_rule == 0) {
+                    if(value.apply_rule == 0 
+                        && $scope.productIds.indexOf(value.product_id) == -1) {
                         products.push({
                             "productid": parseInt(value.product_id, 10),
                             "quantity": parseInt(value.qty, 10)
@@ -312,7 +316,6 @@ define(['app'], function(app) {
             };
 
             $scope.checkout = function(flag) {
-                console.log("checkout");
                 var quoteId = utility.getJStorageKey("quoteId"),
                     products = buildProductObject();
 
@@ -323,26 +326,7 @@ define(['app'], function(app) {
                             checkoutSuccessCallback(data, flag);                            
                         }                            
                     });
-            };
-
-            /*$scope.checkout = function() {
-                var quoteId = utility.getJStorageKey("quoteId"),
-                    cartItems = utility.getJStorageKey("cartItems");
-
-                var products = [];
-                if(cartItems.length) {
-                    angular.forEach(cartItems, function(value, key){
-                        var currentIndex = $scope.productIds.indexOf(value.productid);
-                        if(currentIndex >= 0) {
-                            $scope.productIds.splice(currentIndex, 1);
-                        }
-                    });
-                }
-
-                if(cartItems.length || $scope.productIds.length) {
-                    updateCartProducts(quoteId, cartItems);
-                }
-            };*/
+            };            
 
             $scope.showMoreMenu = function() {
                 $scope.showUserMenuOptions = false;
