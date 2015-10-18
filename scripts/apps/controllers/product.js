@@ -143,10 +143,15 @@ define(['app'], function(app) {
                 toggleLoader(true);
                 productService.getCartItemDetails($scope.quoteId)
                     .then(function(data){ 
-                        toggleLoader(false);             
-                        $scope.cartDetails = data.CartDetail;                         
-                        $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);                          
-                        getYouSaveAmout();
+                        toggleLoader(false);
+                        if(data.flag == 0) {
+                            $scope.cartDetails = [];
+                            $scope.cartItemCount = 0;
+                        } else {
+                            $scope.cartDetails = data.CartDetail;                         
+                            $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);                          
+                            getYouSaveAmout();
+                        }                        
                     });
             };  
 
@@ -285,8 +290,12 @@ define(['app'], function(app) {
             };
 
             $scope.removeCartItem = function(product) {
+                console.log($scope.cartDetails.items);
                 $scope.isCartUpdated = true;
                 $scope.productIds.push(product.product_id);
+                if($scope.cartDetails.items.length == 1) {
+                    $scope.checkout('update');
+                }
             };
 
             $scope.hideCartItem = function(product) {
