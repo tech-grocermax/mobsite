@@ -136,11 +136,12 @@ define(['app'], function(app) {
             } else if ($routeParams.dealId) {
                 $scope.columnSize = 10;
                 $scope.showMoreIcon = false;
-                $scope.categoryName = "Deal Name";
+                //$scope.categoryName = "Deal Name";
                 toggleLoader(true);
                 categoryService.getDealsByDealId($routeParams.dealId)
                     .then(function(data){  
-                        if(data.flag == 1) {                      
+                        if(data.flag == 1) {    
+                            $scope.categoryName = angular.isDefined(data.dealcategory.name[0]) ? data.dealcategory.name[0] : "Deal";                  
                             getDealItemList(data.dealcategory);
                         }
                         toggleLoader(false);
@@ -148,7 +149,7 @@ define(['app'], function(app) {
             }  else if ($routeParams.dealCategoryId) {
                 $scope.columnSize = 10;
                 $scope.showMoreIcon = false;
-                $scope.categoryName = "Deal Category Name";
+                $scope.categoryName = categoryService.getCategoryName($scope.categories, $routeParams.dealCategoryId);
                 toggleLoader(true);
                 categoryService.getDealsByDealCategoryId($routeParams.dealCategoryId)
                     .then(function(data){      

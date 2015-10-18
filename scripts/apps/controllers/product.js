@@ -147,6 +147,8 @@ define(['app'], function(app) {
                         if(data.flag == 0) {
                             $scope.cartDetails = [];
                             $scope.cartItemCount = 0;
+                            utility.deleteJStorageKey("quoteId");
+                            $scope.quoteId = null;
                         } else {
                             $scope.cartDetails = data.CartDetail;                         
                             $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);                          
@@ -290,7 +292,6 @@ define(['app'], function(app) {
             };
 
             $scope.removeCartItem = function(product) {
-                console.log($scope.cartDetails.items);
                 $scope.isCartUpdated = true;
                 $scope.productIds.push(product.product_id);
                 if($scope.cartDetails.items.length == 1) {
