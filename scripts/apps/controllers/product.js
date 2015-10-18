@@ -156,19 +156,7 @@ define(['app'], function(app) {
             if($scope.quoteId){
                 getCartItemDetails(); 
                 $scope.categoryName = "Your Cart";
-            } 
-
-            $scope.getCartProductQuantity = function(productId) {
-                var qty = 1;
-                if($scope.cartDetails.items.length) {
-                    angular.forEach($scope.cartDetails.items, function(value, key) {
-                        if(productId == value.product_id){
-                            qty = value.qty;
-                        }
-                    });
-                }
-                return qty;
-            };         
+            }                    
 
             //utility.deleteJStorageKey("quoteId");
 
@@ -219,6 +207,19 @@ define(['app'], function(app) {
                 }
                 return qty;
             };
+
+            $scope.getCartProductQuantity = function(productId) {
+                var qty = 0;
+                if(angular.isDefined($scope.cartDetails) 
+                    && $scope.cartDetails.items.length) {
+                    angular.forEach($scope.cartDetails.items, function(value, key) {
+                        if(productId == value.product_id){
+                            qty = value.qty;
+                        }
+                    });
+                }
+                return qty;
+            }; 
 
             $scope.routerChange = function(route, id) {
                 $location.url(route + "/" + id);
@@ -276,6 +277,21 @@ define(['app'], function(app) {
                 });
             };
 
+            checkoutSuccessCallback = function(data, flag) {
+                if(flag == "update") {
+                    $scope.isCartUpdated = false;
+                    getCartItemDetails();
+                } else {
+                    toggleLoader(false);
+                    if(angular.isDefined(utility.getJStorageKey("userId"))
+                        && utility.getJStorageKey("userId")) {
+                        $location.url("checkout/shipping");
+                    } else {
+                        $location.url("user/login?isReferrer=checkout");
+                    }
+                }                
+            };
+
             buildProductObject = function() {
                 var products = [];
                 angular.forEach($scope.cartDetails.items, function(value, key) {
@@ -289,20 +305,16 @@ define(['app'], function(app) {
                 return products;             
             };
 
-            $scope.checkout = function() {
+            $scope.checkout = function(flag) {
                 console.log("checkout");
                 var quoteId = utility.getJStorageKey("quoteId"),
                     products = buildProductObject();
 
+                toggleLoader(true);
                 productService.cartUpdateProduct(quoteId, products, $scope.productIds)
                     .then(function(data){
-                        if(data.flag == 1 || data.flag == "1"){
-                            if(angular.isDefined(utility.getJStorageKey("userId"))
-                                && utility.getJStorageKey("userId")) {
-                                $location.url("checkout/shipping");
-                            } else {
-                                $location.url("user/login?isReferrer=checkout");
-                            }
+                        if(data.flag == 1 || data.flag == "1"){                            
+                            checkoutSuccessCallback(data, flag);                            
                         }                            
                     });
             };    
@@ -346,13 +358,10 @@ define(['app'], function(app) {
             };  
             
             $scope.toFixedDecimal = function(num) {
-                if(angular.isUndefined(num)) {
-                    return 0.00;
-                }
-                //return num.toFixed(2);
-                num = parseFloat(num);
-                var n = num.toFixed(2);
-                return n;
+                if(angular.isDefined(num)) {
+                    num = parseFloat(num);
+                    return num.toFixed(2);
+                }                
             };
 
             $scope.navigateToShipping = function() {
@@ -408,12 +417,10 @@ define(['app'], function(app) {
                 }                
             };
 
-            // Register event handler
+            // Page bottom touch event handler
             $scope.$on('endlessScroll:next', function() {
-                console.log("endlessScroll:next");                
                 if($scope.pagination.current_page < $scope.pagination.total_pages) {                    
                     $scope.pagination.current_page = $scope.pagination.current_page + 1;
-                    console.log("page=" + $scope.pagination.current_page);
                     if($scope.categoryId){
                        getProductListByCategoryId();
                     }

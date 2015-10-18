@@ -22,15 +22,19 @@
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 margin-tp-5p"
                     data-ng-click="routerChange('product/details', product.productid)">
                     <img src="{{product.Image}}" 
-                        alt="{{product.Name}}" class="img-responsive"><!--style="height:100px;"-->
+                        alt="{{product.Name}}" class="img-responsive">
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 padd0"
                     data-ng-click="routerChange('product/details', product.productid)">
                     <ul class="list-unstyled">
                         <li class="prod-list-h">
 							{{product.p_brand}}							
-							<img src="images/app_bar_icons/cart_add_quantity.png" alt="{{product.Name}}" class="img-responsive cart-image">
-							<span class="cart-txt">{{product.quantity}}</span>
+							<img src="images/app_bar_icons/cart_add_quantity.png" 
+                                data-ng-show="getCartProductQuantity(product.productid) > 0"
+                                alt="{{product.Name}}" class="img-responsive cart-image">
+							<span class="cart-txt"
+                                data-ng-show="getCartProductQuantity(product.productid) > 0">
+                                {{getCartProductQuantity(product.productid)}}</span>
 						</li>
                         <li class="cat-list-name">{{product.p_name}}</li>
                         <li class="prod-list-qnty">{{product.p_pack}}</li>

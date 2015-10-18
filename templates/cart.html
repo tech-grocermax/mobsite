@@ -72,19 +72,23 @@
                 <ul class="list-unstyled margin0 pmeth-card">
                     <li>
                         <span>Sub total:</span>
-                        <span class="float-rt">Rs. {{cartDetails.subtotal}}</span>
+                        <span class="float-rt">
+                            Rs. {{toFixedDecimal(cartDetails.subtotal)}}</span>
                     </li>
                     <li>
                         <span>Shipping charges:</span>
-                        <span class="float-rt">Rs. {{cartDetails.shipping_address.shipping_amount}}</span>
+                        <span class="float-rt">
+                            Rs. {{toFixedDecimal(cartDetails.shipping_address.shipping_amount)}}</span>
                     </li>
                     <li>
                         <span>You Saved:</span>
-                        <span class="float-rt pmeth-card-font">Rs. {{youSaved}}</span>
+                        <span class="float-rt pmeth-card-font">
+                            Rs. {{toFixedDecimal(youSaved)}}</span>
                     </li>
                     <li>
                         <span>Total:</span>
-                        <span class="float-rt">Rs. {{cartDetails.subtotal}}</span>
+                        <span class="float-rt">
+                            Rs. {{toFixedDecimal(cartDetails.subtotal)}}</span>
                     </li>
                 </ul>
             </ul>
@@ -94,10 +98,10 @@
         style="margin-top:100px;">
         <button type="button" class="reg-bot-btn bot-foot"
             data-ng-show="isCartUpdated"
-            data-ng-click="checkout()">UPDATE CART</button>
+            data-ng-click="checkout('update')">UPDATE CART</button>
         <button type="button" class="reg-bot-btn bot-foot"
             data-ng-show="!isCartUpdated"
-            data-ng-click="checkout()">PROCEED</button>
+            data-ng-click="checkout('checkout')">PROCEED</button>
     </div>
 
     <div class="popupcontainerloader" style="position:fixed;"
