@@ -101,6 +101,8 @@ define(['app'], function(app) {
             if($scope.categoryId){
                getLastChildCategoryList(); 
                getProductListByCategoryId();
+               $scope.categoryName = categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.categoryId);
+               console.log("name = " + $scope.categoryName);               
             }
 
             if($scope.dealId){
@@ -131,10 +133,12 @@ define(['app'], function(app) {
                 var savedAmont = 0,
                     qty = 0;
 
-                angular.forEach($scope.cartDetails.items, function(value, key) {
-                    savedAmont = savedAmont + parseFloat($scope.getPriceDifference(value.mrp, value.price));
-                    qty = qty + parseInt(value.qty);
-                });
+                if(angular.isDefined($scope.cartDetails)) {
+                    angular.forEach($scope.cartDetails.items, function(value, key) {
+                        savedAmont = savedAmont + parseFloat($scope.getPriceDifference(value.mrp, value.price));
+                        qty = qty + parseInt(value.qty);
+                    });
+                }
                 $scope.youSaved = savedAmont;
                 $scope.totalCartQty = qty;
             };
@@ -158,10 +162,11 @@ define(['app'], function(app) {
             };  
 
             if($scope.quoteId){
-                getCartItemDetails(); 
-                $scope.categoryName = "Your Cart";
+                getCartItemDetails();                
             }                    
-
+            if(angular.isDefined($routeParams.quoteId)) {
+                $scope.categoryName = "Your Cart";
+            }
             //utility.deleteJStorageKey("quoteId");
 
             $scope.navigateToCart = function() {

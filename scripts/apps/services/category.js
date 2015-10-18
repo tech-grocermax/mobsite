@@ -116,6 +116,30 @@ define(['app'], function (app) {
 		    			function(error){return error; }
 		    		);		    			    	
 		    };
+
+
+		    this.getCategoryNameInDepth = function(categories, categoryId) {
+		    	var catName = null;
+		    	if(categories.length){
+		    		angular.forEach(categories, function(value, key) {
+		    			if(value.category_id == categoryId) {
+		    				catName = value.name;
+		    			} 
+		    			angular.forEach(value.children, function(innerValue, innerKey) {	
+		    				if(innerValue.category_id == categoryId) {
+			    				catName = value.name;
+			    			}	    				
+	    					angular.forEach(innerValue.children, function(lastValue, lastKey) {
+				    			if(lastValue.category_id == categoryId) {
+				    				catName = value.name;
+				    			}
+	    					});		    				
+		    			});		    			
+
+		    		});					
+		    	}
+		    	return catName;
+		    };
 	    
 	    	return this;
     	}
