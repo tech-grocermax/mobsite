@@ -1,22 +1,18 @@
 <div ng-controller="productController">
-    <header data-ng-include="'templates/header.html'" class="top-head"></header>
-    <!--<div class="row margin0 ">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pmeth-h back-white">YOUR CART</div>
-    </div>
-    <div class="row margin0 pad-ltr16 pad-ltr8-m">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" 
-            style="font-size:3vw; color:2d2d2d;">
-            <span>ITEMS ({{totalCartQty}})</span>
-            <span class="float-rt">
-                <span>TOTAL:</span> <span>Rs. {{cartDetails.subtotal}}</span>
-            </span>
+    <header data-ng-include="'templates/header.html'"></header>
+    <div class="row margin0 pad-lt16 pad-rt16 margin-top10 margin-0-m"
+        data-ng-show="!cartDetails.items.length">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 dot-border"
+            style="padding: 20px; margin-top: 20px; text-align:center; ">
+            Your cart is empty. <a href="#">Continue Shopping</a>
         </div>
-    </div>-->
+    </div>
     <div class="row margin0 pad16 cart-margin">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box"
+            data-ng-show="cartDetails.items.length"
+            data-ng-hide="hideCartItem(product)"
             data-ng-repeat="product in cartDetails.items">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <!-- <img src="images/product.png" alt="" class="img-responsive"> -->
                 <img src="{{replaceImageUrl(product.product_thumbnail)}}" 
                         alt="" class="img-responsive">
             </div>
@@ -24,15 +20,19 @@
                 <ul class="list-unstyled">
                     <li class="prod-list-h">{{product.p_brand}}
 					   <img src="images/app_bar_icons/delete-icon.png"
+                            data-ng-show="product.apply_rule == 0"
                             data-ng-click="removeCartItem(product)" 
                             alt="" class="delet-icon">
                     </li>
                     <li class="cat-list-name">{{product.name}}</li>
                     <li class="prod-list-qnty">{{product.p_pack}}</li>
                     <li class="font-3">
-                        <span class="product-qnty">₹ {{toFixedDecimal(product.price)}}</span> 
-                        <span class="prod-new-price"> | ₹ {{product.mrp}}</span></li>
-                    <li class="product-qnty">₹ {{getPriceDifference(product.mrp, product.price)}}</li>
+                        <span class="product-qnty">
+                            ₹ {{toFixedDecimal(product.price)}}</span> 
+                        <span class="prod-new-price">
+                            | ₹ {{toFixedDecimal(product.mrp)}}</span></li>
+                    <li class="product-qnty">
+                        ₹ {{toFixedDecimal(getPriceDifference(product.mrp, product.price))}}</li>
                 </ul>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cat-list-box float-rt">
@@ -60,101 +60,48 @@
             </div>
         </div>
     </div>
-    <!--<div class="row margin0 pad-lt16 pad-lt-rt8-m">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" 
-            style="font-size:3vw; color:2d2d2d;">
-            <span>PRICE DETAILS</span>
-        </div>
-    </div>-->
-    <div class="row margin0 pad-lt16 pad-rt16 margin-top10 margin-0-m cart-box-botom">
+    <div class="row margin0 pad-lt16 pad-rt16 margin-top10 margin-0-m cart-box-botom"
+        data-ng-show="cartDetails.items.length">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 dot-border">
             <ul class="list-unstyled margin0 pad-lt16 pad-rt16 font4-3">
                 <ul class="list-unstyled margin0 pmeth-card">
                     <li>
                         <span>Sub total:</span>
-                        <span class="float-rt">Rs. {{cartDetails.subtotal}}</span>
+                        <span class="float-rt">
+                            Rs. {{toFixedDecimal(cartDetails.subtotal)}}</span>
                     </li>
                     <li>
                         <span>Shipping charges:</span>
-                        <span class="float-rt">Rs. {{cartDetails.shipping_address.shipping_amount}}</span>
+                        <span class="float-rt">
+                            Rs. {{toFixedDecimal(cartDetails.shipping_address.shipping_amount)}}</span>
                     </li>
                     <li>
                         <span>You Saved:</span>
-                        <span class="float-rt pmeth-card-font">Rs. {{youSaved}}</span>
+                        <span class="float-rt pmeth-card-font">
+                            Rs. {{toFixedDecimal(youSaved)}}</span>
                     </li>
                     <li>
                         <span>Total:</span>
-                        <span class="float-rt">Rs. {{cartDetails.subtotal}}</span>
+                        <span class="float-rt">
+                            Rs. {{toFixedDecimal(cartDetails.subtotal)}}</span>
                     </li>
                 </ul>
             </ul>
         </div>
     </div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" 
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0"
+        data-ng-show="cartDetails.items.length" 
         style="margin-top:100px;">
         <button type="button" class="reg-bot-btn bot-foot"
             data-ng-show="isCartUpdated"
-            data-ng-click="checkout()">UPDATE CART</button>
+            data-ng-click="checkout('update')">UPDATE CART</button>
         <button type="button" class="reg-bot-btn bot-foot"
             data-ng-show="!isCartUpdated"
-            data-ng-click="checkout()">PROCEED</button>
-    </div>
-
+            data-ng-click="checkout('checkout')">PROCEED</button>
+    </div>    
     <div class="popupcontainerloader" style="position:fixed;"
         data-ng-show="displayLoader">        
         <div style="text-align:center; width:100%; "><img src="images/ajax-loader.gif" /></div>
     </div>
     <div data-ng-show="displayLoader" class="black_shade"></div>
 </div>
-<!-- <div ng-controller="productController">
-    <header data-ng-include="'templates/header.html'"></header>    
-	<article class="margin-bot15">
-        <div class="row margin0 pad16 pad8-m">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box"
-                data-ng-repeat="product in cartDetails.items">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 margin-tp-5p">
-                    <img src="{{replaceImageUrl(product.product_thumbnail)}}" 
-                        alt="" class="img-responsive">
-                </div>
-                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd0">
-                    <ul class="list-unstyled">
-                        <li class="prod-list-h">{{product.p_brand}}</li>
-                        <li class="cat-list-name">{{product.name}}</li>
-                        <li class="prod-list-qnty">{{product.p_pack}}</li>
-                        <li class="font-3"><span class="product-qnty">₹ {{product.mrp}} |</span> <span class="prod-new-price">₹ {{product.price}}</span></li>
-                        <li class="product-qnty">₹ {{getPriceDifference(product.mrp, product.price)}}</li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cat-list-box">
-                    <ul class="list-unstyled cat-list">
-                        <li class="cat-minus" 
-                            data-ng-click="removeProductWrapper(product)">-</li>
-                        <li class="cat-input-box">
-                            <input type="text" placeholder="1" 
-                                value="{{getCartProductQuantity(product.product_id)}}" 
-                                class="cat-input-text">
-                        </li>
-                        <li class="cat-plus" data-ng-click="addProductWrapper(product)">+</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box">
-                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd0">
-                    <ul class="list-unstyled">
-                        <li class="cat-list-name">Sub total:</li>
-                        <li class="cat-list-name">Shipping Charges:</li>
-                        <li class="cat-list-name">You Saved:</li>
-                    </ul>
-                </div> 
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
-                    <ul class="list-unstyled">
-                        <li class="cat-list-name">Rs. {{cartDetails.subtotal}}</li>
-                        <li class="cat-list-name">
-                            Rs. {{cartDetails.shipping_address.shipping_amount}}</li>
-                        <li class="cat-list-name">Rs. {{youSaved}}</li>
-                    </ul>
-                </div>               
-            </div>           
-        </div>
-    </article>
-</div> -->

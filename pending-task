@@ -1,6 +1,11 @@
+https://github.com/davidchin/angular-endless-scroll
+Within Cart need to handle single cart item delete
+(need to trigger delete/update cart + need to show empty cart message)
+
 Location Popup
 	Use location API for popup
 	use id & display value both  as per API & use it within entire system
+
 Home Page Flow1
 
 For category listing:
@@ -31,6 +36,8 @@ Prduct Listing
 Product Detail
 	Cart add functionality need to be implemented
 
+Header Search Icon should ne functional
+
 Static Page Content required	
 	http://localhost/magento/api/dealsbydealtype?deal_type_id=2
 	http://localhost/magento/api/offerbydealtype?cat_id=2180
@@ -38,3 +45,63 @@ Static Page Content required
 	http://localhost/mobsite/#/product/deal/238
 
 Deal/Catery name required
+
+http://staging.grocermax.com/api/dealproductlisting?deal_id=259
+Web Service not returning "Totalcount", which we are using for pagination
+
+
+Location Popup
+	Integrated web service
+	also logged cityId
+	use cityId for get locality within shipping address
+	use selected/unseleted image approporately
+
+
+// Define a method to load a page of data
+function load(page) {
+    var params     = { page: page },
+        isTerminal = $scope.pagination &&
+                   $scope.pagination.current_page >= $scope.pagination.total_pages &&
+                   $scope.pagination.current_page <= 1;
+
+    // Determine if there is a need to load a new page
+    if (!isTerminal) {
+        console.log("on the track");
+        // Flag loading as started
+        //$scope.loading = true;
+
+        // Make an API request
+        $http.get(getAPIUrl() + "productlist?cat_id=" + $scope.categoryId + "&page=" + page)
+            .success(function(data, status, headers) {
+                // Parse pagination data from the response header
+                $scope.pagination = angular.fromJson(headers('x-pagination'));
+                console.log(angular.fromJson(headers('x-pagination')));
+                // Create an array if not already created
+                $scope.items = $scope.items || [];
+
+                // Append new items (or prepend if loading previous pages)
+                $scope.items.push.apply($scope.items, data);
+            })
+            .error(function(data, status, headers) {
+                $timeout(function(){
+                    toggleLoader(false);
+                }, 2000);                            
+            })
+            .finally(function() {
+                // Flag loading as complete
+                $scope.loading = false;
+            });
+    }
+}
+
+// Register event handler
+$scope.$on('endlessScroll:next', function() {
+    // Determine which page to load
+    var page = $scope.pagination ? $scope.pagination.current_page + 1 : 1;
+
+    // Load page
+    load(page);
+});
+
+// Load initial page (first page or from query param)
+load($routeParams.page ? parseInt($routeParams.page, 10) : 1);

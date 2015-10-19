@@ -2,7 +2,7 @@ define(['app'], function(app) {
 	app.controller('categoryController',  [
         '$scope', '$rootScope', '$location', '$timeout', '$routeParams', 'categoryService', 'productService', 'utility', 
         function($scope, $rootScope, $location, $timeout, $routeParams, categoryService, productService, utility){
-        	$scope.categories = null;
+            $scope.categories = null;
             $scope.categoryIndex = -1;
             $scope.subCategoryIndex = -1;
             $scope.categoryName = null;
@@ -136,11 +136,12 @@ define(['app'], function(app) {
             } else if ($routeParams.dealId) {
                 $scope.columnSize = 10;
                 $scope.showMoreIcon = false;
-                $scope.categoryName = "Deal Name";
+                //$scope.categoryName = "Deal Name";
                 toggleLoader(true);
                 categoryService.getDealsByDealId($routeParams.dealId)
                     .then(function(data){  
-                        if(data.flag == 1) {                      
+                        if(data.flag == 1) {    
+                            $scope.categoryName = angular.isDefined(data.dealcategory.name[0]) ? data.dealcategory.name[0] : "Deal";                  
                             getDealItemList(data.dealcategory);
                         }
                         toggleLoader(false);
@@ -148,7 +149,7 @@ define(['app'], function(app) {
             }  else if ($routeParams.dealCategoryId) {
                 $scope.columnSize = 10;
                 $scope.showMoreIcon = false;
-                $scope.categoryName = "Deal Category Name";
+                $scope.categoryName = categoryService.getCategoryName($scope.categories, $routeParams.dealCategoryId);
                 toggleLoader(true);
                 categoryService.getDealsByDealCategoryId($routeParams.dealCategoryId)
                     .then(function(data){      
@@ -248,6 +249,14 @@ define(['app'], function(app) {
                 $scope.showMoreMenuOptions = false;
             };
 
+            $scope.handleMenuCategoryOutsideClick = function() {
+                $scope.showCategoryMenu = false;
+            };
+
+            $scope.handleSubMenuCategoryOutsideClick = function() {
+                $scope.showSubCategoryMenu = false;
+            };
+
             $scope.isSpecialCategory = function(categoryId) {
                 return categoryService.isSpecialCategory(categoryId);
             };
@@ -315,6 +324,25 @@ define(['app'], function(app) {
                 utility.setJStorageKey("selectedCity", city, 1);
                 utility.setJStorageKey("selectedCityId", location.id, 1);
                 hideCitySelectionModal();
+            };
+
+            $scope.getCityImgSrc = function(location) {
+                if(angular.isDefined(location)) {
+                    var city = location.city_name.toLowerCase();
+                    return $scope.cityLocation[city] ? 'selected.png' : '-unselected.png';
+                } else {
+                    return '-unselected.png';
+                }                
+            };
+
+            $scope.navigateToCart = function() {
+                if(angular.isDefined(utility.getJStorageKey("quoteId")) 
+                    && utility.getJStorageKey("quoteId")
+                    && $scope.cartItemCount) {
+                    $location.url("cart" + "/" + utility.getJStorageKey("quoteId"));
+                } else {
+                    console.log("ELSE");
+                }
             };
 
             angular.element(document).ready(function () {

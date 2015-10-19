@@ -416,6 +416,25 @@ define(['app'], function(app) {
                 hideCitySelectionModal();
             };
 
+            $scope.getCityImgSrc = function(location) {
+                if(angular.isDefined(location)) {
+                    var city = location.city_name.toLowerCase();
+                    return $scope.cityLocation[city] ? 'selected.png' : '-unselected.png';
+                } else {
+                    return '-unselected.png';
+                }                
+            };
+
+            $scope.navigateToCart = function() {
+                if(angular.isDefined(utility.getJStorageKey("quoteId")) 
+                    && utility.getJStorageKey("quoteId")
+                    && $scope.cartItemCount) {
+                    $location.url("cart" + "/" + utility.getJStorageKey("quoteId"));
+                } else {
+                    console.log("ELSE");
+                }
+            };
+
             angular.element(document).ready(function () {
                 if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
                     || !utility.getJStorageKey("selectedCity")) {

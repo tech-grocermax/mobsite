@@ -127,7 +127,8 @@ define(['app'], function(app) {
             };
 
             getLocationList = function() {
-                userService.getLocationList(1)
+                var cityId = utility.getJStorageKey("selectedCityId");
+                userService.getLocationList(cityId)
                     .then(function(data){
                         $scope.locationList = data.locality;                                          
                     });
@@ -483,43 +484,36 @@ define(['app'], function(app) {
                     .then(function(data){
                         if(data.flag == "1") {
                             utility.deleteJStorageKey("userId");
+                            utility.deleteJStorageKey("quoteId")
                             $location.url("user/login");
                         }                  
                     });
             };
-
-            angular.element(document).ready(function () {
-                if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
-                    || !utility.getJStorageKey("selectedCity")) {
-                    $scope.openCitySelectionModal();
-                }  
-
-                $timeout(function() {
-                    $("#e1").select2();
-                }, 2000);
-            }); 
-
+            
             openCitySelectionModal = function() {
-                $timeout(function(){
-                    $('#myModal').modal({
-                        backdrop: false,
-                        keyboard: false,
-                        show: true
-                    });
-                }, 1000);
+                $('#myModal').modal({
+                    backdrop: false,
+                    keyboard: false,
+                    show: true
+                });
             };
 
             getCityList = function() {
+                toggleLoader(true);
                 utility.getCityList()
                     .then(function(data){
                         $scope.cityList = data.location;
                         angular.forEach($scope.cityList, function(value, key) {
                             var city = value.city_name.toLowerCase();
-                            $scope.cityLocation[city] = false;
+                            $scope.cityLocation[city] = angular.isDefined(utility.getJStorageKey("selectedCity")) && utility.getJStorageKey("selectedCity") == city ? true : false;                            
                         });
-                        console.log($scope.cityLocation);
                         openCitySelectionModal();
+                        toggleLoader(false);
                     });
+            };
+
+            $scope.changeCity = function() {
+                getCityList();
             };
 
             hideCitySelectionModal = function() {
@@ -537,6 +531,25 @@ define(['app'], function(app) {
                 utility.setJStorageKey("selectedCity", city, 1);
                 utility.setJStorageKey("selectedCityId", location.id, 1);
                 hideCitySelectionModal();
+            };
+
+            $scope.getCityImgSrc = function(location) {
+                if(angular.isDefined(location)) {
+                    var city = location.city_name.toLowerCase();
+                    return $scope.cityLocation[city] ? 'selected.png' : '-unselected.png';
+                } else {
+                    return '-unselected.png';
+                }                
+            };
+
+            $scope.navigateToCart = function() {
+                if(angular.isDefined(utility.getJStorageKey("quoteId")) 
+                    && utility.getJStorageKey("quoteId")
+                    && $scope.cartItemCount) {
+                    $location.url("cart" + "/" + utility.getJStorageKey("quoteId"));
+                } else {
+                    console.log("ELSE");
+                }
             };
 
             angular.element(document).ready(function () {

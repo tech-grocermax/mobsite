@@ -49,7 +49,7 @@
 					</a>
                     <div class="header-O" data-ng-show="cartItemCount > 0">
                         {{cartItemCount}}</div>
-                    <div class="header-O" data-ng-show="cartItemCount == 0">&nbsp;</div>
+                    <!-- <div class="header-O" data-ng-show="cartItemCount == 0">&nbsp;</div> -->
                 </span>
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 float-rt"
@@ -76,6 +76,7 @@
             data-ng-show="showSearchBar">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white border-rad">
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 padd0 list-icon" 
+                    outsideclick="handleMenuCategoryOutsideClick()"
                     data-ng-click="toggleCategoryMenu()">
                     <img src="images/app_bar_icons/list.png" 
                         title="Click here to see more categories" 
@@ -96,11 +97,14 @@
             </div>
         </div>
 		
-		<div class="left-menu" data-ng-show="showCategoryMenu">
+		<div class="left-menu" data-ng-show="showCategoryMenu"
+            outsideclick="handleMenuCategoryOutsideClick()">
 			<!--<div class="menu-item-h">HOME</div>-->
 			<ul class="list-unstyled pad-lt32">
 				<li class="item-shop">SHOP BY CATEGORIES</li>
-				<li class="menu-item" data-ng-repeat="category in categories"
+				<li class="menu-item" 
+                    data-ng-show="category.is_active"
+                    data-ng-repeat="category in categories"
 					data-ng-click="toggleSubCategoryMenu(category.category_id)">
 					{{category.name}}
 					<img src="images/app_bar_icons/RIGHT-ICON.png" alt="" 
@@ -109,7 +113,8 @@
 			</ul>
 		</div>
 		
-		<div class="left-menu" data-ng-show="showSubCategoryMenu">
+		<div class="left-menu" data-ng-show="showSubCategoryMenu"
+            outsideclick="handleSubMenuCategoryOutsideClick()">
 			<div class="menu-subitem-h" data-ng-click="toggleCategoryMenu()">
 				<img src="images/app_bar_icons/gray-right-ico.png" alt="" 
 					style="display:inline;">
@@ -118,14 +123,14 @@
 			<ul class="list-unstyled pad-lt32">
 				<!-- Special category handling -->
 				<li class="menu-item sub-menu" data-ng-repeat="category in subCategories"
-					data-ng-show="isSpecialCategory(category.category_id)"
+					data-ng-show="isSpecialCategory(category.category_id) && category.is_active"
 					data-ng-click="routerChange('product', category.category_id)">
 					{{category.name}}
 				</li>
 
 				<!-- Normal category handling -->
 				<li class="menu-item sub-menu" data-ng-repeat="category in subCategories"
-					data-ng-show="!isSpecialCategory(category.category_id)"
+					data-ng-show="!isSpecialCategory(category.category_id) && category.is_active"
 					data-ng-click="toggleSubSubCategory(category.category_id)"
 					data-ng-class="{'ss-menu':subSubCategoryIndex == category.category_id}">            
 					{{category.name}}
@@ -168,28 +173,10 @@
                             >
 							<a href="javascript:void(0);"
 								data-ng-click="setCityLocation(location)" role="button">
-								<img ng-src="{{'images/app_bar_icons/location-icon_-unselected.png'}}" alt="" style="width: 10%;">
-								<div class="loc-place">{{location.city_name}}</div>
+								<img ng-src="images/app_bar_icons/location-icon_{{getCityImgSrc(location)}}" alt="" style="width: 10%;">
+                                <div class="loc-place">{{location.city_name}}</div>
 							</a>
-						</div>
-						<!-- <div class="col-md-12 col-sm-12 col-xs-12 padd0 margin-t40 margin-t20-m">
-							<a href="javascript:void(0);"
-								data-ng-class="{'btn-primary': cityLocation.gurgaon}"
-                                data-ng-click="setCityLocation('gurgaon')"
-                                role="button">
-								<img ng-src="{{cityLocation.gurgaon && 'images/app_bar_icons/location-icon_selected.png' || 'images/app_bar_icons/location-icon_-unselected.png'}}" alt="" style="width: 10%;">
-								<div class="loc-place">Gurgaon</div>
-							</a>
-						</div>
-						<div class="col-md-12 col-sm-12 col-xs-12 padd0 margin-t40 margin-t20-m">
-							<a href="javascript:void(0);"
-								data-ng-class="{'btn-primary': cityLocation.noida}"
-                                data-ng-click="setCityLocation('noida')"
-                                role="button">
-								<img ng-src="{{cityLocation.noida && 'images/app_bar_icons/location-icon_selected.png' || 'images/app_bar_icons/location-icon_-unselected.png'}}" alt="" style="width: 10%;">
-								<div class="loc-place">Noida</div>
-							</a>
-						</div> -->                        
+						</div>						                        
                     </div>
                 </div>
             </div>
