@@ -506,6 +506,8 @@ input , button, select{outline:none;}
 	.top-head .header-middle {height: 88px;}
 	.inner-body {margin-top: 88px;}
 	.cart-margin{margin-top: 88px;}
+	.user-wrapper {margin-top: 88px;}
+	.wrapper {margin-top: 88px;}
 	
 }
 
@@ -535,6 +537,8 @@ input , button, select{outline:none;}
 	.prod-sec {margin-bottom: 140px;}
 	.cart-margin {margin-top: 78px;}
 	.deals-img {margin-top: 148px;}
+	.user-wrapper {margin-top: 78px;}
+	.wrapper {margin-top: 78px;}
 }
 
 /*------------------------- SPRITE IMAGE -------------------------*/
