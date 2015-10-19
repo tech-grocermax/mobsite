@@ -127,12 +127,17 @@ define(['app'], function (app) {
 		    			} 
 		    			angular.forEach(value.children, function(innerValue, innerKey) {	
 		    				if(innerValue.category_id == categoryId) {
-			    				catName = value.name;
+			    				catName = innerValue.name;
 			    			}	    				
 	    					angular.forEach(innerValue.children, function(lastValue, lastKey) {
 				    			if(lastValue.category_id == categoryId) {
-				    				catName = value.name;
+				    				catName = lastValue.name;
 				    			}
+				    			/*angular.forEach(lastValue.children, function(v, k) {
+					    			if(v.category_id == categoryId) {
+					    				catName = v.name;
+					    			}
+		    					});*/
 	    					});		    				
 		    			});		    			
 

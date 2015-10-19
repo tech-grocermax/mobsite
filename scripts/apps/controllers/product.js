@@ -131,7 +131,7 @@ define(['app'], function(app) {
                getLastChildCategoryList(); 
                getProductListByCategoryId();
                $scope.categoryName = categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.categoryId);
-               console.log("name = " + $scope.categoryName);               
+               //console.log("name = " + $scope.categoryName);               
             }
 
             if($scope.dealId){
