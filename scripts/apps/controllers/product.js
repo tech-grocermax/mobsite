@@ -94,6 +94,7 @@ define(['app'], function(app) {
                 productService.getProductListBySearch($scope.keyword)
                     .then(function(data){
                         $scope.products = data.Product; 
+                        setDefaultProductQuantity();
                         toggleLoader(false);
                     });
             };
