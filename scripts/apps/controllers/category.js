@@ -115,7 +115,7 @@ define(['app'], function(app) {
                 $scope.dealCategoryList = [];
                 $scope.dealCategoryList.push({id: "all", label: "All"});
                 $scope.dealCategoryItemList["all"] = data["all"];                
-                $scope.activeDealCategory = $routeParams.dealCategoryId;
+                //$scope.activeDealCategory = $routeParams.dealCategoryId;
                 $scope.dealItems = data["all"];
                 angular.forEach(data.dealsCategory, function(value, key) {
                     $scope.dealCategoryList.push({
