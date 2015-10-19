@@ -89,14 +89,42 @@ define(['app'], function(app) {
                 }
             };
 
+            groupSearchProductByCategory = function(data) {
+                console.log(data);
+                $scope.searchCateforyList = angular.isDefined(data.Category) ? data.Category : [];
+                $scope.products = [];
+                if($scope.searchCateforyList.length) {
+                    angular.forEach($scope.searchCateforyList, function(value, key) {
+                        var products = [];
+                        angular.forEach(data.Product, function(innerValue, innerKey) {
+                            if(value.category_id == innerValue.categoryid[0]) {
+                                innerValue["quantity"] = 1;
+                                products.push(innerValue);
+                            }
+                        });
+                        value["products"] = products;
+                        value["isSelected"] = (key == 0) ? true : false;
+                    });
+                    $scope.products = $scope.searchCateforyList[0]["products"];
+                }
+            };
+
             getProductListBySearch = function() {
                 toggleLoader(true);
                 productService.getProductListBySearch($scope.keyword)
                     .then(function(data){
-                        $scope.products = data.Product; 
-                        setDefaultProductQuantity();
+                        groupSearchProductByCategory(data);
                         toggleLoader(false);
                     });
+            };
+
+            $scope.setSearchCategoryProducts = function(data, products) {
+                angular.forEach($scope.searchCateforyList, function(value, key) {
+                    value["isSelected"] = false;
+                });
+                data["isSelected"] = true;
+                $scope.products = [];
+                $scope.products = products;                
             };
 
             if($scope.categoryId){
@@ -111,6 +139,7 @@ define(['app'], function(app) {
             }
 
             if($scope.keyword) {
+                $scope.categoryName = $scope.keyword;
                 getProductListBySearch();
             }
 

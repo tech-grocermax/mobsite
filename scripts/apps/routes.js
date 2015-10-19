@@ -49,7 +49,7 @@ define([], function() {
                 ]
             },
             '/product': {
-                templateUrl: templateURL + 'product.html',
+                templateUrl: templateURL + 'product-search.html',
                 dependencies: [
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',
