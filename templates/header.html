@@ -1,11 +1,11 @@
 <div class="row margin0">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-middle">
-        <div class="row margin0" 
-            style="padding-left: 16px; padding-right: 16px; position:relative;">
+        <div class="row margin0" style="padding-right: 10px;">
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0" 
                 data-ng-show="columnSize == 1">
                 <a href="#/">
-					<img class="home"  title="Home" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqAQMAAAD/DVsYAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFhAEAASYAARfcVj8AAAAASUVORK5CYII=" alt="">
+					<img src="images/header-icon/home.png" title="Home" class="head-icon-width">
+					<!--<img class="home"  title="Home" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqAQMAAAD/DVsYAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFhAEAASYAARfcVj8AAAAASUVORK5CYII=" alt="">-->
 				</a>
             </div>
             <!--data-ng-click="showUserMenu()"
@@ -16,7 +16,8 @@
                     <img class="profile" title="User" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqAQMAAAD/DVsYAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFhAEAASYAARfcVj8AAAAASUVORK5CYII=">
 				</a>
                 <a href="#/user/login" data-ng-show="!isUserLoggedIn">
-                    <img class="profile" title="User" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqAQMAAAD/DVsYAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFhAEAASYAARfcVj8AAAAASUVORK5CYII=">
+                    <img src="images/header-icon/user_icon_2.png" title="User" class="head-user-icon">
+					<!--<img class="profile" title="User" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqAQMAAAD/DVsYAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFhAEAASYAARfcVj8AAAAASUVORK5CYII=">-->
 				</a>                
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd0" 
@@ -44,8 +45,8 @@
                 data-ng-class="{'margin-lt22p': (columnSize == 4 || columnSize == 1)}">
                 <span data-ng-click="navigateToCart()">
                     <a href="javascript:void(0);">
-                        <!--<img src="images/header-icon/cart.png" title="Cart" class="img-responsive">-->
-						<img class="cart" alt="" title="Cart" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAApAQMAAAB5mSm2AAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFeAAAAR8AAVTkCygAAAAASUVORK5CYII=">
+                        <img src="images/header-icon/cart.png" title="Cart" class="head-icon-width">
+						<!--<img class="cart" alt="" title="Cart" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAApAQMAAAB5mSm2AAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFeAAAAR8AAVTkCygAAAAASUVORK5CYII=">-->
 					</a>
                     <div class="header-O" data-ng-show="cartItemCount > 0">
                         {{cartItemCount}}</div>
@@ -57,8 +58,8 @@
                 data-ng-click="showMoreMenu()"
                 outsideclick="handleOutSideClick()">
                 <a href="javascript:void(0);">
-                    <!--<img src="images/header-icon/more-icon.png" title="More" class="img-responsive">-->
-					<img class="more-icon more-icon-mrg" title="More" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAANAQMAAAADjaXSAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAAxJREFUeNpjYKAZAAAAWwABrFxQuwAAAABJRU5ErkJggg==">
+                    <img src="images/header-icon/more-icon.png" title="More" class="more-icon-mrg head-icon-width">
+					<!--<img class="more-icon more-icon-mrg" title="More" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAANAQMAAAADjaXSAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAAxJREFUeNpjYKAZAAAAWwABrFxQuwAAAABJRU5ErkJggg==">-->
 				</a>                
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 show-more-menu"
@@ -72,7 +73,7 @@
                 </ul>
             </div>
         </div>
-        <div class="row margin0 margin-top32"
+        <div class="row margin0 margin-top32 margin-top16-m deals-hide"
             data-ng-show="showSearchBar">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white border-rad">
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 padd0 list-icon" 
