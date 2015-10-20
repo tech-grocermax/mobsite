@@ -97,7 +97,7 @@ input , button, select{outline:none;}
 .imgbox-margin{margin: 7.5px;}
 .deals-img{margin-top:198px;}
 .cat-img-mrg{margin-top:184px;}/*home change*/
-.offer-img-mrg{margin-top: 197px;}
+.offer-img-mrg{margin-top: 198px;}
 .imgbox-lt-margin{margin-left: 7.5px;}
 .slider-text{font-family: lato;font-weight: bold; font-size: 4.4vw; color: #2d2d2d;letter-spacing: 5px;margin-bottom: 31px;margin-top: 46px;}
 .slide-text{border:1px solid #F9e0dd; text-align:center; /*border-radius:4px; margin-top:-8px;margin-bottom:24px;*/ color:#e78e78; font-family:roboto; font-size: 3.4vw; letter-spacing:2px; padding:9px 0 6px; width: 368px;}
@@ -502,6 +502,7 @@ input , button, select{outline:none;}
 	.deals-head .header-middle {height: 80px;}
 	.deals-img {margin-top: 114px;}
 	.banner-slide{width:300px; height: 140px;}
+	.offer-img-mrg{margin-top: 116px;}
 }
 
 @media  (max-width: 360px){
@@ -525,7 +526,7 @@ input , button, select{outline:none;}
 	.cat-img-mrg {margin-top: 117px;}
 	.deals-img {margin-top: 104px;}
 	.banner-slide{width:270px; height: 120px;}
-	
+	.offer-img-mrg{margin-top: 104px;}
 }
 
 /*------------------------- SPRITE IMAGE -------------------------*/
