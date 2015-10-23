@@ -42,12 +42,12 @@
                             	class="error-message">Please enter House No.</div>
                         </div>
 					</li>
-					<li class="reg-list">
+					<li class="reg-list" style="padding-bottom: 0;">
 						<span class="reg-list-text">Street Address/Locality</span><br>
 						<div class="myselect" 
 							data-ng-show="!(isReferrer == 'checkout' && addressType == 'billing')">
 							<img class="dropdown-img" alt="" src="images/header-icon/drop-img.png">
-	  						<select id="e1" style="width:100%;" 
+	  						<select id="e1" style="width:100%;" class="reg-list-select" 
 	  							name="addressline2"
 	  							data-ng-model="address.addressline2">
 	  							<option value="" style="display:none;">
