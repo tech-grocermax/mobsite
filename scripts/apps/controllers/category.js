@@ -47,7 +47,6 @@ define(['app'], function(app) {
             if (utility.getJStorageKey("categories")) {
                 $scope.categories = utility.getJStorageKey("categories");
                 $scope.urlImg = utility.getJStorageKey("urlImg");
-                console.log($scope.urlImg)
             } else {
         	    categoryService.getCategoryList()
                     .then(function(data){
@@ -55,7 +54,6 @@ define(['app'], function(app) {
                         $scope.urlImg = data.urlImg; 
                         utility.setJStorageKey("categories", $scope.categories, 1);
                         utility.setJStorageKey("urlImg", $scope.urlImg, 1);
-                        console.log($scope.urlImg)
                     });
             }
 

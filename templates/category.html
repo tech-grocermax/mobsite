@@ -7,7 +7,7 @@
 				data-ng-repeat="category in subCategoryList | filter:searchText">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
 					<div class="pad4 img-box cat-box">
-						<img src="{{imgUrl + category.category_id + '.png'}}" 
+						<img src="{{urlImg + category.category_id + '.png'}}" 
 							title="{{category.name}}" class="img-responsive"
 							data-ng-click="routerChange('product', category.category_id)">
 							<!--shutterstock{{$index > 5 ? 6 : $index+1}}.png-->
