@@ -214,7 +214,7 @@ input , button, select{outline:none;}
 .prod-new-price{color:#e5390e; padding-left:5px; text-decoration:line-through;}
 .header-middle-prod{background: #ee2d09 none repeat scroll 0 0;padding: 30px 16px 0;}
 .nav-red{overflow:auto; background: #ee2d09 none repeat scroll 0 0;box-shadow: 0 7px 5px rgba(0, 0, 0, 0.2);}
-.prod-nav-li{color: #fff; padding: 30px;text-transform: uppercase;white-space: nowrap;}
+.prod-nav-li{color: #fff; padding: 30px;/*text-transform: uppercase;*/white-space: nowrap;}
 
 /*========== PRODUCT DESCRIPTION ==========*/
 .header-middle-des{background: #ee2d09 none repeat scroll 0 0;padding: 30px 16px;box-shadow: 0 7px 5px rgba(0, 0, 0, 0.2);}
@@ -388,19 +388,9 @@ input , button, select{outline:none;}
 .banner-slide{width:420px; height: 200px;}
 .cat-border .header-middle {height: auto;}
 .reg-btn-margin{margin-top:104px;}
-
-/*input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active{
-    -webkit-box-shadow:0 0 0 50px white inset; /* Change the color to your own background color */
-    
-}*/
-input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
-    background-color: #777 !important;
-    background-image: none;
-    color: rgb(0, 0, 0);
-}
+.cart-img-heigth{height:125px;}
+.prod-img-heigth{height: 125px;position: absolute;}
+.search-img{height: 125px;position: absolute;}
 
 
 @media  (max-width: 460px){
@@ -527,6 +517,9 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 	.cat-plus {font-weight: normal;}
 	.wrapper{margin-top: 62px;}
 	.reg-btn-margin {margin-top: 78px;}
+	.cart-img-heigth{height:100px;}
+	.prod-img-heigth{height: 100px; margin-top: 10%;}
+	.search-img{height: 100px; position: absolute;}
 	
 }
 
@@ -556,7 +549,9 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 	.plus-minus-btn{width:50%;}
 	.wrapper{margin-top: 52px;}
 	.reg-btn-margin {margin-top: 68px;}
-	
+	.cart-img-heigth{height:90px;}
+	.prod-img-heigth{height: 90px;}
+	.search-img{height: 90px; left: 0;}
 }
 
 /*------------------------- SPRITE IMAGE -------------------------*/
