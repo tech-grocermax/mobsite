@@ -6,6 +6,7 @@ define(['app'], function(app) {
             $scope.categoryIndex = -1;
             $scope.subCategoryIndex = -1;
             $scope.categoryName = null;
+            $scope.urlImg = null;
             $scope.subCategoryList = null;
             $scope.showCategoryMenu = false;
             $scope.showSubCategoryMenu = false;
@@ -45,11 +46,16 @@ define(['app'], function(app) {
 
             if (utility.getJStorageKey("categories")) {
                 $scope.categories = utility.getJStorageKey("categories");
+                $scope.urlImg = utility.getJStorageKey("urlImg");
+                console.log($scope.urlImg)
             } else {
         	    categoryService.getCategoryList()
                     .then(function(data){
                         $scope.categories = data.Category.children[0].children; 
+                        $scope.urlImg = data.urlImg; 
                         utility.setJStorageKey("categories", $scope.categories, 1);
+                        utility.setJStorageKey("urlImg", $scope.urlImg, 1);
+                        console.log($scope.urlImg)
                     });
             }
 
