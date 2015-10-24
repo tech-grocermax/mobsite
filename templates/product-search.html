@@ -28,12 +28,12 @@
         <div class="row margin0 pad16">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box margin-bot15"
                 data-ng-repeat="product in products"><!--data-ng-repeat="-->
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 margin-tp-5p"
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 margin-tp-5p"
                     data-ng-click="routerChange('product/details', product.productid)">
                     <img src="{{product.Image}}" 
-                        alt="{{product.Name}}" class="img-responsive">
+                        alt="{{product.Name}}" class="img-responsive search-img">
                 </div>
-                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 padd0"
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd0"
                     data-ng-click="routerChange('product/details', product.productid)">
                     <ul class="list-unstyled">
                         <li class="prod-list-h">
@@ -48,10 +48,10 @@
                         <li class="cat-list-name">{{product.p_name}}</li>
                         <li class="prod-list-qnty">{{product.p_pack}}</li>
                         <li class="font-3"><span class="product-qnty">₹ {{toFixedDecimal(product.sale_price)}} |</span> <span class="prod-new-price">₹ {{toFixedDecimal(product.Price)}}</span></li>
-                        <li class="product-qnty">₹ {{toFixedDecimal(getPriceDifference(product.Price, product.sale_price))}}</li>
+                        <!--<li class="product-qnty">₹ {{toFixedDecimal(getPriceDifference(product.Price, product.sale_price))}}</li>-->
                     </ul>
                 </div>
-				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 col-md-offset-3 col-sm-offset-3 col-xs-offset-3 padd0">
+				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-md-offset-4 col-sm-offset-4 col-xs-offset-4 padd0">
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd0 plus-minus-btn"
 						data-ng-show="product.Status == 'In stock'">
 						<ul class="list-unstyled cat-list">

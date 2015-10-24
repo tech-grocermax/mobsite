@@ -14,10 +14,10 @@
             data-ng-repeat="product in cartDetails.items">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <img src="{{replaceImageUrl(product.product_thumbnail)}}" 
-                        alt="" class="img-responsive">
+                        alt="" class="img-responsive cart-img-heigth">
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd0">
-                <ul class="list-unstyled">
+                <ul class="list-unstyled margin0">
                     <li class="prod-list-h">{{product.p_brand}}
 					   <img src="images/app_bar_icons/delete-icon.png"
                             data-ng-show="product.apply_rule == 0"
@@ -31,8 +31,8 @@
                             ₹ {{toFixedDecimal(product.price)}}</span> 
                         <span class="prod-new-price">
                             | ₹ {{toFixedDecimal(product.mrp)}}</span></li>
-                    <li class="product-qnty">
-                        ₹ {{toFixedDecimal(getPriceDifference(product.mrp, product.price))}}</li>
+                    <!--<li class="product-qnty">
+                        ₹ {{toFixedDecimal(getPriceDifference(product.mrp, product.price))}}</li>-->
                 </ul>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cat-list-box float-rt">

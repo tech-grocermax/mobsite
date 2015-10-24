@@ -388,8 +388,9 @@ input , button, select{outline:none;}
 .banner-slide{width:420px; height: 200px;}
 .cat-border .header-middle {height: auto;}
 .reg-btn-margin{margin-top:104px;}
-
-
+.cart-img-heigth{height:125px;}
+.prod-img-heigth{height: 125px;position: absolute;}
+.search-img{height: 125px;position: absolute;}
 
 
 @media  (max-width: 460px){
@@ -516,6 +517,9 @@ input , button, select{outline:none;}
 	.cat-plus {font-weight: normal;}
 	.wrapper{margin-top: 62px;}
 	.reg-btn-margin {margin-top: 78px;}
+	.cart-img-heigth{height:100px;}
+	.prod-img-heigth{height: 100px; margin-top: 10%;}
+	.search-img{height: 100px; position: absolute;}
 	
 }
 
@@ -545,7 +549,9 @@ input , button, select{outline:none;}
 	.plus-minus-btn{width:50%;}
 	.wrapper{margin-top: 52px;}
 	.reg-btn-margin {margin-top: 68px;}
-	
+	.cart-img-heigth{height:90px;}
+	.prod-img-heigth{height: 90px;}
+	.search-img{height: 90px; left: 0;}
 }
 
 /*------------------------- SPRITE IMAGE -------------------------*/
