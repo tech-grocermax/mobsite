@@ -153,19 +153,25 @@ define(['app'], function(app) {
                 });
                 $scope.youSaved = savedAmont;
                 $scope.totalCartQty = qty;
+                console.log($scope.youSaved);
+                console.log($scope.totalCartQty);
             };
           
             getCartItemDetails = function() {
                 productService.getCartItemDetails($scope.quoteId)
                     .then(function(data){              
                         $scope.cartDetails = data.CartDetail; 
+                        console.log($scope.cartDetails);
                         getYouSaveAmout();
                     });
             };  
 
             if($location.url() == "/checkout/payment"){
                 getCartItemDetails(); 
-            }   
+                console.log("if");
+            } else {
+                console.log("else");
+            }  
 
             if(angular.isDefined(utility.getJStorageKey("cartItems")) 
                 && utility.getJStorageKey("cartItems")) {
@@ -433,6 +439,13 @@ define(['app'], function(app) {
                 } else {
                     console.log("ELSE");
                 }
+            };
+
+            $scope.toFixedDecimal = function(num) {
+                if(angular.isDefined(num)) {
+                    num = parseFloat(num);
+                    return num.toFixed(2);
+                }                
             };
 
             angular.element(document).ready(function () {
