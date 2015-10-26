@@ -1,21 +1,21 @@
 <div ng-controller="productController">
     <header data-ng-include="'templates/header.html'" class="top-head"></header>
     
-    <section class="prod-sec" data-ng-show="searchCategoryList.length">
+    <section class="prod-sec" data-ng-show="allProductCategoryList.length">
         <div class="row margin0 nav-red top-subhead">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
                 <ul class="list-unstyled nav-list">
                     <li class="prod-nav-li"
-                        data-ng-click="setSearchCategoryProducts(data, data.products)"
+                        data-ng-click="setAllCategoryProducts(data, data.product)"
                         data-ng-class="{'nav-active': data.isSelected}"
-                        data-ng-repeat="data in searchCategoryList">
-                        {{data.name}}</li>                    
+                        data-ng-repeat="data in allProductCategoryList">
+                        {{data.category_name}}</li>                    
                 </ul>                
             </div>
         </div>
     </section>  
 
-    <section class="prod-sec" data-ng-show="!searchCategoryList.length">
+    <section class="prod-sec" data-ng-show="!allProductCategoryList.length">
         <div class="row margin0 top-subhead">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
                 <div style="width:100%; text-align:center; padding:20px; ">

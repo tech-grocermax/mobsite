@@ -90,23 +90,23 @@
 			data-ng-show="showUserResponse">{{userResponseMessage}}
 		</div>
 		<div class="row margin0 pad16 pad8-m" >
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<button type="button" class="ord-btn btn-login"
-					data-ng-click="loginUser(frmLogin)">LOGIN</button>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+				data-ng-click="loginUser(frmLogin)">
+				<button type="button" class="ord-btn btn-login">LOGIN</button>
 			</div>
 			
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top15" style="text-align: center;">
-				<a class="forgot-text" href="javascript:void(0);"
-					data-ng-click="navigateTo('user/forgotpassword')">Forgot your Password?</a>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top15" 
+				data-ng-click="navigateTo('user/forgotpassword')"
+				style="text-align: center;">
+				<a class="forgot-text" href="javascript:void(0);">Forgot your Password?</a>
 			</div>
 			
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 log-text center-align">
-				
 				<span class="forgot-text padd0-m">DON&apos;T HAVE AN ACCOUNT?</span>
-				
 			</div>
 			
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" data-ng-click="navigateTo('user/register')">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" 
+				data-ng-click="navigateTo('user/register')">
 				<button type="button" class="ord-btn btn-signup">SIGNUP</button>
 			</div>
 		</div>

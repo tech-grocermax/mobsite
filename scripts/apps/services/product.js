@@ -7,6 +7,12 @@ define(['app'], function (app) {
 		    	var url = getAPIUrl() + "productlist?cat_id=" + categoryId + "&page=" + page;
 		    	return serverUtility.getWebService(url)
 		    		.then(function(data){return data}, function(error){return error});
+		    };
+
+		    this.getAllProductListByCategoryId = function(categoryId) {
+		    	var url = getAPIUrl() + "productlistall?cat_id=" + categoryId;
+		    	return serverUtility.getWebService(url)
+		    		.then(function(data){return data}, function(error){return error});
 		    };	
 
 		    this.getProductListByDealId = function(dealId) {
@@ -62,6 +68,30 @@ define(['app'], function (app) {
                     count = count + parseInt(value.qty, 10);        
                 });
                 return count;
+            };
+
+            this.buildAddCouponObject = function(userId, quoteId, couponCode) {
+            	return {
+            		userid: userId,
+            		quote_id: quoteId,
+            		couponcode: couponCode
+            	};
+            };
+
+            this.applyCoupon = function(userId, quoteId, couponCode) {
+            	var url = getAPIUrl() + "addcoupon?" + 
+            		$.param(this.buildAddCouponObject(userId, quoteId, couponCode));
+
+		    	return serverUtility.getWebService(url)
+		    		.then(function(data){return data}, function(error){return error});
+            };
+
+            this.removeCoupon = function(userId, quoteId, couponCode) {
+            	var url = getAPIUrl() + "removecoupon?" + 
+            		$.param(this.buildAddCouponObject(userId, quoteId, couponCode));
+
+		    	return serverUtility.getWebService(url)
+		    		.then(function(data){return data}, function(error){return error});
             };
 	    
 	    	return this;

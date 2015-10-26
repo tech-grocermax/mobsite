@@ -46,7 +46,11 @@ define(['app'], function(app) {
                 mobikwik: false
             }; 
             $scope.cityList = null;
-            $scope.cityLocation = {};  
+            $scope.cityLocation = {};
+
+            toggleLoader = function(flag) {
+                $scope.displayLoader = flag;
+            };  
 
             if($scope.section.shipping) {
                 $scope.categoryName = "Select Shipping Address";
@@ -64,8 +68,10 @@ define(['app'], function(app) {
             }        
 
             getAddressList = function() {
+                toggleLoader(true);
                 userService.getAddressList(utility.getJStorageKey("userId"))
                     .then(function(data){
+                        toggleLoader(false);
                         if(data.flag == "0"){
                             $scope.addressList = [];
                         } else {
@@ -107,14 +113,18 @@ define(['app'], function(app) {
             };
             
             getDeliverySlots = function() {
+                toggleLoader(true);
                 userService.getDeliverySlots(utility.getJStorageKey("userId"))
                     .then(function(data){
+                        toggleLoader(false);
                         if(data.flag == 1){
                             successCallbackDeliverySlots(data.Shipping);                            
                         }                        
                     });
             };
-            getDeliverySlots();
+            if($scope.sectionName == "delivery") {
+                getDeliverySlots();
+            }            
             
             if($scope.sectionName == "shipping" 
                 || $scope.sectionName == "billing") {
@@ -158,10 +168,11 @@ define(['app'], function(app) {
             };
           
             getCartItemDetails = function() {
+                toggleLoader(true);
                 productService.getCartItemDetails($scope.quoteId)
-                    .then(function(data){              
+                    .then(function(data){  
+                        toggleLoader(false);            
                         $scope.cartDetails = data.CartDetail; 
-                        console.log($scope.cartDetails);
                         getYouSaveAmout();
                     });
             };  
@@ -446,6 +457,38 @@ define(['app'], function(app) {
                     num = parseFloat(num);
                     return num.toFixed(2);
                 }                
+            };
+
+            $scope.isCouponCodeApplied = false;
+            $scope.couponAmount = 0.00;
+            $scope.couponCode = null;
+
+            $scope.applyCouponCode = function(couponCode) {
+                toggleLoader(true);
+                productService.applyCoupon(utility.getJStorageKey("userId"), utility.getJStorageKey("quoteId"), couponCode)
+                    .then(function(data){
+                        console.log(data);
+                        toggleLoader(false);
+                        if(data.flag == 1) {
+                            $scope.isCouponCodeApplied = true;
+                            $scope.couponAmount = data.CartDetails.you_save;
+                            $scope.cartDetails.grand_total = data.CartDetails.grand_total;
+                        }                        
+                    });
+            };
+
+            $scope.removeCouponCode = function(couponCode) {
+                toggleLoader(true);
+                productService.removeCoupon(utility.getJStorageKey("userId"), utility.getJStorageKey("quoteId"), couponCode)
+                    .then(function(data){
+                        console.log(data);
+                        toggleLoader(false);
+                        if(data.flag == 1) {
+                            $scope.isCouponCodeApplied = false;
+                            $scope.couponAmount = data.CartDetails.you_save;
+                            $scope.cartDetails.grand_total = data.CartDetails.grand_total;
+                        }
+                    });
             };
 
             angular.element(document).ready(function () {
