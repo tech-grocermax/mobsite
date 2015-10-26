@@ -9,7 +9,7 @@
                         data-ng-click="setAllCategoryProducts(data, data.product)"
                         data-ng-class="{'nav-active': data.isSelected}"
                         data-ng-repeat="data in allProductCategoryList">
-                        {{data.category_name}}</li>                    
+                        {{data.category_name}}</li>                   
                 </ul>                
             </div>
         </div>
@@ -34,6 +34,9 @@
                     <img src="{{product.Image}}" 
                         alt="{{product.Name}}" class="img-responsive">
                 </div>
+                <h1 class="ribbon" data-ng-show="product.promotion_level">
+                    <strong class="ribbon-content">{{product.promotion_level}}</strong>
+                </h1>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 padd0"
                     data-ng-click="routerChange('product/details', product.productid)">
                     <ul class="list-unstyled">
