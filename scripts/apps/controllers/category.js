@@ -28,6 +28,7 @@ define(['app'], function(app) {
             $scope.quoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
             $scope.cityList = null;
             $scope.cityLocation = {};
+            $scope.categoryImageUrl = null;
 
             toggleLoader = function(flag) {
                 $scope.displayLoader = flag;
@@ -45,11 +46,16 @@ define(['app'], function(app) {
 
             if (utility.getJStorageKey("categories")) {
                 $scope.categories = utility.getJStorageKey("categories");
+                $scope.categoryImageUrl = utility.getJStorageKey("categoryImageUrl");
+                console.log($scope.categoryImageUrl);
             } else {
         	    categoryService.getCategoryList()
                     .then(function(data){
                         $scope.categories = data.Category.children[0].children; 
                         utility.setJStorageKey("categories", $scope.categories, 1);
+                        $scope.categoryImageUrl = data.urlImg;
+                        utility.setJStorageKey("categoryImageUrl", data.urlImg, 1);
+                        console.log($scope.categoryImageUrl);
                     });
             }
 
@@ -130,6 +136,8 @@ define(['app'], function(app) {
 
             if ($routeParams.categoryId) {
                 $scope.subCategoryList = categoryService.getSubCategoryList($scope.categories, $routeParams.categoryId);
+                console.log($scope.subCategoryList);
+
                 $scope.categoryName = categoryService.getCategoryName($scope.categories, $routeParams.categoryId);
                 $scope.columnSize = 10;
                 $scope.showMoreIcon = false;

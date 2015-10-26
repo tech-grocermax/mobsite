@@ -7,19 +7,10 @@
 				data-ng-repeat="category in subCategoryList | filter:searchText">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
 					<div class="pad4 img-box cat-box">
-						<img src="images/silder-img1.png" 
+						<!-- routerChange('product', category.category_id) -->
+						<img src="{{categoryImageUrl}}{{category.category_id}}.png" 
 							title="{{category.name}}" class="img-responsive"
-							data-ng-click="routerChange('product', category.category_id)">
-							<!--shutterstock{{$index > 5 ? 6 : $index+1}}.png-->
-						<!--mustakeem<div class="img-text-box" 
-							data-ng-click="routerChange('product', category.category_id)"
-							style="line-height:15px; bottom: 90px;">
-							<span class="img-text-h" style="font-size:24px; ">
-								{{category.name}}</span>
-							<!-- <span class="img-text" data-ng-show="category.children.length">
-								{{renderChildrenCategory(category.children)}}
-							</span> 
-						</div>-->
+							data-ng-click="showMoreCategory(category)">
 						<div class="subc-h1"
 							data-ng-show="category.children.length"
 							data-ng-click="showMoreCategory(category)"
@@ -29,17 +20,11 @@
 						<div class="subc-h1"
 							data-ng-show="!category.children.length">
 							No more category available
-						</div>					
+						</div>	
+						<!-- routerChange('product', category.category_id) -->				
 						<div class="align-center subc-h2"
-							data-ng-click="routerChange('product', category.category_id)">{{category.name}}</div>
+							data-ng-click="showMoreCategory(category)">{{category.name}}</div>
 					</div>
-					<!--<div class="pad4 margin-lt15 imgbox-rt-margin"
-						data-ng-show="category.children.length && moreCategoryIndex == category.category_id">
-						<a href="javascript:void(0)" role="button" class="btn btn-default" 
-							data-ng-click="routerChange('product', subCategory.category_id)"
-							data-ng-repeat="subCategory in category.children">{{subCategory.name}}</a>
-					</div>-->
-					<!--<div class="margin-top15"></div>		-->
 				</div>
 				<div class="row"
 					data-ng-show="category.children.length && moreCategoryIndex == category.category_id">
