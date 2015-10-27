@@ -366,7 +366,7 @@ input , button, select{outline:none;}
 .btn-bottom{position: absolute; left: 0px; right: 0px; bottom: 0px;}
 .modal-body{background-image:url('../images/location-back.png'); background-attachment:fixed; background-position:center center; background-repeat:no-repeat; background-size:cover;}
 .subcat-btn{padding: 10px 5px 0;}
-.delet-icon{float: right; margin-right: 16px;}
+.delet-icon{float: right;margin-right: 5px;margin-top: 1px;}
 .slide-img{width: 368px;}
 .dot-border{box-shadow:0px 2px 8px -5px; border-radius:4px; border:1px dashed #f07d67;}
 .succes-back{background-image:url('../images/order-back.png'); background-attachment:fixed; background-position:center center; background-repeat:no-repeat; background-size:cover;padding-bottom: 30px;}
