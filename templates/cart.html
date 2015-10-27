@@ -17,7 +17,7 @@
                         alt="" class="img-responsive cart-img-heigth">
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd0">
-                <ul class="list-unstyled margin0">
+                <ul class="list-unstyled" style="margin-bottom:5px;">
                     <li class="prod-list-h">{{product.p_brand}}
 					   <img src="images/app_bar_icons/delete-icon.png"
                             data-ng-show="product.apply_rule == 0"
@@ -35,27 +35,35 @@
                         ₹ {{toFixedDecimal(getPriceDifference(product.mrp, product.price))}}</li>-->
                 </ul>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cat-list-box float-rt">
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cat-list-box float-rt padd0" style="margin-right:10px;">
                 <ul class="list-unstyled cat-list" 
                     data-ng-show="product.apply_rule == 0">
                     <li class="cat-minus"                         
-                        data-ng-click="decreaseCartProductQuantity(product, 'product_id')">-</li>
+                        data-ng-click="decreaseCartProductQuantity(product, 'product_id')">
+						<img src="images/app_bar_icons/minus-img.png" class="img-responsive">	
+					</li>
                     <li class="cat-input-box">
                         <input type="text" placeholder="1" class="cat-input-text"
                             value="{{getCartProductQuantity(product.product_id)}}" >
                     </li>
                     <li class="cat-plus" 
-                        data-ng-click="increaseCartProductQuantity(product, 'product_id')">+</li>
+                        data-ng-click="increaseCartProductQuantity(product, 'product_id')">
+						<img src="images/app_bar_icons/plus-img.png" class="img-responsive">
+					</li>
                 </ul>
                 <ul class="list-unstyled cat-list"
                     data-ng-show="product.apply_rule == 1">
-                    <li class="cat-minus">-</li>
+                    <li class="cat-minus">
+						<img src="images/app_bar_icons/minus-img.png" class="img-responsive">	
+					</li>
                     <li class="cat-input-box">
                         <input type="text" placeholder="1" 
                             class="cat-input-text" readonly
                             value="{{getCartProductQuantity(product.product_id)}}" >
                     </li>
-                    <li class="cat-plus">+</li>
+                    <li class="cat-plus">
+						<img src="images/app_bar_icons/plus-img.png" class="img-responsive">
+					</li>
                 </ul>
             </div>
         </div>

@@ -37,14 +37,18 @@
                     data-ng-show="productDetails.Status == 'In stock'">
                     <ul class="list-unstyled cat-list">
                         <li class="cat-minus" 
-                            data-ng-click="decreaseProductDetailQuantity()">-</li>
+                            data-ng-click="decreaseProductDetailQuantity()">
+							<img src="images/app_bar_icons/minus-img.png" class="img-responsive">
+						</li>
                         <li class="cat-input-box">
                             <!-- {{getProductQuantity(product.productid)}} -->
                             <input type="text" value="{{productDetails.quantity}}" 
                                 class="cat-input-text">
                         </li>
                         <li class="cat-plus" 
-                            data-ng-click="increaseProductDetailQuantity()">+</li>
+                            data-ng-click="increaseProductDetailQuantity()">
+							<img src="images/app_bar_icons/plus-img.png" class="img-responsive">
+						</li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 padd0 add-btn-box">

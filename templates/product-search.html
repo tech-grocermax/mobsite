@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd0"
                     data-ng-click="routerChange('product/details', product.productid)">
-                    <ul class="list-unstyled">
+                    <ul class="list-unstyled" style="margin-bottom:5px;">
                         <li class="prod-list-h">
 							{{product.p_brand}}							
 							<img src="images/app_bar_icons/cart_add_quantity.png" 
@@ -52,18 +52,22 @@
                     </ul>
                 </div>
 				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-md-offset-4 col-sm-offset-4 col-xs-offset-4 padd0">
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd0 plus-minus-btn"
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0 plus-minus-btn"
 						data-ng-show="product.Status == 'In stock'">
 						<ul class="list-unstyled cat-list">
 							<li class="cat-minus" 
-                                data-ng-click="decreaseProductQuantity(product.productid, 'productid')">-</li>
+                                data-ng-click="decreaseProductQuantity(product.productid, 'productid')">
+								<img src="images/app_bar_icons/minus-img.png" class="img-responsive">
+							</li>
 							<li class="cat-input-box">
                                 <!-- {{getProductQuantity(product.productid)}} -->
 								<input type="text" value="{{product.quantity}}" 
                                     class="cat-input-text">
 							</li>
 							<li class="cat-plus" 
-                                data-ng-click="increaseProductQuantity(product.productid, 'productid')">+</li>
+                                data-ng-click="increaseProductQuantity(product.productid, 'productid')">
+								<img src="images/app_bar_icons/plus-img.png" class="img-responsive">
+							</li>
 						</ul>
 					</div>
 					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 padd0 add-btn-box">
