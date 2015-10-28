@@ -208,7 +208,7 @@ input , button, select{outline:none;}
 .cat-plus{width: 30%; background: #f4f4f4;/*text-align: center;padding-top: 13px;  color: rgb(125, 125, 125); text-transform: full-width; font-weight: lighter; font-size: 32px; padding-top: 2px;*/}
 .cat-plus img{position: absolute;top: 43%;left: 85%;transform: translate(-50%,-50%);width: 16%;}
 .cat-input-box{width: 40%; border-right: 1px solid #e4e4e4;}
-.cat-input-text{text-align: center; width: 100%; font-size: 6.4vw;/* padding-bottom: 8px; padding-top: 8px;*/border: medium none;}
+.cat-input-text{text-align: center; width: 100%; font-size: 6vw; padding-bottom: 3px; padding-top: 3px; border: medium none;}
 .back-icon-mrg{margin-top: 1.4%;}
 
 /*========== PRODUCT LISTING ==========*/
@@ -373,7 +373,7 @@ input , button, select{outline:none;}
 .cart-image{position: absolute;right: 16px; top: 1%;}
 .cart-txt{font-size: 3.6vw; position: absolute; right: 23px; top: -1%;}
 .add-btn{background: #0e69e5;border: medium none;border-radius: 4px;color: #fff;font-size: 5vw;padding: 7px;width: 100%;}
-.add-btn-box{float:right; right: 16px;padding-bottom: 10px;}
+.add-btn-box{float:right; right: 5px;padding-bottom: 10px;}
 .bill-checkbox{margin-top: 9px !important; transform: scale(2);}
 .pmt-checkbox{margin-top: 12px !important; transform: scale(2);}
 .paytm-check{margin-top: -30px !important;transform: scale(2);}
@@ -396,7 +396,7 @@ input , button, select{outline:none;}
 .search-img{height: 125px;position: absolute;}
 .del-div > div:nth-child(1){display: none;}
 .offer-arrow-img{margin-top:-2px;}
-
+.cart-margin .cat-box, .del-div .cat-box {padding-top:5px;}
 
 
 @media  (max-width: 460px){
@@ -534,6 +534,10 @@ input , button, select{outline:none;}
 	.font-3 {font-size: 16px;}*/
 	.cat-plus img, .cat-minus img {top: 40%;}
 	.add-btn {font-size:4.6vw;}
+	.bot-foot {height: 65px;}
+	.cart-box-botom {bottom: 65px;}
+	
+	
 	
 }
 
@@ -569,6 +573,8 @@ input , button, select{outline:none;}
 	.inner-body{margin-top:52px;}
 	.offer-arrow-img{width:3%;}
 	.add-btn {font-size:4.2vw;}
+	.bot-foot {height: 55px;}
+	.cart-box-botom {bottom: 55px;}
 }
 
 /*------------------------- SPRITE IMAGE -------------------------*/
