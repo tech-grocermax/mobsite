@@ -132,8 +132,7 @@ define(['app'], function(app) {
                     .then(function(data){
                         $scope.locationList = data.locality;                                          
                     });
-            };
-            getLocationList();
+            };            
 
             updateClassName = function(keyName) {
                 angular.forEach($scope.className, function(value, key){
@@ -163,11 +162,7 @@ define(['app'], function(app) {
                     $scope.userResponseMessage = data.Result;
                     updateClassName("danger");
                 }
-            };
-
-            if($scope.section.register){
-                //utility.setJStorageKey("otp", 1234, 1);
-            }            
+            };                       
 
             syncModelData = function(data) {
                 $scope.user.fname = data.firstname;
@@ -186,14 +181,18 @@ define(['app'], function(app) {
             };
 
             getUserProfile = function(userId) {
+                toggleLoader(true);
                 userService.getUserProfile(userId)
                     .then(function(data){
+                        toggleLoader(false);
                         successCallbackProfile(data);
                     });
             };
 
             if(angular.isDefined(utility.getJStorageKey("userId")) 
-                && utility.getJStorageKey("userId")){
+                && utility.getJStorageKey("userId")
+                && ($scope.sectionName == "profile" 
+                    || $scope.sectionName == "editprofile")){
                 $scope.isUserLoggedIn = true;
                 getUserProfile(utility.getJStorageKey("userId"));
             }
@@ -214,9 +213,9 @@ define(['app'], function(app) {
 
             $scope.createUser = function(form) {
                 $scope.errorRegistration = true;
-                console.log(form.$valid);
-                toggleLoader(true);
+                console.log(form.$valid);                
                 if (form.$valid) {
+                    toggleLoader(true);
                     utility.setJStorageKey("registrationDetails", $scope.user, 1);
                     userService.createUser($scope.user)
                         .then(function(data){
@@ -313,12 +312,16 @@ define(['app'], function(app) {
                 }
             };
 
-            $scope.updateProfile = function() {
-                toggleLoader(true);
-                userService.updateProfile($scope.user, utility.getJStorageKey("userId"))
-                    .then(function(data){
-                        successCallbackUpdateProfile(data);
-                    });
+            $scope.updateProfile = function(form) {
+                $scope.errorRegistration = true;
+                console.log(form.$valid);                
+                if (form.$valid) {
+                    toggleLoader(true);
+                    userService.updateProfile($scope.user, utility.getJStorageKey("userId"))
+                        .then(function(data){
+                            successCallbackUpdateProfile(data);
+                        });
+                }
             };
 
             rebuildAddressObject = function(address) {
@@ -340,8 +343,10 @@ define(['app'], function(app) {
             };
 
             getAddressList = function() {
+                toggleLoader(true);
                 userService.getAddressList(utility.getJStorageKey("userId"))
                     .then(function(data){
+                        toggleLoader(false);
                         $scope.addressList = data.Address;
                         if($scope.addressId) {
                             var address = userService.extractAddressById(data.Address, 
@@ -355,7 +360,11 @@ define(['app'], function(app) {
                 || $scope.sectionName == "addaddress"
                 || $scope.sectionName == "editaddress") {
                 getAddressList(); 
-            }            
+            }
+
+            if($scope.sectionName == "addaddress" || $scope.sectionName == "editaddress") {           
+                getLocationList();
+            }
 
             $scope.editAddress = function(addressId) {
                 $location.url("user/editaddress?addressId=" + addressId);
@@ -383,9 +392,14 @@ define(['app'], function(app) {
 
             var email =utility.getJStorageKey("email");
             getOrderHistory = function() {
+                toggleLoader(true);
                 userService.getOrderHistory(utility.getJStorageKey("email"))
                     .then(function(data){
-                        $scope.orderHistory = data.orderhistory;                        
+                        toggleLoader(false);
+                        $scope.orderHistory = data.orderhistory;
+                        if($scope.orderHistory.length) {
+                            $scope.orderHistory.sort(utility.dynamicSort("-created_at"));
+                        }                      
                     });
             };
             if($scope.sectionName == "orderhistory"){

@@ -22,7 +22,7 @@ define(['app'], function (app) {
 		    };
 
 		    this.getUserProfile = function(userId) {		    	
-	    		var url = getAPIUrl() + "userdetail?userid= " + userId;
+	    		var url = getAPIUrl() + "userdetail?userid=" + userId;
 		    	return serverUtility.getWebService(url)
 		    		.then(
 		    			function(data){return data; },
@@ -39,10 +39,11 @@ define(['app'], function (app) {
 		    	};		    	
 		    };
 
-		    this.updateProfile = function(input, userId) {
-		    	var url = getAPIUrl() + "editprofile?" 
-		    		+ $.param(this.buildUpdateProfileObject(input, userId));
-		    	return serverUtility.postWebService(url)
+		    this.updateProfile = function(inputData, userId) {
+		    	var url = getAPIUrl() + "editprofile",
+		    		input = this.buildUpdateProfileObject(inputData, userId);
+
+		    	return serverUtility.postWebService(url, input)
 		    		.then(
 		    			function(data){return data; },
 		    			function(error){return error; }

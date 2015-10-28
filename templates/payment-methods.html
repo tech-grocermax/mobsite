@@ -2,13 +2,13 @@
 	<div class="row margin0">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 back-white padtb16">
 			<div class="bill-O-box">
+				<div class="bill-O"></div>
+				<div class="bill-bar"></div>
+				<div class="bill-O"></div>
+				<div class="bill-bar"></div>
+				<div class="bill-O"></div>
+				<div class="bill-bar"></div>
 				<div class="bill-O bill-O-active"></div>
-				<div class="bill-bar"></div>
-				<div class="bill-O"></div>
-				<div class="bill-bar"></div>
-				<div class="bill-O"></div>
-				<div class="bill-bar"></div>
-				<div class="bill-O"></div>
 			</div>
 		</div>
 	</div>
@@ -72,22 +72,22 @@
 			<ul class="list-unstyled margin0 pad-lt16 pad-rt16 font4-3">
 				<li class="pmeth-card-h">
 					<span>{{totalCartQty}} item</span>
-					<span>Rs. {{toFixedDecimal(cartDetails.subtotal)}}</span>
+					<span>Rs. {{toFixedDecimal(cartDetails.grand_total)}}</span>
 				</li>
 				<ul class="list-unstyled margin0 pmeth-card">
 					<li>
 						<span>Sub total:</span>
 						<span class="float-rt">
-							Rs. {{toFixedDecimal(cartDetails.subtotal)}}</span>
+							Rs. {{toFixedDecimal(cartDetails.grand_total)}}</span>
 					</li>
 					<li>
 						<span>Shipping charges:</span>
 						<span class="float-rt">
 							Rs. {{toFixedDecimal(cartDetails.shipping_address.shipping_amount)}}</span>
 					</li>
-					<li>
+					<li data-ng-show="cartDetails.grand_total >= 500 && isCouponCodeApplied">
 						<span>Coupon discount:</span>
-						<span class="float-rt pmeth-card-font">Rs. 0.00</span>
+						<span class="float-rt pmeth-card-font">Rs. {{toFixedDecimal(couponAmount)}}</span>
 					</li>
 					<li>
 						<span>You Saved:</span>
@@ -97,20 +97,36 @@
 					<li>
 						<span>Total:</span>
 						<span class="float-rt">
-							Rs. {{toFixedDecimal(cartDetails.subtotal)}}</span>
+							Rs. {{toFixedDecimal(cartDetails.grand_total)}}</span>
 					</li>
 				</ul>
 			</ul>
 		</div>
 	</div>
-	<div class="row margin0" style="margin: 20px 0px 70px;">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	<div class="row margin0"
+		style="margin: 20px 0px 70px;">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+			data-ng-show="cartDetails.grand_total >= 500 && !isCouponCodeApplied">
 			<div class="col-md-8 col-sm-8 col-xs-8 padd0 back-white card-input">
-				<input type="text" placeholder="Enter coupon code">
+				<input type="text" 
+					data-ng-model="couponCode"
+					value="{{couponCode}}"
+					placeholder="Enter coupon code">
 			</div>
-			<div class="col-md-4 col-sm-4 col-xs-4 padd0 pmeth-btn">
+			<div class="col-md-4 col-sm-4 col-xs-4 padd0 pmeth-btn"
+				data-ng-click="applyCouponCode(couponCode)">
 				<button type="button">APPLY CODE</button>
 			</div>			
+		</div>
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+			data-ng-show="cartDetails.grand_total >= 500 && isCouponCodeApplied">
+			<div class="col-md-8 col-sm-8 col-xs-8 padd0 back-white card-input">
+				{{couponCode}}
+			</div>
+			<div class="col-md-4 col-sm-4 col-xs-4 padd0 pmeth-btn"
+				data-ng-click="removeCouponCode(couponCode)">
+				<button type="button">REMOVE CODE</button>
+			</div>
 		</div>
 	</div>
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0  margin-top15" >

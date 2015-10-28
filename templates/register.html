@@ -64,7 +64,7 @@
 						<span class="reg-list-text">Mobile No.</span><br>
 						<input type="text" name="mobile" placeholder="required"
 							data-ng-model="user.number" 
-							required my-max-length="40" only-digits
+							required my-max-length="10" only-digits
 							class="place-color reg-list-input">
 						<div ng-messages="frmRegistration.mobile.$error" 
                         	data-ng-show="frmRegistration.mobile.$dirty || (errorRegistration && user.mobile == null)">
@@ -77,7 +77,7 @@
 						<input type="text" name="email" placeholder="required" 
 							data-ng-model="user.uemail"
 							ng-pattern="/^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$/" 
-                            required my-max-length="40" validate-email
+                            required my-max-length="40" validate-email autocomplete="false"
 							class="place-color reg-list-input">
 						<div ng-messages="frmRegistration.email.$error" 
                         	data-ng-show="frmRegistration.email.$dirty || (errorRegistration && user.uemail == null)">
@@ -94,7 +94,7 @@
 							style="cursor:pointer; ">{{password.caption}}</span><br>
 						<input type="password" name="password" placeholder="required" 
 							data-ng-model="user.password"
-							required my-min-length="6"
+							required my-min-length="6" autocomplete="false"
 							class="place-color reg-list-input">
 						<div ng-messages="frmRegistration.password.$error" 
                         	data-ng-show="frmRegistration.password.$dirty || (errorRegistration && user.password == null)">
@@ -109,10 +109,11 @@
 			</div>
 			<div class="alert" role="alert"
 				data-ng-class="{'alert-success': className.success,'alert-danger': className.danger}"
-				data-ng-show="showUserResponse">{{userResponseMessage}}</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" >
-				<button type="button" class="reg-bot-btn"
-					data-ng-click="createUser(frmRegistration)">CREATE ACCOUNT</button>
+				data-ng-show="showUserResponse"
+				style="margin-left: 2%; float: left; width: 96%;">{{userResponseMessage}}</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" 
+				data-ng-click="createUser(frmRegistration)">
+				<button type="button" class="reg-bot-btn">CREATE ACCOUNT</button>
 			</div>
 		</div>
 	</form>

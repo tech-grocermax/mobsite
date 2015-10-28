@@ -25,7 +25,7 @@ define([], function() {
                 ]
             },
             '/product/:categoryId': {
-                templateUrl: templateURL + 'product.html',
+                templateUrl: templateURL + 'product-listing.html',
                 dependencies: [
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',

@@ -2,16 +2,16 @@
 	<header data-ng-include="'templates/header.html'" class="top-head"></header>
 
 	<article data-ng-include="'templates/shipping-address.html'"
-		data-ng-show="section.shipping" class="wrapper"></article>
+		data-ng-if="section.shipping" class="wrapper"></article>
 
 	<article data-ng-include="'templates/billing-address.html'"
-		data-ng-show="section.billing" class="wrapper"></article>
+		data-ng-if="section.billing" class="wrapper"></article>
 
 	<article data-ng-include="'templates/delivery-details.html'"
-		data-ng-show="section.delivery" class="wrapper"></article>
+		data-ng-if="section.delivery" class="wrapper"></article>
 
 	<article data-ng-include="'templates/payment-methods.html'"
-		data-ng-show="section.payment" class="wrapper"></article>
+		data-ng-if="section.payment" class="wrapper"></article>
 
 	<!-- Modal -->
 	<div class="modal fade" id="paymentFailed" tabindex="-1" role="dialog" 
@@ -43,4 +43,11 @@
 	        </div>
 	    </div>
 	</div>
+
+	<div class="popupcontainerloader" style="position:fixed;"
+        data-ng-show="displayLoader">        
+        <div style="text-align:center; width:100%; "><img src="images/ajax-loader.gif" /></div>
+    </div>
+    <div data-ng-show="displayLoader" class="black_shade"></div>
+
 </div>
