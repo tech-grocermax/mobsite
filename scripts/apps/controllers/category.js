@@ -182,10 +182,25 @@ define(['app'], function(app) {
                         $scope.cartDetails = data.CartDetail;                         
                         $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);             
                     });
-            };  
+            }; 
+
+            getBasketItemCounter = function() {
+                var quoteId = utility.getJStorageKey("quoteId"),
+                    cartCounterKey = "cartCounter" + quoteId,
+                    cartCount = 0;
+
+                console.log(utility.getJStorageKey(cartCounterKey));
+                if(angular.isDefined(utility.getJStorageKey(cartCounterKey)) 
+                    && utility.getJStorageKey(cartCounterKey) ) {
+                    cartCount = utility.getJStorageKey(cartCounterKey);
+                    $scope.cartItemCount = cartCount;
+                    console.log("here");
+                }
+            }; 
 
             if($scope.quoteId){
-                getCartItemDetails(); 
+                //getCartItemDetails(); 
+                getBasketItemCounter();
             }
 
             $scope.getDealCategoryItemList = function(category) {

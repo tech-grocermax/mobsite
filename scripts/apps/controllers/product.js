@@ -10,7 +10,8 @@ define(['app'], function(app) {
             $scope.categoryId = angular.isDefined($routeParams.categoryId) ? $routeParams.categoryId : null ;
             $scope.dealId = angular.isDefined($routeParams.dealId) ? $routeParams.dealId : null ;
             $scope.productId = angular.isDefined($routeParams.productId) ? $routeParams.productId : null ;
-            $scope.quoteId = angular.isDefined($routeParams.quoteId) ? $routeParams.quoteId : (angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null) ;
+            $scope.jStorageQuoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
+            $scope.quoteId = angular.isDefined($routeParams.quoteId) ? $routeParams.quoteId : null;
             $scope.parentCatId = angular.isDefined($routeParams.parentId) ? $routeParams.parentId : null ;
             $scope.products = [];
             $scope.productDetails = null;
@@ -252,6 +253,43 @@ define(['app'], function(app) {
                 }
             };
 
+            updateCartItemCounter = function(count) {
+                console.log("updateCartItemCounter");
+                var quoteId = utility.getJStorageKey("quoteId"),
+                    cartCounterKey = "cartCounter" + quoteId,
+                    cartCount = 0;
+
+                if(angular.isDefined(utility.getJStorageKey(cartCounterKey)) 
+                    && utility.getJStorageKey(cartCounterKey) ) {
+                    cartCount = utility.getJStorageKey(cartCounterKey);
+                    cartCount = parseInt(cartCount, 10) + parseInt(count, 10);
+                    utility.setJStorageKey(cartCounterKey, cartCount, 1);
+                    $scope.cartItemCount = cartCount;
+                } else {
+                    utility.setJStorageKey(cartCounterKey, count, 1);
+                    $scope.cartItemCount = count;
+                }
+            };
+
+            getBasketItemCounter = function() {
+                var quoteId = utility.getJStorageKey("quoteId"),
+                    cartCounterKey = "cartCounter" + quoteId,
+                    cartCount = 0;
+
+                console.log(utility.getJStorageKey(cartCounterKey));
+                if(angular.isDefined(utility.getJStorageKey(cartCounterKey)) 
+                    && utility.getJStorageKey(cartCounterKey) ) {
+                    cartCount = utility.getJStorageKey(cartCounterKey);
+                    $scope.cartItemCount = cartCount;
+                    console.log("here");
+                }
+            };
+
+            console.log($scope.jStorageQuoteId);
+            if($scope.jStorageQuoteId) {
+                getBasketItemCounter();
+            }
+
             $scope.addProductOneByOne = function(product) {
                 var quoteId = null,
                     productObject = [
@@ -275,7 +313,8 @@ define(['app'], function(app) {
                                 utility.setJStorageKey("quoteId", data.QuoteId, 1);
                                 $scope.quoteId = data.QuoteId;
                             }
-                            getCartItemDetails();                                
+                            updateCartItemCounter(product.quantity);
+                            //getCartItemDetails();                                
                         }                            
                     });
             };
