@@ -4,7 +4,7 @@
     <section class="prod-sec" data-ng-show="allProductCategoryList.length">
         <div class="row margin0 nav-red top-subhead">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
-                <ul class="list-unstyled nav-list">
+                <ul class="list-unstyled nav-list top-height">
                     <li class="prod-nav-li"
                         data-ng-click="setAllCategoryProducts(data, data.product)"
                         data-ng-class="{'nav-active': data.isSelected}"
@@ -26,20 +26,20 @@
     </section>
 
 	<article class="inner-body">
-        <div class="row margin0 pad16">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box margin-bot15"
+        <div class="row margin0 pad16 del-div">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box margin-bot15 card-height"
                 data-ng-repeat="product in products"><!--data-ng-repeat="-->
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 margin-tp-5p"
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 pad-lr6 card-img-box"
                     data-ng-click="routerChange('product/details', product.productid)">
                     <img src="{{product.Image}}" 
-                        alt="{{product.Name}}" class="img-responsive">
+                        alt="{{product.Name}}" class="img-responsive card-img-center">
                 </div>
                 <h1 class="ribbon" data-ng-show="product.promotion_level">
                     <strong class="ribbon-content">{{product.promotion_level}}</strong>
                 </h1>
-                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 padd0"
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd0" style="padding-top:2px;"
                     data-ng-click="routerChange('product/details', product.productid)">
-                    <ul class="list-unstyled">
+                    <ul class="list-unstyled" style="margin-bottom:5px;">
                         <li class="prod-list-h">
 							{{product.p_brand}}							
 							<img src="images/app_bar_icons/cart_add_quantity.png" 
@@ -50,31 +50,36 @@
                                 {{getCartProductQuantity(product.productid)}}</span>
 						</li>
                         <li class="cat-list-name">{{product.p_name}}</li>
-                        <li class="prod-list-qnty">{{product.p_pack}}</li>
+                        <!--<li class="prod-list-qnty">{{product.p_pack}}</li>-->
                         <li class="font-3"><span class="product-qnty">₹ {{toFixedDecimal(product.sale_price)}} |</span> <span class="prod-new-price">₹ {{toFixedDecimal(product.Price)}}</span></li>
                         <li class="product-qnty">₹ {{toFixedDecimal(getPriceDifference(product.Price, product.sale_price))}}</li>
                     </ul>
-                </div>
-				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 col-md-offset-3 col-sm-offset-3 col-xs-offset-3 padd0">
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd0"
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0 plus-minus-btn"
 						data-ng-show="product.Status == 'In stock'">
 						<ul class="list-unstyled cat-list">
 							<li class="cat-minus" 
-                                data-ng-click="decreaseProductQuantity(product.productid, 'productid')">-</li>
+                                data-ng-click="decreaseProductQuantity(product.productid, 'productid')">
+								<img src="images/app_bar_icons/minus-img.png" class="img-responsive" style="">
+							</li>
 							<li class="cat-input-box">
                                 <!-- {{getProductQuantity(product.productid)}} -->
 								<input type="text" value="{{product.quantity}}" 
                                     class="cat-input-text">
 							</li>
 							<li class="cat-plus" 
-                                data-ng-click="increaseProductQuantity(product.productid, 'productid')">+</li>
+                                data-ng-click="increaseProductQuantity(product.productid, 'productid')">
+								<img src="images/app_bar_icons/plus-img.png" class="img-responsive">
+							</li>
 						</ul>
 					</div>
-					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 padd0 add-btn-box">
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 padd0 add-btn-box">
 						<button type="button" class="add-btn" 
                             data-ng-click="addProductOneByOne(product)">ADD</button>
 					</div>
                 </div>
+				<!--<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 col-md-offset-3 col-sm-offset-3 col-xs-offset-3 padd0">
+					
+                </div>-->
             </div>            
         </div>
     </article>

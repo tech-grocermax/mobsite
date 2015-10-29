@@ -11,19 +11,19 @@
 						<img src="{{categoryImageUrl}}{{category.category_id}}.png" 
 							title="{{category.name}}" class="img-responsive"
 							data-ng-click="showMoreCategory(category)">
-						<div class="subc-h1"
+						<!--<div class="subc-h1"
 							data-ng-show="category.children.length"
 							data-ng-click="showMoreCategory(category)"
 							style="cursor:pointer; ">
 							Select category to view products
-						</div>	
+						</div>-->	
 						<div class="subc-h1"
 							data-ng-show="!category.children.length">
 							No more category available
 						</div>	
 						<!-- routerChange('product', category.category_id) -->				
-						<div class="align-center subc-h2"
-							data-ng-click="showMoreCategory(category)">{{category.name}}</div>
+						<!--<div class="align-center subc-h2"
+							data-ng-click="showMoreCategory(category)">{{category.name}}</div>-->
 					</div>
 				</div>
 				<div class="row"
