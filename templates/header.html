@@ -120,18 +120,12 @@
 				<span style="text-transform: uppercase;">{{categoryName}}</span>
 			</div>
 			<ul class="list-unstyled pad-lt32">
-				<!-- Special category handling -->
-				<li class="menu-item sub-menu" data-ng-repeat="category in subCategories"
-					data-ng-show="isSpecialCategory(category.category_id) && category.is_active"
-					data-ng-click="routerChange('product', category.category_id)">
-					{{category.name}}
-				</li>
-
 				<!-- Normal category handling -->
-				<li class="menu-item sub-menu" data-ng-repeat="category in subCategories"
+				<li class="menu-item sub-menu" 
+                    data-ng-repeat="category in subCategories | orderBy : category.category_id"
 					data-ng-show="!isSpecialCategory(category.category_id) && category.is_active"
 					data-ng-click="toggleSubSubCategory(category.category_id)"
-					data-ng-class="{'ss-menu':subSubCategoryIndex == category.category_id}">            
+					data-ng-class="{'ss-menu':subSubCategoryIndex == category.category_id}">
 					{{category.name}}
 					<img src="images/app_bar_icons/PLUS-ICON.png" alt="" class="img-responsive"
 						data-ng-show="subSubCategoryIndex != category.category_id"
@@ -149,6 +143,14 @@
 						</li>                    
 					</ul>
 				</li>
+
+                <!-- Special category handling -->
+                <li class="menu-item sub-menu" 
+                    data-ng-repeat="category in subCategories | orderBy : category.category_id"
+                    data-ng-show="isSpecialCategory(category.category_id) && category.is_active"
+                    data-ng-click="routerChange('product', category.category_id)">
+                    {{category.name}}
+                </li>
 			</ul>
 		</div>
     </div>
