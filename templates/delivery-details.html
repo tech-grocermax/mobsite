@@ -57,7 +57,9 @@
 						<span class="del-slot" 
 							data-ng-show="timeslot.available == 0">{{timeslot.timeSlot}}</span>
 						<span data-ng-show="timeslot.available == 1">{{timeslot.timeSlot}}</span>
-					</div>					
+						<div data-ng-show="timeslot.available == 0" 
+							style="position:absolute; left:30%; top:60%; color:#ee2d09; ">SLOT FULL</div>
+					</div>										
 				</div>
 			</div>					
 		</div>
