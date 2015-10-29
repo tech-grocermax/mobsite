@@ -80,19 +80,19 @@
 					</li>
 					<li class="reg-list">
 						<span class="reg-list-text">City</span><br>
+						<!-- data-ng-show="isReferrer == 'checkout' && addressType == 'shipping'" -->
 						<input type="text" name="city" placeholder="required" 
 							required my-max-length="20" only-alphabets-with-space
 							data-ng-model="address.city"
 							value="gurgaon"
-							readonly
-							data-ng-show="isReferrer == 'checkout' && addressType == 'shipping'"
+							readonly							
 							class="place-color reg-list-input">
-						<input type="text" name="city" placeholder="required" 
+						<!-- <input type="text" name="city" placeholder="required" 
 							required my-max-length="20" only-alphabets-with-space
 							data-ng-model="address.city"
 							value="{{address.city}}"
 							data-ng-show="!(isReferrer == 'checkout' && addressType == 'shipping')"
-							class="place-color reg-list-input">
+							class="place-color reg-list-input"> -->
 						<div ng-messages="frmRegistration.city.$error" 
                         	data-ng-show="frmRegistration.city.$dirty || (errorRegistration && address.city == null)">
                             <div ng-show="frmRegistration.city.$error.required" 
@@ -102,19 +102,19 @@
 						<span class="reg-list-text">State</span><br>
 						<div class="myselect">
 							<img class="dropdown-img" alt="" src="images/header-icon/drop-img.png">
+							<!-- data-ng-show="isReferrer == 'checkout' && addressType == 'shipping'" -->
 	  						<select data-ng-model="address.state" 
-	  							class="reg-list-select"
-	  							data-ng-show="isReferrer == 'checkout' && addressType == 'shipping'">
+	  							class="reg-list-select">
 	  							<option value="HR">Haryana</option>
 						    </select>
-						    <select data-ng-model="address.state" 
+						    <!-- <select data-ng-model="address.state" 
 						    	class="reg-list-select"
 						    	data-ng-show="!(isReferrer == 'checkout' && addressType == 'shipping')">
 	  							<option value="" style="display:none; ">Select</option>
 						        <option value="HR">Haryana</option>
 						        <option value="UP">Uttar Pradesh</option>
 						        <option value="DL">New Delhi</option>
-						    </select>
+						    </select> -->
 						</div>
 					</li>				
 					<li class="reg-list">

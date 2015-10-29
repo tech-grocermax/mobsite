@@ -459,36 +459,40 @@ define(['app'], function(app) {
                     });
             };
 
-            $scope.changePassword = function() {
+            $scope.changePassword = function(form) {
                 console.log($scope.password);
-                if(!$scope.password["old"]
-                    || !$scope.password["new"]
-                    || !$scope.password["confirm"]) {
-                    $scope.showUserResponse = true;
-                    $scope.userResponseMessage = "Please fill missing fields first";
-                    updateClassName("danger");
-                } else if($scope.password["new"] == $scope.password["confirm"]) {
-                    toggleLoader(true);
-                    var input = {
-                        userid:utility.getJStorageKey("userId"),
-                        password:$scope.password["new"],
-                        old_password:$scope.password["old"]
-                    };
-                    userService.changePassword(input)
-                        .then(function(data){
-                            toggleLoader(false);
-                            if(data.flag == "1") {
-                                $location.url("user/profile");
-                            } else {
-                                $scope.showUserResponse = true;
-                                $scope.userResponseMessage = data.Result;
-                                updateClassName("danger");
-                            }                   
-                        });
-                } else {
-                    $scope.showUserResponse = true;
-                    $scope.userResponseMessage = "New & conirm password mismatch";
-                    updateClassName("danger");
+                $scope.errorRegistration = true;
+                console.log(form.$valid);                
+                if (form.$valid) {
+                    if($scope.password["old"].length < 6
+                        || $scope.password["new"].length < 6
+                        || $scope.password["confirm"].length < 6) {
+                        $scope.showUserResponse = true;
+                        $scope.userResponseMessage = "Please fill minimum length password";
+                        updateClassName("danger");
+                    } else if($scope.password["new"] == $scope.password["confirm"]) {
+                        toggleLoader(true);
+                        var input = {
+                            userid:utility.getJStorageKey("userId"),
+                            password:$scope.password["new"],
+                            old_password:$scope.password["old"]
+                        };
+                        userService.changePassword(input)
+                            .then(function(data){
+                                toggleLoader(false);
+                                if(data.flag == "1") {
+                                    $location.url("user/profile");
+                                } else {
+                                    $scope.showUserResponse = true;
+                                    $scope.userResponseMessage = data.Result;
+                                    updateClassName("danger");
+                                }                   
+                            });
+                    } else {
+                        $scope.showUserResponse = true;
+                        $scope.userResponseMessage = "New & conirm password mismatch";
+                        updateClassName("danger");
+                    }
                 }
             };
 
