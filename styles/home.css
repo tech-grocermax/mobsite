@@ -144,7 +144,7 @@ input , button, select{outline:none;}
 .menu-item-h{font-size: 4.4vw; padding: 38px 0 24px 32px;border-bottom: 2px solid #d2d2d2;}
 .menu-subitem-h{font-size: 4.4vw; padding: 21px 0 21px 16px;border-bottom: 2px solid #413428;/*font-family: helveticaNeue-Regular;*/color:#fff;}
 .menu-subitem-h > img{margin-right: 8px;}
-.item-shop{/*background: #fff;*/font-size: 3.4vw;color: #fff; padding-top: 25px;letter-spacing: 2px;font-family: lato-light;}
+.item-shop{/*background: #fff;*/font-size: 4vw;color: #fff; padding-top: 25px;letter-spacing: 2px;font-family: lato-light;}
 .menu-item{/*background:#fff; font-family: helveticaNeue-Regular;*/color: #fff;font-size:4.1vw; padding: 24px 0;/* border-bottom:1px solid #d2d2d2;*/}
 .sub-menu{font-weight:400;}
 .menu-item .plus-sign{color: #acacac;float: right;font-size: 5.2vw;font-weight: 300;margin-right: 30px;margin-top: -5px;}
