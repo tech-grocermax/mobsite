@@ -633,20 +633,24 @@ input , button, select{outline:none;}
 
 .ribbon {
  	font-size: 14px !important;
- 	position: absolute;
- 	background: #EE2D09;
- 	color: #fff;
+ 	margin:0;
+ 	background: #fec70d;
+ 	color: #e5111e;
  	text-align: center;
- 	padding: 0.5em;
-  	-webkit-transform: rotate(320deg);
+ 	padding: 14px;
+  	/*
+	position: absolute;
+	-webkit-transform: rotate(320deg);
   	-moz-transform: rotate(320deg);
   	-o-transform: rotate(320deg);
   	-ms-transform: rotate(320deg);
   	transform: rotate(320deg);
-  	top: 40px;
+	top: 40px;
     left: -27px;
     z-index: 1;
     width: 238px;
+	*/
+  	
 }
 .text-ellipsis {
 	display: block;	
