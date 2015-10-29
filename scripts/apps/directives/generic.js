@@ -24,7 +24,7 @@ define(['app'], function(app){
 		            	if(keycode == 13 && elem.val().length >= 3){
 		            		console.log("enter");  
 		            		console.log(elem.val());  
-		            		scope.handleSearchKeyEnter();		            				            		   		            		
+		            		scope.handleSearchKeyEnter();	
 		            	}
 		            });            
 		        }

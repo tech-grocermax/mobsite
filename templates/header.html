@@ -82,10 +82,12 @@
                         class="img-responsive" style="cursor:pointer; ">
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 padd0">
+                    <!-- search -->
                     <input type="text" placeholder="Search and buy from here..." 
                         data-ng-model="searchKeyword"
                         data-ng-change="changeSearchKeyword(searchKeyword)"
-                        class="search-bar" search only-alphabets-with-space>
+                        data-ng-keypress="checkIfEnterKeyWasPressed($event)"
+                        class="search-bar" only-alphabets-with-space>
                 </div>
                 <!-- search-icon -->
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 " 

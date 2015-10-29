@@ -277,7 +277,15 @@ define(['app'], function(app) {
                 $scope.searchKeyword = model;
             };
 
+            $scope.checkIfEnterKeyWasPressed = function($event) {
+                var keyCode = $event.which || $event.keyCode;
+                if (keyCode === 13 && $scope.searchKeyword.length >=3 ) {
+                    $scope.handleSearchKeyEnter();
+                }
+            };
+
             $scope.handleSearchKeyEnter = function() {
+                console.log("handleSearchKeyEnter");
                 $location.url("product?keyword=" + $scope.searchKeyword)
             };
             
