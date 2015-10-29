@@ -91,10 +91,10 @@ define(['app'], function(app) {
 
             groupSearchProductByCategory = function(data) {
                 console.log(data);
-                $scope.searchCateforyList = angular.isDefined(data.Category) ? data.Category : [];
+                $scope.searchCategoryList = angular.isDefined(data.Category) ? data.Category : [];
                 $scope.products = [];
-                if($scope.searchCateforyList.length) {
-                    angular.forEach($scope.searchCateforyList, function(value, key) {
+                if($scope.searchCategoryList.length) {
+                    angular.forEach($scope.searchCategoryList, function(value, key) {
                         var products = [];
                         angular.forEach(data.Product, function(innerValue, innerKey) {
                             if(value.category_id == innerValue.categoryid[0]) {
@@ -105,7 +105,7 @@ define(['app'], function(app) {
                         value["products"] = products;
                         value["isSelected"] = (key == 0) ? true : false;
                     });
-                    $scope.products = $scope.searchCateforyList[0]["products"];
+                    $scope.products = $scope.searchCategoryList[0]["products"];
                 }
             };
 
@@ -119,7 +119,7 @@ define(['app'], function(app) {
             };
 
             $scope.setSearchCategoryProducts = function(data, products) {
-                angular.forEach($scope.searchCateforyList, function(value, key) {
+                angular.forEach($scope.searchCategoryList, function(value, key) {
                     value["isSelected"] = false;
                 });
                 data["isSelected"] = true;
@@ -127,11 +127,54 @@ define(['app'], function(app) {
                 $scope.products = products;                
             };
 
+            $scope.setAllCategoryProducts = function(data, products) {
+                angular.forEach($scope.allProductCategoryList, function(value, key) {
+                    value["isSelected"] = false;
+                });
+                data["isSelected"] = true;
+                $scope.products = [];
+                $scope.products = products;                
+            };
+
+
+            groupAllProductByCategory = function(data) {
+                console.log(data);
+                $scope.allProductCategoryList = angular.isDefined(data.ProductList) ? data.ProductList : [];
+                
+                if(angular.isDefined(data.hotproduct) && data.hotproduct.length) {
+                    angular.forEach(data.hotproduct, function(value, key) {
+                        $scope.allProductCategoryList.push(value);
+                    });                    
+                }
+
+                $scope.products = [];
+                if($scope.allProductCategoryList.length) {
+                    angular.forEach($scope.allProductCategoryList, function(value, key) {
+                        var products = [];
+                        angular.forEach(value.product, function(innerValue, innerKey) {
+                            innerValue["quantity"] = 1;
+                        });
+                        value["isSelected"] = (key == 0) ? true : false;
+                    });
+                    $scope.products = $scope.allProductCategoryList[0]["product"];
+                }
+            };
+
+            getAllProductListByCategoryId = function() {
+                toggleLoader(true);
+                productService.getAllProductListByCategoryId($scope.categoryId)
+                    .then(function(data){
+                        console.log(data);
+                        toggleLoader(false);
+                        groupAllProductByCategory(data);
+                    });
+            };
+
             if($scope.categoryId){
-               getLastChildCategoryList(); 
-               getProductListByCategoryId();
+               //getLastChildCategoryList(); 
+               //getProductListByCategoryId();
+               getAllProductListByCategoryId();
                $scope.categoryName = categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.categoryId);
-               //console.log("name = " + $scope.categoryName);               
             }
 
             if($scope.dealId){
@@ -339,7 +382,7 @@ define(['app'], function(app) {
                 return $scope.productIds.indexOf(product.product_id) >= 0 ? true : false; 
             };
 
-            checkoutSuccessCallback = function(data, flag) {
+            checkoutSuccessCallback = function(flag) {
                 if(flag == "update") {
                     $scope.isCartUpdated = false;
                     getCartItemDetails();
@@ -369,17 +412,21 @@ define(['app'], function(app) {
             };
 
             $scope.checkout = function(flag) {
-                var quoteId = utility.getJStorageKey("quoteId"),
-                    products = buildProductObject();
+                if(flag == 'checkout') {
+                    checkoutSuccessCallback('checkout')
+                } else {
+                    var quoteId = utility.getJStorageKey("quoteId"),
+                        products = buildProductObject();
 
-                toggleLoader(true);
-                productService.cartUpdateProduct(quoteId, products, $scope.productIds)
-                    .then(function(data){
-                        if(data.flag == 1 || data.flag == "1"){
-                            $scope.productIds = [];                           
-                            checkoutSuccessCallback(data, flag);                            
-                        }                            
-                    });
+                    toggleLoader(true);
+                    productService.cartUpdateProduct(quoteId, products, $scope.productIds)
+                        .then(function(data){
+                            if(data.flag == 1 || data.flag == "1"){
+                                $scope.productIds = [];                           
+                                checkoutSuccessCallback(flag);                            
+                            }                            
+                        });
+                }                
             };            
 
             $scope.showMoreMenu = function() {
