@@ -253,11 +253,14 @@ define(['app'], function(app) {
                 }
             };
 
-            updateCartItemCounter = function(count) {
-                console.log("updateCartItemCounter");
+            updateCartItemCounter = function(count, resetCartCounter) {
                 var quoteId = utility.getJStorageKey("quoteId"),
                     cartCounterKey = "cartCounter" + quoteId,
                     cartCount = 0;
+
+                if(angular.isDefined(resetCartCounter) && resetCartCounter) {
+                    utility.setJStorageKey(cartCounterKey, cartCount, 1);
+                }
 
                 if(angular.isDefined(utility.getJStorageKey(cartCounterKey)) 
                     && utility.getJStorageKey(cartCounterKey) ) {
@@ -276,16 +279,13 @@ define(['app'], function(app) {
                     cartCounterKey = "cartCounter" + quoteId,
                     cartCount = 0;
 
-                console.log(utility.getJStorageKey(cartCounterKey));
                 if(angular.isDefined(utility.getJStorageKey(cartCounterKey)) 
                     && utility.getJStorageKey(cartCounterKey) ) {
                     cartCount = utility.getJStorageKey(cartCounterKey);
                     $scope.cartItemCount = cartCount;
-                    console.log("here");
                 }
             };
 
-            console.log($scope.jStorageQuoteId);
             if($scope.jStorageQuoteId) {
                 getBasketItemCounter();
             }
@@ -424,7 +424,7 @@ define(['app'], function(app) {
             checkoutSuccessCallback = function(flag) {
                 if(flag == "update") {
                     $scope.isCartUpdated = false;
-                    getCartItemDetails();
+                    //getCartItemDetails();
                 } else {
                     toggleLoader(false);
                     if(angular.isDefined(utility.getJStorageKey("userId"))
@@ -437,7 +437,9 @@ define(['app'], function(app) {
             };
 
             buildProductObject = function() {
-                var products = [];
+                var products = [],
+                    totalQty = 0;
+
                 angular.forEach($scope.cartDetails.items, function(value, key) {
                     if(value.apply_rule == 0 
                         && $scope.productIds.indexOf(value.product_id) == -1) {
@@ -445,8 +447,12 @@ define(['app'], function(app) {
                             "productid": parseInt(value.product_id, 10),
                             "quantity": parseInt(value.qty, 10)
                         });
+                        totalQty = totalQty + parseInt(value.qty, 10);
                     }                   
-                });   
+                });
+
+                console.log("totalQty = " + totalQty);
+                updateCartItemCounter(totalQty, true);
                 return products;             
             };
 
@@ -460,6 +466,7 @@ define(['app'], function(app) {
                     toggleLoader(true);
                     productService.cartUpdateProduct(quoteId, products, $scope.productIds)
                         .then(function(data){
+                            toggleLoader(false);
                             if(data.flag == 1 || data.flag == "1"){
                                 $scope.productIds = [];                           
                                 checkoutSuccessCallback(flag);                            

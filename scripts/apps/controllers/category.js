@@ -47,7 +47,6 @@ define(['app'], function(app) {
             if (utility.getJStorageKey("categories")) {
                 $scope.categories = utility.getJStorageKey("categories");
                 $scope.categoryImageUrl = utility.getJStorageKey("categoryImageUrl");
-                console.log($scope.categoryImageUrl);
             } else {
         	    categoryService.getCategoryList()
                     .then(function(data){
@@ -55,7 +54,6 @@ define(['app'], function(app) {
                         utility.setJStorageKey("categories", $scope.categories, 1);
                         $scope.categoryImageUrl = data.urlImg;
                         utility.setJStorageKey("categoryImageUrl", data.urlImg, 1);
-                        console.log($scope.categoryImageUrl);
                     });
             }
 
@@ -189,12 +187,10 @@ define(['app'], function(app) {
                     cartCounterKey = "cartCounter" + quoteId,
                     cartCount = 0;
 
-                console.log(utility.getJStorageKey(cartCounterKey));
                 if(angular.isDefined(utility.getJStorageKey(cartCounterKey)) 
                     && utility.getJStorageKey(cartCounterKey) ) {
                     cartCount = utility.getJStorageKey(cartCounterKey);
                     $scope.cartItemCount = cartCount;
-                    console.log("here");
                 }
             }; 
 
