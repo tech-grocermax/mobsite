@@ -466,12 +466,15 @@ define(['app'], function(app) {
                 }
             };
 
-            $scope.forgotPassword = function() {
-                toggleLoader(true);
-                userService.forgotPassword($scope.email)
-                    .then(function(data){
-                           successCallbackForgotPassword(data);                    
-                    });
+            $scope.forgotPassword = function(form) {
+                $scope.errorRegistration = true;
+                if(form.$valid) {
+                    toggleLoader(true);
+                    userService.forgotPassword($scope.email)
+                        .then(function(data){
+                               successCallbackForgotPassword(data);                    
+                        });
+                }                
             };
 
             $scope.changePassword = function(form) {
