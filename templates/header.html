@@ -134,7 +134,15 @@
 <div class="left-menu" data-ng-show="showCategoryMenu"
 	outsideclick="handleMenuCategoryOutsideClick()">
 	<!--<div class="menu-item-h">HOME</div>-->
-	<ul class="list-unstyled pad-lt32">
+	<ul class="list-unstyled">
+		<li class="item-shop">HOME</li>
+		<li class="item-shop">
+			<img src="images/app_bar_icons/locationdrawer.png" alt="" 
+				class="img-responsive loc-icon">
+			Delhi
+			<img src="images/app_bar_icons/draweredit.png" alt="" 
+				class="img-responsive edit-icon">
+		</li>
 		<li class="item-shop">SHOP BY CATEGORIES</li>
 		<li class="menu-item" 
 			data-ng-show="category.is_active"
@@ -143,7 +151,9 @@
 			{{category.name}}
 			<img src="images/app_bar_icons/RIGHT-ICON.png" alt="" 
 				class="img-responsive" style="display:inline; float:right;">
-		</li>            
+		</li>  
+		<li class="item-shop">SHOP BY DEALS</li>
+		<li class="item-shop">GET IN TOUCH WITH US</li>
 	</ul>
 </div>
 

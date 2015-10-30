@@ -144,8 +144,8 @@ input , button, select{outline:none;}
 .menu-item-h{font-size: 4.4vw; padding: 38px 0 24px 32px;border-bottom: 2px solid #d2d2d2;}
 .menu-subitem-h{font-size: 4.4vw; padding: 21px 0 21px 16px;border-bottom: 2px solid #413428;/*font-family: helveticaNeue-Regular;*/color:#fff;}
 .menu-subitem-h > img{margin-right: 8px;}
-.item-shop{/*background: #fff;*/font-size: 4vw;color: #fff; padding-top: 25px;letter-spacing: 2px;font-family: lato-light;}
-.menu-item{/*background:#fff; font-family: helveticaNeue-Regular;*/color: #fff;font-size:4.1vw; padding: 24px 0;/* border-bottom:1px solid #d2d2d2;*/}
+.item-shop{/*background: #fff;*/font-size: 4vw;color: #fff; padding: 16px;letter-spacing: 2px;font-family: lato-light;border-bottom:1px solid #d2d2d2;}
+.menu-item{/*background:#fff; font-family: helveticaNeue-Regular;*/color: #fff;font-size:4.1vw; padding: 10px 0 10px 32px;/* border-bottom:1px solid #d2d2d2;*/}
 .sub-menu{font-weight:400;}
 .menu-item .plus-sign{color: #acacac;float: right;font-size: 5.2vw;font-weight: 300;margin-right: 30px;margin-top: -5px;}
 .menu-item .minus-sign{color: #acacac;float: right;font-size: 4vw;margin-right: 30px;text-transform: full-width;}
@@ -400,8 +400,8 @@ input , button, select{outline:none;}
 .card-height{height: 206px;}
 .card-img-box{height:204px; position: relative;}
 .card-img-center{position: absolute;margin: auto;left: 0;right: 0;top: 0;bottom: 0;}
-
-
+.loc-icon{width: 20px;margin-top: 5px;margin-right: 30px; display:inline; float:left;}
+.edit-icon{width: 20px;margin-top: 10px;display:inline; float:right;}
 
 
 @media  (max-width: 460px){
@@ -503,7 +503,7 @@ input , button, select{outline:none;}
 	.back-img-mr{width:7.5%;margin-top:-5px;}
 	.margin-t16-m{margin-top: 16px;}
 /*	.subc-h1 {bottom: 7.2%;}*/
-	.cat-img-mrg {margin-top: 122px;}
+	.cat-img-mrg {margin-top: 130px;}
 	/*.prod-sec{margin-bottom: 153px;}*/
 	/*.left-menu{top: 93.2%;}*/
 	.top-subhead {height: 52px;top: 54px;}
@@ -632,12 +632,12 @@ input , button, select{outline:none;}
 .modal-dialog,.modal-content,.modal-body{position:absolute; top:0;left:0;bottom:0; right:0; margin:0;border:none;}
 
 .ribbon {
- 	font-size: 14px !important;
+ 	font-size: 16px !important;
  	margin:0;
  	background: #fec70d;
  	color: #e5111e;
  	text-align: center;
- 	padding: 14px;
+ 	padding: 10px;
   	/*
 	position: absolute;
 	-webkit-transform: rotate(320deg);
