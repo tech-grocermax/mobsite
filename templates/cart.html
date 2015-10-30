@@ -1,23 +1,23 @@
 <div ng-controller="productController">
-    <header data-ng-include="'templates/header.html'"></header>
+    <header data-ng-include="'templates/header.html'" class="top-head"></header>
     <div class="row margin0 pad-lt16 pad-rt16 margin-top10 margin-0-m"
         data-ng-show="!cartDetails.items.length">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 dot-border"
-            style="padding: 20px; margin-top: 20px; text-align:center; ">
+            style="padding: 20px; margin-top: 80px; text-align:center; ">
             Your cart is empty. <a href="#">Continue Shopping</a>
         </div>
     </div>
     <div class="row margin0 pad16 cart-margin">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box"
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box margin-bot15"
             data-ng-show="cartDetails.items.length"
             data-ng-hide="hideCartItem(product)"
             data-ng-repeat="product in cartDetails.items">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <img src="{{replaceImageUrl(product.product_thumbnail)}}" 
-                        alt="" class="img-responsive">
+                        alt="" class="img-responsive cart-img-heigth">
             </div>
-            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd0">
-                <ul class="list-unstyled">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 pad-lr10">
+                <ul class="list-unstyled" style="margin-bottom:5px;">
                     <li class="prod-list-h">{{product.p_brand}}
 					   <img src="images/app_bar_icons/delete-icon.png"
                             data-ng-show="product.apply_rule == 0"
@@ -25,37 +25,45 @@
                             alt="" class="delet-icon">
                     </li>
                     <li class="cat-list-name">{{product.name}}</li>
-                    <li class="prod-list-qnty">{{product.p_pack}}</li>
+                    <!--<li class="prod-list-qnty">{{product.p_pack}}</li>-->
                     <li class="font-3">
                         <span class="product-qnty">
                             ₹ {{toFixedDecimal(product.price)}}</span> 
                         <span class="prod-new-price">
                             | ₹ {{toFixedDecimal(product.mrp)}}</span></li>
-                    <li class="product-qnty">
-                        ₹ {{toFixedDecimal(getPriceDifference(product.mrp, product.price))}}</li>
+                    <!--<li class="product-qnty">
+                        ₹ {{toFixedDecimal(getPriceDifference(product.mrp, product.price))}}</li>-->
                 </ul>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cat-list-box float-rt">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cat-list-box float-rt padd0" style="margin-right:10px;">
                 <ul class="list-unstyled cat-list" 
                     data-ng-show="product.apply_rule == 0">
                     <li class="cat-minus"                         
-                        data-ng-click="decreaseCartProductQuantity(product, 'product_id')">-</li>
+                        data-ng-click="decreaseCartProductQuantity(product, 'product_id')">
+						<img src="images/app_bar_icons/minus-img.png" class="img-responsive">	
+					</li>
                     <li class="cat-input-box">
                         <input type="text" placeholder="1" class="cat-input-text"
                             value="{{getCartProductQuantity(product.product_id)}}" >
                     </li>
                     <li class="cat-plus" 
-                        data-ng-click="increaseCartProductQuantity(product, 'product_id')">+</li>
+                        data-ng-click="increaseCartProductQuantity(product, 'product_id')">
+						<img src="images/app_bar_icons/plus-img.png" class="img-responsive">
+					</li>
                 </ul>
                 <ul class="list-unstyled cat-list"
                     data-ng-show="product.apply_rule == 1">
-                    <li class="cat-minus">-</li>
+                    <li class="cat-minus">
+						<img src="images/app_bar_icons/minus-img.png" class="img-responsive">	
+					</li>
                     <li class="cat-input-box">
                         <input type="text" placeholder="1" 
                             class="cat-input-text" readonly
                             value="{{getCartProductQuantity(product.product_id)}}" >
                     </li>
-                    <li class="cat-plus">+</li>
+                    <li class="cat-plus">
+						<img src="images/app_bar_icons/plus-img.png" class="img-responsive">
+					</li>
                 </ul>
             </div>
         </div>

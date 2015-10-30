@@ -1,5 +1,5 @@
 <div ng-controller="categoryController">
-	<header data-ng-include="'templates/header.html'" class="header-fix-top"></header>
+	<header data-ng-include="'templates/header.html'" class="header-fix-top cat-border"></header>
 	<article class="margin-bot15">
 		<section class="cat-img-mrg">
 			<div class="row margin0 pad16 pad-bot0"
@@ -11,28 +11,28 @@
 						<img src="{{categoryImageUrl}}{{category.category_id}}.png" 
 							title="{{category.name}}" class="img-responsive"
 							data-ng-click="showMoreCategory(category)">
-						<div class="subc-h1"
+						<!--<div class="subc-h1"
 							data-ng-show="category.children.length"
 							data-ng-click="showMoreCategory(category)"
 							style="cursor:pointer; ">
 							Select category to view products
-						</div>	
+						</div>-->	
 						<div class="subc-h1"
 							data-ng-show="!category.children.length">
 							No more category available
 						</div>	
 						<!-- routerChange('product', category.category_id) -->				
-						<div class="align-center subc-h2"
-							data-ng-click="showMoreCategory(category)">{{category.name}}</div>
+						<!--<div class="align-center subc-h2"
+							data-ng-click="showMoreCategory(category)">{{category.name}}</div>-->
 					</div>
 				</div>
 				<div class="row"
 					data-ng-show="category.children.length && moreCategoryIndex == category.category_id">
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white pad-b-15">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-b-15">
 						<a href="javascript:void(0)"
 							data-ng-click="routerChange('product', subCategory.category_id)"
 							data-ng-repeat="subCategory in category.children">
-							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 subcat-btn">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 subcat-btn">
 								<button type="button" class="subc-btn">{{subCategory.name}}</button>
 							</div>
 						</a>

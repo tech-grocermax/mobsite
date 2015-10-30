@@ -6,6 +6,7 @@ define(['app'], function(app) {
             $scope.categoryIndex = -1;
             $scope.subCategoryIndex = -1;
             $scope.categoryName = null;
+            $scope.urlImg = null;
             $scope.subCategoryList = null;
             $scope.showCategoryMenu = false;
             $scope.showSubCategoryMenu = false;
@@ -51,6 +52,7 @@ define(['app'], function(app) {
         	    categoryService.getCategoryList()
                     .then(function(data){
                         $scope.categories = data.Category.children[0].children; 
+                        $scope.urlImg = data.urlImg; 
                         utility.setJStorageKey("categories", $scope.categories, 1);
                         $scope.categoryImageUrl = data.urlImg;
                         utility.setJStorageKey("categoryImageUrl", data.urlImg, 1);
