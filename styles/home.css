@@ -100,7 +100,7 @@ input , button, select{outline:none;}
 /*.img-box{background: #fff;border-radius: 3px;box-shadow:0 7px 5px rgba(0, 0, 0, 0.2);}*/
 .imgbox-margin{margin: 7.5px;}
 .deals-img{margin-top:198px;}
-.cat-img-mrg{margin-top:172px;}/*home change*/
+.cat-img-mrg{margin-top:182px;}/*home change*/
 .offer-img-mrg{margin-top: 198px;}
 .imgbox-lt-margin{margin-left: 7.5px;}
 .slider-text{font-family: lato;font-weight: bold; font-size: 4.4vw; color: #2d2d2d;letter-spacing: 5px;margin-bottom: 31px;margin-top: 46px;}
@@ -361,7 +361,7 @@ input , button, select{outline:none;}
 /*========== ORDER SUCCESS ==========*/
 .subc-h1{width:100%;/* padding: 13px 0; background: #000;*/ bottom: 6.2%; display: block; position: absolute; opacity: 0.8;font-size: 3.4vw; color:#fff;text-align:right;content: "";font-weight: 300;right: 3.4%;}
 .subc-h2{font-size: 5.6vw;padding-left: 26px;font-weight: 100;color:#fff;}
-.subc-btn{padding: 10px 0;font-size:3.8vw; background:#fff; border: 1px solid #d7d7d7; border-radius:4px; width:100%;box-shadow: 2px 2px 3px -2px; color:#2d2d2d;}
+.subc-btn{padding: 10px 4px;font-size:3.8vw; background:#fff; border: 1px solid #d7d7d7; border-radius:4px; width:100%;box-shadow: 2px 2px 3px -2px; color:#2d2d2d;}
 
 .btn-bottom{position: absolute; left: 0px; right: 0px; bottom: 0px;}
 .modal-body{background-image:url('../images/location-back.png'); background-attachment:fixed; background-position:center center; background-repeat:no-repeat; background-size:cover;}

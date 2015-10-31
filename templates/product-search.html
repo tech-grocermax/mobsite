@@ -47,7 +47,7 @@
                                 {{getCartProductQuantity(product.productid)}}</span>
 						</li>
                         <li class="cat-list-name">{{product.p_name}}</li>
-                        <li class="prod-list-qnty">{{product.p_pack}}</li>
+                        <li class="prod-list-qnty text-ellipsis">{{product.p_pack}}</li>
                         <li class="font-3"><span class="product-qnty">₹ {{toFixedDecimal(product.sale_price)}} |</span> <span class="prod-new-price">₹ {{toFixedDecimal(product.Price)}}</span></li>
                         <!--<li class="product-qnty">₹ {{toFixedDecimal(getPriceDifference(product.Price, product.sale_price))}}</li>-->
                     </ul>
