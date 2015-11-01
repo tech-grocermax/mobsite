@@ -44,22 +44,16 @@
 				<div class="row margin0" style="overflow: auto;">
 					<ul class="list-unstyled view-inline margin0 slide-ul">
 						<li data-ng-show="category.is_active" 
-	    					data-ng-repeat="category in offerCategories">
-							<img src="{{category.images}}" title="{{category.name}}" 
+	    					data-ng-repeat="category in categories">
+							<img src="{{categoryImageUrl}}{{category.category_id}}.png" title="{{category.name}}" 
 								class="slide-img"
 								data-ng-click="routerChange('category', category.category_id)">
-							<!--<div class="img-text-box">
-								<span class="img-text-h">&nbsp</span><br>
-								 <span class="img-text"
-									data-ng-show="category.children.length">{{renderChildrenCategory(category.children)}}</span>
-							</div> -->
 							<div class="slide-text"
 								data-ng-click="routerChange('category/offers', category.category_id)"
-								style="width:100%; ">{{category.offercount}} OFFERS
+								style="width:100%; ">{{category.offerCount}} OFFERS
 								<img src="images/app_bar_icons/offer-img-arrow.png" class="offer-arrow-img">
 								</div>
 						</li>
-						<!-- <li class="li-border"></li> -->						
 					</ul>					
 				</div>
 			</div>
@@ -105,4 +99,11 @@
 			</div>
 		</section>
     </article>		
+
+    <div class="popupcontainerloader" style="position:fixed;"
+        data-ng-show="displayLoader">        
+        <div style="text-align:center; width:100%; "><img src="images/ajax-loader.gif" /></div>
+    </div>
+    <div data-ng-show="displayLoader" class="black_shade"></div>
+    
 </div>

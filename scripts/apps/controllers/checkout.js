@@ -376,12 +376,26 @@ define(['app'], function(app) {
             };
 
             $scope.paytmFormDetails = null;
+            $scope.formUrl = null;
             getPaytmProcessingDetails = function(orderId) {
                 userService.getPaytmProcessingDetails(orderId)
                     .then(function(data){ 
                         console.log(data);             
                         if(data.flag == 1){
+                            $scope.formUrl = data.Paytm_url;
+                            $scope.paytmFormDetails = data.paymentDetails;
                             
+                            $scope.paytmFormDetails.EMAIL = "binit@gmail.com";
+                            $scope.paytmFormDetails.CUST_ID = 13815;
+                            $scope.paytmFormDetails.MOBILE_NO = 9540955646;
+
+                            $scope.paytmFormDetails.TXN_AMOUNT = $scope.paytmFormDetails.TXN_AMOUNT.replace(",", ".");
+                            console.log($scope.formUrl);
+                            console.log($scope.paytmFormDetails);
+                            $timeout(function() {
+                                document.getElementById("frmPaytm").action = $scope.formUrl;
+                                document.getElementById("frmPaytm").submit();
+                            }, 2000);
                         }
                     });
             };

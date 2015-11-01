@@ -1,3 +1,26 @@
+{
+Result: "Order failed.",
+orderfailed: {
+RESPCODE: "330",
+RESPMSG: "Invalid Checksum",
+STATUS: "TXN_FAILURE",
+MID: "ikAFFa76107370314377",
+TXNAMOUNT: "200.00",
+ORDERID: "145017499",
+CHECKSUMHASH: "h//S1lX2Gl/56Lm07R5SbdNgUY0sBibicjNrBYFKZ5deE4L8+YK7IIy6ba1oGJADn70yjUZg4Y4EdwymijCXLD5OVl63HcusKTZPo60Yqls="
+},
+flag: 0
+}
+
+
+
+
+
+
+
+
+
+
 Place Order: for paytm & cash on delivery itsnotworking
 Registration: user added successfully, but returning empty user_id
 

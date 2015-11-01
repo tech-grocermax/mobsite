@@ -452,6 +452,22 @@ define(['app'], function(app) {
                 return products;             
             };
 
+            resetProductBasketCounter = function(productId, count) {
+                var quoteId = utility.getJStorageKey("quoteId");
+                console.log(quoteId);
+
+                if(angular.isDefined(utility.getJStorageKey("productBasketCount_" + quoteId)) 
+                    && utility.getJStorageKey("productBasketCount_" + quoteId)) {  
+                    var productBasketCount = utility.getJStorageKey("productBasketCount_" + quoteId);                    
+                    productBasketCount[productId] = parseInt(count, 10);                                        
+                } else {
+                    var productBasketCount = {};
+                    productBasketCount[productId] = count;
+                }
+                utility.setJStorageKey("productBasketCount_" + quoteId, productBasketCount, 1);
+                console.log(utility.getJStorageKey("productBasketCount_" + quoteId));
+            };
+
             $scope.checkout = function(flag) {
                 if(flag == 'checkout') {
                     checkoutSuccessCallback('checkout')
@@ -466,6 +482,10 @@ define(['app'], function(app) {
                             if(data.flag == 1 || data.flag == "1"){
                                 var totalQty = productService.getCartItemCount(data.CartDetail.items);
                                 updateCartItemCounter(totalQty, true);
+                                utility.deleteJStorageKey("productBasketCount_" + quoteId);
+                                angular.forEach(data.CartDetail.items, function(value, key) {
+                                    resetProductBasketCounter(value.product_id, value.qty);
+                                });
                                 $scope.productIds = [];                           
                                 checkoutSuccessCallback(flag);                            
                             }                            

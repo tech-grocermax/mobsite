@@ -1,7 +1,7 @@
 define(['app'], function(app) {
 	app.controller('categoryController',  [
-        '$scope', '$rootScope', '$location', '$timeout', '$routeParams', 'categoryService', 'productService', 'utility', 
-        function($scope, $rootScope, $location, $timeout, $routeParams, categoryService, productService, utility){
+        '$scope', '$rootScope', '$location', '$q', '$timeout', '$routeParams', 'categoryService', 'productService', 'utility', 
+        function($scope, $rootScope, $location, $q, $timeout, $routeParams, categoryService, productService, utility){
             $scope.categories = null;
             $scope.categoryIndex = -1;
             $scope.subCategoryIndex = -1;
@@ -30,21 +30,19 @@ define(['app'], function(app) {
             $scope.cityList = null;
             $scope.cityLocation = {};
             $scope.categoryImageUrl = null;
-
             $scope.myInterval = 5000;
             $scope.noWrapSlides = false;
+            $scope.carouselIndex2 = 2;
 
             toggleLoader = function(flag) {
                 $scope.displayLoader = flag;
-            };
+            };  
 
-            $scope.carouselIndex2 = 2;
-
-            getBannerList = function() {
+            /*getBannerList = function() {
                 if (utility.getJStorageKey("bannerList")) {
                     $scope.bannerList = utility.getJStorageKey("bannerList");
                 } else {                    
-                    categoryService.getBannerList($routeParams.dealId)
+                    categoryService.getBannerList()
                         .then(function(data){  
                             if(data.flag == 1) {                      
                                 $scope.bannerList = data.banner;
@@ -52,49 +50,136 @@ define(['app'], function(app) {
                             }
                         });
                 }
-            }; 
-            getBannerList();        
+            };*/            
 
-            if (utility.getJStorageKey("categories")) {
-                $scope.categories = utility.getJStorageKey("categories");
-                $scope.categories.sort(utility.dynamicSort("position"));
-                $scope.categoryImageUrl = utility.getJStorageKey("categoryImageUrl");
-            } else {
-        	    categoryService.getCategoryList()
-                    .then(function(data){
-                        $scope.categories = data.Category.children[0].children; 
-                        $scope.categories.sort(utility.dynamicSort("position"));
-                        $scope.urlImg = data.urlImg; 
-                        utility.setJStorageKey("categories", $scope.categories, 1);
-                        $scope.categoryImageUrl = data.urlImg;
-                        utility.setJStorageKey("categoryImageUrl", data.urlImg, 1);
+            /*getMasterCategoryList = function() {
+                if (utility.getJStorageKey("categories")) {
+                    $scope.categories = utility.getJStorageKey("categories");
+                    $scope.categories.sort(utility.dynamicSort("position"));
+                    $scope.categoryImageUrl = utility.getJStorageKey("categoryImageUrl");
+                } else {
+                    categoryService.getCategoryList()
+                        .then(function(data){
+                            $scope.categories = data.Category.children[0].children; 
+                            $scope.categories.sort(utility.dynamicSort("position"));
+                            $scope.urlImg = data.urlImg; 
+                            utility.setJStorageKey("categories", $scope.categories, 1);
+                            $scope.categoryImageUrl = data.urlImg;
+                            utility.setJStorageKey("categoryImageUrl", data.urlImg, 1);
+                        });
+                }
+            };*/
+
+            /*getOfferCategoryList = function() {
+                if (utility.getJStorageKey("offerCategories")) {
+                    $scope.offerCategories = utility.getJStorageKey("offerCategories");
+                } else {
+                    categoryService.getCategoryOfferList()
+                        .then(function(data){
+                            $scope.offerCategories = data.category;
+                            utility.setJStorageKey("offerCategories", $scope.offerCategories, 1);
+                        });
+                }
+            };*/
+
+            /*getDealList = function() {
+                if (utility.getJStorageKey("deals")) {
+                    $scope.deals = utility.getJStorageKey("deals");
+                } else {
+                    categoryService.getDealList()
+                        .then(function(data){
+                            $scope.deals = data.deal_type; 
+                            utility.setJStorageKey("deals", $scope.deals, 1);
+                        });
+                }
+            };*/            
+
+            bannerCallback = function(data) {
+                if(data.flag == 1) {                      
+                    $scope.bannerList = data.banner;
+                    utility.setJStorageKey("bannerList", $scope.bannerList, 1);
+                }
+            };
+
+            categoryCallback = function(data) {
+                if(data.flag == 1) {
+                    angular.forEach(data.Category.children, function(value, key) {
+                        if(value.name == "Default Category") {
+                            $scope.categories = value.children;                            
+                        }                        
                     });
-            }
+                    $scope.categories.sort(utility.dynamicSort("position"));
+                    utility.setJStorageKey("categories", $scope.categories, 1);
+                    $scope.urlImg = data.urlImg; 
+                    $scope.categoryImageUrl = data.urlImg;
+                    utility.setJStorageKey("categoryImageUrl", data.urlImg, 1);
+                }
+            };
 
-            if (utility.getJStorageKey("offerCategories")) {
-                $scope.offerCategories = utility.getJStorageKey("offerCategories");
+            offerCallback = function(data) {
+                if(data.flag == 1) {                      
+                    $scope.offerCategories = data.category;
+                    utility.setJStorageKey("offerCategories", $scope.offerCategories, 1);
+                }
+            };
+
+            dealCallback = function(data) {
+                if(data.flag == 1) {                      
+                    $scope.deals = data.deal_type;
+                    utility.setJStorageKey("deals", $scope.deals, 1);
+                }
+            };
+
+            promiseCallback = function(data) {
+                bannerCallback(data[0]);
+                categoryCallback(data[1]);
+                offerCallback(data[2]);
+                dealCallback(data[3]);
+                setCategoryOfferCount();
+                toggleLoader(false);
+            };
+
+            getOfferCount = function(categoryId) {
+                var offerCount = 0;
+                if($scope.offerCategories.length) {
+                    angular.forEach($scope.offerCategories, function(value, key) {
+                        if(value.category_id == categoryId) {
+                            offerCount = value.offercount;
+                        }
+                    });
+                }
+                return offerCount;
+            };
+
+            setCategoryOfferCount = function() {
+                if($scope.categories.length) {
+                    angular.forEach($scope.categories, function(value, key) {
+                        value["offerCount"] = getOfferCount(value.category_id)
+                    });
+                }
+            };
+
+            if (utility.getJStorageKey("bannerList")
+                && utility.getJStorageKey("categories")
+                && utility.getJStorageKey("offerCategories")
+                && utility.getJStorageKey("deals")) {
+                    $scope.bannerList = utility.getJStorageKey("bannerList");                
+                    $scope.categories = utility.getJStorageKey("categories");
+                    $scope.categories.sort(utility.dynamicSort("position"));
+                    $scope.categoryImageUrl = utility.getJStorageKey("categoryImageUrl");
+                    $scope.offerCategories = utility.getJStorageKey("offerCategories");
+                    $scope.deals = utility.getJStorageKey("deals");
+                    setCategoryOfferCount();
             } else {
                 toggleLoader(true);
-                categoryService.getCategoryOfferList()
-                    .then(function(data){
-                        $scope.offerCategories = data.category;
-                        utility.setJStorageKey("offerCategories", $scope.offerCategories, 1);
-                        toggleLoader(false);
-                    });
-            }
-
-            if (utility.getJStorageKey("deals")) {
-                $scope.deals = utility.getJStorageKey("deals");
-                console.log($scope.deals);
-            } else {
-                toggleLoader(true);
-                categoryService.getDealList()
-                    .then(function(data){
-                        $scope.deals = data.deal_type; 
-                        utility.setJStorageKey("deals", $scope.deals, 1);
-                        toggleLoader(false);
-                    });
-            }
+                $q.all([
+                    categoryService.getBannerList(), 
+                    categoryService.getCategoryList(), 
+                    categoryService.getCategoryOfferList(), 
+                    categoryService.getDealList()]).then(function(data){
+                        promiseCallback(data);                    
+                });
+            }                        
 
             $scope.dealCategoryList = [];
             $scope.dealCategoryItemList = {};

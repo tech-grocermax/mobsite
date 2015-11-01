@@ -134,17 +134,17 @@
 		<button type="button" class="reg-bot-btn bot-foot">PLACE ORDER</button>
 	</div>
 	<div>
-		<form action="https://pguat.paytm.com/oltp-web/processTransaction" method="POST">
-			<input type="text" name='MID' value="123" />
-			<input type="text" name='TXN_AMOUNT' value="1000" />
-			<input type="text" name='CHANNEL_ID' value="WEB" />
-			<input type="text" name='INDUSTRY_TYPE_ID' value="Retail" />
-			<input type="text" name='WEBSITE' value="RGWeb" />
-			<input type="text" name='CUST_ID' value="6059" />
-			<input type="text" name='ORDER_ID' value="145017490" />
-			<input type="text" name='EMAIL' value="skyrbs@gmail.com" />
-			<input type="text" name='MOBILE_NO' value="9540955646" />
-			<input type="text" name="CHECKSUMHASH" value="gAAQWoGPwnzCSkfuutBfQAJ0CdDFot3o5kuASl/C6B87Y6EwzFtPFJYRuvDmWQYR0XvKCvc+PpU2DowbPJkkiVh89xejU4XeZHhMjckPQXM=">
+		<form name="frmPaytm" id="frmPaytm" method="POST">
+			<input type="text" name='CHANNEL_ID' value="{{paytmFormDetails.CHANNEL_ID}}" />
+			<input type="text" name="CHECKSUMHASH" value="{{paytmFormDetails.CHECKSUMHASH}}">
+			<input type="text" name='CUST_ID' value="{{paytmFormDetails.CUST_ID}}" />
+			<input type="text" name='EMAIL' value="{{paytmFormDetails.EMAIL}}" />
+			<input type="text" name='INDUSTRY_TYPE_ID' value="{{paytmFormDetails.INDUSTRY_TYPE_ID}}" />
+			<input type="text" name='MID' value="{{paytmFormDetails.MID}}" />
+			<input type="text" name='MOBILE_NO' value="{{paytmFormDetails.MOBILE_NO}}" />
+			<input type="text" name='ORDER_ID' value="{{paytmFormDetails.ORDER_ID}}" />
+			<input type="text" name='TXN_AMOUNT' value="{{paytmFormDetails.TXN_AMOUNT}}" />
+			<input type="text" name='WEBSITE' value="{{paytmFormDetails.WEBSITE}}" />
 			<input type="submit" name="btn" value="Click" />
 		</form>
 	</div>
