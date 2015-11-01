@@ -28,7 +28,6 @@ define(['app'], function(app) {
             $scope.isCartUpdated = false;
             $scope.cityList = null;
             $scope.cityLocation = {};
-
             $scope.pagination = {
                 current_page : 1,
                 total_pages : 0
@@ -122,7 +121,6 @@ define(['app'], function(app) {
                 $scope.products = [];
                 $scope.products = products;                
             };
-
 
             groupAllProductByCategory = function(data) {
                 $scope.allProductCategoryList = angular.isDefined(data.ProductList) ? data.ProductList : [];
@@ -223,7 +221,6 @@ define(['app'], function(app) {
             if(angular.isDefined($routeParams.quoteId)) {
                 $scope.categoryName = "Your Cart";
             }
-            //utility.deleteJStorageKey("quoteId");
 
             $scope.navigateToCart = function() {
                 if(angular.isDefined(utility.getJStorageKey("quoteId")) 
@@ -271,6 +268,8 @@ define(['app'], function(app) {
             if($scope.jStorageQuoteId) {
                 getBasketItemCounter();
             }
+
+            
 
             $scope.addProductOneByOne = function(product) {
                 var quoteId = null,

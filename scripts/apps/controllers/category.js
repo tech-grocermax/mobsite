@@ -38,7 +38,7 @@ define(['app'], function(app) {
                 $scope.displayLoader = flag;
             };
 
-            $scope.carouselIndex2 = 1;
+            $scope.carouselIndex2 = 2;
 
             getBannerList = function() {
                 if (utility.getJStorageKey("bannerList")) {
@@ -85,6 +85,7 @@ define(['app'], function(app) {
 
             if (utility.getJStorageKey("deals")) {
                 $scope.deals = utility.getJStorageKey("deals");
+                console.log($scope.deals);
             } else {
                 toggleLoader(true);
                 categoryService.getDealList()
@@ -445,6 +446,10 @@ define(['app'], function(app) {
                 } else if(url == "productlistall") {
                     $location.url("product/" + queryValue);
                 }
+            };
+
+            $scope.navigateToHotOffers = function() {
+                $location.url("hot-offers");
             };
 
             angular.element(document).ready(function () {
