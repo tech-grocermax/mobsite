@@ -5,7 +5,15 @@
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-md-offset-3 col-sm-offset-3 col-xs-offset-3" style="margin-top: 20px;">
                 <img src="{{productDetails.product_thumbnail}}" alt="" class="img-responsive">
                 <ul class="list-unstyled" style="text-align: center;">
-                    <li class="prod-list-h">{{productDetails.p_brand}}</li>
+                    <li class="prod-list-h">
+                        {{productDetails.p_brand}}
+                        <img src="images/app_bar_icons/cart_add_quantity.png" 
+                            data-ng-show="getCartProductQuantity(productDetails.product_id) > 0"
+                            class="img-responsive cart-image">
+                        <span class="cart-txt"
+                            data-ng-show="getCartProductQuantity(productDetails.product_id) > 0">
+                            {{getCartProductQuantity(productDetails.product_id)}}</span>
+                    </li>
                     <li class="cat-list-name">{{productDetails.product_name}}</li>
                     <li class="prod-list-qnty">{{productDetails.p_pack}}</li>
                 </ul>

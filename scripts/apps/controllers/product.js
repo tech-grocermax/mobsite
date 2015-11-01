@@ -269,7 +269,25 @@ define(['app'], function(app) {
                 getBasketItemCounter();
             }
 
-            
+            setProductBasketCounter = function(productId, count) {
+                var quoteId = utility.getJStorageKey("quoteId");
+                console.log(quoteId);
+
+                if(angular.isDefined(utility.getJStorageKey("productBasketCount_" + quoteId)) 
+                    && utility.getJStorageKey("productBasketCount_" + quoteId)) {  
+                    var productBasketCount = utility.getJStorageKey("productBasketCount_" + quoteId);
+                    if(angular.isDefined(productBasketCount[productId])) {
+                        productBasketCount[productId] = parseInt(productBasketCount[productId], 10) + count;
+                    } else {
+                        productBasketCount[productId] = parseInt(count, 10);
+                    }                    
+                } else {
+                    var productBasketCount = {};
+                    productBasketCount[productId] = count;
+                }
+                utility.setJStorageKey("productBasketCount_" + quoteId, productBasketCount, 1);
+                console.log(utility.getJStorageKey("productBasketCount_" + quoteId));
+            };
 
             $scope.addProductOneByOne = function(product) {
                 var quoteId = null,
@@ -295,6 +313,7 @@ define(['app'], function(app) {
                                 $scope.quoteId = data.QuoteId;
                             }
                             updateCartItemCounter(product.quantity);
+                            setProductBasketCounter(product.productid, product.quantity);
                             //getCartItemDetails();                                
                         }                            
                     });
@@ -312,17 +331,18 @@ define(['app'], function(app) {
                 return qty;
             };
 
-            $scope.getCartProductQuantity = function(productId) {
+            $scope.getCartProductQuantity = function(productId) {                
                 var qty = 0;
-                if(angular.isDefined($scope.cartDetails) 
-                    && $scope.cartDetails.items.length) {
-                    angular.forEach($scope.cartDetails.items, function(value, key) {
-                        if(productId == value.product_id){
-                            qty = value.qty;
-                        }
-                    });
+                if(angular.isDefined(utility.getJStorageKey("quoteId")) 
+                    && utility.getJStorageKey("quoteId")) {
+                    var quoteId = utility.getJStorageKey("quoteId");
+                    if(angular.isDefined(utility.getJStorageKey("productBasketCount_" + quoteId)) 
+                        && utility.getJStorageKey("productBasketCount_" + quoteId)) {  
+                        var productBasketCount = utility.getJStorageKey("productBasketCount_" + quoteId);
+                        qty = productBasketCount[productId];
+                    }
                 }
-                return qty;
+                return qty;                
             }; 
 
             $scope.routerChange = function(route, id) {
