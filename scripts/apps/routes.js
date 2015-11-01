@@ -87,6 +87,8 @@ define([], function() {
             '/page/:pageName': {
                 templateUrl: templateURL + 'page.html',
                 dependencies: [
+                    appURL + 'services/serverUtility',
+                    appURL + 'services/utility',
                     appURL + 'directives/generic',
                     appURL + 'controllers/page'
                 ]

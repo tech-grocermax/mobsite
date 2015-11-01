@@ -148,8 +148,8 @@ define(['app'], function(app) {
 
             if ($routeParams.categoryId) {
                 $scope.subCategoryList = categoryService.getSubCategoryList($scope.categories, $routeParams.categoryId);
+                $scope.subCategoryList.sort(utility.dynamicSort("position"));
                 console.log($scope.subCategoryList);
-
                 $scope.categoryName = categoryService.getCategoryName($scope.categories, $routeParams.categoryId);
                 $scope.columnSize = 10;
                 $scope.showMoreIcon = false;
@@ -248,6 +248,15 @@ define(['app'], function(app) {
                 var isToggle = $scope.isMenuToggalable(category);
                 if(isToggle) {
                     $scope.toggleSubSubCategory(category.category_id)
+                } else {
+                    $scope.routerChange('product', category.category_id);
+                }
+            };
+
+            $scope.handleOfferCategoryClick = function(category) {
+                var isToggle = $scope.isMenuToggalable(category);
+                if(isToggle) {
+                    $scope.showMoreCategory(category)
                 } else {
                     $scope.routerChange('product', category.category_id);
                 }

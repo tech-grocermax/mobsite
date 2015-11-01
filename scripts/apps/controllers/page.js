@@ -1,7 +1,7 @@
 define(['app'], function(app) {
 	app.controller('pageController',  [
-        '$scope', '$rootScope', '$routeParams', '$location', '$timeout', 
-        function($scope, $rootScope, $routeParams, $location, $timeout) {                        
+        '$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'utility', 
+        function($scope, $rootScope, $routeParams, $location, $timeout, utility) {                        
         	$scope.showSearchBar = false;
         	$scope.columnSize = 1;
         	$scope.pageName = $routeParams.pageName;
