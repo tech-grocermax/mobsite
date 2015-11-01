@@ -32,7 +32,7 @@ define(['app'], function(app) {
             $scope.categoryImageUrl = null;
             $scope.myInterval = 5000;
             $scope.noWrapSlides = false;
-            $scope.carouselIndex2 = 2;
+            $scope.carouselIndex = 0;
 
             toggleLoader = function(flag) {
                 $scope.displayLoader = flag;
@@ -163,7 +163,7 @@ define(['app'], function(app) {
                 && utility.getJStorageKey("categories")
                 && utility.getJStorageKey("offerCategories")
                 && utility.getJStorageKey("deals")) {
-                    $scope.bannerList = utility.getJStorageKey("bannerList");                
+                    $scope.bannerList = utility.getJStorageKey("bannerList");
                     $scope.categories = utility.getJStorageKey("categories");
                     $scope.categories.sort(utility.dynamicSort("position"));
                     $scope.categoryImageUrl = utility.getJStorageKey("categoryImageUrl");

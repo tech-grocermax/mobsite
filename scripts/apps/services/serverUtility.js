@@ -1,20 +1,16 @@
 define(['app'], function (app) {
     app.service('serverUtility', function ($http) {
-	    'use strict';	    
-    	
-    	/*$http.get('www.google.com/someapi', {
-		    headers: {'Authorization': 'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='}
-		});*/
-    	/*headers: {
-	    	'version': 1.0,
-			'storeid': 1,
-			'device': 'mobile'
-		}*/	
+	    'use strict';
 					
 	    this.getWebService = function(url, params) {
 	    	params = angular.isDefined(params) ? params : {};
-	    	return $http.get(url)
-	    		.then(function(response){return response.data}, function(error){return error});
+	    	return $http.get(url, {
+		    	headers: {
+		    		'version': 1.0,
+					'storeid': 1,
+					'device': 'mobile'
+				}
+			}).then(function(response){return response.data}, function(error){return error});
 	    };	
 
 	    this.postWebService = function(url, input) {
