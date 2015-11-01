@@ -6,9 +6,9 @@ define(['app'], function (app) {
 		    headers: {'Authorization': 'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='}
 		});*/
     	/*headers: {
-	    	version: 1.0,
-			storeid: 1,
-			device: 'mobile'
+	    	'version': 1.0,
+			'storeid': 1,
+			'device': 'mobile'
 		}*/	
 					
 	    this.getWebService = function(url, params) {

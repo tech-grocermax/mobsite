@@ -208,7 +208,9 @@ define(['app'], function(app) {
                             utility.deleteJStorageKey("quoteId");
                             $scope.quoteId = null;
                         } else {
-                            $scope.cartDetails = data.CartDetail;                         
+                            $scope.cartDetails = data.CartDetail; 
+                            console.log($scope.cartDetails);
+
                             $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);                          
                             getYouSaveAmout();
                         }                        
@@ -390,6 +392,7 @@ define(['app'], function(app) {
             };
 
             $scope.increaseCartProductQuantity = function(item, keyName) {
+                console.log(keyName, item.product_id);
                 $scope.isCartUpdated = true;
                 var productId = item.product_id;
                 angular.forEach($scope.cartDetails.items, function(value, key) {

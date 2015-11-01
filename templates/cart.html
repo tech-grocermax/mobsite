@@ -44,7 +44,7 @@
 					</li>
                     <li class="cat-input-box">
                         <input type="text" placeholder="1" class="cat-input-text"
-                            value="{{getCartProductQuantity(product.product_id)}}" >
+                            value="{{product.qty}}" >
                     </li>
                     <li class="cat-plus" 
                         data-ng-click="increaseCartProductQuantity(product, 'product_id')">
@@ -59,7 +59,7 @@
                     <li class="cat-input-box">
                         <input type="text" placeholder="1" 
                             class="cat-input-text" readonly
-                            value="{{getCartProductQuantity(product.product_id)}}" >
+                            value="{{product.qty}}" >
                     </li>
                     <li class="cat-plus">
 						<img src="images/app_bar_icons/plus-img.png" class="img-responsive">
