@@ -48,6 +48,7 @@ define(['app'], function(app) {
                         .then(function(data){  
                             if(data.flag == 1) {                      
                                 $scope.bannerList = data.banner;
+                                utility.setJStorageKey("bannerList", $scope.bannerList, 1);
                             }
                         });
                 }
@@ -56,7 +57,6 @@ define(['app'], function(app) {
 
             if (utility.getJStorageKey("categories")) {
                 $scope.categories = utility.getJStorageKey("categories");
-                console.log($scope.categories);
                 $scope.categories.sort(utility.dynamicSort("position"));
                 $scope.categoryImageUrl = utility.getJStorageKey("categoryImageUrl");
             } else {
