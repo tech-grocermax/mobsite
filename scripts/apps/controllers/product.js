@@ -419,8 +419,7 @@ define(['app'], function(app) {
             };
 
             buildProductObject = function() {
-                var products = [],
-                    totalQty = 0;
+                var products = [];
 
                 angular.forEach($scope.cartDetails.items, function(value, key) {
                     if(value.apply_rule == 0 
@@ -429,12 +428,8 @@ define(['app'], function(app) {
                             "productid": parseInt(value.product_id, 10),
                             "quantity": parseInt(value.qty, 10)
                         });
-                        totalQty = totalQty + parseInt(value.qty, 10);
                     }                   
                 });
-
-                console.log("totalQty = " + totalQty);
-                updateCartItemCounter(totalQty, true);
                 return products;             
             };
 
@@ -450,6 +445,8 @@ define(['app'], function(app) {
                         .then(function(data){
                             toggleLoader(false);
                             if(data.flag == 1 || data.flag == "1"){
+                                var totalQty = productService.getCartItemCount(data.CartDetail.items);
+                                updateCartItemCounter(totalQty, true);
                                 $scope.productIds = [];                           
                                 checkoutSuccessCallback(flag);                            
                             }                            

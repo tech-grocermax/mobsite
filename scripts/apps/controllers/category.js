@@ -38,10 +38,11 @@ define(['app'], function(app) {
                 $scope.displayLoader = flag;
             };
 
+            $scope.carouselIndex2 = 1;
+
             getBannerList = function() {
                 if (utility.getJStorageKey("bannerList")) {
                     $scope.bannerList = utility.getJStorageKey("bannerList");
-                    console.log($scope.bannerList);
                 } else {                    
                     categoryService.getBannerList($routeParams.dealId)
                         .then(function(data){  
