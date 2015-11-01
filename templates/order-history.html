@@ -2,7 +2,8 @@
 	<div class="row margin0 pad-ltr16 pad-ltr8-m"
 		data-ng-repeat="order in orderHistory">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 back-white">
-			<ul class="list-unstyled margin0 ord-His-box">
+			<ul class="list-unstyled margin0 ord-His-box"
+				data-ng-click="navigateToOrderDetail(order)">
 				<li class="order-li">
 					<span>Order ID:</span>
 					<span>{{order.increment_id}}</span> <!--order_id -->

@@ -31,27 +31,38 @@ define(['app'], function(app) {
             $scope.cityLocation = {};
             $scope.categoryImageUrl = null;
 
+            $scope.myInterval = 5000;
+            $scope.noWrapSlides = false;
+
             toggleLoader = function(flag) {
                 $scope.displayLoader = flag;
             };
 
             getBannerList = function() {
-                categoryService.getBannerList($routeParams.dealId)
-                    .then(function(data){  
-                        if(data.flag == 1) {                      
-                            $scope.bannerList = data.banner;
-                        }
-                    });
+                if (utility.getJStorageKey("bannerList")) {
+                    $scope.bannerList = utility.getJStorageKey("bannerList");
+                    console.log($scope.bannerList);
+                } else {                    
+                    categoryService.getBannerList($routeParams.dealId)
+                        .then(function(data){  
+                            if(data.flag == 1) {                      
+                                $scope.bannerList = data.banner;
+                            }
+                        });
+                }
             }; 
             getBannerList();        
 
             if (utility.getJStorageKey("categories")) {
                 $scope.categories = utility.getJStorageKey("categories");
+                console.log($scope.categories);
+                $scope.categories.sort(utility.dynamicSort("position"));
                 $scope.categoryImageUrl = utility.getJStorageKey("categoryImageUrl");
             } else {
         	    categoryService.getCategoryList()
                     .then(function(data){
                         $scope.categories = data.Category.children[0].children; 
+                        $scope.categories.sort(utility.dynamicSort("position"));
                         $scope.urlImg = data.urlImg; 
                         utility.setJStorageKey("categories", $scope.categories, 1);
                         $scope.categoryImageUrl = data.urlImg;
@@ -65,7 +76,7 @@ define(['app'], function(app) {
                 toggleLoader(true);
                 categoryService.getCategoryOfferList()
                     .then(function(data){
-                        $scope.offerCategories = data.category; 
+                        $scope.offerCategories = data.category;
                         utility.setJStorageKey("offerCategories", $scope.offerCategories, 1);
                         toggleLoader(false);
                     });
@@ -225,6 +236,20 @@ define(['app'], function(app) {
                 $scope.showSubCategoryMenu = $scope.showSubCategoryMenu ? false : true;
                 $scope.categoryName = categoryService.getCategoryName($scope.categories, categoryId);
                 $scope.subCategories = categoryService.getSubCategoryList($scope.categories, categoryId);
+                $scope.subCategories.sort(utility.dynamicSort("position"));
+            };
+
+            $scope.isMenuToggalable = function(category) {
+                return angular.isDefined(category.children[0]) && category.children[0].children.length ? true : false
+            };
+
+            $scope.handleDrawerClick = function(category) {
+                var isToggle = $scope.isMenuToggalable(category);
+                if(isToggle) {
+                    $scope.toggleSubSubCategory(category.category_id)
+                } else {
+                    $scope.routerChange('product', category.category_id);
+                }
             };
 
             $scope.toggleSubSubCategory = function(categoryId){
@@ -326,16 +351,27 @@ define(['app'], function(app) {
             };
 
             getCityList = function() {
-                utility.getCityList()
-                    .then(function(data){
-                        $scope.cityList = data.location;
-                        angular.forEach($scope.cityList, function(value, key) {
-                            var city = value.city_name.toLowerCase();
-                            $scope.cityLocation[city] = false;
+                if(angular.isDefined(utility.getJStorageKey("cityList"))
+                    && utility.getJStorageKey("cityList")) {
+                    $scope.cityList = utility.getJStorageKey("cityList");
+                    openCitySelectionModal();
+                } else {                
+                    utility.getCityList()
+                        .then(function(data){
+                            $scope.cityList = data.location;
+                            utility.setJStorageKey("cityList", $scope.cityList, 1);
+                            angular.forEach($scope.cityList, function(value, key) {
+                                var city = value.city_name.toLowerCase();
+                                $scope.cityLocation[city] = false;
+                            });                            
+                            console.log($scope.cityLocation);
+                            openCitySelectionModal();
                         });
-                        console.log($scope.cityLocation);
-                        openCitySelectionModal();
-                    });
+                }
+            };
+
+            $scope.editLocation = function() {
+                getCityList();
             };
 
             hideCitySelectionModal = function() {
@@ -352,8 +388,15 @@ define(['app'], function(app) {
                 $scope.cityLocation[city] = true;
                 utility.setJStorageKey("selectedCity", city, 1);
                 utility.setJStorageKey("selectedCityId", location.id, 1);
+                $scope.selectedCity = city;
                 hideCitySelectionModal();
             };
+
+            $scope.selectedCity = null;
+            if(angular.isDefined(utility.getJStorageKey("selectedCity")) 
+                && utility.getJStorageKey("selectedCity")) {
+                $scope.selectedCity = utility.getJStorageKey("selectedCity");
+            }            
 
             $scope.getCityImgSrc = function(location) {
                 if(angular.isDefined(location)) {
@@ -371,6 +414,26 @@ define(['app'], function(app) {
                     $location.url("cart" + "/" + utility.getJStorageKey("quoteId"));
                 } else {
                     console.log("ELSE");
+                }
+            };
+
+            $scope.handleBannerClick = function(banner) {
+                var arrBanner = banner.linkurl.split('?'),
+                    url = arrBanner[0],
+                    queryParams = arrBanner[1].split('='),
+                    queryKey = queryParams[0],
+                    queryValue = queryParams[1];
+
+                if(url == "dealproductlisting") {
+                    $location.url("product/deal/" + queryValue)
+                } else if(url == "search") {
+                    $location.url("product/" + queryValue);
+                } else if(url == "dealsbydealtype") {
+                    $location.url("deals/" + queryValue);
+                } else if(url == "offerbydealtype") {
+                    $location.url("category/offers/" + queryValue);
+                } else if(url == "productlistall") {
+                    $location.url("product/" + queryValue);
                 }
             };
 

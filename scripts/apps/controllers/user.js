@@ -3,6 +3,9 @@ define(['app'], function(app) {
         '$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'userService', 'productService', 'utility', 
         function($scope, $rootScope, $routeParams, $location, $timeout, userService, productService, utility) {
             $scope.sectionName = $routeParams.sectionName;
+            $scope.orderId = angular.isDefined($routeParams.orderId) ? $routeParams.orderId : null;
+            console.log($scope.sectionName);
+            console.log($scope.orderId);
 
             if((angular.isUndefined(utility.getJStorageKey("userId")) 
                 || !utility.getJStorageKey("userId"))
@@ -146,12 +149,9 @@ define(['app'], function(app) {
                 $scope.showUserResponse = true;
                 if(data.flag == "1") {
                     utility.setJStorageKey("userId", data.UserID, 1);
-                    utility.setJStorageKey("email", email, 1);
-
-                    console.log(utility.getJStorageKey("email"));
+                    utility.setJStorageKey("email", email, 1);                    
                     $scope.userResponseMessage = data.Result;
                     updateClassName("success");
-
                     if($scope.isReferrer == "checkout") {
                         $location.url("checkout/shipping"); 
                     } else {
@@ -417,9 +417,52 @@ define(['app'], function(app) {
                         }                      
                     });
             };
-            if($scope.sectionName == "orderhistory"){
+            if($scope.sectionName == "orderhistory" && !$scope.orderId){
                 getOrderHistory();
             }
+
+            getOrderDetails = function() {
+                toggleLoader(true);
+                userService.getOrderDetails($scope.orderId)
+                    .then(function(data){
+                        toggleLoader(false);
+                        $scope.orderDetails = data.OrderDetail;      
+                        console.log($scope.orderDetails);                                       
+                    });
+            };
+            if($scope.sectionName == "orderhistory" && $scope.orderId){
+                getOrderDetails();
+            }
+
+            $scope.renderDeliveryDateTime = function(order) {
+                if(angular.isDefined(order)) {                
+                    return order[0].value + " " + order[0].value;
+                }
+            };
+
+            var paymentMethodMapping = {
+                paytm_cc: "Paytm",
+                cashondelivery: "Cash On Delivery"
+            };
+
+            $scope.renderPaymentMethod = function(method) {
+                if(angular.isDefined(method)) {
+                    return paymentMethodMapping[method];
+                }
+            };
+
+            $scope.renderShippingAddress = function(address) {
+                if(angular.isDefined(address)) {
+                   return address
+                }
+            };
+
+            $scope.toFixedDecimal = function(num) {
+                if(angular.isDefined(num)) {
+                    num = parseFloat(num);
+                    return num.toFixed(2);
+                }                
+            };
 
             $scope.togglePasswordField = function() {
                 $scope.password.type == "password" ? "text" : "password";
@@ -586,6 +629,10 @@ define(['app'], function(app) {
                 } else {
                     console.log("ELSE");
                 }
+            };
+
+            $scope.navigateToOrderDetail = function(order) {
+                $location.url("user/orderhistory/" + order.order_id);
             };
 
             angular.element(document).ready(function () {

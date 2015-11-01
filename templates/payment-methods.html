@@ -29,6 +29,14 @@
 						class="img-responsive float-rt pmt-checkbox"/>					
 				</li>
 				<li>
+					<img src="images/app_bar_icons/paytm-icon.png" alt="" 
+						class="img-responsive pmeth-icon">
+					<input type="checkbox" name="paymentMethod"
+						data-ng-change="changePaymentMethod('paytm_cc', payment)" 
+						data-ng-model="payment.paytm_cc"
+						class="img-responsive float-rt paytm-check"/>					
+				</li>
+				<!-- <li>
 					<span>Credit / Debit card</span>
 					<input type="checkbox" name="paymentMethod"
 						data-ng-change="changePaymentMethod('cc', payment)" 
@@ -41,15 +49,7 @@
 						data-ng-change="changePaymentMethod('sodexo', payment)" 
 						data-ng-model="payment.sodex_cc"
 						class="img-responsive float-rt pmt-checkbox"/>					
-				</li>
-				<li>
-					<img src="images/app_bar_icons/paytm-icon.png" alt="" 
-						class="img-responsive pmeth-icon">
-					<input type="checkbox" name="paymentMethod"
-						data-ng-change="changePaymentMethod('paytm_cc', payment)" 
-						data-ng-model="payment.paytm_cc"
-						class="img-responsive float-rt paytm-check"/>					
-				</li>
+				</li>				
 				<li>
 					<img src="images/app_bar_icons/mobi-icon.png" alt="" 
 						class="img-responsive pmeth-mob-icon">
@@ -57,7 +57,7 @@
 						data-ng-change="changePaymentMethod('mobikwik', payment)" 
 						data-ng-model="payment.mobikwik"
 						class="img-responsive float-rt paytm-check"/>					
-				</li>
+				</li> -->
 			</ul>
 		</div>
 	</div>
@@ -132,5 +132,20 @@
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0  margin-top15" 
 		data-ng-click="placeOrder()">
 		<button type="button" class="reg-bot-btn bot-foot">PLACE ORDER</button>
+	</div>
+	<div>
+		<form action="https://pguat.paytm.com/oltp-web/processTransaction" method="POST">
+			<input type="text" name='MID' value="123" />
+			<input type="text" name='TXN_AMOUNT' value="1000" />
+			<input type="text" name='CHANNEL_ID' value="WEB" />
+			<input type="text" name='INDUSTRY_TYPE_ID' value="Retail" />
+			<input type="text" name='WEBSITE' value="RGWeb" />
+			<input type="text" name='CUST_ID' value="6059" />
+			<input type="text" name='ORDER_ID' value="145017490" />
+			<input type="text" name='EMAIL' value="skyrbs@gmail.com" />
+			<input type="text" name='MOBILE_NO' value="9540955646" />
+			<input type="text" name="CHECKSUMHASH" value="gAAQWoGPwnzCSkfuutBfQAJ0CdDFot3o5kuASl/C6B87Y6EwzFtPFJYRuvDmWQYR0XvKCvc+PpU2DowbPJkkiVh89xejU4XeZHhMjckPQXM=">
+			<input type="submit" name="btn" value="Click" />
+		</form>
 	</div>
 </section>

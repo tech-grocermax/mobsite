@@ -1,5 +1,5 @@
 define([appURL+'routes',appURL+'services/dependency'], function(config, dependency) {
-    var app = angular.module('app', ['ngRoute', 'dc.endlessScroll']);
+    var app = angular.module('app', ['ngRoute', 'dc.endlessScroll', 'angular-carousel']);
 
     app.config( [
         '$routeProvider',

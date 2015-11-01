@@ -114,6 +114,15 @@ define(['app'], function (app) {
 		    		);
 		    };
 
+		    this.getOrderDetails = function(orderId) {
+		    	var url = getAPIUrl() + "getorderdetail?orderid=" + orderId;
+		    	return serverUtility.getWebService(url)
+		    		.then(
+		    			function(data){return data; },
+		    			function(error){return error; }
+		    		);
+		    };
+
 		    this.getDeliverySlots = function(userId) {
 		    	var url = getAPIUrl() + "getaddresswithtimeslot?userid=" + userId;
 		    	return serverUtility.getWebService(url)
@@ -217,6 +226,17 @@ define(['app'], function (app) {
 
 		    	var input = this.buildCheckoutObject(userId, quoteId, checkoutDetails, paymentMethod),
 		    		url = getAPIUrl() + "checkout";
+
+		    	return serverUtility.postWebService(url, input)
+		    		.then(
+		    			function(data){return data; },
+		    			function(error){return error; }
+		    		);
+		    };
+
+		    this.getPaytmProcessingDetails = function(orderId) {
+		    	var input = {OrderID: orderId},
+		    		url = getAPIUrl() + "paytmredirect";	    
 
 		    	return serverUtility.postWebService(url, input)
 		    		.then(

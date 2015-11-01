@@ -9,11 +9,13 @@ require.config({
 		'angular-ui': 'scripts/libs/angular-ui',
 		'bootstrap': 'scripts/libs/bootstrap.min',
 		'angular-endless-scroll': 'scripts/libs/angular-endless-scroll.min',
+		'angular-touch': 'scripts/libs/angular-touch.min',
+		'angular-carousel': 'scripts/libs/angular-carousel',		
 		'app': appURL + 'app'
     },
 	shim: {
 		'app': {
-			deps: ['angular', 'angular-route', 'angular-ui', 'bootstrap', 'angular-endless-scroll']
+			deps: ['angular', 'angular-route', 'angular-ui', 'bootstrap', 'angular-endless-scroll', 'angular-touch', 'angular-carousel']
 		},
 		'angular-route': {
 			deps: ['angular']
@@ -22,7 +24,13 @@ require.config({
 			deps: ['angular']
 		},
 		'angular-endless-scroll': {
-			deps: ['angular', 'angular']
+			deps: ['angular']
+		},
+		'angular-touch': {
+			deps: ['angular']
+		},
+		'angular-carousel': {
+			deps: ['angular']
 		}
 	}
 });

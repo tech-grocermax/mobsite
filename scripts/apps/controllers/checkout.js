@@ -179,9 +179,6 @@ define(['app'], function(app) {
 
             if($location.url() == "/checkout/payment"){
                 getCartItemDetails(); 
-                console.log("if");
-            } else {
-                console.log("else");
             }  
 
             if(angular.isDefined(utility.getJStorageKey("cartItems")) 
@@ -287,6 +284,10 @@ define(['app'], function(app) {
             $scope.parentIndex = null;
 
             $scope.isDeliveryProceedEnabled = function() {
+                console.log($scope.selectedDeliveryDate);
+                console.log($scope.selectedDeliveryTime);
+                console.log($scope.parentIndex);
+
                 return $scope.selectedDeliveryDate && $scope.selectedDeliveryTime
                     && $scope.parentIndex;
             };
@@ -331,6 +332,8 @@ define(['app'], function(app) {
             };
 
             $scope.setDeliveryTime = function(data, parentIndex) {
+                console.log(data);
+                console.log(parentIndex);
                 if(data.available) {
                     $scope.selectedDeliveryTime = data.timeSlot;
                     $scope.selectedDeliveryDate = getSelectedDeliveryDate(parentIndex);
@@ -372,6 +375,17 @@ define(['app'], function(app) {
                 $scope.placeOrder();
             };
 
+            $scope.paytmFormDetails = null;
+            getPaytmProcessingDetails = function(orderId) {
+                userService.getPaytmProcessingDetails(orderId)
+                    .then(function(data){ 
+                        console.log(data);             
+                        if(data.flag == 1){
+                            
+                        }
+                    });
+            };
+
             $scope.placeOrder = function() {
                 var userId = utility.getJStorageKey("userId"),
                     checkoutDetails = utility.getJStorageKey("checkoutDetails");
@@ -379,10 +393,14 @@ define(['app'], function(app) {
                 userService.checkout(userId, $scope.quoteId, checkoutDetails, $scope.paymentMethod)
                     .then(function(data){              
                         if(data.flag == 1){
-                            utility.deleteJStorageKey("checkoutDetails");
-                            utility.deleteJStorageKey("cartItems");
-                            utility.deleteJStorageKey("quoteId");
-                            $location.url("payment/success/" + data.OrderID);
+                            if($scope.paymentMethod == "paytm_cc") {
+                                getPaytmProcessingDetails(data.OrderID);
+                            } else {
+                                utility.deleteJStorageKey("checkoutDetails");
+                                utility.deleteJStorageKey("cartItems");
+                                utility.deleteJStorageKey("quoteId");
+                                $location.url("payment/success/" + data.OrderID);
+                            }                            
                         } else {
                             $('#paymentFailed').modal({
                                 backdrop: false,

@@ -7,7 +7,7 @@
 				</div>
 				<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 padd0">
 					<a style="text-decoration: none;">
-						<span class="head-text">Order Id: 839402</span>
+						<span class="head-text">Order Id: {{orderDetails.increment_id}}</span>
 					</a>
 				</div>
 			</div>
@@ -26,27 +26,30 @@
 				<ul class="list-unstyled margin0">
 					<li class="od-list">
 						<div class="od-list-h1">Order date:</div>
-						<div class="od-list-h2">Aug 21, 2015, 13:25 pm</div>
+						<div class="od-list-h2">
+							{{orderDetails.status_history[0].created_at}}</div>
 					</li>
 					<li class="od-list">
 						<div class="od-list-h1">Shipping charge</div>
-						<div class="od-list-h2">$18.50</div>
+						<div class="od-list-h2">
+							Rs. {{toFixedDecimal(orderDetails.shipping_amount)}}</div>
 					</li>
 					<li class="od-list">
 						<div class="od-list-h1">Payment method:</div>
-						<div class="od-list-h2">Cash on delivery</div>
+						<div class="od-list-h2">
+							{{renderPaymentMethod(orderDetails.payment.method)}}</div>
 					</li>
 					<li class="od-list">
 						<div class="od-list-h1">Delivery Date:</div>
-						<div class="od-list-h2">17/06/2015</div>
+						<div class="od-list-h2">{{orderDetails.deliverydate[0].value}}</div>
 					</li>
 					<li class="od-list">
 						<div class="od-list-h1">Delivery Time:</div>
-						<div class="od-list-h2">08:00 am - 11:00 am</div>
+						<div class="od-list-h2">{{orderDetails.deliverydate[1].value}}</div>
 					</li>
 					<li class="od-list">
 						<div class="od-list-h1">Shipping address:</div>
-						<div class="od-list-h2">Gurgaon Nathupur road DLF-V</div>
+						<div class="od-list-h2">{{renderShippingAddress(orderDetails.shipping_address)}}</div>
 					</li>
 				</ul>
 			</div>

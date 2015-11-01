@@ -21,7 +21,6 @@ define(['app'], function(app) {
             $scope.showUserMenuOptions = false;
             $scope.youSaved = 0;
             $scope.totalCartQty = 0;
-            $scope.lastChildCategoryList = null;
             $scope.keyword = angular.isDefined($routeParams.keyword) ? $routeParams.keyword : null ;
             $scope.productIds = [];
             $scope.isUserLoggedIn = angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId") ? true : false;
@@ -67,31 +66,18 @@ define(['app'], function(app) {
                 toggleLoader(true);         
                 productService.getProductListByDealId($scope.dealId)
                     .then(function(data){
-                        $scope.products = data.Product.items; 
+                        toggleLoader(false);                         
                         $scope.categoryName = data.Product.dealtitle;
-                        setDefaultProductQuantity();
-                        toggleLoader(false);
+                        if(angular.isDefined(data.Product.items)) {
+                            $scope.products = data.Product.items;
+                            setDefaultProductQuantity(); 
+                        } else {
+                            $scope.products = [];
+                        }                                              
                     });                
             };
             
-            getLastChildCategoryList = function() {
-                if (utility.getJStorageKey("categories")) {
-                    $scope.categories = utility.getJStorageKey("categories");
-                    var catId = $scope.parentCatId ? $scope.parentCatId : $scope.categoryId; 
-                    $scope.lastChildCategoryList = categoryService.getLastChildCategoryList($scope.categories, catId);
-                } else {
-                    categoryService.getCategoryList()
-                        .then(function(data){
-                            $scope.categories = data.Category.children[0].children;                        
-                            utility.setJStorageKey("categories", $scope.categories, 1);
-                            var catId = $scope.parentCatId ? parentCatId : $scope.categoryId;
-                            $scope.lastChildCategoryList = categoryService.getLastChildCategoryList($scope.categories, catId);
-                        });
-                }
-            };
-
             groupSearchProductByCategory = function(data) {
-                console.log(data);
                 $scope.searchCategoryList = angular.isDefined(data.Category) ? data.Category : [];
                 $scope.products = [];
                 if($scope.searchCategoryList.length) {
@@ -139,9 +125,7 @@ define(['app'], function(app) {
 
 
             groupAllProductByCategory = function(data) {
-                console.log(data);
                 $scope.allProductCategoryList = angular.isDefined(data.ProductList) ? data.ProductList : [];
-                
                 if(angular.isDefined(data.hotproduct) && data.hotproduct.length) {
                     angular.forEach(data.hotproduct, function(value, key) {
                         $scope.allProductCategoryList.push(value);
@@ -172,8 +156,6 @@ define(['app'], function(app) {
             };
 
             if($scope.categoryId){
-               //getLastChildCategoryList(); 
-               //getProductListByCategoryId();
                getAllProductListByCategoryId();
                $scope.categoryName = categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.categoryId);
             }

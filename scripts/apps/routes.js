@@ -102,6 +102,17 @@ define([], function() {
                     appURL + 'controllers/user'
                 ]
             },
+            '/user/:sectionName/:orderId': {
+                templateUrl: templateURL + 'user.html',
+                dependencies: [
+                    appURL + 'services/serverUtility',
+                    appURL + 'services/utility',
+                    appURL + 'services/user',
+                    appURL + 'services/product',
+                    appURL + 'directives/generic',
+                    appURL + 'controllers/user'
+                ]
+            },
             '/checkout/:sectionName': {
                 templateUrl: templateURL + 'checkout.html',
                 dependencies: [

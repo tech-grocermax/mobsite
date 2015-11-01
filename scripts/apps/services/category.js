@@ -45,42 +45,6 @@ define(['app'], function (app) {
 		    	return categoryName;
 		    };
 
-		    this.isSpecialCategory = function(categoryId) {
-		    	var specialCatList = ["2506", "2436", "2212", "2242", "2278", 
-                    "2282", "2392", "2395", "2399",
-                    "2269", "2258", "2248", "2265", "2254",
-                    "2347", "2335", "2343", "2355",
-                    "2360", "2372", "2382", "2380", "2387", "2613"];
-
-                return angular.isDefined(categoryId) && 
-                    specialCatList.indexOf(categoryId) >= 0 ? true : false;
-		    };
-
-		    this.getLastChildCategoryList = function(categories, categoryId) {
-		    	var that = this;
-		    	var lastChildCategoryList = null;
-		    	if(categories.length){
-		    		angular.forEach(categories, function(value, key) {
-		    			angular.forEach(value.children, function(innerValue, innerKey) {
-		    				var isSpecial = that.isSpecialCategory(categoryId);
-		    				if(isSpecial) {
-				    			if(innerValue.category_id == categoryId){
-									lastChildCategoryList = innerValue.children;
-				    			}
-		    				} else {
-		    					angular.forEach(innerValue.children, function(lastValue, lastKey) {
-					    			if(lastValue.category_id == categoryId){
-										lastChildCategoryList = lastValue.children;
-					    			}
-		    					});
-		    				}
-		    			});		    			
-
-		    		});
-		    	}
-		    	return lastChildCategoryList;
-		    };
-
 		    this.getDealList = function() {		    	
 	    		var url = getAPIUrl() + "shopbydealtype";
 		    	return serverUtility.getWebService(url)
