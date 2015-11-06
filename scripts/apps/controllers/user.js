@@ -149,7 +149,18 @@ define(['app'], function(app) {
                 $scope.showUserResponse = true;
                 if(data.flag == "1") {
                     utility.setJStorageKey("userId", data.UserID, 1);
-                    utility.setJStorageKey("email", email, 1);                    
+                    utility.setJStorageKey("email", email, 1); 
+
+                    var oldQuoteId = utility.getJStorageKey("quoteId")
+                    utility.setJStorageKey("quoteId", data.QuoteId, 1);  
+                    var oldCartCount = utility.getJStorageKey("cartCounter" + oldQuoteId);
+                    utility.setJStorageKey("cartCounter" + data.QuoteId, oldCartCount, 1);
+
+                    //cartCounterKey
+                    /*var quoteId = utility.getJStorageKey("quoteId"),
+                    cartCounterKey = "cartCounter" + quoteId,
+                    cartCount = 0;*/ 
+
                     $scope.userResponseMessage = data.Result;
                     updateClassName("success");
                     if($scope.isReferrer == "checkout") {
