@@ -122,7 +122,7 @@
 						<input type="text" name="phone" placeholder="required"
 							data-ng-model="address.phone"
 							value="{{address.phone}}" 
-							required my-max-length="40" only-digits
+							required my-max-length="10" only-digits
 							class="place-color reg-list-input">
 						<div ng-messages="frmRegistration.phone.$error" 
                         	data-ng-show="frmRegistration.phone.$dirty || (errorRegistration && address.phone == null)">

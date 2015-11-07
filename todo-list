@@ -1,3 +1,14 @@
+1. In drawer location name should be in caps.
+5. In new address phone number should be of 10 digit.
+12. On checkout Payment Method--> On select delivery details screen, button have label "Select Delivery Details", it should have label "Proceed".
+16. Click on drawer--> click on staples--> click on Oil & ghee--> Cooking oil --> hot deals tab showing in last .
+18. From home screen --> click on Staples--> Oil & ghee--> Cooking oil--> Hot deals--> click on Jivo canola oil 1 ltr --> its show product description screen, here not showing the offer details and the product adding cart icon is pixelating and small.
+NOTE: Product detail web service not responding promotion_level key for product
+
+
+
+
+
 {
 Result: "Order failed.",
 orderfailed: {

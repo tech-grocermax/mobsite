@@ -9,8 +9,8 @@ define(['app'], function (app) {
 		    		.then(function(data){return data}, function(error){return error});
 		    };
 
-		    this.getAllProductListByCategoryId = function(categoryId) {
-		    	var url = getAPIUrl() + "productlistall?cat_id=" + categoryId;
+		    this.getAllProductListByCategoryId = function(categoryId, page) {
+		    	var url = getAPIUrl() + "productlistall?cat_id=" + categoryId + "&page=" + page;
 		    	return serverUtility.getWebService(url)
 		    		.then(function(data){return data}, function(error){return error});
 		    };	
