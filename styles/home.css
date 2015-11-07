@@ -404,6 +404,11 @@ input , button, select{outline:none;}
 .loc-icon{width: 4%;margin-top: 5px;margin-right: 15px; display:inline; float:left;}
 .edit-icon{width: 5%;margin-top: 5px;display:inline; float:right;}
 .drawer-plus{width:24px;}
+.prod-detail-cart{position: absolute;top: 0;right: -38%;width: 40px;}
+.prod-detail-text{font-size: 20px;position: absolute;top: -3px;right: -35%;}
+
+
+
 
 @media  (max-width: 460px){
 	.margin-0-m{margin:0}
@@ -548,7 +553,11 @@ input , button, select{outline:none;}
 	.search-icon-pos {width: 24px; top:7px;}
 	.loc-icon{width: 6%;margin-top: 0;}
 	.edit-icon{width: 7%;margin-top: 0;}
-	.drawer-plus{width:20px;}
+	.drawer-plus{width:16px;}
+	.btn-login, .btn-signup{padding: 10px 0px;}
+	.prod-detail-btn{font-size: 24px;width: 80px;float: right;}	
+	.prod-detail-pm-btn{width: 130px;}	
+	
 }
 
 @media  (max-width: 360px){
@@ -592,7 +601,9 @@ input , button, select{outline:none;}
 	.card-img-box {height: 146px;}
 	.search-icon-pos {/*top: 14px;width: 30px;*/}
 	.list-img-box{height: 124px;}
-	.drawer-plus{width:16px;}
+	.drawer-plus{width:15px;}
+	.prod-detail-btn{font-size: 20px;width: 70px;float: right;}	
+	.prod-detail-pm-btn{width: 120px;}	
 }
 
 /*------------------------- SPRITE IMAGE -------------------------*/
@@ -638,7 +649,7 @@ input , button, select{outline:none;}
 .modal-dialog,.modal-content,.modal-body{position:absolute; top:0;left:0;bottom:0; right:0; margin:0;border:none;}
 
 .ribbon {
- 	font-size: 16px !important;
+ 	font-size: 14px !important;
  	margin:0;
  	background: #fec70d;
  	color: #e5111e;

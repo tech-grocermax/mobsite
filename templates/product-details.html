@@ -1,16 +1,16 @@
 <div ng-controller="productController">
 	<header data-ng-include="'templates/header.html'"></header>
     <article>
-        <div class="row margin0 back-white">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-md-offset-3 col-sm-offset-3 col-xs-offset-3" style="margin-top: 20px;">
+        <div class="row margin0 back-white pad-b-15">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-md-offset-3 col-sm-offset-3 col-xs-offset-3" style="margin-top:10%;">
                 <img src="{{productDetails.product_thumbnail}}" alt="" class="img-responsive">
-                <ul class="list-unstyled" style="text-align: center;">
+                <ul class="list-unstyled" style="text-align: center; margin-top:30%;">
                     <li class="prod-list-h">
                         {{productDetails.p_brand}}
                         <img src="images/app_bar_icons/cart_add_quantity.png" 
                             data-ng-show="getCartProductQuantity(productDetails.product_id) > 0"
-                            class="img-responsive cart-image">
-                        <span class="cart-txt"
+                            class="img-responsive prod-detail-cart">
+                        <span class="prod-detail-text"
                             data-ng-show="getCartProductQuantity(productDetails.product_id) > 0">
                             {{getCartProductQuantity(productDetails.product_id)}}</span>
                     </li>
@@ -18,7 +18,7 @@
                     <li class="prod-list-qnty">{{productDetails.p_pack}}</li>
                 </ul>
             </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-tp20">
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 font-3">
                     <span class="product-qnty">
                         ₹ {{toFixedDecimal(productDetails.sale_price)}} |</span> 
@@ -28,8 +28,8 @@
                         ₹ {{toFixedDecimal(getPriceDifference(productDetails.product_price, productDetails.sale_price))}}</span>
                 </div>                
             </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd0 plus-minus-btn"
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-tp20">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd0 plus-minus-btn prod-detail-pm-btn"
                     data-ng-show="productDetails.Status == 'In stock'">
                     <ul class="list-unstyled cat-list">
                         <li class="cat-minus" 
@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 padd0 add-btn-box"
                     data-ng-show="productDetails.Status == 'In stock'">
-                    <button type="button" class="add-btn"
+                    <button type="button" class="add-btn prod-detail-btn"
                         data-ng-click="addProductOneByOne(productDetails)">ADD</button>
                 </div>
             </div>
