@@ -96,7 +96,7 @@ input , button, select{outline:none;}
 .search-bar{width: 100%; font-family: roboto; font-size: 22px;/*font-size: 3.5vw;*/ padding: 15px 0 15px 10px; border: medium none;margin:1px;}
 .list-icon{margin-top: 8px;  width: 45px;}
 .search-icon-pos{float: right; top: 12px;}
-.head-text{color:#fff; font-size:5vw; cursor:pointer;}
+.head-text{color:#fff; font-size:5vw; cursor:pointer;padding-left:10px;}
 /*.img-box{background: #fff;border-radius: 3px;box-shadow:0 7px 5px rgba(0, 0, 0, 0.2);}*/
 .imgbox-margin{margin: 7.5px;}
 .deals-img{margin-top:198px;}
@@ -506,7 +506,7 @@ input , button, select{outline:none;}
 	.cart-txt {right: 20px;}
 	.bill-checkbox{margin-top: 4px !important;}
 	.pmt-checkbox {margin-top: 7px !important;}
-	.back-img-mr{width:7.5%;margin-top:-5px;}
+	.back-img-mr{width:16px;margin-top:-7px;}
 	.margin-t16-m{margin-top: 16px;}
 /*	.subc-h1 {bottom: 7.2%;}*/
 	.cat-img-mrg {margin-top: 114px;}
@@ -523,7 +523,7 @@ input , button, select{outline:none;}
 	.head-icon-width{width:100%;}
 	.head-user-icon{width:120%;}
 	.top-height {height: 52px;}
-	.top-head  .header-middle{height: 62px;}
+	.top-head  .header-middle, .details-head .header-middle {height: 62px;}
 	.deals-head .header-middle {height: 80px;}
 	.deals-img {margin-top: 114px;}
 	.banner-slide{width:340px; height: 140px;}
@@ -556,7 +556,7 @@ input , button, select{outline:none;}
 	.drawer-plus{width:16px;}
 	.btn-login, .btn-signup{padding: 10px 0px;}
 	.prod-detail-btn{font-size: 24px;width: 80px;float: right;}	
-	.prod-detail-pm-btn{width: 130px;}	
+	.prod-detail-pm-btn{width: 130px;}
 	
 }
 
@@ -575,7 +575,7 @@ input , button, select{outline:none;}
 	.reg-btn>img {margin-top: -8px;margin-bottom: -8px;}
 	.cart-margin{margin-bottom:32%; margin-top:52px;}
 	.top-height {height: 50px;}
-	.top-head .header-middle {height: 52px;}
+	.top-head .header-middle , .details-head .header-middle {height: 52px;}
 	.prod-sec {margin-bottom: 90px;}
 	/*.header-fix-top .header-middle {height: 117px;}*/
 	.cat-img-mrg {margin-top: 110px;}
