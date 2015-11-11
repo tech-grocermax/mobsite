@@ -12,9 +12,9 @@
             data-ng-show="cartDetails.items.length"
             data-ng-hide="hideCartItem(product)"
             data-ng-repeat="product in cartDetails.items">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 list-img-box">
                 <img src="{{replaceImageUrl(product.product_thumbnail)}}" 
-                        alt="" class="img-responsive cart-img-heigth">
+                        alt="" class="img-responsive card-img-center">
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 pad-lr10">
                 <ul class="list-unstyled" style="margin-bottom:5px;">
@@ -24,7 +24,7 @@
                             data-ng-click="removeCartItem(product)" 
                             alt="" class="delet-icon">
                     </li>
-                    <li class="cat-list-name">{{product.name}}</li>
+                    <li class="cat-list-name text-ellipsis">{{product.name}}</li>
                     <!--<li class="prod-list-qnty">{{product.p_pack}}</li>-->
                     <li class="font-3">
                         <span class="product-qnty">

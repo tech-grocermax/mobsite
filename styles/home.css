@@ -361,7 +361,7 @@ input , button, select{outline:none;}
 /*========== ORDER SUCCESS ==========*/
 .subc-h1{width:100%;/* padding: 13px 0; background: #000;*/ bottom: 6.2%; display: block; position: absolute; opacity: 0.8;font-size: 3.4vw; color:#fff;text-align:right;content: "";font-weight: 300;right: 3.4%;}
 .subc-h2{font-size: 5.6vw;padding-left: 26px;font-weight: 100;color:#fff;}
-.subc-btn{padding: 10px 0;font-size:3.8vw; background:#fff; border: 1px solid #d7d7d7; border-radius:4px; width:100%;box-shadow: 2px 2px 3px -2px; color:#2d2d2d;}
+.subc-btn{padding: 10px 1px;font-size:3.8vw; background:#fff; border: 1px solid #d7d7d7; border-radius:4px; width:100%;box-shadow: 2px 2px 3px -2px; color:#2d2d2d;}
 
 .btn-bottom{position: absolute; left: 0px; right: 0px; bottom: 0px;}
 .modal-body{background-image:url('../images/location-back.png'); background-attachment:fixed; background-position:center center; background-repeat:no-repeat; background-size:cover;}
@@ -399,6 +399,7 @@ input , button, select{outline:none;}
 /*.cart-margin .cat-box, .del-div .cat-box {padding-top:5px;}*/
 .card-height{height: 206px;}
 .card-img-box{height:204px; position: relative;}
+.list-img-box{height:174px; position: relative;}
 .card-img-center{position: absolute;margin: auto;left: 0;right: 0;top: 0;bottom: 0;padding: 0 5px 0 5px; width:95%;}
 .loc-icon{width: 4%;margin-top: 5px;margin-right: 30px; display:inline; float:left;}
 .edit-icon{width: 5%;margin-top: 5px;display:inline; float:right;}
@@ -503,7 +504,7 @@ input , button, select{outline:none;}
 	.back-img-mr{width:7.5%;margin-top:-5px;}
 	.margin-t16-m{margin-top: 16px;}
 /*	.subc-h1 {bottom: 7.2%;}*/
-	.cat-img-mrg {margin-top: 130px;}
+	.cat-img-mrg {margin-top: 114px;}
 	/*.prod-sec{margin-bottom: 153px;}*/
 	/*.left-menu{top: 93.2%;}*/
 	.top-subhead {height: 52px;top: 54px;}
@@ -539,11 +540,12 @@ input , button, select{outline:none;}
 	.cat-plus img, .cat-minus img {top: 40%;}
 	.card-height {height: 164px;}
 	.card-img-box {height: 162px;}
+	.list-img-box{height: 140px;}
 	.bot-foot {height: 65px;}
 	.cart-box-botom {bottom: 65px;}
-	.search-bar{font-size: 18px;}
-	.list-icon{width: 38px;}
-	.search-icon-pos {width: 34px;}
+	.search-bar{font-size: 14px; padding: 8px 0px 8px 5px;}
+	.list-icon{width: 28px; margin-top: 4px;}
+	.search-icon-pos {width: 24px; top:7px;}
 	.loc-icon{width: 6%;margin-top: 0;}
 	.edit-icon{width: 7%;margin-top: 0;}
 }
@@ -587,7 +589,8 @@ input , button, select{outline:none;}
 	.add-btn {padding:5px;}
 	.card-height {height: 148px;}
 	.card-img-box {height: 146px;}
-	.search-icon-pos {top: 14px;width: 30px;}
+	.search-icon-pos {/*top: 14px;width: 30px;*/}
+	.list-img-box{height: 124px;}
 }
 
 /*------------------------- SPRITE IMAGE -------------------------*/
@@ -624,7 +627,7 @@ input , button, select{outline:none;}
 
 /* This CSS has been added by Binit */
 .error-message{color:#FF0000; font-size: 11px;}
-.black_shade{position: fixed;top: 0%;left: 0%;width: 100%;height: 100%;background-color: black; z-index:1001;-moz-opacity: 0.9; opacity:.50;filter: alpha(opacity=40);padding:11px 20px;}
+.black_shade{position: fixed;top: 0%;left: 0%;width: 100%;height: 100%;background-color: black; z-index:1001;-moz-opacity: 0.7; opacity:.7;filter: alpha(opacity=40);padding:11px 20px;}
 .popupcontainerloader {position:fixed; top:15%;max-width: 790px; width:60%; height: auto; margin:0 auto; left:0; right:0;padding:1px;z-index:1002;overflow:visible;border-radius: 7px 7px 7px 7px; top:40%; *left:21%;}
 
 /* Change in Bootstrap Class */
@@ -653,7 +656,7 @@ input , button, select{outline:none;}
 	*/
   	
 }
-.text-ellipsis {
+.text-ellipsis{
 	display: block;	
 	overflow: hidden;
 	text-overflow: ellipsis;

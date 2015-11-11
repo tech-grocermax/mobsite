@@ -1,10 +1,10 @@
-<div ng-controller="categoryController">    
+<div ng-controller="categoryController">
     <header data-ng-include="'templates/header.html'"></header>
     <article class="back-white">
         <section>
 			<div class="row margin0">				
-				<div style="margin:5%;">					
-				    <ul rn-carousel class="image"
+				<div style="position: relative;">					
+				    <ul rn-carousel class="image margin0"
 				    	rn-carousel-auto-slide="2" 
 				    	rn-carousel-duration="300"
 				    	rn-carousel-index="carouselIndex2"				    	
@@ -13,14 +13,14 @@
 	    					<div class="layer">
 	    						<img src="{{banner.imageurl}}" title="{{banner.name}}" 
 									data-ng-click="handleBannerClick(banner)"
-									class="banner-slide"></div>
+									class="banner-slide" style="width:100%;"></div>
 	  					</li>	  					
 					</ul>
 					<div rn-carousel-indicators 
 						ng-if="bannerList.length > 1" 
 						slides="bannerList" 
 						rn-carousel-index="carouselIndex2" 
-						class="ng-scope ng-isolate-scope" 
+						class="ng-scope ng-isolate-scope dot-btm-center" 
 						style="text-align:center; font-size:20px;">
 						<div class="rn-carousel-indicator">
 							<span ng-repeat="banner in bannerList" 

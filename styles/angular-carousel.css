@@ -14,9 +14,9 @@ ul[rn-carousel] > li {
 ul[rn-carousel-buffered] > li {display: none; }
 ul[rn-carousel-transition="hexagon"] {overflow: visible; }
 /* indicators */
-div.rn-carousel-indicator span {cursor: pointer;  color: #666;}
+div.rn-carousel-indicator span {cursor: pointer;  color: #E4E4E4;}
 div.rn-carousel-indicator span.active {color: #ee2d09; }
-
+.dot-btm-center{position: absolute;bottom: 5px;left: 0;right: 0;}
 /* prev/next controls */
 .rn-carousel-control {
     -webkit-transition: opacity 0.2s ease-out; transition: opacity 0.2s ease-out; font-size: 2rem; position: absolute; top: 40%; opacity: 0.75;    cursor: pointer; 
