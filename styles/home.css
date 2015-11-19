@@ -183,7 +183,7 @@ input , button, select{outline:none;}
 .editaddress .reg-list-text{color: #7d7d76; /*font-family: helveticaNeue-Regular;*/ font-size: 3.8vw; font-weight: normal;}
 .reg-list label{font-size: 4.3vw; font-family: roboto; color: #2d2d2d;margin-right: 46px;font-weight: 400;}
 .reg-para{font-size: 3.5vw; color: #cbcbc8; padding-bottom: 7px; padding-top: 38px;}
-.reg-bot-btn{background:  #0e69e5; font-size: 6vw; color: #fff; padding-top: 14px; padding-bottom: 6px; border: medium none; width: 100%;}
+.reg-bot-btn{background:  #0e69e5; font-size: 6vw; color: #fff; padding-top: 10px; padding-bottom: 10px; border: medium none; width: 100%;}
 .check-img{float:left; padding-right: 20px;}
 .check-text{font-size: 4vw; padding-top:0.5%; color:#2d2d2d;}
 .reg-check-img{margin-right: -10%;}
@@ -557,6 +557,7 @@ input , button, select{outline:none;}
 	.btn-login, .btn-signup{padding: 10px 0px;}
 	.prod-detail-btn{font-size: 24px;width: 80px;float: right;}	
 	.prod-detail-pm-btn{width: 130px;}
+	.reg-list{padding-bottom:10px;}
 	
 }
 
