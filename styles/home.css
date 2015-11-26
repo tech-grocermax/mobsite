@@ -388,7 +388,7 @@ input , button, select{outline:none;}
 .header-fix-top .header-middle{height:184px;}
 .top-height{height: 104px;}
 .deals-head .deals-hide{display: none;}
-.banner-slide{width:420px; height: 200px;}
+.banner-slide{width:100%; height: 200px;}
 .cat-border .header-middle {height: auto;}
 .reg-btn-margin{margin-top:104px;}
 .cart-img-heigth{height:125px;}
@@ -526,7 +526,7 @@ input , button, select{outline:none;}
 	.top-head  .header-middle, .details-head .header-middle {height: 62px;}
 	.deals-head .header-middle {height: 80px;}
 	.deals-img {margin-top: 114px;}
-	.banner-slide{width:340px; height: 140px;}
+	.banner-slide{/*width:340px;*/ height: 140px;}
 	.offer-img-mrg{margin-top: 116px;}
 	.cat-border .header-middle {height: auto;}
 	.user-wrapper {margin-top: 62px;}
@@ -582,7 +582,7 @@ input , button, select{outline:none;}
 	/*.header-fix-top .header-middle {height: 117px;}*/
 	.cat-img-mrg {margin-top: 110px;}
 	.deals-img {margin-top: 104px;}
-	.banner-slide{width:330px; }
+	.banner-slide{/*width:330px;*/ }
 	.offer-img-mrg{margin-top: 104px;}
 	.user-wrapper {margin-top: 52px;}
 	.plus-minus-btn{width:50%;}
@@ -679,4 +679,8 @@ input , button, select{outline:none;}
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+}
+
+body.hide-body{
+	overflow: hidden;
 }
