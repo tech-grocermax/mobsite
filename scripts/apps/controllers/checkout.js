@@ -178,9 +178,7 @@ define(['app'], function(app) {
                     qty = qty + parseInt(value.qty);
                 });
                 $scope.youSaved = savedAmont;
-                $scope.totalCartQty = qty;
-                console.log($scope.youSaved);
-                console.log($scope.totalCartQty);
+                $scope.totalCartQty = qty;                
             };
           
             getCartItemDetails = function() {
@@ -235,9 +233,6 @@ define(['app'], function(app) {
                 address[keyName] = true;
             };
 
-            //console.log(utility.getJStorageKey("checkoutDetails"));
-            //console.log(utility.getJStorageKey("userId"));
-
             $scope.selectShippingAddress = function() {
                 var shippingAddress = null,
                     billingAddress = null;
@@ -250,9 +245,6 @@ define(['app'], function(app) {
                     });
                 }                
                 
-                console.log(shippingAddress);
-                console.log(billingAddress);
-
                 var quoteId = utility.getJStorageKey("quoteId"),
                     checkoutDetails = {};
 
@@ -418,7 +410,6 @@ define(['app'], function(app) {
 
             $scope.isOrderPlaced = false;
             $scope.placeOrder = function() {
-                console.log($scope.paymentMethod);
                 $scope.isOrderPlaced = true;
                 if($scope.paymentMethod == "paytm_cc" 
                     || $scope.paymentMethod == "cashondelivery") {
