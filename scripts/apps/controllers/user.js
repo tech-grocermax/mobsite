@@ -4,9 +4,7 @@ define(['app'], function(app) {
         function($scope, $rootScope, $routeParams, $location, $timeout, userService, productService, utility) {
             $scope.sectionName = $routeParams.sectionName;
             $scope.orderId = angular.isDefined($routeParams.orderId) ? $routeParams.orderId : null;
-            console.log($scope.sectionName);
-            console.log($scope.orderId);
-
+            
             if((angular.isUndefined(utility.getJStorageKey("userId")) 
                 || !utility.getJStorageKey("userId"))
                 && ($scope.sectionName == "profile" 
@@ -16,6 +14,10 @@ define(['app'], function(app) {
                     || $scope.sectionName == "editaddress"
                     || $scope.sectionName == "orderhistory")){
                 $location.url("user/login");
+            } else if(angular.isDefined(utility.getJStorageKey("userId")) 
+                && utility.getJStorageKey("userId")
+                && ($scope.sectionName == "login" || $scope.sectionName == "register")) {
+                $location.url("user/profile");
             }
 
             $scope.addressId = angular.isDefined($routeParams.addressId) ? $routeParams.addressId : null;         
