@@ -31,10 +31,11 @@
             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 padd0" 
                 data-ng-show="columnSize == 10" back>
                 <a href="javascript:void(0);">
-                    <img src="images/app_bar_icons/back-icon.png" title="" 
+                    <img src="images/app_bar_icons/carat_left_white.png" title="" 
                         class="img-responsive back-img-mr"> </a>
                 <span class="head-text">&nbsp;{{categoryName}}</span>
             </div>
+			
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 margin-lt22p"
                 data-ng-show="showSearchIcon">
                 <a href="javascript:void(0);">
@@ -67,7 +68,7 @@
                 <ul class="list-unstyled drop-box">
                     <li><a href="#/page/faq">FAQ&apos;s</a></li>
                     <li><a href="#/page/contact">Contact Us</a></li>
-                    <li><a href="#/page/payment">Payment Methods</a></li>
+                    <li><a href="#/page/paymentMethod">Payment Methods</a></li>
                     <li><a href="#/page/term">Terms of Service</a></li>
                     <li><a href="#/page/about">About us</a></li>
                 </ul>
@@ -105,8 +106,7 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
     aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
+        
                 <div class="row margin0">
                     <div class="col-md-12 col-sm-12 col-xs-12 padd0" 
                         style="text-align: center;">
@@ -124,15 +124,14 @@
 						</div>						                        
                     </div>
                 </div>
-            </div>
-        </div>
+            
     </div>
 </div>
 <div class="left-menu" data-ng-show="showCategoryMenu"
 	outsideclick="handleMenuCategoryOutsideClick()">
 	<!--<div class="menu-item-h">HOME</div>-->
 	<ul class="list-unstyled">
-		<li class="item-shop">HOME</li>
+		<li class="item-shop"><a href="#" style="color: #fff;">HOME</a></li>
 		<li class="item-shop"   
             style="text-transform:uppercase; "         
             data-ng-click="editLocation()">
@@ -165,6 +164,7 @@
         </li>
 		<!-- <li class="item-shop" 
             data-ng-click="navigateToHotOffers()">SHOP BY DEALS</li> -->
+
 		<li class="item-shop">GET IN TOUCH WITH US</li>
 	</ul>
 </div>
@@ -191,10 +191,10 @@
 			data-ng-click="handleDrawerClick(category)"
 			data-ng-class="{'ss-menu':subSubCategoryIndex == category.category_id}">            
 			{{category.name}}
-			<img src="images/app_bar_icons/PLUS-ICON.png" alt="" class="img-responsive"
+			<img src="images/app_bar_icons/plus.png" alt="" class="img-responsive drawer-plus"
 				data-ng-show="subSubCategoryIndex != category.category_id && isMenuToggalable(category)"
 				style="display:inline; float:right;">
-			<img src="images/app_bar_icons/MINUS-ICON.png" alt="" class="img-responsive"
+			<img src="images/app_bar_icons/drawer-minus.png" alt="" class="img-responsive drawer-plus"
 				data-ng-show="subSubCategoryIndex == category.category_id && isMenuToggalable(category)"
 				style="display:inline; float:right;">
 			<ul class="list-unstyled pad-top24" 

@@ -51,7 +51,7 @@
                                 {{getCartProductQuantity(product.productid)}}</span>
 						</li>
                         <li class="cat-list-name text-ellipsis">{{product.p_name}}</li>
-                        <!--<li class="prod-list-qnty">{{product.p_pack}}</li>-->
+                        <li class="prod-list-qnty">{{product.p_pack}}</li>
                         <li class="font-3"><span class="product-qnty">₹ {{toFixedDecimal(product.sale_price)}} |</span> <span class="prod-new-price">₹ {{toFixedDecimal(product.Price)}}</span></li>
                         <!--<li class="product-qnty">₹ {{toFixedDecimal(getPriceDifference(product.Price, product.sale_price))}}</li>-->
                     </ul>
@@ -93,6 +93,9 @@
 				</div>
             </div>            
         </div>
+		<div class="col-md-12 col-sm-12 col-xs-12 text-center" data-ng-show="!products.length">
+			<span style="font-size: 20px;">Coming soon..</span>
+		</div>
     </article>
 
     <div class="popupcontainerloader" style="position:fixed;"
