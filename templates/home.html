@@ -72,16 +72,9 @@
 						<li data-ng-show="deals.length" 
 	    					data-ng-repeat="deal in deals"
 	    					data-ng-click="routerChange('deals', deal.id)">
-							<img src="images/Deal Images/{{deal.dealType}}.png" title="{{deal.dealType}}" 
-								class="slide-img">
-							<!--<div class="img-text-box">
-								<span class="img-text-h">&nbsp</span>
-							</div>-->
-							<!--<div class="slide-text"
-								data-ng-click="routerChange('category/offers', category.category_id)"
-								style="width:100%; ">VIEW DEALS</div>-->
-						</li>
-						<!-- <li class="li-border"></li> -->						
+							<img src="images/Deal Images/{{deal.dealType}}.png" 
+								title="{{deal.dealType}}" class="slide-img">
+						</li>												
 					</ul>					
 				</div>
 			</div>
@@ -98,12 +91,11 @@
 				</div>
 			</div>
 		</section>
-    </article>		
-
+    </article>
     <div class="popupcontainerloader" style="position:fixed;"
         data-ng-show="displayLoader">        
-        <div style="text-align:center; width:100%; "><img src="images/ajax-loader.gif" /></div>
+        <div style="text-align:center; width:100%; ">
+        	<img src="images/ajax-loader.gif" /></div>
     </div>
-    <div data-ng-show="displayLoader" class="black_shade"></div>
-    
+    <div data-ng-show="displayLoader" class="black_shade"></div>    
 </div>

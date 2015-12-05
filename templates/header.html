@@ -142,17 +142,29 @@
 			<img src="images/app_bar_icons/draweredit.png" alt="" 
 				class="img-responsive edit-icon">
 		</li>
-		<li class="item-shop">SHOP BY CATEGORIES</li>
+		<li class="item-shop" data-ng-click="toggleShopByCategory()">
+            SHOP BY CATEGORIES</li>
 		<li class="menu-item" 
-			data-ng-show="category.is_active"
+			data-ng-show="category.is_active && showShopByCategory"
 			data-ng-repeat="category in categories"
 			data-ng-click="toggleSubCategoryMenu(category.category_id)">
 			{{category.name}}
 			<img src="images/app_bar_icons/drawer_caret.png" alt="" 
 				class="img-responsive" style="display:inline; float:right;">
 		</li>  
-		<li class="item-shop" 
-            data-ng-click="navigateToHotOffers()">SHOP BY DEALS</li>
+        <li class="item-shop" 
+            data-ng-click="toggleShopByDeals()" 
+            style="border-top: 1px solid #d2d2d2;">SHOP BY DEALS</li>
+        <li class="menu-item" 
+            data-ng-show="deals.length && showShopByDeals"
+            data-ng-repeat="deal in deals"
+            data-ng-click="routerChange('deals', deal.id)">
+            {{deal.dealType}}
+            <img src="images/app_bar_icons/drawer_caret.png" alt="" 
+                class="img-responsive" style="display:inline; float:right;">
+        </li>
+		<!-- <li class="item-shop" 
+            data-ng-click="navigateToHotOffers()">SHOP BY DEALS</li> -->
 		<li class="item-shop">GET IN TOUCH WITH US</li>
 	</ul>
 </div>

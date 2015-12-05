@@ -23,9 +23,6 @@ define(['app'], function(app) {
             $scope.addressId = angular.isDefined($routeParams.addressId) ? $routeParams.addressId : null;         
             $scope.isReferrer = angular.isDefined($routeParams.isReferrer) ? $routeParams.isReferrer : null;
             $scope.addressType = angular.isDefined($routeParams.addressType) ? $routeParams.addressType : null;
-            
-            console.log($scope.isReferrer, $scope.addressType);
-
             $scope.showSearchBar = false;            
             $scope.pageName = $routeParams.pageName;
             $scope.showSearchIcon = false;
@@ -93,8 +90,6 @@ define(['app'], function(app) {
                 $scope.stateName = "";
                 $scope.regionId = "";
             }
-            console.log($scope.stateName, $scope.regionId);
-
             $scope.registrationStep = 1;
             $scope.otp = "";
             /*$scope.cityLocation = {
@@ -244,13 +239,11 @@ define(['app'], function(app) {
                 var quoteId = utility.getJStorageKey("quoteId"),
                     cartCounterKey = "cartCounter" + quoteId,
                     cartCount = 0;
-
-                console.log(utility.getJStorageKey(cartCounterKey));
+                
                 if(angular.isDefined(utility.getJStorageKey(cartCounterKey)) 
                     && utility.getJStorageKey(cartCounterKey) ) {
                     cartCount = utility.getJStorageKey(cartCounterKey);
                     $scope.cartItemCount = cartCount;
-                    console.log("here");
                 }
             };   
 
@@ -480,6 +473,7 @@ define(['app'], function(app) {
             };
 
             $scope.renderPaymentMethod = function(method) {
+                console.log(method);
                 if(angular.isDefined(method)) {
                     return paymentMethodMapping[method];
                 }
@@ -487,7 +481,7 @@ define(['app'], function(app) {
 
             $scope.renderShippingAddress = function(address) {
                 if(angular.isDefined(address)) {
-                   return address
+                   return (address.firstname + " " + address.lastname + " " +address.street + " " + address.city + " " + address.region + " " + address.postcode);
                 }
             };
 
@@ -671,6 +665,10 @@ define(['app'], function(app) {
 
             $scope.navigateToOrderDetail = function(order) {
                 $location.url("user/orderhistory/" + order.order_id);
+            };
+
+            $scope.convertToInteger = function(qty) {
+                return parseInt(qty, 10);
             };
 
             angular.element(document).ready(function () {

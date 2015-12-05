@@ -314,8 +314,10 @@ define(['app'], function(app) {
             };
             
             $scope.toggleCategoryMenu = function() {
+                console.log("toggle");
                 $scope.showSubCategoryMenu = false;
                 $scope.showCategoryMenu = $scope.showCategoryMenu ? false : true;
+                $('body').css('overflow', 'hidden');
             };
 
             $scope.toggleSubCategoryMenu = function(categoryId) {                
@@ -393,6 +395,7 @@ define(['app'], function(app) {
 
             $scope.handleMenuCategoryOutsideClick = function() {
                 $scope.showCategoryMenu = false;
+                $('body').css('overflow', 'auto');
             };
 
             $scope.handleSubMenuCategoryOutsideClick = function() {
@@ -539,6 +542,29 @@ define(['app'], function(app) {
 
             $scope.navigateToHotOffers = function() {
                 $location.url("hot-offers");
+            };
+
+            $scope.showShopByCategory = true;
+            $scope.showShopByDeals = false;
+
+            $scope.toggleShopByCategory = function() {
+                if($scope.showShopByCategory) {                    
+                    $scope.showShopByCategory = false;
+                    $scope.showShopByDeals = true;
+                } else {
+                    $scope.showShopByCategory = true;
+                    $scope.showShopByDeals = false;                    
+                }
+            };
+
+            $scope.toggleShopByDeals = function() {
+                if($scope.showShopByDeals) {
+                    $scope.showShopByDeals = false;
+                    $scope.showShopByCategory = true;
+                } else {
+                    $scope.showShopByDeals = true;
+                    $scope.showShopByCategory = false;
+                }
             };
 
             angular.element(document).ready(function () {

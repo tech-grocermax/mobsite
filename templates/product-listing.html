@@ -26,9 +26,13 @@
     </section>
 
 	<article class="inner-body">
-        <div class="row margin0 pad16 del-div">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box margin-bot15"
-                data-ng-repeat="product in products"><!--data-ng-repeat="-->
+        <div class="row margin0 pad16 del-div" >
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box margin-bot15" data-ng-show="products.length < 1">
+                <div style="padding:10px; text-align:center; ">No product found</div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box margin-bot15"  
+                data-ng-show="products.length > 0"              
+                data-ng-repeat="product in products">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 list-img-box padd0"
                     data-ng-click="routerChange('product/details', product.productid)">
                     <img src="{{product.Image}}" 
