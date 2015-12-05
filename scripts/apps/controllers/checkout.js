@@ -65,7 +65,20 @@ define(['app'], function(app) {
             } else if ($scope.section.payment) {
                 $scope.categoryName = "Select Payment Method";
                 $scope.columnSize = 10;
-            }        
+            }
+
+            var filterShippingAddressByRegion = function() {
+                var shippingAddress = [],
+                    regionId = utility.getJStorageKey("regionId");
+                
+                angular.forEach($scope.addressList, function(value, key){
+                    if(value.region_id == regionId) {
+                        shippingAddress.push(value);
+                    }
+                });
+                $scope.addressList = [];
+                $scope.addressList = shippingAddress;
+            };
 
             getAddressList = function() {
                 toggleLoader(true);
@@ -76,6 +89,9 @@ define(['app'], function(app) {
                             $scope.addressList = [];
                         } else {
                             $scope.addressList = data.Address;
+                            if($scope.sectionName == "shipping") {
+                                filterShippingAddressByRegion();
+                            }
                         }                        
                     });
             };
@@ -400,29 +416,35 @@ define(['app'], function(app) {
                     });
             };
 
+            $scope.isOrderPlaced = false;
             $scope.placeOrder = function() {
-                var userId = utility.getJStorageKey("userId"),
-                    checkoutDetails = utility.getJStorageKey("checkoutDetails");
-                
-                userService.checkout(userId, $scope.quoteId, checkoutDetails, $scope.paymentMethod)
-                    .then(function(data){              
-                        if(data.flag == 1){
-                            if($scope.paymentMethod == "paytm_cc") {
-                                getPaytmProcessingDetails(data.OrderID);
+                console.log($scope.paymentMethod);
+                $scope.isOrderPlaced = true;
+                if($scope.paymentMethod == "paytm_cc" 
+                    || $scope.paymentMethod == "cashondelivery") {
+                    var userId = utility.getJStorageKey("userId"),
+                        checkoutDetails = utility.getJStorageKey("checkoutDetails");
+                    
+                    userService.checkout(userId, $scope.quoteId, checkoutDetails, $scope.paymentMethod)
+                        .then(function(data){              
+                            if(data.flag == 1){
+                                if($scope.paymentMethod == "paytm_cc") {
+                                    getPaytmProcessingDetails(data.OrderID);
+                                } else {
+                                    utility.deleteJStorageKey("checkoutDetails");
+                                    utility.deleteJStorageKey("cartItems");
+                                    utility.deleteJStorageKey("quoteId");
+                                    $location.url("payment/success/" + data.OrderID);
+                                }                            
                             } else {
-                                utility.deleteJStorageKey("checkoutDetails");
-                                utility.deleteJStorageKey("cartItems");
-                                utility.deleteJStorageKey("quoteId");
-                                $location.url("payment/success/" + data.OrderID);
-                            }                            
-                        } else {
-                            $('#paymentFailed').modal({
-                                backdrop: false,
-                                keyboard: false,
-                                show: true
-                            });
-                        }
-                    });
+                                $('#paymentFailed').modal({
+                                    backdrop: false,
+                                    keyboard: false,
+                                    show: true
+                                });
+                            }
+                        });
+                }               
             };
 
             openCitySelectionModal = function() {
@@ -462,6 +484,9 @@ define(['app'], function(app) {
                 $scope.cityLocation[city] = true;
                 utility.setJStorageKey("selectedCity", city, 1);
                 utility.setJStorageKey("selectedCityId", location.id, 1);
+                utility.setJStorageKey("storeId", location.storeid, 1);
+                utility.setJStorageKey("stateName", location.default_name, 1);
+                utility.setJStorageKey("regionId", location.region_id, 1);
                 hideCitySelectionModal();
             };
 
@@ -502,10 +527,15 @@ define(['app'], function(app) {
                         console.log(data);
                         toggleLoader(false);
                         if(data.flag == 1) {
+                            $scope.invalidCoupon = false;
+                            $scope.couponMessage = "";
                             $scope.isCouponCodeApplied = true;
                             $scope.couponAmount = data.CartDetails.you_save;
                             $scope.cartDetails.grand_total = data.CartDetails.grand_total;
-                        }                        
+                        } else {
+                            $scope.invalidCoupon = true;
+                            $scope.couponMessage = data.Result;
+                        }                      
                     });
             };
 

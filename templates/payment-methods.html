@@ -35,33 +35,12 @@
 						data-ng-change="changePaymentMethod('paytm_cc', payment)" 
 						data-ng-model="payment.paytm_cc"
 						class="img-responsive float-rt paytm-check"/>					
-				</li>
-				<!-- <li>
-					<span>Credit / Debit card</span>
-					<input type="checkbox" name="paymentMethod"
-						data-ng-change="changePaymentMethod('cc', payment)" 
-						data-ng-model="payment.cc"
-						class="img-responsive float-rt pmt-checkbox"/>					
-				</li>
-				<li>
-					<span>Sodexho coupons</span>
-					<input type="checkbox" name="paymentMethod"
-						data-ng-change="changePaymentMethod('sodexo', payment)" 
-						data-ng-model="payment.sodex_cc"
-						class="img-responsive float-rt pmt-checkbox"/>					
 				</li>				
-				<li>
-					<img src="images/app_bar_icons/mobi-icon.png" alt="" 
-						class="img-responsive pmeth-mob-icon">
-					<input type="checkbox" name="paymentMethod"
-						data-ng-change="changePaymentMethod('mobikwik', payment)" 
-						data-ng-model="payment.mobikwik"
-						class="img-responsive float-rt paytm-check"/>					
-				</li> -->
 			</ul>
 		</div>
 	</div>
-	
+	<div data-ng-show="!paymentMethod && isOrderPlaced" 
+		style="color:#FF0000; text-align:center;  float: left; width: 100%; padding: 10px 0px;">Please select payment method first</div>	
 	<div class="row margin0">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pmeth-h">
 			ORDER SUMMARY
@@ -116,7 +95,9 @@
 			<div class="col-md-4 col-sm-4 col-xs-4 padd0 pmeth-btn"
 				data-ng-click="applyCouponCode(couponCode)">
 				<button type="button">APPLY CODE</button>
-			</div>			
+			</div>
+			<div data-ng-show="invalidCoupon" 
+				style="color:#FF0000; text-align:center;  float: left; width: 100%; padding: 10px 0px;">{{couponMessage}}</div>			
 		</div>
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 			data-ng-show="cartDetails.grand_total >= 500 && isCouponCodeApplied">
@@ -128,24 +109,23 @@
 				<button type="button">REMOVE CODE</button>
 			</div>
 		</div>
-	</div>
+	</div>	
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0  margin-top15" 
 		data-ng-click="placeOrder()">
 		<button type="button" class="reg-bot-btn bot-foot">PLACE ORDER</button>
 	</div>
 	<div>
 		<form name="frmPaytm" id="frmPaytm" method="POST">
-			<input type="text" name='CHANNEL_ID' value="{{paytmFormDetails.CHANNEL_ID}}" />
-			<input type="text" name="CHECKSUMHASH" value="{{paytmFormDetails.CHECKSUMHASH}}">
-			<input type="text" name='CUST_ID' value="{{paytmFormDetails.CUST_ID}}" />
-			<input type="text" name='EMAIL' value="{{paytmFormDetails.EMAIL}}" />
-			<input type="text" name='INDUSTRY_TYPE_ID' value="{{paytmFormDetails.INDUSTRY_TYPE_ID}}" />
-			<input type="text" name='MID' value="{{paytmFormDetails.MID}}" />
-			<input type="text" name='MOBILE_NO' value="{{paytmFormDetails.MOBILE_NO}}" />
-			<input type="text" name='ORDER_ID' value="{{paytmFormDetails.ORDER_ID}}" />
-			<input type="text" name='TXN_AMOUNT' value="{{paytmFormDetails.TXN_AMOUNT}}" />
-			<input type="text" name='WEBSITE' value="{{paytmFormDetails.WEBSITE}}" />
-			<input type="submit" name="btn" value="Click" />
+			<input type="hidden" name='CHANNEL_ID' value="{{paytmFormDetails.CHANNEL_ID}}" />
+			<input type="hidden" name="CHECKSUMHASH" value="{{paytmFormDetails.CHECKSUMHASH}}">
+			<input type="hidden" name='CUST_ID' value="{{paytmFormDetails.CUST_ID}}" />
+			<input type="hidden" name='EMAIL' value="{{paytmFormDetails.EMAIL}}" />
+			<input type="hidden" name='INDUSTRY_TYPE_ID' value="{{paytmFormDetails.INDUSTRY_TYPE_ID}}" />
+			<input type="hidden" name='MID' value="{{paytmFormDetails.MID}}" />
+			<input type="hidden" name='MOBILE_NO' value="{{paytmFormDetails.MOBILE_NO}}" />
+			<input type="hidden" name='ORDER_ID' value="{{paytmFormDetails.ORDER_ID}}" />
+			<input type="hidden" name='TXN_AMOUNT' value="{{paytmFormDetails.TXN_AMOUNT}}" />
+			<input type="hidden" name='WEBSITE' value="{{paytmFormDetails.WEBSITE}}" />			
 		</form>
 	</div>
 </section>

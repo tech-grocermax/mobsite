@@ -23,6 +23,9 @@ define(['app'], function(app) {
             $scope.addressId = angular.isDefined($routeParams.addressId) ? $routeParams.addressId : null;         
             $scope.isReferrer = angular.isDefined($routeParams.isReferrer) ? $routeParams.isReferrer : null;
             $scope.addressType = angular.isDefined($routeParams.addressType) ? $routeParams.addressType : null;
+            
+            console.log($scope.isReferrer, $scope.addressType);
+
             $scope.showSearchBar = false;            
             $scope.pageName = $routeParams.pageName;
             $scope.showSearchIcon = false;
@@ -73,8 +76,8 @@ define(['app'], function(app) {
                 addressline1: null,
                 addressline2: null,
                 addressline3: null,
-                city: "gurgaon",
-                state: "HR",                
+                city: ($scope.isReferrer == 'checkout' && $scope.addressType == 'shipping') ? utility.getJStorageKey("selectedCity") : "",
+                state: "",                
                 pin: null,
                 countrycode: "IN",                
                 phone: null,                
@@ -82,6 +85,15 @@ define(['app'], function(app) {
                 default_shipping: false,
                 cityid: 1
             };
+
+            if($scope.isReferrer == 'checkout' && $scope.addressType == 'shipping') {
+                $scope.stateName = utility.getJStorageKey("stateName");
+                $scope.regionId = utility.getJStorageKey("regionId");
+            } else {
+                $scope.stateName = "";
+                $scope.regionId = "";
+            }
+            console.log($scope.stateName, $scope.regionId);
 
             $scope.registrationStep = 1;
             $scope.otp = "";
@@ -136,6 +148,14 @@ define(['app'], function(app) {
                 userService.getLocationList(cityId)
                     .then(function(data){
                         $scope.locationList = data.locality;                                          
+                    });
+            };
+
+            getStateList = function() {
+                userService.getStateList()
+                    .then(function(data){
+                        $scope.stateList = data.state;      
+                        console.log($scope.stateList);                                    
                     });
             };            
 
@@ -392,6 +412,7 @@ define(['app'], function(app) {
 
             if($scope.sectionName == "addaddress" || $scope.sectionName == "editaddress") {           
                 getLocationList();
+                getStateList();
             }
 
             $scope.editAddress = function(addressId) {
@@ -613,6 +634,7 @@ define(['app'], function(app) {
             };
 
             $scope.setCityLocation = function(location) {
+                console.log(location);
                 var city = location.city_name.toLowerCase(),
                     cityId = location.id;
 
@@ -622,6 +644,9 @@ define(['app'], function(app) {
                 $scope.cityLocation[city] = true;
                 utility.setJStorageKey("selectedCity", city, 1);
                 utility.setJStorageKey("selectedCityId", location.id, 1);
+                utility.setJStorageKey("storeId", location.storeid, 1);
+                utility.setJStorageKey("stateName", location.default_name, 1);
+                utility.setJStorageKey("regionId", location.region_id, 1);
                 hideCitySelectionModal();
             };
 

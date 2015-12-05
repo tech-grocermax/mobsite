@@ -475,6 +475,7 @@ define(['app'], function(app) {
             };
 
             $scope.setCityLocation = function(location) {
+                console.log(location);
                 var city = location.city_name.toLowerCase(),
                     cityId = location.id;
 
@@ -484,6 +485,9 @@ define(['app'], function(app) {
                 $scope.cityLocation[city] = true;
                 utility.setJStorageKey("selectedCity", city, 1);
                 utility.setJStorageKey("selectedCityId", location.id, 1);
+                utility.setJStorageKey("storeId", location.storeid, 1);
+                utility.setJStorageKey("stateName", location.default_name, 1);
+                utility.setJStorageKey("regionId", location.region_id, 1);
                 $scope.selectedCity = city;
                 hideCitySelectionModal();
             };

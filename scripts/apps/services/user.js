@@ -245,6 +245,15 @@ define(['app'], function (app) {
 		    		);
 		    };
 
+		    this.getStateList = function(cityId) {
+		    	var url = getAPIUrl() + "getstate";
+		    	return serverUtility.getWebService(url)
+		    		.then(
+		    			function(data){return data; },
+		    			function(error){return error; }
+		    		);
+		    };
+
 	    	return this;
     	}
     ]);
