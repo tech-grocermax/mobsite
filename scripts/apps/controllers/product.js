@@ -205,6 +205,13 @@ define(['app'], function(app) {
                 $scope.youSaved = savedAmont;
                 $scope.totalCartQty = qty;
             };
+
+            var addShippingCharges = function() {
+                if($scope.cartDetails.grand_total < 250) {
+                    $scope.cartDetails.shipping_address.shipping_amount = 50;
+                    $scope.cartDetails.grand_total = parseFloat($scope.cartDetails.grand_total) + parseFloat($scope.cartDetails.shipping_address.shipping_amount);
+                }                
+            };
             
             $scope.isCartLoaded = false;            
             getCartItemDetails = function() {
@@ -221,6 +228,7 @@ define(['app'], function(app) {
                         } else {
                             $scope.cartDetails = data.CartDetail; 
                             $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);                          
+                            addShippingCharges();
                             getYouSaveAmout();
                         }                        
                     });
@@ -451,7 +459,7 @@ define(['app'], function(app) {
             buildProductObject = function() {
                 var products = [];
                 angular.forEach($scope.cartDetails.items, function(value, key) {
-                    if(value.price >= 0 
+                    if(value.price > 0 
                         && $scope.productIds.indexOf(value.product_id) == -1) {
                         products.push({
                             "productid": parseInt(value.product_id, 10),
