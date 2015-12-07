@@ -4,6 +4,8 @@
         <div class="row margin0 back-white">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-md-offset-3 col-sm-offset-3 col-xs-offset-3" style="margin-top: 20px;">
                 <img src="{{productDetails.product_thumbnail}}" alt="" class="img-responsive">
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <ul class="list-unstyled" style="text-align: center;">
                     <li class="prod-list-h">
                         {{productDetails.p_brand}}
@@ -14,7 +16,8 @@
                             data-ng-show="getCartProductQuantity(productDetails.product_id) > 0">
                             {{getCartProductQuantity(productDetails.product_id)}}</span>
                     </li>
-                    <li class="cat-list-name text-ellipsis">{{productDetails.product_name}}</li>
+                    <!-- text-ellipsis -->
+                    <li class="cat-list-name ">{{productDetails.product_name}}</li>
                     <li class="prod-list-qnty">{{productDetails.p_pack}}</li>
                 </ul>
             </div>
