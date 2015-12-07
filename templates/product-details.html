@@ -21,11 +21,11 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 font-3">
                     <span class="product-qnty">
-                        ₹ {{toFixedDecimal(productDetails.sale_price)}} |</span> 
+                        ₹ {{truncateComma(productDetails.sale_price)}} |</span> 
                     <span class="prod-new-price">
-                        ₹ {{toFixedDecimal(productDetails.product_price)}}</span><br>
+                        ₹ {{truncateComma(productDetails.product_price)}}</span><br>
                     <span class="product-qnty">
-                        ₹ {{toFixedDecimal(getPriceDifference(productDetails.product_price, productDetails.sale_price))}}</span>
+                        ₹ {{getPriceDifference(productDetails.product_price, productDetails.sale_price)}}</span>
                 </div>                
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -56,11 +56,11 @@
                         data-ng-click="addProductOneByOne(productDetails)">ADD</button>
                 </div>
             </div>
-            <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
                 <h1 class="ribbon" data-ng-show="productDetails.promotion_level">
                     <strong class="ribbon-content">{{productDetails.promotion_level}}</strong>
                 </h1>
-            </div> -->
+            </div>
         </div>
     </article>
     <div class="popupcontainerloader" style="position:fixed;"

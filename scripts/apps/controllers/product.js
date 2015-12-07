@@ -524,6 +524,13 @@ define(['app'], function(app) {
                 }                
             };
 
+            $scope.truncateComma = function(num) {
+                if(angular.isDefined(num)) {
+                    num = parseFloat(num.replace(",", ""));
+                    return num.toFixed(2);
+                }                
+            };
+
             $scope.navigateToShipping = function() {
                 $location.url("checkout/shipping");
             };
