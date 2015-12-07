@@ -148,7 +148,9 @@ define(['app'], function(app) {
                     setPaginationTotal(data.Totalcount);
                     toggleLoader(false);
                 }
-            };           
+            };      
+
+            $scope.isProductLoaded = false;     
 
             getAllProductListByCategoryId = function() {
                 toggleLoader(true);
@@ -156,6 +158,7 @@ define(['app'], function(app) {
                     .then(function(data){
                         console.log(data);                        
                         groupAllProductByCategory(data);
+                        $scope.isProductLoaded = true;
                     });
             };
 
