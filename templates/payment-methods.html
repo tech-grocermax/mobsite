@@ -59,7 +59,7 @@
 						<span class="float-rt">
 							Rs. {{toFixedDecimal(cartDetails.grand_total)}}</span>
 					</li>
-					<li>
+					<li data-ng-show="cartDetails.shipping_address.shipping_amount > 0">
 						<span>Shipping charges:</span>
 						<span class="float-rt">
 							Rs. {{toFixedDecimal(cartDetails.shipping_address.shipping_amount)}}</span>
