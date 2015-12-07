@@ -206,10 +206,12 @@ define(['app'], function(app) {
                 $scope.totalCartQty = qty;
             };
             
+            $scope.isCartLoaded = false;            
             getCartItemDetails = function() {
                 toggleLoader(true);
                 productService.getCartItemDetails($scope.quoteId)
                     .then(function(data){ 
+                        $scope.isCartLoaded = true;
                         toggleLoader(false);
                         if(data.flag == 0) {
                             $scope.cartDetails = [];
@@ -218,8 +220,6 @@ define(['app'], function(app) {
                             $scope.quoteId = null;
                         } else {
                             $scope.cartDetails = data.CartDetail; 
-                            console.log($scope.cartDetails);
-
                             $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);                          
                             getYouSaveAmout();
                         }                        
@@ -401,11 +401,10 @@ define(['app'], function(app) {
             };
 
             $scope.increaseCartProductQuantity = function(item, keyName) {
-                console.log(keyName, item.product_id);
                 $scope.isCartUpdated = true;
                 var productId = item.product_id;
                 angular.forEach($scope.cartDetails.items, function(value, key) {
-                    if(value[keyName] == productId) {
+                    if(value[keyName] == productId && value.price > 0) {
                         value["qty"] = parseInt(value["qty"], 10) + 1;
                     }                    
                 });
@@ -451,9 +450,8 @@ define(['app'], function(app) {
 
             buildProductObject = function() {
                 var products = [];
-
                 angular.forEach($scope.cartDetails.items, function(value, key) {
-                    if(value.apply_rule == 0 
+                    if(value.price >= 0 
                         && $scope.productIds.indexOf(value.product_id) == -1) {
                         products.push({
                             "productid": parseInt(value.product_id, 10),
