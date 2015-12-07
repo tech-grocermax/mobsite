@@ -150,7 +150,6 @@ define(['app'], function(app) {
                 userService.getStateList()
                     .then(function(data){
                         $scope.stateList = data.state;      
-                        console.log($scope.stateList);                                    
                     });
             };            
 
@@ -183,7 +182,7 @@ define(['app'], function(app) {
                     if($scope.isReferrer == "checkout") {
                         $location.url("checkout/shipping"); 
                     } else {
-                        $location.url("user/profile");
+                        $location.url("/");
                     }
                 } else {
                     $scope.showUserResponse = true;

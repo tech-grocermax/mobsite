@@ -48,13 +48,18 @@
 							data-ng-show="!(isReferrer == 'checkout' && addressType == 'billing')">
 							<img class="dropdown-img" alt="" src="images/header-icon/drop-img.png">
 	  						<select id="e1" style="width:100%;" class="reg-list-select" 
-	  							name="addressline2"
+	  							name="addressline2" required
 	  							data-ng-model="address.addressline2">
 	  							<option value="" style="display:none;">Select</option>
 						        <option value="{{location.area_name}}" 
 						        	data-ng-repeat="location in locationList">{{location.area_name}}
 						        </option>
-						    </select>						    
+						    </select>	
+						    <div ng-messages="frmRegistration.addressline2.$error" 
+                        		data-ng-show="frmRegistration.addressline2.$dirty || (errorRegistration && address.addressline2 == null)">
+                            	<div ng-show="frmRegistration.addressline2.$error.required" 
+                            		class="error-message">Please enter street address/locality</div>
+                        	</div>					    
 						</div>
 						<div class="myselect"
 							data-ng-show="isReferrer == 'checkout' && addressType == 'billing' ">
@@ -65,37 +70,45 @@
 	  							class="place-color reg-list-input">	
 	  						<div ng-messages="frmRegistration.addressline2.$error" 
                         		data-ng-show="frmRegistration.addressline2.$dirty || (errorRegistration && address.addressline2 == null)">
-                            <div ng-show="frmRegistration.addressline2.$error.required" 
-                            	class="error-message">Please enter street address/locality</div>
-                        </div>				        
+                            	<div ng-show="frmRegistration.addressline2.$error.required" 
+                            		class="error-message">Please enter street address/locality</div>
+                        	</div>				        
 						</div>
 					</li>
 					<li class="reg-list">
 						<span class="reg-list-text">Closest Landmark</span><br>
-						<input type="text" placeholder="required"
+						<input type="text" name="addressline3" 
+							required placeholder="required"
 							data-ng-model="address.addressline3"
 							value="{{address.addressline3}}" 
 							class="place-color reg-list-input">
+						<div ng-messages="frmRegistration.addressline3.$error" 
+                        	data-ng-show="frmRegistration.addressline3.$dirty || (errorRegistration && address.addressline3 == null)">
+                            <div ng-show="frmRegistration.addressline3.$error.required" 
+                            	class="error-message">Please enter closest landmark</div>
+                        </div>						
 					</li>
 					<li class="reg-list">
 						<span class="reg-list-text">City</span><br>
-						<input type="text" name="city" 
-							data-ng-model="address.city"
-							placeholder="required" 
+						<input type="text" name="cityname" 
+							required placeholder="required"
+							data-ng-model="address.city"							 
 							data-ng-show="isReferrer == 'checkout' && addressType == 'shipping'"
-							required my-max-length="20" only-alphabets-with-space
+							my-max-length="20" only-alphabets-with-space
 							value="" readonly 	 						
 							class="place-color reg-list-input">
-						<input type="text" name="city" placeholder="required" 
-							required my-max-length="20" only-alphabets-with-space
-							data-ng-model="address.city"
-							value="{{address.city}}"
+						<input type="text" name="cityname" 
+							required placeholder="required"
+							data-ng-model="address.city"							
 							data-ng-show="!(isReferrer == 'checkout' && addressType == 'shipping')"
+							my-max-length="20" only-alphabets-with-space
+							value="{{address.city}}"
 							class="place-color reg-list-input">
-						<div ng-messages="frmRegistration.city.$error" 
-                        	data-ng-show="frmRegistration.city.$dirty || (errorRegistration && address.city == null)">
-                            <div ng-show="frmRegistration.city.$error.required" 
-                            	class="error-message">Please enter city</div>
+						<div ng-messages="frmRegistration.cityname.$error" 
+                        	data-ng-show="frmRegistration.cityname.$dirty || errorRegistration">
+                            <div ng-show="frmRegistration.cityname.$error.required" 
+                            	class="error-message">Please enter city name</div>
+                        </div>
 					</li>
 					<li class="reg-list" style="padding-bottom: 0px;">
 						<span class="reg-list-text">State</span><br>
@@ -106,24 +119,17 @@
 	  							<option value="" style="display:none; ">Select</option>
 	  							<option value="{{regionId}}">{{stateName}}</option>
 						    </select>
-						    <!-- <input type="text" name="state" data-ng-model="address.state" 
-	  							data-ng-show="isReferrer == 'checkout' && addressType == 'shipping'"
-	  							class="place-color reg-list-input"
-	  							value="{{address.state}}" required /> -->
-	  						<img class="dropdown-img" alt="" 
+						    <img class="dropdown-img" alt="" 
 								src="images/header-icon/drop-img.png"
 								data-ng-show="!(isReferrer == 'checkout' && addressType == 'shipping')">
 						    <select name="state" data-ng-model="address.state" 
 						    	class="reg-list-select"
 						    	data-ng-show="!(isReferrer == 'checkout' && addressType == 'shipping')" required>
 	  							<option value="" style="display:none; ">Select</option>
-						        <!-- <option value="HR">Haryana</option>
-						        <option value="UP">Uttar Pradesh</option>
-						        <option value="DL">New Delhi</option> -->
 						        <option value="{{state.region_id}}" data-ng-repeat="state in stateList">{{state.default_name}}</option>
 						    </select>
 						    <div ng-messages="frmRegistration.state.$error" 
-	                        	data-ng-show="frmRegistration.state.$dirty || (errorRegistration && address.state == null)">
+	                        	data-ng-show="frmRegistration.state.$dirty || errorRegistration">
 	                            <div ng-show="frmRegistration.state.$error.required" 
 	                            	class="error-message">Please enter your state</div>
 	                        </div>
