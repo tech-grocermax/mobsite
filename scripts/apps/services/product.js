@@ -22,7 +22,7 @@ define(['app'], function (app) {
 		    }; 
 
 		    this.getProductDetails = function(productId) {
-		    	var url = getAPIUrl() + "productlist?pro_id=" + productId;
+		    	var url = getAPIUrl() + "productdetail?pro_id=" + productId;
 		    	return serverUtility.getWebService(url)
 		    		.then(function(data){return data}, function(error){return error});
 		    };  
