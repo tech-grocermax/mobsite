@@ -505,7 +505,8 @@ define(['app'], function(app) {
                                     resetProductBasketCounter(value.product_id, value.qty);
                                 });
                                 $scope.productIds = [];                           
-                                checkoutSuccessCallback(flag);                            
+                                checkoutSuccessCallback(flag);    
+                                $scope.cartDetails = data.CartDetail;                       
                             }                            
                         });
                 }                

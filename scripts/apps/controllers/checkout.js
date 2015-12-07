@@ -67,7 +67,7 @@ define(['app'], function(app) {
                 $scope.columnSize = 10;
             }
 
-            var filterShippingAddressByRegion = function() {
+            var refineShippingAddress = function() {
                 var shippingAddress = [],
                     regionId = utility.getJStorageKey("regionId");
                 
@@ -80,6 +80,18 @@ define(['app'], function(app) {
                 $scope.addressList = shippingAddress;
             };
 
+            var refineBillingAddress = function() {
+                var billingAddress = [];
+                
+                angular.forEach($scope.addressList, function(value, key){
+                    if(value.is_default_shipping) {
+                        billingAddress.push(value);
+                    }
+                });
+                $scope.addressList = [];
+                $scope.addressList = billingAddress;
+            };
+
             getAddressList = function() {
                 toggleLoader(true);
                 userService.getAddressList(utility.getJStorageKey("userId"))
@@ -90,7 +102,9 @@ define(['app'], function(app) {
                         } else {
                             $scope.addressList = data.Address;
                             if($scope.sectionName == "shipping") {
-                                filterShippingAddressByRegion();
+                                refineShippingAddress();
+                            } else if($scope.sectionName == "billing"){
+                                refineBillingAddress();
                             }
                         }                        
                     });
@@ -233,7 +247,13 @@ define(['app'], function(app) {
                 address[keyName] = true;
             };
 
+            $scope.isShippingAddressSelected = true;
             $scope.selectShippingAddress = function() {
+                if($scope.isSelectButtonDisabled('is_default_shipping')) {
+                    $scope.isShippingAddressSelected = false;
+                    return false;
+                }
+                $scope.isShippingAddressSelected = true;
                 var shippingAddress = null,
                     billingAddress = null;
 
@@ -264,7 +284,14 @@ define(['app'], function(app) {
                 }
             };
 
+            $scope.isBillingAddressSelected = true;
             $scope.selectBillingAddress = function() {
+                if($scope.isSelectButtonDisabled('is_default_billing')) {
+                    $scope.isBillingAddressSelected = false;
+                    return false;
+                }
+                $scope.isBillingAddressSelected = true;
+                
                 var billingAddress = null;
                 if($scope.addressList.length) {
                     angular.forEach($scope.addressList, function(value, key) {
@@ -272,11 +299,10 @@ define(['app'], function(app) {
                             billingAddress = value;
                         }
                     });
-                }
+                }                
                 
-                console.log(billingAddress);
-                var quoteId = utility.getJStorageKey("quoteId");
-                var checkoutDetails = utility.getJStorageKey("checkoutDetails");
+                var quoteId = utility.getJStorageKey("quoteId"),
+                    checkoutDetails = utility.getJStorageKey("checkoutDetails");
 
                 checkoutDetails[quoteId].billingAddress = billingAddress;                
                 utility.setJStorageKey("checkoutDetails", checkoutDetails, 1);
@@ -292,10 +318,6 @@ define(['app'], function(app) {
             $scope.parentIndex = null;
 
             $scope.isDeliveryProceedEnabled = function() {
-                console.log($scope.selectedDeliveryDate);
-                console.log($scope.selectedDeliveryTime);
-                console.log($scope.parentIndex);
-
                 return $scope.selectedDeliveryDate && $scope.selectedDeliveryTime
                     && $scope.parentIndex;
             };
