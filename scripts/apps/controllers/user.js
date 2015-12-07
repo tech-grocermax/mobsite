@@ -677,9 +677,22 @@ define(['app'], function(app) {
                     getCityList();
 
                     $timeout(function() {
-                        $("#e1").select2();
+                        $("#e1").select2();                        
                     }, 2000);
-                }                  
+                } 
+
+                $timeout(function() {
+                    $('form[autocomplete="off"] input, input[autocomplete="off"]').each(function(){
+                        var input = this,
+                            name = $(input).attr('name'),
+                            id = $(input).attr('id');
+
+                        $(input).removeAttr('name').removeAttr('id');
+                        setTimeout(function(){ 
+                            $(input).attr('name', name).attr('id', id);
+                        }, 100);
+                    });
+                }, 100);
             });          
 
         }
