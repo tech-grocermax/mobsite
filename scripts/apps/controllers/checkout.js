@@ -47,6 +47,7 @@ define(['app'], function(app) {
             }; 
             $scope.cityList = null;
             $scope.cityLocation = {};
+            $scope.shouldProceed = true;
 
             toggleLoader = function(flag) {
                 $scope.displayLoader = flag;
@@ -246,14 +247,13 @@ define(['app'], function(app) {
                 });
                 address[keyName] = true;
             };
-
-            $scope.isShippingAddressSelected = true;
+            
             $scope.selectShippingAddress = function() {
                 if($scope.isSelectButtonDisabled('is_default_shipping')) {
-                    $scope.isShippingAddressSelected = false;
+                    $scope.shouldProceed = false;
                     return false;
                 }
-                $scope.isShippingAddressSelected = true;
+                $scope.shouldProceed = true;
                 var shippingAddress = null,
                     billingAddress = null;
 
@@ -283,15 +283,14 @@ define(['app'], function(app) {
                     $location.url("checkout/billing");
                 }
             };
-
-            $scope.isBillingAddressSelected = true;
+            
             $scope.selectBillingAddress = function() {
                 if($scope.isSelectButtonDisabled('is_default_billing')) {
-                    $scope.isBillingAddressSelected = false;
+                    $scope.shouldProceed = false;
                     return false;
                 }
-                $scope.isBillingAddressSelected = true;
-                
+                $scope.shouldProceed = true;
+
                 var billingAddress = null;
                 if($scope.addressList.length) {
                     angular.forEach($scope.addressList, function(value, key) {
@@ -323,8 +322,14 @@ define(['app'], function(app) {
             };
 
             $scope.navigateToPayment = function() {
-                var quoteId = utility.getJStorageKey("quoteId");
-                var checkoutDetails = utility.getJStorageKey("checkoutDetails");
+                if(!$scope.isDeliveryProceedEnabled()) {
+                    $scope.shouldProceed = false;
+                    return false;
+                }
+                $scope.shouldProceed = true;
+
+                var quoteId = utility.getJStorageKey("quoteId"),
+                    checkoutDetails = utility.getJStorageKey("checkoutDetails");
 
                 checkoutDetails[quoteId]["deliveryDate"] = $scope.selectedDeliveryDate;
                 checkoutDetails[quoteId]["deliveryTime"] = $scope.selectedDeliveryTime;

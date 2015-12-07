@@ -46,7 +46,7 @@
 	</div>
 	<div class="row margin0">
 		<div style="text-align:center; padding:10px 0px;" class="error-message" 
-			data-ng-show="!isBillingAddressSelected">
+			data-ng-show="!shouldProceed">
 			Please select billing address
 		</div>
 	</div>	
@@ -61,6 +61,12 @@
 						class="img-responsive float-rt bill-plus-img">
 				</li>
 			</ul>
+		</div>
+	</div>
+	<div class="row margin0">
+		<div style="text-align:center; padding:10px 0px;" class="error-message" 
+			data-ng-show="!shouldProceed">
+			Please select billing address
 		</div>
 	</div>
 	<div class="row margin0" style="margin-top:10%;">

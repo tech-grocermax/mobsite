@@ -64,11 +64,17 @@
 			</div>					
 		</div>
 	</div>
+	<div class="row margin0">
+		<div style="text-align:center; padding:10px 0px;" class="error-message" 
+			data-ng-show="!shouldProceed || !isDeliveryProceedEnabled()">
+			Please select delivery details
+		</div>
+	</div>
 	<div class="row margin0" style="margin-top:25%;">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0  margin-top15" 
 			data-ng-click="navigateToPayment()">
-			<button type="button" class="reg-bot-btn bot-foot"
-				data-ng-disabled="!isDeliveryProceedEnabled()">PROCEED</button>
+			<!-- data-ng-disabled="!isDeliveryProceedEnabled()" -->
+			<button type="button" class="reg-bot-btn bot-foot">PROCEED</button>
 		</div>
 	</div>	
 </section>
