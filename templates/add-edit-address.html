@@ -93,14 +93,14 @@
 						<input type="text" name="cityname" 
 							required placeholder="required"
 							data-ng-model="address.city"							 
-							data-ng-show="isReferrer == 'checkout' && addressType == 'shipping'"
+							data-ng-show="(isReferrer == 'checkout' && addressType == 'shipping') || !addressType"
 							my-max-length="20" only-alphabets-with-space
 							value="" readonly 	 						
 							class="place-color reg-list-input">
 						<input type="text" name="cityname" 
 							required placeholder="required"
 							data-ng-model="address.city"							
-							data-ng-show="!(isReferrer == 'checkout' && addressType == 'shipping')"
+							data-ng-show="!(isReferrer == 'checkout' && addressType == 'shipping') && addressType"
 							my-max-length="20" only-alphabets-with-space
 							value="{{address.city}}"
 							class="place-color reg-list-input">
@@ -114,7 +114,7 @@
 						<span class="reg-list-text">State</span><br>
 						<div class="myselect">
 							<select name="state" data-ng-model="address.state" 
-	  							data-ng-show="isReferrer == 'checkout' && addressType == 'shipping'"
+	  							data-ng-show="(isReferrer == 'checkout' && addressType == 'shipping') || !addressType"
 	  							class="reg-list-select" required>
 	  							<option value="" style="display:none; ">Select</option>
 	  							<option value="{{regionId}}">{{stateName}}</option>
@@ -124,7 +124,7 @@
 								data-ng-show="!(isReferrer == 'checkout' && addressType == 'shipping')">
 						    <select name="state" data-ng-model="address.state" 
 						    	class="reg-list-select"
-						    	data-ng-show="!(isReferrer == 'checkout' && addressType == 'shipping')" required>
+						    	data-ng-show="!(isReferrer == 'checkout' && addressType == 'shipping') && addressType" required>
 	  							<option value="" style="display:none; ">Select</option>
 						        <option value="{{state.region_id}}" data-ng-repeat="state in stateList">{{state.default_name}}</option>
 						    </select>

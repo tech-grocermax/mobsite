@@ -73,7 +73,7 @@ define(['app'], function(app) {
                 addressline1: null,
                 addressline2: null,
                 addressline3: null,
-                city: ($scope.isReferrer == 'checkout' && $scope.addressType == 'shipping') ? utility.getJStorageKey("selectedCity") : "",
+                city: ($scope.isReferrer == 'checkout' && $scope.addressType == 'shipping') || !$scope.addressType ? utility.getJStorageKey("selectedCity") : "",
                 state: "",                
                 pin: null,
                 countrycode: "IN",                
@@ -83,7 +83,7 @@ define(['app'], function(app) {
                 cityid: 1
             };
 
-            if($scope.isReferrer == 'checkout' && $scope.addressType == 'shipping') {
+            if(($scope.isReferrer == 'checkout' && $scope.addressType == 'shipping') || !$scope.addressType) {
                 $scope.stateName = utility.getJStorageKey("stateName");
                 $scope.regionId = utility.getJStorageKey("regionId");
             } else {
