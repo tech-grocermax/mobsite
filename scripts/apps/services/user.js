@@ -254,6 +254,15 @@ define(['app'], function (app) {
 		    		);
 		    };
 
+		    this.deleteAddress = function(addressId) {
+		    	var url = getAPIUrl() + "deleteaddress?addressid=" + addressId;
+		    	return serverUtility.getWebService(url)
+		    		.then(
+		    			function(data){return data; },
+		    			function(error){return error; }
+		    		);
+		    };
+
 	    	return this;
     	}
     ]);

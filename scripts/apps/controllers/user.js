@@ -382,12 +382,19 @@ define(['app'], function(app) {
                 };
             };
 
+            iterateAddressList = function() {
+                angular.forEach($scope.addressList, function(value, key) {
+                    value["isDisplay"] = true;
+                });
+            };
+
             getAddressList = function() {
                 toggleLoader(true);
                 userService.getAddressList(utility.getJStorageKey("userId"))
                     .then(function(data){
                         toggleLoader(false);
                         $scope.addressList = data.Address;
+                        iterateAddressList();
                         if($scope.addressId) {
                             var address = userService.extractAddressById(data.Address, 
                                 $scope.addressId);
@@ -409,6 +416,16 @@ define(['app'], function(app) {
 
             $scope.editAddress = function(addressId) {
                 $location.url("user/editaddress?addressId=" + addressId);
+            };
+            
+            $scope.deleteAddress = function(address) {
+                var addressId = address.customer_address_id;
+                toggleLoader(true);
+                userService.deleteAddress(addressId)
+                    .then(function(data){
+                        toggleLoader(false);
+                        address.isDisplay = false;                      
+                    });
             };
 
             $scope.saveAddress = function(form) {
@@ -668,6 +685,24 @@ define(['app'], function(app) {
 
             $scope.convertToInteger = function(qty) {
                 return parseInt(qty, 10);
+            };
+
+            $scope.renderItemName1 = function(item) {
+                if(item.name.indexOf('[') >= 0) {
+                    var arrSplit = item.name.split('[');
+                    return arrSplit[0];
+                } else {
+                    return item.name;
+                }
+            };
+
+            $scope.renderItemName2 = function(item) {
+                if(item.name.indexOf('[') >= 0) {
+                    var arrSplit = item.name.split('[');
+                    return "[" + arrSplit[1];
+                } else {
+                    return "";
+                }
             };
 
             angular.element(document).ready(function () {

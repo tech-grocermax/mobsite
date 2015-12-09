@@ -230,6 +230,11 @@ define(['app'], function(app) {
                             $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);                          
                             addShippingCharges();
                             getYouSaveAmout();
+                            console.log(data.TotalItem);
+                            if(data.TotalItem == 0) {
+                                utility.setJStorageKey("cartCounter" + $scope.quoteId, 0, 1);
+                                $location.url("/");
+                            }
                         }                        
                     });
             };  
@@ -428,10 +433,20 @@ define(['app'], function(app) {
                 });
             };
 
+            var isCartContainsSingleItem = function() {
+                var itemCount = 0;
+                angular.forEach($scope.cartDetails.items, function(value, key) {
+                    if(value.price > 0) {
+                        itemCount++;
+                    }                    
+                });
+                return (itemCount == 1)  ? true : false;
+            };
+
             $scope.removeCartItem = function(product) {
                 $scope.isCartUpdated = true;
                 $scope.productIds.push(product.product_id);
-                if($scope.cartDetails.items.length == 1) {
+                if(isCartContainsSingleItem()) {
                     $scope.checkout('update');
                 }
             };
@@ -498,15 +513,20 @@ define(['app'], function(app) {
                         .then(function(data){
                             toggleLoader(false);
                             if(data.flag == 1 || data.flag == "1"){
-                                var totalQty = productService.getCartItemCount(data.CartDetail.items);
-                                updateCartItemCounter(totalQty, true);
-                                utility.deleteJStorageKey("productBasketCount_" + quoteId);
-                                angular.forEach(data.CartDetail.items, function(value, key) {
-                                    resetProductBasketCounter(value.product_id, value.qty);
-                                });
-                                $scope.productIds = [];                           
-                                checkoutSuccessCallback(flag);    
-                                $scope.cartDetails = data.CartDetail;                       
+                                if(angular.isUndefined(data.items) || !data.items.length) {
+                                    utility.setJStorageKey("cartCounter" + $scope.quoteId, 0, 1);
+                                    $location.url("/");
+                                } else {
+                                    var totalQty = productService.getCartItemCount(data.CartDetail.items);
+                                    updateCartItemCounter(totalQty, true);
+                                    utility.deleteJStorageKey("productBasketCount_" + quoteId);
+                                    angular.forEach(data.CartDetail.items, function(value, key) {
+                                        resetProductBasketCounter(value.product_id, value.qty);
+                                    });
+                                    $scope.productIds = [];                           
+                                    checkoutSuccessCallback(flag);    
+                                    $scope.cartDetails = data.CartDetail;
+                                }                   
                             }                            
                         });
                 }                

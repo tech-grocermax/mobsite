@@ -188,32 +188,29 @@ define(['app'], function(app) {
 
             getDealItemList = function(data) {
                 $scope.dealCategoryList = [];
-                $scope.dealCategoryList.push({id: "all", label: "All"});
-                
-                //$scope.dealCategoryItemList["all"] = data["all"];
-                //$scope.dealItems = data["all"];
-                
-                $scope.dealCategoryItemList["all"] = [];
-                //angular.forEach(data.all, function(outerValue, outerKey) {
+
+                if(data.all.length) {
+                    $scope.dealCategoryList.push({id: "all", label: "All"});
+                    $scope.dealCategoryItemList["all"] = [];
                     angular.forEach(data.all, function(value, key) {
                         $scope.dealCategoryItemList["all"].push(value);
                     });
-                //});
-
-                $scope.dealItems = $scope.dealCategoryItemList["all"];
-                //angular.forEach(data.category, function(outerValue, outerKey) {
-                    angular.forEach(data.category, function(value, key) {
-                        //console.log(value);
-                        if(value.is_active == "1") {
-                            $scope.dealCategoryList.push({
-                                id: value.category_id, 
-                                label: value.name
-                            });
-                            $scope.dealCategoryItemList[value.category_id] = value.deals;
-                        }                                        
-                    });
-                //});
-            }
+                    $scope.dealItems = $scope.dealCategoryItemList["all"];   
+                }
+                
+                angular.forEach(data.category, function(value, key) {
+                    if(value.is_active == "1") {
+                        $scope.dealCategoryList.push({
+                            id: value.category_id, 
+                            label: value.name
+                        });
+                        $scope.dealCategoryItemList[value.category_id] = value.deals;
+                        if(key == 0) {
+                            $scope.dealItems = $scope.dealCategoryItemList[value.category_id];
+                        }
+                    }                                        
+                });
+            };
 
             getDealItemListByOffer = function(data) {
                 $scope.dealCategoryList = [];

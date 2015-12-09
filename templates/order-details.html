@@ -1,4 +1,4 @@
-<header>
+<!-- <header>
 	<div class="row margin0">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-middle-des" style="box-shadow: none;">
 			<div class="row margin0 pad-lt16 pad-rt16 padd0-m">
@@ -13,7 +13,7 @@
 			</div>
 		</div>			
 	</div>
-</header>
+</header> -->
 <article>
 	<section>
 		<div class="row margin0">
@@ -24,6 +24,11 @@
 		<div class="row margin0 back-white">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 pad-lt32">
 				<ul class="list-unstyled margin0">
+					<li class="od-list">
+						<div class="od-list-h1">Order ID</div>
+						<div class="od-list-h2">
+							{{orderDetails.increment_id}}</div>
+					</li>
 					<li class="od-list">
 						<div class="od-list-h1">Order date:</div>
 						<div class="od-list-h2">
@@ -68,13 +73,14 @@
 						data-ng-show="item.applied_rule_ids"
 						data-ng-repeat="item in orderDetails.items">
 						<div class="od-list-h3">
-							{{item.name}}
+							<!-- {{item.name}} -->
+							{{renderItemName1(item)}}<br/> {{renderItemName2(item)}}
 							<span class="pad-rt32 float-rt">
 								Rs. {{toFixedDecimal(item.base_original_price)}}</span>
 						</div>
 						<!-- <div class="od-list-h4">1 litre</div> -->
 						<div class="od-list-h2">
-							Quantity: <span>
+							<br/>Quantity: <span>
 								{{convertToInteger(item.qty_ordered)}} * Rs. {{toFixedDecimal(item.base_original_price)}}</span>
 						</div>
 					</li>
