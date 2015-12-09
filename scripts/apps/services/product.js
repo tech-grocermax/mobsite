@@ -1,6 +1,6 @@
 define(['app'], function (app) {
-    app.service('productService', ['$http', '$rootScope', 'serverUtility',
-    	function ($http, $rootScope, serverUtility) {
+    app.service('productService', ['$http', '$rootScope', 'serverUtility', 'utility',
+    	function ($http, $rootScope, serverUtility, utility) {
 		    'use strict';
 		    
 		    this.getProductListByCategoryId = function(categoryId, page) {
@@ -52,6 +52,9 @@ define(['app'], function (app) {
 
 		    this.getCartItemDetails = function(quoteId) {
 		    	var url = getAPIUrl() + "cartdetail?quote_id=" + quoteId;
+		    	if(angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId")) {
+		    		url = url + "&user_id=" + utility.getJStorageKey("userId");
+		    	}
 		    	return serverUtility.getWebService(url)
 		    		.then(function(data){return data}, function(error){return error});
 		    };
