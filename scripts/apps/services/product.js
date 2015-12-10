@@ -53,7 +53,7 @@ define(['app'], function (app) {
 		    this.getCartItemDetails = function(quoteId) {
 		    	var url = getAPIUrl() + "cartdetail?quote_id=" + quoteId;
 		    	if(angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId")) {
-		    		url = url + "&user_id=" + utility.getJStorageKey("userId");
+		    		url = url + "&userid=" + utility.getJStorageKey("userId");
 		    	}
 		    	return serverUtility.getWebService(url)
 		    		.then(function(data){return data}, function(error){return error});

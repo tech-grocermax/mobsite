@@ -321,7 +321,9 @@ define(['app'], function(app) {
                     && $scope.parentIndex;
             };
 
+            $scope.isClicked = false;
             $scope.navigateToPayment = function() {
+                $scope.isClicked = true;
                 if(!$scope.isDeliveryProceedEnabled()) {
                     $scope.shouldProceed = false;
                     return false;
@@ -436,15 +438,17 @@ define(['app'], function(app) {
             };
 
             $scope.isOrderPlaced = false;
-            $scope.placeOrder = function() {
+            $scope.placeOrder = function() {                
                 $scope.isOrderPlaced = true;
                 if($scope.paymentMethod == "paytm_cc" 
                     || $scope.paymentMethod == "cashondelivery") {
+                    toggleLoader(true);
                     var userId = utility.getJStorageKey("userId"),
                         checkoutDetails = utility.getJStorageKey("checkoutDetails");
                     
                     userService.checkout(userId, $scope.quoteId, checkoutDetails, $scope.paymentMethod)
-                        .then(function(data){              
+                        .then(function(data){
+                            toggleLoader(false);                 
                             if(data.flag == 1){
                                 if($scope.paymentMethod == "paytm_cc") {
                                     getPaytmProcessingDetails(data.OrderID);

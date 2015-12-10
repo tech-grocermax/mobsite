@@ -78,8 +78,8 @@ define(['app'], function(app) {
                 pin: null,
                 countrycode: "IN",                
                 phone: null,                
-                default_billing: false,
-                default_shipping: false,
+                default_billing: true,
+                default_shipping: true,
                 cityid: 1
             };
 

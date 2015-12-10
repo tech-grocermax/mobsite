@@ -226,11 +226,11 @@ define(['app'], function(app) {
                             utility.deleteJStorageKey("quoteId");
                             $scope.quoteId = null;
                         } else {
+                            $('body').css('overflow', 'auto');
                             $scope.cartDetails = data.CartDetail; 
                             $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);                          
                             addShippingCharges();
                             getYouSaveAmout();
-                            console.log(data.TotalItem);
                             if(data.TotalItem == 0) {
                                 utility.setJStorageKey("cartCounter" + $scope.quoteId, 0, 1);
                                 $location.url("/");
@@ -513,7 +513,7 @@ define(['app'], function(app) {
                         .then(function(data){
                             toggleLoader(false);
                             if(data.flag == 1 || data.flag == "1"){
-                                if(angular.isUndefined(data.items) || !data.items.length) {
+                                if(angular.isUndefined(data.CartDetail.items) || !data.CartDetail.items.length) {
                                     utility.setJStorageKey("cartCounter" + $scope.quoteId, 0, 1);
                                     $location.url("/");
                                 } else {
