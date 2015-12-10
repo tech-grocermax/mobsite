@@ -619,6 +619,8 @@ define(['app'], function(app) {
 
             // Page bottom touch event handler
             $scope.$on('endlessScroll:next', function() {
+                console.log("next");
+                
                 if($scope.pagination.current_page < $scope.pagination.total_pages) {                    
                     $scope.pagination.current_page = $scope.pagination.current_page + 1;
                     if($scope.categoryId){
