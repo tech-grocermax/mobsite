@@ -256,9 +256,9 @@ define(['app'], function(app) {
                 toggleLoader(true);
                 categoryService.getDealsByDealCategoryId($routeParams.dealCategoryId)
                     .then(function(data){      
-                        if(data.flag == 1) {
+                        //if(data.flag == 1) {
                             getDealItemListByOffer(data.dealcategorylisting);
-                        }
+                        //}
                         toggleLoader(false);                                  
                     });
             } else if($location.url() == "/hot-offers") {
@@ -561,6 +561,15 @@ define(['app'], function(app) {
                 } else {
                     $scope.showShopByDeals = true;
                     $scope.showShopByCategory = false;
+                }
+            };
+
+            $scope.getOfferImage = function(item) {
+                //item.image}}deal_{{item.id}}.png
+                if(item.image.indexOf('Deal_') >= 0) {
+                    return item.image.replace("Deal_", "deal_");
+                } else {
+                    return item.image + "deal_" + item.id + ".png";
                 }
             };
 

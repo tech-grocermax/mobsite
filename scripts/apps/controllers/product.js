@@ -110,16 +110,24 @@ define(['app'], function(app) {
                 });
                 data["isSelected"] = true;
                 $scope.products = [];
-                $scope.products = products;                
+                $scope.products = products; 
+                                                
             };
 
             $scope.setAllCategoryProducts = function(data, products) {
+                //console.log("Total Count = " + data.Totalcount);
+                //console.log("category_id = " + data.category_id);
+                //console.log(products.length);
+
                 angular.forEach($scope.allProductCategoryList, function(value, key) {
                     value["isSelected"] = false;
                 });
                 data["isSelected"] = true;
                 $scope.products = [];
-                $scope.products = products;      
+                $scope.products = products;
+                //$scope.products = $scope.products || [];
+                //$scope.products.push.apply($scope.products, products);
+                console.log($scope.products);
             };
 
             groupAllProductByCategory = function(data) {                
@@ -619,13 +627,12 @@ define(['app'], function(app) {
 
             // Page bottom touch event handler
             $scope.$on('endlessScroll:next', function() {
-                console.log("next");
-                
+                console.log("next");                
                 if($scope.pagination.current_page < $scope.pagination.total_pages) {                    
                     $scope.pagination.current_page = $scope.pagination.current_page + 1;
                     if($scope.categoryId){
                        //getProductListByCategoryId();
-                       getAllProductListByCategoryId();
+                       //getAllProductListByCategoryId();
                     }
                 }                
             });
