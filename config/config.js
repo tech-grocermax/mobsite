@@ -1,4 +1,4 @@
-var env = "local",
+var env = "prod",
 	appName = 'grocermax',
 	appVersion = '1.0',
 	config = {
@@ -19,7 +19,7 @@ var env = "local",
 			"protocol": "http",
 			"domainName": "localhost/grocermax/",
 			"port": "",			
-			"apiUrl": "http://staging.grocermax.com/api/"
+			"apiUrl": "http://grocermax.com/api/"
 		}
 	};
 

@@ -20,11 +20,7 @@
 					data-ng-repeat="item in dealItems">
 					<div class="pad4 img-box imgbox-margin imgbox-margin-m"
 						data-ng-click="navigateToProduct('product', item.promo_id)">
-						<img src="{{item.deal_image}}deal_{{item.promo_id}}.png" alt="" class="img-responsive">
-						<div class="img-block">
-							<span class="img-text-h">{{item.title}}</span>
-							<!-- <br><span class="img-text">Cooking Oil & Ghee</span> -->
-						</div>
+						<img src="{{item.deal_image}}" title="{{item.title}}" class="img-responsive">						
 					</div>					
 				</div>				
 			</div>						

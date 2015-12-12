@@ -200,7 +200,7 @@ input , button, select{outline:none;}
 .font-3{/*font-size:3.4vw;*/font-size: 22px;}
 .old-price{color: #7a7a7a; text-decoration: line-through;}
 .new-price{color: #e5390e; padding-left: 5px;}
-.product-qnty{/*font-size: 3.4vw;*/font-size:22px; color:#4d4d4d;}
+.product-qnty{/*font-size: 3.4vw;*/font-size:22px; color:#e5390e;}
 /*.cat-list-box{position: absolute; right: 0px; bottom: 0px;}*/
 .cat-list{display: inline-flex; border: 1px solid #e4e4e4; border-radius: 4px;}
 .cat-minus{width: 30%; border-right: 1px solid rgb(228, 228, 228); background: #f4f4f4;/*text-align: center; padding-top: 18px;color: rgb(125, 125, 125); font-size: 32px; text-transform: full-width; font-weight: lighter;padding-top: 2px;*/}
@@ -212,9 +212,9 @@ input , button, select{outline:none;}
 .back-icon-mrg{margin-top: 1.4%;}
 
 /*========== PRODUCT LISTING ==========*/
-.prod-list-h{/*font-size:3.4vw;*/font-size:22px; color:#df4a32;}
+.prod-list-h{/*font-size:3.4vw;*/font-size:22px; color:#df4a32; text-transform: uppercase;}
 .prod-list-qnty{/*font-size: 3.4vw;*/font-size:22px; color:#7d7d76;}
-.prod-new-price{color:#e5390e; padding-left:5px; text-decoration:line-through;}
+.prod-new-price{color:#4d4d4d; padding-left:5px; text-decoration:line-through;}
 .header-middle-prod{background: #ee2d09 none repeat scroll 0 0;padding: 30px 16px 0;}
 .nav-red{overflow:auto; background: #ee2d09 none repeat scroll 0 0;box-shadow: 0 7px 5px rgba(0, 0, 0, 0.2);}
 .prod-nav-li{color: #fff; padding: 30px;/*text-transform: uppercase;*/white-space: nowrap;}
@@ -661,4 +661,99 @@ input , button, select{outline:none;}
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+}
+.sold-out{float: right; right: 12px; padding-bottom: 10px; text-align: right; /*text-decoration: overline !important; text-decoration: underline !important;*/}
+.featured{
+    margin: 40px auto 30px auto;
+    width: 200px;
+    height: 180px;
+    background: white;
+    box-shadow: -1px -1px 10px #DDD;
+}
+
+/* This bit does the rhombus that sits in the top left hand corner */
+.featured:before{
+    content: "";
+    display: block;
+    position: relative;
+    width:0px;
+    height: 0px;
+    top: 5px;
+    left: -40px;
+    
+    width: 80px;
+    height: 20px;
+    box-shadow: 0 2px 0 #DDD;
+    
+    text-align: center;
+    -webkit-transform: rotateZ(-45deg);
+    -moz-transform: rotateZ(-45deg);
+    
+    /* Rhombus */
+    border-width: 0 30px 30px 30px;
+    border-style: solid;
+    border-color: transparent transparent #3AE transparent;
+    
+    
+}
+
+/* This does the text "featured" and the gradient that makes it look curved */
+.featured:after{
+    display: block;
+    position: relative;
+    content: "featured";
+    
+    color: green;
+    top: -29px;
+    left: -33px;
+    width: 140px;
+    height: 28px;
+    padding-top: 5px;
+    
+    background: transparent;
+    background-image:
+        
+        -webkit-linear-gradient(45deg, 
+        transparent 0%,
+        transparent 77%,
+        rgba(255,255,255,0.3) 80%,
+        rgba(255,255,255,0.3) 81%, 
+        rgba(0,0,0,0.4) 82%,
+        transparent 83%
+        ),
+        
+        -webkit-linear-gradient(-45deg,
+        transparent 0%,
+        transparent 17%,
+        rgba(0,0,0,0.5) 18%,
+        rgba(255,255,255,0.3) 19%,
+        rgba(255,255,255,0.3) 20%,
+        transparent 23%
+        );
+    background-image:
+        -moz-linear-gradient(45deg, 
+        transparent 0%,
+        transparent 77%,
+        rgba(255,255,255,0.3) 80%,
+        rgba(255,255,255,0.3) 81%, 
+        rgba(0,0,0,0.4) 82%,
+        transparent 83%
+        ),
+        -moz-linear-gradient(-45deg,
+        transparent 0%,
+        transparent 17%,
+        rgba(0,0,0,0.5) 18%,
+        rgba(255,255,255,0.3) 19%,
+        rgba(255,255,255,0.3) 20%,
+        transparent 23%
+        );
+    
+    -webkit-transform: rotateZ(-45deg);
+    -moz-transform: rotateZ(-45deg);
+    
+    color: rgba(0,0,0,0.5);
+    font-weight: bold;
+    font-family: georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    text-shadow: 0 1px rgba(255,255,25,0.1);
 }

@@ -72,8 +72,10 @@
 						<li data-ng-show="deals.length" 
 	    					data-ng-repeat="deal in deals"
 	    					data-ng-click="routerChange('deals', deal.id)">
-							<img src="images/Deal Images/{{deal.dealType}}.png" 
+	    					<img src="{{deal.img}}" 
 								title="{{deal.dealType}}" class="slide-img">
+							<!-- <img src="images/Deal Images/{{deal.dealType}}.png" 
+								title="{{deal.dealType}}" class="slide-img"> -->
 						</li>												
 					</ul>					
 				</div>
