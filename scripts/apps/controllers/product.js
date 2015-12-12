@@ -55,7 +55,7 @@ define(['app'], function(app) {
                     .then(function(data){
                         $scope.products = $scope.products || [];
                         $scope.products.push.apply($scope.products, data.Product);
-                        setPaginationTotal(data.Totalcount);
+                        //setPaginationTotal(data.Totalcount);
                         setDefaultProductQuantity();
                         toggleLoader(false);
                     });                
@@ -115,19 +115,16 @@ define(['app'], function(app) {
             };
 
             $scope.setAllCategoryProducts = function(data, products) {
-                //console.log("Total Count = " + data.Totalcount);
-                //console.log("category_id = " + data.category_id);
-                //console.log(products.length);
-
+                $(window).scrollTop(0);
+                $scope.categoryId = data.category_id;
+                $scope.pagination.current_page = 1;
+                setPaginationTotal(data.Totalcount);
                 angular.forEach($scope.allProductCategoryList, function(value, key) {
                     value["isSelected"] = false;
                 });
                 data["isSelected"] = true;
                 $scope.products = [];
                 $scope.products = products;
-                //$scope.products = $scope.products || [];
-                //$scope.products.push.apply($scope.products, products);
-                console.log($scope.products);
             };
 
             groupAllProductByCategory = function(data) {                
@@ -153,7 +150,7 @@ define(['app'], function(app) {
                     });
                     //$scope.products = $scope.allProductCategoryList[0]["product"];
                     $scope.products.push.apply($scope.products, $scope.allProductCategoryList[0]["product"]);
-                    setPaginationTotal(data.Totalcount);
+                    setPaginationTotal($scope.products.length);
                     toggleLoader(false);
                 }
             };      
@@ -627,20 +624,32 @@ define(['app'], function(app) {
 
             // Page bottom touch event handler
             $scope.$on('endlessScroll:next', function() {
-                console.log("next");                
                 if($scope.pagination.current_page < $scope.pagination.total_pages) {                    
                     $scope.pagination.current_page = $scope.pagination.current_page + 1;
                     if($scope.categoryId){
                        //getProductListByCategoryId();
-                       //getAllProductListByCategoryId();
                     }
                 }                
             });
 
+            $(window).on("scroll", function() {
+                var scrollHeight = $(document).height(),
+                    scrollPosition = $(window).height() + $(window).scrollTop();
+
+                if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+                    if($scope.pagination.current_page < $scope.pagination.total_pages) {                    
+                        $scope.pagination.current_page = $scope.pagination.current_page + 1;
+                        if($scope.categoryId){
+                           getProductListByCategoryId();
+                        }
+                    }
+                }
+            });        
+
             angular.element(document).ready(function () {
                 if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
                     || !utility.getJStorageKey("selectedCity")) {
-                    getCityList();
+                    getCityList();                    
                 }                  
             });
 
