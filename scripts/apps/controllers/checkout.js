@@ -35,6 +35,9 @@ define(['app'], function(app) {
             $scope.cartItems = [];
             $scope.cartItemCount = 0;
             $scope.quoteId = utility.getJStorageKey("quoteId");
+            if(!$scope.quoteId) {
+                $location.path("/");
+            }
             $scope.youSaved = 0;
             $scope.totalCartQty = 0;
             $scope.paymentMethod = null;

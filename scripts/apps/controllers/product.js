@@ -212,7 +212,7 @@ define(['app'], function(app) {
             };
 
             var addShippingCharges = function() {
-                if($scope.cartDetails.grand_total < 250) {
+                if($scope.cartDetails.grand_total < 250 && $scope.cartDetails.shipping_address.shipping_amount <= 0) {
                     $scope.cartDetails.shipping_address.shipping_amount = 50;
                     $scope.cartDetails.grand_total = parseFloat($scope.cartDetails.grand_total) + parseFloat($scope.cartDetails.shipping_address.shipping_amount);
                 }                
