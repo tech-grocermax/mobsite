@@ -24,7 +24,10 @@
                             data-ng-click="removeCartItem(product)" 
                             alt="" class="delet-icon">
                     </li>
-                    <li class="cat-list-name text-ellipsis">{{product.name}}</li>
+                    <li class="cat-list-name text-ellipsis"
+                        data-ng-click="routerChange('product/details', product.product_id)"
+                        style="cursor:pointer; " 
+                        title="{{product.name}}">{{product.name}}</li>
                     <!--<li class="prod-list-qnty">{{product.p_pack}}</li>-->
                     <li class="font-3">
                         <span class="product-qnty">

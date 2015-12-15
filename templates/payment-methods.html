@@ -84,8 +84,9 @@
 	</div>
 	<div class="row margin0"
 		style="margin: 20px 0px 70px;">
+		<!-- cartDetails.grand_total >= 500 && -->
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-			data-ng-show="cartDetails.grand_total >= 500 && !isCouponCodeApplied">
+			data-ng-show="!isCouponCodeApplied">
 			<div class="col-md-8 col-sm-8 col-xs-8 padd0 back-white card-input">
 				<input type="text" 
 					data-ng-model="couponCode"
@@ -99,8 +100,9 @@
 			<div data-ng-show="invalidCoupon" 
 				style="color:#FF0000; text-align:center;  float: left; width: 100%; padding: 10px 0px;">{{couponMessage}}</div>			
 		</div>
+		<!-- cartDetails.grand_total >= 500 && -->
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-			data-ng-show="cartDetails.grand_total >= 500 && isCouponCodeApplied">
+			data-ng-show="isCouponCodeApplied">
 			<div class="col-md-8 col-sm-8 col-xs-8 padd0 back-white card-input">
 				{{couponCode}}
 			</div>

@@ -17,7 +17,8 @@ define(['app'], function(app) {
             } else if(angular.isDefined(utility.getJStorageKey("userId")) 
                 && utility.getJStorageKey("userId")
                 && ($scope.sectionName == "login" || $scope.sectionName == "register")) {
-                $location.url("user/profile");
+                //$location.url("user/profile");
+                $location.url("/");
             }
 
             $scope.addressId = angular.isDefined($routeParams.addressId) ? $routeParams.addressId : null;         

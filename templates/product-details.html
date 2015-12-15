@@ -29,7 +29,7 @@
                         ₹ {{truncateComma(productDetails.product_price)}}</span><br>
                     <span class="product-qnty"
                         data-ng-show="getPriceDifference(productDetails.product_price, productDetails.sale_price) > 0">
-                        ₹ {{getPriceDifference(productDetails.product_price, productDetails.sale_price)}}</span>
+                        ₹ {{toFixedDecimal(getPriceDifference(productDetails.product_price, productDetails.sale_price))}}</span>
                 </div>                
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -42,7 +42,7 @@
 						</li>
                         <li class="cat-input-box">
                             <input type="text" value="{{productDetails.quantity}}" 
-                                class="cat-input-text">
+                                class="cat-input-text" readonly>
                         </li>
                         <li class="cat-plus" 
                             data-ng-click="increaseProductDetailQuantity()">
