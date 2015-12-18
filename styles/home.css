@@ -111,7 +111,7 @@ input , button, select{outline:none;}
 .img-text-h{color: rgb(255, 255, 255); font-size: 3.5vw;}
 .img-text{font-size: 3vw; color: #aeadad;}
 .img-block{bottom: 5%;margin-left: 5%;position: absolute; width: 80%;}
-.view-inline{display: inline-flex;}
+.view-inline{display: inline-flex; display:-webkit-box;}
 .slide-shadow{box-shadow: 2px 2px 2px 3px #c7c7c7;}
 .ul-height{height:208px;}
 .O-border-rad{border-radius: 50%;}
@@ -140,7 +140,7 @@ input , button, select{outline:none;}
 .dropdown-img{position:absolute; right:32px; margin-top:15px;z-index:1;}
 
 /*========== LEFT PANEL ==========*/
-.left-menu{background-image:url('../images/drawer_bg.png'); background-attachment:fixed; background-position:center center; background-repeat:no-repeat; background-size:cover; width: 77%;left: 0; position: fixed; top: 0; z-index: 999;height:100%;overflow: scroll;}
+.left-menu{background-image:url('../images/drawer_bg.png'); background-attachment:fixed; background-position:center center; background-repeat:no-repeat; background-size:cover; width: 77%;left: 0; position: fixed; top: 0; z-index: 9999;height:100%;overflow: scroll;}
 .menu-item-h{font-size: 4.4vw; padding: 38px 0 24px 32px;border-bottom: 2px solid #d2d2d2;}
 .menu-subitem-h{font-size: 4.4vw; padding: 21px 0 21px 16px;border-bottom: 2px solid #413428;/*font-family: helveticaNeue-Regular;*/color:#fff;}
 .menu-subitem-h > img{margin-right: 8px;}
@@ -405,7 +405,7 @@ input , button, select{outline:none;}
 .edit-icon{width: 5%;margin-top: 5px;display:inline; float:right;}
 
 
-@media  (max-width: 460px){
+@media (max-device-width: 480px) {
 	.margin-0-m{margin:0}
 	.img-text-box{bottom: 50px;}
 	.slide-img{width: 210px;}
