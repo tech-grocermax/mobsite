@@ -1,25 +1,31 @@
 var env = "prod",
 	appName = 'grocermax',
+	appFolderName = (env == "prod") ? "/" : "/grocermax/",
 	appVersion = '1.0',
 	config = {
 		"local": {			
 			"protocol": "http",
 			"domainName": "localhost/staging.grocermax/",
 			"port": "",			
-			//"apiUrl": "http://localhost/magento/api/"
-			"apiUrl": "http://grocermax.com/api/"
+			"apiUrl": "http://staging.grocermax.com/api/",
+			"appUrl": appFolderName + "scripts/apps/",
+			"templateURL" : appFolderName + "templates/"
 		},
 		"qa": {			
 			"protocol": "http",
 			"domainName": "localhost/grocermax/",
 			"port": "",			
-			"apiUrl": "http://staging.grocermax.com/api/"
+			"apiUrl": "http://staging.grocermax.com/api/",
+			"appUrl": appFolderName + "scripts/apps/",
+			"templateURL" : appFolderName + "templates/"
 		},
 		"prod": {			
 			"protocol": "https",
 			"domainName": "localhost/grocermax/",
 			"port": "",			
-			"apiUrl": "https://grocermax.com/api/"
+			"apiUrl": "https://grocermax.com/api/",
+			"appUrl": appFolderName + "scripts/apps/",
+			"templateURL" : appFolderName + "templates/"
 		}
 	};
 
@@ -38,4 +44,12 @@ getAPIFullUrl = function() {
 
 getCurrentVersion = function() {
 	return applicationVersion;
+};
+
+getAppUrl = function() {
+	return config[env].appUrl;
+};
+
+getTemplateURL = function() {
+	return config[env].templateURL;
 };
