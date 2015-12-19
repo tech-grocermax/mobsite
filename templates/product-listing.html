@@ -32,7 +32,8 @@
                 <div style="padding:10px; text-align:center; ">No product found</div>
             </div>
             <!-- endless-scroll="product in products" -->
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box margin-bot15"  
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box margin-bot15"
+            	data-ng-class="{'promotion_level': product.promotion_level}"  
                 data-ng-show="products.length > 0"
                 data-ng-repeat="product in products">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 list-img-box padd0"
@@ -41,7 +42,7 @@
                         alt="{{product.Name}}" class="img-responsive card-img-center">
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd0" style="padding-top:2px; padding-left:5px;">
-                    <ul class="list-unstyled" style="margin-bottom:5px;"
+                    <ul class="list-unstyled" style="margin-bottom:10px;"
 					data-ng-click="routerChange('product/details', product.productid)">
                         <li class="prod-list-h">
 							{{product.p_brand}}							
@@ -54,7 +55,7 @@
 						</li>
                         <li class="cat-list-name text-ellipsis">{{product.p_name}}</li>
                         <li class="prod-list-qnty">{{product.p_pack}}</li>
-                        <li class="font-3"><span class="product-qnty">₹ {{truncateComma(product.sale_price)}} |</span> <span class="prod-new-price">₹ {{truncateComma(product.Price)}}</span></li>                        
+                        <li class="font-3"><span class="product-qnty">₹ {{truncateComma(product.sale_price)}} </span> <span class="prod-new-price">| ₹ {{truncateComma(product.Price)}}</span></li>                        
                     </ul>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0 plus-minus-btn"
 						data-ng-show="product.Status == 'In stock'">
@@ -79,13 +80,13 @@
                         <button type="button" class="add-btn" 
                             data-ng-show="product.Status == 'In stock'"                         
                             data-ng-click="addProductOneByOne(product)">ADD</button>
-                        <span class="prod-list-h" 
+                        <span class="prod-list-h soldout" 
                             data-ng-show="product.Status != 'In stock'">Sold Out</span>
 					</div>
                 </div>
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
 					<h1 class="ribbon" data-ng-show="product.promotion_level">
-						<strong class="ribbon-content">{{product.promotion_level}}</strong>
+						<span class="ribbon-content">{{product.promotion_level}}</span>
 					</h1>
 				</div>
             </div>            
