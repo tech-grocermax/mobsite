@@ -5,7 +5,7 @@ define(['app'], function(app) {
             $scope.showSearchBar = false;
             $scope.showSearchIcon = false;
             $scope.showMoreIcon = false; 
-            $scope.categoryName = "Dynamic Name";
+            $scope.categoryName = "";
             $scope.columnSize = 10;
             $scope.categoryId = angular.isDefined($routeParams.categoryId) ? $routeParams.categoryId : null ;
             $scope.dealId = angular.isDefined($routeParams.dealId) ? $routeParams.dealId : null ;
@@ -65,8 +65,12 @@ define(['app'], function(app) {
                 toggleLoader(true);         
                 productService.getProductListByDealId($scope.dealId)
                     .then(function(data){
-                        toggleLoader(false);                         
-                        $scope.categoryName = data.Product.dealtitle;
+                        toggleLoader(false);
+                        var strDealTitle = data.Product.dealtitle; 
+                        var splitStr = strDealTitle.slice(0, 25); 
+                        console.log(splitStr);
+                        console.log("string slice final");                  
+                        $scope.categoryName = splitStr + " ...";
                         if(angular.isDefined(data.Product.items)) {
                             $scope.products = data.Product.items;
                             setDefaultProductQuantity(); 
@@ -518,7 +522,9 @@ define(['app'], function(app) {
                         .then(function(data){
                             toggleLoader(false);
                             if(data.flag == 1 || data.flag == "1"){
-                                if(angular.isUndefined(data.CartDetail.items) || !data.CartDetail.items.length) {
+                                if(angular.isUndefined(data.CartDetail) 
+                                    || angular.isUndefined(data.CartDetail.items) 
+                                    || !data.CartDetail.items.length) {
                                     utility.setJStorageKey("cartCounter" + $scope.quoteId, 0, 1);
                                     $location.url("/");
                                 } else {
