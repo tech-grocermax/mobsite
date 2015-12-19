@@ -522,7 +522,9 @@ define(['app'], function(app) {
                         .then(function(data){
                             toggleLoader(false);
                             if(data.flag == 1 || data.flag == "1"){
-                                if(angular.isUndefined(data.CartDetail.items) || !data.CartDetail.items.length) {
+                                if(angular.isUndefined(data.CartDetail) 
+                                    || angular.isUndefined(data.CartDetail.items) 
+                                    || !data.CartDetail.items.length) {
                                     utility.setJStorageKey("cartCounter" + $scope.quoteId, 0, 1);
                                     $location.url("/");
                                 } else {
