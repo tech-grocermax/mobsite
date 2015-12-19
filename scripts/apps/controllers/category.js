@@ -24,7 +24,7 @@ define(['app'], function(app) {
             $scope.isUserLoggedIn = angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId") ? true : false;
             $scope.cartItems = [];
             $scope.cartItemCount = 0;
-            $scope.categoryName = "Dynamic Name";
+            $scope.categoryName = "";
             $scope.bannerList = null;
             $scope.quoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
             $scope.cityList = null;

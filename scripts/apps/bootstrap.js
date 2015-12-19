@@ -1,6 +1,5 @@
-var appURL = '/grocermax/scripts/apps/',
-	templateURL = '/grocermax/templates/'; //mobsite
-
+var appURL = getAppUrl(),
+	templateURL = getTemplateURL(); //mobsite
 require.config({
     baseUrl: '',
     paths: {

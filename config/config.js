@@ -6,20 +6,25 @@ var env = "prod",
 			"protocol": "http",
 			"domainName": "localhost/staging.grocermax/",
 			"port": "",			
-			//"apiUrl": "http://localhost/magento/api/"
-			"apiUrl": "http://staging.grocermax.com/api/"
+			"apiUrl": "http://staging.grocermax.com/api/",
+			"appUrl": "/grocermax/scripts/apps/",
+			"templateURL" : "/grocermax/templates/"
 		},
 		"qa": {			
 			"protocol": "http",
 			"domainName": "localhost/grocermax/",
 			"port": "",			
-			"apiUrl": "http://staging.grocermax.com/api/"
+			"apiUrl": "http://staging.grocermax.com/api/",
+			"appUrl": "/scripts/apps/",
+			"templateURL" : "/grocermax/templates/"
 		},
 		"prod": {			
 			"protocol": "https",
 			"domainName": "localhost/grocermax/",
 			"port": "",			
-			"apiUrl": "https://grocermax.com/api/"
+			"apiUrl": "https://grocermax.com/api/",
+			"appUrl": "/scripts/apps/",
+			"templateURL" : "/templates/"
 		}
 	};
 
@@ -38,4 +43,12 @@ getAPIFullUrl = function() {
 
 getCurrentVersion = function() {
 	return applicationVersion;
+};
+
+getAppUrl = function() {
+	return config[env].appUrl;
+};
+
+getTemplateURL = function() {
+	return config[env].templateURL;
 };
