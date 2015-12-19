@@ -596,6 +596,8 @@ input , button, select{outline:none;}
 	.cat-border .header-middle {height: auto;}
 	.user-wrapper {margin-top: 62px;}
 	.plus-minus-btn{width:45%;}
+	.plus-minus-btn.carticons{width:100px!important;margin-top: 10px;}
+	.add2cart{padding:10px 0 0 0;}
 	.cat-plus {font-weight: normal;}
 	.wrapper{margin-top: 62px;}
 	.reg-btn-margin {margin-top: 78px;}
@@ -649,6 +651,7 @@ input , button, select{outline:none;}
 	.offer-img-mrg{margin-top: 104px;}
 	.user-wrapper {margin-top: 52px;}
 	.plus-minus-btn{width:50%;}
+		.plus-minus-btn.carticons{width:100px!important; margin-top: 10px;}
 	.wrapper{margin-top: 52px;}
 	.reg-btn-margin {margin-top: 68px;}
 	.cart-img-heigth{height:90px;}
@@ -853,3 +856,6 @@ input , button, select{outline:none;}
 .cat-list.disable{border:0px;}
 .cat-list.disable .cat-minus,.cat-list.disable .cat-plus{visibility:hidden}
 .cat-list.disable .cat-input-box{border:1px solid #f4f4f4}
+.descriptiontxt{border-top: 1px solid #ccc;  margin: 10px 3%;  padding: 10px 0px;  font-size: 12px;  color: #000;  display: inline-table; width: 94%; box-sizing: border-box;}
+.descriptiontxt p{color:#666;    padding: 5px 0;}
+.clearfix:after{content:''; display:block; clear:both; width:100px}
