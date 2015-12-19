@@ -253,7 +253,7 @@ input , button, select{outline:none;}
 .drop-box li{padding-top: 20px;padding-bottom: 22px;}
 
 /*========== CATEGORY ==========*/
-.cat-box{/*margin-bottom:16px;*/ background: #fff; border: 1px solid #d7d7d7; border-radius: 4px; /*padding-top: 10px;*/}
+.cat-box{/*margin-bottom:16px;*/ background: #fff; border: 1px solid #d7d7d7; border-radius: 4px; min-height: 105px; /*padding-top: 10px;*/}
 .cat-list-h{font-size:3.4vw; color:#7a7a7a;}
 .cat-list-name{/*font-size: 3.7vw;*/font-size:24px; color:#4d4d4d;}
 .font-3{/*font-size:3.4vw;*/font-size: 22px;}
@@ -707,7 +707,7 @@ input , button, select{outline:none;}
 
 /* This CSS has been added by Binit */
 .error-message{color:#FF0000; font-size: 11px;}
-.black_shade{position: fixed;top: 0%;left: 0%;width: 100%;height: 100%;background-color: black; z-index:1001;-moz-opacity: 0.7; opacity:.7;filter: alpha(opacity=40);padding:11px 20px;}
+.black_shade{position: fixed;top: 0%;left: 0%;width: 100%;height: 100%;background-color: black; z-index:1001;-moz-opacity: 0.4; opacity:.4;filter: alpha(opacity=40);padding:11px 20px;}
 .popupcontainerloader {position:fixed; top:15%;max-width: 790px; width:60%; height: auto; margin:0 auto; left:0; right:0;padding:1px;z-index:1002;overflow:visible;border-radius: 7px 7px 7px 7px; top:40%; *left:21%;}
 
 /* Change in Bootstrap Class */
@@ -846,3 +846,10 @@ input , button, select{outline:none;}
 .free_level:after{    content: '';    background: url('../images/free.png') no-repeat; width: 91px; height: 100px; position: absolute; left: -6px; top: -2px;
     background-size: 70px;}
 	.soldout{border-top: 1px solid #df4a32; border-bottom: 1px solid #df4a32; padding: 2px 0px;}
+.menutouch {
+	width:100%; height:100%; z-index: 400; top: 0; left: 0; position: absolute;
+}
+
+.cat-list.disable{border:0px;}
+.cat-list.disable .cat-minus,.cat-list.disable .cat-plus{visibility:hidden}
+.cat-list.disable .cat-input-box{border:1px solid #f4f4f4}
