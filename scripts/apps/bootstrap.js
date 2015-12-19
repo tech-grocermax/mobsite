@@ -1,5 +1,5 @@
-var appURL = '/scripts/apps/',
-	templateURL = '/templates/'; //mobsite
+var appURL = getAppUrl(),
+	templateURL = getTemplateURL(); //mobsite
 
 require.config({
     baseUrl: '',
