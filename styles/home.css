@@ -761,3 +761,7 @@ input , button, select{outline:none;}
 .menutouch {
 	width:100%; height:100%; z-index: 400; top: 0; left: 0; position: absolute;
 }
+
+.cat-list.disable{border:0px;}
+.cat-list.disable .cat-minus,.cat-list.disable .cat-plus{visibility:hidden}
+.cat-list.disable .cat-input-box{border:1px solid #f4f4f4}

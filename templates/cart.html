@@ -28,7 +28,7 @@
                         data-ng-click="routerChange('product/details', product.product_id)"
                         style="cursor:pointer; " 
                         title="{{product.name}}">{{product.name}}</li>
-                    <!--<li class="prod-list-qnty">{{product.p_pack}}</li>-->
+                    <li class="prod-list-qnty">{{product.p_pack}}</li>
                     <li class="font-3">
                         <span class="product-qnty">
                             ₹ {{toFixedDecimal(product.price)}}</span> 
@@ -54,7 +54,7 @@
 						<img src="images/app_bar_icons/plus-img.png" class="img-responsive">
 					</li>
                 </ul>
-                <ul class="list-unstyled cat-list"
+                <ul class="list-unstyled cat-list disable"
                     data-ng-show="product.price <= 0">
                     <li class="cat-minus">
 						<img src="images/app_bar_icons/minus-img.png" class="img-responsive">	
