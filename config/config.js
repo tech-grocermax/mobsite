@@ -7,7 +7,7 @@ var env = "prod",
 			"domainName": "localhost/staging.grocermax/",
 			"port": "",			
 			//"apiUrl": "http://localhost/magento/api/"
-			"apiUrl": "http://staging.grocermax.com/api/"
+			"apiUrl": "http://grocermax.com/api/"
 		},
 		"qa": {			
 			"protocol": "http",
@@ -16,10 +16,10 @@ var env = "prod",
 			"apiUrl": "http://staging.grocermax.com/api/"
 		},
 		"prod": {			
-			"protocol": "http",
+			"protocol": "https",
 			"domainName": "localhost/grocermax/",
 			"port": "",			
-			"apiUrl": "http://grocermax.com/api/"
+			"apiUrl": "https://grocermax.com/api/"
 		}
 	};
 
