@@ -32,7 +32,7 @@ define(['app'], function(app) {
                 current_page : 1,
                 total_pages : 0
             };
-
+            $scope.isProductLoaded = false;
             toggleLoader = function(flag) {
                 $scope.displayLoader = flag;
             };           
@@ -105,6 +105,7 @@ define(['app'], function(app) {
                     .then(function(data){
                         groupSearchProductByCategory(data);
                         toggleLoader(false);
+                        $scope.isProductLoaded = true;
                     });
             };
 
@@ -157,9 +158,7 @@ define(['app'], function(app) {
                     setPaginationTotal($scope.products.length);
                     toggleLoader(false);
                 }
-            };      
-
-            $scope.isProductLoaded = false;     
+            };   
 
             getAllProductListByCategoryId = function() {
                 toggleLoader(true);
