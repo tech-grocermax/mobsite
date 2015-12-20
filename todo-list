@@ -1,10 +1,34 @@
-1. In drawer location name should be in caps.
-5. In new address phone number should be of 10 digit.
-12. On checkout Payment Method--> On select delivery details screen, button have label "Select Delivery Details", it should have label "Proceed".
-16. Click on drawer--> click on staples--> click on Oil & ghee--> Cooking oil --> hot deals tab showing in last .
-18. From home screen --> click on Staples--> Oil & ghee--> Cooking oil--> Hot deals--> click on Jivo canola oil 1 ltr --> its show product description screen, here not showing the offer details and the product adding cart icon is pixelating and small.
-NOTE: Product detail web service not responding promotion_level key for product
+Here are some blockers which needs to be fixed before we launch the msite::
+- add address on checkout process not working
+    Status: PENDING
 
+- when navigate from drawer - product listing is not scrollable
+    Status: DONE
+
+- on product detail page - add product to cart - when loader appears background becomes blank---it should keep the product detail in background
+    Status: DONE
+
+- On product listing if price is in 4 digit(like 1190) then it shows price as 1 rupee.
+    Status: DONE
+
+- user profile--> click on "Invite Friends" => currently it is not functional - remove it for now
+    Status: DONE
+
+- On product listing yellow strip with offer name is not coming
+    Status: DONE
+
+- disable landscape mode on mobile
+    Status: PENDING
+
+- if I update cart page multiple time then clicking on back button in header do not take us to home page rather it reloads cart page
+    Status: PENDING
+
+- write to us on drawer => open mail box (to:hello@grocermax.com)
+    Status: DONE
+
+Non-blocker bugs::
+- order placed from msite is shown as android
+    Status: PENDING
 
 
 
@@ -22,14 +46,6 @@ CHECKSUMHASH: "h//S1lX2Gl/56Lm07R5SbdNgUY0sBibicjNrBYFKZ5deE4L8+YK7IIy6ba1oGJADn
 },
 flag: 0
 }
-
-
-
-
-
-
-
-
 
 
 Place Order: for paytm & cash on delivery itsnotworking
