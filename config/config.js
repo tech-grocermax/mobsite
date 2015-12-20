@@ -9,7 +9,7 @@ var env = "local",
 			"port": "",			
 			"apiUrl": "http://staging.grocermax.com/api/",
 			"appUrl": appFolderName + "scripts/apps/",
-			"templateURL" : "/grocermax/templates/"
+			"templateURL" : appFolderName + "templates/"
 		},
 		"qa": {			
 			"protocol": "http",
