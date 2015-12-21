@@ -1,4 +1,4 @@
-var env = "local",
+var env = "prod",
 	appName = 'grocermax',
 	appFolderName = (env == "prod") ? "/" : "/grocermax/",
 	appVersion = '1.0',
