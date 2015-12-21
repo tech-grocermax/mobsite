@@ -24,7 +24,7 @@ define(['app'], function (app) {
 		    	headers: {
 		    		'version': 1.0,
 					'storeid': 1,
-					'device': 'mobile'
+					'device': 'msite'
 				}
 			}).then(function(response){return response.data}, function(error){return error});
 	    };*/	

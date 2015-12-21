@@ -15,97 +15,87 @@
 	</div>
 </header> -->
 <article>
-	<section>
-		<div class="row margin0">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 od-h">
-				<span>DELIVERY INFO</span>
-			</div>
-		</div>
+	<section class="orderinfo">
+		<h2>DELIVERY INFO</h2>
 		<div class="row margin0 back-white">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 pad-lt32">
+			<div class="ordergrid">
 				<ul class="list-unstyled margin0">
-					<li class="od-list">
+					<li >
 						<div class="od-list-h1">Order ID</div>
-						<div class="od-list-h2">
+						<div class="infotxt">
 							{{orderDetails.increment_id}}</div>
 					</li>
-					<li class="od-list">
+					<li >
 						<div class="od-list-h1">Order date:</div>
-						<div class="od-list-h2">
+						<div class="infotxt">
 							{{orderDetails.status_history[0].created_at}}</div>
 					</li>
-					<li class="od-list">
+					<li >
 						<div class="od-list-h1">Shipping charge</div>
-						<div class="od-list-h2">
+						<div class="infotxt">
 							Rs. {{toFixedDecimal(orderDetails.shipping_amount)}}</div>
 					</li>
-					<li class="od-list">
+					<li >
 						<div class="od-list-h1">Payment method:</div>
-						<div class="od-list-h2">
+						<div class="infotxt">
 							{{orderDetails.payment.method}}</div>
 					</li>
-					<li class="od-list">
+					<li >
 						<div class="od-list-h1">Delivery Date:</div>
-						<div class="od-list-h2">{{orderDetails.deliverydate[0].value}}</div>
+						<div class="infotxt">{{orderDetails.deliverydate[0].value}}</div>
 					</li>
-					<li class="od-list">
+					<li >
 						<div class="od-list-h1">Delivery Time:</div>
-						<div class="od-list-h2">{{orderDetails.deliverydate[1].value}}</div>
+						<div class="infotxt">{{orderDetails.deliverydate[1].value}}</div>
 					</li>
-					<li class="od-list">
+					<li >
 						<div class="od-list-h1">Shipping address:</div>
-						<div class="od-list-h2">
+						<div class="infotxt">
 							{{renderShippingAddress(orderDetails.shipping_address)}}
 						</div>
 					</li>
 				</ul>
 			</div>
 		</div>
-		<div class="row margin0">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 od-h">
-				<span>YOUR ORDER</span>
-			</div>
-		</div>
+
+        <h2>YOUR ORDER</h2>
 		<div class="row margin0 back-white">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 pad-lt32">
+			<div class="ordergrid">
 				<ul class="list-unstyled margin0">
 					<!--data-ng-show="item.applied_rule_ids"-->
-					<li class="od-list" 
-						data-ng-repeat="item in orderDetails.items">
-						<div class="od-list-h3">
+					<li class="od-list" data-ng-repeat="item in orderDetails.items">
+						<div class="pdetail">
 							<!-- {{item.name}} -->
-							{{renderItemName1(item)}}<br/> {{renderItemName2(item)}}
-							<span class="pad-rt32 float-rt">
+							<span>{{renderItemName1(item)}} {{renderItemName2(item)}}</span>
+							<span>
 								Rs. {{toFixedDecimal(item.base_original_price)}}</span>
 						</div>
 						<!-- <div class="od-list-h4">1 litre</div> -->
-						<div class="od-list-h2">
-							<br/>Quantity: <span>
+						<div class="quantxt">
+							Quantity: <span>
 								{{convertToInteger(item.qty_ordered)}} * Rs. {{toFixedDecimal(item.base_original_price)}}</span>
 						</div>
 					</li>
 					<li class="od-list">
-						<div class="od-list-h3">
-							Subtotal
-							<span class="pad-rt32 float-rt">
+						<div class="pdetail boldtxt">
+							<span>Subtotal</span>
+							<span >
 								Rs. {{toFixedDecimal(orderDetails.subtotal)}}</span>
 						</div>
-						<div class="od-list-h4">
-							Delivery Charges
-							<span class="pad-rt32 float-rt">
-								Rs. {{toFixedDecimal(orderDetails.shipping_amount)}}</span>
+						<div class="pdetail">
+							<span>Delivery Charges</span>
+							<span>Rs. {{toFixedDecimal(orderDetails.shipping_amount)}}</span>
 						</div>
-						<div class="od-save-h">
-							You Saved
-							<span class="pad-rt32 float-rt">
+						<div class="pdetail">
+							<span>You Saved</span>
+							<span>
 								Rs. {{toFixedDecimal(orderDetails.discount_amount)}}</span>
 						</div>
 					</li>
 					<li class="od-list">
-						<div class="od-total-h">
-							Total
-							<span class="pad-rt32 float-rt">
-								Rs. {{toFixedDecimal(orderDetails.base_grand_total)}}</span>
+						<div class="pdetail boldtxt">
+							<span>Total</span>
+							<span>Rs. {{toFixedDecimal(orderDetails.base_grand_total)}}</span>
 						</div>
 					</li>
 				</ul>
