@@ -248,10 +248,10 @@ input , button, select{outline:none;}
 .check-text{font-size: 4vw; padding-top:0.5%; color:#2d2d2d;}
 .reg-check-img{margin-right: -10%;}
 /*========== DROPDOWN ==========*/
-.drop-box{width:46.5%; background:#fff; border-radius:4px; padding-left:22px; font-size:3vw; float:right;}
-.drop-box li:first-child{padding-top: 27px;}
-.drop-box li:last-child{padding-bottom: 27px;}
-.drop-box li{padding-top: 20px;padding-bottom: 22px;}
+.drop-box{width:46.5%; background:#fff; border-radius:4px; font-size:15px; float:right;}
+.drop-box li{border-bottom:1px solid #eee}
+.drop-box li:last-child{border-bottom:none}
+.drop-box li a{color:#333; display:block;padding:10px;}
 
 /*========== CATEGORY ==========*/
 .cat-box{/*margin-bottom:16px;*/ background: #fff; border: 1px solid #d7d7d7; border-radius: 4px; min-height: 105px; /*padding-top: 10px;*/}
@@ -508,10 +508,8 @@ input , button, select{outline:none;}
 	.sub-item {padding: 16px 0;}
 
 	.item-shop {padding-top: 16px;}	
-	.drop-box{padding-left:11px;}
-	.drop-box li:first-child{padding-top: 13px;}
-	.drop-box li:last-child{padding-bottom: 13px;}
-	.drop-box li{padding-top: 4px;padding-bottom: 11px;}	
+	
+
 	.back-icon-mrg img{width:70%;}
 	/*.cat-minus{padding-top:2px;}*/
 	/*.cat-plus{padding-top: 2px;}	*/
@@ -870,3 +868,19 @@ input , button, select{outline:none;}
 ul.plisting{font-weight:bold; padding:5px 8px}
 ul.plisting li.font-3{padding-top:3px}
 .productgrid{padding:8px 8px 0 8px;}
+
+/**** Order Info *****/
+.orderinfo{margin:0px; padding:0 10px 10px 10px;}
+.orderinfo h2{margin:0px; padding:8px 10px; font:16px robotobold; }
+.subheading{ font:22px robotolight; border-bottom: 1px solid #eee;  padding: 8px 17px;  margin-bottom: 10px;     margin-top: 0px;}
+.ordergrid{margin:0px; padding:5px}
+.ordergrid li{border-bottom:1px solid #e4e4e4; padding:5px 10px}
+.ordergrid li:last-child{border:0px}
+.infotxt{font-size:15px; color:#2d2d2d}
+.ordergrid .od-list-h1{font-weight:bold; font-size:15px}
+.ordergrid .pdetail{font-size: 15px; color: #2d2d2d;     display: table;  width: 100%;}
+.ordergrid .pdetail span{display:table-cell; text-align:right}
+.ordergrid .pdetail span:first-child{width:70%; text-align:left}
+.quantxt{font-weight:bold; color: #7d7d76; font-size:15px; padding-top: 10px;}
+.boldtxt span{font-weight:bold}
+.searchicon{width:26px}
