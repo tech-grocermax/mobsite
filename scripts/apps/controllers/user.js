@@ -385,7 +385,8 @@ define(['app'], function(app) {
 
             iterateAddressList = function() {
                 angular.forEach($scope.addressList, function(value, key) {
-                    value["isDisplay"] = true;
+                    //value["isDisplay"] = true;
+                    $scope.addressList[key]["isDisplay"] = true;
                 });
             };
 

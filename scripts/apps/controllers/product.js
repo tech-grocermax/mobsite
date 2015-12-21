@@ -164,15 +164,15 @@ define(['app'], function(app) {
                 toggleLoader(true);
                 productService.getAllProductListByCategoryId($scope.categoryId, $scope.pagination.current_page)
                     .then(function(data){
-                        console.log(data);                        
                         groupAllProductByCategory(data);
                         $scope.isProductLoaded = true;
+                        $('body').css('overflow', 'auto');
                     });
             };
 
             if($scope.categoryId){
-               getAllProductListByCategoryId();
-               $scope.categoryName = categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.categoryId);
+                getAllProductListByCategoryId();
+                $scope.categoryName = categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.categoryId);
             }
 
             if($scope.dealId){
@@ -185,11 +185,13 @@ define(['app'], function(app) {
             }
 
             getProductDetails = function() {
+                $scope.isProductDetailsLoaded = false;
                 $scope.categoryName = "Product Description";                
                 toggleLoader(true);
                 productService.getProductDetails($scope.productId)
                     .then(function(data){
                         toggleLoader(false);
+                        $scope.isProductDetailsLoaded = true;
                         $scope.productDetails = data.Product_Detail[0];                        
                         $scope.productDetails.productid = $scope.productDetails.product_id;
                         $scope.productDetails.quantity = 1;
