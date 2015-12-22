@@ -1,7 +1,7 @@
 Recompiling functional bugs after midnight fixes::
 
 - You saved on cart is wrong(It should multiply the price of free item with quantity)
-    Status: PENDING
+    Status: DONE
 
 - on cart page on scrolling down loader appears and does not happens anything
     Status: PENDING
@@ -19,8 +19,7 @@ Other issues::
 - With each request page not found error on console. Request for some images always shows not found and the path is always wrong.
     Status: PENDING
 
-
-
+- Cart product listing: need to display offer ribbon & text
 
 
 

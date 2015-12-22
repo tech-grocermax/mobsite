@@ -248,13 +248,11 @@ define(['app'], function(app) {
             };   
 
             if($scope.quoteId){
-                //getCartItemDetails(); 
                 getBasketItemCounter();
             }   
 
             $scope.createUser = function(form) {
                 $scope.errorRegistration = true;
-                console.log(form.$valid);                
                 if (form.$valid) {
                     toggleLoader(true);
                     utility.setJStorageKey("registrationDetails", $scope.user, 1);
@@ -276,7 +274,6 @@ define(['app'], function(app) {
             };
 
             $scope.verifyOTP = function() { 
-                console.log($scope.otp, utility.getJStorageKey("otp"));               
                 if($scope.otp == utility.getJStorageKey("otp")) {
                     toggleLoader(true);
                     angular.copy($scope.user, utility.getJStorageKey("registrationDetails"));
@@ -291,7 +288,6 @@ define(['app'], function(app) {
                             }                                                                           
                         });
                 } else {
-                    console.log("here");
                     $scope.showUserResponse = true;
                     $scope.userResponseMessage = "Invalid OTP, Please try again.";
                     updateClassName("danger");
@@ -355,7 +351,6 @@ define(['app'], function(app) {
 
             $scope.updateProfile = function(form) {
                 $scope.errorRegistration = true;
-                console.log(form.$valid);                
                 if (form.$valid) {
                     toggleLoader(true);
                     userService.updateProfile($scope.user, utility.getJStorageKey("userId"))
@@ -472,7 +467,6 @@ define(['app'], function(app) {
                     .then(function(data){
                         toggleLoader(false);
                         $scope.orderDetails = data.OrderDetail;      
-                        console.log($scope.orderDetails);                                       
                     });
             };
             if($scope.sectionName == "orderhistory" && $scope.orderId){
@@ -491,7 +485,6 @@ define(['app'], function(app) {
             };
 
             $scope.renderPaymentMethod = function(method) {
-                console.log(method);
                 if(angular.isDefined(method)) {
                     return paymentMethodMapping[method];
                 }
@@ -567,9 +560,7 @@ define(['app'], function(app) {
             };
 
             $scope.changePassword = function(form) {
-                console.log($scope.password);
                 $scope.errorRegistration = true;
-                console.log(form.$valid);                
                 if (form.$valid) {
                     if($scope.password["old"].length < 6
                         || $scope.password["new"].length < 6
@@ -646,7 +637,6 @@ define(['app'], function(app) {
             };
 
             $scope.setCityLocation = function(location) {
-                console.log(location);
                 var city = location.city_name.toLowerCase(),
                     cityId = location.id;
 
@@ -676,8 +666,6 @@ define(['app'], function(app) {
                     && utility.getJStorageKey("quoteId")
                     && $scope.cartItemCount) {
                     $location.url("cart" + "/" + utility.getJStorageKey("quoteId"));
-                } else {
-                    console.log("ELSE");
                 }
             };
 

@@ -22,8 +22,6 @@ define(['app'], function(app){
 		        	elem.bind('keyup', function(event) {
 		        		var keycode = (event.which) ? event.which : event.keyCode;
 		            	if(keycode == 13 && elem.val().length >= 3){
-		            		console.log("enter");  
-		            		console.log(elem.val());  
 		            		scope.handleSearchKeyEnter();	
 		            	}
 		            });            
