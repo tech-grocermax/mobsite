@@ -1,6 +1,33 @@
+Recompiling functional bugs after midnight fixes::
+
+- You saved on cart is wrong(It should multiply the price of free item with quantity)
+    Status: PENDING
+
+- on cart page on scrolling down loader appears and does not happens anything
+    Status: PENDING
+
+- when i delete all items from cart.. it does not automatically redirects to home page (Ideally if user has deleted all items from cart he should be taken back to home page)
+    Status: PENDING
+
+Other issues::
+- Cart bubble is not updated when we logged in and new cart is merged with user existing cart on server.
+    Status: PENDING
+
+- "All" tab from category product listing should be removed.
+    Status: PENDING
+
+- With each request page not found error on console. Request for some images always shows not found and the path is always wrong.
+    Status: PENDING
+
+
+
+
+
+
+
 Here are some blockers which needs to be fixed before we launch the msite::
 - add address on checkout process not working
-    Status: PENDING
+    Status: DONE
 
 - when navigate from drawer - product listing is not scrollable
     Status: DONE
