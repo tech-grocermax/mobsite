@@ -244,6 +244,8 @@ define(['app'], function(app) {
                             if(data.TotalItem == 0) {
                                 utility.setJStorageKey("cartCounter" + $scope.quoteId, 0, 1);
                                 $location.url("/");
+                            } else {
+                                utility.setJStorageKey("cartCounter" + $scope.quoteId, data.TotalItem, 1);
                             }
                         }                        
                     });

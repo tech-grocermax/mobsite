@@ -171,8 +171,10 @@ define(['app'], function(app) {
                     var oldQuoteId = utility.getJStorageKey("quoteId")
                     utility.setJStorageKey("quoteId", data.QuoteId, 1);  
                     var oldCartCount = utility.getJStorageKey("cartCounter" + oldQuoteId);
+                    if(angular.isDefined(data.TotalItem) && data.TotalItem) {
+                        oldCartCount = data.TotalItem;
+                    }
                     utility.setJStorageKey("cartCounter" + data.QuoteId, oldCartCount, 1);
-
                     //cartCounterKey
                     /*var quoteId = utility.getJStorageKey("quoteId"),
                     cartCounterKey = "cartCounter" + quoteId,
@@ -309,7 +311,7 @@ define(['app'], function(app) {
                         email = $scope.user.uemail;
 
                     if(angular.isDefined(utility.getJStorageKey("quoteId")) 
-                    && utility.getJStorageKey("quoteId")) {
+                        && utility.getJStorageKey("quoteId")) {
                         input.quote_id = utility.getJStorageKey("quoteId");
                     }
 

@@ -4,20 +4,20 @@ Recompiling functional bugs after midnight fixes::
     Status: DONE
 
 - on cart page on scrolling down loader appears and does not happens anything
-    Status: PENDING
+    Status: DONE
 
 - when i delete all items from cart.. it does not automatically redirects to home page (Ideally if user has deleted all items from cart he should be taken back to home page)
-    Status: PENDING
+    Status: DONE
 
 Other issues::
 - Cart bubble is not updated when we logged in and new cart is merged with user existing cart on server.
     Status: PENDING
 
 - "All" tab from category product listing should be removed.
-    Status: PENDING
+    Status: DONE
 
 - With each request page not found error on console. Request for some images always shows not found and the path is always wrong.
-    Status: PENDING
+    Status: PENDING (Least Priority)
 
 - Cart product listing: need to display offer ribbon & text
 
