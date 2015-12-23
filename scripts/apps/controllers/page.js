@@ -56,7 +56,6 @@ define(['app'], function(app) {
                             var city = value.city_name.toLowerCase();
                             $scope.cityLocation[city] = false;
                         });
-                        console.log($scope.cityLocation);
                         openCitySelectionModal();
                     });
             };

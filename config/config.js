@@ -1,4 +1,4 @@
-var env = "local",
+var env = "prod",
 	appName = 'grocermax',
 	appFolderName = (env == "prod") ? "/" : "/grocermax/",
 	appVersion = '1.0',
@@ -17,7 +17,7 @@ var env = "local",
 			"port": "",			
 			"apiUrl": "http://staging.grocermax.com/api/",
 			"appUrl": appFolderName + "scripts/apps/",
-			"templateURL" : "/grocermax/templates/"
+			"templateURL" : appFolderName + "templates/"
 		},
 		"prod": {			
 			"protocol": "https",
@@ -25,7 +25,7 @@ var env = "local",
 			"port": "",			
 			"apiUrl": "https://grocermax.com/api/",
 			"appUrl": appFolderName + "scripts/apps/",
-			"templateURL" : "/templates/"
+			"templateURL" : appFolderName + "templates/"
 		}
 	};
 

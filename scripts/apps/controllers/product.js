@@ -68,8 +68,6 @@ define(['app'], function(app) {
                         toggleLoader(false);
                         var strDealTitle = data.Product.dealtitle; 
                         var splitStr = strDealTitle.slice(0, 25); 
-                        console.log(splitStr);
-                        console.log("string slice final");                  
                         $scope.categoryName = splitStr + " ...";
                         if(angular.isDefined(data.Product.items)) {
                             $scope.products = data.Product.items;
@@ -164,15 +162,15 @@ define(['app'], function(app) {
                 toggleLoader(true);
                 productService.getAllProductListByCategoryId($scope.categoryId, $scope.pagination.current_page)
                     .then(function(data){
-                        console.log(data);                        
                         groupAllProductByCategory(data);
                         $scope.isProductLoaded = true;
+                        $('body').css('overflow', 'auto');
                     });
             };
 
             if($scope.categoryId){
-               getAllProductListByCategoryId();
-               $scope.categoryName = categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.categoryId);
+                getAllProductListByCategoryId();
+                $scope.categoryName = categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.categoryId);
             }
 
             if($scope.dealId){
@@ -185,11 +183,13 @@ define(['app'], function(app) {
             }
 
             getProductDetails = function() {
+                $scope.isProductDetailsLoaded = false;
                 $scope.categoryName = "Product Description";                
                 toggleLoader(true);
                 productService.getProductDetails($scope.productId)
                     .then(function(data){
                         toggleLoader(false);
+                        $scope.isProductDetailsLoaded = true;
                         $scope.productDetails = data.Product_Detail[0];                        
                         $scope.productDetails.productid = $scope.productDetails.product_id;
                         $scope.productDetails.quantity = 1;
@@ -206,7 +206,9 @@ define(['app'], function(app) {
 
                 if(angular.isDefined($scope.cartDetails)) {
                     angular.forEach($scope.cartDetails.items, function(value, key) {
-                        savedAmont = savedAmont + parseFloat($scope.getPriceDifference(value.mrp, value.price));
+                        var amt = 0;
+                        amt = parseInt(value.qty) * parseFloat($scope.getPriceDifference(value.mrp, value.price))
+                        savedAmont = savedAmont + amt;
                         qty = qty + parseInt(value.qty);
                     });
                 }
@@ -242,6 +244,8 @@ define(['app'], function(app) {
                             if(data.TotalItem == 0) {
                                 utility.setJStorageKey("cartCounter" + $scope.quoteId, 0, 1);
                                 $location.url("/");
+                            } else {
+                                utility.setJStorageKey("cartCounter" + $scope.quoteId, data.TotalItem, 1);
                             }
                         }                        
                     });
@@ -259,8 +263,6 @@ define(['app'], function(app) {
                     && utility.getJStorageKey("quoteId")
                     && $scope.cartItemCount) {
                     $location.url("cart" + "/" + utility.getJStorageKey("quoteId"));
-                } else {
-                    console.log("ELSE");
                 }
             };
 
@@ -303,8 +305,6 @@ define(['app'], function(app) {
 
             setProductBasketCounter = function(productId, count) {
                 var quoteId = utility.getJStorageKey("quoteId");
-                console.log(quoteId);
-
                 if(angular.isDefined(utility.getJStorageKey("productBasketCount_" + quoteId)) 
                     && utility.getJStorageKey("productBasketCount_" + quoteId)) {  
                     var productBasketCount = utility.getJStorageKey("productBasketCount_" + quoteId);
@@ -318,7 +318,6 @@ define(['app'], function(app) {
                     productBasketCount[productId] = count;
                 }
                 utility.setJStorageKey("productBasketCount_" + quoteId, productBasketCount, 1);
-                console.log(utility.getJStorageKey("productBasketCount_" + quoteId));
             };
 
             $scope.addProductOneByOne = function(product) {
@@ -495,8 +494,6 @@ define(['app'], function(app) {
 
             resetProductBasketCounter = function(productId, count) {
                 var quoteId = utility.getJStorageKey("quoteId");
-                console.log(quoteId);
-
                 if(angular.isDefined(utility.getJStorageKey("productBasketCount_" + quoteId)) 
                     && utility.getJStorageKey("productBasketCount_" + quoteId)) {  
                     var productBasketCount = utility.getJStorageKey("productBasketCount_" + quoteId);                    
@@ -506,7 +503,6 @@ define(['app'], function(app) {
                     productBasketCount[productId] = count;
                 }
                 utility.setJStorageKey("productBasketCount_" + quoteId, productBasketCount, 1);
-                console.log(utility.getJStorageKey("productBasketCount_" + quoteId));
             };
 
             $scope.checkout = function(flag) {
@@ -536,6 +532,7 @@ define(['app'], function(app) {
                                     $scope.productIds = [];                           
                                     checkoutSuccessCallback(flag);    
                                     $scope.cartDetails = data.CartDetail;
+                                    getYouSaveAmout();
                                 }                   
                             }                            
                         });
@@ -593,7 +590,6 @@ define(['app'], function(app) {
                             var city = value.city_name.toLowerCase();
                             $scope.cityLocation[city] = false;
                         });
-                        console.log($scope.cityLocation);
                         openCitySelectionModal();
                     });
             };
@@ -640,8 +636,9 @@ define(['app'], function(app) {
             $(window).on("scroll", function() {
                 var scrollHeight = $(document).height(),
                     scrollPosition = $(window).height() + $(window).scrollTop();
-
-                if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+                if ($scope.categoryId 
+                        && $location.path().indexOf("product/") >= 0
+                        && (scrollHeight - scrollPosition) / scrollHeight === 0) {
                     if($scope.pagination.current_page < $scope.pagination.total_pages) {                    
                         $scope.pagination.current_page = $scope.pagination.current_page + 1;
                         if($scope.categoryId){
