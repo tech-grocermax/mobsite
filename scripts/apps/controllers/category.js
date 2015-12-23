@@ -186,6 +186,8 @@ define(['app'], function(app) {
             $scope.dealItems = null;
             $scope.activeDealCategory = "all";
 
+            $rootScope.selectedDealCategoryId = angular.isDefined($rootScope.selectedDealCategoryId) && $rootScope.selectedDealCategoryId ? $rootScope.selectedDealCategoryId : null;
+
             getDealItemList = function(data) {
                 $scope.dealCategoryList = [];
 
@@ -205,20 +207,34 @@ define(['app'], function(app) {
                             label: value.name
                         });
                         $scope.dealCategoryItemList[value.category_id] = value.deals;
-                        if(key == 0) {
+                        if($rootScope.selectedDealCategoryId 
+                            && $rootScope.selectedDealCategoryId == value.category_id) {
+                            $scope.activeDealCategory = value.category_id;
+                            $scope.dealItems = $scope.dealCategoryItemList[value.category_id];
+                        } else if(key == 0) {
+                            $scope.activeDealCategory = value.category_id;
                             $scope.dealItems = $scope.dealCategoryItemList[value.category_id];
                         }
                     }                                        
                 });
             };
 
+            $rootScope.selectedOfferCategoryId = angular.isDefined($rootScope.selectedOfferCategoryId) && $rootScope.selectedOfferCategoryId ? $rootScope.selectedOfferCategoryId : null;
             getDealItemListByOffer = function(data) {
                 $scope.dealCategoryList = [];
-                $scope.dealCategoryList.push({id: "all", label: "All"});
-                $scope.dealCategoryItemList["all"] = data["all"];                
+                //$scope.dealCategoryList.push({id: "all", label: "All"});
+                //$scope.dealCategoryItemList["all"] = data["all"];                
                 //$scope.activeDealCategory = $routeParams.dealCategoryId;
-                $scope.dealItems = data["all"];
+                //$scope.dealItems = data["all"];
                 angular.forEach(data.dealsCategory, function(value, key) {
+                    if($rootScope.selectedOfferCategoryId 
+                        && $rootScope.selectedOfferCategoryId == key) {
+                        $scope.activeDealCategory = key;
+                        $scope.dealItems = value.deals;
+                    }  else if(key == 0) {
+                        $scope.activeDealCategory = key;
+                        $scope.dealItems = value.deals;
+                    }
                     $scope.dealCategoryList.push({
                         id: key, 
                         label: value.dealType
@@ -232,14 +248,12 @@ define(['app'], function(app) {
             if ($routeParams.categoryId) {
                 $scope.subCategoryList = categoryService.getSubCategoryList($scope.categories, $routeParams.categoryId);
                 $scope.subCategoryList.sort(utility.dynamicSort("position"));
-                console.log($scope.subCategoryList);
                 $scope.categoryName = categoryService.getCategoryName($scope.categories, $routeParams.categoryId);
                 $scope.columnSize = 10;
                 $scope.showMoreIcon = false;
             } else if ($routeParams.dealId) {
                 $scope.columnSize = 10;
                 $scope.showMoreIcon = false;
-                //$scope.categoryName = "Deal Name";
                 toggleLoader(true);
                 categoryService.getDealsByDealId($routeParams.dealId)
                     .then(function(data){  
@@ -297,6 +311,9 @@ define(['app'], function(app) {
             }
 
             $scope.getDealCategoryItemList = function(category) {
+                $rootScope.selectedDealCategoryId = category.id;
+                $rootScope.selectedOfferCategoryId = category.id;
+
                 $scope.activeDealCategory = category.id;
                 $scope.dealItems = $scope.dealCategoryItemList[category.id];
             };
@@ -311,7 +328,6 @@ define(['app'], function(app) {
             };
             
             $scope.toggleCategoryMenu = function() {
-                console.log("toggle");
                 $scope.showSubCategoryMenu = false;
                 $scope.showCategoryMenu = $scope.showCategoryMenu ? false : true;
                 $('body').css('overflow', 'hidden');
@@ -419,7 +435,6 @@ define(['app'], function(app) {
             };
 
             $scope.handleSearchKeyEnter = function() {
-                console.log("handleSearchKeyEnter");
                 $location.url("product?keyword=" + $scope.searchKeyword)
             };
             
@@ -460,7 +475,6 @@ define(['app'], function(app) {
                                 var city = value.city_name.toLowerCase();
                                 $scope.cityLocation[city] = false;
                             });                            
-                            console.log($scope.cityLocation);
                             openCitySelectionModal();
                         });
                 }
@@ -475,7 +489,6 @@ define(['app'], function(app) {
             };
 
             $scope.setCityLocation = function(location) {
-                console.log(location);
                 var city = location.city_name.toLowerCase(),
                     cityId = location.id;
 
@@ -512,8 +525,6 @@ define(['app'], function(app) {
                     && utility.getJStorageKey("quoteId")
                     && $scope.cartItemCount) {
                     $location.url("cart" + "/" + utility.getJStorageKey("quoteId"));
-                } else {
-                    console.log("ELSE");
                 }
             };
 

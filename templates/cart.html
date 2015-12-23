@@ -11,6 +11,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box margin-bot15"
             data-ng-show="cartDetails.items.length"
             data-ng-hide="hideCartItem(product)"
+            data-ng-class="{'promotion_level': product.promotion_level}"
             data-ng-repeat="product in cartDetails.items">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 list-img-box">
                 <img src="{{replaceImageUrl(product.product_thumbnail)}}" 
@@ -69,6 +70,11 @@
 					</li>
                 </ul>
             </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
+                <h1 class="ribbon" data-ng-show="product.promotion_level">
+                    <span class="ribbon-content">{{product.promotion_level}}</span>
+                </h1>
+            </div>
         </div>
     </div>
     <div class="row margin0 pad-lt16 pad-rt16 margin-top10 margin-0-m cart-box-botom"
@@ -118,7 +124,7 @@
     </div>    
     <div class="popupcontainerloader" style="position:fixed;"
         data-ng-show="displayLoader">        
-        <div style="text-align:center; width:100%; "><img src="images/ajax-loader.gif" /></div>
+<div class="loaderimg"><img src="images/ajax-loader.gif" /></div>
     </div>
     <div data-ng-show="displayLoader" class="black_shade"></div>
 </div>

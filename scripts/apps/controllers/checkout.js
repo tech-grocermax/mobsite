@@ -60,7 +60,6 @@ define(['app'], function(app) {
                 $scope.categoryName = "Select Shipping Address";
                 $scope.columnSize = 10;
             } else if($scope.section.billing) {
-                console.log("here");
                 $scope.categoryName = "Select Billing Address";
                 $scope.columnSize = 10;
             } else if ($scope.section.delivery) {
@@ -143,7 +142,6 @@ define(['app'], function(app) {
                     });
                     value.timeSlots = timeslots;
                 });
-                //console.log($scope.deliverySlots);
             };
             
             getDeliverySlots = function() {
@@ -244,7 +242,6 @@ define(['app'], function(app) {
             };
 
             $scope.changeDefaultSelection = function(address, keyName) {
-                console.log("here");
                 angular.forEach($scope.addressList, function(value, key) {
                    value[keyName] = false;                    
                 });
@@ -372,8 +369,6 @@ define(['app'], function(app) {
             };
 
             $scope.setDeliveryTime = function(data, parentIndex) {
-                console.log(data);
-                console.log(parentIndex);
                 if(data.available) {
                     $scope.selectedDeliveryTime = data.timeSlot;
                     $scope.selectedDeliveryDate = getSelectedDeliveryDate(parentIndex);
@@ -420,18 +415,13 @@ define(['app'], function(app) {
             getPaytmProcessingDetails = function(orderId) {
                 userService.getPaytmProcessingDetails(orderId)
                     .then(function(data){ 
-                        console.log(data);             
                         if(data.flag == 1){
                             $scope.formUrl = data.Paytm_url;
-                            $scope.paytmFormDetails = data.paymentDetails;
-                            
+                            $scope.paytmFormDetails = data.paymentDetails;                            
                             $scope.paytmFormDetails.EMAIL = "binit@gmail.com";
                             $scope.paytmFormDetails.CUST_ID = 13815;
                             $scope.paytmFormDetails.MOBILE_NO = 9540955646;
-
                             $scope.paytmFormDetails.TXN_AMOUNT = $scope.paytmFormDetails.TXN_AMOUNT.replace(",", ".");
-                            console.log($scope.formUrl);
-                            console.log($scope.paytmFormDetails);
                             $timeout(function() {
                                 document.getElementById("frmPaytm").action = $scope.formUrl;
                                 document.getElementById("frmPaytm").submit();
@@ -490,7 +480,6 @@ define(['app'], function(app) {
                             var city = value.city_name.toLowerCase();
                             $scope.cityLocation[city] = false;
                         });
-                        console.log($scope.cityLocation);
                         openCitySelectionModal();
                     });
             };
@@ -529,8 +518,6 @@ define(['app'], function(app) {
                     && utility.getJStorageKey("quoteId")
                     && $scope.cartItemCount) {
                     $location.url("cart" + "/" + utility.getJStorageKey("quoteId"));
-                } else {
-                    console.log("ELSE");
                 }
             };
 
@@ -549,7 +536,6 @@ define(['app'], function(app) {
                 toggleLoader(true);
                 productService.applyCoupon(utility.getJStorageKey("userId"), utility.getJStorageKey("quoteId"), couponCode)
                     .then(function(data){
-                        console.log(data);
                         toggleLoader(false);
                         if(data.flag == 1) {
                             $scope.invalidCoupon = false;
@@ -568,7 +554,6 @@ define(['app'], function(app) {
                 toggleLoader(true);
                 productService.removeCoupon(utility.getJStorageKey("userId"), utility.getJStorageKey("quoteId"), couponCode)
                     .then(function(data){
-                        console.log(data);
                         toggleLoader(false);
                         if(data.flag == 1) {
                             $scope.isCouponCodeApplied = false;
