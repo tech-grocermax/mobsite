@@ -34,65 +34,30 @@ define(['app'], function(app) {
             $scope.noWrapSlides = false;
             $scope.carouselIndex = 0;
 
+            $scope.pageRoute = {
+                "faq": false,
+                "contact": false,
+                "payment": false,
+                "term": false,
+                "about": false
+            };
+
+            $scope.pageName = $routeParams.pageName;
+            if($scope.pageName) {
+                $scope.showSearchBar = false;
+                $scope.columnSize = 1;                
+                $scope.showSearchIcon = true;
+                $scope.showMoreIcon = false;                
+                $scope.pageRoute[$scope.pageName] = true;
+            }
+
+            $scope.toggleSearchSection = function() {
+                $scope.showSearchBar = $scope.showSearchBar ? false : true;
+            };         
+
             toggleLoader = function(flag) {
                 $scope.displayLoader = flag;
-            };  
-
-            /*getBannerList = function() {
-                if (utility.getJStorageKey("bannerList")) {
-                    $scope.bannerList = utility.getJStorageKey("bannerList");
-                } else {                    
-                    categoryService.getBannerList()
-                        .then(function(data){  
-                            if(data.flag == 1) {                      
-                                $scope.bannerList = data.banner;
-                                utility.setJStorageKey("bannerList", $scope.bannerList, 1);
-                            }
-                        });
-                }
-            };*/            
-
-            /*getMasterCategoryList = function() {
-                if (utility.getJStorageKey("categories")) {
-                    $scope.categories = utility.getJStorageKey("categories");
-                    $scope.categories.sort(utility.dynamicSort("position"));
-                    $scope.categoryImageUrl = utility.getJStorageKey("categoryImageUrl");
-                } else {
-                    categoryService.getCategoryList()
-                        .then(function(data){
-                            $scope.categories = data.Category.children[0].children; 
-                            $scope.categories.sort(utility.dynamicSort("position"));
-                            $scope.urlImg = data.urlImg; 
-                            utility.setJStorageKey("categories", $scope.categories, 1);
-                            $scope.categoryImageUrl = data.urlImg;
-                            utility.setJStorageKey("categoryImageUrl", data.urlImg, 1);
-                        });
-                }
-            };*/
-
-            /*getOfferCategoryList = function() {
-                if (utility.getJStorageKey("offerCategories")) {
-                    $scope.offerCategories = utility.getJStorageKey("offerCategories");
-                } else {
-                    categoryService.getCategoryOfferList()
-                        .then(function(data){
-                            $scope.offerCategories = data.category;
-                            utility.setJStorageKey("offerCategories", $scope.offerCategories, 1);
-                        });
-                }
-            };*/
-
-            /*getDealList = function() {
-                if (utility.getJStorageKey("deals")) {
-                    $scope.deals = utility.getJStorageKey("deals");
-                } else {
-                    categoryService.getDealList()
-                        .then(function(data){
-                            $scope.deals = data.deal_type; 
-                            utility.setJStorageKey("deals", $scope.deals, 1);
-                        });
-                }
-            };*/            
+            };                        
 
             bannerCallback = function(data) {
                 if(data.flag == 1) {                      
@@ -306,7 +271,6 @@ define(['app'], function(app) {
             }; 
 
             if($scope.quoteId){
-                //getCartItemDetails(); 
                 getBasketItemCounter();
             }
 
@@ -496,18 +460,20 @@ define(['app'], function(app) {
                     $scope.cityLocation[key] = false;
                 });
                 $scope.cityLocation[city] = true;
+                $scope.selectedCity = city;
                 utility.setJStorageKey("selectedCity", city, 1);
-                utility.setJStorageKey("selectedCityId", location.id, 1);
-                utility.setJStorageKey("storeId", location.storeid, 1);
+                utility.setJStorageKey("selectedCityId", location.id, 1);                
                 utility.setJStorageKey("stateName", location.default_name, 1);
                 utility.setJStorageKey("regionId", location.region_id, 1);
                 // added for clearing cart - Pradeep
-//                utility.setJStorageKey("cartCounter" + $scope.quoteId, 0, 1);
-//                utility.deleteJStorageKey("quoteId");
-//                $scope.quoteId = null;
-
-                $scope.selectedCity = city;
-                hideCitySelectionModal();
+                if(location.storeid != utility.getJStorageKey("storeId")) {
+                    utility.setJStorageKey("cartCounter" + $scope.quoteId, 0, 1);
+                    utility.deleteJStorageKey("quoteId");
+                    $scope.quoteId = null;
+                    $scope.cartItemCount = 0;
+                } 
+                utility.setJStorageKey("storeId", location.storeid, 1);
+                hideCitySelectionModal();               
             };
 
             $scope.selectedCity = null;
@@ -581,7 +547,6 @@ define(['app'], function(app) {
             };
 
             $scope.getOfferImage = function(item) {
-                //item.image}}deal_{{item.id}}.png
                 if(item.image.indexOf('Deal_') >= 0) {
                     return item.image.replace("Deal_", "deal_");
                 } else {

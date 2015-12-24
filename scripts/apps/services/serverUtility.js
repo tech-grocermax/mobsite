@@ -1,10 +1,9 @@
 define(['app'], function (app) {
     app.service('serverUtility', function ($http) {
-	    'use strict';
-		
+	    'use strict';		
 
 		this.getWebService = function(url, params) {
-	        params = angular.isDefined(params) ? params : {};
+			params = angular.isDefined(params) ? params : {};
 	        return $http({
 	            url: url, 
 	            method: "GET",
@@ -12,28 +11,28 @@ define(['app'], function (app) {
 	            cache: false,
 	            headers: {
 		    		'version': 1.0,
-					'storeid': 1,
+					'storeid': $.jStorage.get("storeId"),
 					'device': 'msite'
 				}
 	         }).then(function(response){return response.data}, function(error){return error});
-	    };
+	    };	    	
 
-	    /*this.getWebService = function(url, params) {
-	    	params = angular.isDefined(params) ? params : {};
-	    	return $http.get(url, {
-		    	headers: {
-		    		'version': 1.0,
-					'storeid': 1,
-					'device': 'msite'
-				}
-			}).then(function(response){return response.data}, function(error){return error});
-	    };*/	
-
-	    this.postWebService = function(url, input) {
-	    	return $http.post(url, input)
-	    		.then(function(response){return response.data}, function(error){return error});
-	    };	    
-
-	    return this;
+//	    this.postWebService = function(url, input) {
+//	    	return $http.post(url, input)
+//	    		.then(function(response){return response.data}, function(error){return error});
+//	    };
+            this.postWebService = function(url, input) {
+                return $http({
+                    url: url,
+                    method: "POST",
+                    data: input,
+                    headers: {
+                        'version': 1.0,
+                        'storeid': $.jStorage.get("storeId"),
+                        'device': 'msite'
+                    }
+                }).then(function(response){return response.data}, function(error){return error});
+            }
+            return this;
     });
 });

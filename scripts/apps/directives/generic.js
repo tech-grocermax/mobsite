@@ -6,8 +6,22 @@ define(['app'], function(app){
 	            elem.bind('click', function(e) {
 	                e.stopPropagation();
 	            });
-	            $document.bind('click', function(e) {
+	            $document.bind('click touchstart', function(e) {
 	            	scope.$apply(attr.outsideclick);
+	            });
+	        }
+	    };
+	});
+
+	app.directive('outsideclickmenu', function($document){
+	    return {
+	        restrict: 'A',
+	        link: function(scope, elem, attr, ctrl) {
+	            elem.bind('click', function(e) {
+	                e.stopPropagation();
+	            });
+	            $document.bind('click', function(e) {
+	            	scope.$apply(attr.outsideclickmenu);
 	            });
 	        }
 	    };
