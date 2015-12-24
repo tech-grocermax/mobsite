@@ -20,10 +20,10 @@ var env = "prod",
 			"templateURL" : appFolderName + "templates/"
 		},
 		"prod": {			
-			"protocol": "http",
+			"protocol": "https",
 			"domainName": "localhost/grocermax/",
 			"port": "",			
-			"apiUrl": "http://staging.grocermax.com/api/",
+			"apiUrl": "https://grocermax.com/api/",
 			"appUrl": appFolderName + "scripts/apps/",
 			"templateURL" : appFolderName + "templates/"
 		}
