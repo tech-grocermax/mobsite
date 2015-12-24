@@ -243,7 +243,10 @@ input , button, select{outline:none;}
 .editaddress .reg-list-text{color: #7d7d76; /*font-family: helveticaNeue-Regular;*/ font-size: 3.8vw; font-weight: normal;}
 .reg-list label{font-size: 4.3vw; font-family: robotoblack; color: #2d2d2d;margin-right: 46px;font-weight: 400;}
 .reg-para{font-size: 3.5vw; color: #cbcbc8; padding-bottom: 7px; padding-top: 38px;}
-.reg-bot-btn{background:  #0e69e5; font-size:18px; color: #fff; padding:10px 0px; border: medium none; width: 90%; margin:0 5%;     position: relative!important;     box-sizing: border-box;}
+.reg-bot-btn{background:  #0e69e5; font-size:18px; color: #fff; padding:10px 0px; border: medium none; width: 100%;  box-sizing: border-box; transform: translateZ(0);
+    -moz-transform: translatez(0);  -ms-transform: translatez(0);  -o-transform: translatez(0);   -webkit-transform: translateZ(0);  -webkit-font-smoothing: antialiased;}
+.reg-bot-btn.unfixed{position:relative!important; bottom:0px}
+.headerunfixed{position:absolute!important; top:0px}
 .check-img{float:left; padding-right: 20px;}
 .check-text{font-size: 4vw; padding-top:0.5%; color:#2d2d2d;}
 .reg-check-img{margin-right: -10%;}
@@ -435,7 +438,7 @@ input , button, select{outline:none;}
 .dot-border{box-shadow:0px 2px 8px -5px; border-radius:4px; border:1px dashed #f07d67;}
 .succes-back{background-image:url('../images/order-back.png'); background-attachment:fixed; background-position:center center; background-repeat:no-repeat; background-size:cover;padding-bottom: 30px;}
 .cart-image{position: absolute;right: 16px;top: 6%;    width: 32px;}
-.cart-txt{font-size: 3.6vw; position: absolute; right: 23px; top: 3%;}
+.cart-txt{    font-size: 13px;   position: absolute;   right: 17px;   top: 3%;   width: 24px;}
 .add-btn{background: #0e69e5;border: medium none;border-radius: 4px;color: #fff;/*font-size: 5vw;*/font-size:18px;padding: 6px;width: 100%;}
 .add-btn-box{float:right; right: 12px;padding-bottom: 10px; width:28%;}
 .bill-checkbox{margin-top: 9px !important; transform: scale(2);}
@@ -565,8 +568,6 @@ input , button, select{outline:none;}
 	.menu-subitem-h > img{width:17px;}
 	.imgbox-margin-m{margin:3.7px;}
 	.delet-icon{width:7.5%;}
-	.cart-image{width:11%;}
-	.cart-txt {right: 20px;}
 	.bill-checkbox{margin-top: 4px !important;}
 	.pmt-checkbox {margin-top: 7px !important;}
 	.back-img-mr{width:21px;margin-top:-5px;}
@@ -659,7 +660,7 @@ input , button, select{outline:none;}
 	.inner-body{margin-top:52px;}
 	.offer-arrow-img{width:3%;}
 
-	.cart-box-botom {bottom: 55px;}
+	.cart-box-botom {bottom: 45px;}
 	 .font-3 , .prod-list-qnty, .product-qnty {font-size: 14px;     font-weight: bold;    padding-top: 3px;}
 	.prod-list-h{font-size: 12px;     font-weight: bold;    padding-top: 3px;}
 	.cat-list-name {font-size: 14px;}
@@ -890,11 +891,12 @@ ul.plisting li.font-3{padding-top:3px}
 .firstdiv{padding-top:30px}
 /*.firstdiv div:first-child[style]{height:auto!important; display:none!important; position:absolute;}*/
 .loaderimg,.popupcontainerloader .loaderimg{margin:0 auto; text-align:center}
-.loaderimg img{border-radius:100%;-moz-border-radius:100%;-webkit-border-radius:100%}
+.loaderimg img{border-radius:100%;-moz-border-radius:100%;-webkit-border-radius:100%; width:auto!important}
 
 .emailtxt,.addresslist{margin: 0px;  padding:0px 15px;}
 .addresslist li{color:#2d2d2d; font:15px robotolight; list-style:none; border-bottom: 1px solid #e4e4e4; padding:10px 0}
 .emailtxt li{color:#7d7d76; font:bold 14px robotolight; list-style:none;  padding:6px 0 10px 0}
 .emailtxt li img{width:8px}
 .addbox{background:#fff; border:solid 1px #d7d7d7; margin-bottom:10px}
+
 
