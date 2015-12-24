@@ -438,7 +438,7 @@ input , button, select{outline:none;}
 .dot-border{box-shadow:0px 2px 8px -5px; border-radius:4px; border:1px dashed #f07d67;}
 .succes-back{background-image:url('../images/order-back.png'); background-attachment:fixed; background-position:center center; background-repeat:no-repeat; background-size:cover;padding-bottom: 30px;}
 .cart-image{position: absolute;right: 16px;top: 6%;    width: 32px;}
-.cart-txt{    font-size: 13px;   position: absolute;   right: 17px;   top: 3%;   width: 24px;}
+.cart-txt{    font-size: 13px;   position: absolute;   right: 26px;   top: 4.5%;  /* width: 24px;*/}
 .add-btn{background: #0e69e5;border: medium none;border-radius: 4px;color: #fff;/*font-size: 5vw;*/font-size:18px;padding: 6px;width: 100%;}
 .add-btn-box{float:right; right: 12px;padding-bottom: 10px; width:28%;}
 .bill-checkbox{margin-top: 9px !important; transform: scale(2);}
