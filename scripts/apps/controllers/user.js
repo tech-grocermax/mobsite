@@ -655,6 +655,7 @@ define(['app'], function(app) {
                 utility.setJStorageKey("cartCounter" + $scope.quoteId, 0, 1);
                 utility.deleteJStorageKey("quoteId");
                 $scope.quoteId = null;
+                $scope.cartItemCount = 0;
 
                 hideCitySelectionModal();
             };
