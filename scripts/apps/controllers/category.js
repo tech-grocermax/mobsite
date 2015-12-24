@@ -598,6 +598,7 @@ define(['app'], function(app) {
 			
 			$scope.homePageRedirect = function(){
 				$scope.showCategoryMenu = !$scope.showCategoryMenu;
+				$('body').css('overflow', 'auto');
 			}
 
         }
