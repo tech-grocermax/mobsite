@@ -33,19 +33,21 @@ define(['app'], function(app) {
             $scope.myInterval = 5000;
             $scope.noWrapSlides = false;
             $scope.carouselIndex = 0;
+
+            $scope.pageRoute = {
+                "faq": false,
+                "contact": false,
+                "payment": false,
+                "term": false,
+                "about": false
+            };
+
             $scope.pageName = $routeParams.pageName;
             if($scope.pageName) {
                 $scope.showSearchBar = false;
                 $scope.columnSize = 1;                
                 $scope.showSearchIcon = true;
-                $scope.showMoreIcon = false;
-                $scope.pageRoute = {
-                    "faq": false,
-                    "contact": false,
-                    "payment": false,
-                    "term": false,
-                    "about": false
-                };
+                $scope.showMoreIcon = false;                
                 $scope.pageRoute[$scope.pageName] = true;
             }
 
