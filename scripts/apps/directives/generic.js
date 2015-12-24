@@ -7,7 +7,7 @@ define(['app'], function(app){
 	                e.stopPropagation();
 	            });
 	            $document.bind('click', function(e) {
-	            	scope.$apply(attr.outsideclick);                
+	            	scope.$apply(attr.outsideclick);
 	            });
 	        }
 	    };

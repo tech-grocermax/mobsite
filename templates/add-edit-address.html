@@ -181,3 +181,20 @@
 		</div>
 	</form>
 </section>
+
+<script>
+$(document).ready(function(){
+
+	$('select').click(function(){
+   $('.reg-bot-btn').addClass('unfixed');
+   $('.header-middle').addClass('headerunfixed');
+});
+
+$('select').blur(function() {
+    $('.reg-bot-btn').removeClass('unfixed');
+	$('.header-middle').removeClass('headerunfixed');
+});	
+				
+						   
+						   })
+</script>
