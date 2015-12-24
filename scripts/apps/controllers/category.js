@@ -501,6 +501,11 @@ define(['app'], function(app) {
                 utility.setJStorageKey("storeId", location.storeid, 1);
                 utility.setJStorageKey("stateName", location.default_name, 1);
                 utility.setJStorageKey("regionId", location.region_id, 1);
+                // added for clearing cart - Pradeep
+                utility.setJStorageKey("cartCounter" + $scope.quoteId, 0, 1);
+                utility.deleteJStorageKey("quoteId");
+                $scope.quoteId = null;
+
                 $scope.selectedCity = city;
                 hideCitySelectionModal();
             };

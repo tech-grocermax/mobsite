@@ -449,6 +449,7 @@ define(['app'], function(app) {
                                     utility.deleteJStorageKey("checkoutDetails");
                                     utility.deleteJStorageKey("cartItems");
                                     utility.deleteJStorageKey("quoteId");
+                                    $scope.quoteId = null;        // Added by Pradeep
                                     $location.url("payment/success/" + data.OrderID);
                                 }                            
                             } else {
