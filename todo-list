@@ -1,3 +1,56 @@
+1. On change location --> cart remains unchanged and user can place order. Place order from Noida store, its give order id of Gurgaon (145038803)
+    Status: API Issue (Now storeid is dynamic along with quotes & cart empty on change of store from drawer & profile section)
+
+2. price showing 1 rs for above 1000 rs product.
+    Status: DONE
+
+3. Add any product to cart--> now click on Upper right corner's "ooo"  --> click on any option from drop down--> here on header search and cart icons are not clickable and also not showing cart bubble any quantity.(in all devices/browser)  Functional.
+    Status: DONE
+
+4. add to cart guest any product-->Login --> view cart--> added product in cart (iphone 6). Now on another device add to cart guest any product-->Login with same id --> not merge the product in previous cart(Lenovo).(showing added product only)
+    Status: PENDING
+
+5. login --> add items in cart--> go to cart--> increase some items quantity--> update cart --> go back continue to home page--> refresh by url  m.grocermax.com--> not showing  user logged in.(In ios safari)(also from order history page)
+    Status: PENDING
+
+6. Click on user icon --> Click on My Addresses-->Delete all addresses --> refresh page-->User logged out.(safari)        
+    Status: PENDING
+
+7. msite not locked for landscape mode.
+    Status: PENDING
+
+8. After placing an order, in magento admin it shows device as Android.
+    Status: PENDING
+
+9. iPhone Drawer not closing on out side click
+    Status: PENDING
+
+10. Change Store & Place Order: Need to perform appropriate action as mentioned in chat with pradeep
+    Status: DONE
+
+11. storeid need to replace from 1 to dynamic
+    Status: DONE
+
+12. Bill Bluster need to hide
+    Status: DONE
+
+13. Page & Category page need to merge
+    Status: PENDING
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Recompiling functional bugs after midnight fixes::
 
 - You saved on cart is wrong(It should multiply the price of free item with quantity)

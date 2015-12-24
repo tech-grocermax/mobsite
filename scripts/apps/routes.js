@@ -89,8 +89,10 @@ define([], function() {
                 dependencies: [
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',
-                    appURL + 'directives/generic',
-                    appURL + 'controllers/page'
+                    appURL + 'services/category',
+                    appURL + 'services/product',
+                    appURL + 'directives/generic',                    
+                    appURL + 'controllers/category'
                 ]
             },
             '/user/:sectionName': {

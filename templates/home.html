@@ -69,7 +69,8 @@
 			<div class="row margin0">
 				<div class="row margin0" style="overflow: auto;">
 					<ul class="list-unstyled view-inline slide-ul margin0">
-						<li data-ng-show="deals.length" 
+						<li data-ng-show="deals.length"
+							data-ng-hide="deal.dealType == 'Bill Buster'" 
 	    					data-ng-repeat="deal in deals"
 	    					data-ng-click="routerChange('deals', deal.id)">
 	    					<img src="{{deal.img}}" 

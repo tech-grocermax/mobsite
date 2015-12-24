@@ -2,11 +2,11 @@ define(['app'], function(app) {
 	app.controller('pageController',  [
         '$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'utility', 
         function($scope, $rootScope, $routeParams, $location, $timeout, utility) {                        
-        	$scope.showSearchBar = false;
+        	$scope.showSearchBar = false;//
         	$scope.columnSize = 1;
-        	$scope.pageName = $routeParams.pageName;
-        	$scope.showSearchIcon = true;
-        	$scope.showMoreIcon = false;
+        	$scope.pageName = $routeParams.pageName;//
+        	$scope.showSearchIcon = true;//
+        	$scope.showMoreIcon = false;//
         	$scope.pageRoute = {
         		"faq": false,
         		"contact": false,
@@ -14,7 +14,9 @@ define(['app'], function(app) {
         		"term": false,
         		"about": false
         	};
-        	$scope.pageRoute[$scope.pageName] = true;
+        	$scope.pageRoute[$scope.pageName] = true;//
+
+
             $scope.showMoreMenuOptions = false;
             $scope.showUserMenuOptions = false;
             $scope.isUserLoggedIn = angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId") ? true : false;
@@ -34,8 +36,6 @@ define(['app'], function(app) {
             $scope.handleOutSideClick = function() {
                 $scope.showUserMenuOptions = false;
                 $scope.showMoreMenuOptions = false;
-                //$scope.showCategoryMenu = false;
-                //$scope.showSubCategoryMenu = false;
             };
 
             openCitySelectionModal = function() {
@@ -72,12 +72,20 @@ define(['app'], function(app) {
                     $scope.cityLocation[key] = false;
                 });
                 $scope.cityLocation[city] = true;
+                $scope.selectedCity = city;
                 utility.setJStorageKey("selectedCity", city, 1);
-                utility.setJStorageKey("selectedCityId", location.id, 1);
-                utility.setJStorageKey("storeId", location.storeid, 1);
+                utility.setJStorageKey("selectedCityId", location.id, 1);                
                 utility.setJStorageKey("stateName", location.default_name, 1);
                 utility.setJStorageKey("regionId", location.region_id, 1);
-                hideCitySelectionModal();
+                // added for clearing cart - Pradeep
+                if(location.id != utility.getJStorageKey("storeId")) {
+                    utility.setJStorageKey("cartCounter" + $scope.quoteId, 0, 1);
+                    utility.deleteJStorageKey("quoteId");
+                    $scope.quoteId = null;
+                    $scope.cartItemCount = 0;
+                } 
+                utility.setJStorageKey("storeId", location.id, 1);
+                hideCitySelectionModal();               
             };
 
             $scope.getCityImgSrc = function(location) {

@@ -34,7 +34,7 @@ define(['app'], function(app) {
             $scope.isUserLoggedIn = angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId") ? true : false;
             $scope.cartItems = [];
             $scope.cartItemCount = 0;
-            $scope.quoteId = utility.getJStorageKey("quoteId");
+            $scope.quoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
             if(!$scope.quoteId) {
                 $location.path("/");
             }
@@ -500,12 +500,20 @@ define(['app'], function(app) {
                     $scope.cityLocation[key] = false;
                 });
                 $scope.cityLocation[city] = true;
+                $scope.selectedCity = city;
                 utility.setJStorageKey("selectedCity", city, 1);
-                utility.setJStorageKey("selectedCityId", location.id, 1);
-                utility.setJStorageKey("storeId", location.storeid, 1);
+                utility.setJStorageKey("selectedCityId", location.id, 1);                
                 utility.setJStorageKey("stateName", location.default_name, 1);
                 utility.setJStorageKey("regionId", location.region_id, 1);
-                hideCitySelectionModal();
+                // added for clearing cart - Pradeep
+                if(location.id != utility.getJStorageKey("storeId")) {
+                    utility.setJStorageKey("cartCounter" + $scope.quoteId, 0, 1);
+                    utility.deleteJStorageKey("quoteId");
+                    $scope.quoteId = null;
+                    $scope.cartItemCount = 0;
+                } 
+                utility.setJStorageKey("storeId", location.id, 1);
+                hideCitySelectionModal();               
             };
 
             $scope.getCityImgSrc = function(location) {
