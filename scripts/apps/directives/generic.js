@@ -4,10 +4,12 @@ define(['app'], function(app){
 	        restrict: 'A',
 	        link: function(scope, elem, attr, ctrl) {
 	            elem.bind('click', function(e) {
+					alert("hello iphone");
 	                e.stopPropagation();
 	            });
 	            $document.bind('click', function(e) {
-	            	scope.$apply(attr.outsideclick);                
+	            	scope.$apply(attr.outsideclick);
+						alert("hello ahmad");
 	            });
 	        }
 	    };
