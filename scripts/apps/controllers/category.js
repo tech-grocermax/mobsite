@@ -595,6 +595,10 @@ define(['app'], function(app) {
                     getCityList();
                 }                  
             });
+			
+			$scope.homePageRedirect = function(){
+				$scope.showCategoryMenu = !$scope.showCategoryMenu;
+			}
 
         }
     ]);
