@@ -506,13 +506,13 @@ define(['app'], function(app) {
                 utility.setJStorageKey("stateName", location.default_name, 1);
                 utility.setJStorageKey("regionId", location.region_id, 1);
                 // added for clearing cart - Pradeep
-                if(location.id != utility.getJStorageKey("storeId")) {
+                if(location.storeid != utility.getJStorageKey("storeId")) {
                     utility.setJStorageKey("cartCounter" + $scope.quoteId, 0, 1);
                     utility.deleteJStorageKey("quoteId");
                     $scope.quoteId = null;
                     $scope.cartItemCount = 0;
                 } 
-                utility.setJStorageKey("storeId", location.id, 1);
+                utility.setJStorageKey("storeId", location.storeid, 1);
                 hideCitySelectionModal();               
             };
 
