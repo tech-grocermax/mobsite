@@ -6,7 +6,7 @@ define(['app'], function(app){
 	            elem.bind('click', function(e) {
 	                e.stopPropagation();
 	            });
-	            $document.bind('click touchstart', function(e) {
+	            $document.bind('click', function(e) {
 	            	scope.$apply(attr.outsideclick);
 	            });
 	        }
