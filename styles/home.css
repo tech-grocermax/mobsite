@@ -400,6 +400,9 @@ input , button, select{outline:none;}
 .od-h>span{font-size: 4vw; color:#2d2d2d;}
 .od-list{border-bottom: 1px solid #e4e4e4; padding-bottom: 16px; padding-top: 24px;}
 .od-list-h1{font-size: 3.5vw; color:#7d7d76;}
+.trans-list{color:#2d2d2d;font-weight: bold;font-size: 15px;}
+.trans-h{color: #7d7d7d;font-size: 11px;font-weight: bold;padding-bottom: 5px;}
+.trans-rupee{float: right; margin-top: -44px; color:#ee2d09;font-size: 18px;font-weight: bold;}
 .od-list-h2{font-size: 4.4vw; color:#2d2d2d;}
 .od-list-h3{font-size: 4.7vw; color:#2d2d2d;}
 .od-list-h4{font-size: 4.2vw; color:#7d7d76;padding-top: 5px; padding-bottom: 5px;font-weight: 300;}
@@ -902,5 +905,23 @@ ul.plisting li.font-3{padding-top:3px}
 .emailtxt li{color:#7d7d76; font:bold 14px robotolight; list-style:none;  padding:6px 0 10px 0}
 .emailtxt li img{width:8px}
 .addbox{background:#fff; border:solid 1px #d7d7d7; margin-bottom:10px}
+
+.wallet-screen .top{background: #ee2d09;}
+.wallet-screen .bottom{background: #fff;}
+.wallet-screen .head{padding-top: 4%;padding-bottom: 2%;}
+.wallet-screen .login-img{width: 44px;margin: -10px 16px 0 16px;}
+.wallet-screen .head-text{color: #fff;font-size: 22px;font-weight: bold;}
+.wallet-screen .top-inner{margin-bottom: 2%;}
+.wallet-screen .trans-btn{background: #f7831f;border: none;border-radius: 15px; color:#fff;padding: 5px 15px 5px 15px;font-size: 14px;font-weight: bold;letter-spacing: 1px;}
+.wallet-screen .trans-btn img{width: 7px;margin-left: 8px;margin-top: -1px;}
+.wallet-screen .friend-img{margin-top: 3%;max-width: 65%;}
+.wallet-screen .bottom h1{font-size: 22px;font-weight: bold;margin: 2% 0 1% 0;letter-spacing: 1px;}
+.wallet-screen .bottom p{font-weight: bold;font-size: 15px;color: #404040;margin-bottom: 2%;}
+.wallet-screen .bottom p span{font-weight: 100;}
+.wallet-screen .share-btn{background:#ee2d09; border: none; color:#fff;width: 110px;padding: 1% 0% 1% 0%;font-weight: bold;letter-spacing: 1px;font-size:16px;}
+.app-container{background: #ffcc32;bottom: 0;position: fixed;box-shadow: 0px 2px 26px -5px; margin:0;}
+.app-container h1{color:#212121;font-size: 24px;font-weight: 600;margin: 20px 0 20px 0;letter-spacing: 3px;}
+.app-container  .text-center img{max-width: 43%;}
+.app-container  .close-btn{position:absolute; top:5px; right:10px;}
 
 

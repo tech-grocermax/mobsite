@@ -94,6 +94,20 @@
 				</div>
 			</div>
 		</section>
+		<section  ng-show="appDownloadlink">
+			<div class="row app-container margin0">
+				<div class="col-md-12 col-sm-12 col-xs-12 text-center padd0">
+					<h1>DOWNLOAD OUR APP</h1>
+				</div>
+				<div class="col-md-12 col-sm-12 col-xs-12 text-center padd0 margin-bot15">
+					<img src="images/m.google-img.png" class="pad-rt16" data-ng-click="getMobileApplink()">
+					<img src="images/m.mac-img.png" class="pad-lt16" data-ng-click="getMobileApplink()">
+				</div>
+				<div  class="close-btn" ng-click="appDownloadlink = !appDownloadlink">
+					<img src="images/m.cross-img.png" title="">
+				</div>
+			</div>
+		</section>
     </article>
     <div class="popupcontainerloader" style="position:fixed;"
         data-ng-show="displayLoader">        

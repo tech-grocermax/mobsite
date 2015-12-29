@@ -33,6 +33,7 @@ define(['app'], function(app) {
             $scope.myInterval = 5000;
             $scope.noWrapSlides = false;
             $scope.carouselIndex = 0;
+			$scope.appDownloadlink = true;
 
             $scope.pageRoute = {
                 "faq": false,
@@ -565,6 +566,16 @@ define(['app'], function(app) {
 				$scope.showCategoryMenu = !$scope.showCategoryMenu;
 				$('body').css('overflow', 'auto');
 			}
+			
+			$scope.getMobileApplink = function(){
+				if(navigator.userAgent.match(/Android/i)){
+					location.href = 'https://play.google.com/store/apps/details?id=com.rgretail.grocermax';
+				}
+				else if(navigator.userAgent.match(/iPhone|iPad|iPod/i)){
+					location.href = 'https://itunes.apple.com/in/app/grocermax.com-online-grocery/id1049822835?mt=8';
+				}
+			}
+			
 
         }
     ]);
