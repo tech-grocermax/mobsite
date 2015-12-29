@@ -1,3 +1,9 @@
+tech@grocermax.com
+Grocer1234
+
+8010011505
+Paytm@197
+
 1. On change location --> cart remains unchanged and user can place order. Place order from Noida store, its give order id of Gurgaon (145038803)
     Status: API Issue (Now storeid is dynamic along with quotes & cart empty on change of store from drawer & profile section)
 

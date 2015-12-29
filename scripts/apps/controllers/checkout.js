@@ -412,16 +412,18 @@ define(['app'], function(app) {
 
             $scope.paytmFormDetails = null;
             $scope.formUrl = null;
-            getPaytmProcessingDetails = function(orderId) {
-                userService.getPaytmProcessingDetails(orderId)
+            getPaytmProcessingDetails = function(orderId, userId, mobileNo) {
+                userService.getPaytmProcessingDetails(orderId, userId, utility.getJStorageKey("email"), mobileNo)
                     .then(function(data){ 
                         if(data.flag == 1){
+                            console.log(data);
                             $scope.formUrl = data.Paytm_url;
                             $scope.paytmFormDetails = data.paymentDetails;                            
-                            $scope.paytmFormDetails.EMAIL = "binit@gmail.com";
-                            $scope.paytmFormDetails.CUST_ID = 13815;
-                            $scope.paytmFormDetails.MOBILE_NO = 9540955646;
+                            $scope.paytmFormDetails.EMAIL = utility.getJStorageKey("email");
+                            $scope.paytmFormDetails.CUST_ID = userId;
+                            $scope.paytmFormDetails.MOBILE_NO = mobileNo;
                             $scope.paytmFormDetails.TXN_AMOUNT = $scope.paytmFormDetails.TXN_AMOUNT.replace(",", ".");
+                            console.log($scope.paytmFormDetails);
                             $timeout(function() {
                                 document.getElementById("frmPaytm").action = $scope.formUrl;
                                 document.getElementById("frmPaytm").submit();
@@ -444,15 +446,16 @@ define(['app'], function(app) {
                             toggleLoader(false);                 
                             if(data.flag == 1){
                                 if($scope.paymentMethod == "paytm_cc") {
-                                    getPaytmProcessingDetails(data.OrderID);
+                                    getPaytmProcessingDetails(data.OrderID, userId, checkoutDetails[$scope.quoteId]["shippingAddress"].telephone);
                                 } else {
                                     utility.deleteJStorageKey("checkoutDetails");
                                     utility.deleteJStorageKey("cartItems");
                                     utility.deleteJStorageKey("quoteId");
                                     // Added by Pradeep
+                                    utility.setJStorageKey("cartCounter" + $scope.quoteId, 0, 1);
+                                    utility.deleteJStorageKey("quoteId");
                                     $scope.quoteId = null;
                                     $scope.cartItemCount = 0;
-
                                     $location.url("payment/success/" + data.OrderID);
                                 }                            
                             } else {
