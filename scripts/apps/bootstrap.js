@@ -9,12 +9,14 @@ require.config({
 		'bootstrap': 'scripts/libs/bootstrap.min',
 		'angular-endless-scroll': 'scripts/libs/angular-endless-scroll.min',
 		'angular-touch': 'scripts/libs/angular-touch.min',
-		'angular-carousel': 'scripts/libs/angular-carousel',		
+		'angular-carousel': 'scripts/libs/angular-carousel',
+		'angulartics': 'scripts/libs/angulartics.min',
+		'angulartics-google-analytics': 'scripts/libs/angulartics-google-analytics.min',
 		'app': appURL + 'app'
     },
 	shim: {
 		'app': {
-			deps: ['angular', 'angular-route', 'angular-ui', 'bootstrap', 'angular-endless-scroll', 'angular-touch', 'angular-carousel']
+			deps: ['angular', 'angular-route', 'angular-ui', 'bootstrap', 'angular-endless-scroll', 'angular-touch', 'angular-carousel', 'angulartics-google-analytics']
 		},
 		'angular-route': {
 			deps: ['angular']
@@ -29,6 +31,12 @@ require.config({
 			deps: ['angular']
 		},
 		'angular-carousel': {
+			deps: ['angular']
+		},
+		'angulartics-google-analytics': {
+			deps: ['angulartics']
+		},
+		'angulartics': {
 			deps: ['angular']
 		}
 	}

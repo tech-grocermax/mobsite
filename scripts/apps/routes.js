@@ -1,9 +1,24 @@
 define([], function() {
+
+    // List Name & Singular Name are the new parameter added to each route, to keep a track by 
+    // analytics. Please don't remove it and add new when you add a new route (if needed)
+
+    /**
+     * Naming convention for list name and singular name
+     * 1) If there are parameter in a route then there is a chance that 
+     * the route has two outputs, (a) List and (b) Singular(details) page, 
+     * So when a parameter is passed to the route the Singular page is loaded
+     * and thus singualr name is used for analytics else if it has parameter but does have its
+     * value in route the list name is loaded
+     * 
+     * Also when there is no need for parameter in a route only Singular name is considered!
+     */
     return {
         defaultRoutePath: '',
         routes: {            
             '/': {
                 templateUrl: templateURL + 'home.html',
+                singularName: "Home Screen",
                 dependencies: [
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',
@@ -15,6 +30,7 @@ define([], function() {
             },
             '/category/:categoryId': {
                 templateUrl: templateURL + 'category.html',
+                singularName: "Product Category L2",
                 dependencies: [
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',
@@ -26,6 +42,7 @@ define([], function() {
             },
             '/product/:categoryId': {
                 templateUrl: templateURL + 'product-listing.html',
+                singularName: "Product List",
                 dependencies: [
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',
@@ -38,6 +55,7 @@ define([], function() {
             },
             '/product/deal/:dealId': {
                 templateUrl: templateURL + 'product.html',
+                singularName: "Deal Description",
                 dependencies: [
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',
@@ -50,6 +68,7 @@ define([], function() {
             },
             '/product': {
                 templateUrl: templateURL + 'product-search.html',
+                singularName: "Search Results",
                 dependencies: [
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',
@@ -62,6 +81,7 @@ define([], function() {
             },
             '/product/details/:productId': {
                 templateUrl: templateURL + 'product-details.html',
+                singularName: "Product Description",
                 dependencies: [
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',
@@ -74,6 +94,7 @@ define([], function() {
             },
             '/cart/:quoteId': {
                 templateUrl: templateURL + 'cart.html',
+                singularName: "Cart Page",
                 dependencies: [
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',
@@ -97,6 +118,15 @@ define([], function() {
             },
             '/user/:sectionName': {
                 templateUrl: templateURL + 'user.html',
+                listName: {
+                    "profile": "My Profile Header",
+                    "editprofile": "Edit my Information",
+                    "orderhistory": "Order History",
+                    "address": "Profile > List Shipping Addresses",
+                    "addaddress": "Profile > Add Shipping Addresses",
+                    "editaddress": "Profile > Edit Shipping Addresses",
+                    "changepassword": "Change Password"
+                },
                 dependencies: [
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',
@@ -108,6 +138,7 @@ define([], function() {
             },
             '/user/:sectionName/:orderId': {
                 templateUrl: templateURL + 'user.html',
+                singularName: "Order Detail",
                 dependencies: [
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',
@@ -119,6 +150,12 @@ define([], function() {
             },
             '/checkout/:sectionName': {
                 templateUrl: templateURL + 'checkout.html',
+                listName: {
+                    "shipping": "Shipping Address",
+                    "billing": "Billing Address",
+                    "delivery": "Delivery Details",
+                    "payment": "Review Order & Pay",
+                },
                 dependencies: [
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',
@@ -141,6 +178,7 @@ define([], function() {
             },
             '/deals/:dealId': {
                 templateUrl: templateURL + 'deals.html',
+                singularName: "Deal List Page",
                 dependencies: [
                     appURL + 'services/serverUtility',
                     appURL + 'services/utility',

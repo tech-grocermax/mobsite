@@ -1,7 +1,7 @@
 define(['app'], function(app) {
 	app.controller('userController',  [
-        '$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'userService', 'productService', 'utility', 
-        function($scope, $rootScope, $routeParams, $location, $timeout, userService, productService, utility) {
+        '$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'userService', 'productService', 'utility', '$analytics',
+        function($scope, $rootScope, $routeParams, $location, $timeout, userService, productService, utility, $analytics) {
             $scope.sectionName = $routeParams.sectionName;
             $scope.orderId = angular.isDefined($routeParams.orderId) ? $routeParams.orderId : null;
             
@@ -162,6 +162,11 @@ define(['app'], function(app) {
             };
 
             successCallbackUser = function(data, email) {
+
+                if($scope.isReferrer == "checkout") {
+                    //  Analytics if user logins and referrer is checkout
+                    $analytics.eventTrack($scope.selectedCity, {  category: "Login", label: 'Regular' });
+                }
                 toggleLoader(false);
                 $scope.showUserResponse = true;
                 if(data.flag == "1") {
@@ -183,8 +188,10 @@ define(['app'], function(app) {
                     $scope.userResponseMessage = data.Result;
                     updateClassName("success");
                     if($scope.isReferrer == "checkout") {
+
                         $location.url("checkout/shipping"); 
                     } else {
+
                         $location.url("/");
                     }
                 } else {
@@ -713,7 +720,9 @@ define(['app'], function(app) {
                     $timeout(function() {
                         $("#e1").select2();                        
                     }, 2000);
-                } 
+                } else {
+                    $scope.selectedCity = utility.getJStorageKey("selectedCity");
+                }
 
                 $timeout(function() {
                     $('form[autocomplete="off"] input, input[autocomplete="off"]').each(function(){

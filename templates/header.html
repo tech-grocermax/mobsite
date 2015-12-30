@@ -45,7 +45,11 @@
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 "
                 data-ng-hide="hideCartIcon"
                 data-ng-class="{'margin-lt22p': (columnSize == 4 || columnSize == 1)}">
-                <span data-ng-click="navigateToCart()">
+                <span 
+                    analytics-on analytics-event="{{ selectedCity }}"
+                    analytics-category="Open Cart" 
+
+                    data-ng-click="navigateToCart()">
                     <a href="javascript:void(0);">
                         <img src="images/header-icon/cart.png" title="Cart" class="head-icon-width">
 						<!--<img class="cart" alt="" title="Cart" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAApAQMAAAB5mSm2AAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFeAAAAR8AAVTkCygAAAAASUVORK5CYII=">-->
