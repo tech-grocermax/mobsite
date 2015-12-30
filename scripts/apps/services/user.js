@@ -234,8 +234,15 @@ define(['app'], function (app) {
 		    		);
 		    };
 
-		    this.getPaytmProcessingDetails = function(orderId) {
-		    	var input = {OrderID: orderId},
+		    this.getPaytmProcessingDetails = function(orderId, customerId, email, mobile) {
+		    	//returnUrl = "http://localhost/grocermax/#/payment/response"
+		    	// & need to build new router 
+		    	var input = {
+		    			OrderID: orderId,
+		    			customerId: customerId,
+		    			email: email,
+		    			mobile: mobile
+		    		},
 		    		url = getAPIUrl() + "paytmredirect";	    
 
 		    	return serverUtility.postWebService(url, input)
