@@ -1,6 +1,6 @@
-var env = "prod",
+var env = "qa",
 	appName = 'grocermax',
-	appFolderName = (env == "prod") ? "/" : "/grocermax/",
+	appFolderName = (env == "prod" || env == "qa") ? "/" : "/grocermax/",
 	appVersion = '1.0',
 	config = {
 		"local": {			
