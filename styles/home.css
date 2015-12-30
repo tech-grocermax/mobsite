@@ -177,7 +177,7 @@ input , button, select{outline:none;}
 .show-more-menu{position: absolute; z-index: 100; top: 100%;}
 .center-align{text-align: center;}
 /*.myselect{margin-bottom:3%;}*/
-.bot-foot{position:fixed; bottom:0px;z-index:10;}
+.bot-foot{position:fixed; bottom:0px;z-index:10;left:0;}
 .top-head  .header-middle{position: fixed; z-index: 2; left: 0; right: 0; height: 52px;}
 .top-subhead{position: fixed; z-index: 2; left: 0; right: 0; height:40px;top:46px;}
 .wrapper{margin-top: 88px; margin-bottom: 75px;}
