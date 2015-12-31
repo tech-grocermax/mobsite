@@ -12,6 +12,11 @@
 	  					<li ng-repeat="banner in bannerList">
 	    					<div class="layer">
 	    						<img src="{{banner.imageurl}}" title="{{banner.name}}" 
+
+	    							analytics-on analytics-event="{{ selectedCity }}"
+						            analytics-category="Banner Click" 
+						            analytics-label="{{banner.name}}"
+
 									data-ng-click="handleBannerClick(banner)"
 									class="banner-slide"></div>
 	  					</li>	  					

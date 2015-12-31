@@ -167,6 +167,7 @@ define(['app'], function(app) {
                     //  Analytics if user logins and referrer is checkout
                     $analytics.eventTrack($scope.selectedCity, {  category: "Login", label: 'Regular' });
                 }
+                
                 toggleLoader(false);
                 $scope.showUserResponse = true;
                 if(data.flag == "1") {
@@ -361,6 +362,9 @@ define(['app'], function(app) {
             $scope.updateProfile = function(form) {
                 $scope.errorRegistration = true;
                 if (form.$valid) {
+
+                    $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Edit Information' });
+
                     toggleLoader(true);
                     userService.updateProfile($scope.user, utility.getJStorageKey("userId"))
                         .then(function(data){
@@ -437,6 +441,13 @@ define(['app'], function(app) {
             $scope.saveAddress = function(form) {
                 $scope.errorRegistration = true;
                 if (form.$valid) {
+
+                    if($scope.addressId) {
+                        $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Edit Address' });
+                    } else {
+                        $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Create Address' });
+                    }
+
                     toggleLoader(true);
                     userService.saveAddress($scope.address, 
                         utility.getJStorageKey("userId"), $scope.addressId)
@@ -456,6 +467,9 @@ define(['app'], function(app) {
 
             var email =utility.getJStorageKey("email");
             getOrderHistory = function() {
+
+                $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Order History' });
+
                 toggleLoader(true);
                 userService.getOrderHistory(utility.getJStorageKey("email"))
                     .then(function(data){
@@ -584,6 +598,7 @@ define(['app'], function(app) {
                             password:$scope.password["new"],
                             old_password:$scope.password["old"]
                         };
+                        $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Change Password' });
                         userService.changePassword(input)
                             .then(function(data){
                                 toggleLoader(false);
@@ -605,6 +620,8 @@ define(['app'], function(app) {
 
             $scope.logout = function() {
                 var userId = utility.getJStorageKey("userId");
+                $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Logout' });
+                $analytics.pageTrack("Logout");
                 userService.logout(userId)
                     .then(function(data){
                         if(data.flag == "1") {

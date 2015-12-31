@@ -464,10 +464,13 @@ define(['app'], function(app) {
                                     $scope.cartItemCount = 0;
 
                                     $analytics.eventTrack($scope.selectedCity, {  category: "Order Successful" });
+                                    $analytics.pageTrack("Success Screen");
+
                                     $location.url("payment/success/" + data.OrderID);
                                 }                            
                             } else {
                                 $analytics.eventTrack($scope.selectedCity, {  category: "Order Failed" });
+                                $analytics.pageTrack("Failure Screen");
                                 $('#paymentFailed').modal({
                                     backdrop: false,
                                     keyboard: false,

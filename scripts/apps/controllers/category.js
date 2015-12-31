@@ -4,6 +4,7 @@ define(['app'], function(app) {
         function($scope, $rootScope, $location, $q, $timeout, $routeParams, categoryService, productService, utility, $analytics){
 
             var isCategoryOffer = !!($location.path().indexOf("/category/offer") !== -1);
+            var isDrawerOpen = false;
             $scope.categories = null;
             $scope.categoryIndex = -1;
             $scope.subCategoryIndex = -1;
@@ -304,6 +305,12 @@ define(['app'], function(app) {
 
             $scope.routerChange = function(route, id) {
                 route = angular.isDefined(id) ? route + ("/" + id) : route;
+
+                if(isDrawerOpen) {
+                    $analytics.eventTrack($scope.selectedCity, {  category: "Close Drawer"});
+                    isDrawerOpen = false;
+                }
+                
                 $location.url(route);
             };
 
@@ -314,6 +321,10 @@ define(['app'], function(app) {
             $scope.toggleCategoryMenu = function() {
                 $scope.showSubCategoryMenu = false;
                 $scope.showCategoryMenu = $scope.showCategoryMenu ? false : true;
+
+                isDrawerOpen = true;
+                $analytics.eventTrack($scope.selectedCity, {  category: "Open Drawer"});
+
                 $('body').css('overflow', 'hidden');
             };
 
@@ -393,6 +404,10 @@ define(['app'], function(app) {
             $scope.handleMenuCategoryOutsideClick = function() {
                 $scope.showCategoryMenu = false;
                 $('body').css('overflow', 'auto');
+                if(isDrawerOpen) {
+                    $analytics.eventTrack($scope.selectedCity, {  category: "Close Drawer"});
+                    isDrawerOpen = false;
+                }
             };
 
             $scope.handleSubMenuCategoryOutsideClick = function() {
@@ -578,12 +593,19 @@ define(['app'], function(app) {
                 if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
                     || !utility.getJStorageKey("selectedCity")) {
                     getCityList();
-                }                  
+                } else {
+                    $scope.selectedCity = utility.getJStorageKey("selectedCity");
+                }
             });
 			
 			$scope.homePageRedirect = function(){
 				$scope.showCategoryMenu = !$scope.showCategoryMenu;
 				$('body').css('overflow', 'auto');
+
+                if(isDrawerOpen) {
+                    $analytics.eventTrack($scope.selectedCity, {  category: "Close Drawer"});
+                    isDrawerOpen = false;
+                }
 			}
 
         }
