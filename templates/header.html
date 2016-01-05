@@ -45,7 +45,11 @@
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 "
                 data-ng-hide="hideCartIcon"
                 data-ng-class="{'margin-lt22p': (columnSize == 4 || columnSize == 1)}">
-                <span data-ng-click="navigateToCart()">
+                <span 
+                    analytics-on analytics-event="{{ selectedCity }}"
+                    analytics-category="Open Cart" 
+
+                    data-ng-click="navigateToCart()">
                     <a href="javascript:void(0);">
                         <img src="images/header-icon/cart.png" title="Cart" class="head-icon-width">
 						<!--<img class="cart" alt="" title="Cart" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAApAQMAAAB5mSm2AAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFeAAAAR8AAVTkCygAAAAASUVORK5CYII=">-->
@@ -119,6 +123,10 @@
                             margin-t20-m"
                             data-ng-repeat="location in cityList">
 							<a href="javascript:void(0);"
+
+                                analytics-on analytics-event="{{location.city_name}}"
+                                analytics-category="City Change" 
+
 								data-ng-click="setCityLocation(location)" role="button">
 								<img ng-src="images/app_bar_icons/location-icon_{{getCityImgSrc(location)}}" alt="" style="width: 10%;">
                                 <div class="loc-place">{{location.city_name}}</div>
@@ -151,6 +159,11 @@
 		<li class="item-shop" data-ng-click="toggleShopByCategory()">
             SHOP BY CATEGORIES</li>
 		<li class="menu-item" 
+
+            analytics-on analytics-event="{{ selectedCity }}"
+            analytics-category="Drawer - L1" 
+            analytics-label="{{category.name}}"
+
 			data-ng-show="category.is_active && showShopByCategory"
 			data-ng-repeat="category in categories"
 			data-ng-click="toggleSubCategoryMenu(category.category_id)">
@@ -163,6 +176,11 @@
             style="border-top: 1px solid #48392C;">SHOP BY DEALS</li>
         <li class="menu-item" 
             data-ng-show="deals.length && showShopByDeals"
+
+            analytics-on analytics-event="{{ selectedCity }}"
+            analytics-category="Drawer - Deal Category L1" 
+            analytics-label="{{deal.dealType}}"
+            
             data-ng-repeat="deal in deals"
             data-ng-click="routerChange('deals', deal.id)">
             {{deal.dealType}}
@@ -195,6 +213,11 @@
         <!-- data-ng-show="!isSpecialCategory(category.category_id) && category.is_active" -->
 		<li class="menu-item sub-menu" data-ng-repeat="category in subCategories"
 			data-ng-show="category.is_active"
+
+            analytics-on analytics-event="{{ selectedCity }}"
+            analytics-category="Drawer - L2" 
+            analytics-label="{{category.name}}"
+
 			data-ng-click="handleDrawerClick(category)"
 			data-ng-class="{'ss-menu':subSubCategoryIndex == category.category_id}">            
 			{{category.name}}
@@ -208,6 +231,11 @@
 				data-ng-show="subSubCategoryIndex == category.category_id">
 				<li class="sub-item" 
 					data-ng-show="category.children.length"
+
+                    analytics-on analytics-event="{{ selectedCity }}"
+                    analytics-category="Drawer - L3" 
+                    analytics-label="{{subCategory.name}}"
+
 					data-ng-repeat="subCategory in category.children"
 					data-ng-click="routerChange('product', subCategory.category_id)">
 					{{subCategory.name}}

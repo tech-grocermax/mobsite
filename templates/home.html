@@ -12,6 +12,11 @@
 	  					<li ng-repeat="banner in bannerList">
 	    					<div class="layer">
 	    						<img src="{{banner.imageurl}}" title="{{banner.name}}" 
+
+	    							analytics-on analytics-event="{{ selectedCity }}"
+						            analytics-category="Banner Click" 
+						            analytics-label="{{banner.name}}"
+
 									data-ng-click="handleBannerClick(banner)"
 									class="banner-slide"></div>
 	  					</li>	  					
@@ -47,6 +52,9 @@
 	    					data-ng-repeat="category in categories">
 							<img src="{{categoryImageUrl}}{{category.category_id}}.png" title="{{category.name}}" 
 								class="slide-img"
+								analytics-on analytics-event="{{ selectedCity }}"
+								analytics-category="L1" 
+								analytics-label="{{ category.name }}"
 								data-ng-click="routerChange('category', category.category_id)">
 							<div class="slide-text"
 								data-ng-click="routerChange('category/offers', category.category_id)"
@@ -72,6 +80,11 @@
 						<li data-ng-show="deals.length"
 							data-ng-hide="deal.dealType == 'Bill Buster'" 
 	    					data-ng-repeat="deal in deals"
+
+	    					analytics-on analytics-event="{{ selectedCity }}"
+							analytics-category="Deal Category L1" 
+							analytics-label="{{ deal.dealType }}"
+
 	    					data-ng-click="routerChange('deals', deal.id)">
 	    					<img src="{{deal.img}}" 
 								title="{{deal.dealType}}" class="slide-img">

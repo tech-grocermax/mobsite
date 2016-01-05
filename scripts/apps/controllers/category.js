@@ -1,7 +1,10 @@
 define(['app'], function(app) {
 	app.controller('categoryController',  [
-        '$scope', '$rootScope', '$location', '$q', '$timeout', '$routeParams', 'categoryService', 'productService', 'utility', 
-        function($scope, $rootScope, $location, $q, $timeout, $routeParams, categoryService, productService, utility){
+        '$scope', '$rootScope', '$location', '$q', '$timeout', '$routeParams', 'categoryService', 'productService', 'utility', '$analytics',
+        function($scope, $rootScope, $location, $q, $timeout, $routeParams, categoryService, productService, utility, $analytics){
+
+            var isCategoryOffer = !!($location.path().indexOf("/category/offer") !== -1);
+            var isDrawerOpen = false;
             $scope.categories = null;
             $scope.categoryIndex = -1;
             $scope.subCategoryIndex = -1;
@@ -154,6 +157,8 @@ define(['app'], function(app) {
             $rootScope.selectedDealCategoryId = angular.isDefined($rootScope.selectedDealCategoryId) && $rootScope.selectedDealCategoryId ? $rootScope.selectedDealCategoryId : null;
 
             getDealItemList = function(data) {
+
+                var activeDealCategoryLabel = "";
                 $scope.dealCategoryList = [];
 
                 if(data.all.length) {
@@ -175,13 +180,17 @@ define(['app'], function(app) {
                         if($rootScope.selectedDealCategoryId 
                             && $rootScope.selectedDealCategoryId == value.category_id) {
                             $scope.activeDealCategory = value.category_id;
+                            activeDealCategoryLabel =  value.name;
                             $scope.dealItems = $scope.dealCategoryItemList[value.category_id];
                         } else if(key == 0) {
                             $scope.activeDealCategory = value.category_id;
+                            activeDealCategoryLabel =  value.name;
                             $scope.dealItems = $scope.dealCategoryItemList[value.category_id];
                         }
-                    }                                        
+                    }               
                 });
+                var gaCategoryName = isCategoryOffer ? 'Category Deals': 'Deal Category L2';
+                $analytics.eventTrack($scope.selectedCity, {  category: gaCategoryName, label: ( $scope.categoryName + " - " + activeDealCategoryLabel)  });
             };
 
             $rootScope.selectedOfferCategoryId = angular.isDefined($rootScope.selectedOfferCategoryId) && $rootScope.selectedOfferCategoryId ? $rootScope.selectedOfferCategoryId : null;
@@ -191,14 +200,18 @@ define(['app'], function(app) {
                 //$scope.dealCategoryItemList["all"] = data["all"];                
                 //$scope.activeDealCategory = $routeParams.dealCategoryId;
                 //$scope.dealItems = data["all"];
+
+                var activeDealCategoryLabel = "";
                 angular.forEach(data.dealsCategory, function(value, key) {
                     if($rootScope.selectedOfferCategoryId 
                         && $rootScope.selectedOfferCategoryId == key) {
                         $scope.activeDealCategory = key;
                         $scope.dealItems = value.deals;
+                        activeDealCategoryLabel = value.dealType;
                     }  else if(key == 0) {
                         $scope.activeDealCategory = key;
                         $scope.dealItems = value.deals;
+                        activeDealCategoryLabel = value.dealType;
                     }
                     $scope.dealCategoryList.push({
                         id: key, 
@@ -206,6 +219,8 @@ define(['app'], function(app) {
                     });
                     $scope.dealCategoryItemList[key] = value.deals;                                                           
                 });
+                var gaCategoryName = isCategoryOffer ? 'Category Deals': 'Deal Category L2';
+                $analytics.eventTrack($scope.selectedCity, {  category: gaCategoryName, label: ( $scope.categoryName + " - " + activeDealCategoryLabel)  });
                 //$scope.dealItems = $scope.dealCategoryItemList[$routeParams.dealCategoryId];
                 //TODO: we have used all key for time being due to unavailability of real category id, will uncomment it
             };
@@ -275,6 +290,12 @@ define(['app'], function(app) {
             }
 
             $scope.getDealCategoryItemList = function(category) {
+                
+                // Track the event
+
+                var gaCategoryName = isCategoryOffer ? 'Category Deals': 'Deal Category L2';
+                $analytics.eventTrack($scope.selectedCity, {  category: gaCategoryName, label: ( $scope.categoryName + " - " + category.label)  });
+
                 $rootScope.selectedDealCategoryId = category.id;
                 $rootScope.selectedOfferCategoryId = category.id;
 
@@ -284,6 +305,12 @@ define(['app'], function(app) {
 
             $scope.routerChange = function(route, id) {
                 route = angular.isDefined(id) ? route + ("/" + id) : route;
+
+                if(isDrawerOpen) {
+                    $analytics.eventTrack($scope.selectedCity, {  category: "Close Drawer"});
+                    isDrawerOpen = false;
+                }
+                
                 $location.url(route);
             };
 
@@ -294,6 +321,10 @@ define(['app'], function(app) {
             $scope.toggleCategoryMenu = function() {
                 $scope.showSubCategoryMenu = false;
                 $scope.showCategoryMenu = $scope.showCategoryMenu ? false : true;
+
+                isDrawerOpen = true;
+                $analytics.eventTrack($scope.selectedCity, {  category: "Open Drawer"});
+
                 $('body').css('overflow', 'hidden');
             };
 
@@ -373,6 +404,10 @@ define(['app'], function(app) {
             $scope.handleMenuCategoryOutsideClick = function() {
                 $scope.showCategoryMenu = false;
                 $('body').css('overflow', 'auto');
+                if(isDrawerOpen) {
+                    $analytics.eventTrack($scope.selectedCity, {  category: "Close Drawer"});
+                    isDrawerOpen = false;
+                }
             };
 
             $scope.handleSubMenuCategoryOutsideClick = function() {
@@ -558,12 +593,19 @@ define(['app'], function(app) {
                 if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
                     || !utility.getJStorageKey("selectedCity")) {
                     getCityList();
-                }                  
+                } else {
+                    $scope.selectedCity = utility.getJStorageKey("selectedCity");
+                }
             });
 			
 			$scope.homePageRedirect = function(){
 				$scope.showCategoryMenu = !$scope.showCategoryMenu;
 				$('body').css('overflow', 'auto');
+
+                if(isDrawerOpen) {
+                    $analytics.eventTrack($scope.selectedCity, {  category: "Close Drawer"});
+                    isDrawerOpen = false;
+                }
 			}
 
         }

@@ -17,7 +17,13 @@
 			<div class="row margin0 imgbox-margin deals-img">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0"
 					data-ng-show="dealItems.length" 
-					data-ng-repeat="item in dealItems">
+					data-ng-repeat="item in dealItems"
+					
+					analytics-on analytics-event="{{ selectedCity }}"
+					analytics-category="Deal Click" 
+					analytics-label="{{item.title}}"
+					
+					>
 					<div class="pad4 img-box imgbox-margin imgbox-margin-m"
 						data-ng-click="navigateToProduct('product', item.promo_id)">
 						<img src="{{item.deal_image}}" title="{{item.title}}" class="img-responsive">						

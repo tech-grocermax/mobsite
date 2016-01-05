@@ -37,12 +37,22 @@
                 data-ng-show="products.length > 0"
                 data-ng-repeat="product in products">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 list-img-box padd0"
+
+                    analytics-on analytics-event="{{ selectedCity }}"
+                    analytics-category="L4" 
+                    analytics-label="{{product.p_name}}"
+
                     data-ng-click="routerChange('product/details', product.productid)">
                     <img src="{{product.Image}}" 
                         alt="{{product.Name}}" class="img-responsive card-img-center">
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd0" style="padding-top:2px; padding-left:5px;">
                     <ul class="list-unstyled plisting" style="margin-bottom:10px;"
+                    
+                    analytics-on analytics-event="{{ selectedCity }}"
+                    analytics-category="L4" 
+                    analytics-label="{{product.p_name}}"
+
 					data-ng-click="routerChange('product/details', product.productid)">
                         <li class="prod-list-h">
 							{{product.p_brand}}							
