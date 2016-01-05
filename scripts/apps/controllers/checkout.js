@@ -355,7 +355,7 @@ define(['app'], function(app) {
 
             $scope.isDeliveryProceedEnabled = function() {
                 return $scope.selectedDeliveryDate && $scope.selectedDeliveryTime
-                    && $scope.parentIndex;
+                    && $scope.parentIndex >=0;
             };
 
             $scope.isClicked = false;
