@@ -471,7 +471,7 @@ define(['app'], function(app) {
                             $scope.paytmFormDetails.CUST_ID = userId;
                             $scope.paytmFormDetails.MOBILE_NO = mobileNo;
                             $scope.paytmFormDetails.TXN_AMOUNT = $scope.paytmFormDetails.TXN_AMOUNT.replace(",", ".");
-                            $scope.paytmFormDetails.CALLBACK_URL = location.href;
+                            //$scope.paytmFormDetails.CALLBACK_URL = location.href;
                             //console.log($scope.paytmFormDetails);
                             $timeout(function() {
                                 document.getElementById("frmPaytm").action = $scope.formUrl;
