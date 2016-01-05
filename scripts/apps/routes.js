@@ -169,7 +169,7 @@ define([], function() {
                     appURL + 'directives/generic',                    
                     appURL + 'controllers/order'
                 ]
-            },
+            }
         }
     };
 });

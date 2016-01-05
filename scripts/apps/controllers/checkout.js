@@ -51,6 +51,9 @@ define(['app'], function(app) {
             $scope.cityList = null;
             $scope.cityLocation = {};
             $scope.shouldProceed = true;
+            $scope.orderId = angular.isDefined($routeParams.orderId) ? $routeParams.orderId : null;  
+            $scope.orderStatus = angular.isDefined($routeParams.status) ? $routeParams.status : null;
+
 
             toggleLoader = function(flag) {
                 $scope.displayLoader = flag;
@@ -196,6 +199,37 @@ define(['app'], function(app) {
                 $scope.youSaved = savedAmont;
                 $scope.totalCartQty = qty;                
             };
+
+            var flushData = function() {
+                utility.deleteJStorageKey("checkoutDetails");
+                utility.deleteJStorageKey("cartItems");
+                utility.deleteJStorageKey("quoteId");
+                utility.setJStorageKey("cartCounter" + $scope.quoteId, 0, 1);
+                utility.deleteJStorageKey("quoteId");
+                $scope.quoteId = null;
+                $scope.cartItemCount = 0;
+            };
+
+            var handlePaymentResponse = function() {
+                if($scope.orderId) {
+                    if($scope.orderStatus == 'TXN_SUCCESS') {
+                        $('#paymentSuccess').modal({
+                            backdrop: false,
+                            keyboard: false,
+                            show: true
+                        });
+                        flushData();
+                    }
+
+                    if($scope.orderStatus == 'TXN_FAILURE') {
+                        $('#paymentFailed').modal({
+                            backdrop: false,
+                            keyboard: false,
+                            show: true
+                        });
+                    }                    
+                }
+            };            
           
             getCartItemDetails = function() {
                 toggleLoader(true);
@@ -204,10 +238,11 @@ define(['app'], function(app) {
                         toggleLoader(false);            
                         $scope.cartDetails = data.CartDetail; 
                         getYouSaveAmout();
+                        handlePaymentResponse();
                     });
             };  
 
-            if($location.url() == "/checkout/payment"){
+            if($scope.sectionName == "payment"){
                 getCartItemDetails(); 
             }  
 
@@ -400,15 +435,29 @@ define(['app'], function(app) {
             };
 
             $scope.retryPayment = function() {
+                $location.search("orderId", null);
+                $location.search("status", null);
                 hidePaymentFailedModal();
-                $scope.placeOrder();
+                if(!$scope.orderId) {
+                    $scope.placeOrder();
+                }                
             };
 
             $scope.payViaCOD = function() {
+                $location.search("orderId", null);
+                $location.search("status", null);
                 hidePaymentFailedModal();
                 $scope.paymentMethod = "cashondelivery";
                 $scope.placeOrder();
             };
+
+            var getPayTMCallbackUrl = function() {
+                var currentHref = location.href;
+                var domainName = currentHref.replace($location.path(), "");
+                var callBackUrl = domainName + "/payment/response";
+                console.log(callBackUrl);
+                return callBackUrl;
+            };            
 
             $scope.paytmFormDetails = null;
             $scope.formUrl = null;
@@ -416,14 +465,14 @@ define(['app'], function(app) {
                 userService.getPaytmProcessingDetails(orderId, userId, utility.getJStorageKey("email"), mobileNo)
                     .then(function(data){ 
                         if(data.flag == 1){
-                            console.log(data);
                             $scope.formUrl = data.Paytm_url;
                             $scope.paytmFormDetails = data.paymentDetails;                            
                             $scope.paytmFormDetails.EMAIL = utility.getJStorageKey("email");
                             $scope.paytmFormDetails.CUST_ID = userId;
                             $scope.paytmFormDetails.MOBILE_NO = mobileNo;
                             $scope.paytmFormDetails.TXN_AMOUNT = $scope.paytmFormDetails.TXN_AMOUNT.replace(",", ".");
-                            console.log($scope.paytmFormDetails);
+                            $scope.paytmFormDetails.CALLBACK_URL = location.href;
+                            //console.log($scope.paytmFormDetails);
                             $timeout(function() {
                                 document.getElementById("frmPaytm").action = $scope.formUrl;
                                 document.getElementById("frmPaytm").submit();
@@ -447,15 +496,8 @@ define(['app'], function(app) {
                             if(data.flag == 1){
                                 if($scope.paymentMethod == "paytm_cc") {
                                     getPaytmProcessingDetails(data.OrderID, userId, checkoutDetails[$scope.quoteId]["shippingAddress"].telephone);
-                                } else {
-                                    utility.deleteJStorageKey("checkoutDetails");
-                                    utility.deleteJStorageKey("cartItems");
-                                    utility.deleteJStorageKey("quoteId");
-                                    // Added by Pradeep
-                                    utility.setJStorageKey("cartCounter" + $scope.quoteId, 0, 1);
-                                    utility.deleteJStorageKey("quoteId");
-                                    $scope.quoteId = null;
-                                    $scope.cartItemCount = 0;
+                                } else {                                    
+                                    flushData();
                                     $location.url("payment/success/" + data.OrderID);
                                 }                            
                             } else {
@@ -582,7 +624,7 @@ define(['app'], function(app) {
                 if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
                     || !utility.getJStorageKey("selectedCity")) {
                     getCityList();
-                }                  
+                }                 
             });
 
         }
