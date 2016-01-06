@@ -1,7 +1,7 @@
 define(['app'], function(app) {
 	app.controller('userController',  [
-        '$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'userService', 'productService', 'utility', 
-        function($scope, $rootScope, $routeParams, $location, $timeout, userService, productService, utility) {
+        '$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'userService', 'productService', 'utility', '$analytics',
+        function($scope, $rootScope, $routeParams, $location, $timeout, userService, productService, utility, $analytics) {
             $scope.sectionName = $routeParams.sectionName;
             $scope.orderId = angular.isDefined($routeParams.orderId) ? $routeParams.orderId : null;
             
@@ -162,6 +162,12 @@ define(['app'], function(app) {
             };
 
             successCallbackUser = function(data, email) {
+
+                if($scope.isReferrer == "checkout") {
+                    //  Analytics if user logins and referrer is checkout
+                    $analytics.eventTrack($scope.selectedCity, {  category: "Login", label: 'Regular' });
+                }
+                
                 toggleLoader(false);
                 $scope.showUserResponse = true;
                 if(data.flag == "1") {
@@ -183,8 +189,10 @@ define(['app'], function(app) {
                     $scope.userResponseMessage = data.Result;
                     updateClassName("success");
                     if($scope.isReferrer == "checkout") {
+
                         $location.url("checkout/shipping"); 
                     } else {
+
                         $location.url("/");
                     }
                 } else {
@@ -354,6 +362,9 @@ define(['app'], function(app) {
             $scope.updateProfile = function(form) {
                 $scope.errorRegistration = true;
                 if (form.$valid) {
+
+                    $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Edit Information' });
+
                     toggleLoader(true);
                     userService.updateProfile($scope.user, utility.getJStorageKey("userId"))
                         .then(function(data){
@@ -430,6 +441,13 @@ define(['app'], function(app) {
             $scope.saveAddress = function(form) {
                 $scope.errorRegistration = true;
                 if (form.$valid) {
+
+                    if($scope.addressId) {
+                        $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Edit Address' });
+                    } else {
+                        $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Create Address' });
+                    }
+
                     toggleLoader(true);
                     userService.saveAddress($scope.address, 
                         utility.getJStorageKey("userId"), $scope.addressId)
@@ -449,6 +467,9 @@ define(['app'], function(app) {
 
             var email =utility.getJStorageKey("email");
             getOrderHistory = function() {
+
+                $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Order History' });
+
                 toggleLoader(true);
                 userService.getOrderHistory(utility.getJStorageKey("email"))
                     .then(function(data){
@@ -577,6 +598,7 @@ define(['app'], function(app) {
                             password:$scope.password["new"],
                             old_password:$scope.password["old"]
                         };
+                        $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Change Password' });
                         userService.changePassword(input)
                             .then(function(data){
                                 toggleLoader(false);
@@ -598,6 +620,8 @@ define(['app'], function(app) {
 
             $scope.logout = function() {
                 var userId = utility.getJStorageKey("userId");
+                $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Logout' });
+                $analytics.pageTrack("Logout");
                 userService.logout(userId)
                     .then(function(data){
                         if(data.flag == "1") {
@@ -713,7 +737,9 @@ define(['app'], function(app) {
                     $timeout(function() {
                         $("#e1").select2();                        
                     }, 2000);
-                } 
+                } else {
+                    $scope.selectedCity = utility.getJStorageKey("selectedCity");
+                }
 
                 $timeout(function() {
                     $('form[autocomplete="off"] input, input[autocomplete="off"]').each(function(){

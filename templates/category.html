@@ -9,6 +9,9 @@
 					<div class="pad4 img-box cat-box">
 						<img src="{{categoryImageUrl}}{{category.category_id}}.png" 
 							title="{{category.name}}" class="img-responsive"
+							analytics-on analytics-event="{{ selectedCity }}"
+							analytics-category="L2" 
+							analytics-label="{{ category.name }}"
 							data-ng-click="handleOfferCategoryClick(category)">
 						<div class="subc-h1"
 							data-ng-show="!category.children.length">
@@ -20,6 +23,9 @@
 					data-ng-show="category.children.length && moreCategoryIndex == category.category_id">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-b-15">
 						<a href="javascript:void(0)"
+							analytics-on analytics-event="{{ selectedCity }}"
+							analytics-category="L3" 
+							analytics-label="{{ subCategory.name }}"
 							data-ng-click="routerChange('product', subCategory.category_id)"
 							data-ng-repeat="subCategory in category.children">
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 subcat-btn">

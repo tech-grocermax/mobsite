@@ -1,7 +1,7 @@
 define(['app'], function(app) {
 	app.controller('productController',  [
-        '$scope', '$rootScope', '$http', '$routeParams', '$location',  '$timeout', 'productService', 'categoryService', 'utility', 
-        function($scope, $rootScope, $http, $routeParams, $location, $timeout, productService, categoryService, utility) {            
+        '$scope', '$rootScope', '$http', '$routeParams', '$location',  '$timeout', 'productService', 'categoryService', 'utility', '$analytics',
+        function($scope, $rootScope, $http, $routeParams, $location, $timeout, productService, categoryService, utility, $analytics) {            
             $scope.showSearchBar = false;
             $scope.showSearchIcon = false;
             $scope.showMoreIcon = false; 
@@ -66,7 +66,7 @@ define(['app'], function(app) {
                 productService.getProductListByDealId($scope.dealId)
                     .then(function(data){
                         toggleLoader(false);
-                        var strDealTitle = data.Product.dealtitle; 
+                        var strDealTitle = data.Product.dealtitle;
                         var splitStr = strDealTitle.slice(0, 25); 
                         $scope.categoryName = splitStr + " ...";
                         if(angular.isDefined(data.Product.items)) {
@@ -130,6 +130,7 @@ define(['app'], function(app) {
                 $scope.products = products;
             };
 
+            // Without using var, this makes the function global. Please add var if convinient or delete this comment.
             groupAllProductByCategory = function(data) {                
                 var hotProducts = [],
                     allProducts = [];
@@ -321,6 +322,11 @@ define(['app'], function(app) {
             };
 
             $scope.addProductOneByOne = function(product) {
+                
+                // Tracking add to cart
+                console.log("Tracking add to cart");
+                $analytics.eventTrack($scope.selectedCity, {  category: "Add to Cart", label: ( product.productid + " - " + product.Name + " - " + product.quantity) });
+
                 var quoteId = null,
                     productObject = [
                         {
@@ -507,8 +513,15 @@ define(['app'], function(app) {
 
             $scope.checkout = function(flag) {
                 if(flag == 'checkout') {
+
+                    // Proceed to Checkout
+                    $analytics.eventTrack($scope.selectedCity, {  category: "Proceed to Checkout" });
                     checkoutSuccessCallback('checkout')
                 } else {
+
+                    // Analytics to update cart
+                    $analytics.eventTrack($scope.selectedCity, {  category: "Update Cart" });
+
                     var quoteId = utility.getJStorageKey("quoteId"),
                         products = buildProductObject();
 
@@ -660,7 +673,9 @@ define(['app'], function(app) {
                 if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
                     || !utility.getJStorageKey("selectedCity")) {
                     getCityList();                    
-                }                  
+                } else {
+                    $scope.selectedCity = utility.getJStorageKey("selectedCity");
+                }
             });
 
         }

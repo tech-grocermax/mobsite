@@ -1,4 +1,4 @@
-var env = "qa",
+var env = "prod",
 	appName = 'grocermax',
 	appFolderName = (env == "prod" || env == "qa") ? "/" : "/grocermax/",
 	appVersion = '1.0',
@@ -9,7 +9,8 @@ var env = "qa",
 			"port": "",			
 			"apiUrl": "http://staging.grocermax.com/api/",
 			"appUrl": appFolderName + "scripts/apps/",
-			"templateURL" : appFolderName + "templates/"
+			"templateURL" : appFolderName + "templates/",
+			"gaID": 'UA-71814451-1',
 		},
 		"qa": {			
 			"protocol": "http",
@@ -17,7 +18,8 @@ var env = "qa",
 			"port": "",			
 			"apiUrl": "http://staging.grocermax.com/api/",
 			"appUrl": appFolderName + "scripts/apps/",
-			"templateURL" : appFolderName + "templates/"
+			"templateURL" : appFolderName + "templates/",
+			"gaID": 'UA-71814451-1',
 		},
 		"prod": {			
 			"protocol": "https",
@@ -25,7 +27,8 @@ var env = "qa",
 			"port": "",			
 			"apiUrl": "https://grocermax.com/api/",
 			"appUrl": appFolderName + "scripts/apps/",
-			"templateURL" : appFolderName + "templates/"
+			"templateURL" : appFolderName + "templates/",
+			"gaID": 'UA-71814451-1',
 		}
 	};
 
@@ -53,3 +56,6 @@ getAppUrl = function() {
 getTemplateURL = function() {
 	return config[env].templateURL;
 };
+getGoogleAnayticsID = function() {
+	return config[env].gaID;
+}

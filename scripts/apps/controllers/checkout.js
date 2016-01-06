@@ -1,7 +1,7 @@
 define(['app'], function(app) {
     app.controller('checkoutController',  [
-        '$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'userService', 'productService', 'utility', 
-        function($scope, $rootScope, $routeParams, $location, $timeout, userService, productService, utility) {
+        '$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'userService', 'productService', 'utility', '$analytics',
+        function($scope, $rootScope, $routeParams, $location, $timeout, userService, productService, utility, $analytics) {
             $scope.sectionName = $routeParams.sectionName;
 
             if((angular.isUndefined(utility.getJStorageKey("userId")) 
@@ -312,6 +312,7 @@ define(['app'], function(app) {
                 }
                 utility.setJStorageKey("checkoutDetails", checkoutDetails, 1);
 
+                $analytics.eventTrack($scope.selectedCity, {  category: "Shipping address" });
                 if($scope.billingAsShipping) {
                     $location.url("checkout/delivery");
                 } else {
@@ -340,6 +341,7 @@ define(['app'], function(app) {
 
                 checkoutDetails[quoteId].billingAddress = billingAddress;                
                 utility.setJStorageKey("checkoutDetails", checkoutDetails, 1);
+                $analytics.eventTrack($scope.selectedCity, {  category: "Billing address" });
                 $location.url("checkout/delivery");                
             };  
 
@@ -353,7 +355,7 @@ define(['app'], function(app) {
 
             $scope.isDeliveryProceedEnabled = function() {
                 return $scope.selectedDeliveryDate && $scope.selectedDeliveryTime
-                    && $scope.parentIndex;
+                    && $scope.parentIndex >=0;
             };
 
             $scope.isClicked = false;
@@ -372,6 +374,9 @@ define(['app'], function(app) {
                 checkoutDetails[quoteId]["deliveryTime"] = $scope.selectedDeliveryTime;
 
                 utility.setJStorageKey("checkoutDetails", checkoutDetails, 1);
+
+                $analytics.eventTrack($scope.selectedCity, {  category: "Delivery details" });
+
                 $location.url("checkout/payment");
             };
 
@@ -482,7 +487,8 @@ define(['app'], function(app) {
             };
 
             $scope.isOrderPlaced = false;
-            $scope.placeOrder = function() {                
+            $scope.placeOrder = function() {
+                $analytics.eventTrack($scope.selectedCity, {  category: "Review and Place order" });
                 $scope.isOrderPlaced = true;
                 if($scope.paymentMethod == "paytm_cc" 
                     || $scope.paymentMethod == "cashondelivery") {
@@ -501,6 +507,8 @@ define(['app'], function(app) {
                                     $location.url("payment/success/" + data.OrderID);
                                 }                            
                             } else {
+                                $analytics.eventTrack($scope.selectedCity, {  category: "Order Failed" });
+                                $analytics.pageTrack("Failure Screen");
                                 $('#paymentFailed').modal({
                                     backdrop: false,
                                     keyboard: false,
