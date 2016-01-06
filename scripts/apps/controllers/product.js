@@ -324,7 +324,6 @@ define(['app'], function(app) {
             $scope.addProductOneByOne = function(product) {
                 
                 // Tracking add to cart
-                console.log("Tracking add to cart");
                 $analytics.eventTrack($scope.selectedCity, {  category: "Add to Cart", label: ( product.productid + " - " + product.Name + " - " + product.quantity) });
 
                 var quoteId = null,

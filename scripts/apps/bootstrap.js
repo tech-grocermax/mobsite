@@ -2,6 +2,7 @@ var appURL = getAppUrl(),
 	templateURL = getTemplateURL(); //mobsite
 require.config({
     baseUrl: '',
+    waitSeconds: 0,
     paths: {
 		'angular': 'scripts/libs/angular',
 		'angular-route': 'scripts/libs/angular-route',
