@@ -410,7 +410,7 @@ input , button, select{outline:none;}
 .os-box1{text-align: center;padding-top: 80px;}
 .os-box2{text-align: center; padding-top: 30px;}
 .os-box1-h1{font-size: 15vw; color:#d62c20;font-weight: 400;}
-.os-box1-h2{font-size: 5vw; color:#d62c20;font-weight: 300;padding-top: 10px;}
+.os-box1-h2{font-size: 5vw; color:#d62c20;font-weight: 300;/*padding-top: 10px;*/}
 .os-box1-h3{font-size: 4.5vw; color:#2d2d2d;font-weight: 300;padding-top: 40px;}
 .os-box1-h4{font-size: 4.5vw; color:#2d2d2d;font-weight: 300;padding-top: 10px;}
 .os-btn{width: 100%; padding: 10px; font-size: 4vw; color: #fff; background:#d62c20; border: medium none; border-radius: 4px;}
@@ -554,7 +554,7 @@ input , button, select{outline:none;}
 	.reg-check-img-f{width: 30%;}
 	.search-h{padding:14px 0 9px 22px;}
 	.search-list{padding:10px 0 7px 16px;}
-	.os-box1 {padding-top: 40px;}
+	.os-box1 {padding-top: 20px;}
 	.os-box1-h3 {padding-top: 20px;}
 	.padd-t25-m{padding-top: 25px;}
 	.os-box2 {padding-top: 15px;}
@@ -719,7 +719,7 @@ input , button, select{outline:none;}
 /* Change in Bootstrap Class */
 .btn-primary,.btn-primary:focus, .btn-primary:hover ,.btn-primary.active, .btn-primary:active   {background-color: unset; background-image: none; box-shadow: none; border-color:unset;}
 .btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary.focus:active, .btn-primary:active:focus, .btn-primary:active:hover, .open > .dropdown-toggle.btn-primary.focus, .open > .dropdown-toggle.btn-primary:focus, .open > .dropdown-toggle.btn-primary:hover {background-color: unset;background-image: none; box-shadow: none; border-color:unset;}
-.modal-dialog,.modal-content,.modal-body{position:absolute; top:0;left:0;bottom:0; right:0; margin:0;border:none;border-radius:0;}
+.modal-dialog,.modal-content,.modal-body{position:fixed; top:0;left:0;bottom:0; right:0; margin:0;border:none;border-radius:0;padding: 0;}
 
 .ribbon {
  	font-size: 12px !important;
