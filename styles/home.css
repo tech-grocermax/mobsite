@@ -898,5 +898,5 @@ ul.plisting li.font-3{padding-top:3px}
 .emailtxt li{color:#7d7d76; font:bold 14px robotolight; list-style:none;  padding:6px 0 10px 0}
 .emailtxt li img{width:8px}
 .addbox{background:#fff; border:solid 1px #d7d7d7; margin-bottom:10px}
-.payment-modal{border-radius:0; background-color: #f4f4f4; margin-top: 15%;}
+.payment-modal{border-radius:0; background-color: #f4f4f4;position: fixed;top: 0;left: 0;right: 0;bottom: 0;padding-top: 15%;}
 
