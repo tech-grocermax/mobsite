@@ -506,6 +506,7 @@ define(['app'], function(app) {
                                     flushData();
                                     $location.url("payment/success/" + data.OrderID);
                                 }                            
+                                $analytics.pageTrack("Review Order & Pay");
                             } else {
                                 $analytics.eventTrack($scope.selectedCity, {  category: "Order Failed" });
                                 $analytics.pageTrack("Failure Screen");
