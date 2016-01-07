@@ -506,7 +506,7 @@ define(['app'], function(app) {
                                     flushData();
                                     $location.url("payment/success/" + data.OrderID);
                                 }                            
-                                $analytics.pageTrack("Review Order & Pay");
+                                // $analytics.pageTrack("Review Order & Pay");
                                 $analytics.eventTrack($scope.selectedCity, {  category: "Order Success" });
                             } else {
                                 $analytics.eventTrack($scope.selectedCity, {  category: "Order Failed" });

@@ -154,7 +154,7 @@ define([], function() {
                     "shipping": "Shipping Address",
                     "billing": "Billing Address",
                     "delivery": "Delivery Details",
-                    //"payment": "Review Order & Pay",
+                    "payment": "Review Order & Pay",
                 },
                 dependencies: [
                     appURL + 'services/serverUtility',
