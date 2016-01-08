@@ -461,6 +461,7 @@ define(['app'], function(app) {
             };
 
             getCityList = function() {
+                toggleLoader(true);
                 if(angular.isDefined(utility.getJStorageKey("cityList"))
                     && utility.getJStorageKey("cityList")) {
                     $scope.cityList = utility.getJStorageKey("cityList");
@@ -508,7 +509,8 @@ define(['app'], function(app) {
                     $scope.cartItemCount = 0;
                 } 
                 utility.setJStorageKey("storeId", location.storeid, 1);
-                hideCitySelectionModal();               
+                hideCitySelectionModal();
+                toggleLoader(false);
             };
 
             $scope.selectedCity = null;
