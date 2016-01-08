@@ -508,6 +508,7 @@ define(['app'], function(app) {
                                 }                            
                                 // $analytics.pageTrack("Review Order & Pay");
                                 $analytics.eventTrack($scope.selectedCity, {  category: "Order Success" });
+                                $analytics.pageTrack("Success Screen");
                             } else {
                                 $analytics.eventTrack($scope.selectedCity, {  category: "Order Failed" });
                                 $analytics.pageTrack("Failure Screen");
