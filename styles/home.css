@@ -239,7 +239,7 @@ input , button, select{outline:none;}
 .reg-list-select{color: #cbcbc8; font-size:16px; border: none; width:100%;border-bottom: 2px solid #feb321;background-color:unset;     font-family: latoregular;}
 .reg-list-select:hover,.reg-list-select:focus,.reg-list-select:active{border: none;background-color:unset;border-bottom: 2px solid #feb321;}
 .reg-list-select option{border: none;}
-.reg-list-text{color: #7c7d75; font-family: latoregular; font-size: 17px; /*font-weight: bold;*/}
+.reg-list-text{color: #7c7d75; font-family: latoregular; font-size: 16px; /*font-weight: bold;*/}
 .editaddress .reg-list-text{color: #7d7d76; font-family:latoregular; font-size: 17px; font-weight: normal;}
 .reg-list label{font-size: 4.3vw; font-family: robotoblack; color: #2d2d2d;margin-right: 46px;font-weight: 400;}
 .reg-para{font-size: 3.5vw; color: #cbcbc8; padding-bottom: 7px; padding-top: 38px;}
@@ -321,14 +321,14 @@ input , button, select{outline:none;}
 .bill-bar{border:1px solid #c8c8c8; width:50px; float:left; margin:11px 8px 0;     display: none;}
 
 /*========== BILLING ADDRESS ==========*/
-.del-day-box{padding: 28px 0px 18px 16px; font-size:3.4vw;}
-.del-day-box span:first-child{color:#2d2d2d;/*font-family: helvetica Neue;*/}
+.del-day-box{padding: 28px 0px 18px 16px; font-size:15px;}
+.del-day-box span:first-child{color:#2d2d2d;font-family:latoregular;}
 .del-day-box span:last-child{background:#ee2d09; color:#fff; border-radius:16px; padding:0 16px 0 16px;}
 .btn-del{padding:30% 36.6%; border-radius:4px 0 0 4px; border:none; background:#e4e4e4;}
 .btn-del-r{padding:30% 36.6%; border-radius:0 4px 4px 0; border:none; background:#e4e4e4;}
 .del-day-input{font-family:robotoblack; text-align:center; font-size:4.4vw; padding:4% 0px;}
 .del-card-box{box-shadow: 0px 2px 8px -5px;text-align: center;}
-.del-time-card{border: 1px solid #e4e4e4; padding:32px 0; font-size:3.4vw; color:#2d2d2d;}
+.del-time-card{border: 1px solid #e4e4e4; padding:32px 0; font-size:14px; color:#2d2d2d;}
 .del-card-active{background:#e4e4e4;}
 .del-slot{color:#eaeaea;}
 .del-slot-text{color:#910001; left:32%; position:absolute; top:0; padding:2% 0 0; font-size:3vw;}
@@ -364,19 +364,19 @@ input , button, select{outline:none;}
 .login-text{font-size:3.5vw; color:#a79a8e;}
 
 /*========== PAYMENT METHOD ==========*/
-.pmeth-h{font-size:3.4vw; color:#2d2d2d; padding:20px 32px 14px; /*font-family:helvetica Neue;*/}
-.pmeth-list li{font-size:4.3vw; color:#2d2d2d; border-bottom:1px solid #e4e4e4; padding: 22px 16px;/*font-family: helvetica Neue;*/}
-.pmeth-card-h{border-bottom:1px solid #e4e4e4; padding:20px 0;/*font-family: helvetica Neue;*/}
+.pmeth-h{font-size:15px; color:#2d2d2d; padding:25px 32px 5px; font-family:latoregular}
+.pmeth-list li{font-size:15px; color:#2d2d2d; border-bottom:1px solid #e4e4e4; padding:16px;font-family: latoregular;}
+.pmeth-card-h{border-bottom:1px solid #e4e4e4; padding:20px 0;font-family:latoregular; font-size:15px;}
 .pmeth-card-h span:first-child{color:#2d2d2d;}
 .pmeth-card-h span:last-child{color:#7d7d76; float:right;}
 .pmeth-card{padding:12px 0px;}
 .pmeth-card li{color:#7d7d76; padding:5px 0 5px;}
 .pmeth-card li:last-child{color:#2d2d2d; /*font-weight:bold;*/ padding:3px 0 5px;/*font-family: helvetica Neue;*/}
 .pmeth-card-font{color:#ffaa00; font-weight:bold;}
-.card-input{font-size:3.6vw; padding:12px; border-radius:4px; box-shadow:0px 2px 8px -5px; width:70%;}
-.card-input input{width: 100%; padding:16px; border-style:none none solid; border-width:medium medium 1px; border-color:#e4e4e4;/*font-family: helvetica Neue;*/}
+.card-input{font-size:15px; padding:12px; border-radius:4px; box-shadow:0px 2px 8px -5px; width:70%;}
+.card-input input{width: 100%; padding:16px; border-style:none none solid; border-width:medium medium 1px; border-color:#e4e4e4;font-family:latoregular;}
 .pmeth-btn{padding-left:6px; width:30%;}
-.pmeth-btn button{width:100%; font-size:3.2vw; padding:30px 0; border:medium none; background:#ee2d09; color:#fff; border-radius:4px;/*font-family: helvetica Neue;*/}
+.pmeth-btn button{width:100%; font-size:3.5vw; padding:30px 0; border:medium none; background:#ee2d09; color:#fff; border-radius:4px;font-family: latoregular;}
 
 /*========== ONE TIME PASSWORD ==========*/
 .otp-text{font-size: 4.1vw; color:#2d2d2d;}
@@ -452,7 +452,7 @@ input , button, select{outline:none;}
 .myselect select{box-shadow:none;	-webkit-appearance:none; -moz-appearance:none; appearance:none; -ms-appearance:none; -o-appearance:none;}
 .myselect > .reg-list-select{color:#2d2d2d;}
 /*.prod-sec{margin-bottom: 192px;}*/
-.cart-box-botom{position:fixed; bottom:45px; left:0; right:0; padding-bottom: 10px;    background: #efefef;}
+.cart-box-botom{position:fixed; bottom:45px; left:0; right:0; padding-bottom: 10px;    background: #efefef; padding-top: 6px;}
 .cart-margin{margin-bottom:28%; margin-top:55px;}
 .header-fix-top .header-middle{height:80px;}
 .top-height{height:42px;}
@@ -535,7 +535,7 @@ input , button, select{outline:none;}
 	.bill-plus-img{width:7%;margin-top: -1%;}
 	.bill-right-img{width:3.5%;}
 	.b-left-icon {margin: 6.4% 2% 6% 1.6%; width:4%;}
-	.del-day-box {padding: 13px 8px 9px;}
+	.del-day-box {padding:22px 3px 3px;}
 	.del-day-input {padding: 5% 0;}
 	.del-time-card {padding: 16px 0;}
 	.del-slot-text {padding:0;}
@@ -547,7 +547,7 @@ input , button, select{outline:none;}
 	.pmeth-icon{width: 19%;}
 	.pmeth-mob-icon{width: 33%;}
 	/*.pmeth-h {padding: 10px 16px 7px;}*/
-	.pmeth-btn button {padding: 16px 0;}
+	.pmeth-btn button {padding: 15px 0;}
 	.card-input {padding: 6px;}
 	.card-input input {padding: 8px;}
 	.reg-check-img{width: 35%;}
@@ -906,3 +906,5 @@ ul.plisting li.font-3{padding-top:3px}
 .ordergrid .pdetail.txtl{font-size:18px}
 .boldtxt{font-weight:bold; font-size: 16px;}
 .updatebtn{background:#f08008; }
+.paymentfontsize{font-size:15px}
+.paymentfontsize li:last-child{font-weight:bold}

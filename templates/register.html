@@ -32,7 +32,7 @@
 			SIGNUP
 		</div>
 	</div>
-	<form name="frmRegistration" novalidate autocomplete="off">
+	<form name="frmRegistration" novalidate autocomplete="off" style="margin-top:15px">
 		<div class="row margin0 back-white" data-ng-show="registrationStep == 1">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
 				<ul class="list-unstyled pad-lt32 margin0 pad-rt32 pad-lt-rt16-m">
@@ -102,6 +102,22 @@
                             	class="error-message">Please enter your password</div>
                         </div>
 					</li>
+                    	<li class="reg-list">
+						<span class="reg-list-text">Confirm Password</span>
+						<span class="float-rt reg-list-text"
+							data-ng-click="togglePasswordField()"
+							style="cursor:pointer; ">{{password.caption}}</span><br>
+						<input type="password" name="password" placeholder="required" 
+							data-ng-model="user.password"
+							required my-min-length="6" autocomplete="false"
+							class="place-color reg-list-input">
+						<div ng-messages="frmRegistration.password.$error" 
+                        	data-ng-show="frmRegistration.password.$dirty || (errorRegistration && user.password == null)">
+                            <div ng-show="frmRegistration.password.$error.required" 
+                            	class="error-message">Please enter your password</div>
+                        </div>
+					</li>
+                    
 					<li>
 						<p class="reg-para">By clicking this button you agree & accept our User Agreement and Privacy Policy.</p>
 					</li>
@@ -113,7 +129,7 @@
 				style="margin-left: 2%; float: left; width: 96%; margin-bottom:44px;">{{userResponseMessage}}</div>
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" 
 				data-ng-click="createUser(frmRegistration)">
-				<button type="button" class="reg-bot-btn">CREATE ACCOUNT</button>
+				<button type="button" class="reg-bot-btn bot-foot">CREATE ACCOUNT</button>
 			</div>
 		</div>
 	</form>
