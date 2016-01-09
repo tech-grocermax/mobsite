@@ -173,7 +173,7 @@ input , button, select{outline:none;}
 .ul-height{height:208px;}
 .O-border-rad{border-radius: 50%;}
 .slide-ul{/*min-height: 304px;*/padding-left: 7px;}
-.slide-ul li{padding-left: 25px; padding-right: 25px; border-right: 1px solid #eeeeee;/*height: 256px;*/}
+.slide-ul li{padding-left: 25px; padding-right: 25px; border-right: 1px solid #eeeeee;/*height: 256px;*/ float:left}
 .show-more-menu{position: absolute; z-index: 100; top: 100%;}
 .center-align{text-align: center;}
 /*.myselect{margin-bottom:3%;}*/
@@ -431,7 +431,7 @@ input , button, select{outline:none;}
 .subc-btn:active,.subc-btn:focus{box-shadow: none; }
 
 .btn-bottom{position: absolute; left: 0px; right: 0px; bottom: 0px;}
-.modal-body{background-image:url('../images/location-back.png'); background-attachment:fixed; background-position:center center; background-repeat:no-repeat; background-size:cover;}
+.modal-body{background:#C63 url('../images/location-back.png') no-repeat center; background-attachment:fixed; background-size:cover;}
 .subcat-btn{padding: 10px 5px 0;}
 .delet-icon{float: right;/*margin-right: 5px;*/margin-top: 1px; width: 16px;}
 .slide-img{width: 368px;}
