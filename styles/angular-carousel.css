@@ -14,9 +14,14 @@ ul[rn-carousel] > li {
 ul[rn-carousel-buffered] > li {display: none; }
 ul[rn-carousel-transition="hexagon"] {overflow: visible; }
 /* indicators */
-div.rn-carousel-indicator span {cursor: pointer;  color: #E4E4E4;}
-div.rn-carousel-indicator span.active {color: #ee2d09; }
-.dot-btm-center{position: absolute;bottom: 5px;left: 0;right: 0;}
+/*div.rn-carousel-indicator span {cursor: pointer;  color: #E4E4E4;}
+div.rn-carousel-indicator span.active {color: #ee2d09; }*/
+
+div.rn-carousel-indicator span { box-shadow:0 2px 5px rgba(0, 0, 0, 0.2);  width: 10px;   display: inline-block;     text-indent: -3333px;  border-radius: 100%;    background: #fff;   height: 10px;   margin-right: 5px;}
+div.rn-carousel-indicator span.active {background: #ee2d09; }
+
+
+.dot-btm-center{position: absolute;bottom:-8px;left: 0;right: 0;}
 /* prev/next controls */
 .rn-carousel-control {
     -webkit-transition: opacity 0.2s ease-out; transition: opacity 0.2s ease-out; font-size: 2rem; position: absolute; top: 40%; opacity: 0.75;    cursor: pointer; 

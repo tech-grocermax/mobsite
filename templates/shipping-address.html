@@ -14,20 +14,20 @@
 	</div>
 </section>
 <section>
-	<div class="row margin0 pad-lt16 pad-rt16" style="font-family: roboto;">
+	<div class="row margin0 pad-lt16 pad-rt16" style="font-family: latoregular;">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 pad-rt16 margin-top15"
 			data-ng-show="addressList.length" 
 			data-ng-repeat="address in addressList"
 			style="border: solid 1px #d7d7d7;">
 			<ul class="list-unstyled margin0 pad-tlb16" 
 				style="border-bottom: 1px solid #e4e4e4;">
-				<li style="font-size:3.4vw; color:#7d7d76;">
+				<li style="font-size:15px; color:#7d7d76;">
 					<input type="checkbox" name="selectAddress"
 						data-ng-change="changeDefaultSelection(address, 'is_default_shipping')" 
 						data-ng-model="address.is_default_shipping"
 						class="img-responsive float-rt bill-checkbox"/>
 				</li>
-				<li style="font-size:4.3vw; color:#2d2d2d;">
+				<li style="font-size:15px; color:#2d2d2d;">
 					<span>{{address.firstname}} {{address.lastname}}</span>
 					<span>{{address.street}}</span><br>
 					<span>{{address.city}} - {{address.postcode}}</span>
@@ -35,7 +35,7 @@
 				<li></li>
 			</ul>
 			<ul class="list-unstyled margin0 pad-tlb16">
-				<li style="font-size:3.4vw; color:#7d7d76; cursor:pointer; "
+				<li style="font-size:15px; color:#7d7d76; cursor:pointer; "
 					data-ng-click="editAddress(address.customer_address_id, 'shipping')">
 					<span>Edit address</span>
 					<img src="images/app_bar_icons/p-right-icon.png" alt="" 
@@ -50,11 +50,11 @@
 			Please select/add shipping address
 		</div>
 	</div>
-	<div class="row margin0 pad-ltr16" style="font-family: roboto;">
+	<div class="row margin0 pad-ltr16" style="font-family: latoregular;">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 pad-rt16" 
 			style="box-shadow: 0px 2px 8px -5px;">
 			<ul class="list-unstyled margin0 pad-tlb16">
-				<li style="font-size:3.4vw; color:#2d2d2d; cursor:pointer; "
+				<li style="font-size:15px; color:#2d2d2d; cursor:pointer; "
 					data-ng-click="navigateTo('user/addaddress?isReferrer=checkout&addressType=shipping')">
 					<span>Add new address</span>
 					<img src="images/app_bar_icons/plus.png" alt="" 
@@ -66,11 +66,11 @@
 	<div class="row margin0" style="margin-top:10%;">
 		<div class="row margin0 pad-ltr16" 
 			data-ng-show="addressList.length"
-			style="font-family: roboto; position: fixed; bottom: 71px; width: 100%;">
+			style="font-family: latoregular; position: fixed; bottom:41px; width: 100%;     padding-bottom: 10px; background: #F4F4F4;">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 pad-rt16" 
 				style="box-shadow: 0px 2px 8px -5px;">
 				<ul class="list-unstyled margin0 pad-tlb16">
-					<li style="font-size:3.4vw; color:#2d2d2d;">
+					<li style="font-size:15px; color:#2d2d2d;">
 						<span>Use Shipping address as Billing address</span>
 						<input type="checkbox" name="billingAsShipping" 
 							ng-model="billingAsShipping"
