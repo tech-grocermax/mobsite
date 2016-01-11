@@ -41,6 +41,19 @@
 
 }
 
+@font-face {
+    font-family: 'robotomedium';
+    src: url('../font/roboto-medium-webfont.eot');
+    src: url('../font/roboto-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/roboto-medium-webfont.woff2') format('woff2'),
+         url('../font/roboto-medium-webfont.woff') format('woff'),
+         url('../font/roboto-medium-webfont.ttf') format('truetype'),
+         url('../font/roboto-medium-webfont.svg#robotomedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 
 
 
@@ -144,6 +157,8 @@ input , button, select{outline:none;}
 .back-white{background:#fff;}
 .border-rad{border-radius: 4px;}
 .icon-margin{margin-top: 0.5%;}
+.margin-lt3p{margin-left: 3%}
+.margin-lt17p{margin-left: 17%}
 .margin-lt22p{margin-left: 22%}
 .more-icon-pos{margin-top: 36%;}
 .margin-tp-5p{margin-top:5%;}
@@ -386,7 +401,6 @@ input , button, select{outline:none;}
 .center-box::before{content:""; display:block; position:absolute; z-index:-1; width:100%; height:100%; background:#000; opacity:0.8;}
 
 /*========== LOCATION SELECTOR ==========*/
-.loc-h{color:#fff; font-size: 4.4vw;}
 .align-center{position:absolute; margin:0px; top:50%; transform:translate(0px, -50%);}
 .loc-place{font-size: 5.6vw; color:#fff;margin-top: 10px;}
 
@@ -431,7 +445,7 @@ input , button, select{outline:none;}
 .subc-btn:active,.subc-btn:focus{box-shadow: none; }
 
 .btn-bottom{position: absolute; left: 0px; right: 0px; bottom: 0px;}
-.modal-body{background:#C63 url('../images/location-back.png') no-repeat center; background-attachment:fixed; background-size:cover;}
+.modal-body{background-color:#ffcc32;padding:0;}
 .subcat-btn{padding: 10px 5px 0;}
 .delet-icon{float: right;/*margin-right: 5px;*/margin-top: 1px; width: 16px;}
 .slide-img{width: 368px;}
@@ -719,7 +733,7 @@ input , button, select{outline:none;}
 /* Change in Bootstrap Class */
 .btn-primary,.btn-primary:focus, .btn-primary:hover ,.btn-primary.active, .btn-primary:active   {background-color: unset; background-image: none; box-shadow: none; border-color:unset;}
 .btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary.focus:active, .btn-primary:active:focus, .btn-primary:active:hover, .open > .dropdown-toggle.btn-primary.focus, .open > .dropdown-toggle.btn-primary:focus, .open > .dropdown-toggle.btn-primary:hover {background-color: unset;background-image: none; box-shadow: none; border-color:unset;}
-.modal-dialog,.modal-content,.modal-body{position:fixed; top:0;left:0;bottom:0; right:0; margin:0;border:none;border-radius:0;padding: 0;}
+.modal-dialog,.modal-content,.modal-body{border:none;}
 
 .ribbon {
  	font-size: 12px !important;
@@ -900,3 +914,14 @@ ul.plisting li.font-3{padding-top:3px}
 .addbox{background:#fff; border:solid 1px #d7d7d7; margin-bottom:10px}
 .payment-modal{border-radius:0; background-color: #f4f4f4;position: fixed;top: 0;left: 0;right: 0;bottom: 0;padding-top: 15%;}
 
+.location-popup {text-align: center;}
+.location-popup h1{margin:0; padding:22px 0 0 0;color:#212121; font-size: 36px; font-family:robotolight;}
+.location-popup ul{list-style: none;margin:24px auto 16px auto; padding:0; width:240px;}
+.location-popup ul li{margin: 16px 0 16px 0; padding: 10px 0 10px 0; background:#f4f4f4;}
+.location-popup ul li:hover, .location-popup ul li:active, .location-popup ul li:focus,.location-popup ul li:visited{background:#e06234;}
+.location-popup ul li a{color:#212121; font-family: robotomedium;font-size:16px; font-weight: normal;}
+.modal {height:300px; margin:auto;}
+.selected{background:red;}
+.locate-img{width:20px; margin-right:5px;}
+.locate-text{font-size: 12px; color:#fff;padding:0 5px 4px 0; border-bottom: solid 1px #fff; text-transform:uppercase;}
+.locate-select,.locate-select a{background-color: #e06234 !important; color: #fff !important;}

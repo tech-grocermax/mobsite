@@ -10,7 +10,12 @@
             </div>
             <!--data-ng-click="showUserMenu()"
                 outsideclick="handleOutSideClick()"-->
-            <div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 margin-lt22p" 
+			<div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 margin-lt17p" style="width:33%;" data-ng-click="editLocation()">
+				<img src="images/location-nav.png" title="User" class="locate-img">
+				<!--<img src="images/location-nav.png" title="User" class="locate-img" data-ng-show="{{selectedCity}}" >-->
+				<span class="locate-text">{{selectedCity}}</span>
+			</div>
+            <div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 margin-lt3p" 
                 data-ng-show="columnSize == 1">
                 <a href="#/user/profile" data-ng-show="isUserLoggedIn">
 					<img src="images/header-icon/user_icon_1.png" title="User" class="head-user-icon">
@@ -42,7 +47,7 @@
                         data-ng-click="toggleSearchSection()" 
                         title="Search"></a>
             </div>
-            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 "
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 float-rt"
                 data-ng-hide="hideCartIcon"
                 data-ng-class="{'margin-lt22p': (columnSize == 4 || columnSize == 1)}">
                 <span 
@@ -59,14 +64,14 @@
                     <!-- <div class="header-O" data-ng-show="cartItemCount == 0">&nbsp;</div> -->
                 </span>
             </div>
-            <div class="col-lg-1 col-md-1 col-sm-1 padd0 float-rt" style="width:11%"
+            <!--<div class="col-lg-1 col-md-1 col-sm-1 padd0 float-rt" style="width:11%"
                 data-ng-show="showMoreIcon"
                 data-ng-click="showMoreMenu()"
                 outsideclickmenu="handleOutSideClick()">
                 <a href="javascript:void(0);">
                     <img class="more-icon more-icon-mrg" width="50px"  style="width:auto!important" title="More" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAANAQMAAAADjaXSAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAAxJREFUeNpjYKAZAAAAWwABrFxQuwAAAABJRU5ErkJggg==">
 				</a>                
-            </div>
+            </div>-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 show-more-menu"
                 style="border:1px solid #FF0000; "
                 data-ng-show="showMoreMenuOptions">
@@ -107,31 +112,26 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal LOCATION-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
     aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="row margin0">
-                    <div class="col-md-12 col-sm-12 col-xs-12 padd0" 
-                        style="text-align: center;">
-                        <div class="col-md-12 col-sm-12 col-xs-12 padd0 margin-tp-13p margin-tp-6p-m">
-                            <span class="loc-h">Where would you like us to deliver?</span>
-                        </div>
-						<div class="col-md-12 col-sm-12 col-xs-12 padd0 margin-t40 
-                            margin-t20-m"
-                            data-ng-repeat="location in cityList">
-							<a href="javascript:void(0);"
+                    <div class="col-md-12 col-sm-12 col-xs-12 padd0 location-popup">
+						<h1>Select your city</h1>
+						<ul class="">
+							<li data-ng-repeat="location in cityList" data-ng-class="{'locate-select': selectedCity.length == location.city_name.length}">
+								<a href="javascript:void(0);"
+									analytics-on analytics-event="{{location.city_name}}"
+									analytics-category="City Change" 
 
-                                analytics-on analytics-event="{{location.city_name}}"
-                                analytics-category="City Change" 
-
-								data-ng-click="setCityLocation(location)" role="button">
-								<img ng-src="images/app_bar_icons/location-icon_{{getCityImgSrc(location)}}" alt="" style="width: 10%;">
-                                <div class="loc-place">{{location.city_name}}</div>
-							</a>
-						</div>						                        
+									data-ng-click="setCityLocation(location)" role="button">
+									{{location.city_name}}
+								</a>
+							</li>
+						</ul>				                        
                     </div>
                 </div>
             </div>
