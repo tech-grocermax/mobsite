@@ -542,11 +542,10 @@ define(['app'], function(app) {
                     queryParams = arrBanner[1].split('='),
                     queryKey = queryParams[0],
                     queryValue = queryParams[1];
-
                 if(url == "dealproductlisting") {
                     $location.url("product/deal/" + queryValue)
                 } else if(url == "search") {
-                    $location.url("product/" + queryValue);
+                    $location.url("product?keyword=" + queryValue);
                 } else if(url == "dealsbydealtype") {
                     $location.url("deals/" + queryValue);
                 } else if(url == "offerbydealtype") {
