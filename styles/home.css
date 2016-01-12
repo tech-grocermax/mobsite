@@ -923,3 +923,5 @@ ul.plisting li.font-3{padding-top:3px}
 .plus-minus-btn {
     z-index:1;
 }
+
+.pos-fixed{position: fixed;}
