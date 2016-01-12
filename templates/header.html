@@ -130,10 +130,12 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 padd0 location-popup">
 						<h1>Select your city</h1>
 						<ul class="">
-							<li data-ng-repeat="location in cityList" data-ng-class="{'locate-select': selectedCity.length == location.city_name.length}" data-ng-click="setCityLocation(location)">
+							<li data-ng-repeat="location in cityList" data-ng-class="{'locate-select': selectedCity.length == location.city_name.length}">
 								<a href="javascript:void(0);"
 									analytics-on analytics-event="{{location.city_name}}"
-									analytics-category="City Change" role="button">
+									analytics-category="City Change" 
+
+									data-ng-click="setCityLocation(location)" role="button">
 									{{location.city_name}}
 								</a>
 							</li>
