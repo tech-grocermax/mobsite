@@ -611,7 +611,7 @@ input , button, select{outline:none;}
 	.plus-minus-btn{width:45%;}
 	.plus-minus-btn.carticons{width:100px!important;margin-top: 10px;}
 	.add2cart{padding:10px 0 0 0;}
-	.cat-plus {font-weight: normal;}
+	.cat-plus,.cat-minus {font-weight: normal; padding-top: 5px;}
 	.wrapper{margin-top: 62px;}
 	.reg-btn-margin {margin-top: 78px;}
 	.cart-img-heigth{height:100px;}
