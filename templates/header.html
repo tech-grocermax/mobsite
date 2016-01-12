@@ -4,8 +4,8 @@
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0" 
                 data-ng-show="columnSize == 1">
                 <a href="#/">
-					<img src="images/header-icon/home.png" title="Home" class="head-icon-width">
-					<!--<img class="home"  title="Home" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqAQMAAAD/DVsYAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFhAEAASYAARfcVj8AAAAASUVORK5CYII=" alt="">-->
+					<!--<img src="images/header-icon/home.png" title="Home" class="head-icon-width">-->
+					<span class="head-icon-width"></span>
 				</a>
             </div>
             <!--data-ng-click="showUserMenu()"
@@ -18,34 +18,40 @@
             <div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 margin-lt3p" 
                 data-ng-show="columnSize == 1" data-ng-class="{'margin-lt22p': !showMoreIcon}">
                 <a href="#/user/profile" data-ng-show="isUserLoggedIn">
-					<img src="images/header-icon/user_icon_1.png" title="User" class="head-user-icon">
-                    <!--<img class="profile" title="User" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqAQMAAAD/DVsYAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFhAEAASYAARfcVj8AAAAASUVORK5CYII=">-->
+					<!--<img src="images/header-icon/user_icon_1.png" title="User" class="head-user-icon">-->
+                    <span class="user-icon-1"></span>
 				</a>
                 <a href="#/user/login" data-ng-show="!isUserLoggedIn">
-                    <img src="images/header-icon/user_icon_2.png" title="User" class="head-user-icon">
-					<!--<img class="profile" title="User" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqAQMAAAD/DVsYAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFhAEAASYAARfcVj8AAAAASUVORK5CYII=">-->
+                    <!--<img src="images/header-icon/user_icon_2.png" title="User" class="head-user-icon">-->
+					<span class="user-icon-2"></span>
 				</a>                
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd0" 
                 data-ng-show="columnSize == 4" back>
                 <a href="javascript:void(0);">
-                    <img src="images/app_bar_icons/back-icon.png" title="" 
-                        class="img-responsive" style="display:inline; "> </a>
+                    <!--<img src="images/app_bar_icons/back-icon.png" title="" 
+                        class="img-responsive" style="display:inline; ">-->
+					<span class="back-icon"></span>
+				</a>
 						<span style="color:#FFFFFF; font-weight:bold; ">&nbsp;{{categoryName}}</span>
             </div>
             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 padd0" 
                 data-ng-show="columnSize == 10" back>
                 <a href="javascript:void(0);">
-                    <img src="images/app_bar_icons/back-icon.png" title="" 
-                        class="img-responsive back-img-mr"> </a>
+                    <!--<img src="images/app_bar_icons/back-icon.png" title="" 
+                        class="img-responsive back-img-mr">--> 
+					<span class="back-icon"></span>
+				</a>
                 <span class="head-text">&nbsp;{{categoryName}}</span>
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 margin-lt22p"
                 data-ng-show="showSearchIcon">
                 <a href="javascript:void(0);">
-                    <img class="searchicon" src="images/header-icon/search1.png"
+                    <!--<img class="searchicon" src="images/header-icon/search1.png"
                         data-ng-click="toggleSearchSection()" 
-                        title="Search"></a>
+                        title="Search">-->
+						<span class="search-icon" data-ng-click="toggleSearchSection()"></span>
+				</a>
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 float-rt"
                 data-ng-hide="hideCartIcon"
@@ -56,8 +62,8 @@
 
                     data-ng-click="navigateToCart()">
                     <a href="javascript:void(0);">
-                        <img src="images/header-icon/cart.png" title="Cart" class="head-icon-width">
-						<!--<img class="cart" alt="" title="Cart" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAApAQMAAAB5mSm2AAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFeAAAAR8AAVTkCygAAAAASUVORK5CYII=">-->
+                        <!--<img src="images/header-icon/cart.png" title="Cart" class="head-icon-width">-->
+						<span class="cart-icon"></span>
 					</a>
                     <div class="header-O" data-ng-show="cartItemCount > 0">
                         {{cartItemCount}}</div>
@@ -69,7 +75,7 @@
                 data-ng-click="showMoreMenu()"
                 outsideclickmenu="handleOutSideClick()">
                 <a href="javascript:void(0);">
-                    <img class="more-icon more-icon-mrg" width="50px"  style="width:auto!important" title="More" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAANAQMAAAADjaXSAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAAxJREFUeNpjYKAZAAAAWwABrFxQuwAAAABJRU5ErkJggg==">
+					<span class="more-icon"></span>
 				</a>                
             </div>-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 show-more-menu"
@@ -90,9 +96,10 @@
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 padd0 list-icon" 
                     outsideclick="handleMenuCategoryOutsideClick()"
                     data-ng-click="toggleCategoryMenu()">
-                    <img src="images/app_bar_icons/list.png" 
+                    <!--<img src="images/app_bar_icons/list.png" 
                         title="Click here to see more categories" 
-                        class="img-responsive" style="cursor:pointer; ">
+                        class="img-responsive" style="cursor:pointer;">-->
+						<span class="list-icon-image"></span>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 padd0">
                     <!-- search -->
@@ -104,8 +111,9 @@
                 </div>
                 <!-- search-icon -->
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 search-icon-pos">
-                    <img src="images/app_bar_icons/search_icon.jpg" alt="" 
-                        class="img-responsive float-rt" search-btn style="cursor:pointer; ">
+                    <!--<img src="images/app_bar_icons/search_icon.jpg" alt="" 
+                        class="img-responsive float-rt" search-btn style="cursor:pointer; ">-->
+						<span class="search-icon-img"></span>
                 </div>
             </div>
         </div>
@@ -145,16 +153,20 @@
 	<ul class="list-unstyled">
 		<li class="item-shop" data-ng-click="homePageRedirect()">
             HOME
-            <img src="images/app_bar_icons/drawer_close_icon.png" alt="" 
-                class="img-responsive edit-icon"></li>
+            <!--<img src="images/app_bar_icons/drawer_close_icon.png" alt="" 
+                class="img-responsive edit-icon">-->
+			<span class="close-icon"></span>
+			</li>
 		<li class="item-shop"   
             style="text-transform:uppercase; "         
             data-ng-click="editLocation()">
-			<img src="images/app_bar_icons/locationdrawer.png" alt="" 
-				class="img-responsive loc-icon">
+			<!--<img src="images/app_bar_icons/locationdrawer.png" alt="" 
+				class="img-responsive loc-icon">-->
+			<span class="location-drawer-img"></span>
 			{{selectedCity}}
-			<img src="images/app_bar_icons/draweredit.png" alt="" 
-				class="img-responsive edit-icon">
+			<!--<img src="images/app_bar_icons/draweredit.png" alt="" 
+				class="img-responsive edit-icon">-->
+			<span class="drawer-edit-img"></span>
 		</li>
 		<li class="item-shop" data-ng-click="toggleShopByCategory()">
             SHOP BY CATEGORIES</li>
@@ -168,8 +180,9 @@
 			data-ng-repeat="category in categories"
 			data-ng-click="toggleSubCategoryMenu(category.category_id)">
 			{{category.name}}
-			<img src="images/app_bar_icons/drawer_caret.png" alt="" 
-				class="img-responsive" style="display:inline; float:right;">
+			<!--<img src="images/app_bar_icons/drawer_caret.png" alt="" 
+				class="img-responsive" style="display:inline; float:right;">-->
+			<span class="drawer-caret-img"></span>
 		</li>  
         <li class="item-shop" 
             data-ng-click="toggleShopByDeals()" 
@@ -184,8 +197,9 @@
             data-ng-repeat="deal in deals"
             data-ng-click="routerChange('deals', deal.id)">
             {{deal.dealType}}
-            <img src="images/app_bar_icons/drawer_caret.png" alt="" 
-                class="img-responsive" style="display:inline; float:right;">
+            <!--<img src="images/app_bar_icons/drawer_caret.png" alt="" 
+                class="img-responsive" style="display:inline; float:right;">-->
+			<span class="drawer-caret-img"></span>
         </li>
 		<!-- <li class="item-shop" 
             data-ng-click="navigateToHotOffers()">SHOP BY DEALS</li> -->
@@ -203,8 +217,9 @@
 <div class="left-menu" data-ng-show="showSubCategoryMenu"
 	outsideclick="handleSubMenuCategoryOutsideClick()">
 	<div class="menu-subitem-h" data-ng-click="toggleCategoryMenu()">
-		<img src="images/app_bar_icons/gray-right-ico.png" alt="" 
-			style="display:inline;">
+		<!--<img src="images/app_bar_icons/gray-right-ico.png" alt="" 
+			style="display:inline;">-->
+		<span class="gray-right-icon"></span>
 		<span style="text-transform: uppercase;">{{categoryName}}</span>
 	</div>
 	<ul class="list-unstyled">
@@ -227,12 +242,14 @@
 			data-ng-click="handleDrawerClick(category)"
 			data-ng-class="{'ss-menu':subSubCategoryIndex == category.category_id}">            
 			{{category.name}}
-			<img src="images/app_bar_icons/PLUS-ICON.png" alt="" class="img-responsive"
+			<!--<img src="images/app_bar_icons/PLUS-ICON.png" alt="" class="img-responsive"
 				data-ng-show="subSubCategoryIndex != category.category_id && isMenuToggalable(category)"
-				style="display:inline; float:right;">
-			<img src="images/app_bar_icons/MINUS-ICON.png" alt="" class="img-responsive"
+				style="display:inline; float:right;">-->
+			<span data-ng-show="subSubCategoryIndex != category.category_id && isMenuToggalable(category)" class="plus-icon-img"></span>
+			<!--<img src="images/app_bar_icons/MINUS-ICON.png" alt="" class="img-responsive"
 				data-ng-show="subSubCategoryIndex == category.category_id && isMenuToggalable(category)"
-				style="display:inline; float:right;">
+				style="display:inline; float:right;">-->
+			<span data-ng-show="subSubCategoryIndex == category.category_id && isMenuToggalable(category)" class="minus-icon-img"></span>
 			<ul class="list-unstyled pad-top24" 
 				data-ng-show="subSubCategoryIndex == category.category_id">
 				<li class="sub-item" 

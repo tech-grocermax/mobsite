@@ -20,10 +20,12 @@
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 pad-lr10">
                 <ul class="list-unstyled plisting" style="margin-bottom:5px;">
                     <li class="prod-list-h">{{product.p_brand}}
-					   <img src="images/app_bar_icons/delete-icon.png"
+					   <!--<img src="images/app_bar_icons/delete-icon.png"
                             data-ng-show="product.price > 0"
                             data-ng-click="removeCartItem(product)" 
-                            alt="" class="delet-icon">
+                            alt="" class="delet-icon">-->
+						<span class="delete-icon" data-ng-show="product.price > 0"
+                            data-ng-click="removeCartItem(product)" ></span>
                     </li>
                     <li class="cat-list-name text-ellipsis"
                         data-ng-click="routerChange('product/details', product.product_id)"
@@ -44,7 +46,8 @@
                     data-ng-show="product.price > 0">
                     <li class="cat-minus"                         
                         data-ng-click="decreaseCartProductQuantity(product, 'product_id')">
-						<img src="images/app_bar_icons/minus-img.png" class="img-responsive">	
+						<!--<img src="images/app_bar_icons/minus-img.png" class="img-responsive">-->
+						<span class="cat-minus-img"></span>						
 					</li>
                     <li class="cat-input-box">
                         <input type="text" placeholder="1" class="cat-input-text"
@@ -52,13 +55,16 @@
                     </li>
                     <li class="cat-plus" 
                         data-ng-click="increaseCartProductQuantity(product, 'product_id')">
-						<img src="images/app_bar_icons/plus-img.png" class="img-responsive">
+						<!--<img src="images/app_bar_icons/plus-img.png" class="img-responsive">-->
+						<span class="cat-plus-img"></span>
+					
 					</li>
                 </ul>
                 <ul class="list-unstyled cat-list disable"
                     data-ng-show="product.price <= 0">
                     <li class="cat-minus">
-						<img src="images/app_bar_icons/minus-img.png" class="img-responsive">	
+						<!--<img src="images/app_bar_icons/minus-img.png" class="img-responsive">-->
+						<span class="cat-minus-img"></span>
 					</li>
                     <li class="cat-input-box">
                         <input type="text" placeholder="1" 
@@ -66,7 +72,8 @@
                             value="{{product.qty}}" >
                     </li>
                     <li class="cat-plus">
-						<img src="images/app_bar_icons/plus-img.png" class="img-responsive">
+						<!--<img src="images/app_bar_icons/plus-img.png" class="img-responsive">-->
+						<span class="cat-plus-img"></span>
 					</li>
                 </ul>
             </div>
