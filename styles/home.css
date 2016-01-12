@@ -455,7 +455,12 @@ input , button, select{outline:none;}
 .cart-txt{    font-size: 13px;   position: absolute;   right: 26px;   top: 4.5%;  /* width: 24px;*/}
 .add-btn{background: #0e69e5;border: medium none;border-radius: 4px;color: #fff;/*font-size: 5vw;*/font-size:18px;padding: 6px;width: 100%;}
 .add-btn-box{float:right; right: 12px;padding-bottom: 10px; width:28%;}
-.bill-checkbox{margin-top: 9px !important; transform: scale(2);}
+.bill-checkbox{margin-top: 9px !important; 
+		transform: scale(2);
+		-ms-transform: scale(2); /* IE */
+        -moz-transform: scale(2); /* FF */
+        -webkit-transform: scale(2); /* Safari and Chrome */
+        -o-transform: scale(2);}
 .pmt-checkbox{margin-top: 12px !important; transform: scale(2);}
 .paytm-check{margin-top: -30px !important;transform: scale(2);}
 .back-img-mr{display:inline;    margin-top: -2px;    width: 22px;}
@@ -590,7 +595,7 @@ input , button, select{outline:none;}
 	.cat-img-mrg {margin-top: 114px;}
 	/*.prod-sec{margin-bottom: 153px;}*/
 	/*.left-menu{top: 93.2%;}*/
-	.top-subhead {height:42px;top: 38px;}
+	.top-subhead {height:42px;top: 40px;}
 	
 	.prod-nav-li {padding:  12px;}
 	.reg-btn {padding: 3.8% 0 4% 5%;font-size: 5vw;}
