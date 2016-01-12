@@ -924,4 +924,4 @@ ul.plisting li.font-3{padding-top:3px}
     z-index:1;
 }
 
-.pos-fixed{position: fixed;}
+.pos-inherit{position: inherit;height: 0;}
