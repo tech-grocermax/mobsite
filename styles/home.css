@@ -461,8 +461,16 @@ input , button, select{outline:none;}
         -moz-transform: scale(2); /* FF */
         -webkit-transform: scale(2); /* Safari and Chrome */
         -o-transform: scale(2);}
-.pmt-checkbox{margin-top: 12px !important; transform: scale(2);}
-.paytm-check{margin-top: -30px !important;transform: scale(2);}
+.pmt-checkbox{margin-top: 12px !important; transform: scale(2);
+		-ms-transform: scale(2); /* IE */
+        -moz-transform: scale(2); /* FF */
+        -webkit-transform: scale(2); /* Safari and Chrome */
+        -o-transform: scale(2);}
+.paytm-check{margin-top: -30px !important;transform: scale(2);
+		-ms-transform: scale(2); /* IE */
+        -moz-transform: scale(2); /* FF */
+        -webkit-transform: scale(2); /* Safari and Chrome */
+        -o-transform: scale(2);}
 .back-img-mr{display:inline;    margin-top: -2px;    width: 22px;}
 .ss-menu{padding-bottom:0 !important;/* font-weight: bold;*/}
 .ss-menu ul li{border:none}
