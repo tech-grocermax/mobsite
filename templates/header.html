@@ -10,13 +10,13 @@
             </div>
             <!--data-ng-click="showUserMenu()"
                 outsideclick="handleOutSideClick()"-->
-			<div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 margin-lt17p" style="width:33%;" data-ng-click="editLocation()">
-				<img src="images/location-nav.png" title="User" class="locate-img">
-				<!--<img src="images/location-nav.png" title="User" class="locate-img" data-ng-show="{{selectedCity}}" >-->
+			<div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 margin-lt15p" style="width:35%;" data-ng-click="editLocation()" data-ng-show="columnSize == 1 && showMoreIcon">
+				<img src="images/location-nav.png" title="User" class="locate-img" data-ng-hide="selectedCity">
+				<img src="images/location-nav-fill.png" title="User" class="locate-img" data-ng-show="selectedCity" >
 				<span class="locate-text">{{selectedCity}}</span>
 			</div>
             <div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 margin-lt3p" 
-                data-ng-show="columnSize == 1">
+                data-ng-show="columnSize == 1" data-ng-class="{'margin-lt22p': !showMoreIcon}">
                 <a href="#/user/profile" data-ng-show="isUserLoggedIn">
 					<img src="images/header-icon/user_icon_1.png" title="User" class="head-user-icon">
                     <!--<img class="profile" title="User" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqAQMAAAD/DVsYAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAA1JREFUeNpjYBgFhAEAASYAARfcVj8AAAAASUVORK5CYII=">-->
@@ -191,6 +191,12 @@
             data-ng-click="navigateToHotOffers()">SHOP BY DEALS</li> -->
 		<li class="item-shop">
             <a href="mailto:hello@grocermax.com">GET IN TOUCH WITH US</a></li>
+			<li class="item-shop"><a href="#/page/faq">FAQ&apos;s</a></li>
+			<li class="item-shop"><a href="#/page/contact">Contact Us</a></li>
+			<!-- <li><a href="#/page/payment">Payment Methods</a></li> -->
+			<li class="item-shop"><a href="#/page/term">Terms of Service</a></li>
+			<li class="item-shop"><a href="#/page/about">About us</a></li>
+		
 	</ul>
 </div>
 <div class="menutouch" data-ng-show="showSubCategoryMenu"></div>
