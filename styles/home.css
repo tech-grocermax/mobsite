@@ -899,7 +899,7 @@ ul.plisting li.font-3{padding-top:3px}
 .location-popup ul li{margin: 16px 0 0px 0;  background:#f4f4f4;}
 .location-popup ul li:hover, .location-popup ul li:active, .location-popup ul li:focus,.location-popup ul li:visited{background:#e06234;}
 .location-popup ul li a{color:#212121; font-family: robotomedium;font-size:16px; font-weight: normal; display:block;padding: 10px 0 10px 0;}
-.modal {height:300px; margin:auto; position: absolute;}
+#myModal {height:300px; margin:auto; position: absolute;}
 .selected{background:red;}
 .locate-img{width:20px; margin-right:5px;}
 .locate-text{font-size: 12px; color:#fff;padding:0 5px 4px 0; border-bottom: solid 1px #fff; text-transform:uppercase;}
