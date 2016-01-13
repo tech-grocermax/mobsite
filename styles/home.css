@@ -234,7 +234,7 @@ input , button, select{outline:none;}
 .nav-list{/*font-family: helveticaNeue-Regular;*/ font-size:14px; margin:0; /* height:98px;display:flex;*/}
 /*.nav-list li:nth-child(1){padding: 30px 22px 28px 25px;}*/
 .nav-active{border-bottom: 4px solid;color:#fff !important;}
-.nav-li{color: rgba(255,255,255,0.6); padding:7px 15px;/*text-transform: uppercase;*/white-space: nowrap; font-size: 14px;    font-weight: bold;}
+.nav-li{color: rgba(255,255,255,0.6); padding:7px 15px;/*text-transform: uppercase;*/white-space: nowrap; font-size: 14px;    font-weight: bold; display:inline;}
 
 /*========== Register Form ==========*/
 .place-color::-webkit-input-placeholder{color:#cbcbc8}
@@ -298,7 +298,7 @@ input , button, select{outline:none;}
 .prod-new-price{color:#4d4d4d; padding-left:5px; text-decoration:line-through;}
 .header-middle-prod{background: #ee2d09 none repeat scroll 0 0;padding: 30px 16px 0;}
 .nav-red{overflow:auto; background: #ee2d09 none repeat scroll 0 0;box-shadow: 0 7px 5px rgba(0, 0, 0, 0.2);}
-.prod-nav-li{color: rgba(255,255,255,0.6); padding:7px 15px;/*text-transform: uppercase;*/white-space: nowrap; font-size: 14px;    font-weight: bold;    display: inline;}
+.prod-nav-li{color: rgba(255,255,255,0.6); padding:7px 15px;/*text-transform: uppercase;*/white-space: nowrap; font-size: 14px;    font-weight: bold; display: inline;}
 
 /*========== PRODUCT DESCRIPTION ==========*/
 .header-middle-des{background: #ee2d09 none repeat scroll 0 0;padding: 30px 16px;box-shadow: 0 7px 5px rgba(0, 0, 0, 0.2);}
@@ -482,7 +482,7 @@ input , button, select{outline:none;}
 .cart-box-botom{position:fixed; bottom:45px; left:0; right:0;}
 .cart-margin{margin-bottom:28%; margin-top:55px;}
 .header-fix-top .header-middle{height:80px;}
-.top-height{height:42px;}
+.top-height{height:35px;}
 .deals-head .deals-hide{display: none;}
 .banner-slide{width:100%; height: 200px;}
 .cat-border .header-middle {height: auto;}
@@ -502,7 +502,7 @@ input , button, select{outline:none;}
 	.list-unstyled .item-shop:first-child{    border-bottom: 1px solid #90857B;}
 	.list-unstyled .item-shop:nth-child(2){color:#fff!important}
 
-@media  (max-width: 460px){
+@media  (max-width: 480px){
 	.margin-0-m{margin:0}
 	.img-text-box{bottom: 50px;}
 	.slide-img{width: 210px;}
@@ -603,7 +603,7 @@ input , button, select{outline:none;}
 	.cat-img-mrg {margin-top: 114px;}
 	/*.prod-sec{margin-bottom: 153px;}*/
 	/*.left-menu{top: 93.2%;}*/
-	.top-subhead {top: 46px;height: 36px;}
+	.top-subhead {top: 46px;height: 35px;}
 	
 	.prod-nav-li {padding:  12px;}
 	.reg-btn {padding: 3.8% 0 4% 5%;font-size: 5vw;}
@@ -938,3 +938,10 @@ ul.plisting li.font-3{padding-top:3px}
 }
 
 .pos-inherit{position: inherit;height: 0;}
+#paymentFailed .modal-dialog{
+	position: fixed;
+	left:0;
+	bottom:0;
+	right:0;
+	top:0;
+}
