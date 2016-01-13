@@ -883,7 +883,7 @@ ul.plisting li.font-3{padding-top:3px}
 
 .firstdiv{padding-top:30px}
 /*.firstdiv div:first-child[style]{height:auto!important; display:none!important; position:absolute;}*/
-.loaderimg,.popupcontainerloader .loaderimg{margin:0 auto; text-align:center}
+.popupcontainerloader .loaderimg{position:fixed;top:0;left:0;right:0;bottom:0;margin:auto; width:50px; height:50px;}
 .loaderimg img{border-radius:100%;-moz-border-radius:100%;-webkit-border-radius:100%; width:auto!important}
 
 .emailtxt,.addresslist{margin: 0px;  padding:0px 15px;}
