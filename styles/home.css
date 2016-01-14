@@ -706,8 +706,9 @@ input , button, select{outline:none;}
 
 /* This CSS has been added by Binit */
 .error-message{color:#FF0000; font-size: 11px;}
-.black_shade{position: fixed;top: 0%;left: 0%;width: 100%;height: 100%;background-color: black; z-index:1001;-moz-opacity: 0.4; opacity:.4;filter: alpha(opacity=40);padding:11px 20px;}
-.popupcontainerloader {position:fixed; top:15%;max-width: 790px; width:60%; height: auto; margin:0 auto; left:0; right:0;padding:1px;z-index:1002;overflow:visible;border-radius: 7px 7px 7px 7px; top:40%; *left:21%;}
+.black_shade{position: absolute;top: 0;left: 0; bottom:0;right:0;background-color:rgba(0, 0, 0, 0.4); z-index:1001;/*-moz-opacity: 0.4; opacity:.4;filter: alpha(opacity=40);width: 100%;height: 100%;padding:11px 20px;*/}
+.black_shade img{position: absolute;top: 0;left: 0; bottom:0;right:0;margin:auto;}
+.popupcontainerloader {/*position:fixed; top:15%;max-width: 790px; width:60%; height: auto; margin:0 auto; left:0; right:0;padding:1px;z-index:1002;overflow:visible;border-radius: 7px 7px 7px 7px; top:40%; *left:21%;*/}
 
 /* Change in Bootstrap Class */
 .btn-primary,.btn-primary:focus, .btn-primary:hover ,.btn-primary.active, .btn-primary:active   {background-color: unset; background-image: none; box-shadow: none; border-color:unset;}
@@ -899,10 +900,10 @@ ul.plisting li.font-3{padding-top:3px}
 .location-popup ul li{margin: 16px 0 0px 0;  background:#f4f4f4;}
 .location-popup ul li:hover, .location-popup ul li:active, .location-popup ul li:focus,.location-popup ul li:visited{background:#e06234;}
 .location-popup ul li a{color:#212121; font-family: robotomedium;font-size:16px; font-weight: normal; display:block;padding: 10px 0 10px 0;}
-#myModal {height:300px; margin:auto; position: absolute;}
+#myModal {height:400px; margin:auto; position: absolute;}
 .selected{background:red;}
 .locate-img{width:20px; margin-right:5px;}
-.locate-text{font-size: 12px; color:#fff;padding:0 5px 4px 0; border-bottom: solid 1px #fff; text-transform:uppercase;}
+.locate-text{font-size: 11px; color:#fff;padding:0 5px 4px 0; border-bottom: solid 1px #fff; text-transform:capitalize;}
 .locate-select,.locate-select a{background-color: #e06234 !important; color: #fff !important;}
 
 
