@@ -75,12 +75,16 @@ define(['app'], function(app) {
 
             var refineShippingAddress = function() {
                 var shippingAddress = [],
-                    regionId = utility.getJStorageKey("regionId");
+                    //regionId = utility.getJStorageKey("regionId");
+					selectedCity = utility.getJStorageKey("selectedCity");/*MUSTAKEEM*/
                 
                 angular.forEach($scope.addressList, function(value, key){
-                    if(value.region_id == regionId) {
+                    /*if(value.region_id == regionId) {
                         shippingAddress.push(value);
-                    }
+                    }*/
+					if(value.city == selectedCity){/*MUSTAKEEM*/
+						shippingAddress.push(value);
+					}
                 });
                 $scope.addressList = [];
                 $scope.addressList = shippingAddress;
