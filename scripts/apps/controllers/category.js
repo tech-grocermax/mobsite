@@ -196,10 +196,10 @@ define(['app'], function(app) {
             $rootScope.selectedOfferCategoryId = angular.isDefined($rootScope.selectedOfferCategoryId) && $rootScope.selectedOfferCategoryId ? $rootScope.selectedOfferCategoryId : null;
             getDealItemListByOffer = function(data) {
                 $scope.dealCategoryList = [];
-                //$scope.dealCategoryList.push({id: "all", label: "All"});
-                //$scope.dealCategoryItemList["all"] = data["all"];                
-                //$scope.activeDealCategory = $routeParams.dealCategoryId;
-                //$scope.dealItems = data["all"];
+                $scope.dealCategoryList.push({id: "all", label: "All"});
+                $scope.dealCategoryItemList["all"] = data["all"];                
+                $scope.activeDealCategory = $routeParams.dealCategoryId;
+                $scope.dealItems = data["all"];
 
                 var activeDealCategoryLabel = "";
                 angular.forEach(data.dealsCategory, function(value, key) {
