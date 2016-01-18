@@ -182,7 +182,9 @@ define(['app'], function (app) {
 		    		"telephone":shippingObject.telephone,
 		    		"default_shipping":shippingObject.is_default_shipping,
 		    		"fname":shippingObject.firstname,
-		    		"city":shippingObject.city
+		    		"city":shippingObject.city,
+					"region":shippingObject.region,
+					"region_id":shippingObject.region_id
 		    	};
 
 		    };
@@ -198,7 +200,9 @@ define(['app'], function (app) {
 		    		"telephone":billingObject.telephone,
 		    		"default_shipping":billingObject.is_default_shipping,
 		    		"fname":billingObject.firstname,
-		    		"city":billingObject.city
+		    		"city":billingObject.city,
+					"region":billingObject.region,
+					"region_id":billingObject.region_id
 		    	};
 		    };
 
