@@ -9,8 +9,18 @@ define([appURL + 'routes', appURL + 'services/dependency'], function(config, dep
         '$filterProvider',
         '$provide',
         '$analyticsProvider',
+        '$sceDelegateProvider',
 
-        function($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $analyticsProvider) {
+        function($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $analyticsProvider, $sceDelegateProvider) {
+
+            if(window["definedCDN"] && window["definedCDN"].length) {
+                $sceDelegateProvider.resourceUrlWhitelist([
+                    // Allow same origin resource loads.
+                    'self',
+                    // Allow loading from our assets domain.  Notice the difference between * and **.
+                    (window["definedCDN"] + '/**')
+                ]);
+            }
 
             // Angularitics Section
             // Adding google analytics code, making sure the GA ID can be different 
