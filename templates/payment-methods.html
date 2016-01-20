@@ -131,9 +131,12 @@
                         <input type="hidden" name='CALLBACK_URL' value="{{paytmFormDetails.CALLBACK_URL}}" />
 		</form>
 	</div>
-	<div class="popupcontainerloader" style="position:fixed;"
+	<!--<div class="popupcontainerloader" style="position:fixed;"
         data-ng-show="displayLoader">        
 <div class="loaderimg"><img src="images/ajax-loader.gif" /></div>
     </div>
-    <div data-ng-show="displayLoader" class="black_shade"></div>
+    <div data-ng-show="displayLoader" class="black_shade"></div>-->
+	<div data-ng-show="displayLoader" class="black_shade">
+		<img src="images/ajax-loader.gif" />
+	</div>
 </section>

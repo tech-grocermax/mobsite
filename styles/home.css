@@ -706,7 +706,7 @@ input , button, select{outline:none;}
 
 /* This CSS has been added by Binit */
 .error-message{color:#FF0000; font-size: 11px;}
-.black_shade{position: absolute;top: 0;left: 0; bottom:0;right:0;background-color:rgba(0, 0, 0, 0.4); z-index:1001;/*-moz-opacity: 0.4; opacity:.4;filter: alpha(opacity=40);width: 100%;height: 100%;padding:11px 20px;*/}
+.black_shade{position: fixed;top: 0;left: 0; bottom:0;right:0;background-color:rgba(0, 0, 0, 0.4); z-index:1001;/*-moz-opacity: 0.4; opacity:.4;filter: alpha(opacity=40);width: 100%;height: 100%;padding:11px 20px;*/}
 .black_shade img{position: absolute;top: 0;left: 0; bottom:0;right:0;margin:auto;}
 .popupcontainerloader {/*position:fixed; top:15%;max-width: 790px; width:60%; height: auto; margin:0 auto; left:0; right:0;padding:1px;z-index:1002;overflow:visible;border-radius: 7px 7px 7px 7px; top:40%; *left:21%;*/}
 
