@@ -1,5 +1,5 @@
 define(['app'], function (app) {
-    app.service('serverUtility', function ($http) {
+    app.service('serverUtility', ['$http',function ($http) {
 	    'use strict';		
 
 		this.getWebService = function(url, params) {
@@ -34,5 +34,5 @@ define(['app'], function (app) {
                 }).then(function(response){return response.data}, function(error){return error});
             }
             return this;
-    });
+    }]);
 });
