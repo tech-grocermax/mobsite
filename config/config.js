@@ -1,7 +1,6 @@
 var env = "prod",
 	appName = 'grocermax',
 	appFolderName = (env == "prod" || env == "qa") ? "/" : "/grocermax/",
-	appVersion = '1.0',
 	config = {
 		"local": {			
 			"protocol": "http",
@@ -34,7 +33,7 @@ var env = "prod",
 
 getApplicationUrl = function() {
 	var portString = config[env].port ? ":" + config[env].port : "";
-	return config[env].protocol + "://" + config[env].domainName + portString ;
+	return config[env].protocol + "://" + config[env].domainName + portString + version ;
 };
 
 getAPIUrl = function() {
@@ -50,11 +49,13 @@ getCurrentVersion = function() {
 };
 
 getAppUrl = function() {
-	return config[env].appUrl;
+	var version = typeof window["appVersion"] != "undefined"? ( "/" + window["appVersion"]): "";
+	return version + config[env].appUrl;
 };
 
 getTemplateURL = function() {
-	return config[env].templateURL;
+	var version = typeof window["appVersion"] != "undefined"? ( "/" + window["appVersion"]): "";
+	return version + config[env].templateURL;
 };
 getGoogleAnayticsID = function() {
 	return config[env].gaID;
