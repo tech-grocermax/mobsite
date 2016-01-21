@@ -437,6 +437,7 @@ define(['app'], function(app) {
 
             $scope.decreaseCartProductQuantity = function(item, keyName) {
                 var productId = item.product_id;
+				
                 angular.forEach($scope.cartDetails.items, function(value, key) {
                     if(value[keyName] == productId && value["qty"] > 1) {
                         value["qty"] = parseInt(value["qty"], 10) - 1;
@@ -450,17 +451,22 @@ define(['app'], function(app) {
                 angular.forEach($scope.cartDetails.items, function(value, key) {
                     if(value.price > 0) {
                         itemCount++;
-                    }                    
+                    } 
+						//console.log(value.price ==0);
                 });
                 return (itemCount == 1)  ? true : false;
             };
 
             $scope.removeCartItem = function(product) {
-                $scope.isCartUpdated = true;
+				$scope.isCartUpdated = true;
                 $scope.productIds.push(product.product_id);
+				//$scope.discountItemList = $scope.cartDetails.items.length - $scope.productIds.length;
                 if(isCartContainsSingleItem()) {
                     $scope.checkout('update');
                 }
+				else if($scope.cartDetails.items.length == $scope.productIds.length){
+					$scope.checkout('update');
+				}					
             };
 
             $scope.hideCartItem = function(product) {
