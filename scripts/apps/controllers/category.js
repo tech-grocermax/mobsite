@@ -488,7 +488,7 @@ define(['app'], function(app) {
                 $('#myModal').modal('hide');
             };
 
-            /*$scope.setCityLocation = function(location) {
+            $scope.setCityLocation = function(location) {
                 var city = location.city_name.toLowerCase(),
                     cityId = location.id;
 
@@ -511,10 +511,9 @@ define(['app'], function(app) {
                 utility.setJStorageKey("storeId", location.storeid, 1);
                 hideCitySelectionModal();
                 toggleLoader(false);
-            };*/
+            };
 
-            $scope.selectedCity = "gurgaon";
-			console.log($scope.selectedCity);
+            $scope.selectedCity = null;
             if(angular.isDefined(utility.getJStorageKey("selectedCity")) 
                 && utility.getJStorageKey("selectedCity")) {
                 $scope.selectedCity = utility.getJStorageKey("selectedCity");
