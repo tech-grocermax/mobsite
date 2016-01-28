@@ -494,7 +494,7 @@ input , button, select{outline:none;}
 /*.del-div > div:nth-child(1){display: none;}*/
 .offer-arrow-img{margin-top:-2px;}
 /*.cart-margin .cat-box, .del-div .cat-box {padding-top:5px;}*/
-.card-height{height: 206px;}
+.card-height{min-height: 206px;}
 .card-img-box{height:204px; position: relative;}
 .list-img-box{height:174px; position: relative;}
 .card-img-center{position: absolute;margin: auto;left: 0;right: 0;top: 0;bottom: 0;padding: 0 5px 0 5px; width:95%;}
@@ -642,7 +642,7 @@ input , button, select{outline:none;}
     float: right;}
 	.cat-input-text{font-size: 18px;}
 	.cat-plus img, .cat-minus img {top: 40%;}
-	.card-height {height: 164px;}
+	.card-height {min-height: 164px;}
 	.card-img-box {height: 162px;}
 	.list-img-box{height: 140px;}
 
@@ -698,7 +698,7 @@ input , button, select{outline:none;}
     float: right;}
 	.cat-input-text{font-size: 18px;}
 	.add-btn {padding:7px 5px;}
-	.card-height {height: 148px;}
+	.card-height {min-height: 148px;}
 	.card-img-box {height: 146px;}
 	.search-icon-pos {/*top: 14px;width: 30px;*/}
 	.list-img-box{height: 124px;}
