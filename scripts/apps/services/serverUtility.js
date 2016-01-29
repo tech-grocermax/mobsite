@@ -11,7 +11,8 @@ define(['app'], function (app) {
 	            cache: false,
 	            headers: {
 		    		'version': 1.0,
-					'storeid': $.jStorage.get("storeId"),
+					//'storeid': $.jStorage.get("storeId"),
+					'storeid':'1',
 					'device': 'msite'
 				}
 	         }).then(function(response){return response.data}, function(error){return error});
@@ -28,7 +29,8 @@ define(['app'], function (app) {
                     data: input,
                     headers: {
                         'version': 1.0,
-                        'storeid': $.jStorage.get("storeId"),
+                        //'storeid': $.jStorage.get("storeId"),
+                        'storeid': '1',
                         'device': 'msite'
                     }
                 }).then(function(response){return response.data}, function(error){return error});
