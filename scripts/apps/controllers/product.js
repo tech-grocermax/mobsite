@@ -450,7 +450,7 @@ define(['app'], function(app) {
                 angular.forEach($scope.cartDetails.items, function(value, key) {
                     if(value.price > 0) {
                         itemCount++;
-                    }                    
+                    }
                 });
                 return (itemCount == 1)  ? true : false;
             };
@@ -458,14 +458,27 @@ define(['app'], function(app) {
             $scope.removeCartItem = function(product) {
                 $scope.isCartUpdated = true;
                 $scope.productIds.push(product.product_id);
-                if(isCartContainsSingleItem()) {
+				
+				
+				
+				$scope.listItemUpdateClassCount = [];
+				
+				var resultCount = document.getElementsByClassName("UpdateCart"),
+				    resultCountHide = document.getElementsByClassName("UpdateCart ng-hide");
+				$scope.resultCountShow = resultCount.length - resultCountHide.length; //Mustakeem 				
+				
+				if(isCartContainsSingleItem()) {
                     $scope.checkout('update');
                 }
+				else if($scope.resultCountShow == $scope.productIds.length){ //Mustakeem
+					$scope.checkout('update');
+				}
+								
             };
 
             $scope.hideCartItem = function(product) {
                 var productId = parseInt(product.product_id, 10);
-                return $scope.productIds.indexOf(product.product_id) >= 0 ? true : false; 
+                return $scope.productIds.indexOf(product.product_id) >= 0 ? true : false;
             };
 
             checkoutSuccessCallback = function(flag) {
