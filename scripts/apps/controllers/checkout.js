@@ -501,7 +501,11 @@ define(['app'], function(app) {
                             toggleLoader(false);                 
                             if(data.flag == 1){
                                 // OMG required script
-                                require(["https://track.in.omgpm.com/886729/transaction.asp?APPID=" + data.OrderID + "&MID=886729&PID=16913&status=" + $scope.cartDetails.grand_total]);
+                                if("undefined" !== typeof Storage) {
+                                    if ("omg" == localStorage.getItem("utm_source")) {
+                                        require(["https://track.in.omgpm.com/886729/transaction.asp?APPID=" + data.OrderID + "&MID=886729&PID=16913&status=" + $scope.cartDetails.grand_total]);
+                                    }
+                                }
                                 $analytics.eventTrack($scope.selectedCity, {  category: "Order Success" });
                                 $analytics.pageTrack("Success Screen");
 
