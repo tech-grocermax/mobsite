@@ -30,8 +30,16 @@ define(['app'], function(app) {
             $scope.categoryName = "";
             $scope.bannerList = null;
             $scope.quoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
-            $scope.cityList = null;
-            $scope.cityLocation = {};
+            //$scope.cityList = null;
+            $scope.cityList = [{
+				api_url: 		"api/",
+				city_name:		"Gurgaon",
+				default_name:	"Haryana",
+				id:				"1",
+				region_id:		"487",
+				storeid:		"1"
+			}];
+			$scope.cityLocation = {};
             $scope.categoryImageUrl = null;
             $scope.myInterval = 5000;
             $scope.noWrapSlides = false;
@@ -467,8 +475,8 @@ define(['app'], function(app) {
                 if(angular.isDefined(utility.getJStorageKey("cityList"))
                     && utility.getJStorageKey("cityList")) {
                     $scope.cityList = utility.getJStorageKey("cityList");
-                    openCitySelectionModal();
-                } else {                
+                    //openCitySelectionModal();
+                } /*else {                
                     utility.getCityList()
                         .then(function(data){
                             $scope.cityList = data.location;
@@ -477,14 +485,14 @@ define(['app'], function(app) {
                                 var city = value.city_name.toLowerCase();
                                 $scope.cityLocation[city] = false;
                             });                            
-                            openCitySelectionModal();
+                            //openCitySelectionModal();
                         });
-                }
+                }*/
             };
 
-            $scope.editLocation = function() {
+            /*$scope.editLocation = function() {
                 getCityList();
-            };
+            };*/
 
             hideCitySelectionModal = function() {
                 $('#myModal').modal('hide');
