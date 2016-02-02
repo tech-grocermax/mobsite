@@ -15,12 +15,17 @@ fs.writeFileSync(versionFile, version, {mode: '0777'});
 fs.chmod(versionFile, '0777');
 
 module.exports = function(grunt) {
-    var cdn = grunt.option('cdn');
+    var cdn = grunt.option('cdnUrl');
+    var baseUrl = grunt.option('baseUrl');
     var txtVersion = "v" + version;
 
     stringReplaceFiles = {};
     stringReplaceFiles['build/'+ txtVersion +'/index.html'] = 'build/'+ txtVersion +'/index.html';
+    var templateReplaceFiles = {};
+    templateReplaceFiles['build/'+ txtVersion +'/templates/'] = 'build/'+ txtVersion +'/templates/**';
+    console.log(templateReplaceFiles);
 
+    console.log(baseUrl);
 
     var uglifyFileOption = {
         files: {}
@@ -42,11 +47,25 @@ module.exports = function(grunt) {
                                 return '';
                             })()
                         },
-
                         {
                             pattern: 'data-main="scripts',
                             replacement: 'data-main="/' + txtVersion +'/scripts'
                         }
+                    ]
+                }
+            },
+            templates: {
+                files: templateReplaceFiles,
+                options: {
+                    replacements: [
+                        {
+                            pattern: /href=\"\#/g,
+                            replacement: 'href="' + baseUrl + '/#'
+                        },
+                        {
+                            pattern: /href=\'\#/g,
+                            replacement: 'href=\'' + baseUrl + '/#'
+                        },
                     ]
                 }
             }

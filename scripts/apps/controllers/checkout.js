@@ -504,6 +504,15 @@ define(['app'], function(app) {
                         .then(function(data){
                             toggleLoader(false);                 
                             if(data.flag == 1){
+                                // OMG required script
+                                if("undefined" !== typeof Storage) {
+                                    if ("omg" == localStorage.getItem("utm_source")) {
+                                        require(["https://track.in.omgpm.com/886729/transaction.asp?APPID=" + data.OrderID + "&MID=886729&PID=16913&status=" + $scope.cartDetails.grand_total]);
+                                    }
+                                }
+                                $analytics.eventTrack($scope.selectedCity, {  category: "Order Success" });
+                                $analytics.pageTrack("Success Screen");
+
                                 if($scope.paymentMethod == "paytm_cc") {
                                     getPaytmProcessingDetails(data.OrderID, userId, checkoutDetails[$scope.quoteId]["shippingAddress"].telephone);
                                 } else {                                    
@@ -511,8 +520,6 @@ define(['app'], function(app) {
                                     $location.url("payment/success/" + data.OrderID);
                                 }                            
                                 // $analytics.pageTrack("Review Order & Pay");
-                                $analytics.eventTrack($scope.selectedCity, {  category: "Order Success" });
-                                $analytics.pageTrack("Success Screen");
                             } else {
                                 $analytics.eventTrack($scope.selectedCity, {  category: "Order Failed" });
                                 $analytics.pageTrack("Failure Screen");
