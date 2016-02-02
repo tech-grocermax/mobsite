@@ -153,6 +153,7 @@ define(['app'], function(app) {
             $scope.dealCategoryItemList = {};
             $scope.dealItems = null;
             $scope.activeDealCategory = "all";
+            $scope.activeDealCategoryTab = "all";
 
             $rootScope.selectedDealCategoryId = angular.isDefined($rootScope.selectedDealCategoryId) && $rootScope.selectedDealCategoryId ? $rootScope.selectedDealCategoryId : null;
 
@@ -300,6 +301,7 @@ define(['app'], function(app) {
                 $rootScope.selectedOfferCategoryId = category.id;
 
                 $scope.activeDealCategory = category.id;
+                $scope.activeDealCategoryTab = category.id;
                 $scope.dealItems = $scope.dealCategoryItemList[category.id];
             };
 
