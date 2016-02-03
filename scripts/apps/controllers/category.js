@@ -44,7 +44,8 @@ define(['app'], function(app) {
             $scope.myInterval = 5000;
             $scope.noWrapSlides = false;
             $scope.carouselIndex = 0;
-
+			$scope.modalHide = false;
+			
             $scope.pageRoute = {
                 "faq": false,
                 "contact": false,
