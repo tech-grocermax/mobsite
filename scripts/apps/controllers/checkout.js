@@ -48,7 +48,15 @@ define(['app'], function(app) {
                 paytm_cc: false,
                 mobikwik: false
             }; 
-            $scope.cityList = null;
+            //$scope.cityList = null;
+            $scope.cityList = [{
+				api_url: 		"api/",
+				city_name:		"Gurgaon",
+				default_name:	"Haryana",
+				id:				"1",
+				region_id:		"487",
+				storeid:		"1"
+			}];
             $scope.cityLocation = {};
             $scope.shouldProceed = true;
             $scope.orderId = angular.isDefined($routeParams.orderId) ? $routeParams.orderId : null;  
@@ -533,7 +541,7 @@ define(['app'], function(app) {
                 }               
             };
 
-            openCitySelectionModal = function() {
+            /*openCitySelectionModal = function() {
                 $timeout(function(){
                     $('#myModal').modal({
                         backdrop: false,
@@ -541,17 +549,18 @@ define(['app'], function(app) {
                         show: true
                     });
                 }, 1000);
-            };
+            };*/
 
             getCityList = function() {
                 utility.getCityList()
                     .then(function(data){
+						console.log(data);
                         $scope.cityList = data.location;
-                        angular.forEach($scope.cityList, function(value, key) {
+                        /*angular.forEach($scope.cityList, function(value, key) {
                             var city = value.city_name.toLowerCase();
                             $scope.cityLocation[city] = false;
-                        });
-                        openCitySelectionModal();
+                        });*/
+                        //openCitySelectionModal();
                     });
             };
 
