@@ -554,12 +554,11 @@ define(['app'], function(app) {
             getCityList = function() {
                 utility.getCityList()
                     .then(function(data){
-						console.log(data);
                         $scope.cityList = data.location;
-                        /*angular.forEach($scope.cityList, function(value, key) {
+                        angular.forEach($scope.cityList, function(value, key) {
                             var city = value.city_name.toLowerCase();
                             $scope.cityLocation[city] = false;
-                        });*/
+                        });
                         //openCitySelectionModal();
                     });
             };
