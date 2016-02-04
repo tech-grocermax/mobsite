@@ -109,9 +109,13 @@ define(['app'], function(app) {
 
             promiseCallback = function(data) {
                 bannerCallback(data[0]);
+                categoryCallback(data[0]);
+                offerCallback(data[0]);
+                dealCallback(data[0]);
+				/*bannerCallback(data[0]);
                 categoryCallback(data[1]);
                 offerCallback(data[2]);
-                dealCallback(data[3]);
+                dealCallback(data[3]);*/
                 setCategoryOfferCount();
                 toggleLoader(false);
             };
@@ -150,10 +154,12 @@ define(['app'], function(app) {
             } else {
                 toggleLoader(true);
                 $q.all([
-                    categoryService.getBannerList(), 
+                    /*categoryService.getBannerList(), 
                     categoryService.getCategoryList(), 
                     categoryService.getCategoryOfferList(), 
-                    categoryService.getDealList()]).then(function(data){
+                    categoryService.getDealList(),*/
+					categoryService.getHomePageList()
+					]).then(function(data){
                         promiseCallback(data);                    
                 });
             }                        

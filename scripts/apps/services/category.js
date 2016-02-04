@@ -3,7 +3,18 @@ define(['app'], function (app) {
     	function ($http, $rootScope, serverUtility, utility) {
 		    'use strict';
 		   
-		   	this.getBannerList = function() {
+			this.getHomePageList = function() {
+		   		var url = getAPIUrl() + "homepage";
+		    	return serverUtility.getWebService(url)
+		    		.then(
+		    			function(data){
+							return data; 
+						},
+		    			function(error){return error; }
+		    		);
+		   	};
+		   
+		   	/*this.getBannerList = function() {
 		   		var url = getAPIUrl() + "homebanner";
 		    	return serverUtility.getWebService(url)
 		    		.then(
@@ -19,7 +30,7 @@ define(['app'], function (app) {
 		    			function(data){return data; },
 		    			function(error){return error; }
 		    		);		    			    	
-		    };	 
+		    };	 */
 
 		    this.getSubCategoryList = function(categories, categoryId) {
 		    	var subCategoryList = null;
@@ -45,7 +56,7 @@ define(['app'], function (app) {
 		    	return categoryName;
 		    };
 
-		    this.getDealList = function() {		    	
+		   /* this.getDealList = function() {		    	
 	    		var url = getAPIUrl() + "shopbydealtype";
 		    	return serverUtility.getWebService(url)
 		    		.then(
@@ -61,7 +72,7 @@ define(['app'], function (app) {
 		    			function(data){return data; },
 		    			function(error){return error; }
 		    		);		    			    	
-		    };
+		    };*/
 
 		    this.getDealsByDealId = function(dealId) {		    	
 	    		var url = getAPIUrl() + "dealsbydealtype?deal_type_id=" + dealId;
