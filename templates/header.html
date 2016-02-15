@@ -42,7 +42,7 @@
                         class="img-responsive back-img-mr">--> 
 					<span class="back-icon"></span>
 				</a>
-                <span class="head-text">&nbsp;{{categoryName}}</span>
+                <span class="head-text text-ellipsis">&nbsp;{{categoryName}}</span>
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 margin-lt22p"
                 data-ng-show="showSearchIcon">
@@ -106,7 +106,7 @@
                         data-ng-model="searchKeyword"
                         data-ng-change="changeSearchKeyword(searchKeyword)"
                         data-ng-keypress="checkIfEnterKeyWasPressed($event)"
-                        class="search-bar text-ellipsis" only-alphabets-with-space>
+                        class="search-bar text-ellipsis" only-alphanumeric-with-space>
                 </div>
                 <!-- search-icon -->
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 search-icon-pos">

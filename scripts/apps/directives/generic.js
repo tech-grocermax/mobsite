@@ -180,6 +180,37 @@ define(['app'], function(app) {
             };
         }
     ]);
+	
+	app.directive('onlyAlphanumericWithSpace', [
+        function() {
+            return {
+                require: 'ngModel',
+                link: function(scope, element, attrs, modelCtrl) {
+                    modelCtrl.$parsers.push(function(inputValue) {
+                        // this next if is necessary for when using ng-required on your input. 
+                        // In such cases, when a letter is typed first, this parser will be called
+                        // again, and the 2nd time, the value will be undefined
+
+                        if (inputValue == undefined) return '';
+                        var transformedInput = inputValue.replace(/[^a-zA-Z0-9\s]/g, '');///^[a-zA-Z0-9]*$/
+                        if (transformedInput != inputValue) {
+                            modelCtrl.$setViewValue(transformedInput);
+                            modelCtrl.$render();
+                        }
+
+                        element.bind('blur', function(event) {
+                            var fieldValue = element.val();
+                            fieldValue = fieldValue.replace(/^\s+|\s+$/g, '');
+                            element.val(fieldValue);
+                        });
+
+                        return transformedInput;
+                    });
+
+                }
+            };
+        }
+    ]);
 
     app.directive('validateEmail', function() {
         var EMAIL_REGEXP = /^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$/;

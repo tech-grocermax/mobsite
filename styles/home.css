@@ -933,7 +933,7 @@ ul.plisting li.font-3{padding-top:3px}
 .deliver-r-icon{background-image:url("../images/m.site-sprite-image.png");background-position:-179px -71px;display: block;height: 32px;width: 20px;}
 .delivery-l-icon{background-image:url("../images/m.site-sprite-image.png");background-position:-139px -71px;display: block;height: 32px;width: 20px;}
 .loaction-img{background-image:url("../images/m.site-sprite-image.png");width:47px; height:47px; display:block;position:absolute; right:0; left:0; margin:0 auto; background-position: 61px 0px;}
-.list-inline-width{min-width:2400px; max-width:3200px;}
+.list-inline-width{min-width:2280px; max-width:3200px;}
 .list-inline-width-2{min-width:965px; max-width:3200px;}
 .plus-minus-btn {
     z-index:1;
