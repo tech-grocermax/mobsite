@@ -273,13 +273,11 @@ define(['app'], function(app) {
                     cartCount = 0;
 
                 if(angular.isDefined(resetCartCounter) && resetCartCounter) {
-					console.log("cart counter 1 if");
                     utility.setJStorageKey(cartCounterKey, cartCount, 1);
                 }
 
                 if(angular.isDefined(utility.getJStorageKey(cartCounterKey)) 
                     && utility.getJStorageKey(cartCounterKey) ) {
-						console.log("cart counter 2 if");
                     cartCount = utility.getJStorageKey(cartCounterKey);
                     cartCount = parseInt(cartCount, 10) + parseInt(count, 10);
                     utility.setJStorageKey(cartCounterKey, cartCount, 1);

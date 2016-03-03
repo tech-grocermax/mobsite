@@ -625,8 +625,6 @@ define(['app'], function(app) {
                     isDrawerOpen = false;
                 }
 			}
-			
-			console.log($scope.categories);
         }
     ]);
 });
