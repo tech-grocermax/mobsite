@@ -44,7 +44,7 @@
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cat-list-box float-rt padd0" style="margin-right:10px;">
                 <ul class="list-unstyled cat-list" 
-                    data-ng-show="product.price > 0">
+                    data-ng-show="(product.price > 0) && (product.webqty > 0)">
                     <li class="cat-minus"                         
                         data-ng-click="decreaseCartProductQuantity(product, 'product_id')">
 						<!--<img src="images/app_bar_icons/minus-img.png" class="img-responsive">-->
@@ -61,6 +61,7 @@
 					
 					</li>
                 </ul>
+				<img src="images/sold-out.png" class="img-responsive so-img" data-ng-show="(product.webqty == 0)">
                 <ul class="list-unstyled cat-list disable"
                     data-ng-show="product.price <= 0">
                     <li class="cat-minus">
@@ -79,12 +80,22 @@
                 </ul>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
-                <h1 class="ribbon" data-ng-show="product.promotion_level">
+                <h1 class="ribbon" data-ng-show="product.promotion_level && !(product.qty > product.webqty)">
                     <span class="ribbon-content">{{product.promotion_level}}</span>
                 </h1>
             </div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 low-stock" data-ng-show="(product.qty > product.webqty) && (product.webqty > 0)">
+                ONLY {{product.webqty}} IN STOCK. PLEASE REDUCE THE QUANTITY.
+            </div>
+
         </div>
     </div>
+	
+	<div class="row margin0 bill-buster" data-ng-class="{'bill-bust-mrg' : cartDetails.shipping_address.shipping_amount > 0}">
+        <div class="col-sm-12 col-xs-12">
+			{{cartDetails.Bill_buster}} 
+		</div>
+	</div>
     <div class="row margin0 pad-lt16 pad-rt16 margin-top10 margin-0-m cart-box-botom"
         data-ng-show="cartDetails.items.length">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 dot-border">

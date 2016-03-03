@@ -358,7 +358,8 @@ define(['app'], function(app) {
                     updateClassName("danger");
                 }
             };
-
+			
+			
             $scope.updateProfile = function(form) {
                 $scope.errorRegistration = true;
                 if (form.$valid) {
@@ -483,12 +484,34 @@ define(['app'], function(app) {
             if($scope.sectionName == "orderhistory" && !$scope.orderId){
                 getOrderHistory();
             }
-
+			
+			$scope.reOrder = function(increment_id , order){
+				toggleLoader(true);
+				$scope.reorderid = increment_id;
+				$scope.cartItemCount = 0;
+					userService.reOrder($scope.reorderid)
+						.then(function(data){
+						//utility.setJStorageKey("productBasketCount_" + data.QuoteId, productBasketCount, 1);
+						utility.setJStorageKey("cartCounter" + data.QuoteId, 0, 1);
+						utility.setJStorageKey("quoteId", data.QuoteId, 1);		
+						if (data.QuoteId && data.flag == 1){
+							productService.getCartItemDetails(data.QuoteId, order)
+							.then(function(data){
+								$scope.cartDetails = data.CartDetail;								
+								toggleLoader(false);
+								$scope.cartItemCount = data.TotalItem;
+								$scope.navigateToCart();
+							});
+						}	
+					});				
+			}
+			
             getOrderDetails = function() {
                 toggleLoader(true);
                 userService.getOrderDetails($scope.orderId)
                     .then(function(data){
                         toggleLoader(false);
+						console.log(data);
                         $scope.orderDetails = data.OrderDetail;      
                     });
             };

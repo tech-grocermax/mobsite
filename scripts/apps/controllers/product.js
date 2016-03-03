@@ -206,8 +206,8 @@ define(['app'], function(app) {
                     qty = 0;
 
                 if(angular.isDefined($scope.cartDetails)) {
-                    angular.forEach($scope.cartDetails.items, function(value, key) {
-                        var amt = 0;
+                    angular.forEach($scope.cartDetails.items, function(value, key) {                        
+						var amt = 0;
                         amt = parseInt(value.qty) * parseFloat($scope.getPriceDifference(value.mrp, value.price))
                         savedAmont = savedAmont + amt;
                         qty = qty + parseInt(value.qty);
@@ -238,7 +238,7 @@ define(['app'], function(app) {
                             $scope.quoteId = null;
                         } else {
                             $('body').css('overflow', 'auto');
-                            $scope.cartDetails = data.CartDetail; 
+                            $scope.cartDetails = data.CartDetail;
                             $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);                          
                             addShippingCharges();
                             getYouSaveAmout();
@@ -273,11 +273,13 @@ define(['app'], function(app) {
                     cartCount = 0;
 
                 if(angular.isDefined(resetCartCounter) && resetCartCounter) {
+					console.log("cart counter 1 if");
                     utility.setJStorageKey(cartCounterKey, cartCount, 1);
                 }
 
                 if(angular.isDefined(utility.getJStorageKey(cartCounterKey)) 
                     && utility.getJStorageKey(cartCounterKey) ) {
+						console.log("cart counter 2 if");
                     cartCount = utility.getJStorageKey(cartCounterKey);
                     cartCount = parseInt(cartCount, 10) + parseInt(count, 10);
                     utility.setJStorageKey(cartCounterKey, cartCount, 1);
@@ -351,7 +353,7 @@ define(['app'], function(app) {
                             updateCartItemCounter(product.quantity);
                             setProductBasketCounter(product.productid, product.quantity);
                             //getCartItemDetails();                                
-                        }                            
+                        }  
                     });
             };
 

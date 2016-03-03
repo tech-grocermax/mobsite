@@ -192,7 +192,7 @@ input , button, select{outline:none;}
 .show-more-menu{position: absolute; z-index: 100; top: 100%;}
 .center-align{text-align: center;}
 /*.myselect{margin-bottom:3%;}*/
-.bot-foot{position:fixed; bottom:0px;z-index:10;}
+.bot-foot{position:fixed; bottom:0px;z-index:10;left:0;}
 .top-head  .header-middle{position: fixed; z-index: 2; left: 0; right: 0; height: 52px;}
 .top-subhead{position: fixed; z-index: 2; left: 0; right: 0; height:40px;top:46px;}
 .wrapper{margin-top: 88px; margin-bottom: 75px;}
@@ -952,3 +952,9 @@ ul.plisting li.font-3{padding-top:3px}
 .del-div > div:nth-child(1) {
     display: none !important;
 }
+
+.bill-buster{position: fixed;bottom: 130px;}
+.bill-bust-mrg{bottom: 160px;}
+.bill-buster > div{text-align: center;font-size: 13px;color: #e5111e;font-weight: bold;background-color: #fec70d;padding: 2px 5px 2px 5px;}
+.low-stock{background: #fb0404;color: #fff;padding: 2px 3px 2px 2px;font-size: 12px;font-weight: bold;text-align: center;}
+.so-img{margin: 0 0 5px 0;width: 80px;}
