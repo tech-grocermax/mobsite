@@ -268,11 +268,13 @@ define(['app'], function(app) {
                     utility.setJStorageKey("registrationDetails", $scope.user, 1);
                     userService.createUser($scope.user)
                         .then(function(data){
+							console.log(data);
                             toggleLoader(false);
                             if(data.flag == 1){
                                 $scope.showUserResponse = false;
                                 $scope.userResponseMessage = "";
                                 utility.setJStorageKey("otp", data.otp, 1);
+								console.log(utility.setJStorageKey("otp", data.otp, 1));
                                 $scope.registrationStep = 2;
                             } else {
                                 $scope.showUserResponse = true;
@@ -295,7 +297,7 @@ define(['app'], function(app) {
                                 utility.deleteJStorageKey("otp");
                                 utility.deleteJStorageKey("registrationDetails");
                                 successCallbackUser(data, email);
-                            }                                                                           
+                            } 
                         });
                 } else {
                     $scope.showUserResponse = true;
@@ -357,9 +359,9 @@ define(['app'], function(app) {
                     $scope.userResponseMessage = data.Result;
                     updateClassName("danger");
                 }
-            };
+            };			
 			
-			
+			$scope.editProfileStep = 1;
             $scope.updateProfile = function(form) {
                 $scope.errorRegistration = true;
                 if (form.$valid) {
@@ -369,10 +371,44 @@ define(['app'], function(app) {
                     toggleLoader(true);
                     userService.updateProfile($scope.user, utility.getJStorageKey("userId"))
                         .then(function(data){
-                            successCallbackUpdateProfile(data);
+							toggleLoader(false); 
+							if(data.flag == 2){
+                                $scope.showUserResponse = false;
+                                $scope.userResponseMessage = "";
+                                utility.setJStorageKey("otp", data.otp, 1);
+								console.log(utility.setJStorageKey("otp", data.otp, 1));
+                                $scope.editProfileStep = 2;
+                            } else {
+                                $scope.showUserResponse = true;
+                                $scope.userResponseMessage = data.Result;
+                                updateClassName("danger");
+                            }   
+                            //successCallbackUpdateProfile(data);
                         });
                 }
             };
+			
+			$scope.verifyEditProfileOtp = function(){
+				if($scope.otp == utility.getJStorageKey("otp")) {					
+                    toggleLoader(true);
+					$scope.user.otp = 1;
+					userService.updateProfile($scope.user, utility.getJStorageKey("userId"))
+                        .then(function(data){
+							toggleLoader(false); 
+							if(data.flag == 2){
+                                utility.deleteJStorageKey("otp");
+                            }
+                        });
+					$timeout(function() {
+                        $location.url("user/profile");
+                    }, 1000);
+					
+				} else {
+						$scope.showUserResponse = true;
+						$scope.userResponseMessage = "Invalid OTP, Please try again.";
+						updateClassName("danger");
+					}
+			};
 
             rebuildAddressObject = function(address) {
                 var arrStreet = address.street.split("\n");

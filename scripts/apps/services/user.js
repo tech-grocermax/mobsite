@@ -7,7 +7,7 @@ define(['app'], function (app) {
 	    		var url = getAPIUrl() + "createuser";
 	    		return serverUtility.postWebService(url, input)
 		    		.then(
-		    			function(data){return data; },
+		    			function(data){return data;},
 		    			function(error){return error; }
 		    		);		    			    	
 		    }; 
@@ -35,7 +35,8 @@ define(['app'], function (app) {
 		    		"userid" : userId,
 			    	"fname" : input.fname,
 			    	"lname" : input.lname,
-			    	"number" : input.number
+			    	"number" : input.number,
+					"otp"    : input.otp
 		    	};		    	
 		    };
 

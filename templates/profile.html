@@ -6,7 +6,7 @@
 			</div>
 			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 padd0">
 				<div class="pad-lt26 user-name">{{userProfile.personalInfo.firstname}} {{userProfile.personalInfo.lastname}}</div>
-				<div class="pad-lt26 user-details pad-t-b3">{{userProfile.personalInfo.email}}</div>
+				<div class="pad-lt26 user-details pad-t-b3" data-ng-hide="updateProfileEdit == 2">{{userProfile.personalInfo.email}}</div>
 				<div class="pad-lt26 user-details">{{userProfile.personalInfo.mobile}}</div>
 			</div>
 		</div>
