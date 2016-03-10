@@ -1,7 +1,7 @@
 define(['app'], function(app) {
     app.controller('checkoutController',  [
-        '$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'userService', 'productService', 'utility', '$analytics',
-        function($scope, $rootScope, $routeParams, $location, $timeout, userService, productService, utility, $analytics) {
+        '$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'userService', 'productService', 'utility', '$analytics', 'mywalletService',
+        function($scope, $rootScope, $routeParams, $location, $timeout, userService, productService, utility, $analytics, mywalletService) {
             $scope.sectionName = $routeParams.sectionName;
 
             if((angular.isUndefined(utility.getJStorageKey("userId")) 
@@ -361,6 +361,14 @@ define(['app'], function(app) {
                 return $scope.selectedDeliveryDate && $scope.selectedDeliveryTime
                     && $scope.parentIndex >=0;
             };
+			
+			$scope.getWalletDetails = function(){
+				mywalletService.getWalletAmount(utility.getJStorageKey("userId"))
+				.then(function(data){					
+					$scope.walletDetails = data;
+                });
+			};
+			$scope.getWalletDetails();
 
             $scope.isClicked = false;
             $scope.navigateToPayment = function() {
@@ -370,7 +378,8 @@ define(['app'], function(app) {
                     return false;
                 }
                 $scope.shouldProceed = true;
-
+				
+				
                 var quoteId = utility.getJStorageKey("quoteId"),
                     checkoutDetails = utility.getJStorageKey("checkoutDetails");
 
@@ -380,7 +389,7 @@ define(['app'], function(app) {
                 utility.setJStorageKey("checkoutDetails", checkoutDetails, 1);
 
                 $analytics.eventTrack($scope.selectedCity, {  category: "Delivery details" });
-
+				$scope.getWalletDetails();
                 $location.url("checkout/payment");
             };
 
@@ -499,6 +508,12 @@ define(['app'], function(app) {
                     toggleLoader(true);
                     var userId = utility.getJStorageKey("userId"),
                         checkoutDetails = utility.getJStorageKey("checkoutDetails");
+					
+					$scope.grandtotalcart = $scope.toFixedDecimal($scope.cartDetails.base_grand_total);
+					$scope.walletamount = $scope.toFixedDecimal($scope.walletDetails.Balance);
+					if($scope.grandtotalcart > $scope.walletamount){
+						
+					}
                     
                     userService.checkout(userId, $scope.quoteId, checkoutDetails, $scope.paymentMethod)
                         .then(function(data){
@@ -532,6 +547,7 @@ define(['app'], function(app) {
                         });
                 }               
             };
+			
 
             openCitySelectionModal = function() {
                 $timeout(function(){
@@ -648,6 +664,16 @@ define(['app'], function(app) {
                     getCityList();
                 }                 
             });
+			
+			$scope.walletplaceorder = function(){
+				$scope.grandtotalcart = $scope.toFixedDecimal($scope.cartDetails.base_grand_total);
+				$scope.walletamount = $scope.toFixedDecimal($scope.walletDetails.Balance);
+				if($scope.grandtotalcart > $scope.walletamount || $scope.grandtotalcart == $scope.walletamount){
+					console.log("true");
+				} else {
+					console.log("false");
+				}
+			};
 
         }
     ]);

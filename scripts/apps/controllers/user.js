@@ -268,13 +268,11 @@ define(['app'], function(app) {
                     utility.setJStorageKey("registrationDetails", $scope.user, 1);
                     userService.createUser($scope.user)
                         .then(function(data){
-							console.log(data);
                             toggleLoader(false);
                             if(data.flag == 1){
                                 $scope.showUserResponse = false;
                                 $scope.userResponseMessage = "";
                                 utility.setJStorageKey("otp", data.otp, 1);
-								console.log(utility.setJStorageKey("otp", data.otp, 1));
                                 $scope.registrationStep = 2;
                             } else {
                                 $scope.showUserResponse = true;

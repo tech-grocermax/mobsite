@@ -1,0 +1,28 @@
+<div data-ng-controller="mywalletController">
+	<section class="wallet">
+		<div class="row margin0">
+			<div class="col-sm-12 col-xs-12">
+				<a href="#">
+					<img alt="" src="images/header-icon/back-icon.png">	
+					<img alt="" src="images/header-icon/wallet-head.png">
+					<span>My wallet</span>
+				</a>
+				<p>Your balance</p>
+				<p>&#x20B9; <span>{{walletDetails.Balance}}</span></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12 col-xs-12">
+				<img src="images/header-icon/wallet-friend.png" data-ng-click="getbalance()">
+				<p>Refer & Earn</p>
+				<p>{{walletDetails.Massege}}</p>
+			</div>
+			<div class="col-sm-12 col-xs-12">
+				<img alt="" src="images/header-icon/fb-icon.png">
+				<img alt="" src="images/header-icon/gmail-icon.png">
+				<img alt="" src="images/header-icon/msg-evelop-ico.png">
+				<img alt="" src="images/header-icon/whatsapp-ico.png">
+			</div>
+		</div>
+	</section>
+</div>

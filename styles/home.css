@@ -958,3 +958,21 @@ ul.plisting li.font-3{padding-top:3px}
 .bill-buster > div{text-align: center;font-size: 13px;color: #e5111e;font-weight: bold;background-color: #fec70d;padding: 2px 5px 2px 5px;}
 .low-stock{background: #fb0404;color: #fff;padding: 2px 3px 2px 2px;font-size: 12px;font-weight: bold;text-align: center;}
 .so-img{margin: 0 0 5px 0;width: 80px;}
+
+.wallet > .row:nth-child(1) {background: #ee2d09;}
+.wallet > .row:nth-child(1) div {padding: 15px;}
+.wallet > .row:nth-child(1) img:nth-child(1){height: 24px;width: 24px;}
+.wallet > .row:nth-child(1) img:nth-child(2){height: 48px;width: 48px;margin: 0 10px 0 10px;}
+.wallet > .row:nth-child(1) a  > span{font-size: 20px;color: #fff;font-family: roboto;}
+.wallet > .row:nth-child(1) div p > span {font-size: 50px; color: #f3e1e0;font-weight: 300;}
+.wallet > .row:nth-child(1) div > p:nth-child(2){text-align: center;font-size: 20px;color: #f1aca6;font-family: roboto;margin: 30px 0 0 0;}
+.wallet > .row:nth-child(1) div > p:nth-child(3){text-align: center;font-size: 34px;color: #f1aca6;font-family: roboto;font-weight: bold;}
+.wallet > .row:nth-child(2) {margin: 30px 0 0 0;}
+.wallet > .row:nth-child(2) div{text-align: center;}
+.wallet > .row:nth-child(2) div:nth-child(2){margin: 30px 0 10px 0;}
+.wallet > .row:nth-child(2) div:nth-child(2) img{height:32px; width:32px;}
+.wallet > .row:nth-child(2) div:nth-child(2) img:nth-child(2){margin: 0 14px 0 28px;}
+.wallet > .row:nth-child(2) div:nth-child(2) img:nth-child(3){margin: 0 28px 0 14px;}
+.wallet > .row:nth-child(2) div:nth-child(1) img{width: 200px;}
+.wallet > .row:nth-child(2) div p:nth-child(2){color: #404040;font-family: roboto;font-size: 20px;margin: 30px 0px 0 0;}
+.wallet > .row:nth-child(2) div p:nth-child(3){color: #404040;font-family: roboto;font-size: 12px;margin: 10px 0px 0 0;font-weight: 300;text-shadow: 0px 0px 1px;letter-spacing: 1px; border-bottom: solid 1px #dbdbdb; padding: 0 0 20px 0;}

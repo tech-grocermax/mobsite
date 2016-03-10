@@ -162,7 +162,8 @@ define([], function() {
                     appURL + 'services/user',
                     appURL + 'services/product',
                     appURL + 'directives/generic',
-                    appURL + 'controllers/checkout'
+                    appURL + 'controllers/checkout',
+					appURL + 'services/mywallet',
                 ]
             },
             '/hot-offers': {
@@ -207,7 +208,16 @@ define([], function() {
                     appURL + 'directives/generic',                    
                     appURL + 'controllers/order'
                 ]
-            }
+            },
+			'/my-wallet' : {
+				templateUrl : templateURL + 'my-wallet.html',
+				dependencies: [
+					appURL + 'services/serverUtility',
+					appURL + 'services/utility',
+					appURL + 'services/mywallet',
+                    appURL + 'controllers/mywallet'
+                ]
+			}
         }
     };
 });

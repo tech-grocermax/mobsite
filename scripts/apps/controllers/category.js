@@ -322,7 +322,7 @@ define(['app'], function(app) {
 
             $scope.routerChange = function(route, id) {
                 route = angular.isDefined(id) ? route + ("/" + id) : route;
-
+				console.log(route);
                 if(isDrawerOpen) {
                     $analytics.eventTrack($scope.selectedCity, {  category: "Close Drawer"});
                     isDrawerOpen = false;
@@ -624,6 +624,15 @@ define(['app'], function(app) {
                     $analytics.eventTrack($scope.selectedCity, {  category: "Close Drawer"});
                     isDrawerOpen = false;
                 }
+			}
+			
+			$scope.routeChange = function(){
+				if($scope.isUserLoggedIn){
+					$location.url("/my-wallet");
+				}
+				else {
+					$location.url("/user/login");
+				}
 			}
         }
     ]);
