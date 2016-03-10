@@ -228,7 +228,7 @@ define(['app'], function(app) {
             getCartItemDetails = function() {
                 toggleLoader(true);
                 productService.getCartItemDetails($scope.quoteId)
-                    .then(function(data){ 
+                    .then(function(data){
                         $scope.isCartLoaded = true;
                         toggleLoader(false);
                         if(data.flag == 0) {
@@ -248,6 +248,13 @@ define(['app'], function(app) {
                             } else {
                                 utility.setJStorageKey("cartCounter" + $scope.quoteId, data.TotalItem, 1);
                             }
+							
+							angular.forEach($scope.cartDetails.items, function(value, key) {                        
+								$scope.soldOutItem = (value.webqty == 0);
+								if($scope.soldOutItem){
+									$scope.isCartUpdated = true;
+								}
+							});
                         }                        
                     });
             };  
@@ -562,7 +569,8 @@ define(['app'], function(app) {
                             }                            
                         });
                 }                
-            };            
+            };  
+			
 
             $scope.showMoreMenu = function() {
                 $scope.showUserMenuOptions = false;

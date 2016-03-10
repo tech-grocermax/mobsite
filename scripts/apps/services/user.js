@@ -43,7 +43,6 @@ define(['app'], function (app) {
 		    this.updateProfile = function(inputData, userId) {
 		    	var url = getAPIUrl() + "editprofile",
 		    		input = this.buildUpdateProfileObject(inputData, userId);
-
 		    	return serverUtility.postWebService(url, input)
 		    		.then(
 		    			function(data){return data; },
