@@ -249,10 +249,11 @@ define(['app'], function(app) {
                                 utility.setJStorageKey("cartCounter" + $scope.quoteId, data.TotalItem, 1);
                             }
 							
-							angular.forEach($scope.cartDetails.items, function(value, key) {                        
-								$scope.soldOutItem = (value.webqty == 0);
+							angular.forEach($scope.cartDetails.items, function(value, key) {
+								$scope.soldOutItem = value.webqty == "0";
 								if($scope.soldOutItem){
 									$scope.isCartUpdated = true;
+									
 								}
 							});
                         }                        
@@ -491,6 +492,10 @@ define(['app'], function(app) {
             checkoutSuccessCallback = function(flag) {
                 if(flag == "update") {
                     $scope.isCartUpdated = false;
+					var soldOutItem = document.getElementsByClassName("so-img");
+					if(soldOutItem.length > 0){
+						$scope.isCartUpdated = true;
+					}
                     //getCartItemDetails();
                 } else {
                     toggleLoader(false);
@@ -558,9 +563,6 @@ define(['app'], function(app) {
                                     var totalQty = productService.getCartItemCount(data.CartDetail.items);
                                     updateCartItemCounter(totalQty, true);
                                     utility.deleteJStorageKey("productBasketCount_" + quoteId);
-                                    angular.forEach(data.CartDetail.items, function(value, key) {
-                                        resetProductBasketCounter(value.product_id, value.qty);
-                                    });
                                     $scope.productIds = [];                           
                                     checkoutSuccessCallback(flag);    
                                     $scope.cartDetails = data.CartDetail;
@@ -568,7 +570,7 @@ define(['app'], function(app) {
                                 }                   
                             }                            
                         });
-                }                
+                } 		
             };  
 			
 

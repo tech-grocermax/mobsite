@@ -24,7 +24,7 @@
                             data-ng-show="product.price > 0"
                             data-ng-click="removeCartItem(product)" 
                             alt="" class="delet-icon">-->
-						<span class="delete-icon UpdateCart" data-ng-show="product.price > 0"
+						<span class="delete-icon UpdateCart" data-ng-show="product.price > 0 || (product.webqty == 0)"
                             data-ng-click="removeCartItem(product)"
 							data-ng-class="{'UpdateCart': product.price > 0}"></span>
                     </li>
@@ -61,7 +61,8 @@
 					
 					</li>
                 </ul>
-				<img src="images/sold-out.png" class="img-responsive so-img" data-ng-show="(product.webqty == 0)">
+				<img src="images/sold-out.png" class="img-responsive" data-ng-show="(product.webqty == 0)"
+				data-ng-class="{'so-img': (product.webqty == 0)}">
                 <ul class="list-unstyled cat-list disable"
                     data-ng-show="product.price <= 0">
                     <li class="cat-minus">
@@ -137,6 +138,7 @@
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0"
         data-ng-show="isCartUpdated"
+		data-ng-disabled="isCartUpdated"
         style="margin-top:100px;">
         <button type="button" class="reg-bot-btn bot-foot"            
             data-ng-click="checkout('update')">UPDATE CART</button>        
