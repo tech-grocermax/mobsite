@@ -473,8 +473,8 @@ define(['app'], function(app) {
 				
 				var resultCount = document.getElementsByClassName("UpdateCart"),
 				    resultCountHide = document.getElementsByClassName("UpdateCart ng-hide");
+					
 				$scope.resultCountShow = resultCount.length - resultCountHide.length; //Mustakeem 				
-				
 				if(isCartContainsSingleItem()) {
                     $scope.checkout('update');
                 }
@@ -493,9 +493,10 @@ define(['app'], function(app) {
                 if(flag == "update") {
                     $scope.isCartUpdated = false;
 					var soldOutItem = document.getElementsByClassName("so-img");
-					if(soldOutItem.length > 0){
+					if(soldOutItem.length > 1){
 						$scope.isCartUpdated = true;
 					}
+					
                     //getCartItemDetails();
                 } else {
                     toggleLoader(false);
