@@ -121,7 +121,7 @@
 
 <!-- Modal LOCATION-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
-    aria-labelledby="myModalLabel" data-ng-show="modalHide">
+    aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
@@ -134,7 +134,7 @@
 									analytics-on analytics-event="{{location.city_name}}"
 									analytics-category="City Change" 
 
-									data-ng-init="setCityLocation(location)"  role="button">
+									data-ng-click="setCityLocation(location)"  role="button">
 									{{location.city_name}}
 								</a>
 							</li>
@@ -165,7 +165,7 @@
 			{{selectedCity}}
 			<!--<img src="images/app_bar_icons/draweredit.png" alt="" 
 				class="img-responsive edit-icon">-->
-			<!--<span class="drawer-edit-img"></span>-->
+			<span class="drawer-edit-img"></span>
 		</li>
 		<li class="item-shop" data-ng-click="toggleShopByCategory()">
             SHOP BY CATEGORIES</li>
