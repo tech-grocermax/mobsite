@@ -26,7 +26,10 @@
 					<span>{{order.total_item_count}}</span>
 				</li>
 			</ul>
-			<div style="width: 90px;background: #5c7dff;color: #fff;position: absolute;bottom: 10px;right: 10px;border-radius: 4px;text-align: center;letter-spacing: 2px;font-size: 14px;font-weight: bold;padding: 3px 0 3px 0;" data-ng-click="reOrder(order.increment_id , order)">Reorder</div>
+			<div style="width: 90px;background: #5c7dff;color: #fff;position: absolute;bottom: 10px;right: 10px;border-radius: 4px;text-align: center;letter-spacing: 2px;font-size: 14px;font-weight: bold;padding: 3px 0 3px 0;" 
+			data-ng-click="reOrder(order.increment_id , order)"
+			data-ng-show="enterStoreId == order.store_id">Reorder</div>
+			<div style="position: absolute;bottom: 14px;right: 10px;font-size: 12px;color: #EE2D09;font-weight: bold;" data-ng-show="enterStoreId != order.store_id">Change location to reorder</div>
 		</div>
 	</div>	
 </section>

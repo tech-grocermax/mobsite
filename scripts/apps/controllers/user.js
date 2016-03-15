@@ -143,16 +143,21 @@ define(['app'], function(app) {
                 var cityId = utility.getJStorageKey("selectedCityId");
                 userService.getLocationList(cityId)
                     .then(function(data){
-                        $scope.locationList = data.locality;                                          
+                        $scope.locationList = data.locality;
                     });
             };
 
             getStateList = function() {
                 userService.getStateList()
                     .then(function(data){
-                        $scope.stateList = data.state;      
+                        $scope.stateList = data.state;  
                     });
-            };            
+            };  
+
+			/*getEnterLocation = function(){
+				console.log(utility.getJStorageKey("storeId"));
+			};
+			getEnterLocation();*/
 
             updateClassName = function(keyName) {
                 angular.forEach($scope.className, function(value, key){
@@ -509,6 +514,7 @@ define(['app'], function(app) {
                     .then(function(data){
                         toggleLoader(false);
                         $scope.orderHistory = data.orderhistory;
+						$scope.enterStoreId = utility.getJStorageKey("storeId");
                         if($scope.orderHistory.length) {
                             $scope.orderHistory.sort(utility.dynamicSort("-created_at"));
                         }                      
@@ -575,6 +581,7 @@ define(['app'], function(app) {
             };
 
             $scope.toFixedDecimal = function(num) {
+				$scope.enterStoreId = utility.getJStorageKey("storeId");
                 if(angular.isDefined(num)) {
                     num = parseFloat(num);
                     return num.toFixed(2);
