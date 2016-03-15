@@ -7,7 +7,7 @@ define(['app'], function (app) {
 	    		var url = getAPIUrl() + "createuser";
 	    		return serverUtility.postWebService(url, input)
 		    		.then(
-		    			function(data){return data; },
+		    			function(data){return data;},
 		    			function(error){return error; }
 		    		);		    			    	
 		    }; 
@@ -35,14 +35,14 @@ define(['app'], function (app) {
 		    		"userid" : userId,
 			    	"fname" : input.fname,
 			    	"lname" : input.lname,
-			    	"number" : input.number
+			    	"number" : input.number,
+					"otp"    : input.otp
 		    	};		    	
 		    };
 
 		    this.updateProfile = function(inputData, userId) {
 		    	var url = getAPIUrl() + "editprofile",
 		    		input = this.buildUpdateProfileObject(inputData, userId);
-
 		    	return serverUtility.postWebService(url, input)
 		    		.then(
 		    			function(data){return data; },
@@ -118,7 +118,7 @@ define(['app'], function (app) {
 		    	var url = getAPIUrl() + "getorderdetail?orderid=" + orderId;
 		    	return serverUtility.getWebService(url)
 		    		.then(
-		    			function(data){return data; },
+		    			function(data){return data;},
 		    			function(error){return error; }
 		    		);
 		    };
@@ -139,10 +139,20 @@ define(['app'], function (app) {
 			    	url = getAPIUrl() + "forgotpassword";
 		    	return serverUtility.postWebService(url, input)
 		    		.then(
-		    			function(data){return data; },
+		    			function(data){return data;},
 		    			function(error){return error; }
 		    		);
 		    };
+			
+			this.reOrder = function(increment_id){
+				var orderid = increment_id, 				
+				url = getAPIUrl() + "reorder?orderid=" + increment_id;
+				return serverUtility.getWebService(url , orderid)
+					.then(
+						function(data){return data;},
+						function(error){return error;}
+					);
+			};
 
 		    this.changePassword = function(input) {
 		    	var url = getAPIUrl() + "changepassword";
@@ -273,6 +283,8 @@ define(['app'], function (app) {
 		    			function(error){return error; }
 		    		);
 		    };
+			
+			
 
 	    	return this;
     	}

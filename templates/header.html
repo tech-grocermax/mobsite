@@ -17,11 +17,11 @@
 			</div>
             <div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 margin-lt3p" 
                 data-ng-show="columnSize == 1" data-ng-class="{'margin-lt22p': !showMoreIcon}">
-                <a href="/#/user/profile" data-ng-show="isUserLoggedIn">
+                <a href="#/user/profile" data-ng-show="isUserLoggedIn">
 					<!--<img src="images/header-icon/user_icon_1.png" title="User" class="head-user-icon">-->
                     <span class="user-icon-1"></span>
 				</a>
-                <a href="/#/user/login" data-ng-show="!isUserLoggedIn">
+                <a href="#/user/login" data-ng-show="!isUserLoggedIn">
                     <!--<img src="images/header-icon/user_icon_2.png" title="User" class="head-user-icon">-->
 					<span class="user-icon-2"></span>
 				</a>                
@@ -42,7 +42,7 @@
                         class="img-responsive back-img-mr">--> 
 					<span class="back-icon"></span>
 				</a>
-                <span class="head-text">&nbsp;{{categoryName}}</span>
+                <span class="head-text text-ellipsis">&nbsp;{{categoryName}}</span>
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 margin-lt22p"
                 data-ng-show="showSearchIcon">
@@ -106,7 +106,7 @@
                         data-ng-model="searchKeyword"
                         data-ng-change="changeSearchKeyword(searchKeyword)"
                         data-ng-keypress="checkIfEnterKeyWasPressed($event)"
-                        class="search-bar text-ellipsis" only-alphabets-with-space>
+                        class="search-bar text-ellipsis" only-alphanumeric-with-space>
                 </div>
                 <!-- search-icon -->
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 search-icon-pos">

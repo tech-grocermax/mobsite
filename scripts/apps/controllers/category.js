@@ -625,7 +625,6 @@ define(['app'], function(app) {
                     isDrawerOpen = false;
                 }
 			}
-
         }
     ]);
 });

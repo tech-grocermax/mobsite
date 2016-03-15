@@ -192,7 +192,7 @@ input , button, select{outline:none;}
 .show-more-menu{position: absolute; z-index: 100; top: 100%;}
 .center-align{text-align: center;}
 /*.myselect{margin-bottom:3%;}*/
-.bot-foot{position:fixed; bottom:0px;z-index:10;}
+.bot-foot{position:fixed; bottom:0px;z-index:10;left:0;}
 .top-head  .header-middle{position: fixed; z-index: 2; left: 0; right: 0; height: 52px;}
 .top-subhead{position: fixed; z-index: 2; left: 0; right: 0; height:40px;top:46px;}
 .wrapper{margin-top: 88px; margin-bottom: 75px;}
@@ -249,7 +249,7 @@ input , button, select{outline:none;}
 .reg-list{padding-top:22px; padding-bottom:20px; border-bottom:1px solid #e4e4e4;}
 .reg-sub-list{padding-top:22px; padding-bottom:20px; border-bottom:1px solid #e4e4e4;padding-left: 24px;}
 .reg-list .active{background:#ffa800; color:#fff;}
-.reg-list-input{color: #2d2d2d; /*font-family: helveticaNeue-Regular;*/ font-size: 5vw; font-weight: normal; border: none; width:100%;}
+.reg-list-input{color: #2d2d2d; /*font-family: helveticaNeue-Regular;*/ font-size: 16px; font-weight: normal; border: none; width:100%;}
 .editaddress .reg-list-input{/*color: #cbcbc8; font-family: lato;*/ font-size: 4.4vw; font-weight: normal; border: none; width:100%;}
 .reg-list-select{color: #cbcbc8; font-size: 4.4vw; border: none; width:100%;border-bottom: 2px solid #feb321;background-color:unset;}
 .reg-list-select:hover,.reg-list-select:focus,.reg-list-select:active{border: none;background-color:unset;border-bottom: 2px solid #feb321;}
@@ -395,7 +395,7 @@ input , button, select{outline:none;}
 
 /*========== ONE TIME PASSWORD ==========*/
 .otp-text{font-size: 4.1vw; color:#2d2d2d;}
-.otp-pass{border:1px solid #d8d8d8; background:#fff;font-size: 4.5vw; color:#000; font-weight:bold;}
+.otp-pass{border:1px solid #d8d8d8; background:#fff;font-size: 15px; color:#000; font-weight:bold;}
 .otp-btn{background:#0e69e5; width:100%; font-size:4.1vw; color:#fff; border:none; box-shadow:0 3px 7px -1px #999;}
 .center-box{display:inline-block; position:relative; text-align:center;}
 .center-box::before{content:""; display:block; position:absolute; z-index:-1; width:100%; height:100%; background:#000; opacity:0.8;}
@@ -933,8 +933,8 @@ ul.plisting li.font-3{padding-top:3px}
 .deliver-r-icon{background-image:url("../images/m.site-sprite-image.png");background-position:-179px -71px;display: block;height: 32px;width: 20px;}
 .delivery-l-icon{background-image:url("../images/m.site-sprite-image.png");background-position:-139px -71px;display: block;height: 32px;width: 20px;}
 .loaction-img{background-image:url("../images/m.site-sprite-image.png");width:47px; height:47px; display:block;position:absolute; right:0; left:0; margin:0 auto; background-position: 61px 0px;}
-.list-inline-width{min-width:2400px; max-width:3200px;}
-.list-inline-width-2{min-width:965px; max-width:3200px;}
+.list-inline-width{min-width:2154px; max-width:3200px;}
+.list-inline-width-2{min-width:720px; max-width:3200px;}
 .plus-minus-btn {
     z-index:1;
 }
@@ -952,3 +952,9 @@ ul.plisting li.font-3{padding-top:3px}
 .del-div > div:nth-child(1) {
     display: none !important;
 }
+
+.bill-buster{position: fixed;bottom: 130px;}
+.bill-bust-mrg{bottom: 160px;}
+.bill-buster > div{text-align: center;font-size: 13px;color: #e5111e;font-weight: bold;background-color: #fec70d;padding: 2px 5px 2px 5px;}
+.low-stock{background: #fb0404;color: #fff;padding: 2px 3px 2px 2px;font-size: 12px;font-weight: bold;text-align: center;}
+.so-img{margin: 0 0 5px 0;width: 80px;}
