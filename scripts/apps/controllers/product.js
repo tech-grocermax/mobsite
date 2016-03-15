@@ -250,8 +250,9 @@ define(['app'], function(app) {
                             }
 							
 							angular.forEach($scope.cartDetails.items, function(value, key) {
-								$scope.soldOutItem = value.webqty == "0";
-								if($scope.soldOutItem){
+								//$scope.soldOutItem = value.webqty == "0";
+								$scope.soldOutItemNeg = parseInt(value.webqty, 10);
+								if($scope.soldOutItemNeg <= 0){
 									$scope.isCartUpdated = true;
 									
 								}
@@ -492,12 +493,16 @@ define(['app'], function(app) {
             checkoutSuccessCallback = function(flag) {
                 if(flag == "update") {
                     $scope.isCartUpdated = false;
-					var soldOutItem = document.getElementsByClassName("so-img");
-					if(soldOutItem.length > 1){
-						$scope.isCartUpdated = true;
-					}
-					
-                    //getCartItemDetails();
+					/*var soldOutItem = document.getElementsByClassName("so-img");
+					console.log(soldOutItem.length);*/					
+					angular.forEach($scope.cartDetails.items, function(value, key) {
+						$scope.soldOutItemNeg = parseInt(value.webqty, 10);
+						console.log($scope.soldOutItemNeg);
+						if($scope.soldOutItemNeg <= 0){
+							$scope.isCartUpdated = true;	
+						}
+					});
+					//getCartItemDetails();
                 } else {
                     toggleLoader(false);
                     if(angular.isDefined(utility.getJStorageKey("userId"))
