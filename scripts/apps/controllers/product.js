@@ -249,14 +249,13 @@ define(['app'], function(app) {
                                 utility.setJStorageKey("cartCounter" + $scope.quoteId, data.TotalItem, 1);
                             }
 							
-							angular.forEach($scope.cartDetails.items, function(value, key) {
-								//$scope.soldOutItem = value.webqty == "0";
+							/*angular.forEach($scope.cartDetails.items, function(value, key) {
 								$scope.soldOutItemNeg = parseInt(value.webqty, 10);
 								if($scope.soldOutItemNeg <= 0){
 									$scope.isCartUpdated = true;
 									
 								}
-							});
+							});*/
                         }                        
                     });
             };  
@@ -495,13 +494,12 @@ define(['app'], function(app) {
                     $scope.isCartUpdated = false;
 					/*var soldOutItem = document.getElementsByClassName("so-img");
 					console.log(soldOutItem.length);*/					
-					angular.forEach($scope.cartDetails.items, function(value, key) {
+					/*angular.forEach($scope.cartDetails.items, function(value, key) {
 						$scope.soldOutItemNeg = parseInt(value.webqty, 10);
-						console.log($scope.soldOutItemNeg);
 						if($scope.soldOutItemNeg <= 0){
 							$scope.isCartUpdated = true;	
 						}
-					});
+					});*/
 					//getCartItemDetails();
                 } else {
                     toggleLoader(false);
