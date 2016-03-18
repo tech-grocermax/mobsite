@@ -956,5 +956,5 @@ ul.plisting li.font-3{padding-top:3px}
 .bill-buster{position: fixed;bottom: 130px;}
 .bill-bust-mrg{bottom: 160px;}
 .bill-buster > div{text-align: center;font-size: 13px;color: #e5111e;font-weight: bold;background-color: #fec70d;padding: 2px 5px 2px 5px;}
-.low-stock{background: #fb0404;color: #fff;padding: 2px 3px 2px 2px;font-size: 12px;font-weight: bold;text-align: center;}
+.low-stock{background: #fb0404;color: #fff;padding: 5px 3px 5px 2px;font-size: 12px;font-weight: bold;text-align: center;}
 .so-img{margin: 0 0 5px 0;width: 80px;}
