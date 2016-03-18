@@ -249,13 +249,13 @@ define(['app'], function(app) {
                                 utility.setJStorageKey("cartCounter" + $scope.quoteId, data.TotalItem, 1);
                             }
 							
-							/*angular.forEach($scope.cartDetails.items, function(value, key) {
+							angular.forEach($scope.cartDetails.items, function(value, key) {
 								$scope.soldOutItemNeg = parseInt(value.webqty, 10);
 								if($scope.soldOutItemNeg <= 0){
 									$scope.isCartUpdated = true;
 									
 								}
-							});*/
+							});
                         }                        
                     });
             };  
@@ -474,7 +474,7 @@ define(['app'], function(app) {
 				var resultCount = document.getElementsByClassName("UpdateCart"),
 				    resultCountHide = document.getElementsByClassName("UpdateCart ng-hide");
 					
-				$scope.resultCountShow = resultCount.length - resultCountHide.length; //Mustakeem 				
+				$scope.resultCountShow = resultCount.length - resultCountHide.length; //Mustakeem 	
 				if(isCartContainsSingleItem()) {
                     $scope.checkout('update');
                 }
@@ -491,15 +491,7 @@ define(['app'], function(app) {
 
             checkoutSuccessCallback = function(flag) {
                 if(flag == "update") {
-                    $scope.isCartUpdated = false;
-					/*var soldOutItem = document.getElementsByClassName("so-img");
-					console.log(soldOutItem.length);*/					
-					/*angular.forEach($scope.cartDetails.items, function(value, key) {
-						$scope.soldOutItemNeg = parseInt(value.webqty, 10);
-						if($scope.soldOutItemNeg <= 0){
-							$scope.isCartUpdated = true;	
-						}
-					});*/
+                    //$scope.isCartUpdated = false;
 					//getCartItemDetails();
                 } else {
                     toggleLoader(false);
@@ -538,7 +530,7 @@ define(['app'], function(app) {
                 }
                 utility.setJStorageKey("productBasketCount_" + quoteId, productBasketCount, 1);
             };
-
+			
             $scope.checkout = function(flag) {
                 if(flag == 'checkout') {
 
@@ -549,7 +541,6 @@ define(['app'], function(app) {
 
                     // Analytics to update cart
                     $analytics.eventTrack($scope.selectedCity, {  category: "Update Cart" });
-
                     var quoteId = utility.getJStorageKey("quoteId"),
                         products = buildProductObject();
 
@@ -572,7 +563,18 @@ define(['app'], function(app) {
                                     $scope.cartDetails = data.CartDetail;
                                     getYouSaveAmout();
                                 }                   
-                            }                            
+                            }
+							$scope.isCartUpdated = false; //Mustakeem
+							angular.forEach(data.CartDetail.items, function(value, key) {
+								$scope.soldOutItemNeg = value.webqty;								
+								if($scope.soldOutItemNeg <= 0){
+									$scope.isCartUpdated = true;
+								} else {
+									if (!$scope.isCartUpdated){
+										$scope.isCartUpdated = false;
+									}
+								}
+							});
                         });
                 } 		
             };  
