@@ -564,10 +564,12 @@ define(['app'], function(app) {
                                     getYouSaveAmout();
                                 }                   
                             }
+							
 							$scope.isCartUpdated = false; //Mustakeem
 							angular.forEach(data.CartDetail.items, function(value, key) {
-								$scope.soldOutItemNeg = value.webqty;								
-								if($scope.soldOutItemNeg <= 0){
+								$scope.soldOutItemNeg = value.webqty;
+								$scope.itemToAdd = value.qty;
+								if($scope.soldOutItemNeg <= 0 || $scope.itemToAdd > $scope.soldOutItemNeg){
 									$scope.isCartUpdated = true;
 								} else {
 									if (!$scope.isCartUpdated){
