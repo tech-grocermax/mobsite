@@ -2,9 +2,10 @@
 	<header data-ng-include="'templates/header.html'" class="header-fix-top cat-border" data-ng-class="{'pos-inherit': showCategoryMenu}"></header>
 	<article class="margin-bot15">
 		<section class="cat-img-mrg">
-			<div class="row margin0 productgrid pad-bot0"
+			<!--<div class="row margin0 productgrid pad-bot0"
 				data-ng-show="category.is_active == '1' && subCategoryList.length" 
 				data-ng-repeat="category in subCategoryList | filter:searchText">
+				
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
 					<div class="pad4 img-box cat-box">
 						<img src="{{categoryImageUrl}}{{category.category_id}}.png" 
@@ -19,6 +20,7 @@
 						</div>						
 					</div>
 				</div>
+				
 				<div class="row"
 					data-ng-show="category.children.length && moreCategoryIndex == category.category_id">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-b-15">
@@ -35,6 +37,24 @@
 					</div>
 				</div>
 			</div>
-		</section>
+		</section>-->
+		<div class="row homecategory">
+			<div class="col-sm-4 col-xs-4"
+				data-ng-show="category.is_active == '1' && subCategoryList.length" 
+				data-ng-repeat="category in subCategoryList | filter:searchText">
+					<img src="{{categoryImageUrl}}{{category.category_id}}.png" 
+						title="{{category.name}}" class="img-responsive"
+						analytics-on analytics-event="{{ selectedCity }}"
+						analytics-category="L2" 
+						analytics-label="{{ category.name }}"
+						data-ng-click="handleOfferCategoryClick(category)">
+					<span class="text-ellipsis">{{category.name}}</span>
+			</div>
+			<div class="col-sm-4 col-xs-4">
+					<img src="images/offer-icon.png" style="padding: 12px;" 
+						title="" class="img-responsive">
+					<span style="color: #ee2d09;font-size: 15px;">TOP OFFERS</span>
+			</div>
+		</div>
 	</article>	
 </div>

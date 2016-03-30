@@ -106,12 +106,20 @@ define(['app'], function(app) {
                     utility.setJStorageKey("deals", $scope.deals, 1);
                 }
             };
+			
+			specialDealCallback = function(data){
+				if(data.flag == 1){
+					$scope.specialdeals = data.specialdeal;
+					utility.setJStorageKey("specialDeals", $scope.specialdeals, 1);
+				}
+			};
 
             promiseCallback = function(data) {
                 bannerCallback(data[0]);
                 categoryCallback(data[0]);
                 offerCallback(data[0]);
                 dealCallback(data[0]);
+                specialDealCallback(data[0]);
 				/*bannerCallback(data[0]);
                 categoryCallback(data[1]);
                 offerCallback(data[2]);
@@ -143,13 +151,15 @@ define(['app'], function(app) {
             if (utility.getJStorageKey("bannerList")
                 && utility.getJStorageKey("categories")
                 && utility.getJStorageKey("offerCategories")
-                && utility.getJStorageKey("deals")) {
+                && utility.getJStorageKey("deals")
+				&& utility.getJStorageKey("specialDeals")) {
                     $scope.bannerList = utility.getJStorageKey("bannerList");
                     $scope.categories = utility.getJStorageKey("categories");
                     $scope.categories.sort(utility.dynamicSort("position"));
                     $scope.categoryImageUrl = utility.getJStorageKey("categoryImageUrl");
                     $scope.offerCategories = utility.getJStorageKey("offerCategories");
                     $scope.deals = utility.getJStorageKey("deals");
+                    $scope.specialdeals = utility.getJStorageKey("specialDeals");
                     setCategoryOfferCount();
             } else {
                 toggleLoader(true);

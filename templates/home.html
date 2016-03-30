@@ -1,6 +1,6 @@
 <div ng-controller="categoryController">
     <header data-ng-include="'templates/header.html'"></header>
-    <article data-ng-hide="displayLoader" class="back-white">
+    <article data-ng-hide="displayLoader" style="background: #ececec;">
         <section>
 			<div class="row margin0">				
 				<div style="position: relative;">					
@@ -38,14 +38,24 @@
 			</div>			
 		</section>
 		<section>
-			<div class="row margin0 pad-l-9p">
-				<div class="col-md-12 col-sm-12 col-xs-12 slider-text center-align padd0">
+			<div class="row homecategory">
+				<!--<div class="col-md-12 col-sm-12 col-xs-12 slider-text center-align padd0">
 					<div class="col-md-1 col-sm-1 col-xs-1 padd0 slide-border"></div>
 					<div class="col-md-9 col-sm-9 col-xs-9 padd0">SHOP BY CATEGORIES</div>
 					<div class="col-md-1 col-sm-1 col-xs-1 padd0 slide-border"></div>
+				</div>-->
+				<div class="col-sm-4 col-xs-4"
+				data-ng-repeat="category in categories"
+				data-ng-show="category.is_active">
+					<img src="{{categoryImageUrl}}{{category.category_id}}.png" title="{{category.name}}" class="img-responsive"
+						analytics-on analytics-event="{{ selectedCity }}"
+						analytics-category="L1" 
+						analytics-label="{{ category.name }}"
+						data-ng-click="routerChange('category', category.category_id)">
+					<span class="text-ellipsis">{{category.name}}</span>
 				</div>				
 			</div>
-			<div class="row margin0">
+			<!--<div class="row margin0">
 				<div class="row margin0" style="overflow: auto;">
 					<ul class="list-unstyled margin0 slide-ul list-inline-width">
 						<li data-ng-show="category.is_active" 
@@ -64,17 +74,23 @@
 						</li>
 					</ul>					
 				</div>
-			</div>
+			</div>-->
 		</section>
 		<section>
-			<div class="row margin0 pad-l-9p">
+			<div class="row specialdeal">
+				<div class="col-sm-12 col-xs-12" data-ng-repeat="specialDeal in specialdeals">
+					<h1>{{specialDeal.name}}</h1>
+					<img src="{{specialDeal.imageurl}}" class="img-responsive">
+				</div>
+			</div>
+			<!--<div class="row margin0 pad-l-9p">
 				<div class="col-md-12 col-sm-12 col-xs-12 slider-text center-align padd0">
 					<div class="col-md-1 col-sm-1 col-xs-1 padd0 slide-border col-md-offset-1 col-sm-offset-1 col-xs-offset-1"></div>
 					<div class="col-md-7 col-sm-7 col-xs-7 padd0">SHOP BY DEALS</div>
 					<div class="col-md-1 col-sm-1 col-xs-1 padd0 slide-border"></div>
 				</div>
-			</div>
-			<div class="row margin0">
+			</div>-->
+			<!--<div class="row margin0">
 				<div class="row margin0" style="overflow: auto;">
 					<ul class="list-unstyled slide-ul margin0 list-inline-width-2">
 						<li data-ng-show="deals.length"
@@ -89,11 +105,11 @@
 	    					<img src="{{deal.img}}" 
 								title="{{deal.dealType}}" class="slide-img">
 							<!-- <img src="images/Deal Images/{{deal.dealType}}.png" 
-								title="{{deal.dealType}}" class="slide-img"> -->
+								title="{{deal.dealType}}" class="slide-img">
 						</li>												
 					</ul>					
 				</div>
-			</div>
+			</div> -->
 			<div class="row margin0 pad-l-9p">
 				<div class="col-md-12 col-sm-12 col-xs-12 slider-text center-align padd0">
 					<div class="col-md-1 col-sm-1 col-xs-1 padd0 slide-border col-md-offset-1 col-sm-offset-1 col-xs-offset-1"></div>
