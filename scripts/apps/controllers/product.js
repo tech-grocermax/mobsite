@@ -6,15 +6,16 @@ define(['app'], function(app) {
             $scope.showSearchIcon = false;
             $scope.showMoreIcon = false; 
             $scope.categoryName = "";
-            $scope.columnSize = 10;
             $scope.categoryId = angular.isDefined($routeParams.categoryId) ? $routeParams.categoryId : null ;
             $scope.dealId = angular.isDefined($routeParams.dealId) ? $routeParams.dealId : null ;
             $scope.productId = angular.isDefined($routeParams.productId) ? $routeParams.productId : null ;
             $scope.jStorageQuoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
             $scope.quoteId = angular.isDefined($routeParams.quoteId) ? $routeParams.quoteId : null;
             $scope.parentCatId = angular.isDefined($routeParams.parentId) ? $routeParams.parentId : null ;
+            $scope.specialDealSku = angular.isDefined($routeParams.specialDealSku) ? $routeParams.specialDealSku : null ;
             $scope.products = [];
             $scope.productDetails = null;
+            $scope.specialdeals = null;
             $scope.cartItems = [];
             $scope.cartItemCount = 0;
             $scope.showMoreMenuOptions = false;
@@ -32,6 +33,8 @@ define(['app'], function(app) {
                 current_page : 1,
                 total_pages : 0
             };
+            $scope.SpecialDealName = null;
+
             $scope.isProductLoaded = false;
             toggleLoader = function(flag) {
                 $scope.displayLoader = flag;
@@ -77,7 +80,7 @@ define(['app'], function(app) {
                         }                                              
                     });                
             };
-            
+	
             groupSearchProductByCategory = function(data) {
                 $scope.searchCategoryList = angular.isDefined(data.Category) ? data.Category : [];
                 $scope.products = [];
@@ -131,10 +134,10 @@ define(['app'], function(app) {
             };
 
             // Without using var, this makes the function global. Please add var if convinient or delete this comment.
-            groupAllProductByCategory = function(data) {                
+            groupAllProductByCategory = function(data) { 
                 var hotProducts = [],
                     allProducts = [];
-                $scope.allProductCategoryList = [];             
+                $scope.allProductCategoryList = [];         
                 if(angular.isDefined(data.hotproduct) && data.hotproduct.length) {
                     angular.forEach(data.hotproduct, function(value, key) {
                         hotProducts.push(value);
@@ -172,6 +175,23 @@ define(['app'], function(app) {
             if($scope.categoryId){
                 getAllProductListByCategoryId();
                 $scope.categoryName = categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.categoryId);
+            }
+
+            getSpecialDealBySku = function() {
+                //toggleLoader(true);
+                productService.getSpecialDealListBySku($scope.specialDealSku, $scope.pagination.current_page)
+                    .then(function(data){
+                        groupAllProductByCategory(data);
+                        $scope.products = $scope.products || [];
+                        $scope.products.push.apply($scope.products, data.Product.items);
+                        setDefaultProductQuantity();
+                        toggleLoader(false);
+                        console.log($scope.products);
+                    });
+            }
+
+            if($scope.specialDealSku){
+                getSpecialDealBySku();
             }
 
             if($scope.dealId){
@@ -672,6 +692,12 @@ define(['app'], function(app) {
                 } else {
                     return '-unselected.png';
                 }                
+            };
+
+            if($routeParams.specialDealSku){
+                $scope.columnSize = 11;
+            } else {
+                 $scope.columnSize = 10;
             };
 
             // Page bottom touch event handler

@@ -38,7 +38,7 @@
 				</div>
 			</div>
 		</section>-->
-		<div class="row homecategory">
+		<div class="row homecategory" >
 			<div class="col-sm-4 col-xs-4"
 				data-ng-show="category.is_active == '1' && subCategoryList.length" 
 				data-ng-repeat="category in subCategoryList | filter:searchText">
@@ -50,7 +50,8 @@
 						data-ng-click="handleOfferCategoryClick(category)">
 					<span class="text-ellipsis">{{category.name}}</span>
 			</div>
-			<div class="col-sm-4 col-xs-4">
+			<div class="col-sm-4 col-xs-4"
+				data-ng-click="routerChange('category/offers', offerlistId)">
 					<img src="images/offer-icon.png" style="padding: 12px;" 
 						title="" class="img-responsive">
 					<span style="color: #ee2d09;font-size: 15px;">TOP OFFERS</span>

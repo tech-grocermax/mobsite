@@ -82,6 +82,30 @@ define(['app'], function (app) {
 		    			function(error){return error; }
 		    		);		    			    	
 		    };
+			
+			/*this.getSpecialDealsBySku = function(specialDealSku) {		    	
+	    		var url = getAPIUrl() + "specialdeal?sku=" + specialDealSku;
+		    	return serverUtility.getWebService(url)
+		    		.then(
+		    			function(data){return data; },
+		    			function(error){return error; }
+		    		);		    			    	
+		    };*/
+			
+			/*this.getSpecialDealName = function(specialDeal, specialDealSku){
+				var SpecialDealName = null;
+				console.log(specialDeal);
+				console.log(specialDealSku);
+		    	if(specialDeal.length){
+		    		console.log(specialDeal);
+		    		angular.forEach(specialDeal, function(value, key) {
+		    			if(value.sku == specialDealSku){
+							SpecialDealName = value.name;
+		    			}
+		    		});
+		    	}
+		    	return SpecialDealName;
+		    };*/
 
 		    this.getDealsByDealCategoryId = function(dealCategoryId) {		    	
 	    		var url = getAPIUrl() + "offerbydealtype?cat_id=" + dealCategoryId;

@@ -40,6 +40,19 @@ define([], function() {
                     appURL + 'controllers/category'
                 ]
             },
+			
+			'/specialDeal/:specialDealSku': {
+                templateUrl: templateURL + 'specialDeal.html',
+                singularName: "Product Category L2",
+                dependencies: [
+                    appURL + 'services/serverUtility',
+                    appURL + 'services/utility',
+                    appURL + 'services/category',
+                    appURL + 'services/product',
+                    appURL + 'directives/generic',                    
+                    appURL + 'controllers/product'
+                ]
+            },
             '/product/:categoryId': {
                 templateUrl: templateURL + 'product-listing.html',
                 singularName: "Product List",

@@ -80,7 +80,11 @@
 			<div class="row specialdeal">
 				<div class="col-sm-12 col-xs-12" data-ng-repeat="specialDeal in specialdeals">
 					<h1>{{specialDeal.name}}</h1>
-					<img src="{{specialDeal.imageurl}}" class="img-responsive">
+					<img src="{{specialDeal.imageurl}}" title="{{specialDeal.name}}" class="img-responsive"
+						analytics-on analytics-event="{{ selectedCity }}"
+						analytics-category="L1" 
+						analytics-label="{{specialDeal.name}}"
+						data-ng-click="routerChange('specialDeal', specialDeal.sku)">
 				</div>
 			</div>
 			<!--<div class="row margin0 pad-l-9p">

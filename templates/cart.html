@@ -31,8 +31,8 @@
                     <li class="cat-list-name text-ellipsis"
                         data-ng-click="routerChange('product/details', product.product_id)"
                         style="cursor:pointer; " 
-                        title="{{product.name}}">{{product.p_name}}</li>
-                    <li class="prod-list-qnty">{{product.p_pack}}</li>
+                        title="{{product.name}}">{{product.p_name}}, {{product.p_pack}}</li>
+                    <!--<li class="prod-list-qnty">{{product.p_pack}}</li>-->
                     <li class="font-3">
                         <span class="product-qnty">
                             ₹ {{toFixedDecimal(product.price)}}</span> 
@@ -45,19 +45,21 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cat-list-box float-rt padd0" style="margin-right:10px;">
                 <ul class="list-unstyled cat-list" 
                     data-ng-show="(product.price > 0) && (product.webqty > 0)">
-                    <li class="cat-minus"                         
+                    <li class=""  style="width: 32px;float: left;"                         
                         data-ng-click="decreaseCartProductQuantity(product, 'product_id')">
 						<!--<img src="images/app_bar_icons/minus-img.png" class="img-responsive">-->
-						<span class="cat-minus-img"></span>						
+						<!--<span class="cat-minus-img"></span>	-->
+						<img src="images/minu.png" class="img-responsive">
 					</li>
                     <li class="cat-input-box">
                         <input type="text" placeholder="1" class="cat-input-text"
                             value="{{product.qty}}" readonly>
                     </li>
-                    <li class="cat-plus" 
+                    <li class="" style="width: 32px;float: right;"  
                         data-ng-click="increaseCartProductQuantity(product, 'product_id')">
 						<!--<img src="images/app_bar_icons/plus-img.png" class="img-responsive">-->
-						<span class="cat-plus-img"></span>
+						<!--<span class="cat-plus-img"></span>-->
+						<img src="images/plus.png" class="img-responsive">
 					
 					</li>
                 </ul>

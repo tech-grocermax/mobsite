@@ -13,7 +13,13 @@ define(['app'], function (app) {
 		    	var url = getAPIUrl() + "productlistall?cat_id=" + categoryId + "&msite=true";
 		    	return serverUtility.getWebService(url)
 		    		.then(function(data){return data}, function(error){return error});
-		    };	
+		    };
+
+		   this.getSpecialDealListBySku = function(specialDealSku, page) {
+		    	var url = getAPIUrl() + "specialdeal?sku=" + specialDealSku;
+		    	return serverUtility.getWebService(url)
+		    		.then(function(data){return data}, function(error){return error});
+		    };
 
 		    this.getProductListByDealId = function(dealId) {
 		    	var url = getAPIUrl() + "dealproductlisting?deal_id=" + dealId;

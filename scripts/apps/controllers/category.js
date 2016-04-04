@@ -31,6 +31,8 @@ define(['app'], function(app) {
             $scope.bannerList = null;
             $scope.quoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
             $scope.cityList = null;
+			//$scope.SpecialDealName = "";
+			//$scope.specialDealItemList = {};
             /*$scope.cityList = [{
 				api_url: 		"api/",
 				city_name:		"Gurgaon",
@@ -45,7 +47,8 @@ define(['app'], function(app) {
             $scope.noWrapSlides = false;
             $scope.carouselIndex = 0;
 			$scope.modalHide = false;
-			
+			/*$scope.location = $location.url();
+			$scope.offerlistId = $scope.location.substr($scope.location.length - 4);*/
             $scope.pageRoute = {
                 "faq": false,
                 "contact": false,
@@ -256,19 +259,34 @@ define(['app'], function(app) {
                 $scope.subCategoryList.sort(utility.dynamicSort("position"));
                 $scope.categoryName = categoryService.getCategoryName($scope.categories, $routeParams.categoryId);
                 $scope.columnSize = 10;
+				angular.forEach($scope.subCategoryList, function(value, key) {
+					$scope.offerlistId = value.parent_id;
+				});
                 $scope.showMoreIcon = false;
             } else if ($routeParams.dealId) {
                 $scope.columnSize = 10;
                 $scope.showMoreIcon = false;
                 toggleLoader(true);
                 categoryService.getDealsByDealId($routeParams.dealId)
-                    .then(function(data){  
+                    .then(function(data){
                         if(data.flag == 1) {    
                             $scope.categoryName = angular.isDefined(data.dealcategory.name[0]) ? data.dealcategory.name[0] : "Deal";                  
                             getDealItemList(data.dealcategory);
                         }
                         toggleLoader(false);
-                    });
+                    });					
+            /*} else if ($routeParams.specialDealSku) {
+                $scope.columnSize = 11;
+                $scope.showMoreIcon = false;
+                toggleLoader(true);
+				$scope.SpecialDealName = categoryService.getSpecialDealName($scope.specialdeals, $routeParams.specialDealSku);
+				categoryService.getSpecialDealsBySku($routeParams.specialDealSku)
+                    .then(function(data){
+                        if(data.flag == 1) {
+							$scope.specialDealItemList = data.Product.items;
+                        }
+                        toggleLoader(false);
+                    });*/
             }  else if ($routeParams.dealCategoryId) {
                 $scope.columnSize = 10;
                 $scope.showMoreIcon = false;
@@ -332,7 +350,6 @@ define(['app'], function(app) {
 
             $scope.routerChange = function(route, id) {
                 route = angular.isDefined(id) ? route + ("/" + id) : route;
-
                 if(isDrawerOpen) {
                     $analytics.eventTrack($scope.selectedCity, {  category: "Close Drawer"});
                     isDrawerOpen = false;
