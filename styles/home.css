@@ -223,6 +223,7 @@ input , button, select{outline:none;}
 .wrapper{margin-top: 88px; margin-bottom: 75px;}
 .user-wrapper{margin-top: 88px;}
 .inner-body{margin-top:90px;}
+.product-inner-body{margin-top:65px;}
 .prod-inner-body{margin-top:-36px;}
 .header-fix-top{height: 94px; left: 0; position: fixed; right: 0; top: 0; z-index: 2;}
 .top-nav-blue{left: 0; position: fixed; right: 0; top: 170px; z-index: 2;}
