@@ -33,7 +33,7 @@ define(['app'], function(app) {
                 current_page : 1,
                 total_pages : 0
             };
-            $scope.SpecialDealName = null;
+            $scope.SpecialDealName = "";
 
             $scope.isProductLoaded = false;
             toggleLoader = function(flag) {
@@ -178,20 +178,22 @@ define(['app'], function(app) {
             }
 
             getSpecialDealBySku = function() {
-                //toggleLoader(true);
+                toggleLoader(true);
                 productService.getSpecialDealListBySku($scope.specialDealSku, $scope.pagination.current_page)
                     .then(function(data){
                         groupAllProductByCategory(data);
+                        $scope.isProductLoaded = true;
+                        $('body').css('overflow', 'auto');
                         $scope.products = $scope.products || [];
                         $scope.products.push.apply($scope.products, data.Product.items);
                         setDefaultProductQuantity();
                         toggleLoader(false);
-                        console.log($scope.products);
                     });
             }
 
             if($scope.specialDealSku){
                 getSpecialDealBySku();
+                $scope.SpecialDealName = categoryService.getSpecialDealName(utility.getJStorageKey("specialDeals"), $scope.specialDealSku);
             }
 
             if($scope.dealId){
@@ -410,6 +412,8 @@ define(['app'], function(app) {
             }; 
 
             $scope.routerChange = function(route, id) {
+                console.log(route);
+                console.log(id);
                 $location.url(route + "/" + id);
             };  
 

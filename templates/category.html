@@ -36,8 +36,8 @@
 						</a>
 					</div>
 				</div>
-			</div>
-		</section>-->
+			</div>-->
+		</section>
 		<div class="row homecategory" >
 			<div class="col-sm-4 col-xs-4"
 				data-ng-show="category.is_active == '1' && subCategoryList.length" 
@@ -52,9 +52,19 @@
 			</div>
 			<div class="col-sm-4 col-xs-4"
 				data-ng-click="routerChange('category/offers', offerlistId)">
-					<img src="images/offer-icon.png" style="padding: 12px;" 
+					<img src="images/offer-icon.png" style="padding: 14px; margin: auto;" 
 						title="" class="img-responsive">
-					<span style="color: #ee2d09;font-size: 15px;">TOP OFFERS</span>
+					<span style="color: #ee2d09;font-size: 12px;">TOP OFFERS</span>
+			</div>
+		</div>
+		<div class="row specialdeal">
+			<div class="col-sm-12 col-xs-12" data-ng-repeat="bannerlist in categorybannerlist">
+				<h1>{{bannerlist.name}}</h1>
+				<img src="{{bannerlist.imageurl}}" title="{{bannerlist.name}}" class="img-responsive"
+					analytics-on analytics-event="{{ selectedCity }}"
+					analytics-category="L2" 
+					analytics-label="{{bannerlist.name}}"
+					data-ng-click="handleSpecailDealClick(bannerlist)">
 			</div>
 		</div>
 	</article>	

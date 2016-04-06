@@ -47,6 +47,7 @@ define(['app'], function(app) {
             $scope.noWrapSlides = false;
             $scope.carouselIndex = 0;
 			$scope.modalHide = false;
+            $scope.categorybannerlist ={};
 			/*$scope.location = $location.url();
 			$scope.offerlistId = $scope.location.substr($scope.location.length - 4);*/
             $scope.pageRoute = {
@@ -259,6 +260,10 @@ define(['app'], function(app) {
                 $scope.subCategoryList.sort(utility.dynamicSort("position"));
                 $scope.categoryName = categoryService.getCategoryName($scope.categories, $routeParams.categoryId);
                 $scope.columnSize = 10;
+                categoryService.getSubCategoryBanner($routeParams.categoryId)
+                    .then(function(data){
+                       $scope.categorybannerlist = data.subcategorybanner;
+                    });
 				angular.forEach($scope.subCategoryList, function(value, key) {
 					$scope.offerlistId = value.parent_id;
 				});
@@ -401,6 +406,10 @@ define(['app'], function(app) {
                     $scope.routerChange('product', category.category_id);
                 }
             };
+
+            $scope.handleSpecailDealClick = function(specialDeal) {
+                $scope.routerChange('specialDeal', specialDeal.sku);
+            }
 
             $scope.toggleSubSubCategory = function(categoryId){
                 if($scope.subSubCategoryIndex == -1) {

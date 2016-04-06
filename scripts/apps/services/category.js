@@ -32,6 +32,15 @@ define(['app'], function (app) {
 		    		);		    			    	
 		    };	 */
 
+		    this.getSubCategoryBanner = function(categoryId) {		    	
+	    		var url = getAPIUrl() + "subcategorybanner?cat_id=" + categoryId;
+		    	return serverUtility.getWebService(url)
+		    		.then(
+		    			function(data){return data;},
+		    			function(error){return error;}
+		    		);		    			    	
+		    };
+
 		    this.getSubCategoryList = function(categories, categoryId) {
 		    	var subCategoryList = null;
 		    	if(categories.length){
@@ -91,21 +100,7 @@ define(['app'], function (app) {
 		    			function(error){return error; }
 		    		);		    			    	
 		    };*/
-			
-			/*this.getSpecialDealName = function(specialDeal, specialDealSku){
-				var SpecialDealName = null;
-				console.log(specialDeal);
-				console.log(specialDealSku);
-		    	if(specialDeal.length){
-		    		console.log(specialDeal);
-		    		angular.forEach(specialDeal, function(value, key) {
-		    			if(value.sku == specialDealSku){
-							SpecialDealName = value.name;
-		    			}
-		    		});
-		    	}
-		    	return SpecialDealName;
-		    };*/
+		
 
 		    this.getDealsByDealCategoryId = function(dealCategoryId) {		    	
 	    		var url = getAPIUrl() + "offerbydealtype?cat_id=" + dealCategoryId;
@@ -143,6 +138,18 @@ define(['app'], function (app) {
 		    		});					
 		    	}
 		    	return catName;
+		    };
+
+		    this.getSpecialDealName = function(specialDeal, specialDealSku){
+				var SpecialDealName = null;
+		    	if(specialDeal.length){
+		    		angular.forEach(specialDeal, function(value, key) {
+		    			if(value.sku == specialDealSku){
+		    				SpecialDealName = value.name;
+		    			}
+		    		});
+		    	}
+		    	return SpecialDealName;
 		    };
 	    
 	    	return this;
