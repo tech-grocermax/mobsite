@@ -12,7 +12,9 @@ define(['app'], function(app) {
             $scope.jStorageQuoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
             $scope.quoteId = angular.isDefined($routeParams.quoteId) ? $routeParams.quoteId : null;
             $scope.parentCatId = angular.isDefined($routeParams.parentId) ? $routeParams.parentId : null ;
-            $scope.specialDealSku = angular.isDefined($routeParams.specialDealSku) ? $routeParams.specialDealSku : null ;
+            //console.log($routeParams.specialDealSku.split("=")[1]);
+            $scope.specialDealSku = angular.isDefined($routeParams.specialDealSku.split("=")[0]) ? $routeParams.specialDealSku.split("=")[0] : null ;
+            $scope.specialDealName = angular.isDefined($routeParams.specialDealSku.split("=")[1]) ? $routeParams.specialDealSku.split("=")[1] : null ;
             $scope.topOfferDealId = angular.isDefined($routeParams.dealCategoryId) ? $routeParams.dealCategoryId : null ;
             $scope.products = [];
             $scope.productDetails = null;
@@ -212,7 +214,7 @@ define(['app'], function(app) {
 
             if($scope.specialDealSku){
                 getSpecialDealBySku();
-                $scope.SpecialDealName = categoryService.getSpecialDealName(utility.getJStorageKey("specialDeals"), $scope.specialDealSku);
+                $scope.SpecialDealName = $scope.specialDealName;
             }
 
             if($scope.topOfferDealId){
