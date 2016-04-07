@@ -298,9 +298,10 @@ define(['app'], function(app) {
                 $scope.categoryName = categoryService.getCategoryName($scope.categories, $routeParams.dealCategoryId);
                 toggleLoader(true);
                 categoryService.getDealsByDealCategoryId($routeParams.dealCategoryId)
-                    .then(function(data){      
+                    .then(function(data){     
                         //if(data.flag == 1) {
-                            getDealItemListByOffer(data.dealcategorylisting);
+
+                            getDealItemListByOffer(data.dealcategory);
                         //}
                         toggleLoader(false);                                  
                     });
@@ -409,6 +410,10 @@ define(['app'], function(app) {
 
             $scope.handleSpecailDealClick = function(specialDeal) {
                 $scope.routerChange('specialDeal', specialDeal.sku);
+            }
+
+            $scope.handleTopOfferClick = function(offerlistId) {
+                $scope.routerChange('category/offers', offerlistId);
             }
 
             $scope.toggleSubSubCategory = function(categoryId){

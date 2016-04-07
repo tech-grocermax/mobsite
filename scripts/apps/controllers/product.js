@@ -13,6 +13,7 @@ define(['app'], function(app) {
             $scope.quoteId = angular.isDefined($routeParams.quoteId) ? $routeParams.quoteId : null;
             $scope.parentCatId = angular.isDefined($routeParams.parentId) ? $routeParams.parentId : null ;
             $scope.specialDealSku = angular.isDefined($routeParams.specialDealSku) ? $routeParams.specialDealSku : null ;
+            $scope.topOfferDealId = angular.isDefined($routeParams.dealCategoryId) ? $routeParams.dealCategoryId : null ;
             $scope.products = [];
             $scope.productDetails = null;
             $scope.specialdeals = null;
@@ -134,29 +135,47 @@ define(['app'], function(app) {
             };
 
             // Without using var, this makes the function global. Please add var if convinient or delete this comment.
-            groupAllProductByCategory = function(data) { 
+            groupAllProductByCategory = function(data) {
                 var hotProducts = [],
                     allProducts = [];
-                $scope.allProductCategoryList = [];         
+                $scope.allProductCategoryList = [];       
                 if(angular.isDefined(data.hotproduct) && data.hotproduct.length) {
                     angular.forEach(data.hotproduct, function(value, key) {
                         hotProducts.push(value);
                     });                    
                 }
-                allProducts = angular.isDefined(data.ProductList) ? data.ProductList : [];
+                //allProducts = angular.isDefined(data.ProductList) ? data.ProductList : [];
+                if($scope.topOfferDealId){
+                    allProducts = angular.isDefined(data.dealcategory.category) ? data.dealcategory.category : [];
+                }
+                    else{
+                        allProducts = angular.isDefined(data.ProductList) ? data.ProductList : [];
+                    }
                 $scope.allProductCategoryList = hotProducts.concat(allProducts);
-
                 $scope.products = $scope.products || [];
                 if($scope.allProductCategoryList.length) {
                     angular.forEach($scope.allProductCategoryList, function(value, key) {
                         var products = [];
-                        angular.forEach(value.product, function(innerValue, innerKey) {
-                            innerValue["quantity"] = 1;
-                        });
+                        if($scope.topOfferDealId){
+                            angular.forEach(value.deals, function(innerValue, innerKey) {
+                                innerValue["quantity"] = 1;
+                            });
+                        }
+                            else{
+                                angular.forEach(value.product, function(innerValue, innerKey) {
+                                    innerValue["quantity"] = 1;
+                                });
+                            }
+                        
                         value["isSelected"] = (key == 0) ? true : false;
                     });
                     //$scope.products = $scope.allProductCategoryList[0]["product"];
-                    $scope.products.push.apply($scope.products, $scope.allProductCategoryList[0]["product"]);
+                    if($scope.topOfferDealId){
+                        $scope.products.push.apply($scope.products, $scope.allProductCategoryList[0]["deals"]);
+                    }
+                        else{
+                            $scope.products.push.apply($scope.products, $scope.allProductCategoryList[0]["product"]);
+                        }
                     setPaginationTotal($scope.products.length);
                     toggleLoader(false);
                 }
@@ -196,6 +215,18 @@ define(['app'], function(app) {
                 $scope.SpecialDealName = categoryService.getSpecialDealName(utility.getJStorageKey("specialDeals"), $scope.specialDealSku);
             }
 
+            if($scope.topOfferDealId){
+                toggleLoader(true);
+                categoryService.getDealsByDealCategoryId($scope.topOfferDealId)
+                    .then(function(data){ 
+                        $scope.topofferdealname = data.dealcategory.name;
+                    groupAllProductByCategory(data);
+                        $scope.isProductLoaded = true;
+                        $('body').css('overflow', 'auto');   
+                        toggleLoader(false);                            
+                    });
+            }
+
             if($scope.dealId){
                 getProductListByDealId();
             }
@@ -204,6 +235,10 @@ define(['app'], function(app) {
                 $scope.categoryName = $scope.keyword;
                 getProductListBySearch();
             }
+
+            $scope.navigateToProduct = function(route, itemId) {
+                $location.url(route + "/deal/" + itemId);
+            };
 
             getProductDetails = function() {
                 $scope.isProductDetailsLoaded = false;
@@ -412,8 +447,6 @@ define(['app'], function(app) {
             }; 
 
             $scope.routerChange = function(route, id) {
-                console.log(route);
-                console.log(id);
                 $location.url(route + "/" + id);
             };  
 
@@ -700,7 +733,10 @@ define(['app'], function(app) {
 
             if($routeParams.specialDealSku){
                 $scope.columnSize = 11;
-            } else {
+            } else if($scope.topOfferDealId){
+                $scope.columnSize = 12;
+            }
+            else {
                  $scope.columnSize = 10;
             };
 

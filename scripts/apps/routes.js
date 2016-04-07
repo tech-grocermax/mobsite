@@ -209,7 +209,7 @@ define([], function() {
                     appURL + 'services/category',
                     appURL + 'services/product',
                     appURL + 'directives/generic',                    
-                    appURL + 'controllers/category'
+                    appURL + 'controllers/product'
                 ]
             },
             '/payment/success/:orderId': {
