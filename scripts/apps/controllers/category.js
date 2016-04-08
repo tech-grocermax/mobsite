@@ -30,11 +30,12 @@ define(['app'], function(app) {
             $scope.categoryName = "";
             $scope.bannerList = null;
             $scope.quoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
-            $scope.cityList = null;
+            //$scope.cityList = null;
 			//$scope.SpecialDealName = "";
 			//$scope.specialDealItemList = {};
-            /*$scope.cityList = [{
-            //$scope.cityList = null; */
+            //$scope.cityList = null;
+
+
             $scope.cityList = [{
 				api_url: 		"api/",
 				city_name:		"Gurgaon",
@@ -527,7 +528,7 @@ define(['app'], function(app) {
                 if(angular.isDefined(utility.getJStorageKey("cityList"))
                     && utility.getJStorageKey("cityList")) {
                     $scope.cityList = utility.getJStorageKey("cityList");
-                    //openCitySelectionModal();
+                   openCitySelectionModal();
                 } /*else {                
                     utility.getCityList()
                         .then(function(data){
@@ -542,7 +543,7 @@ define(['app'], function(app) {
                 }*/
             };
 
-            /*$scope.editLocation = function() {
+           /* $scope.editLocation = function() {
                 getCityList();
             };*/
 
