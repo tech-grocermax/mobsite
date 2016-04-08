@@ -12,9 +12,11 @@ define(['app'], function(app) {
             $scope.jStorageQuoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
             $scope.quoteId = angular.isDefined($routeParams.quoteId) ? $routeParams.quoteId : null;
             $scope.parentCatId = angular.isDefined($routeParams.parentId) ? $routeParams.parentId : null ;
-            //console.log($routeParams.specialDealSku.split("=")[1]);
-            $scope.specialDealSku = angular.isDefined($routeParams.specialDealSku.split("=")[0]) ? $routeParams.specialDealSku.split("=")[0] : null ;
-            $scope.specialDealName = angular.isDefined($routeParams.specialDealSku.split("=")[1]) ? $routeParams.specialDealSku.split("=")[1] : null ;
+            //console.log($routeParams);
+            if($routeParams.specialDealSku){
+                $scope.specialDealSku = angular.isDefined($routeParams.specialDealSku.split("=")[0]) ? $routeParams.specialDealSku.split("=")[0] : null ;
+                $scope.specialDealName = angular.isDefined($routeParams.specialDealSku.split("=")[1]) ? $routeParams.specialDealSku.split("=")[1] : null ;
+            }
             $scope.topOfferDealId = angular.isDefined($routeParams.dealCategoryId) ? $routeParams.dealCategoryId : null ;
             $scope.products = [];
             $scope.productDetails = null;
@@ -220,7 +222,8 @@ define(['app'], function(app) {
             if($scope.topOfferDealId){
                 toggleLoader(true);
                 categoryService.getDealsByDealCategoryId($scope.topOfferDealId)
-                    .then(function(data){ 
+                    .then(function(data){
+                        console.log(data); 
                         $scope.topofferdealname = data.dealcategory.name;
                     groupAllProductByCategory(data);
                         $scope.isProductLoaded = true;
