@@ -409,7 +409,6 @@ define(['app'], function(app) {
             };
 
             $scope.handleSpecailDealClick = function(specialDeal) {
-                console.log(specialDeal);
                 $scope.routerChange('specialDeal', specialDeal.sku+"="+specialDeal.name);
             }
 
