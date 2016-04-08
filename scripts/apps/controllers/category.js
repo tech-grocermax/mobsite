@@ -34,13 +34,15 @@ define(['app'], function(app) {
 			//$scope.SpecialDealName = "";
 			//$scope.specialDealItemList = {};
             /*$scope.cityList = [{
+            //$scope.cityList = null; */
+            $scope.cityList = [{
 				api_url: 		"api/",
 				city_name:		"Gurgaon",
 				default_name:	"Haryana",
 				id:				"1",
 				region_id:		"487",
 				storeid:		"1"
-			}];*/
+			}];
 			$scope.cityLocation = {};
             $scope.categoryImageUrl = null;
             $scope.myInterval = 5000;
@@ -50,6 +52,8 @@ define(['app'], function(app) {
             $scope.categorybannerlist ={};
 			/*$scope.location = $location.url();
 			$scope.offerlistId = $scope.location.substr($scope.location.length - 4);*/
+		//$scope.modalHide = false;
+			
             $scope.pageRoute = {
                 "faq": false,
                 "contact": false,
@@ -524,8 +528,8 @@ define(['app'], function(app) {
                 if(angular.isDefined(utility.getJStorageKey("cityList"))
                     && utility.getJStorageKey("cityList")) {
                     $scope.cityList = utility.getJStorageKey("cityList");
-                    openCitySelectionModal();
-                } else {                
+                    //openCitySelectionModal();
+                } /*else {                
                     utility.getCityList()
                         .then(function(data){
                             $scope.cityList = data.location;
@@ -536,12 +540,12 @@ define(['app'], function(app) {
                             });                            
                             openCitySelectionModal();
                         });
-                }
+                }*/
             };
 
-            $scope.editLocation = function() {
+            /*$scope.editLocation = function() {
                 getCityList();
-            };
+            };*/
 
             hideCitySelectionModal = function() {
                 $('#myModal').modal('hide');
@@ -551,9 +555,9 @@ define(['app'], function(app) {
                 var city = location.city_name.toLowerCase(),
                     cityId = location.id;
 
-                angular.forEach($scope.cityLocation, function(value, key){
+                /*angular.forEach($scope.cityLocation, function(value, key){
                     $scope.cityLocation[key] = false;
-                });
+                });*/
                 $scope.cityLocation[city] = true;
                 $scope.selectedCity = city;
                 utility.setJStorageKey("selectedCity", city, 1);
