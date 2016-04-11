@@ -70,7 +70,7 @@ define(['app'], function(app) {
             };
 
             getProductListByDealId = function() {       
-                toggleLoader(true);         
+                toggleLoader(true);       
                 productService.getProductListByDealId($scope.dealId)
                     .then(function(data){
                         toggleLoader(false);
