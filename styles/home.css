@@ -979,7 +979,7 @@ ul.plisting li.font-3{padding-top:3px}
 .so-img{margin: 0 0 5px 0;width: 80px;}
 
 .homecategory {margin: 16px 0 0 0;}
-.homecategory >div{border: solid 1px #e6e6e6;padding: 15px; background:#fff; padding: 0 0 5px 0; text-align: center;}
+.homecategory >div{border-right: solid 1px #e6e6e6;border-bottom: solid 1px #e6e6e6;padding: 15px; background:#fff; padding: 0 0 5px 0; text-align: center;}
 /*.homecategory >div:nth-child(3n+2){border-left: solid 1px #e6e6e6;border-right: solid 1px #e6e6e6;}*/
 .homecategory >div>img{padding:15px;}
 .homecategory >div>span{font-family: gotham_mediumregular;color: #2d2d2d;font-size: 12px;font-weight: bold; padding: 0 3px 0 3px;}
