@@ -193,7 +193,7 @@ input , button, select{outline:none;}
 .search-bar{width: 100%; font-family: robotolight; font-size:14px;/*font-size: 3.5vw;*/ padding: 8px 0 8px 5px; border: medium none;margin:1px;}
 
 .search-icon-pos{float: right;width: 24px;/* top:7px;*/}
-.head-text{color:#fff;     font-size: 17px; cursor: pointer; letter-spacing: 1px;}
+.head-text{color:#fff;     font-size: 17px; cursor: pointer; letter-spacing: 1px;font-weight: bold;}
 /*.img-box{background: #fff;border-radius: 3px;box-shadow:0 7px 5px rgba(0, 0, 0, 0.2);}*/
 .imgbox-margin{margin: 7.5px;}
 .deals-img{margin-top:92px;}
@@ -629,7 +629,7 @@ input , button, select{outline:none;}
 	.cat-img-mrg {/*margin-top: 114px;*/}
 	/*.prod-sec{margin-bottom: 153px;}*/
 	/*.left-menu{top: 93.2%;}*/
-	.top-subhead {top: 46px;height: 35px;}
+	.top-subhead {top: 52px;height: 34px;}
 	
 	.prod-nav-li {padding:  12px;}
 	.reg-btn {padding: 3.8% 0 4% 5%;font-size: 5vw;}
@@ -979,7 +979,7 @@ ul.plisting li.font-3{padding-top:3px}
 .so-img{margin: 0 0 5px 0;width: 80px;}
 
 .homecategory {margin: 16px 0 0 0;}
-.homecategory >div{border: solid 1px #e6e6e6;padding: 15px; background:#fff; padding: 0 0 5px 0; text-align: center;}
+.homecategory >div{border-right: solid 1px #e6e6e6;border-bottom: solid 1px #e6e6e6;padding: 15px; background:#fff; padding: 0 0 5px 0; text-align: center;}
 /*.homecategory >div:nth-child(3n+2){border-left: solid 1px #e6e6e6;border-right: solid 1px #e6e6e6;}*/
 .homecategory >div>img{padding:15px;}
 .homecategory >div>span{font-family: gotham_mediumregular;color: #2d2d2d;font-size: 12px;font-weight: bold; padding: 0 3px 0 3px;}
@@ -989,5 +989,5 @@ ul.plisting li.font-3{padding-top:3px}
 .specialdeal img{padding: 2px;background: #fff;margin: 8px 0 0px 0;}
 .specialListbody{margin-top: 120px;}
 .special-deal{margin-top: 65px;}
-.top-deal{margin-bottom: 43px;overflow: visible;}
-.top-deal-offhead{margin: 0;font-size: 14px;font-weight: bold;color: #fff;position: absolute;bottom: -30px;height: 30px;width: 300px;background: #8f8f8f;padding: 7px 0 5px 0;text-align: center;left: 0;right: 0;margin: 0 auto;letter-spacing: 1px;border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;border-bottom: solid 2px #cfcfcf;}
+.top-deal-offhead{background: #8f8f8f;text-align: center;margin-bottom: 20px;border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;border-bottom: solid 2px #cfcfcf;}
+.top-deal-offhead h1{font-size: 14px;font-weight: bold;color: #fff;letter-spacing: 1px;padding: 10px 0 8px 0; margin: 0;}

@@ -223,7 +223,6 @@ define(['app'], function(app) {
                 toggleLoader(true);
                 categoryService.getDealsByDealCategoryId($scope.topOfferDealId)
                     .then(function(data){
-                        console.log(data); 
                         $scope.topofferdealname = data.dealcategory.name;
                     groupAllProductByCategory(data);
                         $scope.isProductLoaded = true;
