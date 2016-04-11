@@ -33,7 +33,8 @@
                                 data-ng-show="getCartProductQuantity(specialdealitem.productid) > 0">
                                 {{getCartProductQuantity(specialdealitem.productid)}}</span>
 						</li>
-                        <li class="cat-list-name text-ellipsis">{{specialdealitem.p_name}}, {{specialdealitem.p_pack}}</li>
+                        <li class="cat-list-name text-ellipsis">{{specialdealitem.p_name}}</li>
+                        <li class="prod-list-qnty">{{specialdealitem.p_pack}}</li>
                         <li class="font-3"><span class="product-qnty">₹ {{truncateComma(specialdealitem.sale_price)}} </span> <span class="prod-new-price">| ₹ {{truncateComma(specialdealitem.Price)}}</span></li>                        
                     </ul>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0 plus-minus-btn"
