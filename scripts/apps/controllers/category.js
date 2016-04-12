@@ -528,7 +528,7 @@ define(['app'], function(app) {
                 if(angular.isDefined(utility.getJStorageKey("cityList"))
                     && utility.getJStorageKey("cityList")) {
                     $scope.cityList = utility.getJStorageKey("cityList");
-                   openCitySelectionModal();
+                    //openCitySelectionModal();
                 } /*else {                
                     utility.getCityList()
                         .then(function(data){
