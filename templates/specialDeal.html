@@ -1,5 +1,14 @@
 <div ng-controller="productController">
     <header data-ng-include="'templates/header.html'" class="top-head"></header>
+    <section class="prod-sec" data-ng-show="!products.length && isProductLoaded">
+        <div class="row margin0 top-subhead">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
+                <div style="width:100%; text-align:center; padding:20px; ">
+                    Sorry no item found.
+                </div>  
+            </div>
+        </div>
+    </section>
 	<article class="special-deal">
         <div class="row margin0" >
             <!-- endless-scroll="product in products" -->

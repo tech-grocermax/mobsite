@@ -414,7 +414,7 @@ define(['app'], function(app) {
             };
 
             $scope.handleSpecailDealClick = function(specialDeal) {
-                $scope.routerChange('specialDeal', specialDeal.sku+"="+specialDeal.name);
+                $scope.routerChange('specialDeal', specialDeal.linkurl);
             }
 
             $scope.handleTopOfferClick = function(offerlistId) {

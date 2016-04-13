@@ -41,7 +41,7 @@ define([], function() {
                 ]
             },
 			
-			'/specialDeal/:specialDealSku': {
+			'/specialDeal/:specialDealLinkurl': {
                 templateUrl: templateURL + 'specialDeal.html',
                 singularName: "Product Category L2",
                 dependencies: [
