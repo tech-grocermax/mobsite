@@ -230,8 +230,8 @@ input , button, select{outline:none;}
 
 
 /*.header-O{background:#ffa800; position:absolute; border-radius:50%; top:-25%; right:-31%; font-size:3.5vw; color:#fff; padding:0 20%;}*/
-.header-O{    background: #ffa800 none repeat scroll 0 0; border-radius: 50%; color: #fff;cursor: pointer; font-size: 13px; padding: 1px 7px;
-    position: absolute; right: 2px; text-align: center; top: -26%;}
+.header-O{    background: #ffa800 none repeat scroll 0 0; border-radius: 50%; color: #fff;cursor: pointer; font-size: 13px;
+    position: absolute; right: 2px; text-align: center; top: -26%; height: 22px; width: 22px; padding: 1px 1px 0 0;}
 .btn-login{background:#0e69e5; border-radius:4px;}
 .btn-signup{background:#ffa800; border-radius:4px;}
 .font4-3{font-size:4.3vw;}
@@ -320,7 +320,7 @@ input , button, select{outline:none;}
 
 /*========== PRODUCT LISTING ==========*/
 .prod-list-h{/*font-size:3.4vw;*/font-size:16px; color:#df4a32; text-transform: uppercase;}
-.prod-list-qnty{/*font-size: 3.4vw;*/font-size:16px; color:#7d7d76;}
+.prod-list-qnty{/*font-size: 3.4vw;*/font-size:16px; /*color:#7d7d76;*/color:#4d4d4d;}
 .prod-new-price{color:#bababa; padding-left:5px; text-decoration:line-through;}
 .header-middle-prod{background: #ee2d09 none repeat scroll 0 0;padding: 30px 16px 0;}
 .nav-red{overflow:auto; background: #ee2d09 none repeat scroll 0 0;box-shadow: 0 7px 5px rgba(0, 0, 0, 0.2);}
@@ -872,7 +872,7 @@ input , button, select{outline:none;}
 .cat-list.disable{border:0px;}
 .cat-list.disable .cat-minus,.cat-list.disable .cat-plus{visibility:hidden}
 .cat-list.disable .cat-input-box{border:1px solid #f4f4f4}
-.descriptiontxt{border-top: 1px solid #ccc;  margin: 10px 3%;  padding: 10px 0px;  font-size: 12px;  color: #000;  display: inline-table; width: 94%; box-sizing: border-box;}
+.descriptiontxt{border-top: 1px solid #ccc;  margin: 10px 0 0 3%;  padding: 10px 0px;  font-size: 12px;  color: #000;  display: inline-table; width: 94%; box-sizing: border-box;}
 .descriptiontxt p{color:#666;    padding: 5px 0;}
 .clearfix:after{content:''; display:block; clear:both; width:100px}
 .item-shop a{color: rgba(255,255,255,0.4); }
@@ -992,3 +992,4 @@ ul.plisting li.font-3{padding-top:3px}
 .top-deal-offhead{background: #8f8f8f;text-align: center;margin-bottom: 20px;border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;border-bottom: solid 2px #cfcfcf;}
 .top-deal-offhead h1{font-size: 14px;font-weight: bold;color: #fff;letter-spacing: 1px;padding: 10px 0 8px 0; margin: 0;}
 .deal-top{margin-top: 100px;}
+.addresslist > li{display: inline-block;}
