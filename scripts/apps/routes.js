@@ -66,7 +66,7 @@ define([], function() {
                     appURL + 'controllers/product'
                 ]
             },
-            '/product/deal/:dealId': {
+            '/product/deal/:promoId': {
                 templateUrl: templateURL + 'product.html',
                 singularName: "Deal Description",
                 dependencies: [
