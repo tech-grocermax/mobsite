@@ -12,10 +12,11 @@ define(['app'], function(app) {
             $scope.jStorageQuoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
             $scope.quoteId = angular.isDefined($routeParams.quoteId) ? $routeParams.quoteId : null;
             $scope.parentCatId = angular.isDefined($routeParams.parentId) ? $routeParams.parentId : null ;
-            if($routeParams.specialDealSku){
-                $scope.specialDealSku = angular.isDefined($routeParams.specialDealSku.split("=")[0]) ? $routeParams.specialDealSku.split("=")[0] : null ;
-                $scope.specialDealName = angular.isDefined($routeParams.specialDealSku.split("=")[1]) ? $routeParams.specialDealSku.split("=")[1] : null ;
-            }
+            /*if($routeParams.specialDealLinkurl){
+                $scope.specialDealLinkurl = angular.isDefined($routeParams.specialDealLinkurl.split("=")[0]) ? $routeParams.specialDealLinkurl.split("=")[0] : null ;
+                $scope.specialDealName = angular.isDefined($routeParams.specialDealLinkurl.split("=")[1]) ? $routeParams.specialDealLinkurl.split("=")[1] : null ;
+            }*/
+            $scope.specialDealLinkurl = angular.isDefined($routeParams.specialDealLinkurl) ? $routeParams.specialDealLinkurl : null ;
             $scope.topOfferDealId = angular.isDefined($routeParams.dealCategoryId) ? $routeParams.dealCategoryId : null ;
             $scope.products = [];
             $scope.productDetails = null;
@@ -205,9 +206,9 @@ define(['app'], function(app) {
                 $scope.categoryName = categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.categoryId);
             }
 
-            getSpecialDealBySku = function() {
+            getSpecialDealByLinkurl = function() {
                 toggleLoader(true);
-                productService.getSpecialDealListBySku($scope.specialDealSku, $scope.pagination.current_page)
+                productService.getSpecialDealListBySku($scope.specialDealLinkurl, $scope.pagination.current_page)
                     .then(function(data){
                         groupAllProductByCategory(data);
                         $scope.isProductLoaded = true;
@@ -220,9 +221,10 @@ define(['app'], function(app) {
             }
 
 
-            if($scope.specialDealSku){
-                getSpecialDealBySku();
-                $scope.SpecialDealName = $scope.specialDealName;
+            if($scope.specialDealLinkurl){
+                getSpecialDealByLinkurl();
+                $scope.SpecialDealName = categoryService.getSpecialDealName(utility.getJStorageKey("specialDeals"), $scope.specialDealLinkurl);
+                //$scope.SpecialDealName = $scope.specialDealName;
             }
 
             if($scope.topOfferDealId){
@@ -741,7 +743,7 @@ define(['app'], function(app) {
                 }                
             };
 
-            if($routeParams.specialDealSku){
+            if($routeParams.specialDealLinkurl){
                 $scope.columnSize = 11;
             } else if($scope.topOfferDealId){
                 $scope.columnSize = 12;

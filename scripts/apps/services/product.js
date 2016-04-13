@@ -15,8 +15,8 @@ define(['app'], function (app) {
 		    		.then(function(data){return data}, function(error){return error});
 		    };
 
-		   this.getSpecialDealListBySku = function(specialDealSku, page) {
-		    	var url = getAPIUrl() + "specialdeal?sku=" + specialDealSku;
+		   this.getSpecialDealListBySku = function(specialDealLinkurl, page) {
+		    	var url = getAPIUrl() + "specialdeal?sku=" + specialDealLinkurl;
 		    	return serverUtility.getWebService(url)
 		    		.then(function(data){return data}, function(error){return error});
 		    };

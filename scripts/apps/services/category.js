@@ -140,11 +140,12 @@ define(['app'], function (app) {
 		    	return catName;
 		    };
 
-		    this.getSpecialDealName = function(specialDeal, specialDealSku){
+		    this.getSpecialDealName = function(specialDeal, specialDealLinkurl){
 				var SpecialDealName = null;
 		    	if(specialDeal.length){
 		    		angular.forEach(specialDeal, function(value, key) {
-		    			if(value.sku == specialDealSku){
+		    			if(value.linkurl.split("?")[0] == specialDealLinkurl){
+		    				console.log(value);
 		    				SpecialDealName = value.name;
 		    			}
 		    		});
