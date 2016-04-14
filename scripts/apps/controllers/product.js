@@ -17,7 +17,6 @@ define(['app'], function(app) {
                 $scope.specialDealLinkurl = angular.isDefined($routeParams.specialDealLinkurl.split("=")[0]) ? $routeParams.specialDealLinkurl.split("=")[0] : null ;
                 $scope.specialDealName = angular.isDefined($routeParams.specialDealLinkurl.split("=")[1]) ? $routeParams.specialDealLinkurl.split("=")[1] : null ;
             }*/
-            $scope.specialDealLinkurl = angular.isDefined($routeParams.specialDealLinkurl) ? $routeParams.specialDealLinkurl : null ;
             $scope.topOfferDealId = angular.isDefined($routeParams.dealCategoryId) ? $routeParams.dealCategoryId : null ;
             $scope.products = [];
             $scope.productDetails = null;
@@ -29,6 +28,7 @@ define(['app'], function(app) {
             $scope.youSaved = 0;
             $scope.totalCartQty = 0;
             $scope.keyword = angular.isDefined($routeParams.keyword) ? $routeParams.keyword : null ;
+            $scope.sku = angular.isDefined($routeParams.sku) ? $routeParams.sku : null ;
             $scope.productIds = [];
             $scope.isUserLoggedIn = angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId") ? true : false;
             $scope.productQty = {};
@@ -137,7 +137,7 @@ define(['app'], function(app) {
                     allProducts = angular.isDefined(data.dealcategory.category) ? data.dealcategory.category : [];
                 } else if($scope.dealId){
                     allProducts = angular.isDefined(data.dealcategory.category) ? data.dealcategory.category : [];
-                } else if($scope.promoId){
+                } else if($scope.promoId || $scope.sku){
                     allProducts = angular.isDefined(data.Product.items) ? data.Product.items : [];
                 }
                     else{
@@ -156,7 +156,7 @@ define(['app'], function(app) {
                             angular.forEach(value.deals, function(innerValue, innerKey) {
                                 innerValue["quantity"] = 1;
                             });
-                        } else if($scope.promoId){
+                        } else if($scope.promoId || $scope.sku){
                                 value["quantity"] = 1;
                         }
                             else{
@@ -172,9 +172,8 @@ define(['app'], function(app) {
                         $scope.products.push.apply($scope.products, $scope.allProductCategoryList[0]["deals"]);
                     }else if($scope.dealId){
                         $scope.products.push.apply($scope.products, $scope.allProductCategoryList[0]["deals"]);
-                    } else if($scope.promoId){
+                    } else if($scope.promoId || $scope.sku){
                         $scope.products.push.apply($scope.products, $scope.allProductCategoryList);
-                        console.log($scope.products);
                     }
                         else{
                             $scope.products.push.apply($scope.products, $scope.allProductCategoryList[0]["product"]);
@@ -228,25 +227,20 @@ define(['app'], function(app) {
                 $scope.categoryName = categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.categoryId);
             }
 
-            getSpecialDealByLinkurl = function() {
+            getSpecialDealBySku = function() {
                 toggleLoader(true);
-                productService.getSpecialDealListBySku($scope.specialDealLinkurl, $scope.pagination.current_page)
+                productService.getSpecialDealListBySku($scope.sku)
                     .then(function(data){
                         groupAllProductByCategory(data);
-                        $scope.isProductLoaded = true;
-                        $('body').css('overflow', 'auto');
-                        $scope.products = $scope.products || [];
-                        $scope.products.push.apply($scope.products, data.Product.items);
-                        setDefaultProductQuantity();
                         toggleLoader(false);
+                        $scope.isProductLoaded = true;
                     });
             }
 
 
-            if($scope.specialDealLinkurl){
-                getSpecialDealByLinkurl();
-                $scope.SpecialDealName = categoryService.getSpecialDealName(utility.getJStorageKey("specialDeals"), $scope.specialDealLinkurl);
-                //$scope.SpecialDealName = $scope.specialDealName;
+            if($scope.sku){
+                getSpecialDealBySku();
+                $scope.SpecialDealName = categoryService.getSpecialDealName(utility.getJStorageKey("specialDeals"), $scope.sku);
             }
 
             if($scope.topOfferDealId){
@@ -261,9 +255,6 @@ define(['app'], function(app) {
                     });
             }
 
-            if($scope.dealId){
-                getProductListByDealId();
-            }
 
             if($scope.keyword) {
                 $scope.categoryName = $scope.keyword;
@@ -765,7 +756,7 @@ define(['app'], function(app) {
                 }                
             };
 
-            if($routeParams.specialDealLinkurl){
+            if($scope.sku){
                 $scope.columnSize = 11;
             } else if($scope.topOfferDealId){
                 $scope.columnSize = 12;

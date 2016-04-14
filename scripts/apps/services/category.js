@@ -144,8 +144,7 @@ define(['app'], function (app) {
 				var SpecialDealName = null;
 		    	if(specialDeal.length){
 		    		angular.forEach(specialDeal, function(value, key) {
-		    			if(value.linkurl.split("?")[0] == specialDealLinkurl){
-		    				console.log(value);
+		    			if(value.linkurl.split("=")[1] == specialDealLinkurl){
 		    				SpecialDealName = value.name;
 		    			}
 		    		});
