@@ -58,12 +58,12 @@
 			</div>
 		</div>
 		<div class="row specialdeal">
-			<div class="col-sm-12 col-xs-12" data-ng-repeat="bannerlist in categorybannerlist">
-				<img src="{{bannerlist.imageurl}}" title="{{bannerlist.name}}" class="img-responsive"
+			<div class="col-sm-12 col-xs-12" data-ng-repeat="banner in categorybannerlist">
+				<img src="{{banner.imageurl}}" title="{{banner.name}}" class="img-responsive"
 					analytics-on analytics-event="{{ selectedCity }}"
 					analytics-category="L2" 
-					analytics-label="{{bannerlist.name}}"
-					data-ng-click="handleSpecailDealClick(bannerlist)">
+					analytics-label="{{banner.name}}"
+					data-ng-click="handleBannerClick(banner)">
 			</div>
 		</div>
 	</article>	
