@@ -615,6 +615,8 @@ define(['app'], function(app) {
                     $location.url("category/offers/" + queryValue);
                 } else if(url == "productlistall") {
                     $location.url("product/" + queryValue);
+                } else if(url == "specialdeal"){
+                    $location.url("specialdeal?sku=" + queryValue);
                 }
             };
 

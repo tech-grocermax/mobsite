@@ -41,18 +41,6 @@ define([], function() {
                 ]
             },
 			
-			'/specialDeal/:specialDealLinkurl': {
-                templateUrl: templateURL + 'specialDeal.html',
-                singularName: "Product Category L2",
-                dependencies: [
-                    appURL + 'services/serverUtility',
-                    appURL + 'services/utility',
-                    appURL + 'services/category',
-                    appURL + 'services/product',
-                    appURL + 'directives/generic',                    
-                    appURL + 'controllers/product'
-                ]
-            },
             '/product/:categoryId': {
                 templateUrl: templateURL + 'product-listing.html',
                 singularName: "Product List",
@@ -66,7 +54,7 @@ define([], function() {
                     appURL + 'controllers/product'
                 ]
             },
-            '/product/deal/:dealId': {
+            '/product/deal/:promoId': {
                 templateUrl: templateURL + 'product.html',
                 singularName: "Deal Description",
                 dependencies: [
@@ -92,6 +80,21 @@ define([], function() {
                     appURL + 'controllers/product'
                 ]
             },
+
+            '/specialdeal': {
+                templateUrl: templateURL + 'specialDeal.html',
+                singularName: "Product Category L2",
+                dependencies: [
+                    appURL + 'services/serverUtility',
+                    appURL + 'services/utility',
+                    appURL + 'services/category',
+                    appURL + 'services/product',
+                    appURL + 'filter/product',
+                    appURL + 'directives/generic',                    
+                    appURL + 'controllers/product'
+                ]
+            },
+
             '/product/details/:productId': {
                 templateUrl: templateURL + 'product-details.html',
                 singularName: "Product Description",

@@ -15,20 +15,14 @@ define(['app'], function (app) {
 		    		.then(function(data){return data}, function(error){return error});
 		    };
 
-		   this.getSpecialDealListBySku = function(specialDealLinkurl, page) {
-		    	var url = getAPIUrl() + "specialdeal?sku=" + specialDealLinkurl;
-		    	return serverUtility.getWebService(url)
-		    		.then(function(data){return data}, function(error){return error});
-		    };
-
 		    this.getDealsByDealId = function(dealId, page) {
 		    	var url = getAPIUrl() + "dealsbydealtype?deal_type_id=" + dealId;
 		    	return serverUtility.getWebService(url)
 		    		.then(function(data){return data}, function(error){return error});
 		    };
 
-		    this.getProductListByDealId = function(dealId) {
-		    	var url = getAPIUrl() + "dealproductlisting?deal_id=" + dealId;
+		    this.getProductListByPromoId = function(promoId) {
+		    	var url = getAPIUrl() + "dealproductlisting?deal_id=" + promoId;
 		    	return serverUtility.getWebService(url)
 		    		.then(function(data){return data}, function(error){return error});
 		    }; 
@@ -73,6 +67,12 @@ define(['app'], function (app) {
 		    
 		    this.getProductListBySearch = function(keyword) {
 		    	var url = getAPIUrl() + "search?keyword=" + keyword;
+		    	return serverUtility.getWebService(url)
+		    		.then(function(data){return data}, function(error){return error});
+		    };
+
+		    this.getSpecialDealListBySku = function(sku) {
+		    	var url = getAPIUrl() + "specialdeal?sku=" + sku;
 		    	return serverUtility.getWebService(url)
 		    		.then(function(data){return data}, function(error){return error});
 		    };
