@@ -595,6 +595,7 @@ define(['app'], function(app) {
             };
 
             $scope.handleBannerClick = function(banner) {
+                //console.log(queryValue+"$"+banner.name);
                 var arrBanner = banner.linkurl.split('?'),
                     url = arrBanner[0],
                     queryParams = arrBanner[1].split('='),
@@ -611,7 +612,7 @@ define(['app'], function(app) {
                 } else if(url == "productlistall") {
                     $location.url("product/" + queryValue);
                 } else if(url == "specialdeal"){
-                    $location.url("specialdeal?sku=" + queryValue);
+                    $location.url("specialdeal?sku=" + queryValue+"@"+banner.name);
                 }
             };
 

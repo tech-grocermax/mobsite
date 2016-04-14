@@ -140,7 +140,7 @@ define(['app'], function (app) {
 		    	return catName;
 		    };
 
-		    this.getSpecialDealName = function(specialDeal, specialDealLinkurl){
+		   /* this.getSpecialDealName = function(specialDeal, specialDealLinkurl){
 				var SpecialDealName = null;
 		    	if(specialDeal.length){
 		    		angular.forEach(specialDeal, function(value, key) {
@@ -150,7 +150,7 @@ define(['app'], function (app) {
 		    		});
 		    	}
 		    	return SpecialDealName;
-		    };
+		    };*/
 	    
 	    	return this;
     	}

@@ -13,10 +13,9 @@ define(['app'], function(app) {
             $scope.jStorageQuoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
             $scope.quoteId = angular.isDefined($routeParams.quoteId) ? $routeParams.quoteId : null;
             $scope.parentCatId = angular.isDefined($routeParams.parentId) ? $routeParams.parentId : null ;
-            /*if($routeParams.specialDealLinkurl){
-                $scope.specialDealLinkurl = angular.isDefined($routeParams.specialDealLinkurl.split("=")[0]) ? $routeParams.specialDealLinkurl.split("=")[0] : null ;
-                $scope.specialDealName = angular.isDefined($routeParams.specialDealLinkurl.split("=")[1]) ? $routeParams.specialDealLinkurl.split("=")[1] : null ;
-            }*/
+            if($routeParams.sku){
+                $scope.specialDealName = angular.isDefined($routeParams.sku.split("@")[1]) ? $routeParams.sku.split("@")[1] : "Offer" ;
+            }
             $scope.topOfferDealId = angular.isDefined($routeParams.dealCategoryId) ? $routeParams.dealCategoryId : null ;
             $scope.products = [];
             $scope.productDetails = null;
@@ -39,7 +38,6 @@ define(['app'], function(app) {
                 current_page : 1,
                 total_pages : 0
             };
-            $scope.SpecialDealName = "";
 
             $scope.isProductLoaded = false;
             toggleLoader = function(flag) {
@@ -240,7 +238,8 @@ define(['app'], function(app) {
 
             if($scope.sku){
                 getSpecialDealBySku();
-                $scope.SpecialDealName = categoryService.getSpecialDealName(utility.getJStorageKey("specialDeals"), $scope.sku);
+                /*$scope.SpecialDealName = categoryService.getSpecialDealName(utility.getJStorageKey("specialDeals"), $scope.sku);
+                console.log($scope.SpecialDealName);*/
             }
 
             if($scope.topOfferDealId){
