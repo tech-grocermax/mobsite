@@ -94,7 +94,9 @@
         </div>
     </div>
 	
-	<div class="row margin0 bill-buster" data-ng-class="{'bill-bust-mrg' : cartDetails.shipping_address.shipping_amount > 0}">
+	<div class="row margin0 bill-buster" 
+        data-ng-show="cartDetails.Bill_buster"
+        data-ng-class="{'bill-bust-mrg' : cartDetails.shipping_address.shipping_amount > 0}">
         <div class="col-sm-12 col-xs-12">
 			{{cartDetails.Bill_buster}} 
 		</div>
