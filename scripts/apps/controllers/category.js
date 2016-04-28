@@ -513,7 +513,7 @@ define(['app'], function(app) {
                 }
             };
 
-            openCitySelectionModal = function() {
+            /*openCitySelectionModal = function() {
                 $timeout(function(){
                     $('#myModal').modal({
                         backdrop: false,
@@ -521,7 +521,7 @@ define(['app'], function(app) {
                         show: true
                     });
                 }, 1000);
-            };
+            };*/
 
             getCityList = function() {
                 toggleLoader(true);
