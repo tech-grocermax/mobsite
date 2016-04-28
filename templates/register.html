@@ -1,0 +1,146 @@
+<section>
+	<!-- <div class="row margin0 pad-lt32 reg-bar pad-lt16-m"style="font-size: 4.1vw;">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
+			REGISTER
+		</div>
+	</div> -->
+	
+	<!--<div class="row margin0 reg-btn-margin">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<!--
+				<button type="button" class="reg-btn btn-fb">
+					<img src="images/app_bar_icons/fb.png" alt="">
+					Sign in with Facebook
+				</button>
+				
+				<button type="button" class="reg-btn btn-google">
+					<img src="images/app_bar_icons/google.png" alt="">
+					Sign in with Google
+				</button>			
+			
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0 pad-rt-8">
+				<img src="images/fb-button.png" alt="" style="width:100%;">
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0 pad-lt-8">
+				<img src="images/gmail-button.png" alt="" style="width:100%;">
+			</div>
+		</div>
+	</div>-->
+	
+	<div class="row margin0 pad-lt32 reg-bar pad-lt16-m"style="font-size: 3.5vw;">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" >
+			SIGNUP
+		</div>
+	</div>
+	<form name="frmRegistration" novalidate autocomplete="off">
+		<div class="row margin0 back-white" data-ng-show="registrationStep == 1">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
+				<ul class="list-unstyled pad-lt32 margin0 pad-rt32 pad-lt-rt16-m">
+					<li class="reg-list">
+						<span class="reg-list-text">First Name</span><br>
+						<input type="text" name="fname" placeholder="required" 
+							data-ng-model="user.fname"
+							required my-max-length="15" only-alphabets-with-space
+							class="place-color reg-list-input">
+						<div ng-messages="frmRegistration.fname.$error" 
+                        	data-ng-show="frmRegistration.fname.$dirty || (errorRegistration && user.fname == null)">
+                            <div ng-show="frmRegistration.fname.$error.required" 
+                            	class="error-message">Please enter your first name</div>
+                        </div>
+					</li>
+					<li class="reg-list">
+						<span class="reg-list-text">Last Name</span><br>
+						<input type="text" name="lname" placeholder="required" 
+							data-ng-model="user.lname"
+							required my-max-length="15" only-alphabets-with-space
+							class="place-color reg-list-input">
+						<div ng-messages="frmRegistration.lname.$error" 
+                        	data-ng-show="frmRegistration.lname.$dirty || (errorRegistration && user.lname == null)">
+                            <div ng-show="frmRegistration.lname.$error.required" 
+                            	class="error-message">Please enter your last name</div>
+                        </div>
+					</li>
+					<li class="reg-list">
+						<span class="reg-list-text">Mobile No.</span><br>
+						<input type="text" name="mobile" placeholder="required"
+							data-ng-model="user.number" 
+							required my-max-length="10" only-digits
+							class="place-color reg-list-input">
+						<div ng-messages="frmRegistration.mobile.$error" 
+                        	data-ng-show="frmRegistration.mobile.$dirty || (errorRegistration && user.mobile == null)">
+                            <div ng-show="frmRegistration.mobile.$error.required" 
+                            	class="error-message">Please enter your mobile number</div>
+                        </div>
+					</li>
+					<li class="reg-list">
+						<span class="reg-list-text">Email</span><br>
+						<input type="text" name="email" placeholder="required" 
+							data-ng-model="user.uemail"
+							ng-pattern="/^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$/" 
+                            required my-max-length="40" validate-email autocomplete="false"
+							class="place-color reg-list-input">
+						<div ng-messages="frmRegistration.email.$error" 
+                        	data-ng-show="frmRegistration.email.$dirty || (errorRegistration && user.uemail == null)">
+                            <div ng-show="frmRegistration.email.$error.required" 
+                            	class="error-message">Please enter your email address</div>
+                            <div ng-show="frmRegistration.email.$error.pattern && frmRegistration.email.$touched"
+                            	class="error-message">Please enter a valid email address</div>
+                        </div>
+					</li>
+					<li class="reg-list">
+						<span class="reg-list-text">Password</span>
+						<span class="float-rt reg-list-text"
+							data-ng-click="togglePasswordField()"
+							style="cursor:pointer; ">{{password.caption}}</span><br>
+						<input type="password" name="password" placeholder="required" 
+							data-ng-model="user.password"
+							required my-min-length="6" autocomplete="false"
+							class="place-color reg-list-input">
+						<div ng-messages="frmRegistration.password.$error" 
+                        	data-ng-show="frmRegistration.password.$dirty || (errorRegistration && user.password == null)">
+                            <div ng-show="frmRegistration.password.$error.required" 
+                            	class="error-message">Please enter your password</div>
+                        </div>
+					</li>
+					<li>
+						<p class="reg-para">By clicking this button you agree & accept our User Agreement and Privacy Policy.</p>
+					</li>
+				</ul>
+			</div>
+			<div class="alert" role="alert"
+				data-ng-class="{'alert-success': className.success,'alert-danger': className.danger}"
+				data-ng-show="showUserResponse"
+				style="margin-left: 2%; float: left; width: 96%; margin-bottom:44px;">{{userResponseMessage}}</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" 
+				data-ng-click="createUser(frmRegistration)">
+				<button type="button" class="reg-bot-btn">CREATE ACCOUNT</button>
+			</div>
+		</div>
+	</form>
+
+	<div class="row margin0 pad-lt26 pad-lt32 pad-rt32" 
+		data-ng-show="registrationStep == 2"
+		style="margin-top: 10%;">
+		<div class="col-md-12 col-sm-12 col-xs-12 padd0 otp-text">
+			<span>Enter your one time password (OTP)</span>
+		</div>
+		<div style="text-align: center;color: #404040;font-weight: bold;font-size: 14px;">{{user.number}}</div>
+		<div class="col-md-12 col-sm1234-12 col-xs-12 pad16 margin-top15 otp-pass" style="padding: 0;">
+			<input type="text" name="otp" 
+				data-ng-model="otp"
+				data-ng-change="changeOTP(otp)"
+				value=""
+				maxlength="6" 
+				class="place-color reg-list-input"style="width: 180px;padding-left: 5px;">
+				<button style="background-color: #0e69e5;border: none;color: #fff;height: 24px;font-size: 14px;font-weight: 100;float: right;" data-ng-click="createUser(frmRegistration)">Resend</button>				
+		</div>
+		<div class="alert" role="alert"
+			style="float: left;  width: 100%;  margin-top: 10px;"
+			data-ng-class="{'alert-success': className.success,'alert-danger': className.danger}"
+			data-ng-show="showUserResponse">{{userResponseMessage}}</div>
+		<div class="col-md-12 col-sm-12 col-xs-12 padd0 margin-top15"
+			data-ng-click="verifyOTP()">
+			<button type="button" class="pad16 otp-btn">SUBMIT</button>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,35 @@
+<section>
+	<div class="row margin0 pad-ltr16 pad-ltr8-m"
+		data-ng-repeat="order in orderHistory">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 back-white">
+			<ul class="list-unstyled margin0 ord-His-box"
+				data-ng-click="navigateToOrderDetail(order)">
+				<li class="order-li">
+					<span>Order ID:</span>
+					<span>{{order.increment_id}}</span> <!--order_id -->
+					<img src="images/app_bar_icons/p-right-icon.png" alt="" class="img-responsive float-rt user-icon-arr">
+				</li>
+				<li class="order-li">
+					<span>Order date:</span>
+					<span>{{order.created_at}}</span>
+				</li>
+				<li class="order-li">
+					<span>Amount Paid:</span>
+					<span>Rs. {{toFixedDecimal(order.grand_total)}}</span>
+				</li>
+				<li class="order-li">
+					<span>Status:</span>
+					<span>{{order.status}}</span>
+				</li>
+				<li class="order-li">
+					<span>Items:</span>
+					<span>{{order.total_item_count}}</span>
+				</li>
+			</ul>
+			<div style="width: 90px;background: #5c7dff;color: #fff;position: absolute;bottom: 10px;right: 10px;border-radius: 4px;text-align: center;letter-spacing: 2px;font-size: 14px;font-weight: bold;padding: 3px 0 3px 0;" 
+			data-ng-click="reOrder(order.increment_id , order)"
+			data-ng-show="enterStoreId == order.store_id">Reorder</div>
+			<div style="position: absolute;bottom: 14px;right: 10px;font-size: 12px;color: #EE2D09;font-weight: bold;" data-ng-show="enterStoreId != order.store_id">Change location to reorder</div>
+		</div>
+	</div>	
+</section>

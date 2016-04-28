@@ -1,0 +1,129 @@
+<section>
+	<!-- <div class="row margin0 pad-lt32 reg-bar pad-lt16-m"style="font-size: 4.1vw;">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
+			LOGIN
+		</div>
+	</div>
+	
+	<div class="row margin0 margin-top32 margin-bot32 margin-tp-bt-16m">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-lt-rt8-m">
+			<button type="button" class="reg-btn btn-fb">
+				<img src="images/app_bar_icons/fb.png" alt="">
+				Sign in with Facebook
+			</button>
+			
+			<button type="button" class="reg-btn btn-google">
+				<img src="images/app_bar_icons/google.png" alt="">
+				Sign in with Google
+			</button>	
+		</div>
+	</div> -->
+	<div class="row margin0">
+		<div class="col-md-12 col-sm-12 col-xs-12 logo-box center-align">
+			<!--<img src="images/logo-msite.png" alt="" class="img-responsive float-rt">-->
+			<span style="font-family: roboto-light; color: #fff; font-size: 7.2vw;">Hello again</span>
+		</div>
+	</div>
+
+	<!--UPDATED DESIGN
+		<div class="row margin0 pad-rt16 pad-lt16">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-lt-rt8-m" style="margin-bottom: 7px;">
+				<span class="log-input">Login using</span>
+			</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-lt-rt8-m">
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left:0;">
+					<a href="login-with.php?provider=Facebook">
+						<img src="images/fb-login.png" alt="" style="max-width:100%;">
+					</a>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-right:0;">
+					<a href="login-with.php?provider=Google">
+						<img src="images/glogin.png" alt="" style="max-width:100%;">
+					</a>
+				</div>
+			</div>
+		</div> -->
+	
+	<!--<div class="row margin0 pad-lt32 reg-bar pad-lt16-m"style="font-size: 3.5vw;">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" >
+			<!-- OR  LOGIN USING EMAIL
+		</div>
+	</div>-->
+	
+	<!--UPDATED DESIGN
+		<div class="row margin0 pad-rt16 pad-lt16">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-box pad-lt-rt8-m">
+				<div class="col-md-5 col-sm-5 col-xs-5 text-line pad-lt-rt8-m"></div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pad-lt-rt8-m">
+					<span class="login-text">OR</span>
+				</div>
+				<div class="col-md-5 col-sm-5 col-xs-5 text-line pad-lt-rt8-m"></div>
+			</div>
+		</div>-->
+	
+	<form name="frmLogin" novalidate autocomplete="off">
+		<div class="row margin0 pad16">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-lt-rt8-m">
+				<ul class="list-unstyled margin0 log-bo">
+					<li class="log-border">
+						<input type="text" name="email" placeholder="Email" 
+							value=""
+							data-ng-model="user.uemail"
+							class="width-100 log-place log-input"
+							ng-pattern="/^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$/" 
+							autocomplete="off"
+                            required my-max-length="40" validate-email>
+                        <div ng-messages="frmLogin.email.$error" 
+                        	data-ng-show="frmLogin.email.$dirty || (errorLogin && user.uemail == null)">
+                            <div ng-show="frmLogin.email.$error.required" 
+                            	class="error-message">Please enter your email address</div>
+                            <div ng-show="frmLogin.email.$error.pattern && frmLogin.email.$touched"
+                            	class="error-message">Please enter a valid email address</div>
+                        </div>
+					</li>
+					<li class="log-border margin-tp36">
+						<input type="password" name="password" placeholder="Password"
+							value="" 
+							data-ng-model="user.password" required my-min-length="6"
+							autocomplete="off"
+							class="width-100 log-place log-input">
+						<div ng-messages="frmLogin.password.$error" 
+                        	data-ng-show="frmLogin.password.$dirty || (errorLogin && user.password == null)">
+                            <div ng-show="frmLogin.password.$error.required" 
+                            	class="error-message">Please enter your password</div>
+                        </div>
+					</li>				
+				</ul>
+			</div>
+		</div>
+		<div class="alert" role="alert"
+			data-ng-class="{'alert-success': className.success, 'alert-danger': className.danger}"
+			data-ng-show="showUserResponse">{{userResponseMessage}}
+		</div>
+		<div class="row margin0 pad16 pad8-m" >
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+				data-ng-click="loginUser(frmLogin)">
+				<button type="button" class="ord-btn btn-login">LOGIN</button>
+			</div>			
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top15" 
+				data-ng-click="navigateTo('user/forgotpassword')"
+				style="text-align: center;">
+				<a class="forgot-text" href="javascript:void(0);">Forgot your Password?</a>
+			</div>			
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 log-text center-align">
+				<span class="forgot-text padd0-m">DON&apos;T HAVE AN ACCOUNT?</span>
+			</div>			
+
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" 
+				data-ng-click="navigateTo('user/register')">
+				<button type="button" class="ord-btn btn-signup">SIGNUP</button>
+			</div>
+			
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center-align margin-tp36">
+				<a href="/#/">
+					<img src="images/continue-shopping.png" alt="" style="width: 80%;">
+				</a>
+			</div>
+		</div>
+	</form>	
+</section>

@@ -1,0 +1,142 @@
+.back-icon, .cart, .cart1, .check-box, .deliver-l, .deliver-r, .fb, .google, .home, .left-icon, .list, .logo-icon, .more-icon, .plus, .p-right-icon, .profile, .RIGHT-ICON, .search_icon, .search1, .location-icon_selected, .location-icon_-unselected, .mobi-icon, .paytm-icon{
+	background: url(sprites.png) no-repeat;
+}
+
+.back-icon{
+	background-position: -9px -10px ;
+	width: 30px;
+	height: 29px;
+}
+
+.cart{
+	background-position: -67px -3px ;
+	width: 42px;
+	height: 41px;
+}
+
+.cart1{
+	background-position: -131px -4px ;
+	width: 42px;
+	height: 42px;
+}
+
+.check-box{
+	background-position: -197px -4px ;
+	width: 44px;
+	height: 44px;
+}
+
+.deliver-l{
+	background-position: -271px -11px ;
+	width: 17px;
+	height: 30px;
+}
+
+.deliver-r{
+	background-position: -330px -11px ;
+	width: 17px;
+	height: 30px;
+}
+
+.fb{
+	background-position: -374px -11px ;
+	width: 16px;
+	height: 29px;
+}
+
+.google{
+	background-position: -416px -10px ;
+	width: 16px;
+	height: 29px;
+}
+
+.home{
+	background-position: -457px -4px ;
+	width: 42px;
+	height: 42px;
+}
+
+.left-icon{
+	background-position: -526px -14px ;
+	width: 12px;
+	height: 18px;
+}
+
+.list{
+	background-position: -574px 0;
+	width: 45px;
+	height: 48px;
+}
+
+.logo-icon{
+	background-position: -4px -69px ;
+	width: 43px;
+	height: 48px;
+}
+
+.more-icon{
+	background-position: -73px -84px ;
+	width: 47px;
+	height: 13px;
+}
+
+.plus{
+	background-position: -151px -73px ;
+	width: 28px;
+	height: 28px;
+}
+
+.p-right-icon{
+	background-position: -216px -75px ;
+	width: 14px;
+	height: 24px;
+}
+
+.profile{
+	background-position: -252px -69px ;
+	width: 42px;
+	height: 42px;
+}
+
+.RIGHT-ICON{
+	background-position: -316px -80px ;
+	width: 10px;
+	height: 16px;
+}
+
+.search_icon{
+	background-position: -356px -72px ;
+	width: 37px;
+	height: 37px;
+}
+
+.search1{
+	background-position: -422px -69px ;
+	width: 42px;
+	height: 42px;
+}
+
+.location-icon_selected{
+	background-position: 0 -155px ;
+	width: 68px;
+	height: 68px;
+}
+
+.location-icon_-unselected{
+	background-position: -96px -155px ;
+	width: 70px;
+	height: 70px;
+}
+
+.mobi-icon{
+	background-position: -202px -165px ;
+	width: 136px;
+	height: 44px;
+}
+
+.paytm-icon{
+	background-position: -370px -171px ;
+	width: 80px;
+	height: 44px;
+}
+

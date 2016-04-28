@@ -1,0 +1,18 @@
+<div ng-controller="categoryController">
+	<header data-ng-include="'templates/header.html'"></header>
+	<article class="margin-bot15" 
+		data-ng-include="'templates/faq.html'" 
+		data-ng-show="pageRoute.faq"></article>
+	<article class="margin-bot15" 
+		data-ng-include="'templates/contact-us.html'"
+		data-ng-show="pageRoute.contact"></article>
+	<article class="margin-bot15" 
+		data-ng-include="'templates/payment-methods.html'"
+		data-ng-show="pageRoute.payment"></article>
+	<article class="margin-bot15" 
+		data-ng-include="'templates/term-of-service.html'"
+		data-ng-show="pageRoute.term"></article>
+	<article class="margin-bot15" 
+		data-ng-include="'templates/about-us.html'"
+		data-ng-show="pageRoute.about"></article>
+</div>

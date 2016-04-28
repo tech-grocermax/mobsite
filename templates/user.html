@@ -1,0 +1,38 @@
+<div ng-controller="userController">
+	<header data-ng-include="'templates/header.html'" class="top-head"
+		data-ng-hide="section.login"></header>
+	
+	<article data-ng-include="'templates/login.html'"
+		data-ng-if="section.login" class="login-back"></article>
+
+	<article data-ng-include="'templates/register.html'"
+		data-ng-if="section.register"></article>
+
+	<article data-ng-include="'templates/profile.html'"
+		data-ng-if="section.profile" class="user-wrapper"></article>
+
+	<article data-ng-include="'templates/edit-profile.html'"
+		data-ng-if="section.editprofile" class="wrapper"></article>
+
+	<article data-ng-include="'templates/address.html'"
+		data-ng-if="section.address" class="wrapper"></article>
+
+	<article data-ng-include="'templates/add-edit-address.html'"
+		data-ng-if="section.addaddress || section.editaddress" class="wrapper"></article>	
+
+	<article data-ng-include="'templates/order-history.html'"
+		data-ng-if="section.orderhistory && !orderId" class="user-wrapper"></article>
+
+	<article data-ng-include="'templates/order-details.html'"
+		data-ng-if="section.orderhistory && orderId" class="user-wrapper"></article>
+
+	<article data-ng-include="'templates/forgot-password.html'"
+		data-ng-if="section.forgotpassword"></article>
+
+	<article data-ng-include="'templates/change-password.html'"
+		data-ng-if="section.changepassword" class="wrapper"></article>
+
+	<div data-ng-show="displayLoader" class="black_shade">
+		<img src="images/ajax-loader.gif" />
+	</div> 
+</div>

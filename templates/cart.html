@@ -1,0 +1,152 @@
+<div ng-controller="productController">
+    <header data-ng-include="'templates/header.html'" class="top-head"></header>
+    <div class="row margin0 pad-lt16 pad-rt16 margin-top10 margin-0-m"
+        data-ng-show="!cartDetails.items.length && isCartLoaded">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 dot-border"
+            style="padding: 20px; margin-top: 80px; text-align:center; ">
+            Your cart is empty. <a href="/#">Continue Shopping</a>
+        </div>
+    </div>
+    <div class="row margin0 cart-margin">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box margin-bot15"
+            data-ng-show="cartDetails.items.length"
+            data-ng-hide="hideCartItem(product)"
+            data-ng-class="{'promotion_level': product.promotion_level}"
+            data-ng-repeat="product in cartDetails.items">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 list-img-box">
+                <img src="{{replaceImageUrl(product.product_thumbnail)}}" 
+                        alt="" class="img-responsive card-img-center">
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 pad-lr10">
+                <ul class="list-unstyled plisting" style="margin-bottom:5px;">
+                    <li class="prod-list-h">{{product.p_brand}}
+					   <!--<img src="images/app_bar_icons/delete-icon.png"
+                            data-ng-show="product.price > 0"
+                            data-ng-click="removeCartItem(product)" 
+                            alt="" class="delet-icon">-->
+						<span class="delete-icon" data-ng-show="product.price > 0 || (product.webqty <= 0)"
+                            data-ng-click="removeCartItem(product)"
+							data-ng-class="{'UpdateCart': product.price > 0}"></span>
+                    </li>
+                    <li class="cat-list-name text-ellipsis"
+                        data-ng-click="routerChange('product/details', product.product_id)"
+                        style="cursor:pointer; " 
+                        title="{{product.name}}">{{product.p_name}}</li>
+                    <li class="prod-list-qnty">{{product.p_pack}}</li>
+                    <li class="font-3">
+                        <span class="product-qnty">
+                            ₹ {{toFixedDecimal(product.price)}}</span> 
+                        <span class="prod-new-price">
+                            | ₹ {{toFixedDecimal(product.mrp)}}</span></li>
+                    <!--<li class="product-qnty">
+                        ₹ {{toFixedDecimal(getPriceDifference(product.mrp, product.price))}}</li>-->
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cat-list-box float-rt padd0" style="margin-right:10px;">
+                <ul class="list-unstyled cat-list" 
+                    data-ng-show="(product.price > 0) && (product.webqty > 0)">
+                    <li class=""  style="width: 32px;float: left;"                         
+                        data-ng-click="decreaseCartProductQuantity(product, 'product_id')">
+						<!--<img src="images/app_bar_icons/minus-img.png" class="img-responsive">-->
+						<!--<span class="cat-minus-img"></span>	-->
+						<img src="images/minu.png" class="img-responsive">
+					</li>
+                    <li class="cat-input-box">
+                        <input type="text" placeholder="1" class="cat-input-text"
+                            value="{{product.qty}}" readonly>
+                    </li>
+                    <li class="" style="width: 32px;float: right;"  
+                        data-ng-click="increaseCartProductQuantity(product, 'product_id')">
+						<!--<img src="images/app_bar_icons/plus-img.png" class="img-responsive">-->
+						<!--<span class="cat-plus-img"></span>-->
+						<img src="images/plus.png" class="img-responsive">
+					
+					</li>
+                </ul>
+				<img src="images/sold-out.png" class="img-responsive" data-ng-show="(product.webqty <= 0)"
+				data-ng-class="{'so-img': (product.webqty <= 0)}">
+                <ul class="list-unstyled cat-list disable"
+                    data-ng-show="product.price <= 0">
+                    <li class="cat-minus">
+						<!--<img src="images/app_bar_icons/minus-img.png" class="img-responsive">-->
+						<span class="cat-minus-img"></span>
+					</li>
+                    <li class="cat-input-box">
+                        <input type="text" placeholder="1" 
+                            class="cat-input-text" readonly
+                            value="{{product.qty}}" >
+                    </li>
+                    <li class="cat-plus">
+						<!--<img src="images/app_bar_icons/plus-img.png" class="img-responsive">-->
+						<span class="cat-plus-img"></span>
+					</li>
+                </ul>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
+                <h1 class="ribbon" data-ng-show="product.promotion_level && !(product.qty > product.webqty)">
+                    <span class="ribbon-content">{{product.promotion_level}}</span>
+                </h1>
+            </div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 low-stock" data-ng-show="(product.qty > product.webqty) && (product.webqty > 0)">
+                ONLY {{product.webqty}} IN STOCK. PLEASE REDUCE THE QUANTITY.
+            </div>
+
+        </div>
+    </div>
+	
+	<div class="row margin0 bill-buster" 
+        data-ng-show="cartDetails.Bill_buster"
+        data-ng-class="{'bill-bust-mrg' : cartDetails.shipping_address.shipping_amount > 0}">
+        <div class="col-sm-12 col-xs-12">
+			{{cartDetails.Bill_buster}} 
+		</div>
+	</div>
+    <div class="row margin0 pad-lt16 pad-rt16 margin-top10 margin-0-m cart-box-botom"
+        data-ng-show="cartDetails.items.length">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 dot-border">
+            <ul class="list-unstyled margin0 pad-lt16 pad-rt16">
+                <ul class="list-unstyled margin0 pmeth-card">
+                    <!-- <li class="pmeth-card-h">
+                        <span>Total item(s):</span>
+                        <span>{{cartDetails.items.length}}</span>
+                    </li> -->
+                    <!-- <li>
+                        <span>Sub total:</span>
+                        <span class="float-rt">
+                            Rs. {{toFixedDecimal(cartDetails.subtotal)}}</span>
+                    </li> -->
+                    <li data-ng-show="cartDetails.shipping_address.shipping_amount > 0">
+                        <span>Shipping charges:</span>
+                        <span class="float-rt">
+                            Rs. {{toFixedDecimal(cartDetails.shipping_address.shipping_amount)}}</span>
+                    </li>
+                    <li>
+                        <span>You Saved:</span>
+                        <span class="float-rt pmeth-card-font">
+                            Rs. {{toFixedDecimal(youSaved)}}</span>
+                    </li>
+                    <li>
+                        <span>Total:</span>
+                        <span class="float-rt">
+                            Rs. {{toFixedDecimal(cartDetails.grand_total)}}</span>
+                    </li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0"
+        data-ng-show="!isCartUpdated"
+        style="margin-top:100px;">
+        <button type="button" class="reg-bot-btn bot-foot"
+            data-ng-click="checkout('checkout')">PROCEED</button>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0"
+        data-ng-show="isCartUpdated"
+        style="margin-top:100px;">
+        <button type="button" class="reg-bot-btn bot-foot update-btn"            
+            data-ng-click="checkout('update')">UPDATE CART</button>        
+    </div>    
+    <div data-ng-show="displayLoader" class="black_shade">
+		<img src="images/ajax-loader.gif" />
+	</div> 
+</div>

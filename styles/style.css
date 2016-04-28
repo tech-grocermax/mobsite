@@ -1,0 +1,11 @@
+/* CSS Document */
+html, body,h1, h2, h3, h4, h5, h6,p,form{margin: 0; padding: 0;}
+body{font-family:Arial, Helvetica, sans-serif;}
+ul{list-style: none; margin: 0; padding: 0;}
+.clear{clear:both;}
+nav{margin:10px 0; float: left;}
+pre{text-align: center;}
+p.outStock{color:#ff0000;}
+.category{width:100%; position: absolute; top:0px; left:-1%; text-align: center;}
+.thumbnail{cursor:pointer;}
+.fa-ul > li{display: inline;}
