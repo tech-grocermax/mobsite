@@ -59,12 +59,16 @@ define(['app'], function(app) {
         }
     ]);
 
-    app.directive('back', ['$window', function($window) {
+    app.directive('back', ['$window', '$location', function($window, $location) {
         return {
             restrict: 'A',
             link: function(scope, elem, attrs) {
                 elem.bind('click', function() {
-                    $window.history.back();
+                    if($window.history.length <= 2) {
+                        $window.location.href = appFolderName;
+                    } else {
+                        $window.history.back();
+                    }
                 });
             }
         };
