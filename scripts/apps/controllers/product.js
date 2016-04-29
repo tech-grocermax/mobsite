@@ -229,7 +229,11 @@ define(['app'], function(app) {
 
             if($scope.categoryId){
                 getAllProductListByCategoryId();
-                $scope.categoryName = categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.categoryId);
+                var categories = utility.getJStorageKey("categories");
+                if(categories && categories.length) {
+                    alert("Am here too");
+                    $scope.categoryName = categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.categoryId);
+                }
             }
 
             getSpecialDealBySku = function() {
