@@ -231,7 +231,7 @@ define(['app'], function(app) {
                 getAllProductListByCategoryId();
                 var categories = utility.getJStorageKey("categories");
                 if(categories && categories.length) {
-                    alert("Am here too");
+                    //alert("Am here too");
                     $scope.categoryName = categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.categoryId);
                 }
             }
