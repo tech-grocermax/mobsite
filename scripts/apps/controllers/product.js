@@ -231,7 +231,6 @@ define(['app'], function(app) {
                 getAllProductListByCategoryId();
                 var categories = utility.getJStorageKey("categories");
                 if(categories && categories.length) {
-                    alert("Am here too");
                     $scope.categoryName = categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.categoryId);
                 }
             }
@@ -795,20 +794,20 @@ define(['app'], function(app) {
                 }                
             });
 
-            $(window).on("scroll", function() {
-                var scrollHeight = $(document).height(),
-                    scrollPosition = $(window).height() + $(window).scrollTop();
-                if ($scope.categoryId 
-                        && $location.path().indexOf("product/") >= 0
-                        && (scrollHeight - scrollPosition) / scrollHeight === 0) {
-                    if($scope.pagination.current_page < $scope.pagination.total_pages) {                    
-                        $scope.pagination.current_page = $scope.pagination.current_page + 1;
-                        if($scope.categoryId){
-                           getProductListByCategoryId();
-                        }
-                    }
-                }
-            });        
+            // $(window).on("scroll", function() {
+            //     var scrollHeight = $(document).height(),
+            //         scrollPosition = $(window).height() + $(window).scrollTop();
+            //     if ($scope.categoryId 
+            //             && $location.path().indexOf("product/") >= 0
+            //             && (scrollHeight - scrollPosition) / scrollHeight === 0) {
+            //         if($scope.pagination.current_page < $scope.pagination.total_pages) {                    
+            //             $scope.pagination.current_page = $scope.pagination.current_page + 1;
+            //             if($scope.categoryId){
+            //                getProductListByCategoryId();
+            //             }
+            //         }
+            //     }
+            // });        
 
             angular.element(document).ready(function () {
                 if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
