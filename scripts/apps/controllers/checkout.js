@@ -260,6 +260,14 @@ define(['app'], function(app) {
                     $scope.payment[key] = false;
                 });
                 $scope.payment[paymentMethod] = true;
+                dataLayer.push({
+                    'event': 'checkoutOption',
+                    'ecommerce': {
+                      'checkout_option': {
+                        'actionField': {'step': "5", 'option': "Payment Options"}
+                      }
+                    }
+                  });
                 $scope.paymentMethod = ($scope.payment.cc || $scope.payment.paytm_cc) ? "paytm_cc" : paymentMethod;                
             };
 
@@ -317,6 +325,15 @@ define(['app'], function(app) {
                 utility.setJStorageKey("checkoutDetails", checkoutDetails, 1);
 
                 $analytics.eventTrack($scope.selectedCity, {  category: "Shipping address" });
+                
+                dataLayer.push({
+                    'event': 'checkoutOption',
+                    'ecommerce': {
+                      'checkout_option': {
+                        'actionField': {'step': "3", 'option': "Shipping"}
+                      }
+                    }
+                }); console.log(dataLayer);
                 if($scope.billingAsShipping) {
                     $location.url("checkout/delivery");
                 } else {
@@ -331,6 +348,14 @@ define(['app'], function(app) {
                 }
                 $scope.shouldProceed = true;
 
+                dataLayer.push({
+                    'event': 'checkoutOption',
+                    'ecommerce': {
+                      'checkout_option': {
+                        'actionField': {'step': "2", 'option': "Billing"}
+                      }
+                    }
+                });
                 var billingAddress = null;
                 if($scope.addressList.length) {
                     angular.forEach($scope.addressList, function(value, key) {
@@ -346,7 +371,8 @@ define(['app'], function(app) {
                 checkoutDetails[quoteId].billingAddress = billingAddress;                
                 utility.setJStorageKey("checkoutDetails", checkoutDetails, 1);
                 $analytics.eventTrack($scope.selectedCity, {  category: "Billing address" });
-                $location.url("checkout/delivery");                
+                $location.url("checkout/delivery"); 
+
             };  
 
             $scope.setBillingAsShipping = function(model) {
@@ -417,6 +443,15 @@ define(['app'], function(app) {
                     $scope.selectedDeliveryTime = data.timeSlot;
                     $scope.selectedDeliveryDate = getSelectedDeliveryDate(parentIndex);
                     $scope.parentIndex = parentIndex;
+
+                     dataLayer.push({
+                        'event': 'checkoutOption',
+                        'ecommerce': {
+                          'checkout_option': {
+                            'actionField': {'step': "4", 'option': "Shipping Charge"}
+                          }
+                        }
+                      });
                 }
             };
 
@@ -491,7 +526,7 @@ define(['app'], function(app) {
             };
 
             $scope.isOrderPlaced = false;
-            $scope.placeOrder = function() {
+            $scope.placeOrder = function() { 
                 $analytics.eventTrack($scope.selectedCity, {  category: "Review and Place order" });
                 $scope.isOrderPlaced = true;
                 if($scope.paymentMethod == "paytm_cc" 
@@ -518,7 +553,15 @@ define(['app'], function(app) {
                                 } else {                                    
                                     flushData();
                                     $location.url("payment/success/" + data.OrderID);
-                                }                            
+                                }
+                                userService.trackorderdetails(data.OrderID).then(function(data){
+                                    console.log("data layer push called");
+                                    console.log(data);
+                                    dataLayer = [];
+                                    dataLayer.push(data);
+                                    console.log(dataLayer);
+                                    
+                                });
                                 // $analytics.pageTrack("Review Order & Pay");
                             } else {
                                 $analytics.eventTrack($scope.selectedCity, {  category: "Order Failed" });

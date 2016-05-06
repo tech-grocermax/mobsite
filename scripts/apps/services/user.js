@@ -248,6 +248,16 @@ define(['app'], function (app) {
 		    		);
 		    };
 
+		    this.trackorderdetails = function(orderid) {
+		    	var input = {OrderID: orderid},
+		    		url = getAPIUrl() + "loadOrderDetail";
+		    	return serverUtility.postWebService(url, input)
+		    		.then(
+		    			function(data){return data; },
+		    			function(error){return error; }
+		    		);
+		    };
+
 		    this.getPaytmProcessingDetails = function(orderId, customerId, email, mobile) {
 		    	//returnUrl = "http://localhost/grocermax/#/payment/response"
 		    	// & need to build new router 

@@ -285,11 +285,32 @@ define(['app'], function(app) {
                         $scope.productDetails = data.Product_Detail[0];                        
                         $scope.productDetails.productid = $scope.productDetails.product_id;
                         $scope.productDetails.quantity = 1;
-                    });                
-            };            
-
+                        // code added for GTM by GrocerMax team
+                        try{    
+                            dataLayer.push({
+                            'event': 'productClick',
+                            'ecommerce': {
+                              'click': {
+                                'actionField': {'list': 'Search Results'},      // Optional list property.
+                                'products': [{
+                                  'name': data.Product_Detail[0].product_name, // Name or ID is required.
+                                  'id': data.Product_Detail[0].productid,
+                                  'price': data.Product_Detail[0].product_price,
+                                  'brand': data.Product_Detail[0].p_brand,
+                                  'category': '',
+                                  'variant': '',
+                                  'position': ''
+                                 }]
+                               }
+                             }
+                            }); 
+                        }catch(err){ console.log("GTM Problem at product js function ProductDetails.") }           
+                        // GTM end here 
+                    });
+               
+            };
             if($scope.productId){
-               getProductDetails(); 
+               getProductDetails();
             }
             
             getYouSaveAmout = function() {
@@ -421,7 +442,6 @@ define(['app'], function(app) {
             };
 
             $scope.addProductOneByOne = function(product) {
-                
                 // Tracking add to cart
                 $analytics.eventTrack($scope.selectedCity, {  category: "Add to Cart", label: ( product.productid + " - " + product.Name + " - " + product.quantity) });
 
@@ -452,6 +472,32 @@ define(['app'], function(app) {
                             //getCartItemDetails();                                
                         }  
                     });
+                // code added by grocermax team for GTM
+                try{ 
+                var GtmpId = product.productid;
+                var GtmQty = product.quantity;
+                var GtmName = product.Name;
+                var GtmPrice = product.Price;
+                var GtmBrand = product.p_brand;
+                dataLayer.push({
+                        'event': 'addToCart',
+                        'ecommerce': {
+                          'currencyCode': 'INR',
+                          'add': {                                // 'add' actionFieldObject measures.
+                            'products': [{                        //  adding a product to a shopping cart.
+                              'name': GtmName,
+                              'id': GtmpId,
+                              'price': GtmPrice,
+                              'brand': GtmBrand,
+                              'category': '',
+                              'variant': '',
+                              'quantity': GtmQty
+                             }]
+                          }
+                        }
+                      });
+                }catch(err){  console.log("Error in Add to cart Google Tag Fire hint product js line 63"); }
+            
             };
 
             $scope.getProductQuantity = function(productId) {

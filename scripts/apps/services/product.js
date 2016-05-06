@@ -39,7 +39,6 @@ define(['app'], function (app) {
 			    		products: products
 			    	},
 			    	url = getAPIUrl() + "addtocartgust";
-			    	
 		    	return serverUtility.postWebService(url, input)
 		    		.then(function(data){return data}, function(error){return error});
 		    };
