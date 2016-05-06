@@ -260,14 +260,16 @@ define(['app'], function(app) {
                     $scope.payment[key] = false;
                 });
                 $scope.payment[paymentMethod] = true;
-                dataLayer.push({
-                    'event': 'checkoutOption',
-                    'ecommerce': {
-                      'checkout_option': {
-                        'actionField': {'step': "5", 'option': "Payment Options"}
-                      }
-                    }
-                  });
+                try{
+                    dataLayer.push({
+                        'event': 'checkoutOption',
+                        'ecommerce': {
+                          'checkout_option': {
+                            'actionField': {'step': "5", 'option': "Payment Options"}
+                          }
+                        }
+                      });
+                }catch(err){console.log("Error in Checkout GTM fire.");}    
                 $scope.paymentMethod = ($scope.payment.cc || $scope.payment.paytm_cc) ? "paytm_cc" : paymentMethod;                
             };
 
@@ -325,15 +327,16 @@ define(['app'], function(app) {
                 utility.setJStorageKey("checkoutDetails", checkoutDetails, 1);
 
                 $analytics.eventTrack($scope.selectedCity, {  category: "Shipping address" });
-                
-                dataLayer.push({
-                    'event': 'checkoutOption',
-                    'ecommerce': {
-                      'checkout_option': {
-                        'actionField': {'step': "3", 'option': "Shipping"}
-                      }
-                    }
-                }); console.log(dataLayer);
+                try{
+                    dataLayer.push({
+                        'event': 'checkoutOption',
+                        'ecommerce': {
+                          'checkout_option': {
+                            'actionField': {'step': "3", 'option': "Shipping"}
+                          }
+                        }
+                    });
+                }catch(err){console.log("Error in Checkout GTM fire.");}
                 if($scope.billingAsShipping) {
                     $location.url("checkout/delivery");
                 } else {
@@ -347,15 +350,16 @@ define(['app'], function(app) {
                     return false;
                 }
                 $scope.shouldProceed = true;
-
-                dataLayer.push({
-                    'event': 'checkoutOption',
-                    'ecommerce': {
-                      'checkout_option': {
-                        'actionField': {'step': "2", 'option': "Billing"}
-                      }
-                    }
-                });
+                try{
+                    dataLayer.push({
+                        'event': 'checkoutOption',
+                        'ecommerce': {
+                          'checkout_option': {
+                            'actionField': {'step': "2", 'option': "Billing"}
+                          }
+                        }
+                    });
+                }catch(err){console.log("Error in Checkout GTM fire.");}
                 var billingAddress = null;
                 if($scope.addressList.length) {
                     angular.forEach($scope.addressList, function(value, key) {
@@ -443,15 +447,16 @@ define(['app'], function(app) {
                     $scope.selectedDeliveryTime = data.timeSlot;
                     $scope.selectedDeliveryDate = getSelectedDeliveryDate(parentIndex);
                     $scope.parentIndex = parentIndex;
-
-                     dataLayer.push({
-                        'event': 'checkoutOption',
-                        'ecommerce': {
-                          'checkout_option': {
-                            'actionField': {'step': "4", 'option': "Shipping Charge"}
-                          }
-                        }
-                      });
+                    try{
+                         dataLayer.push({
+                            'event': 'checkoutOption',
+                            'ecommerce': {
+                              'checkout_option': {
+                                'actionField': {'step': "4", 'option': "Shipping Charge"}
+                              }
+                            }
+                          });
+                    }catch(err){console.log("Error in Checkout GTM fire.");}     
                 }
             };
 
@@ -499,7 +504,7 @@ define(['app'], function(app) {
                 var currentHref = location.href;
                 var domainName = currentHref.replace($location.path(), "");
                 var callBackUrl = domainName + "/payment/response";
-                console.log(callBackUrl);
+                //console.log(callBackUrl);
                 return callBackUrl;
             };            
 
@@ -554,14 +559,20 @@ define(['app'], function(app) {
                                     flushData();
                                     $location.url("payment/success/" + data.OrderID);
                                 }
-                                userService.trackorderdetails(data.OrderID).then(function(data){
-                                    console.log("data layer push called");
-                                    console.log(data);
-                                    dataLayer = [];
-                                    dataLayer.push(data);
-                                    console.log(dataLayer);
-                                    
-                                });
+                                try{
+                                    userService.trackorderdetails(data.OrderID).then(function(data){
+                                        dataLayer.push({
+                                            'event': 'transactionComplete',  
+                                            'ecommerce': {
+                                                 'currencyCode': 'INR',
+                                                 'purchase': {
+                                                  'actionField': data.orderinfo,
+                                                  'products': [data.productinfo]
+                                                }
+                                              }
+                                        });
+                                    });
+                                }catch(err) { console.log("Problem in firing GTM."); }
                                 // $analytics.pageTrack("Review Order & Pay");
                             } else {
                                 $analytics.eventTrack($scope.selectedCity, {  category: "Order Failed" });
