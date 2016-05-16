@@ -51,10 +51,10 @@ define(['app'], function(app) {
             $scope.carouselIndex = 0;
 			$scope.modalHide = false;
             $scope.categorybannerlist ={};
+			
 			/*$scope.location = $location.url();
 			$scope.offerlistId = $scope.location.substr($scope.location.length - 4);*/
 		//$scope.modalHide = false;
-			
             $scope.pageRoute = {
                 "faq": false,
                 "contact": false,
@@ -673,6 +673,11 @@ define(['app'], function(app) {
                     $analytics.eventTrack($scope.selectedCity, {  category: "Close Drawer"});
                     isDrawerOpen = false;
                 }
+			}
+			
+			$scope.closeStrip = true;
+			$scope.hideStrip = function(){				
+				$scope.closeStrip = !$scope.closeStrip;
 			}
         }
     ]);
