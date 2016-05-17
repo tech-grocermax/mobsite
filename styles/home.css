@@ -544,17 +544,17 @@ input , button, select{outline:none;}
 		-moz-animation-name: dropStrip;
 		-moz-animation-iteration-count: 1;
 		-moz-animation-timing-function: ease-out;
-		-moz-animation-duration: 1s;
+		-moz-animation-duration: 0.5s;
 
 		-webkit-animation-name: dropStrip;
 		-webkit-animation-iteration-count: 1;
 		-webkit-animation-timing-function: ease-out;
-		-webkit-animation-duration: 1s;
+		-webkit-animation-duration: 0.5s;
 
 		animation-name: dropStrip;
 		animation-iteration-count: 1;
 		animation-timing-function: ease-out;
-		animation-duration: 1s;
+		animation-duration: 0.5s;
 		}
 		@-moz-keyframes dropStrip {
 			from {bottom: -147px;}

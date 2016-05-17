@@ -678,7 +678,9 @@ define(['app'], function(app) {
 			$scope.closeStrip = true;
 			$scope.hideStrip = function(){				
 				$scope.closeStrip = !$scope.closeStrip;
+				
 			}
+			$timeout(function () { $scope.closeStrip = true; }, 120000);
         }
     ]);
 });
