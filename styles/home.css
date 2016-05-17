@@ -1,6 +1,9 @@
 @charset "utf-8";
 /* CSS Document */
 
+
+
+
 @font-face {
     font-family: 'gotham_mediumregular';
     src: url('../font/gotham_medium_regular-webfont.eot');
@@ -568,7 +571,7 @@ input , button, select{outline:none;}
 			from {bottom: -147px;}
 			to {bottom: 0px;}
 		}
-		.close-btn{height: 30px;width: 30px;background: #9e250f;position: absolute;top: 15px;right: 10px;border-radius: 50%;color: #fff;font-size: 16px;font-family: cursive;text-align: center;padding: 4px 0 0 0;}
+		.close-btn{height: 30px;width: 30px;background: #9e250f;position: absolute;top: 15px;right: 10px;border-radius: 50%;color: #fff;font-size: 16px;font-family: gotham_mediumregular;text-align: center;padding: 4px 0 0 0;}
 		
 		.app-strip.ng-hide{
 			-moz-animation-name: closeStrip;
