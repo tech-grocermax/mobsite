@@ -104,6 +104,7 @@ define(['app'], function(app) {
             $scope.quoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
             $scope.cityList = null;
             $scope.cityLocation = {};
+            $scope.loc_popup = false;
 
             if($scope.section.profile) {
                 $scope.categoryName = "My Profile";

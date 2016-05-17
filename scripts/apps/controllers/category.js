@@ -51,10 +51,10 @@ define(['app'], function(app) {
             $scope.carouselIndex = 0;
 			$scope.modalHide = false;
             $scope.categorybannerlist ={};
+			
 			/*$scope.location = $location.url();
 			$scope.offerlistId = $scope.location.substr($scope.location.length - 4);*/
 		//$scope.modalHide = false;
-			
             $scope.pageRoute = {
                 "faq": false,
                 "contact": false,
@@ -513,7 +513,7 @@ define(['app'], function(app) {
                 }
             };
 
-            openCitySelectionModal = function() {
+            /*openCitySelectionModal = function() {
                 $timeout(function(){
                     $('#myModal').modal({
                         backdrop: false,
@@ -521,7 +521,7 @@ define(['app'], function(app) {
                         show: true
                     });
                 }, 1000);
-            };
+            };*/
 
             getCityList = function() {
                 toggleLoader(true);
@@ -674,6 +674,13 @@ define(['app'], function(app) {
                     isDrawerOpen = false;
                 }
 			}
+			
+			$scope.closeStrip = true;
+			$scope.hideStrip = function(){				
+				$scope.closeStrip = !$scope.closeStrip;
+				
+			}
+			$timeout(function () { $scope.closeStrip = true; }, 120000);
         }
     ]);
 });
