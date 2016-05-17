@@ -1,6 +1,9 @@
 @charset "utf-8";
 /* CSS Document */
 
+
+
+
 @font-face {
     font-family: 'gotham_mediumregular';
     src: url('../font/gotham_medium_regular-webfont.eot');
@@ -568,7 +571,7 @@ input , button, select{outline:none;}
 			from {bottom: -147px;}
 			to {bottom: 0px;}
 		}
-		.close-btn{height: 30px;width: 30px;background: #9e250f;position: absolute;top: 15px;right: 10px;border-radius: 50%;color: #fff;font-size: 16px;font-family: cursive;text-align: center;padding: 4px 0 0 0;}
+		.close-btn{position: absolute;top: 12px;right: 5px;}
 		
 		.app-strip.ng-hide{
 			-moz-animation-name: closeStrip;
@@ -609,6 +612,7 @@ input , button, select{outline:none;}
 
 
 @media  (max-width: 480px){
+	.close-btn{position: absolute;top: 5px;right: 5px;}
 	.margin-0-m{margin:0}
 	.img-text-box{bottom: 50px;}
 	.slide-img{width: 210px;}
@@ -809,7 +813,6 @@ input , button, select{outline:none;}
 	#trapezoid {width: 190px;height: 34px;padding: 9px 0 0px 0;font-size: 12px;}
 	#trapezoid:after {border-bottom: 34px solid transparent;}
 	#trapezoid:before {border-bottom: 34px solid transparent;}
-	.close-btn {height: 25px;width: 25px;top: 10px;right: 5px;font-size: 14px;padding: 3px 0 0 0;}
 	.app-strip {height: 90px;}
 	.ip-img {margin-top: 10px;height:30px;padding: 0 30px 0 0;}
 	.ap-img {margin-top: 10px;height:30px;    padding: 0 0 0 30px;}
