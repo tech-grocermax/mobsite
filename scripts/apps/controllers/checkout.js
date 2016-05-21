@@ -561,16 +561,11 @@ define(['app'], function(app) {
                                 }
                                 try{
                                     userService.trackorderdetails(data.OrderID).then(function(data){
-                                        dataLayer.push({
-                                            'event': 'transactionComplete',  
-                                            'ecommerce': {
-                                                 'currencyCode': 'INR',
-                                                 'purchase': {
-                                                  'actionField': data.orderinfo,
-                                                  'products': [data.productinfo]
-                                                }
-                                              }
-                                        });
+                                        window.addEventListener('load',function(){
+                                            dataLayer.push(data.newgtm);
+                                        })
+                                        console.log(data.newgtm);
+                                        console.log(dataLayer);
                                     });
                                 }catch(err) { console.log("Problem in firing GTM."); }
                                 // $analytics.pageTrack("Review Order & Pay");
