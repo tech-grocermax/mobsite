@@ -561,10 +561,10 @@ define(['app'], function(app) {
                                 }
                                 try{
                                     userService.trackorderdetails(data.OrderID).then(function(data){
-                                        console.log("GTM TRACKING STARTED");
                                         window.addEventListener('load',function(){
                                             dataLayer.push(data.newgtm);
                                         })
+                                        console.log(data.newgtm);
                                         console.log(dataLayer);
                                     });
                                 }catch(err) { console.log("Problem in firing GTM."); }
