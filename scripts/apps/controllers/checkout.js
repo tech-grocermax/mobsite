@@ -561,11 +561,10 @@ define(['app'], function(app) {
                                 }
                                 try{
                                     userService.trackorderdetails(data.OrderID).then(function(data){
-                                        window.addEventListener('load',function(){
-                                            dataLayer.push(data.newgtm);
-                                        })
-                                        console.log(data.newgtm);
-                                        console.log(dataLayer);
+                                        dataLayer = [];
+                                        dataLayer.push(data.newgtm);
+                                        dataLayer = [];
+                                        dataLayer.push(data.orderinfo);
                                     });
                                 }catch(err) { console.log("Problem in firing GTM."); }
                                 // $analytics.pageTrack("Review Order & Pay");
