@@ -225,7 +225,7 @@ define(['app'], function(app) {
                     }               
                 });
                 var gaCategoryName = isCategoryOffer ? 'Category Deals': 'Deal Category L2';
-                $analytics.eventTrack($scope.selectedCity, {  category: gaCategoryName, label: ( $scope.categoryName + " - " + activeDealCategoryLabel)  });
+                //$analytics.eventTrack($scope.selectedCity, {  category: gaCategoryName, label: ( $scope.categoryName + " - " + activeDealCategoryLabel)  });
             };
 
             $rootScope.selectedOfferCategoryId = angular.isDefined($rootScope.selectedOfferCategoryId) && $rootScope.selectedOfferCategoryId ? $rootScope.selectedOfferCategoryId : null;
@@ -255,7 +255,7 @@ define(['app'], function(app) {
                     $scope.dealCategoryItemList[key] = value.deals;                                                           
                 });
                 var gaCategoryName = isCategoryOffer ? 'Category Deals': 'Deal Category L2';
-                $analytics.eventTrack($scope.selectedCity, {  category: gaCategoryName, label: ( $scope.categoryName + " - " + activeDealCategoryLabel)  });
+                //$analytics.eventTrack($scope.selectedCity, {  category: gaCategoryName, label: ( $scope.categoryName + " - " + activeDealCategoryLabel)  });
                 //$scope.dealItems = $scope.dealCategoryItemList[$routeParams.dealCategoryId];
                 //TODO: we have used all key for time being due to unavailability of real category id, will uncomment it
             };
@@ -349,7 +349,7 @@ define(['app'], function(app) {
                 // Track the event
 
                 var gaCategoryName = isCategoryOffer ? 'Category Deals': 'Deal Category L2';
-                $analytics.eventTrack($scope.selectedCity, {  category: gaCategoryName, label: ( $scope.categoryName + " - " + category.label)  });
+                //$analytics.eventTrack($scope.selectedCity, {  category: gaCategoryName, label: ( $scope.categoryName + " - " + category.label)  });
 
                 $rootScope.selectedDealCategoryId = category.id;
                 $rootScope.selectedOfferCategoryId = category.id;
@@ -362,7 +362,7 @@ define(['app'], function(app) {
             $scope.routerChange = function(route, id) {
                 route = angular.isDefined(id) ? route + ("/" + id) : route;
                 if(isDrawerOpen) {
-                    $analytics.eventTrack($scope.selectedCity, {  category: "Close Drawer"});
+                    //$analytics.eventTrack($scope.selectedCity, {  category: "Close Drawer"});
                     isDrawerOpen = false;
                 }
                 
@@ -378,7 +378,7 @@ define(['app'], function(app) {
                 $scope.showCategoryMenu = $scope.showCategoryMenu ? false : true;
 
                 isDrawerOpen = true;
-                $analytics.eventTrack($scope.selectedCity, {  category: "Open Drawer"});
+                //$analytics.eventTrack($scope.selectedCity, {  category: "Open Drawer"});
 
                 $('body').css('overflow', 'hidden');
             };
@@ -468,7 +468,7 @@ define(['app'], function(app) {
                 $scope.showCategoryMenu = false;
                 $('body').css('overflow', 'auto');
                 if(isDrawerOpen) {
-                    $analytics.eventTrack($scope.selectedCity, {  category: "Close Drawer"});
+                    //$analytics.eventTrack($scope.selectedCity, {  category: "Close Drawer"});
                     isDrawerOpen = false;
                 }
             };
@@ -670,7 +670,7 @@ define(['app'], function(app) {
 				$('body').css('overflow', 'auto');
 
                 if(isDrawerOpen) {
-                    $analytics.eventTrack($scope.selectedCity, {  category: "Close Drawer"});
+                    //$analytics.eventTrack($scope.selectedCity, {  category: "Close Drawer"});
                     isDrawerOpen = false;
                 }
 			}
