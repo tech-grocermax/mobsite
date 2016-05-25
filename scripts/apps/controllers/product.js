@@ -443,7 +443,7 @@ define(['app'], function(app) {
 
             $scope.addProductOneByOne = function(product) {
                 // Tracking add to cart
-                //$analytics.eventTrack($scope.selectedCity, {  category: "Add to Cart", label: ( product.productid + " - " + product.Name + " - " + product.quantity) });
+                $analytics.eventTrack($scope.selectedCity, {  category: "Add to Cart", label: ( product.productid + " - " + product.Name + " - " + product.quantity) });
 
                 var quoteId = null,
                     productObject = [
@@ -672,12 +672,12 @@ define(['app'], function(app) {
                 if(flag == 'checkout') {
 
                     // Proceed to Checkout
-                    //$analytics.eventTrack($scope.selectedCity, {  category: "Proceed to Checkout" });
+                    $analytics.eventTrack($scope.selectedCity, {  category: "Proceed to Checkout" });
                     checkoutSuccessCallback('checkout')
                 } else {
 
                     // Analytics to update cart
-                    //$analytics.eventTrack($scope.selectedCity, {  category: "Update Cart" });
+                    $analytics.eventTrack($scope.selectedCity, {  category: "Update Cart" });
                     var quoteId = utility.getJStorageKey("quoteId"),
                         products = buildProductObject();
 

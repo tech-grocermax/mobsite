@@ -326,7 +326,7 @@ define(['app'], function(app) {
                 }
                 utility.setJStorageKey("checkoutDetails", checkoutDetails, 1);
 
-                //$analytics.eventTrack($scope.selectedCity, {  category: "Shipping address" });
+                $analytics.eventTrack($scope.selectedCity, {  category: "Shipping address" });
                 try{
                     dataLayer.push({
                         'event': 'checkoutOption',
@@ -374,7 +374,7 @@ define(['app'], function(app) {
 
                 checkoutDetails[quoteId].billingAddress = billingAddress;                
                 utility.setJStorageKey("checkoutDetails", checkoutDetails, 1);
-                //$analytics.eventTrack($scope.selectedCity, {  category: "Billing address" });
+                $analytics.eventTrack($scope.selectedCity, {  category: "Billing address" });
                 $location.url("checkout/delivery"); 
 
             };  
@@ -409,7 +409,7 @@ define(['app'], function(app) {
 
                 utility.setJStorageKey("checkoutDetails", checkoutDetails, 1);
 
-                //$analytics.eventTrack($scope.selectedCity, {  category: "Delivery details" });
+                $analytics.eventTrack($scope.selectedCity, {  category: "Delivery details" });
 
                 $location.url("checkout/payment");
             };
@@ -532,7 +532,7 @@ define(['app'], function(app) {
 
             $scope.isOrderPlaced = false;
             $scope.placeOrder = function() { 
-                //$analytics.eventTrack($scope.selectedCity, {  category: "Review and Place order" });
+                $analytics.eventTrack($scope.selectedCity, {  category: "Review and Place order" });
                 $scope.isOrderPlaced = true;
                 if($scope.paymentMethod == "paytm_cc" 
                     || $scope.paymentMethod == "cashondelivery") {
@@ -550,7 +550,7 @@ define(['app'], function(app) {
                                         require(["https://track.in.omgpm.com/886729/transaction.asp?APPID=" + data.OrderID + "&MID=886729&PID=16913&status=" + $scope.cartDetails.grand_total]);
                                     }
                                 }
-                                //$analytics.eventTrack($scope.selectedCity, {  category: "Order Success" });
+                                $analytics.eventTrack($scope.selectedCity, {  category: "Order Success" });
                                 $analytics.pageTrack("Success Screen");
 
                                 if($scope.paymentMethod == "paytm_cc") {
@@ -570,7 +570,7 @@ define(['app'], function(app) {
                                 }catch(err) { console.log("Problem in firing GTM."); }
                                 // $analytics.pageTrack("Review Order & Pay");
                             } else {
-                                //$analytics.eventTrack($scope.selectedCity, {  category: "Order Failed" });
+                                $analytics.eventTrack($scope.selectedCity, {  category: "Order Failed" });
                                 $analytics.pageTrack("Failure Screen");
                                 $('#paymentFailed').modal({
                                     backdrop: false,
