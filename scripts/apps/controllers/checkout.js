@@ -561,9 +561,7 @@ define(['app'], function(app) {
                                 }
                                 try{
                                     userService.trackorderdetails(data.OrderID).then(function(data){
-                                        dataLayer = [];
                                         dataLayer.push(data.newgtm);
-                                        dataLayer = [];
                                         dataLayer.push(data.orderinfo);
                                     });
                                 }catch(err) { console.log("Problem in firing GTM."); }
