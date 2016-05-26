@@ -5,6 +5,8 @@ define(['app'], function(app) {
 
             var isCategoryOffer = !!($location.path().indexOf("/category/offer") !== -1);
             var isDrawerOpen = false;
+            // opening category L2 page directly show error if homepage api not loaded, use this var to delay rendering till homepage api loads
+            var isCategoryLoaded = true;
             $scope.categories = null;
             $scope.categoryIndex = -1;
             $scope.subCategoryIndex = -1;
@@ -135,6 +137,7 @@ define(['app'], function(app) {
                 dealCallback(data[3]);*/
                 setCategoryOfferCount();
                 toggleLoader(false);
+                isCategoryLoaded = true;
             };
 
             getOfferCount = function(categoryId) {
@@ -162,6 +165,8 @@ define(['app'], function(app) {
                 && utility.getJStorageKey("offerCategories")
                 && utility.getJStorageKey("deals")
 				&& utility.getJStorageKey("specialDeals")) {
+                    console.log("if part");
+                    console.log(utility.getJStorageKey("categories"));
                     $scope.bannerList = utility.getJStorageKey("bannerList");
                     $scope.categories = utility.getJStorageKey("categories");
                     $scope.categories.sort(utility.dynamicSort("position"));
@@ -171,7 +176,9 @@ define(['app'], function(app) {
                     $scope.specialdeals = utility.getJStorageKey("specialDeals");
                     setCategoryOfferCount();
             } else {
+                console.log("else part");
                 toggleLoader(true);
+                isCategoryLoaded = false;
                 $q.all([
                     /*categoryService.getBannerList(), 
                     categoryService.getCategoryList(), 
@@ -261,18 +268,26 @@ define(['app'], function(app) {
             };
 
             if ($routeParams.categoryId) {
-                $scope.subCategoryList = categoryService.getSubCategoryList($scope.categories, $routeParams.categoryId);
-                $scope.subCategoryList.sort(utility.dynamicSort("position"));
-                $scope.categoryName = categoryService.getCategoryName($scope.categories, $routeParams.categoryId);
-                $scope.columnSize = 10;
-                categoryService.getSubCategoryBanner($routeParams.categoryId)
-                    .then(function(data){
-                       $scope.categorybannerlist = data.subcategorybanner;
-                    });
-				angular.forEach($scope.subCategoryList, function(value, key) {
-					$scope.offerlistId = value.parent_id;
-				});
-                $scope.showMoreIcon = false;
+                var loadL2CatPage = function(){
+                    if(isCategoryLoaded){
+                        $scope.subCategoryList = categoryService.getSubCategoryList($scope.categories, $routeParams.categoryId);
+                        $scope.subCategoryList.sort(utility.dynamicSort("position"));
+                        $scope.categoryName = categoryService.getCategoryName($scope.categories, $routeParams.categoryId);
+                        $scope.columnSize = 10;
+                        categoryService.getSubCategoryBanner($routeParams.categoryId)
+                            .then(function(data){
+                               $scope.categorybannerlist = data.subcategorybanner;
+                            });
+                        angular.forEach($scope.subCategoryList, function(value, key) {
+                            $scope.offerlistId = value.parent_id;
+                        });
+                        $scope.showMoreIcon = false;
+                    }else{
+                        console.log('delayed by 1 sec');
+                        setTimeout(loadL2CatPage, 1000);    // delay for 1 second
+                    }
+                }
+                loadL2CatPage();
             } else if ($routeParams.dealId) {
                 $scope.columnSize = 10;
                 $scope.showMoreIcon = false;
