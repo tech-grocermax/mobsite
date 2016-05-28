@@ -562,7 +562,7 @@ define(['app'], function(app) {
                                 try{
                                     userService.trackorderdetails(data.OrderID).then(function(data){
                                         dataLayer.push(data.newgtm);
-                                        dataLayer.push(data.orderinfo);
+                                        //dataLayer.push(data.orderinfo);
                                     });
                                 }catch(err) { console.log("Problem in firing GTM."); }
                                 // $analytics.pageTrack("Review Order & Pay");
