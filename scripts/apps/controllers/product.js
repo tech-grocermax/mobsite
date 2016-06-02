@@ -98,6 +98,15 @@ define(['app'], function(app) {
                 toggleLoader(true);
                 productService.getProductListBySearch($scope.keyword)
                     .then(function(data){
+                        // google GTM code
+                            try{
+                                dataLayer.push('send', { hitType: 'event', 
+                                eventCategory: 'Mobile Category Interaction', 
+                                eventaction: 'search result', eventlabel: $scope.keyword}
+                                );
+                                console.log($scope.keyword);console.log(dataLayer);
+                            }catch(err){console.log("Error in GTM fire.");}  
+                        // end GTM Code
                         groupSearchProductByCategory(data);
                         toggleLoader(false);
                         $scope.isProductLoaded = true;
@@ -192,6 +201,15 @@ define(['app'], function(app) {
                 toggleLoader(true);
                 productService.getAllProductListByCategoryId($scope.categoryId, $scope.pagination.current_page)
                     .then(function(data){
+                        // google GTM code
+                            try{
+                                dataLayer.push('send', { hitType: 'event', 
+                                eventCategory: 'Mobile Category Interaction', 
+                                eventaction: 'search result', eventlabel: $scope.categoryName}
+                                );
+                                console.log($scope.categoryName);console.log(dataLayer);
+                            }catch(err){console.log("Error in GTM fire.");}
+                        // end GTM Code
                         groupAllProductByCategory(data);
                         $scope.isProductLoaded = true;
                         $('body').css('overflow', 'auto');
@@ -202,6 +220,15 @@ define(['app'], function(app) {
                 toggleLoader(true);       
                 productService.getDealsByDealId($scope.dealId, $scope.pagination.current_page)
                     .then(function(data){
+                        // google GTM code
+                            try{
+                                dataLayer.push('send', { hitType: 'event', 
+                                eventCategory: 'Mobile Category Interaction', 
+                                eventaction: 'deal page', eventlabel: data.dealcategory.name}
+                                );
+                                console.log(data.dealcategory.name);console.log(dataLayer);
+                            }catch(err){console.log("Error in GTM fire.");}
+                        // end GTM Code
                         $scope.categoryName = data.dealcategory.name;
                         groupAllProductByCategory(data);
                         $scope.isProductLoaded = true;
@@ -239,6 +266,15 @@ define(['app'], function(app) {
                 toggleLoader(true);
                 productService.getSpecialDealListBySku($scope.sku)
                     .then(function(data){
+                        // google GTM code
+                            try{
+                                dataLayer.push('send', { hitType: 'event', 
+                                eventCategory: 'Mobile Category Interaction', 
+                                eventaction: 'deal page', eventlabel: "deals by sku"}
+                                );
+                                console.log("deals by sku");console.log(dataLayer);
+                            }catch(err){console.log("Error in GTM fire.");}
+                        // end GTM Code
                         groupAllProductByCategory(data);
                         toggleLoader(false);
                         $scope.isProductLoaded = true;
@@ -256,6 +292,15 @@ define(['app'], function(app) {
                 toggleLoader(true);
                 categoryService.getDealsByDealCategoryId($scope.topOfferDealId)
                     .then(function(data){
+                        // google GTM code
+                            try{
+                                dataLayer.push('send', { hitType: 'event', 
+                                eventCategory: 'Mobile Category Interaction', 
+                                eventaction: 'save more', eventlabel: data.dealcategory.name}
+                                );
+                                console.log(data.dealcategory.name);console.log(dataLayer);
+                            }catch(err){console.log("Error in GTM fire.");}
+                        // end GTM Code
                         $scope.topofferdealname = data.dealcategory.name;
                     groupAllProductByCategory(data);
                         $scope.isProductLoaded = true;
@@ -341,6 +386,19 @@ define(['app'], function(app) {
                 toggleLoader(true);
                 productService.getCartItemDetails($scope.quoteId)
                     .then(function(data){
+                        // google GTM code
+                            try{
+                                    carttgtm = [{
+                                        "totalitem":data.TotalItem,
+                                        "order_amount": data.CartDetail.base_subtotal_with_discount
+                                    }];
+                                dataLayer.push('send', { hitType: 'event', 
+                                eventCategory: 'Mobile View Cart', 
+                                eventaction: 'Cart Details', eventlabel: carttgtm}
+                                );
+                                console.log(carttgtm);console.log(dataLayer);
+                            }catch(err){console.log("Error in GTM fire.");}
+                        // end GTM Code
                         $scope.isCartLoaded = true;
                         toggleLoader(false);
                         if(data.flag == 0) {
@@ -444,7 +502,44 @@ define(['app'], function(app) {
             $scope.addProductOneByOne = function(product) {
                 // Tracking add to cart
                 $analytics.eventTrack($scope.selectedCity, {  category: "Add to Cart", label: ( product.productid + " - " + product.Name + " - " + product.quantity) });
-
+                // code added by grocermax team for GTM
+                try{ 
+                var GtmpId = product.productid;
+                var GtmQty = product.quantity;
+                var GtmName = product.Name;
+                if (variable === undefined || variable === null) {
+                    GtmName = product.product_name;
+                }
+                var GtmPrice = product.Price;
+                var GtmBrand = product.p_brand;
+                productgtm = [{
+                            "productname":GtmName, 
+                            "prodcutid": GtmpId
+                        }];
+                            dataLayer.push('send', { hitType: 'event', 
+                                eventCategory: 'Mobile Add to Cart', 
+                                eventaction: 'category page', eventlabel: productgtm}
+                            );
+                    console.log(product); console.log(productgtm);console.log(dataLayer);
+                dataLayer.push({
+                        'event': 'addToCart',
+                        'ecommerce': {
+                          'currencyCode': 'INR',
+                          'add': {                                // 'add' actionFieldObject measures.
+                            'products': [{                        //  adding a product to a shopping cart.
+                              'name': GtmName,
+                              'id': GtmpId,
+                              'price': GtmPrice,
+                              'brand': GtmBrand,
+                              'category': '',
+                              'variant': '',
+                              'quantity': GtmQty
+                             }]
+                          }
+                        }
+                      });
+                }catch(err){  console.log("Error in Add to cart Google Tag Fire hint product js line 63"); }
+            
                 var quoteId = null,
                     productObject = [
                         {
@@ -472,32 +567,6 @@ define(['app'], function(app) {
                             //getCartItemDetails();                                
                         }  
                     });
-                // code added by grocermax team for GTM
-                try{ 
-                var GtmpId = product.productid;
-                var GtmQty = product.quantity;
-                var GtmName = product.Name;
-                var GtmPrice = product.Price;
-                var GtmBrand = product.p_brand;
-                dataLayer.push({
-                        'event': 'addToCart',
-                        'ecommerce': {
-                          'currencyCode': 'INR',
-                          'add': {                                // 'add' actionFieldObject measures.
-                            'products': [{                        //  adding a product to a shopping cart.
-                              'name': GtmName,
-                              'id': GtmpId,
-                              'price': GtmPrice,
-                              'brand': GtmBrand,
-                              'category': '',
-                              'variant': '',
-                              'quantity': GtmQty
-                             }]
-                          }
-                        }
-                      });
-                }catch(err){  console.log("Error in Add to cart Google Tag Fire hint product js line 63"); }
-            
             };
 
             $scope.getProductQuantity = function(productId) {
@@ -669,13 +738,23 @@ define(['app'], function(app) {
             };
 			
             $scope.checkout = function(flag) {
+                // google GTM code
+                    try{
+                            proceedgtm = [{
+                                "totalitem":$scope.totalCartQty
+                            }];
+                        dataLayer.push('send', { hitType: 'event', 
+                        eventCategory: 'Mobile Proceed to checkout', 
+                        eventaction: 'Proceed Details', eventlabel: proceedgtm}
+                        );
+                        console.log(proceedgtm);console.log(dataLayer);
+                    }catch(err){console.log("Error in GTM fire.");}
+                // end GTM Code
                 if(flag == 'checkout') {
-
                     // Proceed to Checkout
                     $analytics.eventTrack($scope.selectedCity, {  category: "Proceed to Checkout" });
                     checkoutSuccessCallback('checkout')
                 } else {
-
                     // Analytics to update cart
                     $analytics.eventTrack($scope.selectedCity, {  category: "Update Cart" });
                     var quoteId = utility.getJStorageKey("quoteId"),

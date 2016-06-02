@@ -165,8 +165,6 @@ define(['app'], function(app) {
                 && utility.getJStorageKey("offerCategories")
                 && utility.getJStorageKey("deals")
 				&& utility.getJStorageKey("specialDeals")) {
-                    console.log("if part");
-                    console.log(utility.getJStorageKey("categories"));
                     $scope.bannerList = utility.getJStorageKey("bannerList");
                     $scope.categories = utility.getJStorageKey("categories");
                     $scope.categories.sort(utility.dynamicSort("position"));
@@ -176,7 +174,6 @@ define(['app'], function(app) {
                     $scope.specialdeals = utility.getJStorageKey("specialDeals");
                     setCategoryOfferCount();
             } else {
-                console.log("else part");
                 toggleLoader(true);
                 isCategoryLoaded = false;
                 $q.all([
@@ -281,6 +278,15 @@ define(['app'], function(app) {
                         angular.forEach($scope.subCategoryList, function(value, key) {
                             $scope.offerlistId = value.parent_id;
                         });
+                        // google GTM code
+                            try{
+                                dataLayer.push('send', { hitType: 'event', 
+                                eventCategory: 'Mobile Category Interaction', 
+                                eventaction: 'category page', eventlabel: $scope.categoryName}
+                                );
+                                console.log($scope.categoryName);console.log(dataLayer);
+                            }catch(err){console.log("Error in GTM fire.");}  
+                        // end GTM Code
                         $scope.showMoreIcon = false;
                     }else{
                         console.log('delayed by 1 sec');

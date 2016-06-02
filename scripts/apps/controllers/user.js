@@ -292,6 +292,15 @@ define(['app'], function(app) {
             $scope.verifyOTP = function() { 
                 if($scope.otp == utility.getJStorageKey("otp")) {
                     toggleLoader(true);
+                    // GTM Registration    
+                    try{
+                        dataLayer.push('send', { hitType: 'event', 
+                            eventCategory: 'Mobile Checkout Funnel', 
+                            eventaction: 'Registration', eventlabel:  'New Registration'}
+                        );
+                         console.log('Existing User');console.log(dataLayer);
+                    }catch(err){console.log("Error in GTM fire.");}  
+                    // GTM success
                     angular.copy($scope.user, utility.getJStorageKey("registrationDetails"));
                     var email = $scope.user.uemail;
                     $scope.user.otp = 1;
@@ -323,12 +332,23 @@ define(['app'], function(app) {
                             password: $scope.user.password
                         },
                         email = $scope.user.uemail;
-
+                    // GTM Login
+                    try{     
+                        logintgtm = [{
+                                "useremail":email, 
+                                "usertype": 'Existing User'
+                        }];
+                        dataLayer.push('send', { hitType: 'event', 
+                            eventCategory: 'Mobile Checkout Funnel', 
+                            eventaction: 'Login', eventlabel: logintgtm}
+                        );
+                         console.log(logintgtm);console.log(dataLayer);
+                    }catch(err){console.log("Error in GTM fire.");}     
+                    // GTM success
                     if(angular.isDefined(utility.getJStorageKey("quoteId")) 
                         && utility.getJStorageKey("quoteId")) {
                         input.quote_id = utility.getJStorageKey("quoteId");
                     }
-
                     userService.loginUser(input)
                         .then(function(data){
                             successCallbackUser(data, email);

@@ -261,6 +261,15 @@ define(['app'], function(app) {
                 });
                 $scope.payment[paymentMethod] = true;
                 try{
+                    paymgtm = [{
+                                "customer_id":utility.getJStorageKey("userId"),
+                                "customer_email":utility.getJStorageKey("email")
+                    }];
+                        dataLayer.push('send', { hitType: 'event', 
+                            eventCategory: 'Mobile Checkout Funnel', 
+                            eventaction: 'Payment Method', eventlabel: paymgtm}
+                        );
+                        console.log(paymgtm);console.log(dataLayer);
                     dataLayer.push({
                         'event': 'checkoutOption',
                         'ecommerce': {
@@ -328,6 +337,15 @@ define(['app'], function(app) {
 
                 $analytics.eventTrack($scope.selectedCity, {  category: "Shipping address" });
                 try{
+                    shipgtm = [{
+                                "customer_id":utility.getJStorageKey("userId"),
+                                "customer_email":utility.getJStorageKey("email")
+                    }];
+                    dataLayer.push('send', { hitType: 'event', 
+                        eventCategory: 'Mobile Checkout Funnel', 
+                        eventaction: 'Shipping', eventlabel: shipgtm}
+                    );
+                    console.log(shipgtm);console.log(dataLayer);
                     dataLayer.push({
                         'event': 'checkoutOption',
                         'ecommerce': {
@@ -351,6 +369,15 @@ define(['app'], function(app) {
                 }
                 $scope.shouldProceed = true;
                 try{
+                    billgtm = [{
+                                "customer_id":utility.getJStorageKey("userId"),
+                                "customer_email":utility.getJStorageKey("email")
+                    }];
+                    dataLayer.push('send', { hitType: 'event', 
+                        eventCategory: 'Mobile Checkout Funnel', 
+                        eventaction: 'Billing', eventlabel: billgtm}
+                    );
+                    console.log(billgtm);console.log(dataLayer);
                     dataLayer.push({
                         'event': 'checkoutOption',
                         'ecommerce': {
@@ -448,6 +475,15 @@ define(['app'], function(app) {
                     $scope.selectedDeliveryDate = getSelectedDeliveryDate(parentIndex);
                     $scope.parentIndex = parentIndex;
                     try{
+                        slotgtm = [{
+                                "customer_id":utility.getJStorageKey("userId"),
+                                "customer_email":utility.getJStorageKey("email")
+                        }];
+                        dataLayer.push('send', { hitType: 'event', 
+                            eventCategory: 'Mobile Checkout Funnel', 
+                            eventaction: 'Delivery Slot', eventlabel: slotgtm}
+                        );
+                        console.log(slotgtm);console.log(dataLayer);
                          dataLayer.push({
                             'event': 'checkoutOption',
                             'ecommerce': {
