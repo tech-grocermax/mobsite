@@ -507,7 +507,7 @@ define(['app'], function(app) {
                 var GtmpId = product.productid;
                 var GtmQty = product.quantity;
                 var GtmName = product.Name;
-                if (variable === undefined || variable === null) {
+                if (GtmName === undefined || GtmName === null) {
                     GtmName = product.product_name;
                 }
                 var GtmPrice = product.Price;
@@ -520,7 +520,7 @@ define(['app'], function(app) {
                                 eventCategory: 'Mobile Add to Cart', 
                                 eventAction: 'category page', eventLabel: productgtm}
                             );
-                    console.log(product); console.log(productgtm);console.log(dataLayer);
+                    console.log(productgtm);console.log(dataLayer);
                 dataLayer.push({
                         'event': 'addToCart',
                         'ecommerce': {
