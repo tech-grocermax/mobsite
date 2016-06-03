@@ -334,10 +334,7 @@ define(['app'], function(app) {
                         email = $scope.user.uemail;
                     // GTM Login
                     try{     
-                        logintgtm = [{
-                                "useremail":email, 
-                                "usertype": 'Existing User'
-                        }];
+                        logintgtm = "usertype=Existing User" + "/customerEmail="+ email;
                         dataLayer.push('send', { hitType: 'event', 
                             eventCategory: 'Mobile Checkout Funnel', 
                             eventAction: 'Login', eventLabel: logintgtm}

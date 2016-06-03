@@ -388,10 +388,8 @@ define(['app'], function(app) {
                     .then(function(data){
                         // google GTM code
                             try{
-                                    carttgtm = [{
-                                        "totalitem":data.TotalItem,
-                                        "order_amount": data.CartDetail.base_subtotal_with_discount
-                                    }];
+                                    carttgtm = "totalitem=" +data.TotalItem +"/order_amount=" + data.CartDetail.base_subtotal_with_discount;
+                                    
                                 dataLayer.push('send', { hitType: 'event', 
                                 eventCategory: 'Mobile View Cart', 
                                 eventAction: 'Cart Details', eventLabel: carttgtm}
@@ -512,10 +510,7 @@ define(['app'], function(app) {
                 }
                 var GtmPrice = product.Price;
                 var GtmBrand = product.p_brand;
-                productgtm = [{
-                            "productname":GtmName, 
-                            "prodcutid": GtmpId
-                        }];
+                productgtm = "productName=" + GtmName + "/prodcutId=" + GtmpId; 
                             dataLayer.push('send', { hitType: 'event', 
                                 eventCategory: 'Mobile Add to Cart', 
                                 eventAction: 'category page', eventLabel: productgtm}
@@ -740,9 +735,9 @@ define(['app'], function(app) {
             $scope.checkout = function(flag) {
                 // google GTM code
                     try{
-                            proceedgtm = [{
+                            proceedgtm = $scope.totalCartQty; /*[{
                                 "totalitem":$scope.totalCartQty
-                            }];
+                            }];*/
                         dataLayer.push('send', { hitType: 'event', 
                         eventCategory: 'Mobile Proceed to checkout', 
                         eventAction: 'Proceed Details', eventLabel: proceedgtm}
