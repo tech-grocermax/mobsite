@@ -102,7 +102,7 @@ define(['app'], function(app) {
                             try{
                                 dataLayer.push('send', { hitType: 'event', 
                                 eventCategory: 'Mobile Category Interaction', 
-                                eventaction: 'search result', eventlabel: $scope.keyword}
+                                eventAction: 'search result', eventLabel: $scope.keyword}
                                 );
                                 console.log($scope.keyword);console.log(dataLayer);
                             }catch(err){console.log("Error in GTM fire.");}  
@@ -205,7 +205,7 @@ define(['app'], function(app) {
                             try{
                                 dataLayer.push('send', { hitType: 'event', 
                                 eventCategory: 'Mobile Category Interaction', 
-                                eventaction: 'search result', eventlabel: $scope.categoryName}
+                                eventAction: 'search result', eventLabel: $scope.categoryName}
                                 );
                                 console.log($scope.categoryName);console.log(dataLayer);
                             }catch(err){console.log("Error in GTM fire.");}
@@ -224,7 +224,7 @@ define(['app'], function(app) {
                             try{
                                 dataLayer.push('send', { hitType: 'event', 
                                 eventCategory: 'Mobile Category Interaction', 
-                                eventaction: 'deal page', eventlabel: data.dealcategory.name}
+                                eventAction: 'deal page', eventLabel: data.dealcategory.name}
                                 );
                                 console.log(data.dealcategory.name);console.log(dataLayer);
                             }catch(err){console.log("Error in GTM fire.");}
@@ -270,7 +270,7 @@ define(['app'], function(app) {
                             try{
                                 dataLayer.push('send', { hitType: 'event', 
                                 eventCategory: 'Mobile Category Interaction', 
-                                eventaction: 'deal page', eventlabel: "deals by sku"}
+                                eventAction: 'deal page', eventLabel: "deals by sku"}
                                 );
                                 console.log("deals by sku");console.log(dataLayer);
                             }catch(err){console.log("Error in GTM fire.");}
@@ -296,7 +296,7 @@ define(['app'], function(app) {
                             try{
                                 dataLayer.push('send', { hitType: 'event', 
                                 eventCategory: 'Mobile Category Interaction', 
-                                eventaction: 'save more', eventlabel: data.dealcategory.name}
+                                eventAction: 'save more', eventLabel: data.dealcategory.name}
                                 );
                                 console.log(data.dealcategory.name);console.log(dataLayer);
                             }catch(err){console.log("Error in GTM fire.");}
@@ -394,7 +394,7 @@ define(['app'], function(app) {
                                     }];
                                 dataLayer.push('send', { hitType: 'event', 
                                 eventCategory: 'Mobile View Cart', 
-                                eventaction: 'Cart Details', eventlabel: carttgtm}
+                                eventAction: 'Cart Details', eventLabel: carttgtm}
                                 );
                                 console.log(carttgtm);console.log(dataLayer);
                             }catch(err){console.log("Error in GTM fire.");}
@@ -518,7 +518,7 @@ define(['app'], function(app) {
                         }];
                             dataLayer.push('send', { hitType: 'event', 
                                 eventCategory: 'Mobile Add to Cart', 
-                                eventaction: 'category page', eventlabel: productgtm}
+                                eventAction: 'category page', eventLabel: productgtm}
                             );
                     console.log(product); console.log(productgtm);console.log(dataLayer);
                 dataLayer.push({
@@ -745,7 +745,7 @@ define(['app'], function(app) {
                             }];
                         dataLayer.push('send', { hitType: 'event', 
                         eventCategory: 'Mobile Proceed to checkout', 
-                        eventaction: 'Proceed Details', eventlabel: proceedgtm}
+                        eventAction: 'Proceed Details', eventLabel: proceedgtm}
                         );
                         console.log(proceedgtm);console.log(dataLayer);
                     }catch(err){console.log("Error in GTM fire.");}

@@ -282,7 +282,7 @@ define(['app'], function(app) {
                             try{
                                 dataLayer.push('send', { hitType: 'event', 
                                 eventCategory: 'Mobile Category Interaction', 
-                                eventaction: 'category page', eventlabel: $scope.categoryName}
+                                eventAction: 'category page', eventLabel: $scope.categoryName}
                                 );
                                 console.log($scope.categoryName);console.log(dataLayer);
                             }catch(err){console.log("Error in GTM fire.");}  

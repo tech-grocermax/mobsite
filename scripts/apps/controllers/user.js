@@ -296,7 +296,7 @@ define(['app'], function(app) {
                     try{
                         dataLayer.push('send', { hitType: 'event', 
                             eventCategory: 'Mobile Checkout Funnel', 
-                            eventaction: 'Registration', eventlabel:  'New Registration'}
+                            eventAction: 'Registration', eventLabel:  'New Registration'}
                         );
                          console.log('Existing User');console.log(dataLayer);
                     }catch(err){console.log("Error in GTM fire.");}  
@@ -340,7 +340,7 @@ define(['app'], function(app) {
                         }];
                         dataLayer.push('send', { hitType: 'event', 
                             eventCategory: 'Mobile Checkout Funnel', 
-                            eventaction: 'Login', eventlabel: logintgtm}
+                            eventAction: 'Login', eventLabel: logintgtm}
                         );
                          console.log(logintgtm);console.log(dataLayer);
                     }catch(err){console.log("Error in GTM fire.");}     

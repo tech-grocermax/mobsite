@@ -267,7 +267,7 @@ define(['app'], function(app) {
                     }];
                         dataLayer.push('send', { hitType: 'event', 
                             eventCategory: 'Mobile Checkout Funnel', 
-                            eventaction: 'Payment Method', eventlabel: paymgtm}
+                            eventAction: 'Payment Method', eventLabel: paymgtm}
                         );
                         console.log(paymgtm);console.log(dataLayer);
                     dataLayer.push({
@@ -343,7 +343,7 @@ define(['app'], function(app) {
                     }];
                     dataLayer.push('send', { hitType: 'event', 
                         eventCategory: 'Mobile Checkout Funnel', 
-                        eventaction: 'Shipping', eventlabel: shipgtm}
+                        eventAction: 'Shipping', eventLabel: shipgtm}
                     );
                     console.log(shipgtm);console.log(dataLayer);
                     dataLayer.push({
@@ -375,7 +375,7 @@ define(['app'], function(app) {
                     }];
                     dataLayer.push('send', { hitType: 'event', 
                         eventCategory: 'Mobile Checkout Funnel', 
-                        eventaction: 'Billing', eventlabel: billgtm}
+                        eventAction: 'Billing', eventLabel: billgtm}
                     );
                     console.log(billgtm);console.log(dataLayer);
                     dataLayer.push({
@@ -481,7 +481,7 @@ define(['app'], function(app) {
                         }];
                         dataLayer.push('send', { hitType: 'event', 
                             eventCategory: 'Mobile Checkout Funnel', 
-                            eventaction: 'Delivery Slot', eventlabel: slotgtm}
+                            eventAction: 'Delivery Slot', eventLabel: slotgtm}
                         );
                         console.log(slotgtm);console.log(dataLayer);
                          dataLayer.push({
