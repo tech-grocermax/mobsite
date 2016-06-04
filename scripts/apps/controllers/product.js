@@ -735,7 +735,7 @@ define(['app'], function(app) {
             $scope.checkout = function(flag) {
                 // google GTM code
                     try{
-                            proceedgtm = $scope.totalCartQty; /*[{
+                            proceedgtm = "totalQty =" + $scope.totalCartQty; /*[{
                                 "totalitem":$scope.totalCartQty
                             }];*/
                         dataLayer.push('send', { hitType: 'event', 
