@@ -512,7 +512,8 @@ input , button, select{outline:none;}
 .ss-menu ul {padding-top:5px!important}
 .log-text>.text-line{width:20.5%;}
 .myselect select{box-shadow:none;	-webkit-appearance:none; -moz-appearance:none; appearance:none; -ms-appearance:none; -o-appearance:none;}
-.myselect > .reg-list-select{color:#2d2d2d;}
+.myselect > .reg-list-select{color:#2d2d2d;transition: none;}
+ select { transition: none; }
 /*.prod-sec{margin-bottom: 192px;}*/
 .cart-box-botom{position:fixed; bottom:45px; left:0; right:0;}
 .cart-margin{margin-bottom:28%; margin-top:65px;}
