@@ -296,7 +296,7 @@ input , button, select{outline:none;}
 .reg-bot-btn{background:  #0e69e5; font-size:18px; color: #fff; padding:10px 0px; border: medium none; width: 100%;  box-sizing: border-box; transform: translateZ(0);
     -moz-transform: translatez(0);  -ms-transform: translatez(0);  -o-transform: translatez(0);   -webkit-transform: translateZ(0);  -webkit-font-smoothing: antialiased;}
 .reg-bot-btn.unfixed{position:relative!important; bottom:0px}
-.headerunfixed{position:absolute!important; top:0px}
+.headerunfixed{position:absolute!important; top:0px;transition: none !important;}
 .check-img{float:left; padding-right: 20px;}
 .check-text{font-size: 4vw; padding-top:0.5%; color:#2d2d2d;}
 .reg-check-img{margin-right: -10%;}
