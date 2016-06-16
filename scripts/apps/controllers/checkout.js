@@ -266,7 +266,6 @@ define(['app'], function(app) {
                             eventCategory: 'Mobile Checkout Funnel', 
                             eventAction: 'Payment Method', eventLabel: paymgtm}
                         );
-                        console.log(paymgtm);console.log(dataLayer);
                     dataLayer.push({
                         'event': 'checkoutOption',
                         'ecommerce': {
@@ -275,7 +274,7 @@ define(['app'], function(app) {
                           }
                         }
                       });
-                }catch(err){console.log("Error in Checkout GTM fire.");}    
+                }catch(err){}    
                 $scope.paymentMethod = ($scope.payment.cc || $scope.payment.paytm_cc) ? "paytm_cc" : paymentMethod;                
             };
 
@@ -339,7 +338,6 @@ define(['app'], function(app) {
                         eventCategory: 'Mobile Checkout Funnel', 
                         eventAction: 'Shipping', eventLabel: shipgtm}
                     );
-                    console.log(shipgtm);console.log(dataLayer);
                     dataLayer.push({
                         'event': 'checkoutOption',
                         'ecommerce': {
@@ -348,7 +346,7 @@ define(['app'], function(app) {
                           }
                         }
                     });
-                }catch(err){console.log("Error in Checkout GTM fire.");}
+                }catch(err){}
                 if($scope.billingAsShipping) {
                     $location.url("checkout/delivery");
                 } else {
@@ -368,7 +366,6 @@ define(['app'], function(app) {
                         eventCategory: 'Mobile Checkout Funnel', 
                         eventAction: 'Billing', eventLabel: billgtm}
                     );
-                    console.log(billgtm);console.log(dataLayer);
                     dataLayer.push({
                         'event': 'checkoutOption',
                         'ecommerce': {
@@ -377,7 +374,7 @@ define(['app'], function(app) {
                           }
                         }
                     });
-                }catch(err){console.log("Error in Checkout GTM fire.");}
+                }catch(err){}
                 var billingAddress = null;
                 if($scope.addressList.length) {
                     angular.forEach($scope.addressList, function(value, key) {
@@ -471,7 +468,7 @@ define(['app'], function(app) {
                             eventCategory: 'Mobile Checkout Funnel', 
                             eventAction: 'Delivery Slot', eventLabel: slotgtm}
                         );
-                        console.log(slotgtm);console.log(dataLayer);
+                       
                          dataLayer.push({
                             'event': 'checkoutOption',
                             'ecommerce': {
@@ -480,7 +477,7 @@ define(['app'], function(app) {
                               }
                             }
                           });
-                    }catch(err){console.log("Error in Checkout GTM fire.");}     
+                    }catch(err){}     
                 }
             };
 
@@ -553,7 +550,8 @@ define(['app'], function(app) {
                         }
                     });
             };
-
+			
+			$scope.duplicateorderbtn = false;
             $scope.isOrderPlaced = false;
             $scope.placeOrder = function() { 
                 $analytics.eventTrack($scope.selectedCity, {  category: "Review and Place order" });
@@ -563,11 +561,11 @@ define(['app'], function(app) {
                     toggleLoader(true);
                     var userId = utility.getJStorageKey("userId"),
                         checkoutDetails = utility.getJStorageKey("checkoutDetails");
-                    
                     userService.checkout(userId, $scope.quoteId, checkoutDetails, $scope.paymentMethod)
                         .then(function(data){
-                            toggleLoader(false);                 
+                            toggleLoader(false);
                             if(data.flag == 1){
+								console.log(data);
                                 // OMG required script
                                 if("undefined" !== typeof Storage) {
                                     if ("omg" == localStorage.getItem("utm_source")) {
@@ -588,9 +586,21 @@ define(['app'], function(app) {
                                         dataLayer.push(data.newgtm);
                                         //dataLayer.push(data.orderinfo);
                                     });
-                                }catch(err) { console.log("Problem in firing GTM."); }
+                                }catch(err) { }
                                 // $analytics.pageTrack("Review Order & Pay");
-                            } else {
+                            } 
+							
+							else if(data.flag == 3){
+								$('#cartOutOfStockItem').modal({
+                                    backdrop: false,
+                                    keyboard: false,
+                                    show: true
+                                });
+								$scope.resultOss = data.Result;
+								$scope.buttonOss = data.Button;
+								$scope.quate_id_Oss = data.quote_id;
+							}
+							else if(data.flag == 0) {
                                 $analytics.eventTrack($scope.selectedCity, {  category: "Order Failed" });
                                 $analytics.pageTrack("Failure Screen");
                                 $('#paymentFailed').modal({
@@ -599,6 +609,17 @@ define(['app'], function(app) {
                                     show: true
                                 });
                             }
+							
+							else if(data.flag == 2){
+								$('#cartOutOfStockItem').modal({
+                                    backdrop: false,
+                                    keyboard: false,
+                                    show: true
+                                });
+								$scope.resultOss = data.Result;
+								$scope.duplicateorderbtn = true;
+								$scope.buttonDuplicate = data.Button;
+							}
                         });
                 }               
             };
@@ -663,9 +684,10 @@ define(['app'], function(app) {
             };
 
             $scope.navigateToCart = function() {
+				console.log($scope.cartItemCount);
                 if(angular.isDefined(utility.getJStorageKey("quoteId")) 
-                    && utility.getJStorageKey("quoteId")
-                    && $scope.cartItemCount) {
+                    && utility.getJStorageKey("quoteId")) 
+				{
                     $location.url("cart" + "/" + utility.getJStorageKey("quoteId"));
                 }
             };
