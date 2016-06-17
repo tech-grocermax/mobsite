@@ -565,7 +565,6 @@ define(['app'], function(app) {
                         .then(function(data){
                             toggleLoader(false);
                             if(data.flag == 1){
-								console.log(data);
                                 // OMG required script
                                 if("undefined" !== typeof Storage) {
                                     if ("omg" == localStorage.getItem("utm_source")) {
@@ -619,6 +618,7 @@ define(['app'], function(app) {
 								$scope.resultOss = data.Result;
 								$scope.duplicateorderbtn = true;
 								$scope.buttonDuplicate = data.Button;
+								flushData();
 							}
                         });
                 }               
