@@ -565,6 +565,7 @@ define(['app'], function(app) {
                         .then(function(data){
                             toggleLoader(false);
                             if(data.flag == 1){
+								$scope.orderCancelpopup = false;
                                 // OMG required script
                                 if("undefined" !== typeof Storage) {
                                     if ("omg" == localStorage.getItem("utm_source")) {
@@ -587,6 +588,11 @@ define(['app'], function(app) {
                                     });
                                 }catch(err) { }
                                 // $analytics.pageTrack("Review Order & Pay");
+								$('#cartOutOfStockItem').modal({
+                                    backdrop: false,
+                                    keyboard: false,
+                                    show: false
+                                });
                             } 
 							
 							else if(data.flag == 3){
