@@ -515,9 +515,8 @@ define(['app'], function(app) {
                 $location.search("orderId", null);
                 $location.search("status", null);
                 hidePaymentFailedModal();
+				hideOutofStockModal();
                 if(!$scope.orderId) {
-					alert("!$scope.orderId");
-					hideOutofStockModal();
                     $scope.placeOrder();
                 }                
             };
@@ -528,6 +527,7 @@ define(['app'], function(app) {
                 hidePaymentFailedModal();
 				hideOutofStockModal();
                 $scope.paymentMethod = "cashondelivery";
+				$scope.hideoutofStockModal = true;
                 $scope.placeOrder();
             };
 
@@ -576,6 +576,7 @@ define(['app'], function(app) {
                             toggleLoader(false);
                             if(data.flag == 1){
                                 // OMG required script
+								$scope.hideoutofStockModal = true;
                                 if("undefined" !== typeof Storage) {
                                     if ("omg" == localStorage.getItem("utm_source")) {
                                         require(["https://track.in.omgpm.com/886729/transaction.asp?APPID=" + data.OrderID + "&MID=886729&PID=16913&status=" + $scope.cartDetails.grand_total]);
