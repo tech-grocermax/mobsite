@@ -617,6 +617,7 @@ define(['app'], function(app) {
                                     keyboard: false,
                                     show: true
                                 });
+								hideOutofStockModal();
                             }
 							
 							else if(data.flag == 2){
