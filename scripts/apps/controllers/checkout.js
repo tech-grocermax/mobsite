@@ -515,8 +515,9 @@ define(['app'], function(app) {
                 $location.search("orderId", null);
                 $location.search("status", null);
                 hidePaymentFailedModal();
-				hideOutofStockModal();
                 if(!$scope.orderId) {
+					alert("!$scope.orderId");
+					hideOutofStockModal();
                     $scope.placeOrder();
                 }                
             };
