@@ -502,6 +502,7 @@ define(['app'], function(app) {
 
             hidePaymentFailedModal = function() {
                 $('#paymentFailed').modal('hide');
+                $('#cartOutOfStockItem').modal('hide');
             };
 
             $scope.retryPayment = function() {
@@ -588,11 +589,6 @@ define(['app'], function(app) {
                                     });
                                 }catch(err) { }
                                 // $analytics.pageTrack("Review Order & Pay");
-								$('#cartOutOfStockItem').modal({
-                                    backdrop: false,
-                                    keyboard: false,
-                                    show: false
-                                });
                             } 
 							
 							else if(data.flag == 3){
