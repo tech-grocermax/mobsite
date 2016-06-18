@@ -502,6 +502,9 @@ define(['app'], function(app) {
 
             hidePaymentFailedModal = function() {
                 $('#paymentFailed').modal('hide');
+            };
+			
+			hideOutofStockModal = function() {
                 $('#cartOutOfStockItem').modal('hide');
             };
 
@@ -518,6 +521,7 @@ define(['app'], function(app) {
                 $location.search("orderId", null);
                 $location.search("status", null);
                 hidePaymentFailedModal();
+				hideOutofStockModal();
                 $scope.paymentMethod = "cashondelivery";
                 $scope.placeOrder();
             };
