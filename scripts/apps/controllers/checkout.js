@@ -504,15 +504,18 @@ define(['app'], function(app) {
                 $('#paymentFailed').modal('hide');
             };
 			
-			hideOutofStockdModal = function() {
+			hideOutofStockModal = function() {
+				alert("out of stock modal1");
                 $('#cartOutOfStockItem').modal('hide');
+				alert("out of stock modal2");
             };
+			
 
             $scope.retryPayment = function() {
                 $location.search("orderId", null);
                 $location.search("status", null);
                 hidePaymentFailedModal();
-				hideOutofStockdModal();
+				hideOutofStockModal();
                 if(!$scope.orderId) {
                     $scope.placeOrder();
                 }                
@@ -522,7 +525,7 @@ define(['app'], function(app) {
                 $location.search("orderId", null);
                 $location.search("status", null);
                 hidePaymentFailedModal();
-				hideOutofStockdModal();
+				hideOutofStockModal();
                 $scope.paymentMethod = "cashondelivery";
                 $scope.placeOrder();
             };
