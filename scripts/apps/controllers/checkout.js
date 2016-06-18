@@ -503,10 +503,6 @@ define(['app'], function(app) {
             hidePaymentFailedModal = function() {
                 $('#paymentFailed').modal('hide');
             };
-			
-			hideOutofStockModal = function() {
-                $('#cartOutOfStockItem').modal('hide');
-            };
 
             $scope.retryPayment = function() {
                 $location.search("orderId", null);
@@ -521,7 +517,6 @@ define(['app'], function(app) {
                 $location.search("orderId", null);
                 $location.search("status", null);
                 hidePaymentFailedModal();
-				hideOutofStockModal();
                 $scope.paymentMethod = "cashondelivery";
                 $scope.placeOrder();
             };
@@ -690,7 +685,6 @@ define(['app'], function(app) {
             };
 
             $scope.navigateToCart = function() {
-				console.log($scope.cartItemCount);
                 if(angular.isDefined(utility.getJStorageKey("quoteId")) 
                     && utility.getJStorageKey("quoteId")) 
 				{
