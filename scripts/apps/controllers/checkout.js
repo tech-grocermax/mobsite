@@ -501,8 +501,8 @@ define(['app'], function(app) {
             };
 			
 			$scope.navigateToOrder = function(route) {
-                $location.url(route);
 				flushData();
+                $location.url(route);
             };
 
             hidePaymentFailedModal = function() {
