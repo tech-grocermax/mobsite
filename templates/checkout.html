@@ -35,7 +35,7 @@
 						</div>-->
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 center-align margin-tp20">
 							<button type="button" class="ord-btn btn-cash"
-								data-ng-click="payViaCOD()">PAY VIA CASH ON DELIVERY</button>
+								data-ng-click="navigateTo('user/orderhistory')">ORDER HISTORY</button>
 								&nbsp;
 							<a href="/#/">
 								<img src="images/continue-shopping.png" alt="" 
@@ -110,7 +110,7 @@
 	
 	<!-- Modal -->
 	<div class="modal fade" id="cartOutOfStockItem" tabindex="-1" role="dialog" 
-		aria-labelledby="myModalLabel">
+		aria-labelledby="myModalLabel" data-ng-hide="hideoutofStockModal">
 	    <div class="modal-dialog" role="document" style="position: relative;">
 	        <div class="modal-content">
 	            <div class="cartoutofstock">
