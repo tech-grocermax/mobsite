@@ -499,6 +499,11 @@ define(['app'], function(app) {
             $scope.navigateTo = function(route) {
                 $location.url(route);
             };
+			
+			$scope.navigateToOrder = function(route) {
+                $location.url(route);
+				flushData();
+            };
 
             hidePaymentFailedModal = function() {
                 $('#paymentFailed').modal('hide');
