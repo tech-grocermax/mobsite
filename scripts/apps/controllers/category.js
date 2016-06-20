@@ -124,6 +124,14 @@ define(['app'], function(app) {
 					utility.setJStorageKey("specialDeals", $scope.specialdeals, 1);
 				}
 			};
+			
+			trendingSearchCallback = function(data){
+				if(data.flag == 1){
+					$scope.trendingsearchlist = data.trending.Result.data;
+					$scope.trendingsearchlist;
+					console.log($scope.trendingsearchlist[0]);
+				}
+			};
 
             promiseCallback = function(data) {
                 bannerCallback(data[0]);
@@ -131,6 +139,7 @@ define(['app'], function(app) {
                 offerCallback(data[0]);
                 dealCallback(data[0]);
                 specialDealCallback(data[0]);
+                trendingSearchCallback(data[0]);
 				/*bannerCallback(data[0]);
                 categoryCallback(data[1]);
                 offerCallback(data[2]);
