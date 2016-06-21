@@ -133,6 +133,7 @@
                         data-ng-model="searchKeyword"
                         data-ng-change="changeSearchKeyword(searchKeyword)"
                         data-ng-keypress="checkIfEnterKeyWasPressed($event)"
+						data-ng-click="trendingSearchList()"
                         class="search-bar text-ellipsis" only-alphanumeric-with-space>
                 </div>
                 <!-- search-icon -->
@@ -145,7 +146,12 @@
         </div>
     </div>
 </div>
-
+<div data-ng-show="trendList" style="background: #fff;width: 94%;margin: auto;position: absolute;top: 108px;left: 0;right: 0;z-index: 1;box-shadow: 0px 4px 12px 2px #686868;">
+	<ul class="list-unstyled" style="height: 300px;overflow: auto;margin: 0;">
+		<li data-ng-repeat="trendingdata in trendlist"
+			data-ng-click="getTrendingName('{{trendingdata}}')" style="color: #b6b6b6;font-size: 16px;padding: 10px 0 10px 20px;border-bottom: solid 1px #f8f8f8;" search-btn>{{trendingdata}}</li>
+	</ul>
+</div>
 <!-- Modal LOCATION-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
     aria-labelledby="myModalLabel" data-ng-show="loc_popup">

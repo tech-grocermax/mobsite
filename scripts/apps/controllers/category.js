@@ -28,6 +28,7 @@ define(['app'], function(app) {
             $scope.preserveMoreCategoryId = null;
             $scope.isUserLoggedIn = angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId") ? true : false;
             $scope.cartItems = [];
+			$scope.trendlist = [];
             $scope.cartItemCount = 0;
             $scope.categoryName = "";
             $scope.bannerList = null;
@@ -124,6 +125,16 @@ define(['app'], function(app) {
 					utility.setJStorageKey("specialDeals", $scope.specialdeals, 1);
 				}
 			};
+			
+			trendingSearchCallback = function(data){
+				if(data.flag == 1){
+					//$scope.trendlist = data.trending.Result.data;
+					angular.forEach(data.trending.Result.data, function(value, key){
+						$scope.trendlist.push(value.name1);				
+					});
+					utility.setJStorageKey("trendingList", $scope.trendlist, 1);
+				}
+			};
 
             promiseCallback = function(data) {
                 bannerCallback(data[0]);
@@ -131,6 +142,7 @@ define(['app'], function(app) {
                 offerCallback(data[0]);
                 dealCallback(data[0]);
                 specialDealCallback(data[0]);
+				trendingSearchCallback(data[0]);
 				/*bannerCallback(data[0]);
                 categoryCallback(data[1]);
                 offerCallback(data[2]);
@@ -164,7 +176,8 @@ define(['app'], function(app) {
                 && utility.getJStorageKey("categories")
                 && utility.getJStorageKey("offerCategories")
                 && utility.getJStorageKey("deals")
-				&& utility.getJStorageKey("specialDeals")) {
+				&& utility.getJStorageKey("specialDeals")
+				&& utility.getJStorageKey("trendingList")) {
                     $scope.bannerList = utility.getJStorageKey("bannerList");
                     $scope.categories = utility.getJStorageKey("categories");
                     $scope.categories.sort(utility.dynamicSort("position"));
@@ -172,6 +185,7 @@ define(['app'], function(app) {
                     $scope.offerCategories = utility.getJStorageKey("offerCategories");
                     $scope.deals = utility.getJStorageKey("deals");
                     $scope.specialdeals = utility.getJStorageKey("specialDeals");
+                    $scope.trendlist = utility.getJStorageKey("trendingList");
                     setCategoryOfferCount();
             } else {
                 toggleLoader(true);
@@ -518,6 +532,11 @@ define(['app'], function(app) {
             };
 
             $scope.handleSearchKeyEnter = function() {
+				var addItemTrendlist = $scope.trendlist.indexOf($scope.searchKeyword);
+				if (addItemTrendlist < 0){
+					$scope.trendlist.push($scope.searchKeyword);
+					utility.setJStorageKey("trendingList", $scope.trendlist, 1);					
+				}
                 $location.url("product?keyword=" + $scope.searchKeyword)
             };
             
@@ -702,6 +721,17 @@ define(['app'], function(app) {
 				
 			}
 			$timeout(function () { $scope.closeStrip = true; }, 120000);
+			
+			$scope.trendList = false;
+			$scope.trendingSearchList = function(){
+				$scope.trendList = !$scope.trendList;
+			}
+			
+			$scope.getTrendingName = function(value){
+				$scope.searchKeyword = value;
+				$scope.handleSearchKeyEnter();
+			}
+
         }
     ]);
 });
