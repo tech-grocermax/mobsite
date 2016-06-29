@@ -306,7 +306,7 @@ define(['app'], function(app) {
                     userService.createUser($scope.user)
                         .then(function(data){
                             if(data.flag == 1){
-                                try{
+                                /*try{
                                     // referral code implemeted by grocermax team
                                     console.log("after register events fire");
                                     '<div id="refed"> </div>';
@@ -323,7 +323,7 @@ define(['app'], function(app) {
                                     console.log(jQuery('body').append(imgstag1));
                                     console.log("Event fire success");
                                     }catch(err){console.log("Error in referrer.");}
-                                    // referral code ended by grocermax.com.
+                                    // referral code ended by grocermax.com.*/
                                 utility.deleteJStorageKey("otp");
                                 utility.deleteJStorageKey("registrationDetails");
                                 successCallbackUser(data, email);
