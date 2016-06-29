@@ -294,11 +294,10 @@ define(['app'], function(app) {
                     toggleLoader(true);
                     // GTM Registration    
                     try{
-                        dataLayer.push('send', { hitType: 'event', 
+                            dataLayer.push('send', { hitType: 'event', 
                             eventCategory: 'Mobile Checkout Funnel', 
                             eventAction: 'Registration', eventLabel:  'New Registration'}
                         );
-                         console.log('Existing User');console.log(dataLayer);
                     }catch(err){console.log("Error in GTM fire.");}  
                     // GTM success
                     angular.copy($scope.user, utility.getJStorageKey("registrationDetails"));
@@ -307,6 +306,24 @@ define(['app'], function(app) {
                     userService.createUser($scope.user)
                         .then(function(data){
                             if(data.flag == 1){
+                                try{
+                                    // referral code implemeted by grocermax team
+                                    console.log("after register events fire");
+                                    '<div id="refed"> </div>';
+                                    var name =data.Firstname + " " + data.Lastname;
+                                    console.log(name);
+                                    var refedd = "https://www.ref-r.com/campaign/t1/settings?bid_e=F9337B2292DD70FDD88257E6750D67F5&bid=6184&t=420&event=register&email="+ email + "&orderID="+email+"&fname="+name;    
+                                    var imgstag =  '<img style="position:absolute; visibility:hidden" src="';
+                                    var imgstag1 = imgstag + refedd +'" />';
+                                    jQuery('body').append(imgstag1);
+                                    jQuery('#refed').append(imgstag1);
+                                    //jQuery('#refed').load(refedd);
+                                    console.log('url of image === ' + refedd);
+                                    console.log('full image path ======= ' + imgstag1);   
+                                    console.log(jQuery('body').append(imgstag1));
+                                    console.log("Event fire success");
+                                    }catch(err){console.log("Error in referrer.");}
+                                    // referral code ended by grocermax.com.
                                 utility.deleteJStorageKey("otp");
                                 utility.deleteJStorageKey("registrationDetails");
                                 successCallbackUser(data, email);
