@@ -700,6 +700,7 @@ define(['app'], function(app) {
                     toggleLoader(false);
                     if(angular.isDefined(utility.getJStorageKey("userId"))
                         && utility.getJStorageKey("userId")) {
+							console.log("checkout 2");
                         $location.url("checkout/shipping");
                     } else {
                         $location.url("user/login?isReferrer=checkout");

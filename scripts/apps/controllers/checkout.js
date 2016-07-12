@@ -31,6 +31,7 @@ define(['app'], function(app) {
             $scope.section[$scope.sectionName] = true;
             $scope.addressList = [];
             $scope.billingAsShipping = false;
+            $scope.billingAsShipping = "true";
             $scope.isUserLoggedIn = angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId") ? true : false;
             $scope.cartItems = [];
             $scope.cartItemCount = 0;
@@ -60,12 +61,12 @@ define(['app'], function(app) {
             };  
 
             if($scope.section.shipping) {
-                $scope.categoryName = "Select Shipping Address";
+                $scope.categoryName = "Delivery Address";
                 $scope.columnSize = 10;
-            } else if($scope.section.billing) {
+            } /*else if($scope.section.billing) {
                 $scope.categoryName = "Select Billing Address";
                 $scope.columnSize = 10;
-            } else if ($scope.section.delivery) {
+            }*/ else if ($scope.section.delivery) {
                 $scope.categoryName = "Select Delivery Details";
                 $scope.columnSize = 10;
             } else if ($scope.section.payment) {
@@ -310,7 +311,6 @@ define(['app'], function(app) {
                 $scope.shouldProceed = true;
                 var shippingAddress = null,
                     billingAddress = null;
-
                 if($scope.addressList.length) {
                     angular.forEach($scope.addressList, function(value, key) {
                         if(value.is_default_shipping) {
@@ -393,7 +393,7 @@ define(['app'], function(app) {
                 $location.url("checkout/delivery"); 
 
             };  
-
+			
             $scope.setBillingAsShipping = function(model) {
                 $scope.billingAsShipping = model;
             };  

@@ -293,8 +293,9 @@ input , button, select{outline:none;}
 .editaddress .reg-list-text{color: #7d7d76; /*font-family: helveticaNeue-Regular;*/ font-size: 3.8vw; font-weight: normal;}
 .reg-list label{font-size: 4.3vw; font-family: robotoblack; color: #2d2d2d;margin-right: 46px;font-weight: 400;}
 .reg-para{font-size: 3.5vw; color: #cbcbc8; padding-bottom: 7px; padding-top: 38px;}
-.reg-bot-btn{background:  #0e69e5; font-size:18px; color: #fff; padding:10px 0px; border: medium none; width: 32%;  box-sizing: border-box; transform: translateZ(0);
+.reg-bot-btn{background:  #0e69e5; font-size:18px; color: #fff; padding:10px 0px; border: medium none; width: 100%;  box-sizing: border-box; transform: translateZ(0);
     -moz-transform: translatez(0);  -ms-transform: translatez(0);  -o-transform: translatez(0);   -webkit-transform: translateZ(0);  -webkit-font-smoothing: antialiased;font-family:robotomedium;float: right;margin: 3px 0 0 0;}
+.btn-copun > .reg-bot-btn{width: 32%;}
 .reg-bot-btn.unfixed{position:relative!important; bottom:0px}
 .headerunfixed{position:absolute!important; top:0px}
 .check-img{float:left; padding-right: 20px;}
@@ -614,7 +615,8 @@ input , button, select{outline:none;}
 .coupon-cart img:nth-child(1){width: 36px;margin: 0 10px 0 20px;}
 .coupon-cart img:nth-child(3){width: 11px;float: right;margin: 8px 15px 0 0;}
 .coupon-cart span:nth-child(3){float: right;font-weight: 300;font-size: 13px;margin: 6px 15px 0px 0;}
-.saving-cart{padding: 20px;background: #fff;margin: 20px 0 0 0;font-family: roboto;font-size:20px;color: #2d2d2d;}
+.saving-cart{/*padding: 20px;background: #fff;*/margin: 20px 0 0 0;font-family: roboto;font-size:20px;color: #2d2d2d;height: 80px;}
+.saving-cart > div{background: #fff;padding: 20px;position: absolute;left: 0;right: 0;bottom: 0;top: 19px;}
 .coupon-input{border: none;font-size: 18px;color: #212121;font-weight: 600;padding: 10px 0 5px 0;vertical-align: bottom;}
 .coupon-input::-webkit-input-placeholder {color: #212121;}
 .coupon-input:-moz-placeholder {color: #212121;}
