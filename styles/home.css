@@ -643,6 +643,7 @@ input , button, select{outline:none;}
 .update-pop-btn{width: 100%;border: none;color: #fff;background: #b6b6b6;font-size: 16px;font-weight: 600;padding: 15px 0 15px 0;letter-spacing: 1px;}
 #couponCodeListPopup {position: fixed;left: 0;right: 0;bottom: 0;top: 0;overflow: auto;z-index: 11;}
 #couponCodeListPopup  .modal-dialog{margin:0;}
+#couponCodeListPopup  .modal-content{border-radius: 0px;}
 .coupon-head{color: #fff;position: fixed;font-size: 17px;letter-spacing: 1px;font-weight: bold;background: #EE2D09;box-shadow: 0 7px 5px rgba(0, 0, 0, 0.2);left: 0;right: 0;top: 0;height: 52px;padding: 12px 0 14px 16px;z-index: 11;}
 .coupon-head span:nth-child(2){margin-left:5px;}
 
