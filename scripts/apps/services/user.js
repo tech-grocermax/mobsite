@@ -114,6 +114,15 @@ define(['app'], function (app) {
 		    		);
 		    };
 
+		    this.getMaxCoinsHistory = function(userid) {
+		    	var url = getAPIUrl() + "redeempointlog?user_id=" + userid;
+		    	return serverUtility.getWebService(url)
+		    		.then(
+		    			function(data){return data; },
+		    			function(error){return error; }
+		    		);
+		    };
+
 		    this.getOrderDetails = function(orderId) {
 		    	var url = getAPIUrl() + "getorderdetail?orderid=" + orderId;
 		    	return serverUtility.getWebService(url)
