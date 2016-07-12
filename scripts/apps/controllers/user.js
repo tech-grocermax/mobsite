@@ -11,6 +11,7 @@ define(['app'], function(app) {
                     || $scope.sectionName == "editprofile"
                     || $scope.sectionName == "address"
                     || $scope.sectionName == "addaddress"
+                    || $scope.sectionName == "coinshistory"
                     || $scope.sectionName == "editaddress"
                     || $scope.sectionName == "orderhistory")){
                 $location.url("user/login");
@@ -49,6 +50,7 @@ define(['app'], function(app) {
                 "address" : false,
                 "addaddress" : false,
                 "editaddress" : false,
+                "coinshistory" : false,
                 "orderhistory" : false
             };
             $scope.section[$scope.sectionName] = true;
@@ -121,6 +123,9 @@ define(['app'], function(app) {
             } else if ($scope.section.editaddress) {
                 $scope.categoryName = "Edit Address";
                 $scope.columnSize = 10;
+            } else if ($scope.section.coinshistory) {
+                $scope.categoryName = "Max Coins History";
+                $scope.columnSize = 10;  
             } else if ($scope.section.orderhistory) {
                 $scope.categoryName = "Order History";
                 $scope.columnSize = 10;
@@ -540,6 +545,34 @@ define(['app'], function(app) {
             };
             if($scope.sectionName == "orderhistory" && !$scope.orderId){
                 getOrderHistory();
+            }
+            
+            getMaxCoinsHistory = function(){
+                    $scope.action_types = [
+                        "Modified",
+                        "Used",
+                        "Refunded",
+                        "Modified",
+                        "Canceled",
+                        "Modified by Credit Product",
+                        "Added",
+                        "Decreased",
+                        "Imported",
+                        "Expired",
+                        "API"
+                    ];
+                toggleLoader(true);    
+                var userid_coins =utility.getJStorageKey("userId");
+                userService.getMaxCoinsHistory(userid_coins)
+                    .then(function(data){
+                        toggleLoader(false);
+                        $scope.coinsBalance = data.totalPoint;
+                        $scope.coinsHistory = data.redeemLog;
+                    });
+            }
+
+            if($scope.sectionName == "coinshistory"){
+                getMaxCoinsHistory();
             }
 			
 			$scope.reOrder = function(increment_id , order){
