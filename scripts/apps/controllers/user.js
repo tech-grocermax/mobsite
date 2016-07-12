@@ -125,7 +125,7 @@ define(['app'], function(app) {
                 $scope.columnSize = 10;
             } else if ($scope.section.coinshistory) {
                 $scope.categoryName = "Max Coins History";
-                $scope.columnSize = 10;  
+                $scope.columnSize = 50;  
             } else if ($scope.section.orderhistory) {
                 $scope.categoryName = "Order History";
                 $scope.columnSize = 10;
