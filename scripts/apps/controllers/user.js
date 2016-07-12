@@ -125,7 +125,7 @@ define(['app'], function(app) {
                 $scope.columnSize = 10;
             } else if ($scope.section.coinshistory) {
                 $scope.categoryName = "Max Coins History";
-                $scope.columnSize = 50;  
+                $scope.columnSize = 10;  
             } else if ($scope.section.orderhistory) {
                 $scope.categoryName = "Order History";
                 $scope.columnSize = 10;
@@ -561,6 +561,7 @@ define(['app'], function(app) {
                         "Expired",
                         "API"
                     ];
+                toggleLoader(true);    
                 var userid_coins =utility.getJStorageKey("userId");
                 userService.getMaxCoinsHistory(userid_coins)
                     .then(function(data){
@@ -571,9 +572,7 @@ define(['app'], function(app) {
             }
 
             if($scope.sectionName == "coinshistory"){
-                toggleLoader(true);
                 getMaxCoinsHistory();
-                
             }
 			
 			$scope.reOrder = function(increment_id , order){
