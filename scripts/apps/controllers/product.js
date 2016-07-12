@@ -10,6 +10,7 @@ define(['app'], function(app) {
             $scope.dealId = angular.isDefined($routeParams.dealId) ? $routeParams.dealId : null ;
             $scope.promoId = angular.isDefined($routeParams.promoId) ? $routeParams.promoId : null ;
             $scope.productId = angular.isDefined($routeParams.productId) ? $routeParams.productId : null ;
+			$scope.coupon = $location.path();
             $scope.jStorageQuoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
             $scope.quoteId = angular.isDefined($routeParams.quoteId) ? $routeParams.quoteId : null;
             $scope.parentCatId = angular.isDefined($routeParams.parentId) ? $routeParams.parentId : null ;
@@ -41,6 +42,7 @@ define(['app'], function(app) {
                 storeid:        "1"
             }];
             $scope.cityLocation = {};
+			$scope.coupontandc = false;
             $scope.pagination = {
                 current_page : 1,
                 total_pages : 0
@@ -381,7 +383,8 @@ define(['app'], function(app) {
                 }                
             };
             
-            $scope.isCartLoaded = false;            
+            $scope.isCartLoaded = false; 
+			$scope.isCartUpdatedPopup = false;
             getCartItemDetails = function() {
                 toggleLoader(true);
                 productService.getCartItemDetails($scope.quoteId)
@@ -394,7 +397,6 @@ define(['app'], function(app) {
                                 eventCategory: 'Mobile View Cart', 
                                 eventAction: 'Cart Details', eventLabel: carttgtm}
                                 );
-                                console.log(carttgtm);console.log(dataLayer);
                             }catch(err){console.log("Error in GTM fire.");}
                         // end GTM Code
                         $scope.isCartLoaded = true;
@@ -421,6 +423,7 @@ define(['app'], function(app) {
 								$scope.soldOutItemNeg = parseInt(value.webqty, 10);
 								if($scope.soldOutItemNeg <= 0){
 									$scope.isCartUpdated = true;
+									$scope.isCartUpdatedPopup = true;
 									
 								}
 							});
@@ -515,7 +518,6 @@ define(['app'], function(app) {
                                 eventCategory: 'Mobile Add to Cart', 
                                 eventAction: 'category page', eventLabel: productgtm}
                             );
-                    console.log(productgtm);console.log(dataLayer);
                 dataLayer.push({
                         'event': 'addToCart',
                         'ecommerce': {
@@ -742,7 +744,6 @@ define(['app'], function(app) {
                         eventCategory: 'Mobile Proceed to checkout', 
                         eventAction: 'Proceed Details', eventLabel: proceedgtm}
                         );
-                        console.log(proceedgtm);console.log(dataLayer);
                     }catch(err){console.log("Error in GTM fire.");}
                 // end GTM Code
                 if(flag == 'checkout') {
@@ -777,6 +778,7 @@ define(['app'], function(app) {
                             }
 							
 							$scope.isCartUpdated = false; //Mustakeem
+							$scope.isCartUpdatedPopup = false; //Mustakeem
 							angular.forEach(data.CartDetail.items, function(value, key) {
 								$scope.soldOutItemNeg = value.webqty;
 								$scope.itemToAdd = value.qty;
@@ -825,7 +827,11 @@ define(['app'], function(app) {
             $scope.navigateToShipping = function() {
                 $location.url("checkout/shipping");
             };
-
+			
+			$scope.couponTnC = function(){
+				$scope.coupontandc = !$scope.coupontandc;
+			}
+			
             openCitySelectionModal = function() {
                 $timeout(function(){
                     $('#myModal').modal({
@@ -892,14 +898,60 @@ define(['app'], function(app) {
                     return '-unselected.png';
                 }                
             };
-
+			
+			//$scope.couponlistofcode = {};
+			couponList = function(){
+				productService.getCouponCodeList()
+                    .then(function(data){
+						if(data.flag == 1 || data.flag == "1"){
+							$scope.couponlistofcode = data.coupon;
+							utility.setJStorageKey("codeList" + $scope.couponlistofcode, 1);
+						}
+                    });
+			};
+			
+			$scope.couponModalShow = false;
+			$scope.navigateToCoupon = function() {
+				$scope.couponModalShow = !$scope.couponModalShow;
+				//$location.url("coupon");
+				couponList();
+            };
+			
+			$scope.isCouponCodeApplied = false;
+            $scope.couponAmount = 0.00;
+            $scope.couponCode = null;
+			
+			$scope.applyCouponCode = function(couponCode, index) {
+                toggleLoader(true);
+                productService.applyCoupon(utility.getJStorageKey("userId"), utility.getJStorageKey("quoteId"), couponCode)
+                    .then(function(data){
+                        toggleLoader(false);
+						$scope.couponLi = index;
+                        if(data.flag == 1) {
+                            $scope.invalidCoupon = false;
+                            $scope.invalidCouponBlank = false;
+                            $scope.couponMessage = "";
+                            $scope.isCouponCodeApplied = true;
+                            $scope.couponAmount = data.CartDetails.you_save;
+                            $scope.cartDetails.grand_total = data.CartDetails.grand_total;
+							$scope.couponModalShow = false;
+                        } 						
+						else {
+							$scope.invalidCoupon = true;
+							$scope.couponMessage = data.Result;
+                        }                      
+                    });
+            };
+			
             if($scope.sku){
                 $scope.columnSize = 11;
             } else if($scope.topOfferDealId){
                 $scope.columnSize = 12;
             } else if ($scope.promoId){
                 $scope.columnSize = 13;
-            }
+            } else if($scope.coupon == "/coupon"){
+				$scope.columnSize = 14;
+			}
             else {
                  $scope.columnSize = 10;
             };
