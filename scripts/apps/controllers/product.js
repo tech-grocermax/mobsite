@@ -420,6 +420,12 @@ define(['app'], function(app) {
                             }
 							
 							angular.forEach($scope.cartDetails.items, function(value, key) {
+                                if(value.qty > value.webqty){
+                                    $scope.MaxAvailQty = value.qty;
+                                    $scope.MaxAvailQtyPid = value.product_id;
+                                    $scope.isCartUpdated = true;
+                                }
+
 								$scope.soldOutItemNeg = parseInt(value.webqty, 10);
 								if($scope.soldOutItemNeg <= 0){
 									$scope.isCartUpdated = true;
@@ -638,16 +644,26 @@ define(['app'], function(app) {
 
             $scope.increaseCartProductQuantity = function(item, keyName) {
                 $scope.isCartUpdated = true;
+                $scope.MaxAvailQty ="";
+                $scope.MaxAvailQtyPid="";
                 var productId = item.product_id;
-                angular.forEach($scope.cartDetails.items, function(value, key) {
-                    if(value[keyName] == productId && value.price > 0) {
-                        value["qty"] = parseInt(value["qty"], 10) + 1;
-                    }                    
-                });
+                if((parseInt(item.qty) + 1) > item.webqty ){
+                    $scope.MaxAvailQty = parseInt(item.qty) + 1;
+                    $scope.MaxAvailQtyPid = productId;
+                    return true;
+                }else{
+                    angular.forEach($scope.cartDetails.items, function(value, key) {
+                        if(value[keyName] == productId && value.price > 0) {
+                            value["qty"] = parseInt(value["qty"], 10) + 1;
+                        }                    
+                    });
+                }
             };
 
             $scope.decreaseCartProductQuantity = function(item, keyName) {
                 var productId = item.product_id;
+                $scope.MaxAvailQty ="";
+                $scope.MaxAvailQtyPid="";
                 angular.forEach($scope.cartDetails.items, function(value, key) {
                     if(value[keyName] == productId && value["qty"] > 1) {
                         value["qty"] = parseInt(value["qty"], 10) - 1;
@@ -785,9 +801,11 @@ define(['app'], function(app) {
 								$scope.itemToAdd = value.qty;
 								if($scope.soldOutItemNeg <= 0 || $scope.itemToAdd > $scope.soldOutItemNeg){
 									$scope.isCartUpdated = true;
+                                    $scope.isCartUpdatedPopup = true;
 								} else {
-									if (!$scope.isCartUpdated){
+									if (!$scope.isCartUpdated && !$scope.isCartUpdatedPopup){
 										$scope.isCartUpdated = false;
+                                        $scope.isCartUpdatedPopup = false;
 									}
 								}
 							});
