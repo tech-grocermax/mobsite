@@ -931,9 +931,13 @@ define(['app'], function(app) {
 			
 			$scope.couponModalShow = false;
 			$scope.navigateToCoupon = function() {
-				$scope.couponModalShow = !$scope.couponModalShow;
-				//$location.url("coupon");
-				couponList();
+                if(utility.getJStorageKey("userId")){
+                     $scope.couponModalShow = !$scope.couponModalShow;
+                    //$location.url("coupon");
+                    couponList();
+                }else{
+                   $location.url("user/login?isReferrer=coupon");
+                }
             };
 			
 			$scope.isCouponCodeApplied = false;
@@ -961,6 +965,10 @@ define(['app'], function(app) {
                         }                      
                     });
             };
+
+            $scope.removeCouponCode = function(couponCode){
+               // call webservice to remove code.
+            }
 			
             if($scope.sku){
                 $scope.columnSize = 11;

@@ -200,12 +200,13 @@ define(['app'], function(app) {
                     $scope.userResponseMessage = data.Result;
                     updateClassName("success");
                     if($scope.isReferrer == "checkout") {
-
                         $location.url("checkout/shipping"); 
-                    } else {
-
+                    }else if($scope.isReferrer == "coupon") {
+                        $location.url("cart/" + data.QuoteId);
+                    }    
+                     else {
                         $location.url("/");
-                    }
+                     }
                 } else {
                     $scope.showUserResponse = true;
                     $scope.userResponseMessage = data.Result;
