@@ -198,7 +198,7 @@ define(['app'], function(app) {
                     qty = 0;
 
                 angular.forEach($scope.cartDetails.items, function(value, key) {
-                    savedAmont = savedAmont + parseFloat($scope.getPriceDifference(value.mrp, value.price));
+                    savedAmont = savedAmont + parseInt(value.qty) * parseFloat($scope.getPriceDifference(value.mrp, value.price));
                     qty = qty + parseInt(value.qty);
                 });
                 $scope.youSaved = savedAmont;
@@ -243,6 +243,17 @@ define(['app'], function(app) {
                         toggleLoader(false);            
                         $scope.cartDetails = data.CartDetail; 
                         getYouSaveAmout();
+                        $scope.couponValue = parseInt((data.CartDetail.subtotal - data.CartDetail.subtotal_with_discount));
+                            if(data.CartDetail.coupon_code){
+                                $scope.invalidCoupon = false;
+                                $scope.invalidCouponBlank = false;
+                                $scope.couponMessage = "";
+                                $scope.isCouponCodeApplied = true;
+                                $scope.couponCode = data.CartDetail.coupon_code;
+                                $scope.couponAmount = data.CartDetail.you_save;
+                                $scope.cartDetails.grand_total = data.CartDetail.grand_total;
+                                $scope.couponModalShow = false;
+                            }
                         handlePaymentResponse();
                     });
             };  
