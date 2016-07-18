@@ -412,6 +412,7 @@ define(['app'], function(app) {
                             
                             $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);                          
                             addShippingCharges();
+                            $scope.couponValue = (data.CartDetail.subtotal - data.CartDetail.subtotal_with_discount);
                             if(data.CartDetail.coupon_code){
                                 $scope.invalidCoupon = false;
                                 $scope.invalidCouponBlank = false;
@@ -420,7 +421,6 @@ define(['app'], function(app) {
                                 $scope.couponCode = data.CartDetail.coupon_code;
                                 $scope.couponAmount = data.CartDetail.you_save;
                                 $scope.cartDetails.grand_total = data.CartDetail.grand_total;
-                                $scope.couponValue = (data.CartDetail.subtotal - data.CartDetail.subtotal_with_discount);
                                 $scope.couponModalShow = false;
                             }
                             getYouSaveAmout();
@@ -932,11 +932,13 @@ define(['app'], function(app) {
 			
 			//$scope.couponlistofcode = {};
 			couponList = function(){
+                toggleLoader(true);
 				productService.getCouponCodeList()
                     .then(function(data){
 						if(data.flag == 1 || data.flag == "1"){
 							$scope.couponlistofcode = data.coupon;
 							utility.setJStorageKey("codeList" + $scope.couponlistofcode, 1);
+                            toggleLoader(false);
 						}
                     });
 			};
