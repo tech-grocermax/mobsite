@@ -802,6 +802,29 @@ define(['app'], function(app) {
                                     $scope.productIds = [];                           
                                     checkoutSuccessCallback(flag);    
                                     $scope.cartDetails = data.CartDetail;
+                                    $scope.couponValue = (data.CartDetail.subtotal - data.CartDetail.subtotal_with_discount);
+                                    if(data.CartDetail.coupon_code){
+                                        $scope.invalidCoupon = false;
+                                        $scope.invalidCouponBlank = false;
+                                        $scope.couponMessage = "";
+                                        $scope.isCouponCodeApplied = true;
+                                        $scope.couponCode = data.CartDetail.coupon_code;
+                                        $scope.couponAmount = data.CartDetail.you_save;
+                                        $scope.cartDetails.grand_total = data.CartDetail.grand_total;
+                                        $scope.couponModalShow = false;
+                                    }else{
+                                        $scope.invalidCoupon = true;
+                                        $scope.invalidCouponBlank = true;
+                                        $scope.isCouponCodeApplied = false;
+                                        $scope.couponCode = data.CartDetail.coupon_code;
+                                        $scope.couponAmount = data.CartDetail.you_save;
+                                        $scope.cartDetails.grand_total = data.CartDetail.grand_total;
+                                        $scope.couponModalShow = false;
+                                    }
+                                    if (!$scope.isCartUpdated && !$scope.isCartUpdatedPopup){
+                                        $scope.isCartUpdated = false;
+                                        $scope.isCartUpdatedPopup = false;
+                                    }
                                     getYouSaveAmout();
                                 }                   
                             }
@@ -811,7 +834,12 @@ define(['app'], function(app) {
 							angular.forEach(data.CartDetail.items, function(value, key) {
 								$scope.soldOutItemNeg = value.webqty;
 								$scope.itemToAdd = value.qty;
-								if($scope.soldOutItemNeg <= 0 || $scope.itemToAdd > $scope.soldOutItemNeg){
+                                if(value.qty > value.webqty){
+                                    $scope.MaxAvailQty = value.qty;
+                                    $scope.MaxAvailQtyPid = value.product_id;
+                                    $scope.isCartUpdated = true;
+                                }
+								if($scope.soldOutItemNeg <= 0){
 									$scope.isCartUpdated = true;
                                     $scope.isCartUpdatedPopup = true;
 								} else {
