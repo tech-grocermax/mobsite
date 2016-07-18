@@ -106,7 +106,7 @@ define(['app'], function(app) {
                                 eventCategory: 'Mobile Category Interaction', 
                                 eventAction: 'search result', eventLabel: $scope.keyword}
                                 );
-                                console.log($scope.keyword);console.log(dataLayer);
+                                //console.log($scope.keyword);console.log(dataLayer);
                             }catch(err){console.log("Error in GTM fire.");}  
                         // end GTM Code
                         groupSearchProductByCategory(data);
@@ -209,7 +209,7 @@ define(['app'], function(app) {
                                 eventCategory: 'Mobile Category Interaction', 
                                 eventAction: 'search result', eventLabel: $scope.categoryName}
                                 );
-                                console.log($scope.categoryName);console.log(dataLayer);
+                                //console.log($scope.categoryName);console.log(dataLayer);
                             }catch(err){console.log("Error in GTM fire.");}
                         // end GTM Code
                         groupAllProductByCategory(data);
@@ -228,7 +228,7 @@ define(['app'], function(app) {
                                 eventCategory: 'Mobile Category Interaction', 
                                 eventAction: 'deal page', eventLabel: data.dealcategory.name}
                                 );
-                                console.log(data.dealcategory.name);console.log(dataLayer);
+                                //console.log(data.dealcategory.name);console.log(dataLayer);
                             }catch(err){console.log("Error in GTM fire.");}
                         // end GTM Code
                         $scope.categoryName = data.dealcategory.name;
@@ -274,7 +274,7 @@ define(['app'], function(app) {
                                 eventCategory: 'Mobile Category Interaction', 
                                 eventAction: 'deal page', eventLabel: "deals by sku"}
                                 );
-                                console.log("deals by sku");console.log(dataLayer);
+                                //console.log("deals by sku");console.log(dataLayer);
                             }catch(err){console.log("Error in GTM fire.");}
                         // end GTM Code
                         groupAllProductByCategory(data);
@@ -300,7 +300,7 @@ define(['app'], function(app) {
                                 eventCategory: 'Mobile Category Interaction', 
                                 eventAction: 'save more', eventLabel: data.dealcategory.name}
                                 );
-                                console.log(data.dealcategory.name);console.log(dataLayer);
+                                //console.log(data.dealcategory.name);console.log(dataLayer);
                             }catch(err){console.log("Error in GTM fire.");}
                         // end GTM Code
                         $scope.topofferdealname = data.dealcategory.name;
@@ -372,7 +372,7 @@ define(['app'], function(app) {
                         qty = qty + parseInt(value.qty);
                     });
                 }
-                $scope.youSaved = savedAmont;
+                $scope.youSaved = savedAmont; 
                 $scope.totalCartQty = qty;
             };
 
@@ -409,8 +409,20 @@ define(['app'], function(app) {
                         } else {
                             $('body').css('overflow', 'auto');
                             $scope.cartDetails = data.CartDetail;
+                            
                             $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);                          
                             addShippingCharges();
+                            if(data.CartDetail.coupon_code){
+                                $scope.invalidCoupon = false;
+                                $scope.invalidCouponBlank = false;
+                                $scope.couponMessage = "";
+                                $scope.isCouponCodeApplied = true;
+                                $scope.couponCode = data.CartDetail.coupon_code;
+                                $scope.couponAmount = data.CartDetail.you_save;
+                                $scope.cartDetails.grand_total = data.CartDetail.grand_total;
+                                $scope.couponValue = (data.CartDetail.subtotal - data.CartDetail.subtotal_with_discount);
+                                $scope.couponModalShow = false;
+                            }
                             getYouSaveAmout();
                             if(data.TotalItem == 0) {
                                 utility.setJStorageKey("cartCounter" + $scope.quoteId, 0, 1);
@@ -716,7 +728,7 @@ define(['app'], function(app) {
                     toggleLoader(false);
                     if(angular.isDefined(utility.getJStorageKey("userId"))
                         && utility.getJStorageKey("userId")) {
-							console.log("checkout 2");
+							//console.log("checkout 2");
                         $location.url("checkout/shipping");
                     } else {
                         $location.url("user/login?isReferrer=checkout");
@@ -957,7 +969,8 @@ define(['app'], function(app) {
                             $scope.isCouponCodeApplied = true;
                             $scope.couponAmount = data.CartDetails.you_save;
                             $scope.cartDetails.grand_total = data.CartDetails.grand_total;
-							$scope.couponModalShow = false;
+                            $scope.couponValue = (data.CartDetail.subtotal - data.CartDetail.subtotal_with_discount);
+                            $scope.couponModalShow = false;
                         } 						
 						else {
 							$scope.invalidCoupon = true;
@@ -966,8 +979,27 @@ define(['app'], function(app) {
                     });
             };
 
-            $scope.removeCouponCode = function(couponCode){
-               // call webservice to remove code.
+            $scope.removeCouponCode = function(couponCode, index){
+               toggleLoader(true);
+               productService.removeCoupon(utility.getJStorageKey("userId"), utility.getJStorageKey("quoteId"), couponCode)
+                    .then(function(data){
+                        toggleLoader(false);
+                        $scope.couponLi = index;
+                        if(data.flag == 1) {
+                            $scope.couponModalShow = false;
+                            $scope.invalidCoupon = true;
+                            $scope.invalidCouponBlank = true;
+                            $scope.couponMessage = "";
+                            $scope.isCouponCodeApplied = false;
+                            $scope.couponAmount = data.CartDetails.you_save;
+                            $scope.couponValue = (data.CartDetail.subtotal - data.CartDetail.subtotal_with_discount);
+                            $scope.cartDetails.grand_total = data.CartDetails.grand_total;
+                        }                       
+                        else {
+                            $scope.invalidCoupon = false;
+                            $scope.couponMessage = data.Result;
+                        }                      
+                    });
             }
 			
             if($scope.sku){
