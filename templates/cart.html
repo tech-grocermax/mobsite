@@ -246,8 +246,10 @@
 								<li ng-repeat="list in couponlistofcode">
 									<button type="button" class="coupon-btn" data-ng-click="applyCouponCode(list.name, $index)" ><span>{{list.coupon_code}} -</span> APPLY</button>
 									<p>{{list.name}}</p>
-									<p> View T&C \/</p>
-									<p>{{list.description}} </p>
+									<p data-ng-show="list.description" data-ng-click="couponDescripTogle = !couponDescripTogle"> View T&C 
+										<img src="images/copun-arrow.png">
+									</p>
+									<p data-ng-show="couponDescripTogle">{{list.description}} </p>
 									<div data-ng-class="{showCouponError: $index == couponLi}" class="hideCouponError" 
 									style="color:#FF0000; text-align:center;  float: left; width: 100%;">{{couponMessage}}</div>	
 								</li>

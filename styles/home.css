@@ -630,6 +630,8 @@ input , button, select{outline:none;}
 .coupon-bar1 .remove-btn{background-color: #444;}
 .coupon-bar2{padding: 40px 20px 0px 20px;text-align: center;}
 .coupon-bar2 ul > li{border-bottom: solid 1px #efefef;padding: 20px 0 20px 0;}
+.coupon-bar2 div > ul > li > p:nth-child(3){color: #727272;}
+.coupon-bar2 div > ul > li > p:nth-child(3) > img{width: 15px;margin: -2px 0 0 10px;}
 .coupon-bar2 p{font-size: 16px;color: #212121;font-weight: 600;margin: 20px 0 0 0;}
 .coupon-btn{background: #429f46;border: none;color: #fff;font-family: roboto;font-weight: 600;font-size: 19px;text-align: center;width: 80%;height: 45px;border-radius: 4px;}
 .coupon-btn > span{font-weight: 400;}

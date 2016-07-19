@@ -33,6 +33,7 @@ define(['app'], function(app) {
             $scope.isUserLoggedIn = angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId") ? true : false;
             $scope.productQty = {};
             $scope.isCartUpdated = false;
+            $scope.couponDescripTogle = false;
             $scope.cityList = [{
                 api_url:        "api/",
                 city_name:      "Gurgaon",
