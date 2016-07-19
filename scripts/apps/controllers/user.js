@@ -192,6 +192,10 @@ define(['app'], function(app) {
                         oldCartCount = data.TotalItem;
                     }
                     utility.setJStorageKey("cartCounter" + data.QuoteId, oldCartCount, 1);
+                    try{
+                        dataLayer = [{'userID' : utility.getJStorageKey("userId")}];
+                        console.log(dataLayer);
+                    }catch(err){console.log("Error in GTM fire.");}  
                     //cartCounterKey
                     /*var quoteId = utility.getJStorageKey("quoteId"),
                     cartCounterKey = "cartCounter" + quoteId,
@@ -304,7 +308,6 @@ define(['app'], function(app) {
                             eventCategory: 'Mobile Checkout Funnel', 
                             eventAction: 'Registration', eventLabel:  'New Registration'}
                         );
-                         console.log('Existing User');console.log(dataLayer);
                     }catch(err){console.log("Error in GTM fire.");}  
                     // GTM success
                     angular.copy($scope.user, utility.getJStorageKey("registrationDetails"));
@@ -345,7 +348,6 @@ define(['app'], function(app) {
                             eventCategory: 'Mobile Checkout Funnel', 
                             eventAction: 'Login', eventLabel: logintgtm}
                         );
-                         console.log(logintgtm);console.log(dataLayer);
                     }catch(err){console.log("Error in GTM fire.");}     
                     // GTM success
                     if(angular.isDefined(utility.getJStorageKey("quoteId")) 
