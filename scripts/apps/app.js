@@ -1,5 +1,5 @@
 define([appURL + 'routes', appURL + 'services/dependency'], function(config, dependency) {
-    var app = angular.module('app', ['ngRoute', 'dc.endlessScroll', 'angular-carousel', 'angulartics', 'angulartics.google.analytics']);
+    var app = angular.module('app', ['ngRoute', 'dc.endlessScroll', 'angular-carousel', 'angulartics', 'angulartics.google.analytics','satellizer']);
 
     app.config([
         '$routeProvider',
@@ -10,8 +10,9 @@ define([appURL + 'routes', appURL + 'services/dependency'], function(config, dep
         '$provide',
         '$analyticsProvider',
         '$sceDelegateProvider',
+        '$authProvider',
 
-        function($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $analyticsProvider, $sceDelegateProvider) {
+        function($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $analyticsProvider, $sceDelegateProvider,$authProvider) {
 
             if(window["definedCDN"] && window["definedCDN"].length) {
                 $sceDelegateProvider.resourceUrlWhitelist([

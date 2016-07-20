@@ -1,5 +1,5 @@
-var appURL = getAppUrl(),
-	templateURL = getTemplateURL(); //mobsite
+var appURL = '/grocermax/scripts/apps/',//getAppUrl(),
+	templateURL = '/grocermax/templates/';//getTemplateURL(); //mobsite
 require.config({
     baseUrl: '',
     waitSeconds: 0,
@@ -13,11 +13,12 @@ require.config({
 		'angular-carousel': 'scripts/libs/angular-carousel',
 		'angulartics': 'scripts/libs/angulartics.min',
 		'angulartics-google-analytics': 'scripts/libs/angulartics-google-analytics.min',
+		'satellizer': 'scripts/libs/satellizer',
 		'app': appURL + 'app'
     },
 	shim: {
 		'app': {
-			deps: ['angular', 'angular-route', 'angular-ui', 'bootstrap', 'angular-endless-scroll', 'angular-touch', 'angular-carousel', 'angulartics-google-analytics']
+			deps: ['angular', 'angular-route', 'angular-ui', 'bootstrap', 'angular-endless-scroll', 'angular-touch', 'angular-carousel', 'angulartics-google-analytics','satellizer']
 		},
 		'angular-route': {
 			deps: ['angular']
@@ -38,6 +39,9 @@ require.config({
 			deps: ['angulartics']
 		},
 		'angulartics': {
+			deps: ['angular']
+		},
+		'satellizer': {
 			deps: ['angular']
 		}
 	}
