@@ -74,7 +74,7 @@ define([appURL + 'routes', appURL + 'services/dependency'], function(config, dep
             }
 			
 			$authProvider.google({
-				clientId: '527253050854-msa14p2r4llmbvlpabt553nsvqndghkm.apps.googleusercontent.com'
+				clientId: '452327381477-849gfncfguf9j4cfg0vo8e0it9ijjm2q.apps.googleusercontent.com'
 			});
         }
     ]);
