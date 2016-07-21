@@ -1,7 +1,7 @@
 define(['app'], function(app) {
 	app.controller('userController',  [
-        '$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'userService', 'productService', 'utility', '$analytics',
-        function($scope, $rootScope, $routeParams, $location, $timeout, userService, productService, utility, $analytics) {
+        '$scope', '$rootScope', '$routeParams', '$location', '$timeout', 'userService', 'productService', 'utility', '$analytics','$auth',
+        function($scope, $rootScope, $routeParams, $location, $timeout, userService, productService, utility, $analytics,$auth) {
             $scope.sectionName = $routeParams.sectionName;
             $scope.orderId = angular.isDefined($routeParams.orderId) ? $routeParams.orderId : null;
             
@@ -352,6 +352,27 @@ define(['app'], function(app) {
                         });
                 }
             };         
+            // social login code written by SKY
+            $scope.authenticate = function(provider) {
+                console.log(provider);
+              $auth.authenticate(provider)
+                .then(function() {
+                  console.log('You have successfully signed in with ' + provider + '!');
+                  $location.path('/');
+                })
+                /*.catch(function(error) {
+                  if (error.error) {
+                    // Popup error - invalid redirect_uri, pressed cancel button, etc.
+                    console.log(error.error);
+                  } else if (error.data) {
+                    // HTTP response error from server
+                    console.log(error.data.message, error.status);
+                  } else {
+                    console.log(error);
+                  }
+                });*/
+            };
+   
 
             $scope.showMoreMenu = function() {
                 $scope.showUserMenuOptions = false;

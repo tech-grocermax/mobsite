@@ -149,7 +149,7 @@
         });
         return Config;
     }());
-    ;
+    
 
     var AuthProvider = (function () {
         function AuthProvider(SatellizerConfig) {
