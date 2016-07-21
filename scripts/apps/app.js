@@ -72,6 +72,10 @@ define([appURL + 'routes', appURL + 'services/dependency'], function(config, dep
                     redirectTo: config.defaultRoutePaths
                 });
             }
+			
+			$authProvider.google({
+				clientId: '527253050854-msa14p2r4llmbvlpabt553nsvqndghkm.apps.googleusercontent.com'
+			});
         }
     ]);
     app.run([
