@@ -356,14 +356,16 @@ define(['app'], function(app) {
             $scope.authenticate = function(provider) {
                 console.log(provider);
               $auth.authenticate(provider)
-                .then(function(response) {
-                    console.log(response);
+                .then(function(data) {
+                    console.log(response.data.token);
+                    //$log.info($localStorage.jwt);
+                    console.log(data);
                   console.log('You have successfully signed in with ' + provider + '!');
                   $location.path('/');
                 })
                 .catch(function(error) {
                     console.log(error);
-                    console.log(response);
+                    console.log(data);
                   if (error.error) {
                     // Popup error - invalid redirect_uri, pressed cancel button, etc.
                     console.log(error.error);
