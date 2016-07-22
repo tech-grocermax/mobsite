@@ -45,6 +45,9 @@ define(['app'], function(app) {
                 current_page : 1,
                 total_pages : 0
             };
+            if(utility.getJStorageKey("userId")){
+                dataLayer = [{'userID' : utility.getJStorageKey("userId")}];
+            }
 
             $scope.isProductLoaded = false;
             toggleLoader = function(flag) {

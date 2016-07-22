@@ -38,6 +38,9 @@ define(['app'], function(app) {
             if(!$scope.quoteId) {
                 $location.path("/");
             }
+            if(utility.getJStorageKey("userId")){
+                dataLayer = [{'userID' : utility.getJStorageKey("userId")}];
+            }
             $scope.youSaved = 0;
             $scope.totalCartQty = 0;
             $scope.paymentMethod = null;

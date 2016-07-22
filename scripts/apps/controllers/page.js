@@ -22,6 +22,10 @@ define(['app'], function(app) {
             $scope.isUserLoggedIn = angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId") ? true : false;
             $scope.cityList = null;
             $scope.cityLocation = {};
+
+            if(utility.getJStorageKey("userId")){
+                dataLayer = [{'userID' : utility.getJStorageKey("userId")}];
+            }
             
             $scope.showMoreMenu = function() {
                 $scope.showUserMenuOptions = false;
