@@ -239,6 +239,8 @@
             angular.extend(this.SatellizerConfig.providers.facebook, options);
         };
         AuthProvider.prototype.google = function (options) {
+            console.log(options);
+            console.log(this.SatellizerConfig.providers.google);
             angular.extend(this.SatellizerConfig.providers.google, options);
         };
         AuthProvider.prototype.github = function (options) {
