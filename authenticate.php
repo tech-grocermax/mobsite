@@ -1,7 +1,8 @@
 <?php
 
-echo "<pre>"; print_r($parums);
-var_dump($parums);
+echo "<pre>";
+print_r($_REQUEST[]);
+var_dump($_REQUEST[]);
 
 echo "done";
 
