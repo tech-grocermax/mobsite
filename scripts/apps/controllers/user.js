@@ -356,8 +356,10 @@ define(['app'], function(app) {
             $scope.authenticate = function(provider) {
                 console.log(provider);
               $auth.authenticate(provider)
-                .then(function(data) {
-                    console.log(response.data.token);
+                .then(function() {
+                    $auth.login(user).then(function(response) { 
+                        console.log(response);
+                    });
                     //$log.info($localStorage.jwt);
                     console.log(data);
                   console.log('You have successfully signed in with ' + provider + '!');
