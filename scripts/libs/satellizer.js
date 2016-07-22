@@ -563,7 +563,7 @@
                                     'routing library—before Satellizer could read it.'));
                             }
                             _this.$interval.cancel(polling);
-                            _this.popup.close();
+                           // _this.popup.close();
                         }
                     }
                     catch (error) {
