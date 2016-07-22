@@ -360,7 +360,7 @@ define(['app'], function(app) {
                   console.log('You have successfully signed in with ' + provider + '!');
                   $location.path('/');
                 })
-                /*.catch(function(error) {
+                .catch(function(error) {
                   if (error.error) {
                     // Popup error - invalid redirect_uri, pressed cancel button, etc.
                     console.log(error.error);
@@ -370,7 +370,7 @@ define(['app'], function(app) {
                   } else {
                     console.log(error);
                   }
-                });*/
+                });
             };
    
 
