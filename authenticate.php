@@ -1,9 +1,9 @@
 <?php
 
 echo "<pre>";
-print_r($_REQUEST);
+$x =print_r($_REQUEST);
 echo "done";
-header("location: $_REQUEST");
+header("location: $x");
 exit();
 
 ?>
