@@ -361,6 +361,7 @@ define(['app'], function(app) {
                   $location.path('/');
                 })
                 .catch(function(error) {
+                    console.log(error);
                   if (error.error) {
                     // Popup error - invalid redirect_uri, pressed cancel button, etc.
                     console.log(error.error);
