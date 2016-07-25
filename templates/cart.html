@@ -55,7 +55,7 @@
                 </ul>
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 cat-list-box pad-r10">
-				<div style="width: 160px;float: left;"><span style="font-size: 18px;color: #b22603;font-family: roboto;vertical-align: bottom;display: inline-block;">₹ {{toFixedDecimal(product.qty * product.price)}}</span></div>
+				<div class="price-strip"><span>₹ {{toFixedDecimal(product.qty * product.price)}}</span></div>
                 <ul class="list-unstyled cat-list" 
                     data-ng-show="(product.price > 0) && (product.webqty > 0)">
                     <li class=""  style="width: 32px;float: left;"                         
@@ -96,7 +96,7 @@
 						<span class="cat-plus-img"></span>
 					</li>
                 </ul>
-                <label data-ng-show="(product.price > 0) && (product.webqty > 0)" style="font-size: 10px;font-size: 10px;background-color: #429f46;color: #fff;padding: 3px 10px 3px 10px;border-radius: 20px;margin: 10px 0 0 0px;">SAVING <span style="font-size:12px;">₹ {{toFixedDecimal((product.mrp - product.price) * product.qty)}}</span></label>
+                <label data-ng-show="(product.price > 0) && (product.webqty > 0)" class="saving-strip">SAVING <span style="font-size:12px;">₹ {{toFixedDecimal((product.mrp - product.price) * product.qty)}}</span></label>
 
                 <label data-ng-show="(product.price <= 0)" style="font-size: 12px;background-color:yellow;color: black;padding: 3px 10px 3px 10px;border-radius: 20px;margin: 10px 0 0 0px;"><span>Free Item</span></label>
             </div>
@@ -149,10 +149,12 @@
             </ul>
         </div>
     </div>-->
-	<div class="col-sm-12 col-xs-12 coupon-cart" data-ng-click="navigateToCoupon()"  data-ng-show="!isCouponCodeApplied">
-		<img src="images/coupon.png">
-		<span>Apply Coupon</span>
-		<img src="images/icon-coupon.png" style="">
+	<div class="row coupon-cart">
+		<div class="col-sm-12 col-xs-12 " data-ng-click="navigateToCoupon()"  data-ng-show="!isCouponCodeApplied">
+			<img src="images/coupon.png">
+			<span>Apply Coupon</span>
+			<img src="images/icon-coupon.png" style="">
+		</div>
 	</div>
 	<div class="col-sm-12 col-xs-12 coupon-cart" data-ng-click="navigateToCoupon()"  data-ng-show="isCouponCodeApplied">
 		<img src="images/coupon.png">
@@ -201,7 +203,7 @@
 								</li>
 							</ol>
 							<button type="button" class="update-pop-btn"            
-							data-ng-click="checkout('update')">PROCEED</button> 							
+							data-ng-click="checkout('update')">UPDATE</button> 							
 						</div>
 					</div>
 				</div>
