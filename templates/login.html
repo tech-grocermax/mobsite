@@ -23,6 +23,9 @@
 			<!--<img src="images/logo-msite.png" alt="" class="img-responsive float-rt">-->
 			<span style="font-family: roboto-light; color: #fff; font-size: 7.2vw;">Hello again</span>
 		</div>
+		<div class="col-md-12 col-sm-12 col-xs-12 logo-box center-align">
+			<div id="my-signin2" ng-click="authenticate('google')">  Google</div>
+		</div>
 	</div>
 
 	<!--UPDATED DESIGN
@@ -100,6 +103,44 @@
 			data-ng-class="{'alert-success': className.success, 'alert-danger': className.danger}"
 			data-ng-show="showUserResponse">{{userResponseMessage}}
 		</div>
+
+		<div class="row margin0 pad-lt26 pad-lt32 pad-rt32" data-ng-show="registrationStep == 2" style="margin-top: 10%;">
+			<div class="col-md-12 col-sm-12 col-xs-12 padd0 otp-text">
+				<span>Enter your one time password (OTP)</span>
+			</div>
+			<div style="text-align: center;color: #404040;font-weight: bold;font-size: 14px;">{{user.number}}</div>
+			<div class="col-md-12 col-sm1234-12 col-xs-12 pad16 margin-top15 otp-pass" style="padding: 0;">
+				<input type="text" name="otp" data-ng-model="user.otp" data-ng-change="changeOTP(otp)"
+					value="" maxlength="6" class="place-color reg-list-input"style="width: 180px;padding-left: 5px;">
+			</div>
+			<div class="alert" role="alert"
+				style="float: left;  width: 100%;  margin-top: 10px;"
+				data-ng-class="{'alert-success': className.success,'alert-danger': className.danger}"
+				data-ng-show="showUserResponse">{{userResponseMessage}}</div>
+			<div class="col-md-12 col-sm-12 col-xs-12 padd0 margin-top15"
+				data-ng-click="verifySocialOTP()">
+				<button type="button" class="pad16 otp-btn">SUBMIT</button>
+			</div>
+		</div>
+		<div class="row margin0 pad-lt26 pad-lt32 pad-rt32" data-ng-show="registrationStep == 1" style="margin-top: 10%;">
+			<div class="col-md-12 col-sm-12 col-xs-12 padd0 otp-text">
+				<span>Please enter your mobile number</span>
+			</div>
+			<div class="col-md-12 col-sm1234-12 col-xs-12 pad16 margin-top15 otp-pass" style="padding: 0;">
+				<input type="text" name="mobile" placeholder="required"
+							data-ng-model="user.number" 
+							required my-max-length="10" only-digits
+							class="place-color reg-list-input">			
+			</div>
+			<div class="alert" role="alert" style="float: left;  width: 100%;  margin-top: 10px;"
+				data-ng-class="{'alert-success': className.success,'alert-danger': className.danger}"
+				data-ng-show="showUserResponse">{{userResponseMessage}}</div>
+			<div class="col-md-12 col-sm-12 col-xs-12 padd0 margin-top15"
+				data-ng-click="getMobile()">
+				<button type="button" class="pad16 otp-btn">SUBMIT</button>
+			</div>	
+		</div>
+
 		<div class="row margin0 pad16 pad8-m" >
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 				data-ng-click="loginUser(frmLogin)">
@@ -125,5 +166,5 @@
 				</a>
 			</div>
 		</div>
-	</form>	
+	</form>
 </section>

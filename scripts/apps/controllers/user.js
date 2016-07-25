@@ -309,24 +309,6 @@ define(['app'], function(app) {
                     userService.createUser($scope.user)
                         .then(function(data){
                             if(data.flag == 1){
-                                /*try{
-                                    // referral code implemeted by grocermax team
-                                    console.log("after register events fire");
-                                    '<div id="refed"> </div>';
-                                    var name =data.Firstname + " " + data.Lastname;
-                                    console.log(name);
-                                    var refedd = "https://www.ref-r.com/campaign/t1/settings?bid_e=F9337B2292DD70FDD88257E6750D67F5&bid=6184&t=420&event=register&email="+ email + "&orderID="+email+"&fname="+name;    
-                                    var imgstag =  '<img style="position:absolute; visibility:hidden" src="';
-                                    var imgstag1 = imgstag + refedd +'" />';
-                                    jQuery('body').append(imgstag1);
-                                    jQuery('#refed').append(imgstag1);
-                                    //jQuery('#refed').load(refedd);
-                                    console.log('url of image === ' + refedd);
-                                    console.log('full image path ======= ' + imgstag1);   
-                                    console.log(jQuery('body').append(imgstag1));
-                                    console.log("Event fire success");
-                                    }catch(err){console.log("Error in referrer.");}
-                                    // referral code ended by grocermax.com.*/
                                 utility.deleteJStorageKey("otp");
                                 utility.deleteJStorageKey("registrationDetails");
                                 successCallbackUser(data, email);
@@ -342,6 +324,106 @@ define(['app'], function(app) {
             $scope.changeOTP = function(model) {
                 $scope.otp = model;
             };
+
+            //Social Login by SKY
+
+            $scope.socilaLogin =function socilaLogin(input){
+                userService.fbregister(input).then(function(data){
+                    toggleLoader(false);
+                    console.log(data);
+                    if(data.flag == 2){ // Get Customer Mobile
+                        $scope.showUserResponse = false;
+                        $scope.userResponseMessage = "";
+                        $scope.registrationStep = 1;
+                    }
+                    else if(data.flag == 1){ // Verify customer Mobile
+                        $scope.showUserResponse = false;
+                        $scope.userResponseMessage = "";
+                        utility.setJStorageKey("otp", data.otp, 1);
+                        $scope.registrationStep = 2;
+                    }
+                    else if(data.flag == 3){
+                        utility.deleteJStorageKey("otp");
+                        utility.deleteJStorageKey("registrationDetails");
+                        successCallbackUser(data, socialEmail);
+                    }  
+                    else {
+                        $scope.showUserResponse = true;
+                        $scope.userResponseMessage = data.Result;
+                        updateClassName("danger");
+                    }                            
+                });
+            }
+
+            $scope.verifySocialOTP = function verifySocialOTP(input){
+                console.log($scope.user.otp);
+                console.log(utility.getJStorageKey("otp"));
+                if($scope.user.otp == utility.getJStorageKey("otp")) {
+                    var input = {
+                            uemail: socialEmail,
+                            fname: socialName,
+                            otp: 1,
+                            number: number
+                        };
+                    console.log(input);    
+                    $scope.socilaLogin(input); 
+                }    
+            }
+
+            var socialName = null;
+            var socialEmail = null;
+            var number = null;
+            function onSuccess(googleUser) {
+              //console.log(googleUser.getBasicProfile());
+              //console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+              //console.log('Logged in as: ' + googleUser.getBasicProfile().getEmail());
+              var input = {
+                            uemail: googleUser.getBasicProfile().getEmail(),
+                            fname: googleUser.getBasicProfile().getName(),
+                            otp: 0
+                        };
+            socialName = googleUser.getBasicProfile().getName();
+            socialEmail = googleUser.getBasicProfile().getEmail();
+            //console.log(socialName);console.log(socialEmail);
+                $scope.socilaLogin(input);
+
+            }
+
+            function onFailure(error) {
+              console.log(error);
+            }
+
+            function renderButton() {
+              gapi.signin2.render('my-signin2', {
+                'scope': 'profile email',
+                'width': 240,
+                'height': 50,
+                'longtitle': true,
+                'theme': 'dark',
+                'onsuccess': onSuccess,
+                'onfailure': onFailure
+              });
+            }
+
+            $scope.getMobile = function getMobile(){
+                console.log($scope.user.number); 
+                /*$scope.user.uemail = uemail: googleUser.getBasicProfile().getEmail();
+                $scope.user.uemail = uemail: googleUser.getBasicProfile().getName();
+                $scope.user.uemail = $scope.user.number;*/
+                var input = {
+                            uemail: socialEmail,
+                            fname: socialName,
+                            otp: 0,
+                            number: $scope.user.number
+                        };
+                number = $scope.user.number;    
+                $scope.socilaLogin(input);
+                console.log(input);    
+            }
+           
+            $scope.authenticate = function authenticate(provider){ 
+                renderButton();
+            } 
 
             $scope.loginUser = function(form) {
                 $scope.errorLogin = true;
@@ -371,7 +453,7 @@ define(['app'], function(app) {
                             successCallbackUser(data, email);
                         });
                 }
-            };         
+            }; 
 
             $scope.showMoreMenu = function() {
                 $scope.showUserMenuOptions = false;

@@ -12,6 +12,15 @@ define(['app'], function (app) {
 		    		);		    			    	
 		    }; 
 
+		    this.fbregister = function(input) {		    	
+	    		var url = getAPIUrl() + "fbregister";
+	    		return serverUtility.postWebService(url, input)
+		    		.then(
+		    			function(data){return data;},
+		    			function(error){return error; }
+		    		);		    			    	
+		    }; 
+
 		    this.loginUser = function(input) {		    	
 	    		var url = getAPIUrl() + "login";
 	    		return serverUtility.postWebService(url, input)
