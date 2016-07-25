@@ -652,7 +652,7 @@ input , button, select{outline:none;}
 .coupon-head span:nth-child(2){margin-left:5px;}
 
 .saving-strip{font-size: 10px;font-size: 10px;background-color: #429f46;color: #fff;padding: 3px 10px 3px 10px;border-radius: 20px;margin: 10px 0 10px 0px;}
-.price-strip{width: 215px;float: left;}
+.price-strip{width: 205px;float: left;}
 .price-strip span{font-size: 18px;color: #b22603;font-family: roboto;vertical-align: bottom;display: inline-block;}
 .cart-margin{margin-bottom:40%; margin-top: 65px;}
 @media  (max-width: 480px){
