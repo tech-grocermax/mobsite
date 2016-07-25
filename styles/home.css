@@ -192,7 +192,7 @@ input , button, select{outline:none;}
 .border-rad{border-radius: 4px;}
 .icon-margin{margin-top: 0.5%;}
 .margin-lt3p{margin-left: 3%}
-.margin-lt15p{margin-left: 15%}
+.margin-lt15p{margin-left: 10%}
 .margin-lt22p{margin-left: 22%}
 .more-icon-pos{margin-top: 36%;}
 .margin-tp-5p{margin-top:5%;}
@@ -1023,7 +1023,7 @@ ul.plisting li.font-3{padding-top:3px}
 
 
 /*==================== SPRITE IMAGE STYLES ====================*/
-.head-icon-width{background-image:url("../images/m.site-sprite-image.png"); background-position:-259px 1px; display: block; height:28px; width:30px;}
+.head-icon-width{/*background-image:url("../images/m.site-sprite-image.png"); background-position:-259px 1px; display: block; height:28px;*/ width:26px;margin: 5px 0 0 5px;}
 .user-icon-1{background-image:url("../images/m.site-sprite-image.png"); background-position:-220px -40px; display: block; height:28px; width:35px;}
 .user-icon-2{background-image:url("../images/m.site-sprite-image.png"); background-position:-262px -40px; display: block; height:28px; width:35px;}
 .cart-icon{background-image:url("../images/m.site-sprite-image.png"); background-position:-29px 0px; display: block; height:28px; width:35px;}

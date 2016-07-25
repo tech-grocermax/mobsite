@@ -18,7 +18,7 @@ define(['app'], function(app) {
             $scope.subSubCategoryIndex = -1;
             $scope.preserveCategoryId = null;
             $scope.showMoreMenuOptions = false;
-            $scope.showSearchBar = true;
+            $scope.showSearchBar = false;
             $scope.showSearchIcon = false;
             $scope.showMoreIcon = true;
             $scope.showMoreMenuOptions = false;

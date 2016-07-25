@@ -2,21 +2,23 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-middle">
         <div class="row margin0" >
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0" 
-                data-ng-show="columnSize == 1">
-                <a href="/#/">
-					<!--<img src="images/header-icon/home.png" title="Home" class="head-icon-width">-->
-					<span class="head-icon-width"></span>
-				</a>
+                data-ng-show="columnSize == 1" outsideclick="handleMenuCategoryOutsideClick()"
+                    data-ng-click="toggleCategoryMenu()">
+					<img src="images/header-icon/heade-img1.png" title="Home" class="head-icon-width">
+                <!--<a href="/#/">
+					
+					<!--<span class="head-icon-width"></span>->
+				</a>-->
             </div>
             <!--data-ng-click="showUserMenu()"
                 outsideclick="handleOutSideClick()"-->
-			<div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 margin-lt15p" style="width:40%;" data-ng-show="columnSize == 1 && showMoreIcon">
+			<div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 margin-lt15p" style="width:29%;" data-ng-show="columnSize == 1 && showMoreIcon">
 				<img src="images/location-nav.png" title="User" class="locate-img" data-ng-hide="selectedCity">
 				<img src="images/location-nav-fill.png" title="User" class="locate-img" data-ng-show="selectedCity" >
 				<span class="locate-text">{{selectedCity}}</span>
 			</div>
             <div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 margin-lt3p" 
-                data-ng-show="columnSize == 1" data-ng-class="{'margin-lt22p': !showMoreIcon}">
+                data-ng-show="columnSize == 1" data-ng-class="{'margin-lt22p': !showMoreIcon}" style="width:18%;">
                 <a href="#/user/profile" data-ng-show="isUserLoggedIn">
 					<!--<img src="images/header-icon/user_icon_1.png" title="User" class="head-user-icon">-->
                     <span class="user-icon-1"></span>
@@ -26,6 +28,9 @@
 					<span class="user-icon-2"></span>
 				</a>                
             </div>
+			<div class="col-lg-1 col-md-1 col-sm-2 col-xs-1" search-btn data-ng-show="columnSize == 1">
+				<img src="images/header-icon/search1.png" title="Search" style="width:27px;" data-ng-click="toggleSearchSection()">
+			</div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd0" 
                 data-ng-show="columnSize == 4" back>
                 <a href="javascript:void(0);">
@@ -41,6 +46,9 @@
                     <!--<img src="images/app_bar_icons/back-icon.png" title="" 
                         class="img-responsive back-img-mr">--> 
 					<span class="back-icon"></span>
+				</a>
+				<a href="" style="float: right;margin: 0 30px 0 0;">
+					<img src="images/header-icon/search1.png" title="Search" style="width:27px;">
 				</a>
                 <span class="head-text text-ellipsis">&nbsp;{{categoryName}}</span>
             </div>
@@ -119,14 +127,14 @@
         <div class="row searchbox deals-hide"
             data-ng-show="showSearchBar">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white border-rad">
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 padd0 list-icon" 
+                <!--<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 padd0 list-icon" 
                     outsideclick="handleMenuCategoryOutsideClick()"
                     data-ng-click="toggleCategoryMenu()">
                     <!--<img src="images/app_bar_icons/list.png" 
                         title="Click here to see more categories" 
-                        class="img-responsive" style="cursor:pointer;">-->
+                        class="img-responsive" style="cursor:pointer;">->
 						<span class="list-icon-image"></span>
-                </div>
+                </div>-->
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 padd0">
                     <!-- search -->
                     <input type="text" placeholder="Search and buy from here..." 
@@ -137,11 +145,11 @@
                         class="search-bar text-ellipsis" only-alphanumeric-with-space>
                 </div>
                 <!-- search-icon -->
-                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 search-icon-pos">
+                <!--<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 search-icon-pos">
                     <!--<img src="images/app_bar_icons/search_icon.jpg" alt="" 
-                        class="img-responsive float-rt" search-btn style="cursor:pointer; ">-->
+                        class="img-responsive float-rt" search-btn style="cursor:pointer; ">->
 						<span class="search-icon-img" search-btn></span>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>
