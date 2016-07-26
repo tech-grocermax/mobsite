@@ -334,13 +334,13 @@ define(['app'], function(app) {
                     if(data.flag == 2){ // Get Customer Mobile
                         $scope.showUserResponse = false;
                         $scope.userResponseMessage = "";
-                        $scope.registrationStep = 1;
+                        $scope.registrationStep = 4;
                     }
                     else if(data.flag == 3){ // Verify customer Mobile
                         $scope.showUserResponse = false;
                         $scope.userResponseMessage = "";
                         utility.setJStorageKey("otp", data.otp, 1);
-                        $scope.registrationStep = 2;
+                        $scope.registrationStep = 5;
                     }
                     else if(data.flag == 1){
                         utility.deleteJStorageKey("otp");
@@ -421,8 +421,8 @@ define(['app'], function(app) {
                 console.log(input);    
             }
            
-            $scope.authenticate = function authenticate(provider){ 
-                renderButton();
+            $scope.authenticate = function authenticate(provider){
+				renderButton();
             } 
 
             $scope.loginUser = function(form) {

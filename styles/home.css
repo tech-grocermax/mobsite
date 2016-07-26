@@ -627,7 +627,7 @@ input , button, select{outline:none;}
 	.margin-bt10-m {margin-bottom: 10px;}
 	.pad-lt16-m{padding-left:16px;}
 	.pad-lt-rt16-m{padding-left:16px; padding-right:16px;}
-	.pad-lt-rt8-m{ padding: 0 8px;}
+	/*.pad-lt-rt8-m{ padding: 0 8px;}*/
 	.pad-ltr8-m{padding: 8px 8px 0;}
 	.margin-lt8-m {margin-left: 8px;}
 	.margin-lt12-m {margin-left: 12px;}
@@ -678,7 +678,7 @@ input , button, select{outline:none;}
 	.del-slot-text {padding:0;}
 	.logo-box {margin-bottom:6.8%; margin-top:9.5%;}
 	/*.log-text {padding:24px 0 10px;}*/
-	.text-box{padding:16px 0px 8px;}
+	/*.text-box{padding:16px 0px 8px;}*/
 	.log-input {/*padding-bottom:10px;*/}
 	.pmeth-chek{width: 8%;}
 	.pmeth-icon{width: 19%;}
@@ -1096,3 +1096,5 @@ ul.plisting li.font-3{padding-top:3px}
 #cartOutOfStockItem .modal-dialog .modal-content{position: absolute;top: 0;bottom: 0;height: 160px;margin: auto;border-radius: 0px;left: 0;right: 0;width: 90%;}
 #cartOutOfStockItem .modal-dialog .modal-content p{margin:0;padding: 10px 0 10px 0;color: #4d4d4d;font-size: 18px;display: block;line-height: 22px;}
 #cartOutOfStockItem .modal-dialog .modal-content button{position: absolute;bottom: 0;left: 0;right: 0;width: 100%;border: 0px;background: #ee2d09;color: #fff;font-size: 20px;font-weight: bold;padding: 10px 0 10px 0;}
+.abcRioButtonContentWrapper{display: none;}
+.abcRioButtonBlue{width: 170px !important; background-image:url('../images/glogin.png');background-color: transparent !important;position: absolute !important;height: 46px !important;box-shadow: none !important;}
