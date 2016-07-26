@@ -366,7 +366,7 @@ define(['app'], function(app) {
                     $scope.socilaLogin(input); 
                 }   else{
 					$scope.showUserResponse = true;
-                    $scope.userResponseMessage = data.Result;
+                    $scope.userResponseMessage = "Invalid OTP";
                     updateClassName("danger");
 				} 
             }
@@ -416,7 +416,10 @@ define(['app'], function(app) {
             } 
 			
 			$scope.init = function(){
-				//renderButton();
+				/*if(googleButton != 1){
+					googleButton = 1;
+					renderButton();
+				}*/
 			}
 
             $scope.loginUser = function(form) {
