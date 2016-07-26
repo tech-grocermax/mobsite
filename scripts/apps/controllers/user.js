@@ -424,6 +424,10 @@ define(['app'], function(app) {
             $scope.authenticate = function authenticate(provider){
 				renderButton();
             } 
+			
+			$scope.init = function(){
+				renderButton();
+			}
 
             $scope.loginUser = function(form) {
                 $scope.errorLogin = true;
