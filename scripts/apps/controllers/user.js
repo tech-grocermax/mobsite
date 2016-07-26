@@ -364,7 +364,11 @@ define(['app'], function(app) {
                             number: number
                         };  
                     $scope.socilaLogin(input); 
-                }    
+                }   else{
+					$scope.showUserResponse = true;
+                    $scope.userResponseMessage = data.Result;
+                    updateClassName("danger");
+				} 
             }
 
             var socialName = null;
