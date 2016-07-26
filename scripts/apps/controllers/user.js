@@ -328,9 +328,9 @@ define(['app'], function(app) {
             //Social Login by SKY
 
             $scope.socilaLogin =function socilaLogin(input){
+				toggleLoader(true);
                 userService.fbregister(input).then(function(data){
                     toggleLoader(false);
-                    console.log(data);
                     if(data.flag == 2){ // Get Customer Mobile
                         $scope.showUserResponse = false;
                         $scope.userResponseMessage = "";
@@ -356,16 +356,13 @@ define(['app'], function(app) {
             }
 
             $scope.verifySocialOTP = function verifySocialOTP(input){
-                console.log($scope.user.otp);
-                console.log(utility.getJStorageKey("otp"));
                 if($scope.user.otp == utility.getJStorageKey("otp")) {
                     var input = {
                             uemail: socialEmail,
                             fname: socialName,
                             otp: 1,
                             number: number
-                        };
-                    console.log(input);    
+                        };  
                     $scope.socilaLogin(input); 
                 }    
             }
@@ -374,9 +371,6 @@ define(['app'], function(app) {
             var socialEmail = null;
             var number = null;
             function onSuccess(googleUser) {
-              //console.log(googleUser.getBasicProfile());
-              //console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-              //console.log('Logged in as: ' + googleUser.getBasicProfile().getEmail());
               var input = {
                             uemail: googleUser.getBasicProfile().getEmail(),
                             fname: googleUser.getBasicProfile().getName(),
@@ -384,7 +378,6 @@ define(['app'], function(app) {
                         };
             socialName = googleUser.getBasicProfile().getName();
             socialEmail = googleUser.getBasicProfile().getEmail();
-            //console.log(socialName);console.log(socialEmail);
                 $scope.socilaLogin(input);
 
             }
@@ -404,10 +397,6 @@ define(['app'], function(app) {
             }
 
             $scope.getMobile = function getMobile(){
-                console.log($scope.user.number); 
-                /*$scope.user.uemail = uemail: googleUser.getBasicProfile().getEmail();
-                $scope.user.uemail = uemail: googleUser.getBasicProfile().getName();
-                $scope.user.uemail = $scope.user.number;*/
                 var input = {
                             uemail: socialEmail,
                             fname: socialName,
@@ -416,7 +405,6 @@ define(['app'], function(app) {
                         };
                 number = $scope.user.number;    
                 $scope.socilaLogin(input);
-                console.log(input);    
             }
            
             $scope.authenticate = function authenticate(provider){
