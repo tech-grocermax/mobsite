@@ -336,13 +336,13 @@ define(['app'], function(app) {
                         $scope.userResponseMessage = "";
                         $scope.registrationStep = 1;
                     }
-                    else if(data.flag == 1){ // Verify customer Mobile
+                    else if(data.flag == 3){ // Verify customer Mobile
                         $scope.showUserResponse = false;
                         $scope.userResponseMessage = "";
                         utility.setJStorageKey("otp", data.otp, 1);
                         $scope.registrationStep = 2;
                     }
-                    else if(data.flag == 3){
+                    else if(data.flag == 1){
                         utility.deleteJStorageKey("otp");
                         utility.deleteJStorageKey("registrationDetails");
                         successCallbackUser(data, socialEmail);
