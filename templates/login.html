@@ -18,7 +18,7 @@
 			</button>	
 		</div>
 	</div> -->
-	<div class="row margin0">
+	<div class="row margin0"  data-ng-hide="registrationStep == 4 || registrationStep == 5">
 		<div class="col-md-12 col-sm-12 col-xs-12 logo-box center-align">
 			<!--<img src="images/logo-msite.png" alt="" class="img-responsive float-rt">-->
 			<span style="font-family: roboto-light; color: #fff; font-size: 7.2vw;">Hello again</span>
@@ -29,7 +29,7 @@
 	</div>
 
 	<!--UPDATED DESIGN-->
-		<div class="row margin0 pad-rt16 pad-lt16">
+		<div class="row margin0 pad-rt16 pad-lt16"  data-ng-hide="registrationStep == 4 || registrationStep == 5">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-lt-rt8-m" style="margin-bottom: 7px;">
 				<span class="log-input">Login using</span>
 			</div>
@@ -55,7 +55,7 @@
 	</div>-->
 	
 	<!--UPDATED DESIGN-->
-		<div class="row margin0 pad-rt16 pad-lt16">
+		<div class="row margin0 pad-rt16 pad-lt16" data-ng-hide="registrationStep == 4 || registrationStep == 5">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-box pad-lt-rt8-m">
 				<div class="col-md-5 col-sm-5 col-xs-5 text-line pad-lt-rt8-m"></div>
 				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pad-lt-rt8-m">
@@ -143,7 +143,7 @@
 			</div>	
 		</div>
 
-		<div class="row margin0 pad16 pad8-m" >
+		<div class="row margin0 pad16 pad8-m" data-ng-hide="registrationStep == 4 || registrationStep == 5">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 				data-ng-click="loginUser(frmLogin)">
 				<button type="button" class="ord-btn btn-login">LOGIN</button>
