@@ -326,6 +326,9 @@ define(['app'], function(app) {
             };
 
             //Social Login by SKY
+            var socialName = null;
+            var socialEmail = null;
+            var number = null;
 
             $scope.socilaLogin =function socilaLogin(input){
 				toggleLoader(true);
@@ -370,10 +373,7 @@ define(['app'], function(app) {
                     updateClassName("danger");
 				} 
             }
-
-            var socialName = null;
-            var socialEmail = null;
-            var number = null;
+            
             function onSuccess(googleUser) {
               var input = {
                             uemail: googleUser.getBasicProfile().getEmail(),
@@ -416,10 +416,12 @@ define(['app'], function(app) {
             } 
 			
 			$scope.init = function(){
-				/*if(googleButton != 1){
-					googleButton = 1;
-					renderButton();
-				}*/
+                if( utility.getJStorageKey("renderedBtn") == 'rendered'){
+                    return false;
+                }else{
+                    utility.setJStorageKey("renderedBtn", 'rendered', 1);
+                    renderButton();
+                }
 			}
 
             $scope.loginUser = function(form) {
