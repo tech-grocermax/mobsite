@@ -102,8 +102,8 @@
 		</div>
 		<div class="alert" role="alert"
 			data-ng-class="{'alert-success': className.success, 'alert-danger': className.danger}"
-			data-ng-show="showUserResponse"
-			data-ng-hide="registrationStep == 5 || registrationStep == 4">{{userResponseMessage}}
+			data-ng-show="showUserResponse && (registrationStep != 5 || registrationStep != 4)"
+			>{{userResponseMessage}}
 		</div>
 
 		<div class="row margin0 pad-lt26 pad-lt32 pad-rt32" data-ng-show="registrationStep == 5" style="margin-top: 10%;">
