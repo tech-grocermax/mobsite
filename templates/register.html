@@ -26,14 +26,68 @@
 			</div>
 		</div>
 	</div>-->
-	
-	<div class="row margin0 pad-lt32 reg-bar pad-lt16-m"style="font-size: 3.5vw;">
+	<div class="row margin0 pad-lt32 reg-bar pad-lt16-m"style="font-size: 3.5vw;padding-bottom:25px;">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" >
 			SIGNUP
 		</div>
 	</div>
+	<div class="row margin0 pad-rt16 pad-lt16"  data-ng-hide="registrationStep == 4 || registrationStep == 5">
+			<!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-lt-rt8-m" style="margin-bottom: 7px;">
+				<span class="log-input">Login using</span>
+			</div>-->
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad-lt-rt8-m">
+				<!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left:0;">
+					<a href="login-with.php?provider=Facebook">
+						<img src="images/fb-login.png" alt="" style="max-width:100%;">
+					</a>
+				</div>-->
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-xs-offset-3" style="padding-right:0;padding-left:0;">
+					<div id="my-signin2" data-ng-init="init();"></div>
+					<div ng-click="authenticate('google')" style="text-align: center;">
+						<img src="images/glogin.png" alt="" style="max-width:100%;">
+					</div>
+				</div>
+			</div>
+	</div>
+	<div class="row margin0 pad-lt26 pad-lt32 pad-rt32" data-ng-show="registrationStep == 5" style="margin-top: 10%;">
+			<div class="col-md-12 col-sm-12 col-xs-12 padd0 otp-text">
+				<span  style="color: #333;">Enter your one time password (OTP)</span>
+			</div>
+			<div style="text-align: center;color: #404040;font-weight: bold;font-size: 14px;color:#333;">{{user.number}}</div>
+			<div class="col-md-12 col-sm1234-12 col-xs-12 pad16 margin-top15 otp-pass">
+				<input type="text" name="otp" data-ng-model="user.otp" data-ng-change="changeOTP(otp)"
+					value="" maxlength="6" class="place-color reg-list-input"style="width: 180px;padding-left: 5px;">
+			</div>
+			<div class="alert" role="alert"
+				style="float: left;  width: 100%;  margin-top: 10px;"
+				data-ng-class="{'alert-success': className.success,'alert-danger': className.danger}"
+				data-ng-show="showUserResponse && registrationStep == 5">{{userResponseMessage}}</div>
+			<div class="col-md-12 col-sm-12 col-xs-12 padd0 margin-top15"
+				data-ng-click="verifySocialOTP()">
+				<button type="button" class="pad16 otp-btn">SUBMIT</button>
+			</div>
+		</div>
+		
+		<div class="row margin0 pad-lt26 pad-lt32 pad-rt32" data-ng-show="registrationStep == 4" style="margin-top: 10%;">
+			<div class="col-md-12 col-sm-12 col-xs-12 padd0 otp-text">
+				<span style="color: #333;">Please enter your mobile number</span>
+			</div>
+			<div class="col-md-12 col-sm1234-12 col-xs-12 pad16 margin-top15 otp-pass">
+				<input type="text" name="mobile" placeholder="required"
+							data-ng-model="user.number" 
+							required my-max-length="10" only-digits
+							class="place-color reg-list-input">			
+			</div>
+			<div class="alert" role="alert" style="float: left;  width: 100%;  margin-top: 10px;"
+				data-ng-class="{'alert-success': className.success,'alert-danger': className.danger}"
+				data-ng-show="showUserResponse && registrationStep == 4">{{userResponseMessage}}</div>
+			<div class="col-md-12 col-sm-12 col-xs-12 padd0 margin-top15"
+				data-ng-click="getMobile()">
+				<button type="button" class="pad16 otp-btn">SUBMIT</button>
+			</div>	
+		</div> 
 	<form name="frmRegistration" novalidate autocomplete="off">
-		<div class="row margin0 back-white" data-ng-show="registrationStep == 1">
+		<div class="row margin0 back-white" data-ng-show="registrationStep == 1" data-ng-hide="registrationStep == 4 || registrationStep == 5">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
 				<ul class="list-unstyled pad-lt32 margin0 pad-rt32 pad-lt-rt16-m">
 					<li class="reg-list">

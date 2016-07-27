@@ -417,10 +417,12 @@ define(['app'], function(app) {
 			
 			$scope.init = function(){
                 if( utility.getJStorageKey("renderedBtn") == 'rendered'){
+                    //utility.deleteJStorageKey("renderedBtn");
                     return false;
                 }else{
                     utility.setJStorageKey("renderedBtn", 'rendered', 1);
-                    renderButton();
+                    $scope.authenticate;
+                    //renderButton();
                 }
 			}
 
@@ -807,7 +809,8 @@ define(['app'], function(app) {
                     .then(function(data){
                         if(data.flag == "1") {
                             utility.deleteJStorageKey("userId");
-                            utility.deleteJStorageKey("quoteId")
+                            utility.deleteJStorageKey("quoteId");
+                            utility.deleteJStorageKey("renderedBtn");
                             $location.url("user/login");
                         }                  
                     });
