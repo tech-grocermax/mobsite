@@ -358,6 +358,13 @@ define(['app'], function(app) {
                 });
             }
 
+            $scope.FbsocilaLogin = function FbsocilaLogin() {
+               userService.getMyLastName().then(function(response) {
+                   $scope.last_name = response.last_name;
+                 }
+               );
+            }
+
             $scope.verifySocialOTP = function verifySocialOTP(input){
                 if($scope.user.otp == utility.getJStorageKey("otp")) {
                     var input = {
@@ -425,6 +432,47 @@ define(['app'], function(app) {
                     //renderButton();
                 }
 			}
+
+
+            FB.init({
+              appId      : '306284229722794',
+              xfbml      : true,
+              version    : 'v2.7'
+            });
+
+            (function(d, s, id){
+                 var js, fjs = d.getElementsByTagName(s)[0];
+                 if (d.getElementById(id)) {return;}
+                 js = d.createElement(s); js.id = id;
+                 js.src = "//connect.facebook.net/en_US/sdk.js";
+                 fjs.parentNode.insertBefore(js, fjs);
+               }(document, 'script', 'facebook-jssdk'));
+
+            function Fb($q) {
+                return {
+                    getMyLastName: function() {
+                        var deferred = $q.defer();
+                        FB.api('/me', {
+                            fields: 'last_name'
+                        }, function(response) {
+                            if (!response || response.error) {
+                                deferred.reject('Error occured');
+                            } else {
+                                deferred.resolve(response);
+                            }
+                        });
+                        return deferred.promise;
+                    }
+                }
+            };
+
+            $scope.getMyLastName = function() {
+               fb().then(function(response) {
+                   $scope.last_name = response.last_name;
+                   console.log($scope.last_name);
+                 }
+               );
+            };
 
             $scope.loginUser = function(form) {
                 $scope.errorLogin = true;
