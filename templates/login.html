@@ -42,10 +42,10 @@
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-xs-offset-3" style="padding-right:0;padding-left:0;">
 					<div id="my-signin2" data-ng-init="init();"></div>
 					<div ng-click="authenticate('google')" style="text-align: center;">
-						<img src="images/glogin.png" alt="" style="max-width:100%;">
+						<img src="images/glogin.png" alt="Google" style="max-width:100%;">
 					</div>
+					<div ng-click="authenticate('facebook')" data-ng-init="init();"><img src="images/fb-login.png" alt="facebook" style="max-width:100%;"></div>
 				</div>
-				<fb:login-button scope="public_profile,email" ng-click="authenticate('facebook')" onlogin="checkLoginState();"><img src="images/fb-login.png" alt="" style="max-width:100%;"></fb:login-button>
 			</div>
 		</div> 
 	
@@ -106,8 +106,8 @@
 			data-ng-show="showUserResponse && (registrationStep != 5 && registrationStep != 4)"
 			>{{userResponseMessage}}
 		</div>
-
-		<div class="row margin0 pad-lt26 pad-lt32 pad-rt32" data-ng-show="registrationStep == 5" style="margin-top: 10%;">
+	</form>
+	<div class="row margin0 pad-lt26 pad-lt32 pad-rt32" data-ng-show="registrationStep == 5" style="margin-top: 10%;">
 			<div class="col-md-12 col-sm-12 col-xs-12 padd0 otp-text">
 				<span  style="color: #fff;">Enter your one time password (OTP)</span>
 			</div>
@@ -170,5 +170,4 @@
 				</a>
 			</div>
 		</div>
-	</form>
 </section>
