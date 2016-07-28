@@ -358,6 +358,13 @@ define(['app'], function(app) {
                 });
             }
 
+            $scope.FbsocilaLogin = function FbsocilaLogin() {
+               userService.getMyLastName().then(function(response) {
+                   $scope.last_name = response.last_name;
+                 }
+               );
+            }
+
             $scope.verifySocialOTP = function verifySocialOTP(input){
                 if($scope.user.otp == utility.getJStorageKey("otp")) {
                     var input = {
@@ -375,15 +382,14 @@ define(['app'], function(app) {
             }
             
             function onSuccess(googleUser) {
-              var input = {
+                var input = {
                             uemail: googleUser.getBasicProfile().getEmail(),
                             fname: googleUser.getBasicProfile().getName(),
                             otp: 0
                         };
-            socialName = googleUser.getBasicProfile().getName();
-            socialEmail = googleUser.getBasicProfile().getEmail();
+                socialName = googleUser.getBasicProfile().getName();
+                socialEmail = googleUser.getBasicProfile().getEmail();
                 $scope.socilaLogin(input);
-
             }
 
             function onFailure(error) {
@@ -410,12 +416,23 @@ define(['app'], function(app) {
                 number = $scope.user.number;    
                 $scope.socilaLogin(input);
             }
-           
-            $scope.authenticate = function authenticate(provider){
-				renderButton();
-            } 
-			
-			$scope.init = function(){
+
+            FB.init({
+              appId      : '306284229722794',
+              xfbml      : true,
+              version    : 'v2.7'
+            });
+
+            $scope.init = function(){
+
+                (function(d, s, id){
+                 var js, fjs = d.getElementsByTagName(s)[0];
+                 if (d.getElementById(id)) {return;}
+                 js = d.createElement(s); js.id = id;
+                 js.src = "//connect.facebook.net/en_US/sdk.js";
+                 fjs.parentNode.insertBefore(js, fjs);
+               }(document, 'script', 'facebook-jssdk'));
+            
                 if( utility.getJStorageKey("renderedBtn") == 'rendered'){
                     //utility.deleteJStorageKey("renderedBtn");
                     return false;
@@ -424,7 +441,37 @@ define(['app'], function(app) {
                     $scope.authenticate;
                     //renderButton();
                 }
-			}
+            }
+
+            function statusChangeCallback(response) {
+                if (response.status === 'connected') {
+                  // Logged into your app and Facebook.
+                  testAPI();
+                }
+            }
+            // facebook auth data
+            function testAPI() {
+                    FB.api('/me?fields=id,name,email,permissions', function(response) {
+                    var input = {
+                                uemail: response.email,
+                                fname: response.name,
+                                otp: 0
+                            };
+                    socialName = response.name;
+                    socialEmail = response.email;
+                    $scope.socilaLogin(input);
+                });
+            }
+
+            $scope.authenticate = function authenticate(provider){
+                if(provider == 'google'){
+                    renderButton();
+                }else{
+                     FB.login(function(response){
+                      statusChangeCallback(response);
+                    });
+                }
+            }
 
             $scope.loginUser = function(form) {
                 $scope.errorLogin = true;
