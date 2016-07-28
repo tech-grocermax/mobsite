@@ -853,11 +853,13 @@ define(['app'], function(app) {
             };
 
             $scope.logout = function() {
+                toggleLoader(true);
                 var userId = utility.getJStorageKey("userId");
                 $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Logout' });
                 $analytics.pageTrack("Logout");
                 userService.logout(userId)
                     .then(function(data){
+                        toggleLoader(false);
                         if(data.flag == "1") {
                             utility.deleteJStorageKey("userId");
                             utility.deleteJStorageKey("quoteId");
