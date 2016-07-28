@@ -452,6 +452,7 @@ define(['app'], function(app) {
             // facebook auth data
             function testAPI() {
                     FB.api('/me?fields=id,name,email,permissions', function(response) {
+                    //console.log(response);
                     var input = {
                                 uemail: response.email,
                                 fname: response.name,
@@ -467,8 +468,11 @@ define(['app'], function(app) {
                 if(provider == 'google'){
                     renderButton();
                 }else{
-                     FB.login(function(response){
-                      statusChangeCallback(response);
+                     FB.login(function(response) {
+                            statusChangeCallback(response);
+                        }, {
+                            scope: 'email', 
+                            return_scopes: true
                     });
                 }
             }
