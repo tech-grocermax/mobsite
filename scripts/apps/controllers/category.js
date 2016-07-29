@@ -659,7 +659,8 @@ define(['app'], function(app) {
                 } else if(url == "productlistall") {
                     $location.url("product/" + queryValue);
                 } else if(url == "specialdeal"){
-                    $location.url("specialdeal?sku=" + queryValue+"@"+banner.name);
+                    //$location.url("specialdeal?sku=" + queryValue+"@"+banner.name);
+                    $location.url("specialdeal?sku=" + queryValue);
                 }
             };
 
