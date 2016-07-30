@@ -8,6 +8,7 @@ define(['app'], function(app) {
             $scope.categoryName = "";
             $scope.categoryId = angular.isDefined($routeParams.categoryId) ? $routeParams.categoryId : null ;
             $scope.dealId = angular.isDefined($routeParams.dealId) ? $routeParams.dealId : null ;
+            $scope.Id = angular.isDefined($routeParams.Id) ? $routeParams.Id : null ;
             $scope.promoId = angular.isDefined($routeParams.promoId) ? $routeParams.promoId : null ;
             $scope.productId = angular.isDefined($routeParams.productId) ? $routeParams.productId : null ;
             $scope.jStorageQuoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
@@ -16,6 +17,8 @@ define(['app'], function(app) {
             if($routeParams.sku){
                 $scope.specialDealName = angular.isDefined($routeParams.sku.split("@")[1]) ? $routeParams.sku.split("@")[1] : "Offer" ;
             }
+            console.log($scope.Id);
+            console.log("safkma");
             $scope.topOfferDealId = angular.isDefined($routeParams.dealCategoryId) ? $routeParams.dealCategoryId : null ;
             $scope.products = [];
             $scope.productDetails = null;

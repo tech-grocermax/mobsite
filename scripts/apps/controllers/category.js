@@ -649,7 +649,7 @@ define(['app'], function(app) {
                     queryKey = queryParams[0],
                     queryValue = queryParams[1];
                 if(url == "dealproductlisting") {
-                    $location.url("product/deal/" + queryValue)
+                    $location.url("product/deal/" + queryValue);
                 } else if(url == "search") {
                     $location.url("product?keyword=" + queryValue);
                 } else if(url == "dealsbydealtype") {
@@ -661,7 +661,9 @@ define(['app'], function(app) {
                 } else if(url == "specialdeal"){
                     //$location.url("specialdeal?sku=" + queryValue+"@"+banner.name);
                     $location.url("specialdeal?sku=" + queryValue);
-                }
+                } else if(url == "singlepage"){
+                    $location.url("singleDeal?id=" + queryValue);
+                }    
             };
 
             $scope.navigateToHotOffers = function() {
