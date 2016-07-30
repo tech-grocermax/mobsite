@@ -662,7 +662,7 @@ define(['app'], function(app) {
                     //$location.url("specialdeal?sku=" + queryValue+"@"+banner.name);
                     $location.url("specialdeal?sku=" + queryValue);
                 } else if(url == "singlepage"){
-                    $location.url("singleDeal?id=" + queryValue);
+                    $location.url("singlepage/" + queryValue);
                 }    
             };
 

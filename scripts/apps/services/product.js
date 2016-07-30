@@ -8,6 +8,11 @@ define(['app'], function (app) {
 		    	return serverUtility.getWebService(url)
 		    		.then(function(data){return data}, function(error){return error});
 		    };
+			this.getProductListByonePageId = function(onePageId) {
+		    	var url = getAPIUrl() + "pagebannermsg?id=" + onePageId;
+		    	return serverUtility.getWebService(url)
+		    		.then(function(data){return data}, function(error){return error});
+		    };
 
 		    this.getAllProductListByCategoryId = function(categoryId, page) {
 		    	var url = getAPIUrl() + "productlistall?cat_id=" + categoryId + "&msite=true";

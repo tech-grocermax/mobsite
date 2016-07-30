@@ -8,7 +8,8 @@ define(['app'], function(app) {
             $scope.categoryName = "";
             $scope.categoryId = angular.isDefined($routeParams.categoryId) ? $routeParams.categoryId : null ;
             $scope.dealId = angular.isDefined($routeParams.dealId) ? $routeParams.dealId : null ;
-            $scope.Id = angular.isDefined($routeParams.Id) ? $routeParams.Id : null ;
+            $scope.onePageId = angular.isDefined($routeParams.onePageId) ? $routeParams.onePageId : null ;
+			console.log($scope.onePageId);
             $scope.promoId = angular.isDefined($routeParams.promoId) ? $routeParams.promoId : null ;
             $scope.productId = angular.isDefined($routeParams.productId) ? $routeParams.productId : null ;
             $scope.jStorageQuoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
@@ -17,8 +18,6 @@ define(['app'], function(app) {
             if($routeParams.sku){
                 $scope.specialDealName = angular.isDefined($routeParams.sku.split("@")[1]) ? $routeParams.sku.split("@")[1] : "Offer" ;
             }
-            console.log($scope.Id);
-            console.log("safkma");
             $scope.topOfferDealId = angular.isDefined($routeParams.dealCategoryId) ? $routeParams.dealCategoryId : null ;
             $scope.products = [];
             $scope.productDetails = null;
@@ -160,9 +159,9 @@ define(['app'], function(app) {
                 } else if($scope.promoId || $scope.sku){
                     allProducts = angular.isDefined(data.Product.items) ? data.Product.items : [];
                 }
-                    else{
-                        allProducts = angular.isDefined(data.ProductList) ? data.ProductList : [];
-                    }
+				else{
+					allProducts = angular.isDefined(data.ProductList) ? data.ProductList : [];
+				}
                 $scope.allProductCategoryList = hotProducts.concat(allProducts);
                 $scope.products = $scope.products || [];
                 if($scope.allProductCategoryList.length) {
@@ -241,7 +240,26 @@ define(['app'], function(app) {
                         $('body').css('overflow', 'auto');                                                             
                     });                
             };
-
+			
+			getProductListByonePageId = function() { 
+				console.log("log collefd");
+                toggleLoader(true);       
+                productService.getProductListByonePageId($scope.onePageId)
+                    .then(function(data){
+						toggleLoader(false);
+                        $scope.categoryName = data.name;
+						$scope.imgUrl = data.imageUrl;
+						$scope.lnkUrl = data.linkUrl;
+                        $scope.isProductLoaded = true;
+                        $('body').css('overflow', 'auto');
+                    });                
+            };
+			$scope.onePageIdFunc = function(urls){
+				var linkurl = urls.split("=")
+				console.log(linkurl[1]);
+				getProductListByDealId(linkurl[1]);
+				$location.url("deals/" + linkurl[1]);
+			}
             getProductListByPromoId = function() {       
                 toggleLoader(true);       
                 productService.getProductListByPromoId($scope.promoId, $scope.pagination.current_page)
@@ -254,6 +272,10 @@ define(['app'], function(app) {
     
             if($scope.dealId){
                 getProductListByDealId();
+            }
+			if($scope.onePageId){
+				console.log($scope.onePageId);
+                getProductListByonePageId();
             }
 
             if($scope.promoId){

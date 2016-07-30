@@ -204,6 +204,18 @@ define([], function() {
                     appURL + 'controllers/product'
                 ]
             },
+			'/singlepage/:onePageId': {
+                templateUrl: templateURL + 'singleDeal.html',
+                singularName: "Single Page Deal List Page",
+                dependencies: [
+                    appURL + 'services/serverUtility',
+                    appURL + 'services/utility',
+                    appURL + 'services/category',
+                    appURL + 'services/product',
+                    appURL + 'directives/generic',                    
+                    appURL + 'controllers/product'
+                ]
+            },
             '/category/offers/:dealCategoryId': {
                 templateUrl: templateURL + 'offer.html',
                 dependencies: [
