@@ -1,1 +1,2 @@
-<?php   return $_REQUEST;  ?>
+<?php 
+header("location : http://m.qa.grocermax.com"); ?>
