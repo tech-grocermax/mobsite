@@ -403,6 +403,7 @@ define(['app'], function(app) {
                 'scope': 'profile email',
                 'longtitle': true,
                 'theme': 'dark',
+                'immediate': true
                 'onsuccess': onSuccess,
                 'onfailure': onFailure
               });
