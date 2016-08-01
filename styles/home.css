@@ -616,7 +616,7 @@ input , button, select{outline:none;}
 .coupon-cart img:nth-child(1){width: 30px;margin: 0 10px 0 20px;}
 .coupon-cart img:nth-child(3){width: 11px;float: right;margin: 5px 15px 0 0;}
 .coupon-cart span:nth-child(3){float: right;font-weight: 300;font-size: 13px;margin: 6px 15px 0px 0;}
-.saving-cart{/*padding: 20px;background: #fff;*/margin: 20px 0 0 0;font-family: roboto;font-size:20px;color: #2d2d2d;height: 60px;}
+.saving-cart{/*padding: 20px;background: #fff;*/margin: 20px 0 -5px 0;font-family: roboto;font-size:20px;color: #2d2d2d;height: 65px;}
 .saving-cart > div{background: #fff;padding: 7px 20px 8px 20px;position: absolute;left: 0;right: 0;bottom: 0;top: 19px;}
 .coupon-input{border: none;font-size: 18px;color: #212121;font-weight: 600;padding: 10px 0 5px 0;vertical-align: bottom;}
 .coupon-input::-webkit-input-placeholder {color: #212121;}
