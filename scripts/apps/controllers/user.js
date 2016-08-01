@@ -371,7 +371,8 @@ define(['app'], function(app) {
                             uemail: socialEmail,
                             fname: socialName,
                             otp: 1,
-                            number: number
+                            number: number,
+                            quote_id: angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : 'no'
                         };  
                     $scope.socilaLogin(input); 
                 }   else{
@@ -385,7 +386,8 @@ define(['app'], function(app) {
                 var input = {
                             uemail: googleUser.getBasicProfile().getEmail(),
                             fname: googleUser.getBasicProfile().getName(),
-                            otp: 0
+                            otp: 0,
+                            quote_id: angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : 'no'
                         };
                 socialName = googleUser.getBasicProfile().getName();
                 socialEmail = googleUser.getBasicProfile().getEmail();
@@ -411,7 +413,8 @@ define(['app'], function(app) {
                             uemail: socialEmail,
                             fname: socialName,
                             otp: 0,
-                            number: $scope.user.number
+                            number: $scope.user.number,
+                            quote_id: angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : 'no'
                         };
                 number = $scope.user.number;    
                 $scope.socilaLogin(input);
@@ -456,7 +459,8 @@ define(['app'], function(app) {
                     var input = {
                                 uemail: response.email,
                                 fname: response.name,
-                                otp: 0
+                                otp: 0,
+                                quote_id: angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : 'no'
                             };
                     socialName = response.name;
                     socialEmail = response.email;
