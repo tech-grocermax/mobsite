@@ -699,8 +699,6 @@ define(['app'], function(app) {
                 $scope.isCartUpdated = true;
                 $scope.productIds.push(product.product_id);
 				
-				
-				
 				$scope.listItemUpdateClassCount = [];
 				
 				var resultCount = document.getElementsByClassName("UpdateCart"),

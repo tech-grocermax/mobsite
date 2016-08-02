@@ -1149,3 +1149,4 @@ ul.plisting li.font-3{padding-top:3px}
 #cartOutOfStockItem .modal-dialog .modal-content p{margin:0;padding: 10px 0 10px 0;color: #4d4d4d;font-size: 18px;display: block;line-height: 22px;}
 #cartOutOfStockItem .modal-dialog .modal-content button{position: absolute;bottom: 0;left: 0;right: 0;width: 100%;border: 0px;background: #ee2d09;color: #fff;font-size: 20px;font-weight: bold;padding: 10px 0 10px 0;}
 .no-animate{display:none;}
+.removeBtnName {display:none;}
