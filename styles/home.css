@@ -623,8 +623,8 @@ input , button, select{outline:none;}
 .coupon-input:-moz-placeholder {color: #212121;}
 .coupon-input::-moz-placeholder {color: #212121;}
 .coupon-input:-ms-input-placeholder {color:#212121;}
-.coupon-bar{background-color: #727272;color: #fff;text-align: center;font-size: 16px;padding: 15px 0 15px 0;height: 52px;position: fixed;left: 0;right: 0;top: 52px;z-index: 1;}
-.coupon-bar1{padding: 40px 20px 60px 20px;border-bottom: solid 1px #efefef;position:relative;margin: 104px 0 0 0;}
+.coupon-bar{background-color: #727272;color: #fff;text-align: center;font-size: 16px;padding: 15px 0 15px 0;height: 52px;/*position: fixed;left: 0;right: 0;top: 52px;*/z-index: 1;}
+.coupon-bar1{padding: 0px 20px 60px 20px;border-bottom: solid 1px #efefef;position:relative;margin: 20px 0 0 0;}
 .coupon-bar1 > div:nth-child(1){border-bottom: solid 2px #757575;padding-bottom: 10px;color: #212121;font-weight: 600;}
 .coupon-bar1 > div:nth-child(3){height: 43px;width: 43px;background: #efefef;position: absolute;text-align: center;bottom: -22px;margin: auto;left: 0;right: 0;border-radius: 50%;color: #727272;font-size: 20px;font-weight: 600;padding: 6px 0 0 1px;}
 .coupon-bar1 .aplly-btn, .coupon-bar1 .remove-btn{background: #429f46;border: none;color: #fff;font-family: roboto;font-weight: 600;font-size: 17px;text-align: center;width: 120px;height: 45px;border-radius: 4px;float: right;}
