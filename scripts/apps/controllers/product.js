@@ -962,6 +962,7 @@ define(['app'], function(app) {
                 toggleLoader(true);
 				productService.getCouponCodeList()
                     .then(function(data){
+						console.log(data);
 						if(data.flag == 1 || data.flag == "1"){
 							$scope.couponlistofcode = data.coupon;
 							utility.setJStorageKey("codeList" + $scope.couponlistofcode, 1);
@@ -984,6 +985,7 @@ define(['app'], function(app) {
 			$scope.isCouponCodeApplied = false;
             $scope.couponAmount = 0.00;
             $scope.couponCode = null;
+            //$scope.couponDescription = null;
 			
 			$scope.applyCouponCode = function(couponCode, index) {
                 toggleLoader(true);
@@ -992,6 +994,8 @@ define(['app'], function(app) {
                         toggleLoader(false);
 						$scope.couponLi = index;
                         if(data.flag == 1) {
+							$scope.couponCode = couponCode;
+							//$scope.couponDescription = coupondescription;
                             $scope.invalidCoupon = false;
                             $scope.invalidCouponBlank = false;
                             $scope.couponMessage = "";
@@ -1015,6 +1019,8 @@ define(['app'], function(app) {
                         toggleLoader(false);
                         $scope.couponLi = index;
                         if(data.flag == 1) {
+							$scope.couponCode = null;
+							//$scope.couponDescription = null;
                             $scope.couponModalShow = false;
                             $scope.invalidCoupon = true;
                             $scope.invalidCouponBlank = true;
