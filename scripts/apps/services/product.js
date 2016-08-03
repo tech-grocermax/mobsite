@@ -97,7 +97,7 @@ define(['app'], function (app) {
             		couponcode: couponCode
             	};
             };
-
+			
             this.applyCoupon = function(userId, quoteId, couponCode) {
             	var url = getAPIUrl() + "addcoupon?" + 
             		$.param(this.buildAddCouponObject(userId, quoteId, couponCode));
@@ -113,6 +113,12 @@ define(['app'], function (app) {
 		    	return serverUtility.getWebService(url)
 		    		.then(function(data){return data}, function(error){return error});
             };
+			
+			this.getCouponCodeList = function() {
+		    	var url = getAPIUrl() + "couponcode";
+		    	return serverUtility.getWebService(url)
+		    		.then(function(data){return data}, function(error){return error});
+		    };
 	    
 	    	return this;
     	}

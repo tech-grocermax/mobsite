@@ -31,6 +31,7 @@ define(['app'], function(app) {
             $scope.section[$scope.sectionName] = true;
             $scope.addressList = [];
             $scope.billingAsShipping = false;
+            $scope.billingAsShipping = "true";
             $scope.isUserLoggedIn = angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId") ? true : false;
             $scope.cartItems = [];
             $scope.cartItemCount = 0;
@@ -56,19 +57,21 @@ define(['app'], function(app) {
             $scope.shouldProceed = true;
             $scope.orderId = angular.isDefined($routeParams.orderId) ? $routeParams.orderId : null;  
             $scope.orderStatus = angular.isDefined($routeParams.status) ? $routeParams.status : null;
-
-
+			$scope.tempCartCounter = utility.getJStorageKey("tempCartCounter");
+			$scope.tempyouSaved = utility.getJStorageKey("tempyouSaved");
+			$scope.tempCartVal = utility.getJStorageKey("tempCartVal");
+			$scope.tempcouponValue = utility.getJStorageKey("tempcouponValue");
             toggleLoader = function(flag) {
                 $scope.displayLoader = flag;
             };  
 
             if($scope.section.shipping) {
-                $scope.categoryName = "Select Shipping Address";
+                $scope.categoryName = "Delivery Address";
                 $scope.columnSize = 10;
-            } else if($scope.section.billing) {
+            } /*else if($scope.section.billing) {
                 $scope.categoryName = "Select Billing Address";
                 $scope.columnSize = 10;
-            } else if ($scope.section.delivery) {
+            }*/ else if ($scope.section.delivery) {
                 $scope.categoryName = "Select Delivery Details";
                 $scope.columnSize = 10;
             } else if ($scope.section.payment) {
@@ -200,7 +203,7 @@ define(['app'], function(app) {
                     qty = 0;
 
                 angular.forEach($scope.cartDetails.items, function(value, key) {
-                    savedAmont = savedAmont + parseFloat($scope.getPriceDifference(value.mrp, value.price));
+                    savedAmont = savedAmont + parseInt(value.qty) * parseFloat($scope.getPriceDifference(value.mrp, value.price));
                     qty = qty + parseInt(value.qty);
                 });
                 $scope.youSaved = savedAmont;
@@ -213,6 +216,10 @@ define(['app'], function(app) {
                 utility.deleteJStorageKey("quoteId");
                 utility.setJStorageKey("cartCounter" + $scope.quoteId, 0, 1);
                 utility.deleteJStorageKey("quoteId");
+				utility.deleteJStorageKey("tempCartCounter"); 
+				utility.deleteJStorageKey("tempCartVal"); 
+				utility.deleteJStorageKey("tempcouponValue");
+				utility.deleteJStorageKey("tempyouSaved"); 
                 $scope.quoteId = null;
                 $scope.cartItemCount = 0;
             };
@@ -244,7 +251,19 @@ define(['app'], function(app) {
                     .then(function(data){  
                         toggleLoader(false);            
                         $scope.cartDetails = data.CartDetail; 
+						$scope.TotalItem = data.TotalItem;
                         getYouSaveAmout();
+                        $scope.couponValue = parseInt((data.CartDetail.subtotal - data.CartDetail.subtotal_with_discount));
+                            if(data.CartDetail.coupon_code){
+                                $scope.invalidCoupon = false;
+                                $scope.invalidCouponBlank = false;
+                                $scope.couponMessage = "";
+                                $scope.isCouponCodeApplied = true;
+                                $scope.couponCode = data.CartDetail.coupon_code;
+                                $scope.couponAmount = data.CartDetail.you_save;
+                                $scope.cartDetails.grand_total = data.CartDetail.grand_total;
+                                $scope.couponModalShow = false;
+                            }
                         handlePaymentResponse();
                     });
             };  
@@ -313,7 +332,6 @@ define(['app'], function(app) {
                 $scope.shouldProceed = true;
                 var shippingAddress = null,
                     billingAddress = null;
-
                 if($scope.addressList.length) {
                     angular.forEach($scope.addressList, function(value, key) {
                         if(value.is_default_shipping) {
@@ -396,7 +414,7 @@ define(['app'], function(app) {
                 $location.url("checkout/delivery"); 
 
             };  
-
+			
             $scope.setBillingAsShipping = function(model) {
                 $scope.billingAsShipping = model;
             };  

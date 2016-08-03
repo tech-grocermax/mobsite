@@ -720,12 +720,15 @@ define(['app'], function(app) {
                 }
 			}
 			
-			$scope.closeStrip = true;
+			$scope.closeStrip = false;
 			$scope.hideStrip = function(){				
 				$scope.closeStrip = !$scope.closeStrip;
 				
 			}
-			$timeout(function () { $scope.closeStrip = true; }, 120000);
+			$timeout(function () {
+				$("section").removeClass("no-animate");
+				$scope.closeStrip = true; 
+			}, 5000);
 			
 			$scope.trendList = false;
 			$scope.trendingSearchList = function(){

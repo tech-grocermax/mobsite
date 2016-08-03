@@ -11,6 +11,7 @@ define(['app'], function(app) {
                     || $scope.sectionName == "editprofile"
                     || $scope.sectionName == "address"
                     || $scope.sectionName == "addaddress"
+                    || $scope.sectionName == "coinshistory"
                     || $scope.sectionName == "editaddress"
                     || $scope.sectionName == "orderhistory")){
                 $location.url("user/login");
@@ -49,6 +50,7 @@ define(['app'], function(app) {
                 "address" : false,
                 "addaddress" : false,
                 "editaddress" : false,
+                "coinshistory" : false,
                 "orderhistory" : false
             };
             if(utility.getJStorageKey("userId")){
@@ -124,6 +126,9 @@ define(['app'], function(app) {
             } else if ($scope.section.editaddress) {
                 $scope.categoryName = "Edit Address";
                 $scope.columnSize = 10;
+            } else if ($scope.section.coinshistory) {
+                $scope.categoryName = "Max Coins History";
+                $scope.columnSize = 10;  
             } else if ($scope.section.orderhistory) {
                 $scope.categoryName = "Order History";
                 $scope.columnSize = 10;
@@ -190,6 +195,10 @@ define(['app'], function(app) {
                         oldCartCount = data.TotalItem;
                     }
                     utility.setJStorageKey("cartCounter" + data.QuoteId, oldCartCount, 1);
+                    try{
+                        dataLayer = [{'userID' : utility.getJStorageKey("userId")}];
+                        console.log(dataLayer);
+                    }catch(err){console.log("Error in GTM fire.");}  
                     //cartCounterKey
                     /*var quoteId = utility.getJStorageKey("quoteId"),
                     cartCounterKey = "cartCounter" + quoteId,
@@ -198,12 +207,13 @@ define(['app'], function(app) {
                     $scope.userResponseMessage = data.Result;
                     updateClassName("success");
                     if($scope.isReferrer == "checkout") {
-
                         $location.url("checkout/shipping"); 
-                    } else {
-
+                    }else if($scope.isReferrer == "coupon") {
+                        $location.url("cart/" + data.QuoteId);
+                    }    
+                     else {
                         $location.url("/");
-                    }
+                     }
                 } else {
                     $scope.showUserResponse = true;
                     $scope.userResponseMessage = data.Result;
@@ -497,7 +507,6 @@ define(['app'], function(app) {
                             eventCategory: 'Mobile Checkout Funnel', 
                             eventAction: 'Login', eventLabel: logintgtm}
                         );
-                         console.log(logintgtm);console.log(dataLayer);
                     }catch(err){console.log("Error in GTM fire.");}     
                     // GTM success
                     if(angular.isDefined(utility.getJStorageKey("quoteId")) 
@@ -698,6 +707,34 @@ define(['app'], function(app) {
             };
             if($scope.sectionName == "orderhistory" && !$scope.orderId){
                 getOrderHistory();
+            }
+            
+            getMaxCoinsHistory = function(){
+                    $scope.action_types = [
+                        "Modified",
+                        "Used",
+                        "Refunded",
+                        "Modified",
+                        "Canceled",
+                        "Modified by Credit Product",
+                        "Added",
+                        "Decreased",
+                        "Imported",
+                        "Expired",
+                        "API"
+                    ];
+                toggleLoader(true);    
+                var userid_coins =utility.getJStorageKey("userId");
+                userService.getMaxCoinsHistory(userid_coins)
+                    .then(function(data){
+                        toggleLoader(false);
+                        $scope.coinsBalance = data.totalPoint;
+                        $scope.coinsHistory = data.redeemLog;
+                    });
+            }
+
+            if($scope.sectionName == "coinshistory"){
+                getMaxCoinsHistory();
             }
 			
 			$scope.reOrder = function(increment_id , order){

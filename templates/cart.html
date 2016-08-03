@@ -7,7 +7,16 @@
             Your cart is empty. <a href="/#">Continue Shopping</a>
         </div>
     </div>
-    <div class="row margin0 cart-margin">
+	
+	<div class="row margin0 bill-buster" 
+        data-ng-show="cartDetails.Bill_buster"
+        data-ng-class="{'bill-bust-mrg' : cartDetails.shipping_address.shipping_amount > 0}">
+        <div class="col-sm-12 col-xs-12">
+			{{cartDetails.Bill_buster}} 
+		</div>
+	</div>
+	
+    <div class="row margin0 cart-margin" style="margin-top: 0;">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 cat-box margin-bot15"
             data-ng-show="cartDetails.items.length"
             data-ng-hide="hideCartItem(product)"
@@ -17,8 +26,8 @@
                 <img src="{{replaceImageUrl(product.product_thumbnail)}}" 
                         alt="" class="img-responsive card-img-center">
             </div>
-            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 pad-lr10">
-                <ul class="list-unstyled plisting" style="margin-bottom:5px;">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 pad-r10">
+                <ul class="list-unstyled plisting" style="margin: 0;padding-bottom: 0;">
                     <li class="prod-list-h">{{product.p_brand}}
 					   <!--<img src="images/app_bar_icons/delete-icon.png"
                             data-ng-show="product.price > 0"
@@ -32,17 +41,21 @@
                         data-ng-click="routerChange('product/details', product.product_id)"
                         style="cursor:pointer; " 
                         title="{{product.name}}">{{product.p_name}}</li>
-                    <li class="prod-list-qnty">{{product.p_pack}}</li>
-                    <li class="font-3">
+                    <li class="prod-list-qnty">{{product.p_pack}}&nbsp; |&nbsp;<span class="product-qnty">
+                            ₹ {{toFixedDecimal(product.price)}}</span> 
+                        <span class="prod-new-price">
+                            | &nbsp;<label style="text-decoration: line-through;">₹ {{toFixedDecimal(product.mrp)}}</label></span></li>
+                    <!--<li class="font-3">
                         <span class="product-qnty">
                             ₹ {{toFixedDecimal(product.price)}}</span> 
                         <span class="prod-new-price">
-                            | ₹ {{toFixedDecimal(product.mrp)}}</span></li>
+                            | ₹ {{toFixedDecimal(product.mrp)}}</span></li>-->
                     <!--<li class="product-qnty">
-                        ₹ {{toFixedDecimal(getPriceDifference(product.mrp, product.price))}}</li>-->
+                        1 @ ₹ {{toFixedDecimal(product.price)}}</li>-->
                 </ul>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 cat-list-box float-rt padd0" style="margin-right:10px;">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 cat-list-box pad-r10">
+				<div class="price-strip" data-ng-hide="(product.price <= 0)"><span>₹ {{toFixedDecimal(product.qty * product.price)}}</span></div>
                 <ul class="list-unstyled cat-list" 
                     data-ng-show="(product.price > 0) && (product.webqty > 0)">
                     <li class=""  style="width: 32px;float: left;"                         
@@ -63,8 +76,10 @@
 					
 					</li>
                 </ul>
-				<img src="images/sold-out.png" class="img-responsive" data-ng-show="(product.webqty <= 0)"
-				data-ng-class="{'so-img': (product.webqty <= 0)}">
+                
+
+				<!--<img src="images/sold-out.png" class="img-responsive" data-ng-show="(product.webqty <= 0)"
+				data-ng-class="{'so-img': (product.webqty <= 0)}">-->
                 <ul class="list-unstyled cat-list disable"
                     data-ng-show="product.price <= 0">
                     <li class="cat-minus">
@@ -81,27 +96,27 @@
 						<span class="cat-plus-img"></span>
 					</li>
                 </ul>
+                <label data-ng-show="(product.price > 0) && (product.webqty > 0)" class="saving-strip">SAVING <span style="font-size:12px;">₹ {{toFixedDecimal((product.mrp - product.price) * product.qty)}}</span></label>
+
+                <label data-ng-show="(product.price <= 0)" style="font-size: 12px;background-color:#ffe400;color: #df4a32;padding: 3px 10px 3px 10px;border-radius: 20px;margin: 10px 0 0 0px;font-weight: bold;font-family: robotobold;"><span>Free Item</span></label>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
                 <h1 class="ribbon" data-ng-show="product.promotion_level && !(product.qty > product.webqty)">
+					<img src="images/bell.png">
                     <span class="ribbon-content">{{product.promotion_level}}</span>
                 </h1>
             </div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 low-stock" data-ng-show="(product.qty > product.webqty) && (product.webqty > 0)">
+			<!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 low-stock" data-ng-show="(product.qty > product.webqty) && (product.webqty > 0)">
                 ONLY {{product.webqty}} IN STOCK. PLEASE REDUCE THE QUANTITY.
+            </div>-->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 low-stock" data-ng-show="(product.product_id == MaxAvailQtyPid) && (MaxAvailQty > product.webqty)">
+                ONLY {{product.webqty}} QTY IN STOCK.
             </div>
 
         </div>
     </div>
-	
-	<div class="row margin0 bill-buster" 
-        data-ng-show="cartDetails.Bill_buster"
-        data-ng-class="{'bill-bust-mrg' : cartDetails.shipping_address.shipping_amount > 0}">
-        <div class="col-sm-12 col-xs-12">
-			{{cartDetails.Bill_buster}} 
-		</div>
-	</div>
-    <div class="row margin0 pad-lt16 pad-rt16 margin-top10 margin-0-m cart-box-botom"
+
+    <!--<div class="row margin0 pad-lt16 pad-rt16 margin-top10 margin-0-m cart-box-botom"
         data-ng-show="cartDetails.items.length">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 dot-border">
             <ul class="list-unstyled margin0 pad-lt16 pad-rt16">
@@ -114,7 +129,7 @@
                         <span>Sub total:</span>
                         <span class="float-rt">
                             Rs. {{toFixedDecimal(cartDetails.subtotal)}}</span>
-                    </li> -->
+                    </li> ->
                     <li data-ng-show="cartDetails.shipping_address.shipping_amount > 0">
                         <span>Shipping charges:</span>
                         <span class="float-rt">
@@ -133,12 +148,33 @@
                 </ul>
             </ul>
         </div>
-    </div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0"
-        data-ng-show="!isCartUpdated"
-        style="margin-top:100px;">
-        <button type="button" class="reg-bot-btn bot-foot"
-            data-ng-click="checkout('checkout')">PROCEED</button>
+    </div>-->
+	<div class="row coupon-cart">
+		<div class="col-sm-12 col-xs-12 " data-ng-click="navigateToCoupon()"  data-ng-show="!isCouponCodeApplied">
+			<img src="images/coupon.png">
+			<span>Apply Coupon</span>
+			<img src="images/icon-coupon.png" style="">
+		</div>
+		<div class="col-sm-12 col-xs-12" data-ng-click="navigateToCoupon()"  data-ng-show="isCouponCodeApplied">
+			<img src="images/coupon.png">
+			<span>Coupon Applied - {{couponCode}}</span>
+			<span>Change</span>
+			<!--<p style="margin: 0px 0 0 64px;color: #fec70d;font-weight: 500;">{{couponDescription}}</p>-->
+		</div>
+	</div>
+	
+	<div class="col-sm-12 col-xs-12 saving-cart">
+		<div>Your Savings: <span class="float-rt">₹{{toFixedDecimal(youSaved + couponValue)}}</span></div>
+	</div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 bot-foot btn-copun"
+        data-ng-show="!isCartUpdated">
+		<div style="width:68%;float: left;font-family: robotomedium;color: #fff;padding: 5px 0px 5px 20px;">
+			<p style="margin:0;">Items: {{cartItemCount}}</p>
+			<p style="margin:0;">Total: ₹{{toFixedDecimal(cartDetails.grand_total)}}</p>
+		</div>
+        <button type="button" class="reg-bot-btn"
+            data-ng-click="checkout('checkout')">PROCEED
+			<img src="images/proceedicon.png" style="width: 8px;margin: -3px 0 0 5px;"></button>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0"
         data-ng-show="isCartUpdated"
@@ -149,4 +185,87 @@
     <div data-ng-show="displayLoader" class="black_shade">
 		<img src="images/ajax-loader.gif" />
 	</div> 
+	
+	<!--Modal Popup-->
+	<div id="ouofStockPopup" tabindex="-1" role="dialog" 
+		aria-labelledby="myModalLabel" data-ng-show="isCartUpdatedPopup">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-bod">
+					<div class="row margin0">
+						<div class="col-md-12 col-sm-12 col-xs-12 padd0" style="background: #fff;">
+							<h1 style="font-size: 15px;font-weight: 600;font-family: roboto;margin: 0;padding: 10px 15px 10px 15px;;background: #fff;">Please remove items to proceed.</h1>
+							<ol class="list-group" style="box-shadow: none;padding: 0 30px 0 30px;background: #f4f4f4;">
+								<li style="border-bottom: solid 1px #cdcdcd;padding: 15px 0 20px 0;" data-ng-repeat="product in cartDetails.items" data-ng-hide="(product.webqty > 0) || (product.price <= 0)">
+									<p style="margin: 0 0 5px 0;">{{product.p_name}} </p>
+									<p style="margin: 0;">
+										<span style="color: #ee2d09;" data-ng-show="(product.webqty <= 0)">Sold Out</span>
+										<span data-ng-click="removeCartItem(product)" class="removeBtn" data-ng-class="{ removeBtnName:hideCartItem(product)}">{{hideCartItem(product) ? 'Removed' : 'Remove'}}</span>
+										
+									</p>
+								</li>
+							</ol>
+							<button type="button" class="update-pop-btn update-btn"            
+							data-ng-click="checkout('update')">UPDATE</button> 							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--Modal Popup-->
+	<div id="couponCodeListPopup" tabindex="-1" role="dialog" 
+		aria-labelledby="myModalLabel" data-ng-show="couponModalShow">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-bod">
+					<div class="row margin0">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 coupon-head">
+							<span class="back-icon" data-ng-click="navigateToCoupon()"></span>
+							<span>Coupons</span>
+						</div>
+					</div>
+					<div class="row margin0" style="margin-top: 52px;">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 coupon-bar" data-ng-show="isCouponCodeApplied">
+							Applied Coupon - {{couponCode}}
+						</div>
+					</div>
+					<div class="row margin0 coupon-bar1">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" data-ng-show="isCouponCodeApplied">
+							{{couponCode}}
+							<button type="button" class="remove-btn" data-ng-click="removeCouponCode(couponCode)">REMOVE</button>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" data-ng-show="!isCouponCodeApplied">
+							<input type="text" placeholder="Enter code here" class="coupon-input" data-ng-model="couponCode"
+								value="{{couponCode}}">
+							<button type="button" class="aplly-btn" data-ng-click="applyCouponCode(couponCode)">APPLY</button>
+							<div  data-ng-class="{showCouponError: $index == couponLi}" class="hideCouponError"
+									style="color:#FF0000; text-align:center;  float: left; width: 100%;">{{couponMessage}}</div>
+						</div>
+						<div>OR</div>
+					</div>
+					<div class="row margin0 coupon-bar2">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
+							<ul class="list-unstyled margin0" style="width:100%;">
+								<li ng-repeat="list in couponlistofcode">
+									<button type="button" class="coupon-btn" data-ng-click="applyCouponCode(list.coupon_code, $index)" ><span>{{list.coupon_code}} -</span> APPLY</button>
+									<p>{{list.name}}</p>
+									<p data-ng-show="list.description" data-ng-click="couponDescripTogle = !couponDescripTogle"> View T&C 
+										<img src="images/copun-arrow.png">
+									</p>
+									<p data-ng-show="couponDescripTogle">{{list.description}} </p>
+									<div data-ng-class="{showCouponError: $index == couponLi}" class="hideCouponError" 
+									style="color:#FF0000; text-align:center;  float: left; width: 100%;">{{couponMessage}}</div>	
+								</li>
+							</ul>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
 </div>

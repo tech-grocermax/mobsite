@@ -7,14 +7,15 @@
 				<div class="bill-O"></div>
 				<div class="bill-bar"></div>
 				<div class="bill-O"></div>
-				<div class="bill-bar"></div>
-				<div class="bill-O"></div>
+				<!--<div class="bill-bar"></div>
+				<div class="bill-O"></div>-->
 			</div>
 		</div>
 	</div>
 </section>
 <section>
-	<div class="row margin0 pad-lt16 pad-rt16" style="font-family: roboto;">
+	<div class="row margin0 pad-lt16 pad-rt16" style="font-family: roboto;margin-bottom: 20px;">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top15" style="padding: 0;font-family: roboto;font-weight: 600;">SHIPPING ADDRESS</div>
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 pad-rt16 margin-top15"
 			data-ng-show="addressList.length" 
 			data-ng-repeat="address in addressList"
@@ -27,7 +28,7 @@
 						data-ng-model="address.is_default_shipping"
 						class="img-responsive float-rt bill-checkbox"/>
 				</li>
-				<li style="font-size:4.3vw; color:#2d2d2d;">
+				<li style="font-size:4.3vw; color:#2d2d2d;padding-right: 25px;">
 					<span>{{address.firstname}} {{address.lastname}}</span>
 					<span>{{address.street}}</span><br>
 					<span>{{address.city}} - {{address.postcode}}</span>
@@ -65,30 +66,96 @@
 			</ul>
 		</div>
 	</div>
-	<div class="row margin0" style="margin-top:10%;">
-		<div class="row margin0 pad-ltr16" 
-			data-ng-show="addressList.length"
-			style="font-family: roboto; position: fixed; bottom: 71px; width: 100%;">
+	
+	<!--ADD billing ADDRESS-->
+	<div 
+		data-ng-show="billingAsShipping == 'false'" 
+		data-ng-hide="billingAsShipping == 'true'"
+		style="margin-bottom: 120px;">
+		<div class="row margin0 pad-lt16 pad-rt16" style="font-family: roboto;">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top15" style="padding: 0;font-family: roboto;font-weight: 600;">BILLING ADDRESS</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 pad-rt16 margin-top15"
+				data-ng-show="addressList.length" 
+				data-ng-repeat="address in addressList"
+				style="border: 1px solid #d7d7d7;">
+				<ul class="list-unstyled margin0 pad-tlb16" 
+					style="border-bottom: 1px solid #e4e4e4;">
+					<li style="font-size:3.4vw; color:#7d7d76;">
+						<input type="checkbox" name="selectAddress"
+							data-ng-change="changeDefaultSelection(address, 'is_default_billing')" 
+							data-ng-model="address.is_default_billing"
+							class="img-responsive float-rt bill-checkbox"/>
+					</li>
+					<li style="font-size:4.3vw; color:#2d2d2d;">
+						<span>{{address.firstname}} {{address.lastname}}</span>
+						<span>{{address.street}}</span><br>
+						<span>{{address.city}} - {{address.postcode}}</span>
+					</li>
+					<li></li>
+				</ul>
+				<ul class="list-unstyled margin0 pad-tlb16">
+					<li style="font-size:3.4vw; color:#7d7d76; cursor:pointer; "
+						data-ng-click="editAddress(address.customer_address_id, 'billing')">
+						<span>Edit address</span>
+						<img src="images/app_bar_icons/p-right-icon.png" alt="" 
+							class="img-responsive float-rt bill-right-img">
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="row margin0">
+			<div style="text-align:center; padding:10px 0px;" class="error-message" 
+				data-ng-show="!shouldProceed">
+				Please select/add billing address
+			</div>
+		</div>	
+		<div class="row margin0 pad-ltr16" style="font-family: roboto;">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 pad-rt16" 
 				style="box-shadow: 0px 2px 8px -5px;">
 				<ul class="list-unstyled margin0 pad-tlb16">
-					<li style="font-size:3.4vw; color:#2d2d2d;">
-						<span>Use Shipping address as Billing address</span>
+					<li style="font-size:3.4vw; color:#2d2d2d; cursor:pointer; "
+						data-ng-click="navigateTo('user/addaddress?isReferrer=checkout&addressType=billing')">
+						<span>Add new address</span>
+						<img src="images/app_bar_icons/plus.png" alt="" 
+							class="img-responsive float-rt bill-plus-img">
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="row margin0" style="margin-top:10%;">
+		<div class="row margin0" 
+			data-ng-show="addressList.length"
+			style="font-family: roboto; position: fixed; bottom: 95px; width: 100%;padding:15px;background:#f4f4f4;">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0 pad-rt16" 
+				style="box-shadow: 0px 2px 8px -5px;background:#727272;">
+				<ul class="list-unstyled margin0 pad-tlb16">
+					<li style="font-size:3.4vw; color:#fff;">
+						<span>Use as Billing address</span>
 						<input type="checkbox" name="billingAsShipping" 
 							ng-model="billingAsShipping"
 							data-ng-change="setBillingAsShipping(billingAsShipping)"
 							ng-true-value="true" ng-false-value="false"
+							data-ng-checked="true"
 							class="img-responsive float-rt bill-checkbox"/>						
 					</li>
 				</ul>
 			</div>
 		</div>
 	</div>	
-	<div class="row margin0">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0  margin-top15" 
-			data-ng-click="selectShippingAddress()">
-			<!--data-ng-disabled="isSelectButtonDisabled('is_default_shipping')"-->
-			<button type="button" class="reg-bot-btn bot-foot">PROCEED</button>
+	
+	<div class="row margin0">		
+		<div class="col-sm-12 col-xs-12 saving-cart">
+			<div>Your Savings: <span class="float-rt">₹{{toFixedDecimal(tempyouSaved + tempcouponValue)}}</span></div>
+		</div>
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 bot-foot btn-copun"
+			>
+			<div style="width:68%;float: left;font-family: robotomedium;color: #fff;padding: 15px 0px 5px 20px;">
+				<p style="margin:0;">Total: ₹{{toFixedDecimal(tempCartVal)}}</p>
+			</div>
+			<button type="button" class="reg-bot-btn"
+				data-ng-click="selectShippingAddress()">PROCEED
+				<img src="images/proceedicon.png" style="width: 8px;margin: -3px 0 0 5px;"></button>
 		</div>
 	</div>
 </section>
