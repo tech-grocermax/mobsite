@@ -64,19 +64,20 @@
 						<span class="float-rt">
 							Rs. {{toFixedDecimal(cartDetails.shipping_address.shipping_amount)}}</span>
 					</li>
-					<li data-ng-show="toFixedDecimal(couponValue) > 0">
-						<span>Coupon Discount: </span>
-						<span class="float-rt pmeth-card-font">Rs. {{toFixedDecimal(couponValue)}}</span>
-					</li>
+					
 					<li>
 						<span style="font-weight: 600;">{{TotalItem}} items</span>
 						<span class="float-rt">
 							Rs. {{toFixedDecimal(cartDetails.grand_total)}}</span>
 					</li>
-					<li style="border-top: solid 1px #e4e4e4;">
-						<span style="font-weight: 600;">Sub Total:</span>
+					<li data-ng-show="toFixedDecimal(couponValue) > 0" style="border-top: solid 1px #e4e4e4;">
+						<span>Coupon Discount: </span>
+						<span class="float-rt pmeth-card-font">Rs. {{toFixedDecimal(couponValue)}}</span>
+					</li>
+					<li>
+						<span style="font-weight: 600;">Total:</span>
 						<span class="float-rt">
-							Rs. {{toFixedDecimal(cartDetails.grand_total)}}</span>
+							Rs. {{toFixedDecimal(cartDetails.grand_total-couponValue)}}</span>
 					</li>
 				</ul>
 			</ul>
