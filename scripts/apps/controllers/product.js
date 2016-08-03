@@ -374,6 +374,7 @@ define(['app'], function(app) {
                     });
                 }
                 $scope.youSaved = savedAmont; 
+				utility.setJStorageKey("tempyouSaved", savedAmont, 1); 
                 $scope.totalCartQty = qty;
             };
 
@@ -414,9 +415,11 @@ define(['app'], function(app) {
                             $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);
 							utility.setJStorageKey("tempCartCounter", data.TotalItem, 1); 
 						    utility.setJStorageKey("tempCartVal", data.CartDetail.grand_total, 1); 
+						    
 														
                             addShippingCharges();
                             $scope.couponValue = (data.CartDetail.subtotal - data.CartDetail.subtotal_with_discount);
+							utility.setJStorageKey("tempcouponValue", $scope.couponValue, 1); 
                             if(data.CartDetail.coupon_code){
                                 $scope.invalidCoupon = false;
                                 $scope.invalidCouponBlank = false;
@@ -805,7 +808,10 @@ define(['app'], function(app) {
                                     checkoutSuccessCallback(flag);    
                                     $scope.cartDetails = data.CartDetail;
                                     $scope.couponValue = (data.CartDetail.subtotal - data.CartDetail.subtotal_with_discount);
-                                    if(data.CartDetail.coupon_code){
+                                    utility.setJStorageKey("tempCartCounter", data.TotalItem, 1); 
+									utility.setJStorageKey("tempCartVal", data.CartDetail.grand_total, 1); 
+									utility.setJStorageKey("tempcouponValue", $scope.couponValue, 1);
+									if(data.CartDetail.coupon_code){
                                         $scope.invalidCoupon = false;
                                         $scope.invalidCouponBlank = false;
                                         $scope.couponMessage = "";
@@ -1005,6 +1011,7 @@ define(['app'], function(app) {
                             $scope.couponAmount = data.CartDetails.you_save;
                             $scope.cartDetails.grand_total = data.CartDetails.grand_total;
                             $scope.couponValue = (data.CartDetail.subtotal - data.CartDetail.subtotal_with_discount);
+							utility.setJStorageKey("tempcouponValue", $scope.couponValue, 1); 
                             $scope.couponModalShow = false;
                         } 						
 						else {
@@ -1030,6 +1037,8 @@ define(['app'], function(app) {
                             $scope.isCouponCodeApplied = false;
                             $scope.couponAmount = data.CartDetails.you_save;
                             $scope.couponValue = (data.CartDetail.subtotal - data.CartDetail.subtotal_with_discount);
+							utility.setJStorageKey("tempcouponValue", $scope.couponValue, 1); 
+							console.log($scope.couponValue);
                             $scope.cartDetails.grand_total = data.CartDetails.grand_total;
                         }                       
                         else {

@@ -55,7 +55,9 @@ define(['app'], function(app) {
             $scope.orderId = angular.isDefined($routeParams.orderId) ? $routeParams.orderId : null;  
             $scope.orderStatus = angular.isDefined($routeParams.status) ? $routeParams.status : null;
 			$scope.tempCartCounter = utility.getJStorageKey("tempCartCounter");
+			$scope.tempyouSaved = utility.getJStorageKey("tempyouSaved");
 			$scope.tempCartVal = utility.getJStorageKey("tempCartVal");
+			$scope.tempcouponValue = utility.getJStorageKey("tempcouponValue");
             toggleLoader = function(flag) {
                 $scope.displayLoader = flag;
             };  
@@ -211,6 +213,10 @@ define(['app'], function(app) {
                 utility.deleteJStorageKey("quoteId");
                 utility.setJStorageKey("cartCounter" + $scope.quoteId, 0, 1);
                 utility.deleteJStorageKey("quoteId");
+				utility.deleteJStorageKey("tempCartCounter"); 
+				utility.deleteJStorageKey("tempCartVal"); 
+				utility.deleteJStorageKey("tempcouponValue");
+				utility.deleteJStorageKey("tempyouSaved"); 
                 $scope.quoteId = null;
                 $scope.cartItemCount = 0;
             };
@@ -242,6 +248,7 @@ define(['app'], function(app) {
                     .then(function(data){  
                         toggleLoader(false);            
                         $scope.cartDetails = data.CartDetail; 
+						$scope.TotalItem = data.TotalItem;
                         getYouSaveAmout();
                         $scope.couponValue = parseInt((data.CartDetail.subtotal - data.CartDetail.subtotal_with_discount));
                             if(data.CartDetail.coupon_code){
