@@ -98,7 +98,7 @@
                 </ul>
                 <label data-ng-show="(product.price > 0) && (product.webqty > 0)" class="saving-strip">SAVING <span style="font-size:12px;">₹ {{toFixedDecimal((product.mrp - product.price) * product.qty)}}</span></label>
 
-                <label data-ng-show="(product.price <= 0)" style="font-size: 12px;background-color:#ffe400;color: #df4a32;padding: 3px 10px 3px 10px;border-radius: 20px;margin: 10px 0 0 0px;"><span>Free Item</span></label>
+                <label data-ng-show="(product.price <= 0)" style="font-size: 12px;background-color:#ffe400;color: #df4a32;padding: 3px 10px 3px 10px;border-radius: 20px;margin: 10px 0 0 0px;font-weight: 600;font-family: robotobold;"><span>Free Item</span></label>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
                 <h1 class="ribbon" data-ng-show="product.promotion_level && !(product.qty > product.webqty)">
