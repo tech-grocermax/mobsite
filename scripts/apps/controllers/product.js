@@ -1038,7 +1038,6 @@ define(['app'], function(app) {
                             $scope.couponAmount = data.CartDetails.you_save;
                             $scope.couponValue = (data.CartDetail.subtotal - data.CartDetail.subtotal_with_discount);
 							utility.setJStorageKey("tempcouponValue", $scope.couponValue, 1); 
-							console.log($scope.couponValue);
                             $scope.cartDetails.grand_total = data.CartDetails.grand_total;
                         }                       
                         else {
