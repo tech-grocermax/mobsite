@@ -411,7 +411,10 @@ define(['app'], function(app) {
                             $('body').css('overflow', 'auto');
                             $scope.cartDetails = data.CartDetail;
                             
-                            $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);                          
+                            $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);
+							utility.setJStorageKey("tempCartCounter", data.TotalItem, 1); 
+						    utility.setJStorageKey("tempCartVal", data.CartDetail.grand_total, 1); 
+														
                             addShippingCharges();
                             $scope.couponValue = (data.CartDetail.subtotal - data.CartDetail.subtotal_with_discount);
                             if(data.CartDetail.coupon_code){

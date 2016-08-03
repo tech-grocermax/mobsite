@@ -54,8 +54,8 @@ define(['app'], function(app) {
             $scope.shouldProceed = true;
             $scope.orderId = angular.isDefined($routeParams.orderId) ? $routeParams.orderId : null;  
             $scope.orderStatus = angular.isDefined($routeParams.status) ? $routeParams.status : null;
-
-
+			$scope.tempCartCounter = utility.getJStorageKey("tempCartCounter");
+			$scope.tempCartVal = utility.getJStorageKey("tempCartVal");
             toggleLoader = function(flag) {
                 $scope.displayLoader = flag;
             };  
