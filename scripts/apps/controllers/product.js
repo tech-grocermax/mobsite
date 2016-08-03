@@ -962,7 +962,6 @@ define(['app'], function(app) {
                 toggleLoader(true);
 				productService.getCouponCodeList()
                     .then(function(data){
-						console.log(data);
 						if(data.flag == 1 || data.flag == "1"){
 							$scope.couponlistofcode = data.coupon;
 							utility.setJStorageKey("codeList" + $scope.couponlistofcode, 1);

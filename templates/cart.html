@@ -200,7 +200,7 @@
 									<p style="margin: 0 0 5px 0;">{{product.p_name}} </p>
 									<p style="margin: 0;">
 										<span style="color: #ee2d09;" data-ng-show="(product.webqty <= 0)">Sold Out</span>
-										<span data-ng-click="removeCartItem(product)" class="removeBtn" data-ng-class="{ removeBtn:hideCartItem(product)}">{{hideCartItem(product) ? 'Removed' : 'Remove'}}</span>
+										<span data-ng-click="removeCartItem(product)" class="removeBtn" data-ng-class="{ removeBtnName:hideCartItem(product)}">{{hideCartItem(product) ? 'Removed' : 'Remove'}}</span>
 										
 									</p>
 								</li>

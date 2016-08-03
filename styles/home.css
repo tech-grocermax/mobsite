@@ -643,10 +643,12 @@ input , button, select{outline:none;}
 .coupon-bar3 > div > div > p:nth-child(2){font-size: 14px;color: #727272;font-weight: 600;margin: 5px 0 0px 0;}
 .hideCouponError {display: none;}
 .showCouponError {display: block;}
-#ouofStockPopup {position: fixed;top: 0;left: 0;right: 0;z-index: 1050;bottom: 0;background-color: rgba(0,0,0,0.5);overflow: scroll;}
+#ouofStockPopup {position: fixed;top: 0;left: 0;right: 0;z-index: 99;bottom: 0;background-color: rgba(0,0,0,0.5);overflow: scroll;}
 #ouofStockPopup .modal-dialog{margin-top:52px;}
 .update-pop-btn{width: 100%;border: none;color: #fff;background: #b6b6b6;font-size: 16px;font-weight: 600;padding: 15px 0 15px 0;letter-spacing: 1px;}
 #couponCodeListPopup {position: fixed;left: 0;right: 0;bottom: 0;top: 0;overflow: auto;z-index: 11;}
+#couponCodeListPopup .modal-dialog, #couponCodeListPopup .modal-dialog .modal-content{height:100%;}
+#couponCodeListPopup .modal-dialog .modal-content .modal-bod{background: #fff;}
 #couponCodeListPopup  .modal-dialog{margin:0;}
 #couponCodeListPopup  .modal-content{border-radius: 0px;}
 /*#couponCodeListPopup .modal-dialog, #couponCodeListPopup .modal-dialog .modal-content{height:100%;}*/
@@ -829,7 +831,7 @@ input , button, select{outline:none;}
 	/*.top-subhead {top: 46px;height: 36px;}*/
 	.reg-btn {padding: 5% 0 5% 5%;}
 	.reg-btn>img {margin-top: -8px;margin-bottom: -8px;}
-	.cart-margin{margin-bottom:60%; /*margin-top:52px;*/}
+	.cart-margin{margin-bottom:62%; /*margin-top:52px;*/}
 	.top-height {height: 36px;}
 	.top-head .header-middle {height: 52px;}
 	.prod-sec {margin-bottom: 75px;}
