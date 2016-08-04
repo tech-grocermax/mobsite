@@ -263,6 +263,7 @@ define(['app'], function(app) {
                                 $scope.couponAmount = data.CartDetail.you_save;
                                 $scope.cartDetails.grand_total = data.CartDetail.grand_total;
                                 $scope.couponModalShow = false;
+								$scope.subtotalAmount = data.CartDetail.subtotal;
                             }
                         handlePaymentResponse();
                     });

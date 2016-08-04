@@ -68,7 +68,7 @@
 					<li>
 						<span style="font-weight: 600;">{{TotalItem}} items</span>
 						<span class="float-rt">
-							Rs. {{toFixedDecimal(cartDetails.grand_total)}}</span>
+							Rs. {{toFixedDecimal(subtotalAmount)}}</span>
 					</li>
 					<li data-ng-show="toFixedDecimal(couponValue) > 0" style="border-top: solid 1px #e4e4e4;">
 						<span>Coupon Discount: </span>
@@ -77,7 +77,7 @@
 					<li>
 						<span style="font-weight: 600;">Total</span>
 						<span class="float-rt">
-							Rs. {{toFixedDecimal(cartDetails.grand_total-couponValue)}}</span>
+							Rs. {{toFixedDecimal(cartDetails.grand_total)}}</span>
 					</li>
 				</ul>
 			</ul>
