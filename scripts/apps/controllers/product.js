@@ -437,6 +437,7 @@ define(['app'], function(app) {
                                     $scope.MaxAvailQty = value.qty;
                                     $scope.MaxAvailQtyPid = value.product_id;
                                     $scope.isCartUpdated = true;
+                                    $scope.isCartUpdatedPopup = true;
                                 }
 
 								$scope.soldOutItemNeg = parseInt(value.webqty, 10);
@@ -663,6 +664,7 @@ define(['app'], function(app) {
                 if((parseInt(item.qty) + 1) > item.webqty ){
                     $scope.MaxAvailQty = parseInt(item.qty) + 1;
                     $scope.MaxAvailQtyPid = productId;
+                    $scope.isCartUpdatedPopup = true;
                     return true;
                 }else{
                     angular.forEach($scope.cartDetails.items, function(value, key) {
@@ -675,12 +677,13 @@ define(['app'], function(app) {
 
             $scope.decreaseCartProductQuantity = function(item, keyName) {
                 var productId = item.product_id;
-                $scope.MaxAvailQty ="";
-                $scope.MaxAvailQtyPid="";
+                //$scope.MaxAvailQty ="";
+                //$scope.MaxAvailQtyPid="";
                 angular.forEach($scope.cartDetails.items, function(value, key) {
                     if(value[keyName] == productId && value["qty"] > 1) {
                         value["qty"] = parseInt(value["qty"], 10) - 1;
                         $scope.isCartUpdated = true;
+                        $scope.isCartUpdatedPopup = true;
                     }                    
                 });
             };
@@ -837,6 +840,7 @@ define(['app'], function(app) {
                                     $scope.MaxAvailQty = value.qty;
                                     $scope.MaxAvailQtyPid = value.product_id;
                                     $scope.isCartUpdated = true;
+                                    $scope.isCartUpdatedPopup = true;
                                 }
 								if($scope.soldOutItemNeg <= 0){
 									$scope.isCartUpdated = true;

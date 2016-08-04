@@ -196,12 +196,24 @@
 						<div class="col-md-12 col-sm-12 col-xs-12 padd0" style="background: #fff;">
 							<h1 style="font-size: 15px;font-weight: 600;font-family: roboto;margin: 0;padding: 10px 15px 10px 15px;;background: #fff;">Please remove items to proceed.</h1>
 							<ol class="list-group" style="box-shadow: none;padding: 0 30px 0 30px;background: #f4f4f4;">
-								<li style="border-bottom: solid 1px #cdcdcd;padding: 15px 0 20px 0;" data-ng-repeat="product in cartDetails.items" data-ng-hide="(product.webqty > 0) || (product.price <= 0)">
-									<p style="margin: 0 0 5px 0;">{{product.p_name}} </p>
-									<p style="margin: 0;">
+								<li style="border-bottom: solid 1px #cdcdcd;padding: 15px 0 20px 0;" data-ng-repeat="product in cartDetails.items" data-ng-show="(product.product_id == MaxAvailQtyPid) && (MaxAvailQty > product.webqty)">
+									<p style="margin: 0 0 5px 0;">{{product.p_brand}} {{product.p_name}} {{product.p_pack}}</p>
+									<p style="margin: 0;" data-ng-hide="(product.product_id == MaxAvailQtyPid) && (MaxAvailQty > product.webqty)">
 										<span style="color: #ee2d09;" data-ng-show="(product.webqty <= 0)">Sold Out</span>
 										<span data-ng-click="removeCartItem(product)" class="removeBtn" data-ng-class="{ removeBtnName:hideCartItem(product)}">{{hideCartItem(product) ? 'Removed' : 'Remove'}}</span>
-										
+									</p>
+									<p data-ng-show="(product.product_id == MaxAvailQtyPid) && (MaxAvailQty > product.webqty)"> <span style="color: darkblue;margin-top: 2%;"> AVAILABLE QTY. {{product.webqty}} </span> 
+										<ul class="list-unstyled cat-list" >
+						                    <li class="cat-input-box">
+						                        <input type="text" placeholder="1" class="cat-input-text"
+						                            value="{{product.qty}}" readonly>
+						                    </li>
+						                    <li class=""  style="width: 32px;float: left;"                         
+						                        data-ng-click="decreaseCartProductQuantity(product, 'product_id')">
+												<img src="images/minu.png" class="img-responsive">
+											</li>
+						                </ul>
+
 									</p>
 								</li>
 							</ol>
