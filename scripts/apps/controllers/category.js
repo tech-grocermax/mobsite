@@ -673,6 +673,14 @@ define(['app'], function(app) {
             $scope.showShopByCategory = true;
             $scope.showShopByDeals = false;
 
+            $scope.toggleCoinsCategory = function(){
+                if(utility.getJStorageKey("userId")){
+                    $location.url('user/coinshistory');
+                }else {
+                    
+                }
+            };
+
             $scope.toggleShopByCategory = function() {
                 if($scope.showShopByCategory) {                    
                     $scope.showShopByCategory = false;
