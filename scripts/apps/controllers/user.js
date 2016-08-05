@@ -11,6 +11,7 @@ define(['app'], function(app) {
                     || $scope.sectionName == "editprofile"
                     || $scope.sectionName == "address"
                     || $scope.sectionName == "addaddress"
+                    || $scope.sectionName == "maxmoneyhistory"
                     || $scope.sectionName == "coinshistory"
                     || $scope.sectionName == "editaddress"
                     || $scope.sectionName == "orderhistory")){
@@ -51,6 +52,7 @@ define(['app'], function(app) {
                 "addaddress" : false,
                 "editaddress" : false,
                 "coinshistory" : false,
+                "maxmoneyhistory" : false,
                 "orderhistory" : false
             };
             if(utility.getJStorageKey("userId")){
@@ -128,6 +130,9 @@ define(['app'], function(app) {
                 $scope.columnSize = 10;
             } else if ($scope.section.coinshistory) {
                 $scope.categoryName = "Max Coins History";
+                $scope.columnSize = 10;  
+            } else if ($scope.section.maxmoneyhistory) {
+                $scope.categoryName = "Max Money History";
                 $scope.columnSize = 10;  
             } else if ($scope.section.orderhistory) {
                 $scope.categoryName = "Order History";
@@ -732,9 +737,16 @@ define(['app'], function(app) {
                         $scope.coinsHistory = data.redeemLog;
                     });
             }
-
+            
             if($scope.sectionName == "coinshistory"){
                 getMaxCoinsHistory();
+            }
+            
+            getMaxMoneyHistory = function(){
+                alert('call web service');
+            }
+            if($scope.sectionName == "maxmoneyhistory"){
+                getMaxMoneyHistory();
             }
 			
 			$scope.reOrder = function(increment_id , order){

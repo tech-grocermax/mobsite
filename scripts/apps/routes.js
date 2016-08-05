@@ -138,6 +138,7 @@ define([], function() {
                     "profile": "My Profile Header",
                     "editprofile": "Edit my Information",
                     "coinshistory": "Max Coins History",
+                    "maxmoneyhistory": "Max Money History",
                     "orderhistory": "Order History",
                     "address": "Profile > List Shipping Addresses",
                     "addaddress": "Profile > Add Shipping Addresses",
