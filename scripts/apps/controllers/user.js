@@ -739,7 +739,9 @@ define(['app'], function(app) {
             }
             
             if($scope.sectionName == "coinshistory"){
-                getMaxCoinsHistory();
+                if(utility.getJStorageKey("userId")){
+                    getMaxCoinsHistory();
+                }    
             }
             
             getMaxMoneyHistory = function(){
@@ -754,7 +756,9 @@ define(['app'], function(app) {
             }
 
             if($scope.sectionName == "maxmoneyhistory"){
-                getMaxMoneyHistory();
+                if(utility.getJStorageKey("userId")){
+                    getMaxMoneyHistory();
+                }
             }
 			
 			$scope.reOrder = function(increment_id , order){
