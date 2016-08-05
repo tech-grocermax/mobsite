@@ -209,7 +209,7 @@ input , button, select{outline:none;}
 .cat-img-mrg{margin-top:125px;}/*home change*/
 .offer-img-mrg{margin-top: 90px;}
 .imgbox-lt-margin{margin-left: 7.5px;}
-.slider-text{font-family: latobold;font-weight: bold; font-size: 4.4vw; color: #2d2d2d;letter-spacing:2px;margin-bottom: 31px;margin-top: 46px;}
+.slider-text{font-family: latobold;font-weight: bold; font-size: 14px; color: #2d2d2d;letter-spacing:2px;margin-bottom: 31px;margin-top: 46px;}
 .slide-text{border:1px solid #F9e0dd; text-align:center; /*border-radius:4px; margin-top:-8px;margin-bottom:24px;*/ color:#e78e78; font-family:robotolight; font-size: 3.4vw; letter-spacing:2px; padding:9px 0 6px; width: 368px;    font-weight: bold;}
 .slide-border{border-top: 1px solid black;margin-top: 3.3%;}
 .li-border{border-left: 1px solid #dedede; margin-right: 25px; margin-left: 25px;height: 208px;}
@@ -666,7 +666,7 @@ input , button, select{outline:none;}
 	.slide-img{width: 210px;}
 	.li-border {height:120px;margin-left: 12px;margin-right: 12px;}
 	.ul-height{height:120px;}
-	.header-middle {/*padding: 30px 8px 16px;*/ padding:12px 16px 12px;}
+	.header-middle {/*padding: 30px 8px 16px;*/ padding:10px 16px 10px;}
 	.margin-top16-m{margin-top:20px;}
 	.padd0-m{padding:0px;}
 	.pad8-m{padding:8px;}
@@ -747,7 +747,7 @@ input , button, select{outline:none;}
 	.ao-img-block {left: 13%;}
 	.slide-ul li{/*height: 158px;*/ padding-left: 14px; padding-right: 14px;}
 	.slide-ul {/*min-height: 188px; */padding-left:2px;}
-	.slider-text {letter-spacing:2px; margin-bottom:16px; margin-top:29px;}
+	.slider-text {letter-spacing:2px; margin-bottom:10px; margin-top:20px;}
 	.dropdown-img {right: 16px;    margin-top: 7px;}
 	.margin-tp-6p-m{margin-top:6.5%;}
 	.menu-subitem-h > img{width:17px;}
@@ -758,7 +758,7 @@ input , button, select{outline:none;}
 	.back-img-mr{width:21px;margin-top:-5px;}
 	.margin-t16-m{margin-top: 16px;}
 /*	.subc-h1 {bottom: 7.2%;}*/
-	.cat-img-mrg {/*margin-top: 114px;*/}
+	.cat-img-mrg {margin-top: 105px;}
 	/*.prod-sec{margin-bottom: 153px;}*/
 	/*.left-menu{top: 93.2%;}*/
 	.top-subhead {top: 52px;height: 34px;}
@@ -1031,7 +1031,7 @@ input , button, select{outline:none;}
 .user-info a{color: #2d2d2d;}
 .head-icon-width{width:26px;}
 .head-user-icon{width:33px;}
-.searchbox{margin:16px 0 0 0;}
+.searchbox{margin:10px 0 0 0;}
 .list-icon{ width: 37px;}
 ul.plisting{font-weight:bold; padding:5px 0px}
 ul.plisting li.font-3{padding-top:3px}
@@ -1129,15 +1129,15 @@ ul.plisting li.font-3{padding-top:3px}
 .low-stock{background: #fb0404;color: #fff;padding: 5px 3px 5px 2px;font-size: 12px;font-weight: bold;text-align: center;}
 .so-img{margin: 0 0 5px 0;width: 80px;}
 
-.homecategory {margin: 16px 0 0 0;}
+.homecategory {margin: 8px 0 0 0;}
 .homecategory >div{border-right: solid 1px #e6e6e6;border-bottom: solid 1px #e6e6e6;padding: 15px; background:#fff; padding: 0 0 5px 0; text-align: center;}
 /*.homecategory >div:nth-child(3n+2){border-left: solid 1px #e6e6e6;border-right: solid 1px #e6e6e6;}*/
-.homecategory >div>img{padding:15px;}
-.homecategory >div>span{font-family: gotham_mediumregular;color: #2d2d2d;font-size: 12px;font-weight: bold; padding: 0 3px 0 3px;}
+.homecategory >div>img{padding: 5px 15px 5px 15px;}
+.homecategory >div>span{font-family: gotham_mediumregular;color: #2d2d2d;font-size: 10px;font-weight: bold; padding: 0 2px 0 2px;}
 
 .specialdeal {margin: 0;}
-.specialdeal h1{font-size: 20px;padding: 0 0 5px 0;margin: 25px 0 0px 0;border-bottom: solid #e0e0e0 1px; color: #000; font-family: gotham_bookregular;}
-.specialdeal img{padding: 2px;background: #fff;margin: 8px 0 0px 0;}
+.specialdeal h1{font-size: 14px;padding: 0 0 3px 0;margin: 12px 0 0px 0;border-bottom: solid #d0d0d0 1px; color: #000; font-family: gotham_bookregular;}
+.specialdeal img{/*padding: 2px;*/background: #fff;margin: 10px 0 0px 0;}
 .specialListbody{margin-top: 120px;}
 .special-deal{margin-top: 65px;}
 .top-deal-offhead{background: #8f8f8f;text-align: center;margin-bottom: 20px;border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;border-bottom: solid 2px #cfcfcf;}
