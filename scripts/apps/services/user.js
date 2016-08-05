@@ -132,6 +132,15 @@ define(['app'], function (app) {
 		    		);
 		    };
 
+		    this.getMaxMoneyHistory = function(userid) {
+		    	var url = getAPIUrl() + "creditlog?userid=" + userid;
+		    	return serverUtility.getWebService(url)
+		    		.then(
+		    			function(data){return data; },
+		    			function(error){return error; }
+		    		);
+		    };
+
 		    this.getOrderDetails = function(orderId) {
 		    	var url = getAPIUrl() + "getorderdetail?orderid=" + orderId;
 		    	return serverUtility.getWebService(url)

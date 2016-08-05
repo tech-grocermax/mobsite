@@ -743,8 +743,16 @@ define(['app'], function(app) {
             }
             
             getMaxMoneyHistory = function(){
-                alert('call web service');
+                toggleLoader(true);
+                userService.getMaxMoneyHistory(utility.getJStorageKey("userId"))
+                    .then(function(data){
+                        toggleLoader(false);
+                        $scope.MaxMoneyBalance = "";
+                        $scope.MaxMoneyHistory = data.log;
+                        //console.log(data);
+                    });
             }
+
             if($scope.sectionName == "maxmoneyhistory"){
                 getMaxMoneyHistory();
             }

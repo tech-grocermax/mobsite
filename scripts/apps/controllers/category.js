@@ -675,7 +675,7 @@ define(['app'], function(app) {
 
             $scope.toggleMaxMoneyCategory = function(){
                 if(utility.getJStorageKey("userId")){
-                    $location.url('user/maxmoney');
+                    $location.url('user/maxmoneyhistory');
                 }else {
                     $location.url('user/login');
                 }
