@@ -91,9 +91,9 @@
                     <span class="ribbon-content">{{product.promotion_level}}</span>
                 </h1>
             </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 low-stock" data-ng-show="(product.product_id == MaxAvailQtyPid) && (MaxAvailQty > product.webqty)">
+            <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 low-stock" data-ng-show="(product.product_id == MaxAvailQtyPid) && (MaxAvailQty > product.webqty)">
                 ONLY {{product.webqty}} QTY IN STOCK.
-            </div>
+            </div>-->
 
         </div>
     </div>
@@ -149,8 +149,8 @@
 										<span style="color: #ee2d09;" data-ng-show="(product.webqty <= 0)">Sold Out</span>
 										<span data-ng-click="removeCartItem(product)" class="removeBtn" data-ng-class="{ removeBtnName:hideCartItem(product)}">{{hideCartItem(product) ? 'Removed' : 'Remove'}}</span>
 									</p>
-									<p data-ng-show="(product.product_id == MaxAvailQtyPid) && (MaxAvailQty > product.webqty)"style="display: inline-block;margin: 0;font-size: 12px;font-weight: 600;"> <span style="color: darkblue;margin-top: 2%;"> AVAILABLE QTY. {{product.webqty}} </span> 
-										<ul class="list-unstyled cat-list" style="width:72px;">
+									<p data-ng-show="(product.product_id == MaxAvailQtyPid) && (MaxAvailQty > product.webqty && product.webqty != 0)"style="display: inline-block;margin: 0;font-size: 12px;font-weight: 600;"> <span style="color: darkblue;margin-top: 2%;"> AVAILABLE QTY. {{product.webqty}} </span> 
+										<ul class="list-unstyled cat-list" style="width:72px;" data-ng-hide="product.webqty == 0">
 						                    <li class="cat-input-box">
 						                        <input type="text" placeholder="1" class="cat-input-text"
 						                            value="{{product.qty}}" readonly style="background: transparent;">
