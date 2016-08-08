@@ -208,22 +208,22 @@
 		var landingPage = angular.module('landingPage', []);
 		landingPage.controller('landingController', ['$scope', '$http', function($scope, $http){
 			$scope.landingError = false;
-
-			$scope.ConfNumber ='145115281';
-
 			$scope.landingSubmit = function(landingEmail){
-				console.log("steo 1");
-				console.log($scope.ConfNumber);
 				console.log(landingEmail);
 				if(landingEmail == undefined || landingEmail == null){
 					$scope.landingError = true;
 				}else{
-                    $http.post('https://grocermax.com/api/loadOrderDetail',
+                    $http.post('https://grocermax.com/api/registermail',
                        {
-                           OrderID: $scope.ConfNumber
+                           email: landingEmail
                        }
                      ).success(function(data) {
-                          console.log(data);
+                     	  if(data.flag == 1){
+                     	  	console.log(data);
+                     	  }else{
+                     	  	data.Result;
+                     	  }
+                          
                      });
 				}
 			};
