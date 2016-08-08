@@ -106,7 +106,7 @@
 					
 
 					<!--<button type="button" style="width: 166px;height: 30px;background-color: #b3b4b8;border: none;    margin-top: 25px;color: #fff;font-size: 18px;" data-ng-click="landingSubmit(landingEmail)" >Submit</button>-->
-					<input type="submit" ng-click="landingSubmit(landingEmail)" value="Submit" style="width: 166px;height: 30px;background-color: #b3b4b8;border: none;    margin-top: 25px;color: #fff;font-size: 18px;"/>
+					<input type="submit" data-ng-click="landingSubmit(landingEmail)" value="Submit" style="width: 166px;height: 30px;background-color: #b3b4b8;border: none;    margin-top: 25px;color: #fff;font-size: 18px;"/>
 				</form>
 			</div>
 		</div>
@@ -165,14 +165,28 @@
 	<script src="scripts/libs/bootstrap.min.js"></script>
 	<script>
 		var landingPage = angular.module('landingPage', []);
-		landingPage.controller('landingController', function($scope){
+		landingPage.controller('landingController', ['$scope', '$http', function($scope, $http){
 			$scope.landingError = false;
+
+			$scope.ConfNumber ='145115281';
+
 			$scope.landingSubmit = function(landingEmail){
+				console.log("steo 1");
+				console.log($scope.ConfNumber);
+				console.log(landingEmail);
 				if(landingEmail == undefined || landingEmail == null){
 					$scope.landingError = true;
+				}else{
+                    $http.post('https://grocermax.com/api/loadOrderDetail',
+                       {
+                           OrderID: $scope.ConfNumber
+                       }
+                     ).success(function(data) {
+                          console.log(data);
+                     });
 				}
 			};
-		});
+		}]);
 	</script>
 	
 	</body>
