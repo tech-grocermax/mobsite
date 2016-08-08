@@ -213,7 +213,7 @@
 				if(landingEmail == undefined || landingEmail == null){
 					$scope.landingError = true;
 				}else{
-                    $http.post('https://grocermax.com/api/registermail',
+                    $http.post('http://qa.grocermax.com/api/registermail',
                        {
                            email: landingEmail
                        }
