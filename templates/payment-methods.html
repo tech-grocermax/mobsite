@@ -22,6 +22,12 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 back-white padd0" style="box-shadow: 0px 2px 8px -5px;">
 			<ul class="list-unstyled margin0 pmeth-list">
 				<li>
+					<span>MaxMoney</span>
+					<input type="checkbox" name="creditMethod"
+						data-ng-click="customercreditPaymentMethod('customercredit')" 
+						class="img-responsive float-rt pmt-checkbox"/>					
+				</li>
+				<li>
 					<span>Cash on delivery</span>
 					<input type="checkbox" name="paymentMethod"
 						data-ng-change="changePaymentMethod('cashondelivery', payment)" 
@@ -68,11 +74,11 @@
 					<li>
 						<span style="font-weight: 600;">{{TotalItem}} items</span>
 						<span class="float-rt">
-							Rs. {{toFixedDecimal(subtotalAmount)}}</span>
+							Rs. {{toFixedDecimal(cartDetails.shipping_address.grand_total)}}</span>
 					</li>
 					<li data-ng-show="toFixedDecimal(couponValue) > 0" style="border-top: solid 1px #e4e4e4;">
 						<span>Coupon Discount: </span>
-						<span class="float-rt pmeth-card-font">Rs. -{{toFixedDecimal(couponValue)}}</span>
+						<span class="float-rt pmeth-card-font">Rs. {{toFixedDecimal(couponValue)}}</span>
 					</li>
 					<li>
 						<span style="font-weight: 600;">Total</span>
@@ -119,7 +125,7 @@
 	</div>
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0  margin-top15" 
 		data-ng-click="placeOrder()">
-		<button type="button" class="reg-bot-btn bot-foot">PLACE ORDER</button>
+		<button type="button" class="reg-bot-btn bot-foot" data-ng-show="!isHidePlacedBtn">PLACE ORDER</button>
 	</div>
 	<div>
 		<form name="frmPaytm" id="frmPaytm" method="POST">

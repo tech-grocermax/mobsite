@@ -278,6 +278,13 @@ define(['app'], function(app) {
                 getCartDetails();
             }
 
+            $scope.creditMethod = false;
+            $scope.customercreditPaymentMethod = function(creditMethod){
+                if($scope.creditMethod == true){
+                 $scope.creditMethod = false;
+                }else{$scope.creditMethod = true;}
+            }
+
             $scope.changePaymentMethod = function(paymentMethod, model) {
                 angular.forEach($scope.payment, function(value, key){
                     $scope.payment[key] = false;
@@ -580,12 +587,14 @@ define(['app'], function(app) {
 			
 			$scope.duplicateorderbtn = false;
             $scope.isOrderPlaced = false;
+            $scope.isHidePlacedBtn =false;
             $scope.placeOrder = function() { 
                 $analytics.eventTrack($scope.selectedCity, {  category: "Review and Place order" });
-                $scope.isOrderPlaced = true;
+                $scope.isOrderPlaced = true; console.log($scope.creditMethod); console.log($scope.paymentMethod); return false;
                 if($scope.paymentMethod == "paytm_cc" 
                     || $scope.paymentMethod == "cashondelivery") {
                     toggleLoader(true);
+                    $scope.isHidePlacedBtn =true;
                     var userId = utility.getJStorageKey("userId"),
                         checkoutDetails = utility.getJStorageKey("checkoutDetails");
                     userService.checkout(userId, $scope.quoteId, checkoutDetails, $scope.paymentMethod)
@@ -593,13 +602,13 @@ define(['app'], function(app) {
                             toggleLoader(false);
                             if(data.flag == 1){
                                 // OMG required script
-                                if("undefined" !== typeof Storage) {
+                                /*if("undefined" !== typeof Storage) {
                                     if ("omg" == localStorage.getItem("utm_source")) {
                                         require(["https://track.in.omgpm.com/886729/transaction.asp?APPID=" + data.OrderID + "&MID=886729&PID=16913&status=" + $scope.cartDetails.grand_total]);
                                     }
                                 }
                                 $analytics.eventTrack($scope.selectedCity, {  category: "Order Success" });
-                                $analytics.pageTrack("Success Screen");
+                                $analytics.pageTrack("Success Screen");*/
 
                                 if($scope.paymentMethod == "paytm_cc") {
                                     getPaytmProcessingDetails(data.OrderID, userId, checkoutDetails[$scope.quoteId]["shippingAddress"].telephone);
@@ -725,7 +734,7 @@ define(['app'], function(app) {
                 }                
             };
 
-            $scope.isCouponCodeApplied = false;
+            /*$scope.isCouponCodeApplied = false;
             $scope.couponAmount = 0.00;
             $scope.couponCode = null;
 
@@ -758,7 +767,7 @@ define(['app'], function(app) {
                             $scope.cartDetails.grand_total = data.CartDetails.grand_total;
                         }
                     });
-            };
+            };*/
 
             angular.element(document).ready(function () {
                 if(angular.isUndefined(utility.getJStorageKey("selectedCity"))
