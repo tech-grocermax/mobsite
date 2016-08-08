@@ -115,18 +115,19 @@
 		<div class="row" style="margin:0;margin-top: 5px;">
 			<div class="col-sm-12 col-xs-12" style="background-color:#ececec;height: 156px;text-align: center;padding: 0;">
 				<h1 style="margin: 0px 0 0px 0;border-bottom: solid 1px #000;max-width: 310px;text-align: center;line-height: 11px;margin: 0 auto;margin-top: 6px;margin-bottom: 26px;width: 95%"><span style="font-size: 18px;background-color: #ececec;padding: 0 10px 0 10px;">SIGN UP FOR MORE OFFERS</span></h1>
-				<form name="landingForm" novalidate style="position: relative;">
+				<form name="landingForm" novalidate style="position: relative;" data-ng-hide="landingUserSuccess">
 					<input type="email" placeholder="Enter your email id" name="landEmail"
 					ng-model="landingEmail" 
 					style="background-color: transparent;border: solid 1px #b4b4b4;width: 90%;height: 36px;padding: 0 0 0 15px;font-size: 15px;" required>
 					
-					  <span ng-show="landingForm.landEmail.$error.required && landingError" style="color: red; font-size:10px;position: absolute;left: 0;right: 0;top: 40px;">Tell us your valid email.</span>
-					  <span ng-show="landingForm.landEmail.$error.email && !landingError"style="color: red; font-size:10px;position: absolute;left: 0;right: 0;top: 40px;">This is not a valid email.</span>
-					
+					  <span ng-show="(landingForm.landEmail.$error.required && landingError) || (landingForm.landEmail.$error.email && !landingError)" style="color: red; font-size:10px;position: absolute;left: 0;right: 0;top: 40px;">Please enter valid email.</span>
+					  
+					  <span ng-show="landingUserFailer"style="color: red; font-size:10px;position: absolute;left: 0;right: 0;top: 40px;">{{landingUserResult}}</span> 
 
 					<!--<button type="button" style="width: 166px;height: 30px;background-color: #b3b4b8;border: none;    margin-top: 25px;color: #fff;font-size: 18px;" data-ng-click="landingSubmit(landingEmail)" >Submit</button>-->
 					<input type="submit" data-ng-click="landingSubmit(landingEmail)" value="Submit" style="width: 166px;height: 30px;background-color: #b3b4b8;border: none;    margin-top: 25px;color: #fff;font-size: 18px;"/>
 				</form>
+				<div data-ng-show="landingUserSuccess" style="font-size: 20px;color: #EE2D09;">{{landingUserResult}}</div>
 			</div>
 		</div>
 		<div class="row" style="margin:0;">
@@ -208,6 +209,9 @@
 		var landingPage = angular.module('landingPage', []);
 		landingPage.controller('landingController', ['$scope', '$http', function($scope, $http){
 			$scope.landingError = false;
+			$scope.landingUserSuccess = false;
+			$scope.landingUserFailer = false;
+			$scope.landingUserResult = '';
 			$scope.landingSubmit = function(landingEmail){
 				console.log(landingEmail);
 				if(landingEmail == undefined || landingEmail == null){
@@ -220,8 +224,12 @@
                      ).success(function(data) {
                      	  if(data.flag == 1){
                      	  	console.log(data);
+							$scope.landingUserResult = data.Result;
+							$scope.landingUserSuccess = true;
                      	  }else{
                      	  	data.Result;
+							$scope.landingUserFailer = true;
+							$scope.landingUserResult = data.Result;
                      	  }
                           
                      });
