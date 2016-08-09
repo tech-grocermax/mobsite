@@ -158,7 +158,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.goog
 					ng-model="landingEmail" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
 					style="background-color: transparent;border: solid 1px #b4b4b4;width: 90%;height: 36px;padding: 0 0 0 15px;font-size: 15px;" required>
 					
-					  <span ng-show="(landingForm.landEmail.$error && landingError) || (landingForm.landEmail.$error.pattern && !landingError)" style="color: red; font-size:10px;position: absolute;left: 0;right: 0;top: 40px;">Enter your e-mail id</span>
+					  <span ng-show="(landingForm.landEmail.$error && landingError && !landingUserFailer) || (landingForm.landEmail.$error.pattern && !landingError && !landingUserFailer)" style="color: red; font-size:10px;position: absolute;left: 0;right: 0;top: 40px;">Enter your e-mail id</span>
 					  
 					  <span ng-show="landingUserFailer"style="color: red; font-size:10px;position: absolute;left: 0;right: 0;top: 40px;">{{landingUserResult}}</span> 
 
@@ -284,7 +284,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.goog
 			};
 			
 			$scope.landingSearch = function(landingSearchItem){
-				window.location.href = 'http://m.grocermax.com/#/product?keyword=' + encodeURI(landingSearchItem);
+				if(landingSearchItem){
+					window.location.href = 'http://m.grocermax.com/#/product?keyword=' + encodeURI(landingSearchItem);
+				}
 			};
 		}]);
 	</script>
