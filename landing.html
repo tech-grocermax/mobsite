@@ -147,11 +147,11 @@
 			<div class="col-sm-12 col-xs-12" style="background-color:#ececec;height: 156px;text-align: center;padding: 0;">
 				<h1 style="margin: 0px 0 0px 0;border-bottom: solid 1px #000;max-width: 310px;text-align: center;line-height: 11px;margin: 0 auto;margin-top: 6px;margin-bottom: 26px;width: 95%"><span style="font-size: 18px;background-color: #ececec;padding: 0 10px 0 10px;">SIGN UP FOR MORE OFFERS</span></h1>
 				<form name="landingForm" novalidate style="position: relative;" data-ng-hide="landingUserSuccess">
-					<input type="email" placeholder="Enter your email id" name="landEmail"
-					ng-model="landingEmail" 
+					<input type="text" placeholder="Enter your email id" name="landEmail"
+					ng-model="landingEmail" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
 					style="background-color: transparent;border: solid 1px #b4b4b4;width: 90%;height: 36px;padding: 0 0 0 15px;font-size: 15px;" required>
 					
-					  <span ng-show="(landingForm.landEmail.$error.required && landingError) || (landingForm.landEmail.$error.email && !landingError)" style="color: red; font-size:10px;position: absolute;left: 0;right: 0;top: 40px;">Please enter valid email.</span>
+					  <span ng-show="(landingForm.landEmail.$error.required && landingError) || (landingForm.landEmail.$error.pattern && !landingError) " style="color: red; font-size:10px;position: absolute;left: 0;right: 0;top: 40px;">Please enter valid email.</span>
 					  
 					  <span ng-show="landingUserFailer"style="color: red; font-size:10px;position: absolute;left: 0;right: 0;top: 40px;">{{landingUserResult}}</span> 
 
