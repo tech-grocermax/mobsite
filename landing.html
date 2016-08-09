@@ -264,7 +264,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.goog
 					$scope.landingUserFailer = true;
 					$scope.landingUserResult = "Enter valid e-mail id";
 				}else{
-                    $http.post('http://qa.grocermax.com/api/registermail',
+                    $http.post('https://grocermax.com/api/registermail',
                        {
                            email: landingEmail
                        }
