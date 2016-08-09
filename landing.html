@@ -258,7 +258,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.goog
 				angular.element(".data_slide_1").addClass('active');
 			}
 			$scope.landingSubmit = function(landingEmail){
-				console.log(landingEmail);
+				$scope.landingUserResult='';
 				if(landingEmail == undefined || landingEmail == null){
 					$scope.landingError = true;
 					$scope.landingUserFailer = true;
