@@ -232,11 +232,11 @@
 						</div>
 					</div>
 					<div class="row margin0 coupon-bar1">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" data-ng-show="isCouponCodeApplied">
-							{{couponCode}}
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" data-ng-show="isCouponCodeApplied">
+							<p class="coupon-input">{{couponCode}}</p>
 							<button type="button" class="remove-btn" data-ng-click="removeCouponCode(couponCode)">REMOVE</button>
 						</div>
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" data-ng-show="!isCouponCodeApplied">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" data-ng-show="!isCouponCodeApplied">
 							<input type="text" placeholder="Enter code here" class="coupon-input" data-ng-model="couponCode"
 								value="{{couponCode}}">
 							<button type="button" class="aplly-btn" data-ng-click="applyCouponCode(couponCode)">APPLY</button>
