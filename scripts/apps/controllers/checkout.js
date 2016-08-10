@@ -64,6 +64,7 @@ define(['app'], function(app) {
             toggleLoader = function(flag) {
                 $scope.displayLoader = flag;
             };  
+            $scope.MaxMoneyBalance = 0;
 
             if($scope.section.shipping) {
                 $scope.categoryName = "Delivery Address";
@@ -247,6 +248,13 @@ define(['app'], function(app) {
           
             getCartItemDetails = function() {
                 toggleLoader(true);
+                if(utility.getJStorageKey("userId")){
+                    userService.getWalletBalance(utility.getJStorageKey("userId")).then(function(data){
+                        if(data.flag == 1){
+                            $scope.MaxMoneyBalance = data.Balance;
+                        }
+                    });
+                }
                 productService.getCartItemDetails($scope.quoteId)
                     .then(function(data){  
                         toggleLoader(false);            
@@ -360,7 +368,7 @@ define(['app'], function(app) {
                 }
                 utility.setJStorageKey("checkoutDetails", checkoutDetails, 1);
 
-                $analytics.eventTrack($scope.selectedCity, {  category: "Shipping address" });
+                //$analytics.eventTrack($scope.selectedCity, {  category: "Shipping address" });
                 try{
                     shipgtm = "customerId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
                     dataLayer.push('send', { hitType: 'event', 
@@ -418,7 +426,7 @@ define(['app'], function(app) {
 
                 checkoutDetails[quoteId].billingAddress = billingAddress;                
                 utility.setJStorageKey("checkoutDetails", checkoutDetails, 1);
-                $analytics.eventTrack($scope.selectedCity, {  category: "Billing address" });
+                //$analytics.eventTrack($scope.selectedCity, {  category: "Billing address" });
                 $location.url("checkout/delivery"); 
 
             };  
@@ -453,7 +461,7 @@ define(['app'], function(app) {
 
                 utility.setJStorageKey("checkoutDetails", checkoutDetails, 1);
 
-                $analytics.eventTrack($scope.selectedCity, {  category: "Delivery details" });
+                //$analytics.eventTrack($scope.selectedCity, {  category: "Delivery details" });
 
                 $location.url("checkout/payment");
             };
@@ -589,27 +597,18 @@ define(['app'], function(app) {
             $scope.isOrderPlaced = false;
             $scope.isHidePlacedBtn =false;
             $scope.placeOrder = function() { 
-                $analytics.eventTrack($scope.selectedCity, {  category: "Review and Place order" });
-                $scope.isOrderPlaced = true; console.log($scope.creditMethod); console.log($scope.paymentMethod); return false;
+                //$analytics.eventTrack($scope.selectedCity, {  category: "Review and Place order" });
+                $scope.isOrderPlaced = true;
                 if($scope.paymentMethod == "paytm_cc" 
                     || $scope.paymentMethod == "cashondelivery") {
                     toggleLoader(true);
                     $scope.isHidePlacedBtn =true;
                     var userId = utility.getJStorageKey("userId"),
                         checkoutDetails = utility.getJStorageKey("checkoutDetails");
-                    userService.checkout(userId, $scope.quoteId, checkoutDetails, $scope.paymentMethod)
+                    userService.checkout(userId, $scope.quoteId, checkoutDetails, $scope.paymentMethod, $scope.creditMethod)
                         .then(function(data){
                             toggleLoader(false);
                             if(data.flag == 1){
-                                // OMG required script
-                                /*if("undefined" !== typeof Storage) {
-                                    if ("omg" == localStorage.getItem("utm_source")) {
-                                        require(["https://track.in.omgpm.com/886729/transaction.asp?APPID=" + data.OrderID + "&MID=886729&PID=16913&status=" + $scope.cartDetails.grand_total]);
-                                    }
-                                }
-                                $analytics.eventTrack($scope.selectedCity, {  category: "Order Success" });
-                                $analytics.pageTrack("Success Screen");*/
-
                                 if($scope.paymentMethod == "paytm_cc") {
                                     getPaytmProcessingDetails(data.OrderID, userId, checkoutDetails[$scope.quoteId]["shippingAddress"].telephone);
                                 } else {                                    
@@ -618,11 +617,11 @@ define(['app'], function(app) {
                                 }
                                 try{
                                     userService.trackorderdetails(data.OrderID).then(function(data){
-                                        dataLayer.push(data.newgtm);
-                                        //dataLayer.push(data.orderinfo);
+                                        if(data.flag==1){
+                                            dataLayer.push(data.newgtm);
+                                        }
                                     });
                                 }catch(err) { }
-                                // $analytics.pageTrack("Review Order & Pay");
                             } 
 							
 							else if(data.flag == 3){
@@ -636,8 +635,8 @@ define(['app'], function(app) {
 								$scope.quate_id_Oss = data.quote_id;
 							}
 							else if(data.flag == 0) {
-                                $analytics.eventTrack($scope.selectedCity, {  category: "Order Failed" });
-                                $analytics.pageTrack("Failure Screen");
+                                //$analytics.eventTrack($scope.selectedCity, {  category: "Order Failed" });
+                                //$analytics.pageTrack("Failure Screen");
                                 $('#paymentFailed').modal({
                                     backdrop: false,
                                     keyboard: false,

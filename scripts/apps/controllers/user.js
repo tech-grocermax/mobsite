@@ -749,7 +749,7 @@ define(['app'], function(app) {
                 userService.getMaxMoneyHistory(utility.getJStorageKey("userId"))
                     .then(function(data){
                         toggleLoader(false);
-                        $scope.MaxMoneyBalance = "";
+                        $scope.MaxMoneyBalance = data.balance;
                         $scope.MaxMoneyHistory = data.log;
                         //console.log(data);
                     });

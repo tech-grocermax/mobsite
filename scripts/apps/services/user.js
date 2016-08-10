@@ -141,6 +141,15 @@ define(['app'], function (app) {
 		    		);
 		    };
 
+		    this.getWalletBalance = function(userid){
+		    	var url = getAPIUrl() + "getwalletbalance?CustId=" + userid;
+		    	return serverUtility.getWebService(url)
+		    		.then(
+		    			function(data){return data; },
+		    			function(error){return error; }
+		    		);
+		    };
+
 		    this.getOrderDetails = function(orderId) {
 		    	var url = getAPIUrl() + "getorderdetail?orderid=" + orderId;
 		    	return serverUtility.getWebService(url)
@@ -243,7 +252,7 @@ define(['app'], function (app) {
 		    	};
 		    };
 
-		    this.buildCheckoutObject = function(userId, quoteId, checkoutDetails, paymentMethod) {
+		    this.buildCheckoutObject = function(userId, quoteId, checkoutDetails, paymentMethod,maxMoney) {
 		    	var shippingObject = this.buildShippingObject(checkoutDetails[quoteId]["shippingAddress"]),
 		    		billingObject = this.buildBillingObject(checkoutDetails[quoteId]["billingAddress"]),
 		    		shipping = shippingObject,
@@ -254,6 +263,7 @@ define(['app'], function (app) {
 		    		quote_id:quoteId,
 		    		shipping:shipping,
 		    		billing:billing,
+		    		maxMoney:maxMoney,
 		    		payment_method:paymentMethod,
 		    		shipping_method:"tablerate_bestway",
 		    		timeslot:checkoutDetails[quoteId].deliveryTime,
@@ -261,13 +271,12 @@ define(['app'], function (app) {
 		    	};
 		    };
 
-		    this.checkout = function(userId, quoteId, checkoutDetails, paymentMethod) {
+		    this.checkout = function(userId, quoteId, checkoutDetails, paymentMethod,maxMoney) {
 		    	/*var input = $.param(this.buildCheckoutObject(userId, quoteId, checkoutDetails, paymentMethod)),
 		    		url = getAPIUrl() + "checkout?" + input;*/
 
-		    	var input = this.buildCheckoutObject(userId, quoteId, checkoutDetails, paymentMethod),
+		    	var input = this.buildCheckoutObject(userId, quoteId, checkoutDetails, paymentMethod,maxMoney),
 		    		url = getAPIUrl() + "checkout";
-
 		    	return serverUtility.postWebService(url, input)
 		    		.then(
 		    			function(data){return data; },
