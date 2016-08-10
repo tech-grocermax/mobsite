@@ -631,7 +631,7 @@ input , button, select{outline:none;}
 .coupon-bar1 > div:nth-child(3){height: 34px;width: 34px;background: #efefef;position: absolute;text-align: center;bottom: -16px;margin: auto;left: 0;right: 0;border-radius: 50%;color: #727272;font-size: 16px;font-weight: 600;padding: 6px 0 0 0px;}
 .coupon-bar1 .aplly-btn, .coupon-bar1 .remove-btn{background: #429f46;border: none;color: #fff;font-family: roboto;font-weight: 600;font-size: 17px;text-align: center;width: 120px;height: 45px;border-radius: 4px;float: right;}
 .coupon-bar1 .remove-btn{background-color: #444;}
-.coupon-bar2{padding: 30px 0px 0px 0px;text-align: center;}
+.coupon-bar2{padding: 25px 0px 0px 0px;text-align: center;}
 .coupon-bar2 ul > li{border-bottom: solid 1px #efefef;padding: 10px 0 10px 0;}
 .coupon-bar2 div > ul > li > p:nth-child(3){color: #727272;}
 .coupon-bar2 div > ul > li > p:nth-child(3) > img{width: 14px;margin: -2px 0 0 10px;}
