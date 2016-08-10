@@ -26,7 +26,7 @@
 						slides="bannerList" 
 						rn-carousel-index="carouselIndex2" 
 						class="ng-scope ng-isolate-scope dot-btm-center" 
-						style="text-align:center; font-size:15px;margin-bottom: -12px;">
+						style="text-align:center; font-size:15px;margin-bottom: -10px;">
 						<div class="rn-carousel-indicator">
 							<span ng-repeat="banner in bannerList" 
 								ng-class="{active: $index==index}" 
@@ -78,7 +78,7 @@
 		</section>
 		<section>
 			<div class="row specialdeal">
-				<div class="col-sm-12 col-xs-12" data-ng-repeat="deal in deals">
+				<div class="col-sm-12 col-xs-12 pad-lr6" data-ng-repeat="deal in deals">
 					<h1>{{deal.dealType}}</h1>
 					<img src="{{deal.img}}" title="{{deal.dealType}}" class="img-responsive"
 						analytics-on analytics-event="{{ selectedCity }}"
@@ -88,7 +88,7 @@
 				</div>
 			</div>
 			<div class="row specialdeal">
-				<div class="col-sm-12 col-xs-12" data-ng-repeat="banner in specialdeals">
+				<div class="col-sm-12 col-xs-12 pad-lr6" data-ng-repeat="banner in specialdeals">
 					<h1>{{banner.name}}</h1>
 					<img src="{{banner.imageurl}}" title="{{banner.name}}" class="img-responsive"
 						analytics-on analytics-event="{{ selectedCity }}"
