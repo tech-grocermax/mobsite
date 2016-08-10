@@ -735,6 +735,7 @@ define(['app'], function(app) {
                         toggleLoader(false);
                         $scope.coinsBalance = data.totalPoint;
                         $scope.coinsHistory = data.redeemLog;
+                        angular.element('body').css('overflow', 'auto');
                     });
             }
             
@@ -751,6 +752,7 @@ define(['app'], function(app) {
                         toggleLoader(false);
                         $scope.MaxMoneyBalance = data.balance;
                         $scope.MaxMoneyHistory = data.log;
+                        angular.element('body').css('overflow', 'auto');  
                         //console.log(data);
                     });
             }
