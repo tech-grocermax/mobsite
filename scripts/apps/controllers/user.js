@@ -129,10 +129,10 @@ define(['app'], function(app) {
                 $scope.categoryName = "Edit Address";
                 $scope.columnSize = 10;
             } else if ($scope.section.coinshistory) {
-                $scope.categoryName = "Max Coins History";
+                $scope.categoryName = "Max Coins";
                 $scope.columnSize = 10;  
             } else if ($scope.section.maxmoneyhistory) {
-                $scope.categoryName = "Max Money History";
+                $scope.categoryName = "Refund Wallet";
                 $scope.columnSize = 10;  
             } else if ($scope.section.orderhistory) {
                 $scope.categoryName = "Order History";

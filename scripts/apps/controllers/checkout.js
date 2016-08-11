@@ -73,7 +73,7 @@ define(['app'], function(app) {
                 $scope.categoryName = "Select Billing Address";
                 $scope.columnSize = 10;
             }*/ else if ($scope.section.delivery) {
-                $scope.categoryName = "Select Delivery Details";
+                $scope.categoryName = "Delivery Details";
                 $scope.columnSize = 10;
             } else if ($scope.section.payment) {
                 $scope.categoryName = "Select Payment Method";
