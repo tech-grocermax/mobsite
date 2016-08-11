@@ -287,11 +287,31 @@ define(['app'], function(app) {
             }
 
             $scope.creditMethod = false;
-            $scope.customercreditPaymentMethod = function(creditMethod){
+            $scope.MaxMoneyBalanceEnough = false;
+            $scope.customercreditPaymentMethod = function(creditMethod,MaxMoneyBalance,grndTotal){
+                
+                if(MaxMoneyBalance >= grndTotal){
+                    $scope.MaxMoneyBalanceEnough = true;
+                    $scope.disSelectPaymentMethid();
+                    $scope.paymentMethod = 'cashondelivery';
+                }else{
+                    $scope.MaxMoneyBalanceEnough = false;
+                }
+
                 if($scope.creditMethod == true){
                  $scope.creditMethod = false;
-                }else{$scope.creditMethod = true;}
+                 $scope.paymentMethod = '';
+                }else{
+                    $scope.creditMethod = true;
+                }
+                
             }
+            $scope.disSelectPaymentMethid = function(paymentMethod, model) {
+                angular.forEach($scope.payment, function(value, key){
+                    $scope.payment[key] = false;
+                });
+                console.log($scope.payment);
+            };
 
             $scope.changePaymentMethod = function(paymentMethod, model) {
                 angular.forEach($scope.payment, function(value, key){
@@ -600,7 +620,7 @@ define(['app'], function(app) {
                 //$analytics.eventTrack($scope.selectedCity, {  category: "Review and Place order" });
                 $scope.isOrderPlaced = true;
                 if($scope.paymentMethod == "paytm_cc" 
-                    || $scope.paymentMethod == "cashondelivery") {
+                    || $scope.paymentMethod == "cashondelivery") { 
                     toggleLoader(true);
                     $scope.isHidePlacedBtn =true;
                     var userId = utility.getJStorageKey("userId"),
