@@ -46,8 +46,12 @@
 				</div>
 			</div>
 			
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 del-day-box">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 del-day-box" style="text-align:center;">
 				<span>TIME</span>
+				<span style="font-size: 14px;font-weight: 600;" class="error-message"
+					data-ng-show="isClicked && (!shouldProceed || !isDeliveryProceedEnabled())">
+					Delivery Details
+				</span>
 			</div>
 			<div class="row margin0"
 				style="font-family: roboto;">
@@ -74,12 +78,6 @@
 					</div>
 				</div>
 			</div>					
-		</div>
-	</div>
-	<div class="row margin0">
-		<div style="text-align:center; padding:10px 0px;" class="error-message"
-			data-ng-show="isClicked && (!shouldProceed || !isDeliveryProceedEnabled())">
-			Delivery Details
 		</div>
 	</div>
 	<div class="row margin0" style="margin-top:25%;">

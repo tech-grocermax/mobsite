@@ -1,17 +1,14 @@
 <section>
 		<div class="row margin0">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background: #fff9c4;padding: 20px 15px 10px 15px;border-bottom: solid 4px #fbc02d;">
-					<span style="font-family: roboto;font-weight: bold;font-size: 16px;
-    vertical-align: -webkit-baseline-middle;">MaxMoney Balance</span>
+					<span style="font-family: roboto;font-weight: bold;font-size: 16px;">Transactions</span>
+					<span style="float: right;margin: -12px 0px 0 0;height: 12px;line-height: 12px;font-size: 12px;    font-weight: 600;">Balance</span>
 					<span style="font-family: roboto;font-weight: bold;float: right;font-size: 20px;">{{MaxMoneyBalance}}</span>
-				</div>
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 20px 15px 10px 15px;">
-					<span style="font-family: roboto;font-weight: bold;font-size: 18px;letter-spacing: 1px;">Transactions</span>
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 10px 15px 10px 15px;background:#fff;font-family: roboto;font-weight: 500;border-bottom: #e0e0e0 solid 1px;" data-ng-repeat="maxmoney in MaxMoneyHistory">
 					<p style="margin:0;color: #727272;">{{maxmoney.action_date}}</p>
 					<p style="margin: 5px 0 5px 0;">
-						<span style="width: 90%;display: inline-block;font-weight:bold;">{{maxmoney.comment}}</span>
+						<span style="width: 85%;display: inline-block;font-weight:bold;">{{maxmoney.comment}}</span>
 						<span style="float:right;color: #ff0000;">{{maxmoney.value_change}}</span>
 					</p>
 					<!--<p style="margin:0;font-size: 12px;font-weight: 400;color: #afafaf;">

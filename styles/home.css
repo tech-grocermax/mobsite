@@ -373,11 +373,11 @@ input , button, select{outline:none;}
 
 /*========== BILLING ADDRESS ==========*/
 .del-day-box{padding: 28px 0px 18px 16px; font-size:3.4vw;}
-.del-day-box span:first-child{color:#2d2d2d;font-size: 12px;font-weight: bold;font-family: roboto;}
+.del-day-box span:first-child{color:#2d2d2d;font-size: 12px;font-weight: bold;font-family: roboto;float: left;}
 /*.del-day-box span:last-child{background:#ee2d09; color:#fff; border-radius:16px; padding:0 16px 0 16px;}*/
-.btn-del{padding:24% 36.6%; border-radius:4px 0 0 4px; border:none; background:#e4e4e4;}
-.btn-del-r{padding:24% 36.6%; border-radius:0 4px 4px 0; border:none; background:#e4e4e4;}
-.del-day-input{font-family:robotoblack; text-align:center; font-size:16px; padding:4% 0px;}
+.btn-del{padding:11px 20px 11px 20px; border-radius:4px 0 0 4px; border:none; background:#e4e4e4;}
+.btn-del-r{padding:11px 20px 11px 20px; border-radius:0 4px 4px 0; border:none; background:#e4e4e4;}
+.del-day-input{font-family:robotoblack; text-align:center; font-size:16px;padding: 16px 0 16px 0;}
 .del-card-box{box-shadow: 0px 2px 8px -5px;text-align: center;}
 .del-time-card{border: 1px solid #e4e4e4; padding:32px 0; font-size:3.4vw; color:#2d2d2d;}
 .del-card-active{background:#e4e4e4;}
@@ -726,7 +726,7 @@ input , button, select{outline:none;}
 	.bill-right-img{width:3.5%;}
 	.b-left-icon {margin: 6.4% 2% 6% 1.6%; width:4%;}
 	.del-day-box {padding: 13px 0px 9px;}
-	.del-day-input {padding: 16px 0 16px 0;}
+	.del-day-input {/*padding: 16px 0 16px 0;*/}
 	.del-time-card {padding: 16px 0;}
 	.del-slot-text {padding:0;}
 	.logo-box {margin-bottom:6.8%; margin-top:9.5%;}
