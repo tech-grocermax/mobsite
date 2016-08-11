@@ -1145,8 +1145,8 @@ ul.plisting li.font-3{padding-top:3px}
 .specialdeal img{/*padding: 2px;*/background: #fff;margin: 6px 0 0px 0;}
 .specialListbody{margin-top: 120px;}
 .special-deal{margin-top: 65px;}
-.top-deal-offhead{background: #8f8f8f;text-align: center;margin-bottom: 20px;border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;border-bottom: solid 2px #cfcfcf;}
-.top-deal-offhead h1{font-size: 14px;font-weight: bold;color: #fff;letter-spacing: 1px;padding: 10px 0 8px 0; margin: 0;}
+.top-deal-offhead{background: #8f8f8f;text-align: center;margin-bottom: 5px;border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;border-bottom: solid 2px #cfcfcf;}
+.top-deal-offhead h1{font-size: 12px;font-weight: bold;color: #fff;letter-spacing: 1px;padding: 6px 0 6px 0; margin: 0;}
 .deal-top{margin-top: 100px;}
 .addresslist > li{display: inline-block;}
 .update-btn{background: #f08d00; color: #000; width:100%;}
