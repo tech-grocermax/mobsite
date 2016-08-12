@@ -385,7 +385,7 @@ input , button, select{outline:none;}
 .del-slot-text{color:#910001; left:32%; position:absolute; top:0; padding:2% 0 0; font-size:3vw;}
 
 /*========== ORDER FAIL ==========*/
-.ord-btn{font-size:16px; color:#fff; border:medium none; padding:15px 0px; width:100%;}
+.ord-btn{font-size:16px; color:#fff; border:medium none; padding:13px 0px; width:100%;}
 .ord-text{font-size:3.7vw; color:#2c5770; opacity:0.7;}
 .ord-fail-text{font-size:5.6vw; color:#2c5770;font-weight:bold;}
 .btn-retry{background:#b22603;padding: 10px 0px 10px 0;border-radius: 0px;box-shadow: 0px 1px 8px 0px #666;}
@@ -410,7 +410,7 @@ input , button, select{outline:none;}
 .log-btn-img{padding-top: 2%;}
 .forgot-text{font-size: 14px; color: #b08685;}
 .forgot-text:focus,.forgot-text:hover{color: #b08685; text-decoration: none;cursor: pointer;}
-.log-text{padding:30px 16px 10px; text-align:center;}
+.log-text{padding:20px 16px 10px; text-align:center;}
 .text-box{text-align:center; padding:16px 16px 16px;}
 .text-line{border-top:1px solid #a24742; margin-top:2.8%;}
 .login-text{font-size:3.5vw; color:#a79a8e;}
