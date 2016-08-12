@@ -61,7 +61,6 @@ define(['app'], function(app) {
 			$scope.tempyouSaved = utility.getJStorageKey("tempyouSaved");
 			$scope.tempCartVal = utility.getJStorageKey("tempCartVal");
 			$scope.tempcouponValue = utility.getJStorageKey("tempcouponValue");
-            angular.element('body').css('overflow', 'auto');
             toggleLoader = function(flag) {
                 $scope.displayLoader = flag;
             };  
@@ -274,7 +273,7 @@ define(['app'], function(app) {
                                 $scope.couponModalShow = false;
 								$scope.subtotalAmount = data.CartDetail.subtotal;
                             }
-                        //handlePaymentResponse();
+                        handlePaymentResponse();
                     });
             };  
 
@@ -596,6 +595,7 @@ define(['app'], function(app) {
             $scope.paytmFormDetails = null;
             $scope.formUrl = null;
             getPaytmProcessingDetails = function(orderId, userId, mobileNo) {
+                toggleLoader(true); 
                 userService.getPaytmProcessingDetails(orderId, userId, utility.getJStorageKey("email"), mobileNo)
                     .then(function(data){ 
                         if(data.flag == 1){
@@ -605,6 +605,7 @@ define(['app'], function(app) {
                             $scope.paytmFormDetails.CUST_ID = userId;
                             $scope.paytmFormDetails.MOBILE_NO = mobileNo;
                             $scope.paytmFormDetails.TXN_AMOUNT = $scope.paytmFormDetails.TXN_AMOUNT.replace(",", ".");
+                            toggleLoader(false); 
                             //$scope.paytmFormDetails.CALLBACK_URL = location.href;
                             //console.log($scope.paytmFormDetails);
                             $timeout(function() {
