@@ -1,6 +1,6 @@
 <div ng-controller="categoryController">
     <header data-ng-include="'templates/header.html'"></header>
-    <article data-ng-hide="displayLoader" style="background: #ececec;">
+    <article data-ng-hide="displayLoader" style="background: #ececec;margin-top:105px;">
         <section>
 			<div class="row margin0">				
 				<div style="position: relative;">					
@@ -55,26 +55,7 @@
 					<span class="text-ellipsis">{{category.name}}</span>
 				</div>				
 			</div>
-			<!--<div class="row margin0">
-				<div class="row margin0" style="overflow: auto;">
-					<ul class="list-unstyled margin0 slide-ul list-inline-width">
-						<li data-ng-show="category.is_active" 
-	    					data-ng-repeat="category in categories">
-							<img src="{{categoryImageUrl}}{{category.category_id}}.png" title="{{category.name}}" 
-								class="slide-img"
-								analytics-on analytics-event="{{ selectedCity }}"
-								analytics-category="L1" 
-								analytics-label="{{ category.name }}"
-								data-ng-click="routerChange('category', category.category_id)">
-							<div class="slide-text"
-								data-ng-click="routerChange('category/offers', category.category_id)"
-								style="width:100%; ">{{category.offerCount}} OFFERS
-								<img src="images/app_bar_icons/offer-img-arrow.png" class="offer-arrow-img">
-								</div>
-						</li>
-					</ul>					
-				</div>
-			</div>-->
+			
 		</section>
 		<section>
 			<div class="row specialdeal">
@@ -97,33 +78,7 @@
 						data-ng-click="handleBannerClick(banner)">
 				</div>
 			</div>
-			<!--<div class="row margin0 pad-l-9p">
-				<div class="col-md-12 col-sm-12 col-xs-12 slider-text center-align padd0">
-					<div class="col-md-1 col-sm-1 col-xs-1 padd0 slide-border col-md-offset-1 col-sm-offset-1 col-xs-offset-1"></div>
-					<div class="col-md-7 col-sm-7 col-xs-7 padd0">SHOP BY DEALS</div>
-					<div class="col-md-1 col-sm-1 col-xs-1 padd0 slide-border"></div>
-				</div>
-			</div>-->
-			<!--<div class="row margin0">
-				<div class="row margin0" style="overflow: auto;">
-					<ul class="list-unstyled slide-ul margin0 list-inline-width-2">
-						<li data-ng-show="deals.length"
-							data-ng-hide="deal.dealType == 'Bill Buster'" 
-	    					data-ng-repeat="deal in deals"
-
-	    					analytics-on analytics-event="{{ selectedCity }}"
-							analytics-category="Deal Category L1" 
-							analytics-label="{{ deal.dealType }}"
-
-	    					data-ng-click="routerChange('deals', deal.id)">
-	    					<img src="{{deal.img}}" 
-								title="{{deal.dealType}}" class="slide-img">
-							<!-- <img src="images/Deal Images/{{deal.dealType}}.png" 
-								title="{{deal.dealType}}" class="slide-img">
-						</li>												
-					</ul>					
-				</div>
-			</div> -->
+			
 			<div class="row margin0 pad-l-9p">
 				<div class="col-md-12 col-sm-12 col-xs-12 slider-text center-align padd0">
 					<div class="col-md-1 col-sm-1 col-xs-1 padd0 slide-border col-md-offset-1 col-sm-offset-1 col-xs-offset-1"></div>
@@ -152,11 +107,7 @@
 			</div>
 		</section>
     </article>
-    <!--<div class="popupcontainerloader" style="position:fixed;"
-        data-ng-show="displayLoader">        
-        <div class="loaderimg">
-        	<img src="images/ajax-loader.gif" /></div>
-    </div>-->
+   
     <div data-ng-show="displayLoader" class="black_shade">
 		<img src="images/ajax-loader.gif" />
 	</div> 
