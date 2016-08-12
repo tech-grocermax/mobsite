@@ -35,6 +35,7 @@ define(['app'], function(app) {
             $scope.isUserLoggedIn = angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId") ? true : false;
             $scope.cartItems = [];
             $scope.cartItemCount = 0;
+            angular.element('body').css('overflow', 'auto');
             $scope.quoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
             if(!$scope.quoteId) {
                 $location.path("/");
@@ -301,6 +302,7 @@ define(['app'], function(app) {
                 if($scope.creditMethod == true){
                  $scope.creditMethod = false;
                  $scope.paymentMethod = '';
+                 $scope.disSelectPaymentMethid();
                 }else{
                     $scope.creditMethod = true;
                 }
@@ -594,6 +596,7 @@ define(['app'], function(app) {
             $scope.paytmFormDetails = null;
             $scope.formUrl = null;
             getPaytmProcessingDetails = function(orderId, userId, mobileNo) {
+                toggleLoader(true); 
                 userService.getPaytmProcessingDetails(orderId, userId, utility.getJStorageKey("email"), mobileNo)
                     .then(function(data){ 
                         if(data.flag == 1){
@@ -603,6 +606,7 @@ define(['app'], function(app) {
                             $scope.paytmFormDetails.CUST_ID = userId;
                             $scope.paytmFormDetails.MOBILE_NO = mobileNo;
                             $scope.paytmFormDetails.TXN_AMOUNT = $scope.paytmFormDetails.TXN_AMOUNT.replace(",", ".");
+                            toggleLoader(false); 
                             //$scope.paytmFormDetails.CALLBACK_URL = location.href;
                             //console.log($scope.paytmFormDetails);
                             $timeout(function() {
@@ -620,7 +624,7 @@ define(['app'], function(app) {
                 //$analytics.eventTrack($scope.selectedCity, {  category: "Review and Place order" });
                 $scope.isOrderPlaced = true;
                 if($scope.paymentMethod == "paytm_cc" 
-                    || $scope.paymentMethod == "cashondelivery") { 
+                    || $scope.paymentMethod == "cashondelivery") {
                     toggleLoader(true);
                     $scope.isHidePlacedBtn =true;
                     var userId = utility.getJStorageKey("userId"),
@@ -633,15 +637,17 @@ define(['app'], function(app) {
                                     getPaytmProcessingDetails(data.OrderID, userId, checkoutDetails[$scope.quoteId]["shippingAddress"].telephone);
                                 } else {                                    
                                     flushData();
-                                    $location.url("payment/success/" + data.OrderID);
-                                }
-                                try{
+                                    handlePaymentResponse();
+                                    try{
                                     userService.trackorderdetails(data.OrderID).then(function(data){
                                         if(data.flag==1){
                                             dataLayer.push(data.newgtm);
                                         }
                                     });
-                                }catch(err) { }
+                                    }catch(err) { }
+
+                                    $location.url("payment/success/" + data.OrderID);
+                                }
                             } 
 							
 							else if(data.flag == 3){
