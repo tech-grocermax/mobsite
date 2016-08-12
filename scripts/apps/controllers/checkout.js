@@ -35,6 +35,7 @@ define(['app'], function(app) {
             $scope.isUserLoggedIn = angular.isDefined(utility.getJStorageKey("userId")) && utility.getJStorageKey("userId") ? true : false;
             $scope.cartItems = [];
             $scope.cartItemCount = 0;
+            angular.element('body').css('overflow', 'auto');
             $scope.quoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
             if(!$scope.quoteId) {
                 $location.path("/");
