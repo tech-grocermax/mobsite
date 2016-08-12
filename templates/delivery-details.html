@@ -16,8 +16,7 @@
 <section>
 	<div class="row margin0 pad-lt16 pad-rt16">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 del-day-box">
-			<span>DELIVERY DATE</span>
-			<span class="float-rt">{{renderDeliveryDate(selectedDeliveryDate)}}</span>
+			<span>DATE</span>
 		</div>
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0"
 			data-ng-show="deliverySlotIndex == $index"
@@ -47,9 +46,12 @@
 				</div>
 			</div>
 			
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 del-day-box">
-				<span>DELIVERY TIME</span>
-				<span class="float-rt">{{selectedDeliveryTime}}</span>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 del-day-box" style="text-align:center;">
+				<span>TIME</span>
+				<span style="font-size: 14px;font-weight: 600;" class="error-message"
+					data-ng-show="isClicked && (!shouldProceed || !isDeliveryProceedEnabled())">
+					Delivery Details
+				</span>
 			</div>
 			<div class="row margin0"
 				style="font-family: roboto;">
@@ -65,13 +67,17 @@
 							style="position:absolute; left:30%; top:60%; color:#ee2d09; ">SLOT FULL</div>
 					</div>										
 				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top10 padd0">
+					<div class="del-status">
+						<p>Delivery Date</p>
+						<p data-ng-show="selectedDeliveryDate">{{renderDeliveryDate(selectedDeliveryDate)}}</p>
+					</div>
+					<div class="del-status">
+						<p>Delivery Time</p>
+						<p data-ng-show="selectedDeliveryTime">{{selectedDeliveryTime}}</p>
+					</div>
+				</div>
 			</div>					
-		</div>
-	</div>
-	<div class="row margin0">
-		<div style="text-align:center; padding:10px 0px;" class="error-message"
-			data-ng-show="isClicked && (!shouldProceed || !isDeliveryProceedEnabled())">
-			Please select delivery details
 		</div>
 	</div>
 	<div class="row margin0" style="margin-top:25%;">

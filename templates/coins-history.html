@@ -16,7 +16,8 @@
 					</p>
 					<p style="margin:0;font-size: 12px;font-weight: 400;color: #afafaf;">
 						<span>Coupon {{action_types[rcoins.type_action]}}: <span style="color: #000;">{{rcoins.coupon_code}}</span></span>
-						<span style="float:right;">Valid Till : {{rcoins.coupon_exp_date}}</span>
+						<span style="float:right;" ng-if="rcoins.coupon_exp_date != '0000-00-00'">Valid Till : {{rcoins.coupon_exp_date}} </span>
+						<span style="float:right;" ng-if="rcoins.coupon_exp_date == '0000-00-00'">Valid Till : N/A </span>
 					</p>
 				</div>
 		</div>

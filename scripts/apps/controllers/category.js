@@ -673,6 +673,22 @@ define(['app'], function(app) {
             $scope.showShopByCategory = true;
             $scope.showShopByDeals = false;
 
+            $scope.toggleMaxMoneyCategory = function(){
+                if(utility.getJStorageKey("userId")){
+                    $location.url('user/maxmoneyhistory');
+                }else {
+                    $location.url('user/login');
+                }
+            };
+
+            $scope.toggleCoinsCategory = function(){
+                if(utility.getJStorageKey("userId")){
+                    $location.url('user/coinshistory');
+                }else {
+                    $location.url('user/login');
+                }
+            };
+
             $scope.toggleShopByCategory = function() {
                 if($scope.showShopByCategory) {                    
                     $scope.showShopByCategory = false;

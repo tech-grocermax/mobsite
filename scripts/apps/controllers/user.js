@@ -11,6 +11,7 @@ define(['app'], function(app) {
                     || $scope.sectionName == "editprofile"
                     || $scope.sectionName == "address"
                     || $scope.sectionName == "addaddress"
+                    || $scope.sectionName == "maxmoneyhistory"
                     || $scope.sectionName == "coinshistory"
                     || $scope.sectionName == "editaddress"
                     || $scope.sectionName == "orderhistory")){
@@ -51,6 +52,7 @@ define(['app'], function(app) {
                 "addaddress" : false,
                 "editaddress" : false,
                 "coinshistory" : false,
+                "maxmoneyhistory" : false,
                 "orderhistory" : false
             };
             if(utility.getJStorageKey("userId")){
@@ -127,7 +129,10 @@ define(['app'], function(app) {
                 $scope.categoryName = "Edit Address";
                 $scope.columnSize = 10;
             } else if ($scope.section.coinshistory) {
-                $scope.categoryName = "Max Coins History";
+                $scope.categoryName = "Max Coins";
+                $scope.columnSize = 10;  
+            } else if ($scope.section.maxmoneyhistory) {
+                $scope.categoryName = "Refund Wallet";
                 $scope.columnSize = 10;  
             } else if ($scope.section.orderhistory) {
                 $scope.categoryName = "Order History";
@@ -730,11 +735,32 @@ define(['app'], function(app) {
                         toggleLoader(false);
                         $scope.coinsBalance = data.totalPoint;
                         $scope.coinsHistory = data.redeemLog;
+                        angular.element('body').css('overflow', 'auto');
+                    });
+            }
+            
+            if($scope.sectionName == "coinshistory"){
+                if(utility.getJStorageKey("userId")){
+                    getMaxCoinsHistory();
+                }    
+            }
+            
+            getMaxMoneyHistory = function(){
+                toggleLoader(true);
+                userService.getMaxMoneyHistory(utility.getJStorageKey("userId"))
+                    .then(function(data){
+                        toggleLoader(false);
+                        $scope.MaxMoneyBalance = data.balance;
+                        $scope.MaxMoneyHistory = data.log;
+                        angular.element('body').css('overflow', 'auto');  
+                        //console.log(data);
                     });
             }
 
-            if($scope.sectionName == "coinshistory"){
-                getMaxCoinsHistory();
+            if($scope.sectionName == "maxmoneyhistory"){
+                if(utility.getJStorageKey("userId")){
+                    getMaxMoneyHistory();
+                }
             }
 			
 			$scope.reOrder = function(increment_id , order){
