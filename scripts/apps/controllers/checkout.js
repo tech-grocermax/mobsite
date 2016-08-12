@@ -301,6 +301,7 @@ define(['app'], function(app) {
                 if($scope.creditMethod == true){
                  $scope.creditMethod = false;
                  $scope.paymentMethod = '';
+                 $scope.disSelectPaymentMethid();
                 }else{
                     $scope.creditMethod = true;
                 }
@@ -620,7 +621,7 @@ define(['app'], function(app) {
                 //$analytics.eventTrack($scope.selectedCity, {  category: "Review and Place order" });
                 $scope.isOrderPlaced = true;
                 if($scope.paymentMethod == "paytm_cc" 
-                    || $scope.paymentMethod == "cashondelivery") { 
+                    || $scope.paymentMethod == "cashondelivery") {
                     toggleLoader(true);
                     $scope.isHidePlacedBtn =true;
                     var userId = utility.getJStorageKey("userId"),
