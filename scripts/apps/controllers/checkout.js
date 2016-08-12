@@ -634,15 +634,17 @@ define(['app'], function(app) {
                                     getPaytmProcessingDetails(data.OrderID, userId, checkoutDetails[$scope.quoteId]["shippingAddress"].telephone);
                                 } else {                                    
                                     flushData();
-                                    $location.url("payment/success/" + data.OrderID);
-                                }
-                                try{
+                                    handlePaymentResponse();
+                                    try{
                                     userService.trackorderdetails(data.OrderID).then(function(data){
                                         if(data.flag==1){
                                             dataLayer.push(data.newgtm);
                                         }
                                     });
-                                }catch(err) { }
+                                    }catch(err) { }
+                                    
+                                    $location.url("payment/success/" + data.OrderID);
+                                }
                             } 
 							
 							else if(data.flag == 3){
