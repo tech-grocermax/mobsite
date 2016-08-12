@@ -61,6 +61,7 @@ define(['app'], function(app) {
 			$scope.tempyouSaved = utility.getJStorageKey("tempyouSaved");
 			$scope.tempCartVal = utility.getJStorageKey("tempCartVal");
 			$scope.tempcouponValue = utility.getJStorageKey("tempcouponValue");
+            angular.element('body').css('overflow', 'auto');
             toggleLoader = function(flag) {
                 $scope.displayLoader = flag;
             };  
@@ -273,7 +274,7 @@ define(['app'], function(app) {
                                 $scope.couponModalShow = false;
 								$scope.subtotalAmount = data.CartDetail.subtotal;
                             }
-                        handlePaymentResponse();
+                        //handlePaymentResponse();
                     });
             };  
 
@@ -642,7 +643,7 @@ define(['app'], function(app) {
                                         }
                                     });
                                     }catch(err) { }
-                                    
+
                                     $location.url("payment/success/" + data.OrderID);
                                 }
                             } 
