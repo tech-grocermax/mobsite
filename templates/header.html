@@ -4,26 +4,27 @@
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0" 
                 data-ng-show="columnSize == 1">
                 <a href="/#/">
-					<!--<img src="images/header-icon/home.png" title="Home" class="head-icon-width">-->
-					<span class="head-icon-width"></span>
+					<img src="images/reheadericonsize/home.png" title="Home" class="">
+					<!--<span class="head-icon-width"></span>-->
 				</a>
             </div>
             <!--data-ng-click="showUserMenu()"
                 outsideclick="handleOutSideClick()"-->
 			<div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 margin-lt15p" style="width:40%;" data-ng-show="columnSize == 1 && showMoreIcon">
 				<img src="images/location-nav.png" title="User" class="locate-img" data-ng-hide="selectedCity">
-				<img src="images/location-nav-fill.png" title="User" class="locate-img" data-ng-show="selectedCity" >
+				<!--<img src="images/location-nav-fill.png" title="User" class="locate-img" data-ng-show="selectedCity" >-->
+				<img src="images/reheadericonsize/location2.png" title="User" class="" data-ng-show="selectedCity" >
 				<span class="locate-text">{{selectedCity}}</span>
 			</div>
             <div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 margin-lt3p" 
                 data-ng-show="columnSize == 1" data-ng-class="{'margin-lt22p': !showMoreIcon}">
                 <a href="#/user/profile" data-ng-show="isUserLoggedIn">
-					<!--<img src="images/header-icon/user_icon_1.png" title="User" class="head-user-icon">-->
-                    <span class="user-icon-1"></span>
+					<img src="images/reheadericonsize/profile2.png" title="User" class="">
+                    <!--<span class="user-icon-1"></span>-->
 				</a>
                 <a href="#/user/login" data-ng-show="!isUserLoggedIn">
-                    <!--<img src="images/header-icon/user_icon_2.png" title="User" class="head-user-icon">-->
-					<span class="user-icon-2"></span>
+                  <img src="images/reheadericonsize/profile.png" title="User" class="">
+					  <!--<span class="user-icon-2"></span>-->
 				</a>                
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd0" 
@@ -88,8 +89,8 @@
 
                     data-ng-click="navigateToCart()">
                     <a href="javascript:void(0);">
-                        <!--<img src="images/header-icon/cart.png" title="Cart" class="head-icon-width">-->
-						<span class="cart-icon"></span>
+                      <img src="images/reheadericonsize/cart.png" title="Cart" class="">
+						  <!--<span class="cart-icon"></span>-->
 					</a>
                     <div class="header-O" data-ng-show="cartItemCount > 0">
                         {{cartItemCount}}</div>
