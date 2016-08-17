@@ -1,9 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
 
-
-
-
 @font-face {
     font-family: 'gotham_mediumregular';
     src: url('../font/gotham_medium_regular-webfont.eot');
@@ -767,7 +764,7 @@ input , button, select{outline:none;}
 	.cat-img-mrg {margin-top: 105px;}
 	/*.prod-sec{margin-bottom: 153px;}*/
 	/*.left-menu{top: 93.2%;}*/
-	.top-subhead {top: 42px;height: 32px;}
+	.top-subhead {top: 42px;height: 34px;}
 	
 	.prod-nav-li {padding:  12px;}
 	.reg-btn {padding: 3.8% 0 4% 5%;font-size: 5vw;}

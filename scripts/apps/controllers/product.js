@@ -35,6 +35,7 @@ define(['app'], function(app) {
             $scope.productQty = {};
             $scope.isCartUpdated = false;
             $scope.couponDescripTogle = false;
+			$scope.specialDealBanner = false;
             $scope.cityList = [{
                 api_url:        "api/",
                 city_name:      "Gurgaon",
@@ -1075,6 +1076,7 @@ define(['app'], function(app) {
             }
 			
             if($scope.sku){
+				$scope.specialDealBanner = true;
                 $scope.columnSize = 11;
             } else if($scope.topOfferDealId){
                 $scope.columnSize = 12;
