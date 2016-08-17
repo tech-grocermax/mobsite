@@ -309,6 +309,7 @@ define(['app'], function(app) {
                         groupAllProductByCategory(data);
                         toggleLoader(false);
                         $scope.isProductLoaded = true;
+						$scope.specialDealBannerImg = data.dealPageImage;
                     });
             }
 
