@@ -15,9 +15,9 @@ define(['app'], function(app) {
             $scope.jStorageQuoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
             $scope.quoteId = angular.isDefined($routeParams.quoteId) ? $routeParams.quoteId : null;
             $scope.parentCatId = angular.isDefined($routeParams.parentId) ? $routeParams.parentId : null ;
-            if($routeParams.sku){
+            /*if($routeParams.sku){
                 $scope.specialDealName = angular.isDefined($routeParams.sku.split("@")[1]) ? $routeParams.sku.split("@")[1] : "Offer" ;
-            }
+            }*/
             $scope.topOfferDealId = angular.isDefined($routeParams.dealCategoryId) ? $routeParams.dealCategoryId : null ;
             $scope.products = [];
             $scope.productDetails = null;
@@ -237,6 +237,7 @@ define(['app'], function(app) {
                                 //console.log(data.dealcategory.name);console.log(dataLayer);
                             }catch(err){console.log("Error in GTM fire.");}
                         // end GTM Code
+						console.log(data);
                         $scope.categoryName = data.dealcategory.name;
                         groupAllProductByCategory(data);
                         $scope.isProductLoaded = true;
@@ -310,6 +311,7 @@ define(['app'], function(app) {
                         toggleLoader(false);
                         $scope.isProductLoaded = true;
 						$scope.specialDealBannerImg = data.dealPageImage;
+						$scope.specialDealName = data.dealName;
                     });
             }
 
