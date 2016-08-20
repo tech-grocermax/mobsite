@@ -662,6 +662,7 @@ input , button, select{outline:none;}
 .del-status{margin: 10px 0 10px 0;height: 28px;}
 .del-status > p:nth-child(1){display: inline-block;width: 100px;font-size: 12px;font-weight: bold;margin:0;}
 .del-status > p:nth-child(2){width: 190px;display: inline-block;text-align: center;background-color: #e62e12;color: #fff;padding: 4px 0 4px 0;border-radius: 20px;font-size: 14px;margin:0;}
+.head-icon-size {width: 36px;}
 @media  (max-width: 480px){
 	.close-btn{position: absolute;top: 5px;right: 5px;width:25px;}
 	.margin-0-m{margin:0}
@@ -819,6 +820,7 @@ input , button, select{outline:none;}
 	.coupon-bar1 .aplly-btn,.coupon-bar1 .remove-btn {font-size: 14px;width: 90px;height: 35px;}
 	.coupon-btn{font-size: 16px;}
 	.price-strip{width: 130px;}
+	.head-icon-size {width: 28px;}
 }
 
 @media  (max-width: 360px){
@@ -874,6 +876,7 @@ input , button, select{outline:none;}
 	.price-strip{width: 95px;}
 	.del-status > p:nth-child(1){width:85px;}
 	.del-status > p:nth-child(2){width:175px;}
+	.head-icon-size {width: 23px;}
 }
 
 
