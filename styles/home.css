@@ -805,7 +805,7 @@ input , button, select{outline:none;}
 	.list-img-box{height: 135px;}
 
 	.cart-box-botom {bottom: 45px;}
-	.header-O{right:-12px}
+	.header-O{right:-5px}
 	
 
 	.loc-icon{width: 5%;margin-top: 0;}
@@ -848,7 +848,7 @@ input , button, select{outline:none;}
 	.user-wrapper {margin-top: 52px;}
 	.plus-minus-btn{width:50%;}
 		.plus-minus-btn.carticons{width:100px!important; margin-top: 10px;}
-		.header-O{right:-12px}
+		.header-O{right:-10px}
 	.wrapper{margin-top: 52px;}
 	.reg-btn-margin {margin-top: 68px;}
 	.cart-img-heigth{height:90px;}
