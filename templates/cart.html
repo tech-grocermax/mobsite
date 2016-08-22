@@ -47,22 +47,23 @@
 				<div class="price-strip" data-ng-hide="(product.price <= 0)"><span>₹ {{toFixedDecimal(product.qty * product.price)}}</span></div>
                 <ul class="list-unstyled cat-list" 
                     data-ng-show="(product.price > 0) && (product.webqty > 0)">
-                    <li class=""  style="width: 32px;float: left;"                         
+                    <li class="" style="float: left;width: 30px;height: 30px;text-align: center;border-radius: 28px;font-size: 44px;line-height: 23px;color: #5f5d5d;box-shadow: 0px 0px 0.6px 1px #525252;background: #f4f4f4;"                         
                         data-ng-click="decreaseCartProductQuantity(product, 'product_id')">
 						<!--<img src="images/app_bar_icons/minus-img.png" class="img-responsive">-->
-						<!--<span class="cat-minus-img"></span>	-->
-						<img src="images/minu.png" class="img-responsive">
+						<!--<span class="cat-minus-img"></span>	->
+						<img src="images/minu.png" class="img-responsive">-->
+						-
 					</li>
-                    <li class="cat-input-box">
+                    <li class="cat-input-box" style="margin: 0 0 0 2px;">
                         <input type="text" placeholder="1" class="cat-input-text"
                             value="{{product.qty}}" readonly>
                     </li>
-                    <li class="" style="width: 32px;float: right;"  
+                    <li class="" style="float: right;width: 30px;height: 30px;text-align: center;border-radius: 28px;font-size: 24px;font-weight: bold;line-height: 28px;color: #5f5d5d;box-shadow: 0px 0px 0.6px 1px #525252;background: #f4f4f4;"  
                         data-ng-click="increaseCartProductQuantity(product, 'product_id')">
 						<!--<img src="images/app_bar_icons/plus-img.png" class="img-responsive">-->
-						<!--<span class="cat-plus-img"></span>-->
-						<img src="images/plus.png" class="img-responsive">
-					
+						<!--<span class="cat-plus-img"></span>->
+						<img src="images/plus.png" class="img-responsive">-->
+						+
 					</li>
                 </ul>
                 <ul class="list-unstyled cat-list disable"
@@ -149,15 +150,16 @@
 										<span style="color: #ee2d09;" data-ng-show="(product.webqty <= 0)">Sold Out</span>
 										<span data-ng-click="removeCartItem(product)" class="removeBtn" data-ng-class="{ removeBtnName:hideCartItem(product)}">{{hideCartItem(product) ? 'Removed' : 'Remove'}}</span>
 									</p>
-									<p data-ng-show="(product.product_id == MaxAvailQtyPid) && (MaxAvailQty > product.webqty && product.webqty != 0)"style="display: inline-block;margin: 0;font-size: 12px;font-weight: 600;"> <span style="color: darkblue;margin-top: 2%;"> AVAILABLE QTY. {{product.webqty}} </span> 
+									<p data-ng-show="(product.product_id == MaxAvailQtyPid) && (MaxAvailQty > product.webqty && product.webqty != 0)"style="display: inline-block;margin: 0;font-size: 12px;font-weight: 600;"> <span style="color: darkblue;margin-top: 2%;"> AVAILABLE QTY. {{product.webqty}} </span> {{product.product_id}}-{{MaxAvailQtyPid}}-{{MaxAvailQty}}-{{product.webqty}}
 										<ul class="list-unstyled cat-list" style="width:72px;" data-ng-hide="product.webqty == 0">
 						                    <li class="cat-input-box">
 						                        <input type="text" placeholder="1" class="cat-input-text"
 						                            value="{{product.qty}}" readonly style="background: transparent;">
 						                    </li>
-						                    <li class=""  style="width: 30px;float: left;"                         
-						                        data-ng-click="decreaseCartProductQuantity(product, 'product_id')">
-												<img src="images/minu.png" class="img-responsive">
+						                    <li class=""  style="float: left;width: 30px;height: 30px;text-align: center;border-radius: 28px;font-size: 44px;line-height: 23px;color: #5f5d5d;box-shadow: 0px 0px 0.6px 1px #525252;background: #f4f4f4;"
+											data-ng-click="decreaseCartProductQuantity(product, 'product_id')">
+												<!--<img src="images/minu.png" class="img-responsive">-->
+												-
 											</li>
 						                </ul>
 
