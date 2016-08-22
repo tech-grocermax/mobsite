@@ -52,17 +52,19 @@
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0 plus-minus-btn"
 						data-ng-show="specialdealitem.Status == 'In stock'">
 						<ul class="list-unstyled cat-list">
-							<li class=""  style="width: 30px;float: left;"  
+							<li class="reduce-item-btn" 
                                 data-ng-click="decreaseProductQuantity(specialdealitem.productid, 'productid')">
-								<img src="images/minu.png" class="img-responsive">
+								<!--<img src="images/minu.png" class="img-responsive">-->
+								-
 							</li>
-							<li class="cat-input-box">
+							<li class="cat-input-box" style="margin: 0 0 0 2px;">
 								<input type="text" value="{{specialdealitem.quantity}}" 
                                     class="cat-input-text" readonly >
 							</li>
-							<li class="" style="width: 30px;float: right;" 
+							<li class="increase-item-btn"  
                                 data-ng-click="increaseProductQuantity(specialdealitem.productid, 'productid')">
-								<img src="images/plus.png" class="img-responsive">
+								<!--<img src="images/plus.png" class="img-responsive">-->
+								+
 							</li>
 						</ul>
 					</div>
