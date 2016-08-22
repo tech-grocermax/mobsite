@@ -199,7 +199,7 @@ input , button, select{outline:none;}
 .search-bar{width: 100%; font-family: robotolight; font-size:14px;/*font-size: 3.5vw;*/ padding: 8px 0 8px 5px; border: medium none;margin:1px;}
 
 .search-icon-pos{float: right;width: 24px;/* top:7px;*/}
-.head-text{color:#fff;font-size: 17px; cursor: pointer; letter-spacing: 1px;font-weight: bold;}
+.head-text{color:#fff;font-size: 17px; cursor: pointer; letter-spacing: 1px;font-weight: bold;padding: 0px 0 0 9px;}
 /*.img-box{background: #fff;border-radius: 3px;box-shadow:0 7px 5px rgba(0, 0, 0, 0.2);}*/
 .imgbox-margin{margin: 7.5px;}
 .deals-img{margin-top:92px;}
