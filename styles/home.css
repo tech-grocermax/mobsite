@@ -196,7 +196,7 @@ input , button, select{outline:none;}
 .margin-tp-13p{margin-top:13%;}
 .margin-t40{margin-top: 40px;}
 .float-rt{float: right;}
-.search-bar{width: 100%; font-family: robotolight; font-size:14px;/*font-size: 3.5vw;*/ padding: 8px 0 8px 5px; border: medium none;margin:1px;}
+.search-bar{width: 100%; font-family: robotolight; font-size:14px;/*font-size: 3.5vw;*/ padding: 10px 0 8px 5px; border: medium none;margin:1px;}
 
 .search-icon-pos{float: right;width: 24px;/* top:7px;*/}
 .head-text{color:#fff;font-size: 17px; cursor: pointer; letter-spacing: 1px;font-weight: bold;padding: 0px 0 0 9px;}
