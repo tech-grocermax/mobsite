@@ -200,10 +200,10 @@ define(['app'], function(app) {
                         oldCartCount = data.TotalItem;
                     }
                     utility.setJStorageKey("cartCounter" + data.QuoteId, oldCartCount, 1);
-                    try{
+                    /*try{
                         dataLayer = [{'userID' : utility.getJStorageKey("userId")}];
                         console.log(dataLayer);
-                    }catch(err){console.log("Error in GTM fire.");}  
+                    }catch(err){console.log("Error in GTM fire.");}  */
                     //cartCounterKey
                     /*var quoteId = utility.getJStorageKey("quoteId"),
                     cartCounterKey = "cartCounter" + quoteId,
