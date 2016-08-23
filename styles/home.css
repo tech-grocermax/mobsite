@@ -321,7 +321,7 @@ input , button, select{outline:none;}
 .cat-minus img{position: absolute;top: 43%;left: 15%;transform: translate(-50%,-50%);width: 10%;}
 .cat-plus{width: 30%; background: #f4f4f4; float:left; height:34px;/*text-align: center;padding-top: 13px;  color: rgb(125, 125, 125); text-transform: full-width; font-weight: lighter; font-size: 32px; padding-top: 2px;*/}
 .cat-plus img{position: absolute;top: 43%;left: 85%;transform: translate(-50%,-50%);width: 10%;}
-.cat-input-box{width: 34px; /*border-right: 1px solid #e4e4e4; */float:left; height:34px;}
+.cat-input-box{width: 34px; /*border-right: 1px solid #e4e4e4; */float:left; height:28px;}
 .cat-input-text{text-align: center; width: 100%; /*font-size: 6vw;*/font-size: 20px; padding-bottom: 4px; padding-top: 4px; border: medium none;color: #4d4d4d; font-weight: 600;}
 .back-icon-mrg{margin-top: 1.4%;}
 
@@ -665,8 +665,8 @@ input , button, select{outline:none;}
 .head-icon-size {width: 36px;}
 
 /*Cart reduce and increase button*/
-.reduce-item-btn{float: left;width: 28px;height: 28px;text-align: center;border-radius: 28px;/*font-size: 44px;line-height: 20px;*/color: #5f5d5d;box-shadow: 0px 0px 0.2px 1px #525252;background: #f4f4f4;}
-.reduce-item-btn p {font-size: 44px;line-height: 0px;margin: 10px 0 0 0;}
+.reduce-item-btn{float: left;width: 28px;height: 28px;text-align: center;border-radius: 28px;/*font-size: 44px;line-height: 20px;*/color: #5f5d5d;box-shadow: 0px 0px 0.2px 1px #525252;background: #f4f4f4;padding: 10px 0 10px 0;}
+.reduce-item-btn p {font-size: 44px;line-height: 0px;}
 .increase-item-btn{width: 28px;height: 28px;border-radius: 28px;font-size: 22px;font-weight: bold;/*float:right;line-height: 26px;*/color: #5f5d5d;box-shadow: 0px 0px 0.2px 1px #525252;background: #f4f4f4;text-align:center;position: absolute;
     right: 0;}
 .increase-item-btn> div {margin: -3px 0 0 1px;}
