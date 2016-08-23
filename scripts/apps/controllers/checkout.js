@@ -40,9 +40,9 @@ define(['app'], function(app) {
             if(!$scope.quoteId) {
                 $location.path("/");
             }
-            if(utility.getJStorageKey("userId")){
+            /*if(utility.getJStorageKey("userId")){
                 dataLayer = [{'userID' : utility.getJStorageKey("userId")}];
-            }
+            }*/
             $scope.youSaved = 0;
             $scope.totalCartQty = 0;
             $scope.paymentMethod = null;
@@ -648,6 +648,7 @@ define(['app'], function(app) {
                                     try{
                                     userService.trackorderdetails(data.OrderID).then(function(data){
                                         if(data.flag==1){
+                                            console.log(data.newgtm);
                                             dataLayer.push(data.newgtm);
                                             console.log(dataLayer);
                                         }
