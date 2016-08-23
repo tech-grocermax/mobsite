@@ -10,9 +10,10 @@
                 <ul class="list-unstyled" style="text-align: center;">
                     <li class="prod-list-h">
                         {{productDetails.p_brand}}
-                        <img src="images/app_bar_icons/cart_add_quantity.png" 
+                        <!--<img src="images/app_bar_icons/cart_add_quantity.png" 
                             data-ng-show="getCartProductQuantity(productDetails.product_id) > 0"
-                            class="img-responsive cart-image">
+                            class="img-responsive cart-image">-->
+						<span class="cart-item-sharp-icon" data-ng-show="getCartProductQuantity(productDetails.product_id) > 0"></span>
                         <span class="cart-txt"
                             data-ng-show="getCartProductQuantity(productDetails.product_id) > 0">
                             {{getCartProductQuantity(productDetails.product_id)}}</span>

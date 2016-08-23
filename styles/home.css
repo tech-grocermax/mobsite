@@ -485,7 +485,7 @@ input , button, select{outline:none;}
 .slide-img{width: 368px;}
 .dot-border{box-shadow:0px 2px 8px -5px; border-radius:4px; border:1px dashed #f07d67;}
 .succes-back{background-image:url('../images/order-back.png'); background-attachment:fixed; background-position:center center; background-repeat:no-repeat; background-size:cover;padding-bottom: 30px;}
-.cart-image{position: absolute;right: 16px;top: 6%;    width: 32px;}
+/*.cart-image{position: absolute;right: 18px;top: 8%;width: 28px;}*/
 .cart-txt{font-size: 13px; position: absolute; right: 26px; top: 4.5%;color: #0e69e5;  /* width: 24px;*/}
 .add-btn{font-size: 14px;padding: 4px 0px;width: 66px;float: right;letter-spacing: 1px;border-radius: 20px;background: #0e69e5;color:#fff; border: none;font-family: gotham_bookregular;}
 .add-btn-box{float:right; right: 12px;width:28%;}
@@ -681,6 +681,7 @@ input , button, select{outline:none;}
 	.cart-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");    background-position: -364px 0px;display: block;height: 28px;width: 30px;background-size: 280px 28px;}
 	.search-sharp-icon {background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -452px 0px;display: block;height: 26px;width: 26px;background-size: 300px 32px;margin-top: 7px;}
 	.back-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -339px -1px;display: block;height: 20px;width: 20px;background-size: 240px 24px;float: left;margin-top: 2px;}
+	.cart-item-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");    background-position: -429px -2px;display: block;height: 20px;width: 28px;background-size: 250px 24px;float: left;margin-top: 2px;position: absolute;right: 18px;top: 7%;}
 	/*==================== SPRITE IMAGE STYLES END====================*/
 @media  (max-width: 480px){
 	.close-btn{position: absolute;top: 5px;right: 5px;width:25px;}

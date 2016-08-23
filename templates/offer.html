@@ -54,9 +54,10 @@
 					data-ng-click="routerChange('product/details', product.productid)">
                         <li class="prod-list-h">
 							{{product.p_brand}}							
-							<img src="images/app_bar_icons/cart_add_quantity.png" 
+							<!--<img src="images/app_bar_icons/cart_add_quantity.png" 
                                 data-ng-show="getCartProductQuantity(product.productid) > 0"
-                                alt="{{product.Name}}" class="img-responsive cart-image">
+                                alt="{{product.Name}}" class="img-responsive cart-image">-->
+							<span class="cart-item-sharp-icon" data-ng-show="getCartProductQuantity(product.productid) > 0"></span>
 							<span class="cart-txt"
                                 data-ng-show="getCartProductQuantity(product.productid) > 0">
                                 {{getCartProductQuantity(product.productid)}}</span>
