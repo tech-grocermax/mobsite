@@ -648,11 +648,7 @@ define(['app'], function(app) {
                                     try{
                                     userService.trackorderdetails(data.OrderID).then(function(data){
                                         if(data.flag==1){
-                                            console.log("GTM DATA FORMAT below");
-                                            console.log(data.newgtm);
                                             dataLayer.push(data.newgtm);
-                                            console.log("data layer log below");
-                                            console.log(dataLayer);
                                         }
                                     });
                                     }catch(err) { console.log(err); }
