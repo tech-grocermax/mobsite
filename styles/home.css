@@ -516,7 +516,7 @@ input , button, select{outline:none;}
 .cart-box-botom{position:fixed; bottom:45px; left:0; right:0;}
 .cart-margin{/*margin-bottom:5%; margin-top:65px;*/}
 .header-fix-top .header-middle{height:80px;}
-.top-height{height:34px;}
+.top-height{height:33px;}
 .deals-head .deals-hide{display: none;}
 .banner-slide{width:100%; height: 200px;}
 .cat-border .header-middle {height: auto;}
