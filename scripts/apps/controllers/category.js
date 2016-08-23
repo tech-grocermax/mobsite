@@ -37,9 +37,9 @@ define(['app'], function(app) {
 			//$scope.SpecialDealName = "";
 			//$scope.specialDealItemList = {};
             //$scope.cityList = null;
-            /*if(utility.getJStorageKey("userId")){
+            if(utility.getJStorageKey("userId")){
                 dataLayer = [{'userID' : utility.getJStorageKey("userId")}];
-            }*/
+            }
 
             $scope.cityList = [{
 				api_url: 		"api/",

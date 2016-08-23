@@ -23,9 +23,9 @@ define(['app'], function(app) {
             $scope.cityList = null;
             $scope.cityLocation = {};
 
-            /*if(utility.getJStorageKey("userId")){
+            if(utility.getJStorageKey("userId")){
                 dataLayer = [{'userID' : utility.getJStorageKey("userId")}];
-            }*/
+            }
             
             $scope.showMoreMenu = function() {
                 $scope.showUserMenuOptions = false;

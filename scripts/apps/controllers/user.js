@@ -55,9 +55,9 @@ define(['app'], function(app) {
                 "maxmoneyhistory" : false,
                 "orderhistory" : false
             };
-            /*if(utility.getJStorageKey("userId")){
+            if(utility.getJStorageKey("userId")){
                 dataLayer = [{'userID' : utility.getJStorageKey("userId")}];
-            }*/
+            }
             $scope.section[$scope.sectionName] = true;
             $scope.user = {
                 uemail: null,
