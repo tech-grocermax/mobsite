@@ -772,7 +772,7 @@ input , button, select{outline:none;}
 	.cat-img-mrg {margin-top: 105px;}
 	/*.prod-sec{margin-bottom: 153px;}*/
 	/*.left-menu{top: 93.2%;}*/
-	.top-subhead {top: 42px;height: 34px;}
+	.top-subhead {top: 42px;height: 33px;}
 	
 	.prod-nav-li {padding:  12px;}
 	.reg-btn {padding: 3.8% 0 4% 5%;font-size: 5vw;}
@@ -1094,7 +1094,7 @@ ul.plisting li.font-3{padding-top:3px}
 
 
 /*==================== SPRITE IMAGE STYLES ====================*/
-.head-icon-width{background-image:url("../images/m.site-sprite-image.png"); background-position:-259px 1px; display: block; height:28px; width:30px;}
+/*.head-icon-width{background-image:url("../images/m.site-sprite-image.png"); background-position:-259px 1px; display: block; height:28px; width:30px;}*/
 .user-icon-1{background-image:url("../images/m.site-sprite-image.png"); background-position:-220px -40px; display: block; height:28px; width:35px;}
 .user-icon-2{background-image:url("../images/m.site-sprite-image.png"); background-position:-262px -40px; display: block; height:28px; width:35px;}
 .cart-icon{background-image:url("../images/m.site-sprite-image.png"); background-position:-29px 0px; display: block; height:28px; width:35px;}
@@ -1124,7 +1124,12 @@ ul.plisting li.font-3{padding-top:3px}
 .plus-minus-btn {
     z-index:1;
 }
-
+/*==================== SPRITE IMAGE STYLES START====================*/
+.home-sharp-icon {background-image:url("../images/reheadericonsize/head-sprite.png"); background-position: 1px 0px;display: block;background-size: 137px 23px;height: 23px;width: 23px;}
+.location-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -164px 0px;display: block;height: 23px;width: 23px;background-size: 142px 23px;float: left;margin-right: 3px;}
+.user-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -175px 0px;display: block;height: 23px;width: 23px;background-size: 133px 23px;float: left;}
+.cart-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -210px 0px;display: block;height: 23px;width: 25px;background-size: 139px 23px;}
+/*==================== SPRITE IMAGE STYLES END====================*/
 .pos-inherit{position: inherit;height: 0;}
 #paymentFailed .modal-dialog{
 	position: fixed;

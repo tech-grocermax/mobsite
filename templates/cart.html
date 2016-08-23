@@ -56,13 +56,13 @@
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 cat-list-box pad-r10">
 				<div class="price-strip" data-ng-hide="(product.price <= 0)"><span>₹ {{toFixedDecimal(product.qty * product.price)}}</span></div>
-                <ul class="list-unstyled cat-list" 
+                <!--<ul class="list-unstyled cat-list" 
                     data-ng-show="(product.price > 0) && (product.webqty > 0)">
                     <li class="reduce-item-btn"                         
                         data-ng-click="decreaseCartProductQuantity(product, 'product_id')">
 						<!--<img src="images/app_bar_icons/minus-img.png" class="img-responsive">-->
 						<!--<span class="cat-minus-img"></span>	->
-						<img src="images/minu.png" class="img-responsive">-->
+						<img src="images/minu.png" class="img-responsive">->
 						-
 					</li>
                     <li class="cat-input-box" style="margin: 0 0 0 2px;">
@@ -73,10 +73,23 @@
                         data-ng-click="increaseCartProductQuantity(product, 'product_id')">
 						<!--<img src="images/app_bar_icons/plus-img.png" class="img-responsive">-->
 						<!--<span class="cat-plus-img"></span>->
-						<img src="images/plus.png" class="img-responsive">-->
+						<img src="images/plus.png" class="img-responsive">->
 						+
 					</li>
-                </ul>
+                </ul>-->
+				<div class="cat-list" data-ng-show="(product.price > 0) && (product.webqty > 0)">
+					<div class="reduce-item-btn" data-ng-click="decreaseCartProductQuantity(product, 'product_id')">
+						<div></div>
+					</div>
+					<div class="cat-input-box" style="margin: 0 0 0 2px;">
+						<input type="text" placeholder="1" class="cat-input-text"
+                            value="{{product.qty}}" readonly>
+					</div>
+					<div class="increase-item-btn" data-ng-click="increaseCartProductQuantity(product, 'product_id')">
+						<div></div>
+						<div></div>
+					</div>
+				</div>
                 
 
 				<!--<img src="images/sold-out.png" class="img-responsive" data-ng-show="(product.webqty <= 0)"

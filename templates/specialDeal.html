@@ -51,10 +51,10 @@
                     </ul>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0 plus-minus-btn"
 						data-ng-show="specialdealitem.Status == 'In stock'">
-						<ul class="list-unstyled cat-list">
+						<!--<ul class="list-unstyled cat-list">
 							<li class="reduce-item-btn" 
                                 data-ng-click="decreaseProductQuantity(specialdealitem.productid, 'productid')">
-								<!--<img src="images/minu.png" class="img-responsive">-->
+								<!--<img src="images/minu.png" class="img-responsive">->
 								-
 							</li>
 							<li class="cat-input-box" style="margin: 0 0 0 2px;">
@@ -63,10 +63,23 @@
 							</li>
 							<li class="increase-item-btn"  
                                 data-ng-click="increaseProductQuantity(specialdealitem.productid, 'productid')">
-								<!--<img src="images/plus.png" class="img-responsive">-->
+								<!--<img src="images/plus.png" class="img-responsive">->
 								+
 							</li>
-						</ul>
+						</ul>-->
+						<div class="cat-list">
+							<div class="reduce-item-btn" data-ng-click="decreaseProductQuantity(specialdealitem.productid, 'productid')">
+								<div></div>
+							</div>
+							<div class="cat-input-box" style="margin: 0 0 0 2px;">
+								<input type="text" value="{{specialdealitem.quantity}}" 
+                                    class="cat-input-text" readonly >
+							</div>
+							<div class="increase-item-btn" data-ng-click="increaseProductQuantity(specialdealitem.productid, 'productid')">
+								<div></div>
+								<div></div>
+							</div>
+						</div>
 					</div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0"
                         data-ng-class="{'add-btn-box': specialdealitem.Status == 'In stock',
