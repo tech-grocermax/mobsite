@@ -900,13 +900,13 @@ input , button, select{outline:none;}
 	.del-status > p:nth-child(2){width:175px;}
 	.head-icon-size {width: 23px;}
 	/*==================== SPRITE IMAGE STYLES START====================*/
-	.home-sharp-icon {background-image:url("../images/reheadericonsize/head-sprite.png"); background-position: 1px 0px;display: block;background-size: 230px 23px;height: 23px;width: 23px;}
-	.location-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -22px 0px;display: block;height: 23px;width: 22px;background-size: 239px 23px;float: left;margin-right: 3px;}
-	.user-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -278px 0px;display: block;height: 23px;width: 24px;background-size: 234px 23px;}
-	.user2-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -379px 0px;display: block;height: 23px;width: 23px;background-size: 236px 23px;}
-	.cart-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -310px 0px;display: block;height: 23px;width: 24px;background-size: 238px 23px;}
-	.search-sharp-icon {background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -452px 0px;display: block;height: 26px;width: 26px;background-size: 300px 32px;margin-top: 7px;}
-	.back-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -339px -1px;display: block;height: 20px;width: 20px;background-size: 240px 24px;float: left;margin-top: 2px;}
+	.home-sharp-icon {background-image:url("../images/reheadericonsize/head-sprite.png"); background-position: 1px 0px;display: block;background-size: 230px 61px;height: 23px;width: 23px;}
+	.location-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -22px 0px;display: block;height: 23px;width: 22px;background-size: 239px 61px;float: left;margin-right: 3px;}
+	.user-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -278px 0px;display: block;height: 23px;width: 24px;background-size: 234px 62px;}
+	.user2-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -379px 0px;display: block;height: 23px;width: 23px;background-size: 236px 62px;}
+	.cart-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -310px 0px;display: block;height: 23px;width: 24px;background-size: 238px 62px;}
+	.search-sharp-icon {background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -452px 0px;display: block;height: 26px;width: 26px;background-size: 300px 83px;margin-top: 7px;}
+	.back-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -339px -1px;display: block;height: 20px;width: 20px;background-size: 240px 62px;float: left;margin-top: 2px;}
 	/*==================== SPRITE IMAGE STYLES END====================*/
 }
 
