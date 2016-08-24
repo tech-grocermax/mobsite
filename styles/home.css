@@ -672,16 +672,18 @@ input , button, select{outline:none;}
 .increase-item-btn > div:nth-child(2) {width: 2px;height: 10px;}
 
 /*==================== SPRITE IMAGE STYLES START====================*/
-	.home-sharp-icon {background-image:url("../images/reheadericonsize/head-sprite.png"); background-position: 1px 0px;display: block;background-size: 284px 28px;height: 28px;width: 28px;}
-	.location-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -25px 0px;display: block;height: 28px;width: 26px;background-size: 276px 28px;float: left;margin-right: 3px;}
+	.home-sharp-icon {background-image:url("../images/reheadericonsize/head-sprite.png"); background-position: 1px 0px;display: block;background-size: 284px 74px;height: 28px;width: 28px;}
+	.location-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -25px 0px;display: block;height: 28px;width: 26px;background-size: 276px 74px;float: left;margin-right: 3px;}
 	.user-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -331px 0px;
-    display: block;height: 28px;width: 30px;background-size: 280px 28px;}
+    display: block;height: 28px;width: 30px;background-size: 280px 73px;}
 	.user2-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");    background-position: -482px 0px;
-    display: block;height: 28px;width: 30px;background-size: 300px 28px;}
-	.cart-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");    background-position: -364px 0px;display: block;height: 28px;width: 30px;background-size: 280px 28px;}
-	.search-sharp-icon {background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -452px 0px;display: block;height: 26px;width: 26px;background-size: 300px 32px;margin-top: 7px;}
-	.back-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -339px -1px;display: block;height: 20px;width: 20px;background-size: 240px 24px;float: left;margin-top: 2px;}
-	.cart-item-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");    background-position: -429px -2px;display: block;height: 20px;width: 28px;background-size: 250px 24px;float: left;margin-top: 2px;position: absolute;right: 18px;top: 7%;}
+    display: block;height: 28px;width: 30px;background-size: 300px 73px;}
+	.cart-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");    background-position: -364px 0px;display: block;height: 28px;width: 30px;background-size: 280px 72px;}
+	.search-sharp-icon {background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -452px 0px;display: block;height: 26px;width: 26px;background-size: 300px 82px;margin-top: 7px;}
+	.back-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -339px -1px;display: block;height: 20px;width: 20px;background-size: 240px 62px;float: left;margin-top: 2px;}
+	.cart-item-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");    background-position: -429px -2px;display: block;height: 20px;width: 28px;background-size: 250px 63px;float: left;margin-top: 2px;position: absolute;right: 18px;top: 7%;}
+	.drawer-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -553px 2px;
+	display: block;height: 39px;width: 40px;background-size: 300px 85px;}
 	/*==================== SPRITE IMAGE STYLES END====================*/
 @media  (max-width: 480px){
 	.close-btn{position: absolute;top: 5px;right: 5px;width:25px;}
