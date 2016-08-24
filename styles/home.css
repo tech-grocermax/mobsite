@@ -911,8 +911,8 @@ input , button, select{outline:none;}
 	.cart-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -310px 0px;display: block;height: 23px;width: 24px;background-size: 238px 62px;}
 	.search-sharp-icon {background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -452px 0px;display: block;height: 26px;width: 26px;background-size: 300px 83px;margin-top: 7px;}
 	.back-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -339px -1px;display: block;height: 20px;width: 20px;background-size: 240px 62px;float: left;margin-top: 2px;}
-	.search2-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -10px -25px;
-    display: block;height: 23px;width: 28px;background-size: 223px 60px;}
+	.search2-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -13px -25px;
+    display: block;height: 23px;width: 24px;background-size: 223px 60px;}
 	/*==================== SPRITE IMAGE STYLES END====================*/
 }
 
