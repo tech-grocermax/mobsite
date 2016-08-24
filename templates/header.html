@@ -4,26 +4,25 @@
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0" 
                 data-ng-show="columnSize == 1">
                 <a href="/#/">
-					<!--<img src="images/header-icon/home.png" title="Home" class="head-icon-width">-->
-					<span class="head-icon-width"></span>
+					<span class="home-sharp-icon"></span>
 				</a>
             </div>
             <!--data-ng-click="showUserMenu()"
                 outsideclick="handleOutSideClick()"-->
 			<div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 margin-lt15p" style="width:40%;" data-ng-show="columnSize == 1 && showMoreIcon">
-				<img src="images/location-nav.png" title="User" class="locate-img" data-ng-hide="selectedCity">
-				<img src="images/location-nav-fill.png" title="User" class="locate-img" data-ng-show="selectedCity" >
+				<!--<img src="images/location-nav.png" title="User" class="locate-img" data-ng-hide="selectedCity">-->
+				<span class="location-sharp-icon" data-ng-show="selectedCity"></span>
 				<span class="locate-text">{{selectedCity}}</span>
 			</div>
             <div class="col-lg-1 col-md-1 col-sm-2 col-xs-1 padd0 margin-lt3p" 
                 data-ng-show="columnSize == 1" data-ng-class="{'margin-lt22p': !showMoreIcon}">
                 <a href="#/user/profile" data-ng-show="isUserLoggedIn">
-					<!--<img src="images/header-icon/user_icon_1.png" title="User" class="head-user-icon">-->
-                    <span class="user-icon-1"></span>
+					<!--<img src="images/reheadericonsize/profile2.png" title="User" class="">-->
+					<span class="user2-sharp-icon"></span>
+                    <!--<span class="user-icon-1"></span>-->
 				</a>
                 <a href="#/user/login" data-ng-show="!isUserLoggedIn">
-                    <!--<img src="images/header-icon/user_icon_2.png" title="User" class="head-user-icon">-->
-					<span class="user-icon-2"></span>
+					<span class="user-sharp-icon"></span>
 				</a>                
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd0" 
@@ -31,7 +30,9 @@
                 <a href="javascript:void(0);">
                     <!--<img src="images/app_bar_icons/back-icon.png" title="" 
                         class="img-responsive" style="display:inline; ">-->
-					<span class="back-icon"></span>
+					<!--<span class="back-icon"></span>-->
+					<!--<img src="images/reheadericonsize/back-icon.png" title="" style="width:20px;margin: 2px 0 0 0;float:left;">-->
+					<span class="back-sharp-icon"></span>
 				</a>
 						<span style="color:#FFFFFF; font-weight:bold; ">&nbsp;{{categoryName}}</span>
             </div>
@@ -40,7 +41,9 @@
                 <a href="javascript:void(0);">
                     <!--<img src="images/app_bar_icons/back-icon.png" title="" 
                         class="img-responsive back-img-mr">--> 
-					<span class="back-icon"></span>
+					<!--<span class="back-icon"></span>-->
+					<!--<img src="images/reheadericonsize/back-icon.png" title="" style="width:20px;margin: 2px 0 0 0;float:left;">-->
+					<span class="back-sharp-icon"></span>
 				</a>
                 <span class="head-text text-ellipsis">&nbsp;{{categoryName}}</span>
             </div>
@@ -49,7 +52,9 @@
                 <a href="javascript:void(0);">
                     <!--<img src="images/app_bar_icons/back-icon.png" title="" 
                         class="img-responsive back-img-mr">--> 
-					<span class="back-icon"></span>
+					<!--<span class="back-icon"></span>-->
+					<!--<img src="images/reheadericonsize/back-icon.png" title="" style="width:20px;margin: 2px 0 0 0;float:left;">-->
+					<span class="back-sharp-icon"></span>
 				</a>
                 <span class="head-text text-ellipsis">&nbsp;{{specialDealName}}</span>
             </div>
@@ -58,7 +63,9 @@
                 <a href="javascript:void(0);">
                     <!--<img src="images/app_bar_icons/back-icon.png" title="" 
                         class="img-responsive back-img-mr">--> 
-                    <span class="back-icon"></span>
+                    <!--<span class="back-icon"></span>-->
+					<!--<img src="images/reheadericonsize/back-icon.png" title="" style="width:20px;margin: 2px 0 0 0;float:left;">-->
+					<span class="back-sharp-icon"></span>
                 </a>
                 <span class="head-text text-ellipsis">&nbsp;{{topofferdealname}}</span>
             </div>
@@ -67,7 +74,9 @@
                 <a href="javascript:void(0);">
                     <!--<img src="images/app_bar_icons/back-icon.png" title="" 
                         class="img-responsive back-img-mr">--> 
-                    <span class="back-icon"></span>
+                    <!--<span class="back-icon"></span>-->
+					<!--<img src="images/reheadericonsize/back-icon.png" title="" style="width:20px;margin: 2px 0 0 0;float:left;">-->
+					<span class="back-sharp-icon"></span>
                 </a>
                 <span class="head-text text-ellipsis">&nbsp;Offer Detail</span>
             </div>
@@ -77,7 +86,7 @@
                     <!--<img class="searchicon" src="images/header-icon/search1.png"
                         data-ng-click="toggleSearchSection()" 
                         title="Search">-->
-						<span class="search-icon" data-ng-click="toggleSearchSection()"></span>
+						<span class="search2-sharp-icon" data-ng-click="toggleSearchSection()"></span>
 				</a>
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 float-rt"
@@ -88,8 +97,8 @@
 
                     data-ng-click="navigateToCart()">
                     <a href="javascript:void(0);">
-                        <!--<img src="images/header-icon/cart.png" title="Cart" class="head-icon-width">-->
-						<span class="cart-icon"></span>
+                        <!--<img src="images/reheadericonsize/cart-sharp.png" title="Cart" class="head-icon-size">-->
+						<span class="cart-sharp-icon"></span>
 					</a>
                     <div class="header-O" data-ng-show="cartItemCount > 0">
                         {{cartItemCount}}</div>
@@ -125,7 +134,7 @@
                     <!--<img src="images/app_bar_icons/list.png" 
                         title="Click here to see more categories" 
                         class="img-responsive" style="cursor:pointer;">-->
-						<span class="list-icon-image"></span>
+					<span class="drawer-sharp-icon"></span>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 padd0">
                     <!-- search -->
@@ -140,7 +149,10 @@
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 padd0 search-icon-pos">
                     <!--<img src="images/app_bar_icons/search_icon.jpg" alt="" 
                         class="img-responsive float-rt" search-btn style="cursor:pointer; ">-->
-						<span class="search-icon-img" search-btn></span>
+						<!--<span class="search-icon-img" search-btn></span>-->
+						<!--<img src="images/reheadericonsize/search-icon.png" alt="" 
+                        class="float-rt" search-btn style="cursor:pointer;width: 26px;margin: 7px 0 0 0;">-->
+						<span class="search-sharp-icon" search-btn></span>
                 </div>
             </div>
         </div>

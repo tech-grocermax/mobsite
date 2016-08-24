@@ -54,9 +54,10 @@
 					data-ng-click="routerChange('product/details', product.productid)">
                         <li class="prod-list-h">
 							{{product.p_brand}}							
-							<img src="images/app_bar_icons/cart_add_quantity.png" 
+							<!--<img src="images/app_bar_icons/cart_add_quantity.png" 
                                 data-ng-show="getCartProductQuantity(product.productid) > 0"
-                                alt="{{product.Name}}" class="img-responsive cart-image">
+                                alt="{{product.Name}}" class="img-responsive cart-image">-->
+							<span class="cart-item-sharp-icon" data-ng-show="getCartProductQuantity(product.productid) > 0"></span>
 							<span class="cart-txt"
                                 data-ng-show="getCartProductQuantity(product.productid) > 0">
                                 {{getCartProductQuantity(product.productid)}}</span>
@@ -67,24 +68,39 @@
                     </ul>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0 plus-minus-btn"
 						data-ng-show="product.Status == 'In stock'">
-						<ul class="list-unstyled cat-list">
-							<li class=""  style="width: 30px;float: left;"  
+						<!--<ul class="list-unstyled cat-list">
+							<li class="reduce-item-btn"  
                                 data-ng-click="decreaseProductQuantity(product.productid, 'productid')">
-								<!--<img src="images/app_bar_icons/minus-img.png" class="img-responsive" style="">-->
-								<!--<span class="cat-minus-img"></span>-->
-								<img src="images/minu.png" class="img-responsive">
+								<!--<img src="images/app_bar_icons/minus-img.png" class="img-responsive">-->
+								<!--<span class="cat-minus-img"></span>	->
+								<img src="images/minu.png" class="img-responsive">->
+								-
 							</li>
-							<li class="cat-input-box">
+							<li class="cat-input-box" style="margin: 0 0 0 2px;">
 								<input type="text" value="{{product.quantity}}" 
                                     class="cat-input-text" readonly >
 							</li>
-							<li class="" style="width: 30px;float: right;" 
+							<li class="increase-item-btn"  
                                 data-ng-click="increaseProductQuantity(product.productid, 'productid')">
 								<!--<img src="images/app_bar_icons/plus-img.png" class="img-responsive">-->
-								<img src="images/plus.png" class="img-responsive">
-								<!--<span class="cat-plus-img"></span>-->
+								<!--<span class="cat-plus-img"></span>->
+								<img src="images/plus.png" class="img-responsive">->
+								+
 							</li>
-						</ul>
+						</ul>-->
+						<div class="cat-list">
+							<div class="reduce-item-btn" data-ng-click="decreaseProductQuantity(product.productid, 'productid')">
+								<div></div>
+							</div>
+							<div class="cat-input-box" style="margin: 0 0 0 2px;">
+								<input type="text" value="{{product.quantity}}" 
+                                    class="cat-input-text" readonly >
+							</div>
+							<div class="increase-item-btn" data-ng-click="increaseProductQuantity(product.productid, 'productid')">
+								<div></div>
+								<div></div>
+							</div>
+						</div>
 					</div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0"
                         data-ng-class="{'add-btn-box': product.Status == 'In stock',
