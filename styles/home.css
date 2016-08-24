@@ -684,6 +684,8 @@ input , button, select{outline:none;}
 	.cart-item-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");    background-position: -429px -2px;display: block;height: 20px;width: 28px;background-size: 250px 63px;float: left;margin-top: 2px;position: absolute;right: 18px;top: 7%;}
 	.drawer-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -553px 2px;
 	display: block;height: 39px;width: 40px;background-size: 300px 85px;}
+	.trash-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: 1px -28px;
+	display: block;height: 27px;width: 16px;background-size: 270px 67px;float: right;}
 	/*==================== SPRITE IMAGE STYLES END====================*/
 @media  (max-width: 480px){
 	.close-btn{position: absolute;top: 5px;right: 5px;width:25px;}
@@ -1127,9 +1129,11 @@ ul.plisting li.font-3{padding-top:3px}
 .search-icon{background-image:url("../images/m.site-sprite-image.png");background-position:-355px -41px;display: block;height: 28px;width: 28px;}
 .back-icon{background-image:url("../images/m.site-sprite-image.png");background-position:0px 0px;display: block;height: 24px;width: 24px;float: left;margin-right: 5px;margin-top: 1px;}
 .cat-minus-img{background-image:url("../images/m.site-sprite-image.png");background-position:0px -48px;display: block;height: 10px;width: 20px; margin: 6px 0 0 4px;}
-.cat-plus-img{background-image:url("../images/m.site-sprite-image.png");background-position:-130px -35px;display: block;height: 20px;width: 20px; margin: 1px 0 0 4px;}*/
-.more-icon{background-image:url("../images/m.site-sprite-image.png"); background-position:-30px -28px; display: block; height:22px; width:35px; margin-top: 4px;}
+.cat-plus-img{background-image:url("../images/m.site-sprite-image.png");background-position:-130px -35px;display: block;height: 20px;width: 20px; margin: 1px 0 0 4px;}
 .list-icon-image{background-image:url("../images/m.site-sprite-image.png"); background-position:-303px -1px; display: block; height:40px; width:40px;}
+.delete-icon{background-image:url("../images/m.site-sprite-image.png");background-position:-109px 0px;display: block;height: 20px;width: 20px;float: right;}*/
+.more-icon{background-image:url("../images/m.site-sprite-image.png"); background-position:-30px -28px; display: block; height:22px; width:35px; margin-top: 4px;}
+
 .plus-icon-img{background-image:url("../images/m.site-sprite-image.png");background-position:-314px -45px;display: block;height: 20px;width: 24px;float: right;}
 .minus-icon-img{background-image:url("../images/m.site-sprite-image.png");background-position:-332px -45px;display: block;height: 20px;width: 24px;float: right;}
 .close-icon{background-image:url("../images/m.site-sprite-image.png"); background-position: -210px -15px;display: block;height: 15px;width: 16px;float: right;}
@@ -1142,7 +1146,7 @@ ul.plisting li.font-3{padding-top:3px}
 
 .gray-right-icon{background-image:url("../images/m.site-sprite-image.png");background-position:0px -26px;display: block;height: 20px;width: 24px;float: left;margin-right: 5px;margin-top: -4px;}
 
-.delete-icon{background-image:url("../images/m.site-sprite-image.png");background-position:-109px 0px;display: block;height: 20px;width: 20px;float: right;}
+
 .ship-plus-icon{background-image:url("../images/m.site-sprite-image.png");background-position:-91px -32px;display: block;height: 26px;width: 26px;float: right;margin: -5px 0 0 0;}
 .pright-icon{background-image:url("../images/m.site-sprite-image.png");background-position:-153px -38px;display: block;height: 19px;width: 19px;float: right;}
 .deliver-r-icon{background-image:url("../images/m.site-sprite-image.png");background-position:-179px -71px;display: block;height: 32px;width: 20px;}
