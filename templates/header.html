@@ -199,15 +199,19 @@
 		<li class="item-shop" data-ng-click="homePageRedirect()">
             HOME
             <!--<img src="images/app_bar_icons/drawer_close_icon.png" alt="" 
-                class="img-responsive edit-icon">-->
-			<span class="close-icon"></span>
+                class="img-responsive edit-icon">->
+			<span class="close-icon"></span>-->
+			<!--<img src="images/reheadericonsize/close-icon-sharp.png" alt="" style="width: 12px;height: 12px;float: right;margin: 2px 2px 0px 0;">-->
+			<span class="close-icon-sharp"></span>
 			</li>
 		<li class="item-shop"   
             style="text-transform:uppercase; "         
             data-ng-click="editLocation()">
 			<!--<img src="images/app_bar_icons/locationdrawer.png" alt="" 
-				class="img-responsive loc-icon">-->
-			<span class="location-drawer-img"></span>
+				class="img-responsive loc-icon">->
+			<span class="location-drawer-img"></span>->
+			<img src="images/reheadericonsize/location2-sharp.png" alt="" style="width: 18px;opacity: 0.7;">-->
+			<span class="locationdraw-sharp-icon"></span>
 			{{selectedCity}}
 			<!--<img src="images/app_bar_icons/draweredit.png" alt="" 
 				class="img-responsive edit-icon">-->
@@ -230,8 +234,11 @@
 			data-ng-click="toggleSubCategoryMenu(category.category_id)">
 			{{category.name}}
 			<!--<img src="images/app_bar_icons/drawer_caret.png" alt="" 
-				class="img-responsive" style="display:inline; float:right;">-->
-			<span class="drawer-caret-img"></span>
+				class="img-responsive" style="display:inline; float:right;">->
+			<span class="drawer-caret-img"></span>-->
+			<!--<img src="images/reheadericonsize/caret-icon-sharp.png" alt="" 
+				style="display:inline; float:right;margin-right: 13px;margin-top: 3px;width:6px;height:10px;opacity: 0.7;">-->
+				<span class="caret-sharp-icon"></span>
 		</li>  
         <li class="item-shop" 
             data-ng-click="toggleShopByDeals()" 
@@ -267,8 +274,10 @@
 	outsideclick="handleSubMenuCategoryOutsideClick()">
 	<div class="menu-subitem-h" data-ng-click="toggleCategoryMenu()">
 		<!--<img src="images/app_bar_icons/gray-right-ico.png" alt="" 
-			style="display:inline;">-->
-		<span class="gray-right-icon"></span>
+			style="display:inline;">
+			<span class="gray-right-icon"></span>-->
+		    
+		<span class="back-sharp-icon"></span>
 		<span style="text-transform: uppercase;">{{categoryName}}</span>
 	</div>
 	<ul class="list-unstyled">

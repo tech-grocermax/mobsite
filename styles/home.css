@@ -257,7 +257,6 @@ input , button, select{outline:none;}
 .menu-item .plus-sign{color: #acacac;float: right;font-size: 5.2vw;font-weight: 300;margin-right: 30px;margin-top: -5px;}
 .menu-item .minus-sign{color: #acacac;float: right;font-size: 4vw;margin-right: 30px;text-transform: full-width;}
 .menu-item ul{padding-left:32px;}
-.menu-item img{margin-right:18px;     width: 7px; margin-top:10px;}
 .menu-item img:nth-child(2){margin-top:14px;}
 .sub-item{/*background:#fff; */ border-bottom:1px solid #423226; border-top: 1px solid #423226; margin-top: -1px;font-size:15px;font-weight:normal; padding:16px 0;}
 
@@ -570,8 +569,9 @@ input , button, select{outline:none;}
 			from {bottom: -147px;}
 			to {bottom: 0px;}
 		}
-		.close-btn{position: absolute;top: 12px;right: 5px;}
-		
+		.close-btn{width:25px;height:25px;position:absolute;background-color:#9e250f;right:5px;top:0;border-radius: 14px;}
+		.close-btn > div:nth-child(1) {position:absolute;top:5px;right:0;bottom:0;left:11px;background-color:#fff;width:2px;height:14px;transform: rotate(-45deg);-ms-transform: rotate(-45deg);-webkit-transform: rotate(-45deg);}
+		.close-btn > div:nth-child(2){position:absolute;top:5px;right:0;bottom:0;left:11px;background-color:#fff;width:2px;height:14px;transform: rotate(45deg);-ms-transform: rotate(45deg);-webkit-transform: rotate(45deg);}
 		.app-strip.ng-hide{
 			-moz-animation-name: closeStrip;
 			-moz-animation-iteration-count: 1;
@@ -674,6 +674,8 @@ input , button, select{outline:none;}
 /*==================== SPRITE IMAGE STYLES START====================*/
 	.home-sharp-icon {background-image:url("../images/reheadericonsize/head-sprite.png"); background-position: 1px 0px;display: block;background-size: 284px 74px;height: 28px;width: 28px;}
 	.location-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -25px 0px;display: block;height: 28px;width: 26px;background-size: 276px 74px;float: left;margin-right: 3px;}
+	.locationdraw-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -19px 1px;
+    display: block;height: 20px;width: 15px;background-size: 188px 49px;float: left;margin-right: 3px;opacity: 0.7;}
 	.user-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -331px 0px;
     display: block;height: 28px;width: 30px;background-size: 280px 73px;}
 	.user2-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");    background-position: -482px 0px;
@@ -681,16 +683,20 @@ input , button, select{outline:none;}
 	.cart-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");    background-position: -364px 0px;display: block;height: 28px;width: 30px;background-size: 280px 72px;}
 	.search-sharp-icon {background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -452px 0px;display: block;height: 26px;width: 26px;background-size: 300px 82px;margin-top: 7px;}
 	.back-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -339px -1px;display: block;height: 20px;width: 20px;background-size: 240px 62px;float: left;margin-top: 2px;}
+	.menu-subitem-h .back-sharp-icon{opacity: 0.6;margin-right: 5px;margin-top: -4px;}
 	.cart-item-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -446px -2px;display: block;height: 20px;width: 30px;background-size: 260px 63px;float: left;margin-top: 2px;position: absolute;right: 18px;top: 7%;}
 	.drawer-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -553px 2px;
 	display: block;height: 39px;width: 40px;background-size: 300px 85px;}
 	.trash-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: 1px -28px;
 	display: block;height: 18px;width: 16px;background-size: 270px 67px;float: right;margin: 0 5px 0 0;}
+	.caret-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: 0px -54px;
+    display: block;height: 10px;width: 6px;background-size: 272px 75px;float: right;margin-top: 3px;margin-right: 13px;opacity: 0.8;}
 	.search2-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -17px -31px;
 	display: block;height: 28px;width: 28px;background-size: 270px 74px;}
+	.close-icon-sharp{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -23px -53px;
+	display: block;height: 12px;width: 12px;background-size: 128px 37px;float: right;}
 	/*==================== SPRITE IMAGE STYLES END====================*/
 @media  (max-width: 480px){
-	.close-btn{position: absolute;top: 5px;right: 5px;width:25px;}
 	.margin-0-m{margin:0}
 	.img-text-box{bottom: 50px;}
 	.slide-img{width: 210px;}
@@ -721,7 +727,6 @@ input , button, select{outline:none;}
 	/*.menu-item {padding: 10px 0;}*/
 	.menu-item-h {padding: 24px 0 17px 16px;}
 	.menu-item ul {padding-left: 16px;}
-	.menu-item img{margin-right:15px; margin-top:4px;     width: 6px;}
 	.sub-menu.menu-item img{ width: 10px;}
 	.sub-item {padding: 16px 0;}
 
@@ -906,6 +911,7 @@ input , button, select{outline:none;}
 	/*==================== SPRITE IMAGE STYLES START====================*/
 	.home-sharp-icon {background-image:url("../images/reheadericonsize/head-sprite.png"); background-position: 1px 0px;display: block;background-size: 230px 61px;height: 23px;width: 23px;}
 	.location-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -22px 0px;display: block;height: 23px;width: 22px;background-size: 239px 61px;float: left;margin-right: 3px;}
+	
 	.user-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -278px 0px;display: block;height: 23px;width: 24px;background-size: 234px 62px;}
 	.user2-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -379px 0px;display: block;height: 23px;width: 23px;background-size: 236px 62px;}
 	.cart-sharp-icon{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -310px 0px;display: block;height: 23px;width: 24px;background-size: 238px 62px;}
