@@ -192,8 +192,9 @@ define(['app'], function(app) {
                 if(data.flag == "1") {
                     utility.setJStorageKey("userId", data.UserID, 1);
                     utility.setJStorageKey("email", email, 1); 
+                    utility.setJStorageKey("mobile", data.Mobile, 1); 
 
-                    var oldQuoteId = utility.getJStorageKey("quoteId")
+                    var oldQuoteId = utility.getJStorageKey("quoteId");
                     utility.setJStorageKey("quoteId", data.QuoteId, 1);  
                     var oldCartCount = utility.getJStorageKey("cartCounter" + oldQuoteId);
                     if(angular.isDefined(data.TotalItem) && data.TotalItem) {
@@ -930,6 +931,8 @@ define(['app'], function(app) {
                         if(data.flag == "1") {
                             utility.deleteJStorageKey("userId");
                             utility.deleteJStorageKey("quoteId");
+                            utility.deleteJStorageKey("email"); 
+                            utility.deleteJStorageKey("mobile"); 
                             utility.deleteJStorageKey("renderedBtn");
                             $location.url("user/login");
                         }                  

@@ -40,6 +40,18 @@ define(['app'], function(app) {
             /*if(utility.getJStorageKey("userId")){
                 dataLayer = [{'userID' : utility.getJStorageKey("userId")}];
             }*/
+            $scope.qgraphUserId = '';
+            $scope.qgraphMobile = '';
+            $scope.qgraphEmail = '';
+            if(utility.getJStorageKey("userId") || utility.getJStorageKey("userId") != null){
+                        $scope.qgraphUserId =utility.getJStorageKey("userId");
+            }
+            if(utility.getJStorageKey("email") || utility.getJStorageKey("email") != null){
+                $scope.qgraphEmail =utility.getJStorageKey("email");
+            }
+            if(utility.getJStorageKey("mobile")  || utility.getJStorageKey("mobile") != null){
+                $scope.qgraphMobile =utility.getJStorageKey("mobile");
+            }
 
             $scope.cityList = [{
 				api_url: 		"api/",
@@ -300,7 +312,6 @@ define(['app'], function(app) {
                                 eventCategory: 'Mobile Category Interaction', 
                                 eventAction: 'category page', eventLabel: $scope.categoryName}
                                 );
-                                console.log($scope.categoryName);console.log(dataLayer);
                             }catch(err){console.log("Error in GTM fire.");}  
                         // end GTM Code
                         $scope.showMoreIcon = false;
@@ -396,13 +407,25 @@ define(['app'], function(app) {
                 $scope.dealItems = $scope.dealCategoryItemList[category.id];
             };
 
-            $scope.routerChange = function(route, id) {
+            $scope.routerChange = function(route, id, name) {
+                if(name == null || name == '' || name == undefined){
+                    name = "Offer Banner";
+                }
                 route = angular.isDefined(id) ? route + ("/" + id) : route;
                 if(isDrawerOpen) {
                     $analytics.eventTrack($scope.selectedCity, {  category: "Close Drawer"});
                     isDrawerOpen = false;
                 }
-                
+                // code for qgraph tracking
+                try{
+                    qg("event", "Category", {"Email id":$scope.qgraphEmail, 
+                        "Phone No": $scope.qgraphMobile,
+                        "User id": $scope.qgraphUserId,
+                        "Category Name": name,
+                        "Device": "msite"
+                    });
+                }catch(err){console.log(err);}
+
                 $location.url(route);
             };
 
@@ -446,7 +469,7 @@ define(['app'], function(app) {
                 if(isToggle) {
                     $scope.showMoreCategory(category)
                 } else {
-                    $scope.routerChange('product', category.category_id);
+                    $scope.routerChange('product', category.category_id, category.name);
                 }
             };
 
@@ -454,7 +477,7 @@ define(['app'], function(app) {
                 $scope.routerChange('specialDeal', specialDeal.linkurl);
             }
 
-            $scope.handleTopOfferClick = function(offerlistId) {
+            $scope.handleTopOfferClick = function(offerlistId, name) {
                 $scope.routerChange('category/offers', offerlistId);
             }
 
@@ -539,6 +562,16 @@ define(['app'], function(app) {
 					$scope.trendlist.push($scope.searchKeyword);
 					utility.setJStorageKey("trendingList", $scope.trendlist, 1);					
 				}
+                // code for qgraph tracking
+                try{
+                    qg("event", "Search", {"Email id":$scope.qgraphEmail, 
+                        "Phone No": $scope.qgraphMobile,
+                        "User id": $scope.qgraphUserId,
+                        "Keyword": $scope.searchKeyword,
+                        "Device": "msite"
+                    });
+                }catch(err){console.log(err);}
+
                 $location.url("product?keyword=" + $scope.searchKeyword)
             };
             
@@ -648,6 +681,16 @@ define(['app'], function(app) {
                     queryParams = arrBanner[1].split('='),
                     queryKey = queryParams[0],
                     queryValue = queryParams[1];
+                // code for qgraph tracking
+                try{
+                    qg("event", "Banner Click", {"Email id":$scope.qgraphEmail, 
+                        "Phone No": $scope.qgraphMobile,
+                        "User id": $scope.qgraphUserId,
+                        "Banner name": banner.name,
+                        "Device": "msite"
+                    });
+                }catch(err){console.log(err);}
+
                 if(url == "dealproductlisting") {
                     $location.url("product/deal/" + queryValue);
                 } else if(url == "search") {

@@ -53,6 +53,18 @@ define(['app'], function(app) {
             /*if(utility.getJStorageKey("userId")){
                 dataLayer = [{'userID' : utility.getJStorageKey("userId")}];
             }*/
+            $scope.qgraphUserId = '';
+            $scope.qgraphMobile = '';
+            $scope.qgraphEmail = '';
+            if(utility.getJStorageKey("userId") || utility.getJStorageKey("userId") != null){
+                        $scope.qgraphUserId =utility.getJStorageKey("userId");
+            }
+            if(utility.getJStorageKey("email") || utility.getJStorageKey("email") != null){
+                $scope.qgraphEmail =utility.getJStorageKey("email");
+            }
+            if(utility.getJStorageKey("mobile")  || utility.getJStorageKey("mobile") != null){
+                $scope.qgraphMobile =utility.getJStorageKey("mobile");
+            }
 
             $scope.isProductLoaded = false;
             toggleLoader = function(flag) {
@@ -499,6 +511,16 @@ define(['app'], function(app) {
                     && utility.getJStorageKey("quoteId")
                     && $scope.cartItemCount) {
                     $location.url("cart" + "/" + utility.getJStorageKey("quoteId"));
+                    // code for qgraph tracking
+                    try{
+                        qg("event", "View Cart", {"Email id":$scope.qgraphEmail, 
+                            "Phone No": $scope.qgraphMobile,
+                            "User id": $scope.qgraphUserId,
+                            "Subtotal": '',
+                            "Qty": $scope.cartItemCount,
+                            "Device": "msite"
+                        });
+                    }catch(err){console.log(err);}
                 }
             };
 
@@ -559,7 +581,7 @@ define(['app'], function(app) {
             $scope.addProductOneByOne = function(product) {
                 // Tracking add to cart
                 $analytics.eventTrack($scope.selectedCity, {  category: "Add to Cart", label: ( product.productid + " - " + product.Name + " - " + product.quantity) });
-                // code added by grocermax team for GTM
+                // code added by grocermax team for GTM                
                 try{ 
                 var GtmpId = product.productid;
                 var GtmQty = product.quantity;
@@ -569,6 +591,14 @@ define(['app'], function(app) {
                 }
                 var GtmPrice = product.Price;
                 var GtmBrand = product.p_brand;
+                qg("event", "Add to Cart", {"Email id":$scope.qgraphEmail, 
+                    "Phone No": $scope.qgraphMobile,
+                    "User id": $scope.qgraphUserId,
+                    "Product Name": GtmName,
+                    "Product Code" : GtmpId,
+                    "Product qty" : GtmQty,
+                    "Device": "msite"
+                });
                 productgtm = "productName=" + GtmName + "/prodcutId=" + GtmpId; 
                             dataLayer.push('send', { hitType: 'event', 
                                 eventCategory: 'Mobile Add to Cart', 
@@ -648,7 +678,19 @@ define(['app'], function(app) {
                 return qty;                
             }; 
 
-            $scope.routerChange = function(route, id) {
+            $scope.routerChange = function(route, id, name) {
+                // code for qgraph tracking
+                try{
+                    if(name == null || name == '' || name == undefined){
+                        name = "Offer Product";
+                    }
+                    qg("event", "Product Detail", {"Email id":$scope.qgraphEmail, 
+                        "Phone No": $scope.qgraphMobile,
+                        "User id": $scope.qgraphUserId,
+                        "Product Name": name,
+                        "Device": "msite"
+                    });
+                }catch(err){console.log(err);}
                 $location.url(route + "/" + id);
             };  
 
@@ -801,15 +843,20 @@ define(['app'], function(app) {
 			
             $scope.checkout = function(flag) {
                 // google GTM code
-                    try{
-                            proceedgtm = "totalQty =" + $scope.totalCartQty; /*[{
-                                "totalitem":$scope.totalCartQty
-                            }];*/
-                        dataLayer.push('send', { hitType: 'event', 
-                        eventCategory: 'Mobile Proceed to checkout', 
+                try{
+                    proceedgtm = "totalQty =" + $scope.totalCartQty;
+                    dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Proceed to checkout', 
                         eventAction: 'Proceed Details', eventLabel: proceedgtm}
-                        );
-                    }catch(err){console.log("Error in GTM fire.");}
+                    );
+                    qg("event", "Proceed to Checkout", {"Email id":$scope.qgraphEmail, 
+                        "Phone No": $scope.qgraphMobile,
+                        "User id": $scope.qgraphUserId,
+                        "Subtotal": $scope.cartDetails.grand_total,
+                        "Qty" : $scope.totalCartQty,
+                        "Coupon Code" : $scope.couponCode,
+                        "Device": "msite"
+                    });
+                }catch(err){console.log("Error in GTM fire.");}
                 // end GTM Code
                 if(flag == 'checkout') {
                     // Proceed to Checkout

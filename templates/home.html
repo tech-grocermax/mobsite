@@ -51,7 +51,7 @@
 						analytics-on analytics-event="{{ selectedCity }}"
 						analytics-category="L1" 
 						analytics-label="{{ category.name }}"
-						data-ng-click="routerChange('category', category.category_id)">
+						data-ng-click="routerChange('category', category.category_id, category.name)">
 					<span class="text-ellipsis">{{category.name}}</span>
 				</div>				
 			</div>
@@ -65,7 +65,7 @@
 						analytics-on analytics-event="{{ selectedCity }}"
 						analytics-category="L1" 
 						analytics-label="{{deal.dealType}}"
-						data-ng-click="routerChange('deals', deal.id)">
+						data-ng-click="routerChange('deals', deal.id, deal.dealType)">
 				</div>
 			</div>
 			<div class="row specialdeal">

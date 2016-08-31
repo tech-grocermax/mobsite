@@ -43,6 +43,19 @@ define(['app'], function(app) {
             /*if(utility.getJStorageKey("userId")){
                 dataLayer = [{'userID' : utility.getJStorageKey("userId")}];
             }*/
+            $scope.couponCode = null;
+            $scope.qgraphUserId = '';
+            $scope.qgraphMobile = '';
+            $scope.qgraphEmail = '';
+            if(utility.getJStorageKey("userId") || utility.getJStorageKey("userId") != null){
+                        $scope.qgraphUserId =utility.getJStorageKey("userId");
+            }
+            if(utility.getJStorageKey("email") || utility.getJStorageKey("email") != null){
+                $scope.qgraphEmail =utility.getJStorageKey("email");
+            }
+            if(utility.getJStorageKey("mobile")  || utility.getJStorageKey("mobile") != null){
+                $scope.qgraphMobile =utility.getJStorageKey("mobile");
+            }
             $scope.youSaved = 0;
             $scope.totalCartQty = 0;
             $scope.paymentMethod = null;
@@ -327,21 +340,6 @@ define(['app'], function(app) {
                     $scope.payment[key] = false;
                 });
                 $scope.payment[paymentMethod] = true;
-                try{
-                    paymgtm = "customerId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
-                        dataLayer.push('send', { hitType: 'event', 
-                            eventCategory: 'Mobile Checkout Funnel', 
-                            eventAction: 'Payment Method', eventLabel: paymgtm}
-                        );
-                    dataLayer.push({
-                        'event': 'checkoutOption',
-                        'ecommerce': {
-                          'checkout_option': {
-                            'actionField': {'step': "5", 'option': "Payment Options"}
-                          }
-                        }
-                      });
-                }catch(err){}    
                 $scope.paymentMethod = ($scope.payment.cc || $scope.payment.paytm_cc) ? "paytm_cc" : paymentMethod;                
             };
 
@@ -399,6 +397,14 @@ define(['app'], function(app) {
 
                 //$analytics.eventTrack($scope.selectedCity, {  category: "Shipping address" });
                 try{
+                    qg("event", "Address - Shipping & Billing", {"Email id":$scope.qgraphEmail, 
+                        "Phone No": $scope.qgraphMobile,
+                        "User id": $scope.qgraphUserId,
+                        "Subtotal": $scope.tempCartVal,
+                        "Qty": $scope.tempCartCounter,
+                        "Coupon Code": $scope.couponCode,
+                        "Device": "msite"
+                    });
                     shipgtm = "customerId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
                     dataLayer.push('send', { hitType: 'event', 
                         eventCategory: 'Mobile Checkout Funnel', 
@@ -412,7 +418,7 @@ define(['app'], function(app) {
                           }
                         }
                     });
-                }catch(err){}
+                }catch(err){console.log(err);}
                 if($scope.billingAsShipping) {
                     $location.url("checkout/delivery");
                 } else {
@@ -427,6 +433,14 @@ define(['app'], function(app) {
                 }
                 $scope.shouldProceed = true;
                 try{
+                    qg("event", "Address - Shipping & Billing", {"Email id":$scope.qgraphEmail, 
+                        "Phone No": $scope.qgraphMobile,
+                        "User id": $scope.qgraphUserId,
+                        "Subtotal": $scope.tempCartVal,
+                        "Qty": $scope.tempCartCounter,
+                        "Coupon Code": $scope.couponCode,
+                        "Device": "msite"
+                    });                    
                     billgtm ="customerId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
                     dataLayer.push('send', { hitType: 'event', 
                         eventCategory: 'Mobile Checkout Funnel', 
@@ -491,7 +505,31 @@ define(['app'], function(app) {
                 utility.setJStorageKey("checkoutDetails", checkoutDetails, 1);
 
                 //$analytics.eventTrack($scope.selectedCity, {  category: "Delivery details" });
-
+                try{
+                    qg("event", "Delivery Slot", {"Email id":$scope.qgraphEmail, 
+                        "Phone No": $scope.qgraphMobile,
+                        "User id": $scope.qgraphUserId,
+                        "Subtotal": $scope.tempCartVal,
+                        "Qty": $scope.tempCartCounter,
+                        "Coupon Code": $scope.couponCode,
+                        "Delivery Slot" : $scope.selectedDeliveryDate,
+                        "Device": "msite"
+                    });
+                    slotgtm = "customerId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
+                    dataLayer.push('send', { hitType: 'event', 
+                        eventCategory: 'Mobile Checkout Funnel', 
+                        eventAction: 'Delivery Slot', eventLabel: slotgtm}
+                    );
+                   
+                     dataLayer.push({
+                        'event': 'checkoutOption',
+                        'ecommerce': {
+                          'checkout_option': {
+                            'actionField': {'step': "4", 'option': "Shipping Charge"}
+                          }
+                        }
+                      });
+                    }catch(err){} 
                 $location.url("checkout/payment");
             };
 
@@ -528,22 +566,6 @@ define(['app'], function(app) {
                     $scope.selectedDeliveryTime = data.timeSlot;
                     $scope.selectedDeliveryDate = getSelectedDeliveryDate(parentIndex);
                     $scope.parentIndex = parentIndex;
-                    try{
-                        slotgtm = "customerId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
-                        dataLayer.push('send', { hitType: 'event', 
-                            eventCategory: 'Mobile Checkout Funnel', 
-                            eventAction: 'Delivery Slot', eventLabel: slotgtm}
-                        );
-                       
-                         dataLayer.push({
-                            'event': 'checkoutOption',
-                            'ecommerce': {
-                              'checkout_option': {
-                                'actionField': {'step': "4", 'option': "Shipping Charge"}
-                              }
-                            }
-                          });
-                    }catch(err){}     
                 }
             };
 
@@ -628,6 +650,31 @@ define(['app'], function(app) {
             $scope.isOrderPlaced = false;
             $scope.isHidePlacedBtn =false;
             $scope.placeOrder = function() { 
+                try{
+                    qg("event", "Place Order", {"Email id":$scope.qgraphEmail, 
+                        "Phone No": $scope.qgraphMobile,
+                        "User id": $scope.qgraphUserId,
+                        "Subtotal": $scope.tempCartVal,
+                        "Qty": $scope.tempCartCounter,
+                        "Coupon Code": $scope.couponCode,
+                        "Delivery Slot" : $scope.selectedDeliveryDate,
+                        "Payment Mode" : $scope.paymentMethod,
+                        "Device": "msite"
+                    });
+                    paymgtm = "customerId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
+                    dataLayer.push('send', { hitType: 'event', 
+                        eventCategory: 'Mobile Checkout Funnel', 
+                        eventAction: 'Payment Method', eventLabel: paymgtm}
+                    );
+                    dataLayer.push({
+                        'event': 'checkoutOption',
+                        'ecommerce': {
+                          'checkout_option': {
+                            'actionField': {'step': "5", 'option': "Payment Options"}
+                          }
+                        }
+                      });
+                }catch(err){ console.log(err);}
                 //$analytics.eventTrack($scope.selectedCity, {  category: "Review and Place order" });
                 $scope.isOrderPlaced = true;
                 if($scope.paymentMethod == "paytm_cc" 
@@ -646,15 +693,23 @@ define(['app'], function(app) {
                                     flushData();
                                     handlePaymentResponse();
                                     try{
+                                    $scope.QgrphOId = data.OrderID; 
                                     userService.trackorderdetails(data.OrderID).then(function(data){
                                         if(data.flag==1){
-                                            console.log(data.newgtm);
                                             dataLayer.push(data.newgtm);
-                                            console.log(dataLayer);
+                                            try{
+                                                qg("event", "Order Successful", {"Email id":$scope.qgraphEmail, 
+                                                    "Phone No": $scope.qgraphMobile,
+                                                    "User id": $scope.qgraphUserId,
+                                                    "Order id": $scope.QgrphOId,
+                                                    "Payment Mode" : $scope.paymentMethod,
+                                                    "Device": "msite"
+                                                });
+                                                console.log($scope.QgrphOId);  console.log($scope.paymentMethod);  console.log($scope.qgraphEmail);
+                                            }catch(err){ console.log(err);}
                                         }
                                     });
                                     }catch(err) { console.log(err); }
-
                                     $location.url("payment/success/" + data.OrderID);
                                 }
                             } 

@@ -24,7 +24,7 @@
                     analytics-category="L4" 
                     analytics-label="{{specialdealitem.p_name}}"
 
-                    data-ng-click="routerChange('product/details', specialdealitem.productid)">
+                    data-ng-click="routerChange('product/details', specialdealitem.productid, specialdealitem.Name)">
                     <img src="{{specialdealitem.Image}}" 
                         alt="{{specialdealitem.Name}}" class="img-responsive card-img-center">
                 </div>
@@ -35,7 +35,7 @@
                     analytics-category="L4" 
                     analytics-label="{{specialdealitem.p_name}}"
 
-					data-ng-click="routerChange('product/details', specialdealitem.productid)">
+					data-ng-click="routerChange('product/details', specialdealitem.productid, specialdealitem.Name)">
                         <li class="prod-list-h">
 							{{specialdealitem.p_brand}}							
 							<!--<img src="images/app_bar_icons/cart_add_quantity.png" 
