@@ -78,15 +78,18 @@
         <script>
             window.QGSettings = {
                 "appId": "1edab9dae01bf98f625a",
-                //"qgendpoint":"grocermax",
+                "qgendpoint": "grocermax",
                 "push": {
-                  "requestSelf": false,
-                  "fakePrompt": false,
-                "prompt": {
-                  "title": "Want to be a smart Grocery Shopper?",
-                  "message": "Subscribe & never miss our best offers on Groceries"
+                    "popupAlignment": "center",
+                    "secondsBetweenPrompts": 1,
+                    "delay":1 ,
+                    "requestSelf": false,
+                    "fakePrompt": false,
+                "overlay": {
+                    "title": "Want to be a smart Grocery Shopper?",
+                    "message": "Subscribe & never miss our best offers on Groceries"
+                },
                 }
-              }
             };
             !function(q,g,r,a,p,h){if(q.qg)return;n=q.qg=function(){n.callmethod?n.callmethod.call(n,arguments):n.queue.push(arguments);};n.queue=[];p=g.createElement(r);p.async=!0;p.src=a;h=g.getElementsByTagName(r)[0];h.parentNode.insertBefore(p,h)}(window,document,'script','https://cdn.qgraph.io/dist/qgraph.min.js');
             qg('init',window.QGSettings);
