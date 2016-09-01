@@ -52,7 +52,6 @@ define(['app'], function(app) {
             if(utility.getJStorageKey("mobile")  || utility.getJStorageKey("mobile") != null){
                 $scope.qgraphMobile =utility.getJStorageKey("mobile");
             }
-            qg("prompt-push");
 
             $scope.cityList = [{
 				api_url: 		"api/",
