@@ -444,8 +444,7 @@ define(['app'], function(app) {
                             $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);
 							utility.setJStorageKey("tempCartCounter", data.TotalItem, 1); 
 						    utility.setJStorageKey("tempCartVal", data.CartDetail.grand_total, 1); 
-						    
-														
+						    utility.setJStorageKey("tempShipVal", data.CartDetail.shipping_address.shipping_amount, 1); 						
                             addShippingCharges();
                             $scope.couponValue = (data.CartDetail.subtotal - data.CartDetail.subtotal_with_discount);
 							utility.setJStorageKey("tempcouponValue", $scope.couponValue, 1); 
@@ -840,6 +839,8 @@ define(['app'], function(app) {
                                     utility.setJStorageKey("tempCartCounter", data.TotalItem, 1); 
 									utility.setJStorageKey("tempCartVal", data.CartDetail.grand_total, 1); 
 									utility.setJStorageKey("tempcouponValue", $scope.couponValue, 1);
+									utility.setJStorageKey("tempShipVal", data.CartDetail.shipping_address.shipping_amount, 1);
+									
 									if(data.CartDetail.coupon_code){
                                         $scope.invalidCoupon = false;
                                         $scope.invalidCouponBlank = false;
