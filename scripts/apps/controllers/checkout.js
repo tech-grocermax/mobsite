@@ -241,7 +241,7 @@ define(['app'], function(app) {
                                 }
                             });
                         }catch(err) { console.log(err); }
-                        //flushData();
+                        flushData();
                     }
 
                     if($scope.orderStatus == 'TXN_FAILURE') {
