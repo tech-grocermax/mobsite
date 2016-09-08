@@ -250,6 +250,7 @@ define(['app'], function(app) {
                             keyboard: false,
                             show: true
                         });
+                        flushData();
                     }                    
                 }
             };            
