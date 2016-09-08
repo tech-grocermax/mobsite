@@ -241,7 +241,7 @@ define(['app'], function(app) {
                                 }
                             });
                         }catch(err) { console.log(err); }
-                        flushData();
+                        //flushData();
                     }
 
                     if($scope.orderStatus == 'TXN_FAILURE') {
@@ -567,6 +567,7 @@ define(['app'], function(app) {
             };
 			
 			$scope.navigateToOrder = function(route) {
+                console.log("navigate to order");
 				flushData();
                 $location.url(route);
             };
@@ -607,12 +608,26 @@ define(['app'], function(app) {
                 userService.getPaytmProcessingDetails(orderId, userId, utility.getJStorageKey("email"), mobileNo)
                     .then(function(data){ 
                         if(data.flag == 1){
+                            console.log("Paytm Processing detail");
+                            
                             $scope.formUrl = data.Paytm_url;
-                            $scope.paytmFormDetails = data.paymentDetails;                            
+                            $scope.paytmFormDetails = data.paymentDetails; 
+                            console.log($scope.formUrl);
+                            console.log($scope.paytmFormDetails.CHANNEL_ID);
+                            console.log($scope.paytmFormDetails.CHECKSUMHASH);  
+                            console.log($scope.paytmFormDetails.CUST_ID);  
+                            console.log($scope.paytmFormDetails.EMAIL);  
+                            console.log($scope.paytmFormDetails.INDUSTRY_TYPE_ID);  
+                            console.log($scope.paytmFormDetails.MID);  
+                            console.log($scope.paytmFormDetails.ORDER_ID);
+                            console.log($scope.paytmFormDetails.MOBILE_NO);
+                            console.log($scope.paytmFormDetails.WEBSITE);  
+                            console.log($scope.paytmFormDetails.CALLBACK_URL);                             
                             $scope.paytmFormDetails.EMAIL = utility.getJStorageKey("email");
                             $scope.paytmFormDetails.CUST_ID = userId;
                             $scope.paytmFormDetails.MOBILE_NO = mobileNo;
                             $scope.paytmFormDetails.TXN_AMOUNT = $scope.paytmFormDetails.TXN_AMOUNT.replace(",", ".");
+                            console.log($scope.paytmFormDetails.TXN_AMOUNT);
                             toggleLoader(false); 
                             //$scope.paytmFormDetails.CALLBACK_URL = location.href;
                             //console.log($scope.paytmFormDetails);
@@ -639,8 +654,8 @@ define(['app'], function(app) {
                     userService.checkout(userId, $scope.quoteId, checkoutDetails, $scope.paymentMethod, $scope.creditMethod)
                         .then(function(data){
                             toggleLoader(false);
-                            if(data.flag == 1){
-                                if($scope.paymentMethod == "paytm_cc") {
+                            if(data.flag == 1){ console.log("place Order Checkout");
+                                if($scope.paymentMethod == "paytm_cc") { console.log($scope.paymentMethod);
                                     getPaytmProcessingDetails(data.OrderID, userId, checkoutDetails[$scope.quoteId]["shippingAddress"].telephone);
                                 } else {                                    
                                     flushData();
@@ -688,6 +703,7 @@ define(['app'], function(app) {
 								$scope.resultOss = data.Result;
 								$scope.duplicateorderbtn = true;
 								$scope.buttonDuplicate = data.Button;
+                                console.log("data flag 2");
 								flushData();
 							}
                         });
