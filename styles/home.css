@@ -388,8 +388,7 @@ input , button, select{outline:none;}
 .btn-cash{background:#ffa800;padding: 10px 0px 10px 0;border-radius: 0px;box-shadow: 0px 1px 8px 0px #666;}
 
 /*========== LOGIN ==========*/
-.login-back{background-image:url('../images/login-back.png'); background-attachment:fixed; background-position:center center; background-repeat:no-repeat; background-size:cover;position: absolute;top: 0;
-    bottom: 0;/*top: 0;bottom: 0;*/}
+.login-back{/*background-image:url('../images/login-back.png'); background-attachment:fixed; background-position:center center; background-repeat:no-repeat; background-size:cover;*/position: absolute;top: 0;bottom: 0;background-color: #6a240b;}
 .logo-box{margin-bottom:7.8%; margin-top:25.6%;}
 .logo-box>div{padding-right:0px;}
 .log-box{box-shadow:0px 1px 6px -4px; opacity:0.45; background:#fff;}
@@ -658,7 +657,7 @@ input , button, select{outline:none;}
 .saving-strip{font-size: 10px;font-size: 10px;background-color: #429f46;color: #fff;padding: 3px 10px 3px 10px;border-radius: 20px;margin: 10px 0 10px 0px;}
 .price-strip{width: 205px;float: left;}
 .price-strip span{font-size: 18px;color: #b22603;font-family: roboto;vertical-align: bottom;display: inline-block;}
-.cart-margin{margin-bottom:180px; /*margin-top: 65px;*/}
+.cart-margin{margin-bottom:180px; margin-top: 65px;}
 .del-status{margin: 10px 0 10px 0;height: 28px;}
 .del-status > p:nth-child(1){display: inline-block;width: 100px;font-size: 12px;font-weight: bold;margin:0;}
 .del-status > p:nth-child(2){width: 190px;display: inline-block;text-align: center;background-color: #e62e12;color: #fff;padding: 4px 0 4px 0;border-radius: 20px;font-size: 14px;margin:0;}
@@ -1185,7 +1184,7 @@ ul.plisting li.font-3{padding-top:3px}
     display: none !important;
 }
 
-.bill-buster{margin: 60px 10px 10px 10px;}
+.bill-buster{margin: 60px 10px -55px 10px;}
 .bill-buster > div{text-align: center;font-size: 13px;color: #e64a19;font-weight: bold;background-color: #fff9c4;padding: 2px 5px 2px 5px;padding: 10px;border: dashed 1px #e64a19;border-radius: 6px;}
 .low-stock{background: #fb0404;color: #fff;padding: 5px 3px 5px 2px;font-size: 12px;font-weight: bold;text-align: center;}
 .so-img{margin: 0 0 5px 0;width: 80px;}
