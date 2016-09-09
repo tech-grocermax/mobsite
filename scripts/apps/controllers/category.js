@@ -300,7 +300,6 @@ define(['app'], function(app) {
                                 eventCategory: 'Mobile Category Interaction', 
                                 eventAction: 'category page', eventLabel: $scope.categoryName}
                                 );
-                                console.log($scope.categoryName);console.log(dataLayer);
                             }catch(err){console.log("Error in GTM fire.");}  
                         // end GTM Code
                         $scope.showMoreIcon = false;

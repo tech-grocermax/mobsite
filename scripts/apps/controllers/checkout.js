@@ -62,6 +62,7 @@ define(['app'], function(app) {
 			$scope.tempyouSaved = utility.getJStorageKey("tempyouSaved");
 			$scope.tempCartVal = utility.getJStorageKey("tempCartVal");
 			$scope.tempcouponValue = utility.getJStorageKey("tempcouponValue");
+			$scope.tempshippingValue = utility.getJStorageKey("tempShipVal");
             toggleLoader = function(flag) {
                 $scope.displayLoader = flag;
             };  
@@ -222,6 +223,7 @@ define(['app'], function(app) {
 				utility.deleteJStorageKey("tempCartVal"); 
 				utility.deleteJStorageKey("tempcouponValue");
 				utility.deleteJStorageKey("tempyouSaved"); 
+				utility.deleteJStorageKey("tempShipVal"); 
                 $scope.quoteId = null;
                 $scope.cartItemCount = 0;
             };
