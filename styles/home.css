@@ -1217,3 +1217,43 @@ ul.plisting li.font-3{padding-top:3px}
 .no-animate{display:none;}
 .removeBtn {background: #212121;color: #fff;font-size: 12px;font-family: roboto;padding: 4px 15px 4px 15px;border-radius: 20px;float: right;}
 .removeBtnName{background: transparent;color: #a0a0a0;}
+
+
+/*LOADER STYLE START*/
+	.black_shade > div {background-color: #919191;display: block;width: 46px;height: 46px;position: absolute;top: 0;right: 0;bottom: 0;left: 0;margin: auto;}
+	.loader {
+	  border-top: 5px solid #ffd52c;
+	  border-right: 5px solid #ffd52c;
+	  border-bottom: 4px solid #c6b059;
+	  border-left: 4px solid #c6b059;
+	  -webkit-transform: translateZ(0);
+	  -ms-transform: translateZ(0);
+	  transform: translateZ(0);
+	  -webkit-animation: load8 1.1s infinite linear;
+	  animation: load8 1.1s infinite linear;
+	}
+	.loader,
+	.loader:after {
+		border-radius: 30px;width: 46px;height: 46px;position: absolute;top: 0;bottom: 0;left: 0;right: 0;margin: auto;
+	}
+	@-webkit-keyframes load8 {
+	  0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	  }
+	  100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	  }
+	}
+	@keyframes load8 {
+	  0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	  }
+	  100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	  }
+	}
+/*LOADER STYLE END*/
