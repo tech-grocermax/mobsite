@@ -1220,7 +1220,7 @@ ul.plisting li.font-3{padding-top:3px}
 
 
 /*LOADER STYLE START*/
-	.black_shade > div {background-color: #919191;display: block;width: 46px;height: 46px;position: absolute;top: 0;right: 0;bottom: 0;left: 0;margin: auto;}
+	.black_shade > div {/*background-color: #919191;*/display: block;width: 46px;height: 46px;position: absolute;top: 0;right: 0;bottom: 0;left: 0;margin: auto;}
 	.loader {
 	  border-top: 5px solid #ffd52c;
 	  border-right: 5px solid #ffd52c;
