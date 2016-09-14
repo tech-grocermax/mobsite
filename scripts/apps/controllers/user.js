@@ -293,6 +293,12 @@ define(['app'], function(app) {
                     userService.createUser($scope.user)
                         .then(function(data){
                             toggleLoader(false);
+                            try{     
+                                logintgtm = "Email="+ $scope.user.uemail;
+                                dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile  Register', 
+                                    eventAction: 'Standard', eventLabel: logintgtm}
+                                );console.log("Standard Register");
+                            }catch(err){console.log("Error in GTM fire.");}
                             if(data.flag == 1){
                                 $scope.showUserResponse = false;
                                 $scope.userResponseMessage = "";
@@ -310,14 +316,6 @@ define(['app'], function(app) {
             $scope.verifyOTP = function() { 
                 if($scope.otp == utility.getJStorageKey("otp")) {
                     toggleLoader(true);
-                    // GTM Registration    
-                    try{
-                            dataLayer.push('send', { hitType: 'event', 
-                            eventCategory: 'Mobile Checkout Funnel', 
-                            eventAction: 'Registration', eventLabel:  'New Registration'}
-                        );
-                    }catch(err){console.log("Error in GTM fire.");}  
-                    // GTM success
                     angular.copy($scope.user, utility.getJStorageKey("registrationDetails"));
                     var email = $scope.user.uemail;
                     $scope.user.otp = 1;
@@ -388,7 +386,7 @@ define(['app'], function(app) {
                             otp: 1,
                             number: number,
                             quote_id: angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : 'no'
-                        };  
+                        };
                     $scope.socilaLogin(input); 
                 }   else{
 					$scope.showUserResponse = true;
@@ -406,6 +404,12 @@ define(['app'], function(app) {
                         };
                 socialName = googleUser.getBasicProfile().getName();
                 socialEmail = googleUser.getBasicProfile().getEmail();
+                try{     
+                        logintgtm = "Email="+ socialEmail;
+                        dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Login', 
+                            eventAction: 'Google', eventLabel: logintgtm}
+                        );console.log("Standard Login");
+                    }catch(err){console.log("Error in GTM fire.");}
                 $scope.socilaLogin(input);
             }
 
@@ -479,6 +483,13 @@ define(['app'], function(app) {
                             };
                     socialName = response.name;
                     socialEmail = response.email;
+                    try{     
+                        logintgtm = "Email="+ socialEmail;
+                        dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Login', 
+                            eventAction: 'Facebook', eventLabel: logintgtm}
+                        );console.log("Standard Login");
+                    }catch(err){console.log("Error in GTM fire.");}
+
                     $scope.socilaLogin(input);
                 });
             }
@@ -505,15 +516,13 @@ define(['app'], function(app) {
                             password: $scope.user.password
                         },
                         email = $scope.user.uemail;
-                    // GTM Login
                     try{     
-                        logintgtm = "usertype=Existing User" + "/customerEmail="+ email;
-                        dataLayer.push('send', { hitType: 'event', 
-                            eventCategory: 'Mobile Checkout Funnel', 
-                            eventAction: 'Login', eventLabel: logintgtm}
-                        );
-                    }catch(err){console.log("Error in GTM fire.");}     
-                    // GTM success
+                        logintgtm = "Email="+ email;
+                        dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Login', 
+                            eventAction: 'Standard', eventLabel: logintgtm}
+                        );console.log("Standard Login");
+                    }catch(err){console.log("Error in GTM fire.");}
+
                     if(angular.isDefined(utility.getJStorageKey("quoteId")) 
                         && utility.getJStorageKey("quoteId")) {
                         input.quote_id = utility.getJStorageKey("quoteId");
@@ -1000,6 +1009,13 @@ define(['app'], function(app) {
             };
 
             $scope.navigateToCart = function() {
+                try{
+                    var QgtmCart ="CartQty="+ $scope.cartItemCount + "/UserId=" + utility.getJStorageKey("userId");
+                    dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile View Cart', 
+                        eventAction: 'Cart Details', eventLabel: QgtmCart }
+                        ); console.log("Cart Open");
+                }catch(err){console.log("Error in GTM fire.");}
+
                 if(angular.isDefined(utility.getJStorageKey("quoteId")) 
                     && utility.getJStorageKey("quoteId")
                     && $scope.cartItemCount) {

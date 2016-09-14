@@ -239,6 +239,12 @@ define(['app'], function(app) {
                         try{
                             userService.trackorderdetails($scope.orderId).then(function(data){
                                 if(data.flag==1){
+                                    try{     
+                                    shipgtm = "OrderId=" + data.transactionId +"/customerEmail="+ utility.getJStorageKey("email");
+                                    dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Order Successful', 
+                                                        eventAction: 'PayTm_cc', eventLabel: shipgtm}
+                                     );console.log("Mobile Order Successful"); console.log(dataLayer);
+                                    }catch(err){console.log("Error in GTM fire.");}
                                     dataLayer.push(data.newgtm);
                                 }
                             });
@@ -329,21 +335,6 @@ define(['app'], function(app) {
                     $scope.payment[key] = false;
                 });
                 $scope.payment[paymentMethod] = true;
-                try{
-                    paymgtm = "customerId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
-                        dataLayer.push('send', { hitType: 'event', 
-                            eventCategory: 'Mobile Checkout Funnel', 
-                            eventAction: 'Payment Method', eventLabel: paymgtm}
-                        );
-                    dataLayer.push({
-                        'event': 'checkoutOption',
-                        'ecommerce': {
-                          'checkout_option': {
-                            'actionField': {'step': "5", 'option': "Payment Options"}
-                          }
-                        }
-                      });
-                }catch(err){}    
                 $scope.paymentMethod = ($scope.payment.cc || $scope.payment.paytm_cc) ? "paytm_cc" : paymentMethod;                
             };
 
@@ -400,21 +391,13 @@ define(['app'], function(app) {
                 utility.setJStorageKey("checkoutDetails", checkoutDetails, 1);
 
                 //$analytics.eventTrack($scope.selectedCity, {  category: "Shipping address" });
-                try{
+                try{     
                     shipgtm = "customerId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
-                    dataLayer.push('send', { hitType: 'event', 
-                        eventCategory: 'Mobile Checkout Funnel', 
+                    dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Checkout Funnel', 
                         eventAction: 'Shipping', eventLabel: shipgtm}
-                    );
-                    dataLayer.push({
-                        'event': 'checkoutOption',
-                        'ecommerce': {
-                          'checkout_option': {
-                            'actionField': {'step': "3", 'option': "Shipping"}
-                          }
-                        }
-                    });
-                }catch(err){}
+                    );console.log("Shipping"); console.log(dataLayer);
+                }catch(err){console.log("Error in GTM fire.");}
+
                 if($scope.billingAsShipping) {
                     $location.url("checkout/delivery");
                 } else {
@@ -423,26 +406,13 @@ define(['app'], function(app) {
             };
             
             $scope.selectBillingAddress = function() {
+                console.log("billing fore");
                 if($scope.isSelectButtonDisabled('is_default_billing')) {
                     $scope.shouldProceed = false;
                     return false;
                 }
                 $scope.shouldProceed = true;
-                try{
-                    billgtm ="customerId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
-                    dataLayer.push('send', { hitType: 'event', 
-                        eventCategory: 'Mobile Checkout Funnel', 
-                        eventAction: 'Billing', eventLabel: billgtm}
-                    );
-                    dataLayer.push({
-                        'event': 'checkoutOption',
-                        'ecommerce': {
-                          'checkout_option': {
-                            'actionField': {'step': "2", 'option': "Billing"}
-                          }
-                        }
-                    });
-                }catch(err){}
+                
                 var billingAddress = null;
                 if($scope.addressList.length) {
                     angular.forEach($scope.addressList, function(value, key) {
@@ -495,6 +465,12 @@ define(['app'], function(app) {
                 //$analytics.eventTrack($scope.selectedCity, {  category: "Delivery details" });
 
                 $location.url("checkout/payment");
+                try{     
+                    shipgtm = "customerId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
+                    dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Checkout Funnel', 
+                        eventAction: 'Delivery Slot', eventLabel: shipgtm}
+                    );console.log("Delivery Slot");
+                }catch(err){console.log("Error in GTM fire.");}
             };
 
             getSelectedDeliveryDate = function(currentIndex) {
@@ -530,22 +506,6 @@ define(['app'], function(app) {
                     $scope.selectedDeliveryTime = data.timeSlot;
                     $scope.selectedDeliveryDate = getSelectedDeliveryDate(parentIndex);
                     $scope.parentIndex = parentIndex;
-                    try{
-                        slotgtm = "customerId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
-                        dataLayer.push('send', { hitType: 'event', 
-                            eventCategory: 'Mobile Checkout Funnel', 
-                            eventAction: 'Delivery Slot', eventLabel: slotgtm}
-                        );
-                       
-                         dataLayer.push({
-                            'event': 'checkoutOption',
-                            'ecommerce': {
-                              'checkout_option': {
-                                'actionField': {'step': "4", 'option': "Shipping Charge"}
-                              }
-                            }
-                          });
-                    }catch(err){}     
                 }
             };
 
@@ -632,6 +592,13 @@ define(['app'], function(app) {
             $scope.isHidePlacedBtn =false;
             $scope.placeOrder = function() { 
                 //$analytics.eventTrack($scope.selectedCity, {  category: "Review and Place order" });
+                try{     
+                    shipgtm = "customerId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
+                    dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Checkout Funnel', 
+                        eventAction: 'Payment Method', eventLabel: shipgtm}
+                    );console.log("Payment Method");
+                }catch(err){console.log("Error in GTM fire.");}
+                
                 $scope.isOrderPlaced = true;
                 if($scope.paymentMethod == "paytm_cc" 
                     || $scope.paymentMethod == "cashondelivery") {
@@ -651,6 +618,12 @@ define(['app'], function(app) {
                                     try{
                                     userService.trackorderdetails(data.OrderID).then(function(data){
                                         if(data.flag==1){
+                                            try{     
+                                                shipgtm = "OrderId=" + data.transactionId +"/customerEmail="+ utility.getJStorageKey("email");
+                                                dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Order Successful', 
+                                                        eventAction: $scope.paymentMethod, eventLabel: shipgtm}
+                                                    );console.log("Mobile Order Successful"); console.log(dataLayer);
+                                            }catch(err){console.log("Error in GTM fire.");}
                                             console.log(data.newgtm);
                                             dataLayer.push(data.newgtm);
                                             console.log(dataLayer);
@@ -757,6 +730,13 @@ define(['app'], function(app) {
             };
 
             $scope.navigateToCart = function() {
+                try{
+                    var QgtmCart ="CartQty="+ $scope.cartItemCount + "/UserId=" + utility.getJStorageKey("userId");
+                    dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile View Cart', 
+                        eventAction: 'Cart Details', eventLabel: QgtmCart }
+                        ); console.log("Cart Open");
+                }catch(err){console.log("Error in GTM fire.");}
+
                 if(angular.isDefined(utility.getJStorageKey("quoteId")) 
                     && utility.getJStorageKey("quoteId")) 
 				{

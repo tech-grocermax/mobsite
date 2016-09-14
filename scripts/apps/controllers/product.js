@@ -422,16 +422,6 @@ define(['app'], function(app) {
                 toggleLoader(true);
                 productService.getCartItemDetails($scope.quoteId)
                     .then(function(data){
-                        // google GTM code
-                            try{
-                                    carttgtm = "totalitem=" +data.TotalItem +"/order_amount=" + data.CartDetail.base_subtotal_with_discount;
-                                    
-                                dataLayer.push('send', { hitType: 'event', 
-                                eventCategory: 'Mobile View Cart', 
-                                eventAction: 'Cart Details', eventLabel: carttgtm}
-                                );
-                            }catch(err){console.log("Error in GTM fire.");}
-                        // end GTM Code
                         $scope.isCartLoaded = true;
                         toggleLoader(false);
                         if(data.flag == 0) {
@@ -494,6 +484,13 @@ define(['app'], function(app) {
             }
 
             $scope.navigateToCart = function() {
+                try{
+                    var QgtmCart ="CartQty="+ $scope.cartItemCount + "/UserId=" + utility.getJStorageKey("userId");
+                    dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile View Cart', 
+                        eventAction: 'Cart Details', eventLabel: QgtmCart }
+                        ); console.log("Cart Open");
+                }catch(err){console.log("Error in GTM fire.");}
+               
                 if(angular.isDefined(utility.getJStorageKey("quoteId")) 
                     && utility.getJStorageKey("quoteId")
                     && $scope.cartItemCount) {
@@ -555,7 +552,7 @@ define(['app'], function(app) {
                 utility.setJStorageKey("productBasketCount_" + quoteId, productBasketCount, 1);
             };
 
-            $scope.addProductOneByOne = function(product) {
+            $scope.addProductOneByOne = function(product,page) {
                 // Tracking add to cart
                 $analytics.eventTrack($scope.selectedCity, {  category: "Add to Cart", label: ( product.productid + " - " + product.Name + " - " + product.quantity) });
                 // code added by grocermax team for GTM
@@ -569,29 +566,10 @@ define(['app'], function(app) {
                 var GtmPrice = product.Price;
                 var GtmBrand = product.p_brand;
                 productgtm = "productName=" + GtmName + "/prodcutId=" + GtmpId; 
-                            dataLayer.push('send', { hitType: 'event', 
-                                eventCategory: 'Mobile Add to Cart', 
-                                eventAction: 'category page', eventLabel: productgtm}
-                            );
-                dataLayer.push({
-                        'event': 'addToCart',
-                        'ecommerce': {
-                          'currencyCode': 'INR',
-                          'add': {                                // 'add' actionFieldObject measures.
-                            'products': [{                        //  adding a product to a shopping cart.
-                              'name': GtmName,
-                              'id': GtmpId,
-                              'price': GtmPrice,
-                              'brand': GtmBrand,
-                              'category': '',
-                              'variant': '',
-                              'quantity': GtmQty
-                             }]
-                          }
-                        }
-                      });
-                }catch(err){  console.log("Error in Add to cart Google Tag Fire hint product js line 63"); }
-            
+                dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Add to Cart', 
+                                eventAction: page, eventLabel: productgtm});  console.log("add o cart");
+                }catch(err){  console.log("Error in"); }
+                
                 var quoteId = null,
                     productObject = [
                         {
@@ -647,7 +625,13 @@ define(['app'], function(app) {
                 return qty;                
             }; 
 
-            $scope.routerChange = function(route, id) {
+            $scope.routerChange = function(route, id , name) {
+                try{
+                    dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
+                        eventAction: 'Product Detail Page', eventLabel: name}
+                        );console.log("Product Detail Page");
+                }catch(err){console.log("Error in GTM fire.");}
+
                 $location.url(route + "/" + id);
             };  
 
@@ -799,24 +783,27 @@ define(['app'], function(app) {
             };
 			
             $scope.checkout = function(flag) {
-                // google GTM code
-                    try{
-                            proceedgtm = "totalQty =" + $scope.totalCartQty; /*[{
-                                "totalitem":$scope.totalCartQty
-                            }];*/
-                        dataLayer.push('send', { hitType: 'event', 
-                        eventCategory: 'Mobile Proceed to checkout', 
-                        eventAction: 'Proceed Details', eventLabel: proceedgtm}
-                        );
-                    }catch(err){console.log("Error in GTM fire.");}
-                // end GTM Code
                 if(flag == 'checkout') {
                     // Proceed to Checkout
                     $analytics.eventTrack($scope.selectedCity, {  category: "Proceed to Checkout" });
+                try{     
+                    logintgtm = "CartQty=" + $scope.cartItemCount + "/subtotal=" + $scope.cartDetails.grand_total + "/UserId="+ utility.getJStorageKey("userId");
+                    dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Proceed to checkout', 
+                                    eventAction: 'Proceed Details', eventLabel: logintgtm}
+                    );console.log("Proceed Details");
+                }catch(err){console.log("Error in GTM fire.");}
+
                     checkoutSuccessCallback('checkout')
                 } else {
                     // Analytics to update cart
                     $analytics.eventTrack($scope.selectedCity, {  category: "Update Cart" });
+                try{     
+                    logintgtm = "CartQty=" + $scope.cartItemCount + "/subtotal=" + $scope.cartDetails.grand_total + "/UserId="+ utility.getJStorageKey("userId");
+                    dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Update Cart', 
+                                    eventAction: 'Update Cart', eventLabel: logintgtm}
+                    );console.log("Update Cart");
+                }catch(err){console.log("Error in GTM fire.");}
+
                     var quoteId = utility.getJStorageKey("quoteId"),
                         products = buildProductObject();
 
@@ -1045,6 +1032,12 @@ define(['app'], function(app) {
                             $scope.couponValue = (data.CartDetail.subtotal - data.CartDetail.subtotal_with_discount);
 							utility.setJStorageKey("tempcouponValue", $scope.couponValue, 1); 
                             $scope.couponModalShow = false;
+                            try{     
+                                logintgtm = "CartQty=" + $scope.cartItemCount + "/subtotal=" + $scope.cartDetails.grand_total + "/UserId="+ utility.getJStorageKey("userId");
+                                dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Apply Coupon', 
+                                    eventAction: 'Coupon Code', eventLabel: logintgtm}
+                                );console.log("Apply Coupon");
+                            }catch(err){console.log("Error in GTM fire.");}
                         } 						
 						else {
 							$scope.invalidCoupon = true;
@@ -1071,6 +1064,12 @@ define(['app'], function(app) {
                             $scope.couponValue = (data.CartDetail.subtotal - data.CartDetail.subtotal_with_discount);
 							utility.setJStorageKey("tempcouponValue", $scope.couponValue, 1); 
                             $scope.cartDetails.grand_total = data.CartDetails.grand_total;
+                            try{     
+                                logintgtm = "CartQty=" + $scope.cartItemCount + "/SubTotal=" + $scope.cartDetails.grand_total + "/UserId="+ utility.getJStorageKey("userId");
+                                dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Remove Coupon', 
+                                    eventAction: 'Coupon Code', eventLabel: logintgtm}
+                                );console.log("Remove Coupon");
+                            }catch(err){console.log("Error in GTM fire.");}
                         }                       
                         else {
                             $scope.invalidCoupon = false;

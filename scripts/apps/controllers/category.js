@@ -57,9 +57,11 @@ define(['app'], function(app) {
 			$scope.modalHide = false;
             $scope.categorybannerlist ={};
 			
-			/*$scope.location = $location.url();
-			$scope.offerlistId = $scope.location.substr($scope.location.length - 4);*/
-		//$scope.modalHide = false;
+			try{
+                dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Home Page View', 
+                        eventAction: 'Page Open', eventLabel: utility.getJStorageKey("userId")}
+                        );
+            }catch(err){console.log("Error in GTM fire.");}
             $scope.pageRoute = {
                 "faq": false,
                 "contact": false,
@@ -294,14 +296,6 @@ define(['app'], function(app) {
                         angular.forEach($scope.subCategoryList, function(value, key) {
                             $scope.offerlistId = value.parent_id;
                         });
-                        // google GTM code
-                            try{
-                                dataLayer.push('send', { hitType: 'event', 
-                                eventCategory: 'Mobile Category Interaction', 
-                                eventAction: 'category page', eventLabel: $scope.categoryName}
-                                );
-                            }catch(err){console.log("Error in GTM fire.");}  
-                        // end GTM Code
                         $scope.showMoreIcon = false;
                     }else{
                         console.log('delayed by 1 sec');
@@ -395,7 +389,22 @@ define(['app'], function(app) {
                 $scope.dealItems = $scope.dealCategoryItemList[category.id];
             };
 
-            $scope.routerChange = function(route, id) {
+            $scope.routerChange = function(route, id, name) {
+                if(route == 'category'){
+                    try{
+                        dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Banner Click', 
+                        eventAction: 'Category Page', eventLabel: name}
+                        );console.log(name);
+                    }catch(err){console.log("Error in GTM fire.");}  
+                }
+                if(route == 'deals'){
+                    try{
+                        dataLayer.push('send', { hitType: 'event', 
+                        eventCategory: 'Mobile Banner Click', 
+                        eventAction: 'Special Deal Page', eventLabel: name}
+                        );console.log(name);
+                    }catch(err){console.log("Error in GTM fire.");} 
+                }
                 route = angular.isDefined(id) ? route + ("/" + id) : route;
                 if(isDrawerOpen) {
                     $analytics.eventTrack($scope.selectedCity, {  category: "Close Drawer"});
@@ -410,6 +419,11 @@ define(['app'], function(app) {
             };
             
             $scope.toggleCategoryMenu = function() {
+                try{
+                    dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile - Drawer Activity', 
+                        eventAction: 'Page Name', eventLabel: ''}
+                        );
+                }catch(err){console.log("Error in GTM fire.");}
                 $scope.showSubCategoryMenu = false;
                 $scope.showCategoryMenu = $scope.showCategoryMenu ? false : true;
 
@@ -441,7 +455,14 @@ define(['app'], function(app) {
             };
 
             $scope.handleOfferCategoryClick = function(category) {
-                var isToggle = $scope.isMenuToggalable(category);
+                try{
+                    dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
+                        eventAction: 'Category Page', eventLabel: category.name}
+                        );console.log("Category Page");
+                }catch(err){console.log("Error in GTM fire.");}
+
+                var isToggle = $scope.isMenuToggalable(category); 
+
                 if(isToggle) {
                     $scope.showMoreCategory(category)
                 } else {
@@ -453,7 +474,13 @@ define(['app'], function(app) {
                 $scope.routerChange('specialDeal', specialDeal.linkurl);
             }
 
-            $scope.handleTopOfferClick = function(offerlistId) {
+            $scope.handleTopOfferClick = function(offerlistId,categoryName) {
+                try{
+                    dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
+                        eventAction: 'Category - Top Offers', eventLabel: categoryName}
+                        );console.log("Category - Top Offers");
+                }catch(err){console.log("Error in GTM fire.");}
+                
                 $scope.routerChange('category/offers', offerlistId);
             }
 
@@ -533,6 +560,11 @@ define(['app'], function(app) {
             };
 
             $scope.handleSearchKeyEnter = function() {
+                try{
+                    dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
+                        eventAction: 'Search', eventLabel: $scope.searchKeyword}
+                        );
+                    }catch(err){console.log("Error in GTM fire.");}
 				var addItemTrendlist = $scope.trendlist.indexOf($scope.searchKeyword);
 				if (addItemTrendlist < 0){
 					$scope.trendlist.push($scope.searchKeyword);
@@ -633,6 +665,13 @@ define(['app'], function(app) {
             };
 
             $scope.navigateToCart = function() {
+                try{
+                    var QgtmCart ="CartQty="+ $scope.cartItemCount + "/UserId=" + utility.getJStorageKey("userId");
+                    dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile View Cart', 
+                        eventAction: 'Cart Details', eventLabel: QgtmCart }
+                        ); console.log("Cart Open");
+                }catch(err){console.log("Error in GTM fire.");}
+                
                 if(angular.isDefined(utility.getJStorageKey("quoteId")) 
                     && utility.getJStorageKey("quoteId")
                     && $scope.cartItemCount) {
@@ -641,7 +680,11 @@ define(['app'], function(app) {
             };
 
             $scope.handleBannerClick = function(banner) {
-                //console.log(queryValue+"$"+banner.name);
+                try{
+                    dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Banner Click', 
+                        eventAction: 'Home Page', eventLabel: banner.name}
+                        );console.log("Home Page");
+                }catch(err){console.log("Error in GTM fire.");}
                 var arrBanner = banner.linkurl.split('?'),
                     url = arrBanner[0],
                     queryParams = arrBanner[1].split('='),
@@ -736,9 +779,13 @@ define(['app'], function(app) {
 			}
 			
 			$scope.closeStrip = false;
-			$scope.hideStrip = function(){				
+			$scope.hideStrip = function(value){
+                try{
+                    dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Widgets', 
+                        eventAction: 'Download App', eventLabel:value}
+                        );
+                }catch(err){console.log("Error in GTM fire.");}
 				$scope.closeStrip = !$scope.closeStrip;
-				
 			}
 			$timeout(function () {
 				$("section").removeClass("no-animate");
@@ -754,6 +801,13 @@ define(['app'], function(app) {
 				$scope.searchKeyword = value;
 				$scope.handleSearchKeyEnter();
 			}
+            $scope.andriodDownloat = function(value){
+                try{
+                    dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Widgets', 
+                        eventAction: 'Download App', eventLabel:value}
+                        );console.log(dataLayer);
+                }catch(err){console.log("Error in GTM fire.");}
+            }
 
         }
     ]);

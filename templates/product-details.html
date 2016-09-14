@@ -76,7 +76,7 @@
                     'sold-out': productDetails.Status != 'In stock'}">
                     <button type="button" class="add-btn" 
                         data-ng-show="productDetails.Status == 'In stock'"
-                        data-ng-click="addProductOneByOne(productDetails)">ADD</button>
+                        data-ng-click="addProductOneByOne(productDetails,'Product Detail Page')">ADD</button>
                     <span class="prod-list-h soldout" 
                         data-ng-show="productDetails.Status != 'In stock'">Sold Out</span>
                 </div>
