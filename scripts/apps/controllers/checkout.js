@@ -240,7 +240,7 @@ define(['app'], function(app) {
                             userService.trackorderdetails($scope.orderId).then(function(data){
                                 if(data.flag==1){
                                     try{     
-                                    shipgtm = "OrderId=" + data.transactionId +"/customerEmail="+ utility.getJStorageKey("email");
+                                    shipgtm = "OrderId=" + data.transactionId +"/UserId="+ utility.getJStorageKey("userId");
                                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Order Successful', 
                                                         eventAction: 'PayTm_cc', eventLabel: shipgtm}
                                      );console.log("Mobile Order Successful"); console.log(dataLayer);
@@ -619,7 +619,7 @@ define(['app'], function(app) {
                                     userService.trackorderdetails(data.OrderID).then(function(data){
                                         if(data.flag==1){
                                             try{     
-                                                shipgtm = "OrderId=" + data.transactionId +"/customerEmail="+ utility.getJStorageKey("email");
+                                                shipgtm = "OrderId=" + data.transactionId +"/userId="+ utility.getJStorageKey("userId");
                                                 dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Order Successful', 
                                                         eventAction: $scope.paymentMethod, eventLabel: shipgtm}
                                                     );console.log("Mobile Order Successful"); console.log(dataLayer);
