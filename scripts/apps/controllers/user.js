@@ -773,6 +773,13 @@ define(['app'], function(app) {
             }
 			
 			$scope.reOrder = function(increment_id , order){
+                try{     
+                    logintgtm = "UserId="+ utility.getJStorageKey("userId");
+                    dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
+                                    eventAction: 'Reorder', eventLabel: logintgtm}
+                    );console.log("Reorder");
+                }catch(err){console.log("Error in GTM fire.");}
+
 				toggleLoader(true);
 				$scope.reorderid = increment_id;
 				$scope.cartItemCount = 0;
@@ -1024,6 +1031,13 @@ define(['app'], function(app) {
             };
 
             $scope.navigateToOrderDetail = function(order) {
+                try{     
+                    logintgtm = "UserId="+ utility.getJStorageKey("userId");
+                    dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
+                                    eventAction: 'View Order', eventLabel: logintgtm}
+                    );console.log("View Order");
+                }catch(err){console.log("Error in GTM fire.");}
+                
                 $location.url("user/orderhistory/" + order.order_id);
             };
 
