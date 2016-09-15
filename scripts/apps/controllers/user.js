@@ -119,9 +119,23 @@ define(['app'], function(app) {
             } else if($scope.section.editprofile) {
                 $scope.categoryName = "Edit My Profile";
                 $scope.columnSize = 10;
+                try{     
+                    shipgtm = "UserId=" + utility.getJStorageKey("userId");
+                    dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
+                            eventAction: 'Account Information', eventLabel: shipgtm}
+                    );console.log("Account Information");
+                }catch(err){console.log("Error in GTM fire.");}
+
             } else if ($scope.section.address) {
                 $scope.categoryName = "My Address";
                 $scope.columnSize = 10;
+                try{     
+                    shipgtm = "UserId=" + utility.getJStorageKey("userId");
+                    dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
+                            eventAction: 'Address', eventLabel: shipgtm}
+                    );console.log("Address");
+                }catch(err){console.log("Error in GTM fire.");}
+
             } else if ($scope.section.addaddress) {
                 $scope.categoryName = "Create Address";
                 $scope.columnSize = 10;
@@ -130,10 +144,24 @@ define(['app'], function(app) {
                 $scope.columnSize = 10;
             } else if ($scope.section.coinshistory) {
                 $scope.categoryName = "Max Coins";
-                $scope.columnSize = 10;  
+                $scope.columnSize = 10;
+                try{     
+                    shipgtm = "UserId=" + utility.getJStorageKey("userId");
+                    dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
+                            eventAction: 'Max Coins', eventLabel: shipgtm}
+                    );console.log("Max Coins");
+                }catch(err){console.log("Error in GTM fire.");}
+  
             } else if ($scope.section.maxmoneyhistory) {
                 $scope.categoryName = "Refund Wallet";
-                $scope.columnSize = 10;  
+                $scope.columnSize = 10;
+                try{     
+                    shipgtm = "UserId=" + utility.getJStorageKey("userId");
+                    dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
+                            eventAction: 'Refund Wallet', eventLabel: shipgtm}
+                    );console.log("Refund Wallet");
+                }catch(err){console.log("Error in GTM fire.");}
+
             } else if ($scope.section.orderhistory) {
                 $scope.categoryName = "Order History";
                 $scope.columnSize = 10;
@@ -938,8 +966,15 @@ define(['app'], function(app) {
             $scope.logout = function() {
                 toggleLoader(true);
                 var userId = utility.getJStorageKey("userId");
-                $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Logout' });
-                $analytics.pageTrack("Logout");
+               // $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Logout' });
+                //$analytics.pageTrack("Logout");
+                try{     
+                    shipgtm = "UserId=" + userId;
+                    dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Logout', 
+                            eventAction: 'Logout', eventLabel: shipgtm}
+                    );console.log("Logout");
+                }catch(err){console.log("Error in GTM fire.");}
+                
                 userService.logout(userId)
                     .then(function(data){
                         toggleLoader(false);
