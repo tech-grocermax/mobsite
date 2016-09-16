@@ -12,15 +12,15 @@
 
 	<!--UPDATED DESIGN-->
 	<div class="row margin0 pad-rt16 pad-lt16" style="clear:both;"  data-ng-hide="registrationStep == 4 || registrationStep == 5">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<div id="my-signin2" data-ng-init="init();"></div>
-					<div ng-click="authenticate('google')" style="width:48%;float:left;">
-						<img src="images/glogin.png" alt="Google" style="max-width:100%;">
-					</div>
-					<div ng-click="authenticate('facebook')" data-ng-init="init();"  style="width:48%;float:left;margin-left:2%;"><img src="images/fb-login.png" alt="Facebook" style="max-width:100%;"></div>
+				<div id="my-signin2" data-ng-init="init();"></div>
+				<div ng-click="authenticate('google')" style="width:48%;float:left;">
+					<img src="images/glogin.png" alt="Google" style="max-width:100%;">
 				</div>
+				<div ng-click="authenticate('facebook')" data-ng-init="init();"  style="width:48%;float:left;margin-left:2%;"><img src="images/fb-login.png" alt="Facebook" style="max-width:100%;"></div>
 			</div>
+		</div>
 	</div> 
 	
 	<!--<div class="row margin0 pad-lt32 reg-bar pad-lt16-m"style="font-size: 3.5vw;">
@@ -108,7 +108,8 @@
 				<input type="text" name="mobile" placeholder="required"
 							data-ng-model="user.number" 
 							required my-max-length="10" only-digits
-							class="place-color reg-list-input">			
+							class="place-color reg-list-input" style="width: 180px;padding-left: 5px;height:24px;">	
+				<button style="background-color: #0e69e5;border: none;color: #fff;height: 24px;font-size: 14px;font-weight: 100;float: right;" data-ng-click="createUser(frmRegistration)">Resend</button>		
 			</div>
 			<div class="alert" role="alert" style="float: left;  width: 100%;  margin-top: 10px;"
 				data-ng-class="{'alert-success': className.success,'alert-danger': className.danger}"
