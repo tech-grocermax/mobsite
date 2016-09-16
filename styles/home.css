@@ -264,7 +264,7 @@ input , button, select{outline:none;}
 .nav-blue{margin-top:16px; overflow:auto; background:#0d69e4 none repeat scroll 0 0;}
 .nav-list{/*font-family: helveticaNeue-Regular;*/ font-size:14px; margin:0; /* height:98px;display:flex;*/}
 /*.nav-list li:nth-child(1){padding: 30px 22px 28px 25px;}*/
-.nav-active{border-bottom: 4px solid;color:#fff !important;}
+.nav-active{border-bottom: 5px solid;color:#fff !important;}
 .nav-li{color: rgba(255,255,255,0.6); padding:7px 15px;/*text-transform: uppercase;*/white-space: nowrap; font-size: 14px;    font-weight: bold; display:inline;}
 
 /*========== Register Form ==========*/
@@ -514,7 +514,7 @@ input , button, select{outline:none;}
 .cart-box-botom{position:fixed; bottom:45px; left:0; right:0;}
 .cart-margin{/*margin-bottom:5%; margin-top:65px;*/}
 .header-fix-top .header-middle{height:80px;}
-.top-height{height:33px;}
+.top-height{height:34px;}
 .deals-head .deals-hide{display: none;}
 .banner-slide{width:100%; height: 200px;}
 .cat-border .header-middle {height: auto;}
