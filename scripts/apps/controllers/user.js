@@ -100,6 +100,7 @@ define(['app'], function(app) {
             }
             $scope.registrationStep = 1;
             $scope.otp = "";
+            $scope.user.otp = '';
             /*$scope.cityLocation = {
                 "delhi": angular.isDefined(utility.getJStorageKey("selectedCity")) && utility.getJStorageKey("selectedCity") == "delhi" ? true : false,
                 "gurgaon": angular.isDefined(utility.getJStorageKey("selectedCity")) && utility.getJStorageKey("selectedCity") == "gurgaon" ? true : false,
