@@ -262,7 +262,7 @@ input , button, select{outline:none;}
 
 /*========== NAV BAR ==========*/
 .nav-blue{margin-top:16px; overflow:auto; background:#0d69e4 none repeat scroll 0 0;}
-.nav-list{/*font-family: helveticaNeue-Regular;*/ font-size:14px;padding: 0 0 12px 0;margin-bottom: 0; /*margin:0;  height:98px;display:flex;*/}
+.nav-list{/*font-family: helveticaNeue-Regular;*/ font-size:14px;padding: 0 0 10px 0;margin-bottom: 0; /*margin:0;  height:98px;display:flex;*/}
 /*.nav-list li:nth-child(1){padding: 30px 22px 28px 25px;}*/
 .nav-active{border-bottom: 4px solid;color:#fff !important;}
 .nav-li{color: rgba(255,255,255,0.6); padding:7px 15px;/*text-transform: uppercase;*/white-space: nowrap; font-size: 14px;    font-weight: bold; display:inline;}
