@@ -1049,6 +1049,7 @@ define(['app'], function(app) {
 						else {
 							$scope.invalidCoupon = true;
 							$scope.couponMessage = data.Result;
+                            
                         }                      
                     });
             };

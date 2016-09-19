@@ -49,11 +49,12 @@
 							<img class="dropdown-img" alt="" src="images/header-icon/drop-img.png">
 	  						<select id="e1" style="width:100%;" class="reg-list-select" 
 	  							name="addressline2" required
-	  							data-ng-model="address.addressline2">
-	  							<option value="" style="display:none;">Select</option>
+	  							data-ng-model="address.addressline2" data-ng-options="location.area_name for location in locationList">
+	  							<option value="">Select City</option>
+	  							<!-- <option value="" style="display:none;">Select</option>
 						        <option value="{{location.area_name}}" 
 						        	data-ng-repeat="location in locationList">{{location.area_name}}
-						        </option>
+						        </option> -->
 						    </select>	
 						    <div ng-messages="frmRegistration.addressline2.$error" 
                         		data-ng-show="frmRegistration.addressline2.$dirty || (errorRegistration && address.addressline2 == null)">
@@ -113,7 +114,7 @@
 					<li class="reg-list" style="padding-bottom: 0px;">
 						<span class="reg-list-text">State</span><br>
 						<div class="myselect">
-							<select name="state" data-ng-model="address.state" 
+							<!-- <select name="state" data-ng-model="address.state" 
 	  							data-ng-show="(isReferrer == 'checkout' && addressType == 'shipping') || !addressType"
 	  							class="reg-list-select" required>
 	  							<option value="" style="display:none; ">Select</option>
@@ -127,7 +128,21 @@
 						    	data-ng-show="!(isReferrer == 'checkout' && addressType == 'shipping') && addressType" required>
 	  							<option value="" style="display:none; ">Select</option>
 						        <option value="{{state.region_id}}" data-ng-repeat="state in stateList">{{state.default_name}}</option>
-						    </select>
+						    </select> -->
+						    <input type="text" name="state" 
+							required placeholder="required"
+							data-ng-model="address.state"							 
+							data-ng-show="(isReferrer == 'checkout' && addressType == 'shipping') || !addressType"
+							my-max-length="20" only-alphabets-with-space
+							value="" readonly 	 						
+							class="place-color reg-list-input">
+							<input type="text" name="state" 
+								required placeholder="required"
+								data-ng-model="address.state"							
+								data-ng-show="!((isReferrer == 'checkout' && addressType == 'shipping') || !addressType)"
+								my-max-length="20" only-alphabets-with-space
+								value="{{address.state}}"
+								class="place-color reg-list-input">
 						    <div ng-messages="frmRegistration.state.$error" 
 	                        	data-ng-show="frmRegistration.state.$dirty || errorRegistration">
 	                            <div ng-show="frmRegistration.state.$error.required" 
@@ -174,9 +189,9 @@
 		</div>
 		
 		<div class="row margin0 margin-top32">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" 
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 bot-foot" 
 				data-ng-click="saveAddress(frmRegistration)">
-				<button type="button" class="reg-bot-btn bot-foot">SAVE</button>
+				<button type="button" class="reg-bot-btn">SAVE</button>
 			</div>
 		</div>
 	</form>

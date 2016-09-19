@@ -79,7 +79,7 @@ define(['app'], function(app) {
                 fname: null,
                 lname: null,
                 addressline1: null,
-                addressline2: null,
+                addressline2: "select city",
                 addressline3: null,
                 city: ($scope.isReferrer == 'checkout' && $scope.addressType == 'shipping') || !$scope.addressType ? utility.getJStorageKey("selectedCity") : "",
                 state: "",                
@@ -156,6 +156,7 @@ define(['app'], function(app) {
 
             getLocationList = function() {
                 var cityId = utility.getJStorageKey("selectedCityId");
+                console.log(cityId);
                 userService.getLocationList(cityId)
                     .then(function(data){
                         $scope.locationList = data.locality;
@@ -575,6 +576,7 @@ define(['app'], function(app) {
                                 $scope.showUserResponse = true;
                                 $scope.userResponseMessage = data.Result;
                                 updateClassName("danger");
+                                $location.url('user/profile');
                             }   
                             //successCallbackUpdateProfile(data);
                         });
@@ -649,7 +651,7 @@ define(['app'], function(app) {
                 getAddressList(); 
             }
 
-            if($scope.sectionName == "addaddress" || $scope.sectionName == "editaddress") {           
+            if($scope.sectionName == "addaddress" || $scope.sectionName == "editaddress") {        
                 getLocationList();
                 getStateList();
             }
