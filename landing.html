@@ -399,7 +399,7 @@ function submitEmail()
 	var landingEmail = document.getElementById("enteremailplaceholder").value;
 		$.ajax({
 	    	type: 'POST',
-	    	url: 'http://qa.grocermax.com/api/registermail',
+	    	url: 'https://grocermax.com/api/registermail',
 	    	data: JSON.stringify ({email: landingEmail}),
 	    	success: function(data) {
 	    		if(data.flag == 1){
