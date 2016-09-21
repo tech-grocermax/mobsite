@@ -226,7 +226,7 @@ input , button, select{outline:none;}
 .bot-foot{position:fixed; bottom:0px;z-index:10;left:0;background: #0e69e5;}
 .top-head  .header-middle{position: fixed; z-index: 2; left: 0; right: 0; height: 46px;}
 .top-subhead{position: fixed; z-index: 2; left: 0; right: 0; /*height:30px;*/top:46px;}
-.wrapper{margin-top: 88px; margin-bottom: 75px;}
+.wrapper{margin-top: 88px; margin-bottom: 50px;}
 .user-wrapper{margin-top: 88px;}
 .inner-body{margin-top:80px;}
 .product-inner-body{margin-top:65px;}
