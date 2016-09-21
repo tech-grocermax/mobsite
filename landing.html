@@ -397,13 +397,11 @@ document.getElementById("searchicon").addEventListener("click", function(e)
 function submitEmail()
 {
 	var landingEmail = document.getElementById("enteremailplaceholder").value;
-	console.log(landingEmail);
 		$.ajax({
 	    	type: 'POST',
-	    	url: 'http://qa.grocermax.com/api/registermail',
+	    	url: 'https://grocermax.com/api/registermail',
 	    	data: JSON.stringify ({email: landingEmail}),
 	    	success: function(data) {
-	    		console.log(data);
 	    		if(data.flag == 1){
 	    			var hidenews = document.getElementById("newslater");
 	    			hidenews.style.display = 'none';
