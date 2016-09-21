@@ -356,6 +356,7 @@ function emailValidateAndSend()
     	var msg = document.getElementById("validationMsg");
     	msg.style.color = '#ff1616';
         msg.innerText="Please enter the correct email.";
+        document.getElementById("respnews").style.display = 'none';
         return false;
     }
     else
@@ -416,6 +417,7 @@ function submitEmail()
 	    				showrespnews.style.display = 'block';
 	    				showrespnews.style.fontSize = '12px';
 	    				showrespnews.innerText = data.Result;
+	    				document.getElementById("validationMsg").style.display = 'none';
 	    			}
 	    	}
 		});
