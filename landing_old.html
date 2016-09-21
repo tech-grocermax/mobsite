@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <title></title>
+	<link rel="stylesheet" href="styles/bootstrap.min.css">
+	<link rel="stylesheet" href="styles/bootstrap-theme.min.css">
+	<style rel="stylesheet">
+		@font-face {
+			font-family: 'gotham_mediumregular';
+			src: url('font/gotham_medium_regular-webfont.eot');
+			src: url('font/gotham_medium_regular-webfont.eot?#iefix') format('embedded-opentype'),
+				 url('font/gotham_medium_regular-webfont.woff2') format('woff2'),
+				 url('font/gotham_medium_regular-webfont.woff') format('woff'),
+				 url('font/gotham_medium_regular-webfont.ttf') format('truetype'),
+				 url('font/gotham_medium_regular-webfont.svg#gotham_mediumregular') format('svg');
+			font-weight: normal;
+			font-style: normal;
+
+		}
+		.text-ellipsis {
+			display: block;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+		.carousel-indicators li{border: solid 1px #585858;}
+		.carousel-indicators .active{background-color:#EE2D09;}
+	</style>
+  </head>
+<body style="font-family: sans-serif;background-color:#f4f4f4;" ng-app="landingPage" ng-controller="landingController">
+    <!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-M2NNXD" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M2NNXD');</script>
+<!-- End Google Tag Manager -->  	
+	<header>
+		<div class="row" style="margin:0;">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center;padding: 0;background-color: #fff;padding: 10px 0 8px 0px;">
+				
+				<a href="http://m.grocermax.com/#/">
+					<img src="images/mobile-landing/land-menu.png" style="float: left;margin: 15px 0 0px 20px;">
+					<img src="images/mobile-landing/logo.png" style="height: 45px;width: 142px;margin: 0 20px 0 0;">
+				</a>
+			</div>
+			<div class="col-sm-12 col-xs-12" style="background-color: #EE2D09;padding-top: 10px;padding-bottom: 10px;text-align: center;">
+				<div class="col-sm-3 col-xs-3" style="padding: 0;">
+					<a href="http://m.grocermax.com/#/">
+						<img src="images/header-icon/home.png" style="height: 26px;width: 26px;margin-top: 5px;float:left;">
+					</a>
+				</div>
+				<div class="col-sm-3 col-xs-3" style="padding:0;">
+					<img src="images/location-nav-fill.png" style="height: 34px;width: 24px;">
+					<span style="color: #fff;font-size: 11px;">Gurgaon</span>
+				</div>
+				<div class="col-sm-3 col-xs-3">
+					<a href="http://m.grocermax.com/#/user/login">
+						<img src="images/mobile-landing/user_icon_2.png" style="height: 29px;width: 39px;margin-top: 2px;float:right;">
+					</a>
+				</div>
+				<div class="col-sm-3 col-xs-3" style="padding: 0;">
+					<img src="images/header-icon/cart.png" style="width: 27px;height: 25px;margin-top: 4px;float:right;">
+				</div>
+			</div>
+			<div class="col-sm-12 col-xs-12" style="background-color: #3694d1;height: 80px;">
+				<div style="background-color: #fff;height: 40px;border-radius: 4px;margin: 5px 0 0 0;">
+					
+					<input type="text" placeholder="Search and buy from here..." style="height: 40px;border: none;padding: 0 0 0 10px;width: 240px;border-radius: 4px;" ng-model="landingSearchItem">
+					<img src="images/header-icon/search.png" style="height: 24px;width: 24px;float: right;margin: 8px 14px 0px 0;" data-ng-click="landingSearch(landingSearchItem)">
+				</div>
+				<div style="background-color: #0072bb;width: 122px;height: 27px;margin-left: auto;margin-right: auto;color: #fff;z-index: 1;position: relative;border-left: 5px solid #3694d1;border-right: solid 5px #3694d1;margin-top: 8px;padding: 3px 0 3px 0;font-size: 15px;text-align:center;">TOP OFFERS</div>
+				<div style="border-top: solid 1px #fff;position: absolute;bottom: 13px;left: 0;right: 0;z-index: 0;width: 264px;margin: 0 auto;"></div>
+				
+			</div>
+		</div>			
+	</header>
+	<section>
+	<!-- SLIDER START-->
+		<div class="row" style="margin:0;">
+			<div class="col-sm-12 col-xs-12" style="padding: 0;">
+				<div id="myCarousel" class="carousel slide" data-ride="carousel">
+					<!-- Indicators -->
+					<ol class="carousel-indicators" style="bottom: -35px;">
+					  <li data-target="#myCarousel" data-slide-to="1" class="data_slide_1"></li>
+					  <li data-target="#myCarousel" data-slide-to="2" class="data_slide_2"></li>
+					  <li data-target="#myCarousel" data-slide-to="3" class="data_slide_3"></li>
+					  <li data-target="#myCarousel" data-slide-to="4" class="data_slide_4"></li>
+					  <li data-target="#myCarousel" data-slide-to="5" class="data_slide_5"></li>
+					  <li data-target="#myCarousel" data-slide-to="6" class="data_slide_6"></li>
+					  <li data-target="#myCarousel" data-slide-to="7" class="data_slide_7"></li>
+					</ol>
+
+					<!-- Wrapper for slides -->
+					<div class="carousel-inner" role="listbox">
+					  <div class="item data_slide_1">
+						<a href="http://m.grocermax.com/#/singlepage/2">
+							<img src="https://d23walkfa4zqyq.cloudfront.net/media/bannerslider/1/0/1000-pe-1000-29.png" alt="Chania" width="460" height="345">
+						</a>
+					  </div>
+
+					  <div class="item data_slide_2">
+						<a href="http://m.grocermax.com/#/deals/1">
+							<img src="https://d23walkfa4zqyq.cloudfront.net/media/bannerslider/g/i/gisf-app-banner_kohinoor.png" alt="Chania" width="460" height="345">
+						</a>
+					  </div>
+					
+					  <div class="item data_slide_3">
+						<a href="http://m.grocermax.com/#/specialdeal?sku=GM104361~GM104362~GM106355~GM109701~GM104517~GM104514~GM105610~GM105635~GM103979~GM103978~GM103979~GM103980~GM103980~GM104697~GM102844~GM104920~GM104347~GM104096~GM104099~GM104122~GM104524~GM104525~GM109375~GM102926~GM102928~GM104810~GM103872~GM103113~GM107760~GM107762~GM103082~GM103688~GM105913~GM105914~GM109991~GM105651~GM107023~GM106172~GM106173~GM106181~GM106195~GM106345~GM106346~GM106348~GM106197~GM109225~GM106203~GM106201~GM109597~GM106202~GM106205~GM106198~GM109600~GM109601~GM110016~GM104580~GM104631~GM104575~GM104595~GM104594~GM104604~GM104612~GM104615~GM104621~GM103556~GM103602~GM103603~GM104900~GM104879~GM104876~GM104877">
+							<img src="https://d23walkfa4zqyq.cloudfront.net/media/bannerslider/h/o/home-care-29.png" alt="Flower" width="460" height="345">
+						</a>
+					  </div>
+
+					  <div class="item data_slide_4">
+						<a href="http://m.grocermax.com/#/product/2679">
+							<img src="https://d23walkfa4zqyq.cloudfront.net/media/bannerslider/f/r/fruit-n-veg-29.png" alt="Flower" width="460" height="345">
+						</a>
+					  </div>
+					  
+					  <div class="item data_slide_5">
+						<a href="http://m.grocermax.com/#/specialdeal?sku=GM107318~GM102457~GM108045~GM102455~GM102456~GM108592~GM102480~GM100956~GM106354~GM102072~GM102503~GM107252~GM101542~GM101543~GM101544~GM102487~GM107736~GM107739~GM102160~GM107732~GM107733~GM102260~GM102261~GM102262~GM102263~GM102062~GM102419~GM102420~GM106297~GM102493~GM102494~GM108772~GM108771~GM101726~GM101812~GM101834~GM101831~GM101461~GM101504~GM101500~GM101387~GM101418~GM101419~GM101420~GM101445~GM101588~GM102128~GM102129~GM102132~GM102133~GM101381~GM105114~GM100893~GM101940~GM101740~GM101737~GM108770~GM108769">
+							<img src="https://d23walkfa4zqyq.cloudfront.net/media/bannerslider/b/r/branded-food-29.png" alt="Flower" width="460" height="345">
+						</a>
+					  </div>
+					  
+					  <div class="item data_slide_6">
+						<a href="http://m.grocermax.com/#/specialdeal?sku=GM100246~GM107397~GM108025~GM108027~GM107245~GM100168~GM108055~GM108056~GM108057~GM108058~GM108032~GM108033~GM108034~GM107242~GM107398~GM106061~GM100169~GM100171~GM108062~GM109670~GM109672~GM109671~GM100229~GM109666~GM108060~GM106927~GM100178~GM106990~GM106926~GM108028~GM106929~GM108037~GM100177~GM100180~GM100184~GM100278~GM100294~GM105143~GM105144~GM105145~GM105147~GM105149~GM106017~GM106018~GM106022~GM106276~GM106277~GM106278~GM106966~GM107283~GM107284~GM107292~GM108059~GM108558~GM108584~GM108647~GM109675~GM109905~GM109906~GM106057~GM109695~GM100163~GM109713~GM106073~GM107288~GM107290~GM106019~GM106275~GM106279~GM106281">
+							<img src="https://d23walkfa4zqyq.cloudfront.net/media/bannerslider/s/t/staples-29.png" alt="Flower" width="460" height="345">
+						</a>
+					  </div>
+					  
+					  <div class="item data_slide_7">
+						<a href="">
+							<img src="https://d23walkfa4zqyq.cloudfront.net/media/bannerslider/2/0/200-off-on-first-order_app.jpg" alt="Flower" width="460" height="345">
+						</a>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	<!-- SLIDER END-->
+		<div class="row" style="margin:0;background-color:#ececec;">
+			<div class="col-sm-12 col-xs-12" style="padding: 0 5px 0 5px;">
+				<h1 style="border-bottom: solid 1px #000;max-width: 310px;text-align: center;line-height: 11px;margin: 0 auto;margin-top: 40px;width: 90%"><span style="font-size: 18px;background-color: #ececec;padding: 0 30px 0 30px;">OUR PROMISES</span></h1>
+				<img src="images/mobile-landing/app-footer.png" class="img-responsive" style="margin-top: 25px;margin-bottom: 30px;">
+			</div>
+		</div>
+		<div class="row" style="margin:0;margin-top: 5px;">
+			<div class="col-sm-12 col-xs-12" style="background-color:#ececec;height: 156px;text-align: center;padding: 0;">
+				<h1 style="margin: 0px 0 0px 0;border-bottom: solid 1px #000;max-width: 310px;text-align: center;line-height: 11px;margin: 0 auto;margin-top: 6px;margin-bottom: 26px;width: 95%"><span style="font-size: 18px;background-color: #ececec;padding: 0 10px 0 10px;">SIGN UP FOR MORE OFFERS</span></h1>
+				<form name="landingForm" novalidate style="position: relative;" data-ng-hide="landingUserSuccess">
+					<input type="text" placeholder="Enter your e-mail id" name="landEmail"
+					ng-model="landingEmail" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+					style="background-color: transparent;border: solid 1px #b4b4b4;width: 90%;height: 36px;padding: 0 0 0 15px;font-size: 15px;" required>
+					
+					  <span ng-show="(landingForm.landEmail.$error && landingError && !landingUserFailer) || (landingForm.landEmail.$error.pattern && !landingError && !landingUserFailer)" style="color: red; font-size:10px;position: absolute;left: 0;right: 0;top: 40px;">Enter valid e-mail id</span>
+					  
+					  <span ng-show="landingUserFailer"style="color: red; font-size:10px;position: absolute;left: 0;right: 0;top: 40px;">{{landingUserResult}}</span> 
+
+					<!--<button type="button" style="width: 166px;height: 30px;background-color: #b3b4b8;border: none;    margin-top: 25px;color: #fff;font-size: 18px;" data-ng-click="landingSubmit(landingEmail)" >Submit</button>-->
+					<input type="submit" data-ng-click="landingSubmit(landingEmail)" value="Submit" style="width: 166px;height: 30px;background-color: #b3b4b8;border: none;    margin-top: 25px;color: #fff;font-size: 18px;"/>
+				</form>
+				<div data-ng-show="landingUserSuccess" style="font-size: 20px;color: #EE2D09;">{{landingUserResult}}</div>
+			</div>
+		</div>
+		<div class="row" style="margin:0;">
+			<div class="col-sm-4 col-xs-4" style="border-right: solid 1px #e6e6e6;border-bottom: solid 1px #e6e6e6;background: #fff;padding: 0 0 5px 0;text-align: center;">
+				<a href="http://m.grocermax.com/#/category/2621">
+					<img src="https://d23walkfa4zqyq.cloudfront.net/media/mobile_images/v1.4.5/category/2621.png" class="img-responsive" style="padding:5px 10px 2px 10px;">
+					<span style="font-family: gotham_mediumregular;color: #2d2d2d;font-size: 10px;font-weight: bold;padding: 0 3px 0 3px;" class="text-ellipsis">Grocery & Staples</span>
+				</a>
+			</div>
+			<div class="col-sm-4 col-xs-4" style="border-right: solid 1px #e6e6e6;border-bottom: solid 1px #e6e6e6;background: #fff;padding: 0 0 5px 0;text-align: center;">
+				<a href="http://m.grocermax.com/#/category/2678">
+					<img src="https://d23walkfa4zqyq.cloudfront.net/media/mobile_images/v1.4.5/category/2678.png" class="img-responsive" style="padding:5px 10px 2px 10px;">
+					<span style="font-family: gotham_mediumregular;color: #2d2d2d;font-size: 10px;font-weight: bold;padding: 0 3px 0 3px;" class="text-ellipsis">Fruits & Vegetables</span>
+				</a>
+			</div>
+			<div class="col-sm-4 col-xs-4" style="border-right: solid 1px #e6e6e6;border-bottom: solid 1px #e6e6e6;background: #fff;padding: 0 0 5px 0;text-align: center;">
+				<a href="http://m.grocermax.com/#/category/2701">
+					<img src="https://d23walkfa4zqyq.cloudfront.net/media/mobile_images/v1.4.5/category/2701.png" class="img-responsive" style="padding:5px 10px 2px 10px;">
+					<span style="font-family: gotham_mediumregular;color: #2d2d2d;font-size: 10px;font-weight: bold;padding: 0 3px 0 3px;" class="text-ellipsis">Beverages</span>
+				</a>
+			</div>
+			<div class="col-sm-4 col-xs-4" style="border-right: solid 1px #e6e6e6;border-bottom: solid 1px #e6e6e6;background: #fff;padding: 0 0 5px 0;text-align: center;">
+				<a href="http://m.grocermax.com/#/category/2717">
+					<img src="https://d23walkfa4zqyq.cloudfront.net/media/mobile_images/v1.4.5/category/2717.png" class="img-responsive" style="padding:5px 10px 2px 10px;">
+					<span style="font-family: gotham_mediumregular;color: #2d2d2d;font-size: 10px;font-weight: bold;padding: 0 3px 0 3px;" class="text-ellipsis">Dairy, Bakery & Eggs</span>
+				</a>
+			</div>
+			<div class="col-sm-4 col-xs-4" style="border-right: solid 1px #e6e6e6;border-bottom: solid 1px #e6e6e6;background: #fff;padding: 0 0 5px 0;text-align: center;">
+				<a href="http://m.grocermax.com/#/category/2728">
+					<img src="https://d23walkfa4zqyq.cloudfront.net/media/mobile_images/v1.4.5/category/2728.png" class="img-responsive" style="padding:5px 10px 2px 10px;">
+					<span style="font-family: gotham_mediumregular;color: #2d2d2d;font-size: 10px;font-weight: bold;padding: 0 3px 0 3px;" class="text-ellipsis">Branded Food</span>
+				</a>
+			</div>
+			<div class="col-sm-4 col-xs-4" style="border-right: solid 1px #e6e6e6;border-bottom: solid 1px #e6e6e6;background: #fff;padding: 0 0 5px 0;text-align: center;">
+				<a href="http://m.grocermax.com/#/category/2779">
+					<img src="https://d23walkfa4zqyq.cloudfront.net/media/mobile_images/v1.4.5/category/2779.png" class="img-responsive" style="padding:5px 10px 2px 10px;">
+					<span style="font-family: gotham_mediumregular;color: #2d2d2d;font-size: 10px;font-weight: bold;padding: 0 3px 0 3px;" class="text-ellipsis">Family Care</span>
+				</a>
+			</div>
+			<div class="col-sm-4 col-xs-4" style="border-right: solid 1px #e6e6e6;border-bottom: solid 1px #e6e6e6;background: #fff;padding: 0 0 5px 0;text-align: center;">
+				<a href="http://m.grocermax.com/#/category/2804">
+					<img src="https://d23walkfa4zqyq.cloudfront.net/media/mobile_images/v1.4.5/category/2804.png" class="img-responsive" style="padding:5px 10px 2px 10px;">
+					<span style="font-family: gotham_mediumregular;color: #2d2d2d;font-size: 10px;font-weight: bold;padding: 0 3px 0 3px;" class="text-ellipsis">Home Care & Utilities</span>
+				</a>
+			</div>
+			<div class="col-sm-4 col-xs-4" style="border-right: solid 1px #e6e6e6;border-bottom: solid 1px #e6e6e6;background: #fff;padding: 0 0 5px 0;text-align: center;">
+				<a href="http://m.grocermax.com/#/category/2839">
+					<img src="https://d23walkfa4zqyq.cloudfront.net/media/mobile_images/v1.4.5/category/2839.png" class="img-responsive" style="padding:5px 10px 2px 10px;">
+					<span style="font-family: gotham_mediumregular;color: #2d2d2d;font-size: 10px;font-weight: bold;padding: 0 3px 0 3px;" class="text-ellipsis">Non-Veg</span>
+				</a>
+			</div>
+			<div class="col-sm-4 col-xs-4" style="border-right: solid 1px #e6e6e6;border-bottom: solid 1px #e6e6e6;background: #fff;padding: 0 0 5px 0;text-align: center;">
+				<a href="http://m.grocermax.com/#/category/2846">
+					<img src="https://d23walkfa4zqyq.cloudfront.net/media/mobile_images/v1.4.5/category/2846.png" class="img-responsive" style="padding:5px 10px 2px 10px;">
+					<span style="font-family: gotham_mediumregular;color: #2d2d2d;font-size: 10px;font-weight: bold;padding: 0 3px 0 3px;" class="text-ellipsis">Frozen</span>
+				</a>
+			</div>
+		</div>
+		<div class="row" style="margin:0;margin-top: 5px;background-color:#fefefe;">
+			<div class="col-sm-12 col-xs-12" style="height: 177px;text-align: center;padding: 0;">
+				<h1 style="margin: 0px 0 0px 0;border-bottom: solid 1px #000;max-width: 310px;text-align: center;line-height: 11px;margin: 0 auto;margin-top: 6px;margin-bottom: 26px;width: 90%;"><span style="font-size: 18px;background-color: #fefefe;padding: 0 20px 0 20px;">DOWNLOAD OUR APP</span></h1>
+				<div style="width: 310px;margin-left: auto;margin-right: auto;">
+					<a href="https://itunes.apple.com/in/app/grocermax.com-online-grocery/id1049822835?mt=8">
+						<img src="images/mobile-landing/landing-iphone-app.png" style="float: left;">
+					</a>
+					<div style="height: 80px;background-color: #d6d6d6;width: 2px;display: inline-block;margin: 10px 35px 0 60px;float: left;"></div>
+					<a href="https://play.google.com/store/apps/details?id=com.rgretail.grocermax&hl=en">
+						<img src="images/mobile-landing/landing-android-app.png" style="margin-top: 10px;">
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<script src="scripts/libs/jquery.min.js"></script>
+	<script src="scripts/libs/angular.js"></script>
+	<script src="scripts/libs/bootstrap.min.js"></script>
+	<script>
+		var landingPage = angular.module('landingPage', []);
+		landingPage.controller('landingController', ['$scope', '$http', function($scope, $http){
+			$scope.landingError = false;
+			$scope.landingUserSuccess = false;
+			$scope.landingUserFailer = false;
+			$scope.landingUserResult = '';
+			var myParam = location.search.split('banner=')[1];
+			if(myParam){
+				var clazz = 'data_slide_'+myParam;
+				angular.element("."+clazz).addClass('active');
+			}else{
+				angular.element(".data_slide_1").addClass('active');
+			}
+			$scope.landingSubmit = function(landingEmail){
+				$scope.landingUserResult='';
+				if(landingEmail == undefined || landingEmail == null){
+					$scope.landingError = true;
+					$scope.landingUserFailer = true;
+					$scope.landingUserResult = "Enter valid e-mail id";
+				}else{
+                    $http.post('https://grocermax.com/api/registermail',
+                       {
+                           email: landingEmail
+                       }
+                     ).success(function(data) {
+                     	  if(data.flag == 1){
+                     	  	console.log(data);
+							$scope.landingUserResult = data.Result;
+							$scope.landingUserSuccess = true;
+                     	  }else{
+                     	  	data.Result;
+							$scope.landingUserFailer = true;
+							$scope.landingUserResult = data.Result;
+                     	  }
+                          
+                     });
+				}
+			};
+			
+			$scope.landingSearch = function(landingSearchItem){
+				if(landingSearchItem){
+					window.location.href = 'http://m.grocermax.com/#/product?keyword=' + encodeURI(landingSearchItem);
+				}
+			};
+		}]);
+	</script>
+	
+	</body>
+</html>

@@ -1,0 +1,243 @@
+@font-face {
+    font-family: 'OpenSans';
+    src:    url('../fonts/OpenSans-Regular.ttf');
+    src:    url('../fonts/OpenSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'OpenSans';
+    src:    url('../fonts/OpenSans-Light.ttf');
+    src:    url('../fonts/OpenSans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OpenSans';
+    src:    url('../fonts/OpenSans-Bold.ttf');
+    src:    url('../fonts/OpenSans-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+body
+{
+    font-family: 'OpenSans';
+}
+.c-font-light
+{
+font-weight: 300;
+}
+.c-font-slim
+{font-weight: 400;
+    
+}
+.c-font-sbold
+{font-weight: 400;
+    
+}
+.c-font-bold
+{
+    font-weight: 700;
+}
+.c-font-uppercase
+{
+    text-transform: uppercase;
+}
+.c-font-lowercase
+{
+    text-transform: lowercase;
+}
+.c-center
+{
+    text-align: center;
+}
+.c-bg-white
+{
+	background-color:#fff;
+}
+.c-font-13
+{
+	font-size:13px;
+}
+.c-font-20
+{
+	font-size:20px;
+}
+.c-font-26
+{
+	font-size:26px;
+}
+.c-font-18
+{
+	font-size:18px;
+}
+.c-reset
+{margin:0px;
+padding: 0px;}
+a:focus, a:hover
+{
+	outline: none;
+	text-decoration: none;
+}
+
+.c-btn-shop
+{
+    background-color: #ee2d09;
+    display: inline-block;
+    padding: 5px 16px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 26px;
+}
+
+ .c-search-placeholder::-webkit-input-placeholder {
+           /* WebKit, Blink, Edge */
+    font-family: "OpenSans" , sans-serif;
+    color: #fff;
+        font-weight: 100;
+     
+}
+.c-search-placeholder:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   font-family: "OpenSans" , sans-serif;
+   color: #fff;
+       font-weight: 100;
+}
+.c-search-placeholder::-moz-placeholder { /* Mozilla Firefox 19+ */
+    font-family: "OpenSans" , sans-serif;
+    color: #fff;
+        font-weight: 100;
+}
+.c-search-placeholder:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-family: "OpenSans" , sans-serif;
+    color: #fff;
+        font-weight: 100;
+}
+.c-search-placeholder:placeholder-shown { /* Standard */
+   font-family: "OpenSans" , sans-serif;
+   color: #fff;
+       font-weight: 100;
+}
+
+.enteremailplaceholder::-webkit-input-placeholder {
+           /* WebKit, Blink, Edge */
+    font-family: "OpenSans" , sans-serif;
+    color: #fcbe32;
+    text-align: center;
+        font-weight: 100;
+     
+}
+.enteremailplaceholder:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   font-family: "OpenSans" , sans-serif;
+   color: #fcbe32;
+   text-align: center;
+       font-weight: 100;
+}
+.enteremailplaceholder::-moz-placeholder { /* Mozilla Firefox 19+ */
+    font-family: "OpenSans" , sans-serif;
+    color: #fcbe32;
+    text-align: center;
+        font-weight: 100;
+}
+.enteremailplaceholder:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-family: "OpenSans" , sans-serif;
+    color: #fcbe32;
+    text-align: center;
+        font-weight: 100;
+}
+.enteremailplaceholder:placeholder-shown { /* Standard */
+   font-family: "OpenSans" , sans-serif;
+   color: #fcbe32;
+       font-weight: 100;
+       text-align: center;
+}
+/*neyaz*/
+#left-menu li {
+    padding: 5px 15px;
+}
+.yellow-gradient {
+    background: rgba(253, 242, 214, 1);
+    background: -moz-linear-gradient(top, rgba(253, 242, 214, 1) 0%, rgba(254, 226, 171, 1) 34%, rgba(253, 215, 128, 1) 65%, rgba(251, 199, 79, 1) 93%, rgba(251, 199, 79, 1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(253, 242, 214, 1)), color-stop(34%, rgba(254, 226, 171, 1)), color-stop(65%, rgba(253, 215, 128, 1)), color-stop(93%, rgba(251, 199, 79, 1)), color-stop(100%, rgba(251, 199, 79, 1)));
+    background: -webkit-linear-gradient(top, rgba(253, 242, 214, 1) 0%, rgba(254, 226, 171, 1) 34%, rgba(253, 215, 128, 1) 65%, rgba(251, 199, 79, 1) 93%, rgba(251, 199, 79, 1) 100%);
+    background: -o-linear-gradient(top, rgba(253, 242, 214, 1) 0%, rgba(254, 226, 171, 1) 34%, rgba(253, 215, 128, 1) 65%, rgba(251, 199, 79, 1) 93%, rgba(251, 199, 79, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(253, 242, 214, 1) 0%, rgba(254, 226, 171, 1) 34%, rgba(253, 215, 128, 1) 65%, rgba(251, 199, 79, 1) 93%, rgba(251, 199, 79, 1) 100%);
+    background: linear-gradient(to bottom, rgba(253, 242, 214, 1) 0%, rgba(254, 226, 171, 1) 34%, rgba(253, 215, 128, 1) 65%, rgba(251, 199, 79, 1) 93%, rgba(251, 199, 79, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdf2d6', endColorstr='#fbc74f', GradientType=0);
+    padding-bottom: 60px;
+}
+.item-name{
+    display: block;font-size: 10px;text-align: center;
+}
+.heading{
+    text-align: center;
+    font-size: 13px;
+    margin: 15px;
+}
+.pb-8{padding-bottom: 8px;}
+.pb-30{padding-bottom: 30px;}
+.pd-24{padding: 24px;}
+.pl-35{padding-left: 35px;}
+.mt-0{margin-top: 0px;}
+.pl-15{padding: 15px;}
+.ptb{padding: 15px 0;}
+.bg-footer{background: #fcbf33;}
+.d-app{color: #e13912;font-size: 25px;}
+.g-icon-font{color:#6fc60a;display: block;font-size: 80px;}
+.gmax-plant{color:#6fc60a;}
+.gmax-wheat{color:#fcbe32;}
+.gmax-carrot{color:#fcbe32;}
+.gmax-beans{color:#e03912;font-size: 60px;padding-top: 20px;}
+.categ-descrip{display: block;font-size: 14px;}
+.bg-footer a{
+    line-height: 30px;
+}
+.social-connect img
+{
+    width: 15%;
+    margin-right: 15px;
+}
+.wide-80{width: 80%}
+.item-description{text-align: center;padding: 10px 30px;font-weight: 700;color: #000;margin-bottom: 0px;}
+.drop-icon{display: block;font-size: 35px; color:#fcbf33;position: relative;text-align: center;top: -14px;z-index: 1000;}
+
+
+@media only screen and (min-width: 767px) {
+    .item-description , .heading{font-size: 18px;}
+    .item-name{font-size: 13px;}
+}
+/*  ==========Grocermax========== */
+
+    #banner1 > div > .col-xs-6 > p:nth-child(1){margin:5px 0 0 0;font-size: 47px;font-weight: bold;color:#333333;}
+    #banner1 > div > .col-xs-6 > p:nth-child(2){margin: -10px 0 10px 0;color:#7c7b70;font-size: 25px;}
+    #banner1 > div > .col-xs-6 > p:nth-child(3){margin:0;color:#333333;font-size: 22px;}
+    #banner1 > .row > .col-xs-3 {margin: 35px 0 0 0;}
+    .item-description {font-size: 18px;font-weight:normal;}
+    #banner2 > .row > .col-xs-6 > a , #banner3 > .row > .col-xs-6 > a , #banner4 > .row > .col-xs-6 > a {text-decoration: none;color: #fff;font-size: 20px;background-color: #000;padding: 17px 0 17px 0;display: block;width: 206px;border-radius: 10px;margin: 0 auto;}
+    #banner2 > .row > .col-xs-6 , #banner3 > .row > .col-xs-6 , #banner4 > .row > .col-xs-6 {margin-top:25px;}
+
+@media screen and (max-width: 585px) {
+   #banner1 > div > .col-xs-6 > p:nth-child(1){font-size: 38px;}
+   #banner1 > div > .col-xs-6 > p:nth-child(2){margin: -5px 0 10px 0;}
+}
+
+@media screen and (max-width: 479px) {
+   #banner1 > div > .col-xs-6 > p:nth-child(1){font-size: 31px;}
+   #banner1 > div > .col-xs-6 > p:nth-child(2){font-size: 22px;margin: 0px 0 10px 0;}
+   #banner1 > div > .col-xs-6 > p:nth-child(3){font-size: 20px;}
+   #banner1 > .row > .col-xs-3 {margin: 20px 0 0 0;}
+   .item-description {font-size: 16px;padding-bottom: 0;}
+   #banner2 > .row > .col-xs-6 > a , #banner3 > .row > .col-xs-6 > a , #banner4 > .row > .col-xs-6 > a {font-size: 16px;padding: 12px 0 12px 0;width: 160px;}
+   #banner2 > .row > .col-xs-6 , #banner3 > .row > .col-xs-6 , #banner4 > .row > .col-xs-6 {margin-top:50px;}
+}
+
+@media screen and (max-width: 389px) {
+    #banner1 > div > .col-xs-6 > p:nth-child(1){font-size: 25px;}
+    #banner1 > div > .col-xs-6 > p:nth-child(2){font-size: 18px;margin: 0px 0 5px 0;}
+    #banner1 > div > .col-xs-6 > p:nth-child(3){font-size: 14px;}
+    #banner1 > .row > .col-xs-3 {margin: 10px 0 0 0;}
+    .item-description {font-size: 13px;}
+    #banner2 > .row > .col-xs-6 > a, #banner3 > .row > .col-xs-6 > a, #banner4 > .row > .col-xs-6 > a {font-size: 13px;padding: 8px 0 8px 0;width: 130px;}
+    #banner2 > .row > .col-xs-6, #banner3 > .row > .col-xs-6, #banner4 > .row > .col-xs-6 {margin-top: 40px;}
+}

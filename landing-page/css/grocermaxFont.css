@@ -1,0 +1,58 @@
+@font-face {
+  font-family: 'gmaxicon';
+  src:  url('../fonts/gmaxicon.eot?3210wn');
+  src:  url('../fonts/gmaxicon.eot?3210wn#iefix') format('embedded-opentype'),
+    url('../fonts/gmaxicon.ttf?3210wn') format('truetype'),
+    url('../fonts/gmaxicon.woff?3210wn') format('woff'),
+    url('../fonts/gmaxicon.svg?3210wn#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="gmax-"], [class*=" gmax-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'gmaxicon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.gmax-burger-menu:before {
+  content: "\e900";
+}
+.gmax-carrot:before {
+  content: "\e901";
+}
+.gmax-beans:before {
+  content: "\e902";
+}
+.gmax-cart:before {
+  content: "\e903";
+}
+.gmax-plant:before {
+  content: "\e904";
+}
+.gmax-search-shadow .path1:before {
+  content: "\e905";
+  color: #2f2f2f;
+  opacity: 0.29;
+}
+.gmax-search-shadow .path2:before {
+  content: "\e906";
+  margin-left: -1.60546875em;
+  color: rgb(255, 255, 255);
+}
+.gmax-search:before {
+  content: "\e907";
+}
+.gmax-wheat:before {
+  content: "\e908";
+}
+
