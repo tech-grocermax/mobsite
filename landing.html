@@ -234,12 +234,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<div style="margin: 12px 25px;">
 		  <img src="landing-page/images/signupformore.png" width="100%" >
 		</div>
-		<div style="margin: 10px 0px;text-align: center;">
-		  <input type="text" id='enteremailplaceholder' placeholder="Enter your e-mail id" style="padding: 5px;font-size: 20px;width: 68%;border: solid #999999 1px;">
-		  <p id="validationMsg" style=""></p>
+
+		<div id="newslater">
+			<div style="margin: 10px 0px;text-align: center;">
+		  		<input type="text" id='enteremailplaceholder' placeholder="Enter your e-mail id" style="padding: 5px;font-size: 20px;width: 68%;border: solid #999999 1px;">
+		  		<p id="validationMsg" style=""></p>
+			</div>
+		
+			<p class="c-center"><a href="javascript:void(0);" onclick="emailValidateAndSend();" class="c-btn-shop">SUBMIT</a>
+			</p>
 		</div>
-		<p class="c-center"><a href="javascript:void(0);" onclick="emailValidateAndSend();" class="c-btn-shop">SUBMIT</a>
-		</p>
+		<div id="respnews" style="display: none;color:#ff1616;text-align: center;font-size:20px;"> </div>
+
 	</section>
 
 	<section class="row c-reset pb-30">
@@ -322,7 +328,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-<!--	<script type="text/javascript" src='js/jquery-2.0.2.js'></script> -->
+	<script type="text/javascript" src='landing-page/js/jquery-2.0.2.js'></script> 
 </body>
 <script type="text/javascript">
 var open= false;
@@ -340,10 +346,7 @@ function toggle()
 		open=true;
 	}
 }
-	// $('#burger').click(function()
-	// {
-	// 	$('#left-menu').slideToggle();
-	// })
+
 function emailValidateAndSend()
 {
 	var x = document.getElementById("enteremailplaceholder").value;
@@ -389,40 +392,33 @@ document.getElementById("searchicon").addEventListener("click", function(e)
 		
 	});
 
+
 function submitEmail()
 {
-	var url = "http://offer.grocermax.com/subscribe.php?email="+document.getElementById("enteremailplaceholder").value;
-
-//var params = "email="+encodeURI('muditkhandelwal2008@gmail.com');
-var http = new XMLHttpRequest();
-http.open("GET", url, true);
-
-//Send the proper header information along with the request
-http.setRequestHeader("Content-type", "text/plain");
-
-http.onreadystatechange = function() {//Call a function when the state changes.
-	if(http.readyState == 4 && http.status == 200) {
-		if(http.responseText == "success")
-		{
-			var msg = document.getElementById("validationMsg");
-    	msg.style.color = '#0c9617';
-        msg.innerText="Thank you for subscribe our newsletter.";
-		}
-	}
-}
- http.send(null);
-// $.get( "http://offer.grocermax.com/subscribe.php?email="+"muditkhandelwal2008@gmail.com", function( data ) {
-//   console( data );
-// });
-// $.get("http://offer.grocermax.com/subscribe.php?email="+"muditkhandelwal2008@gmail.com",
-//         function(data){
-//     	if(data.flag==1){alert('Result='+data.Result);}
-//     	else{
-//     		alert('Error Result='+data);
-//     	}
-//      //   alert("Data: " + data + "\nStatus: " + status);
-//         console.log(data);
-//     });
+	var landingEmail = document.getElementById("enteremailplaceholder").value;
+	console.log(landingEmail);
+		$.ajax({
+	    	type: 'POST',
+	    	url: 'http://qa.grocermax.com/api/registermail',
+	    	data: JSON.stringify ({email: landingEmail}),
+	    	success: function(data) {
+	    		console.log(data);
+	    		if(data.flag == 1){
+	    			var hidenews = document.getElementById("newslater");
+	    			console.log(hidenews);
+	    			hidenews.style.display = 'none';
+	    			var showrespnews = document.getElementById("respnews");
+	    			showrespnews.style.display = 'block';
+	    			showrespnews.innerText = data.Result;
+	    		}
+	    			else{
+	    				var showrespnews = document.getElementById("respnews");
+	    				showrespnews.style.display = 'block';
+	    				showrespnews.style.fontSize = '12px';
+	    				showrespnews.innerText = data.Result;
+	    			}
+	    	}
+		});
 
 }
 </script>
