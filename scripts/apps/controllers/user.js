@@ -370,6 +370,7 @@ define(['app'], function(app) {
             var socialName = null;
             var socialEmail = null;
             var number = null;
+            $scope.provider =null;
 
             $scope.socilaLogin =function socilaLogin(input){
 				toggleLoader(true);
@@ -390,6 +391,11 @@ define(['app'], function(app) {
                         utility.deleteJStorageKey("otp");
                         utility.deleteJStorageKey("registrationDetails");
                         successCallbackUser(data, socialEmail);
+                        try{  
+                          dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile  Register', 
+                                    eventAction: $scope.provider, eventLabel: socialEmail}
+                                );console.log($scope.provider); console.log(dataLayer)
+                            }catch(err){console.log("Error in GTM fire.");}
                     }  
                     else {
                         $scope.showUserResponse = true;
@@ -524,6 +530,7 @@ define(['app'], function(app) {
 
             $scope.authenticate = function authenticate(provider){
                 if(provider == 'google'){
+                    $scope.provider = 'Google';
                     renderButton();
                 }else{
                      FB.login(function(response) {
@@ -532,6 +539,7 @@ define(['app'], function(app) {
                             scope: 'email', 
                             return_scopes: true
                     });
+                    $scope.provider = 'Facebook';
                 }
             }
 
@@ -691,11 +699,25 @@ define(['app'], function(app) {
             }
 
             $scope.editAddress = function(addressId) {
+                try{     
+                    logintgtm = "UserId="+ utility.getJStorageKey("userId");
+                    dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
+                        eventAction: 'Update', eventLabel: logintgtm}
+                    );console.log("Update address"); console.log(dataLayer)
+                }catch(err){console.log("Error in GTM fire.");}
+
                 $location.url("user/editaddress?addressId=" + addressId);
             };
             
             $scope.deleteAddress = function(address) {
                 var addressId = address.customer_address_id;
+                try{     
+                    logintgtm = "UserId="+ utility.getJStorageKey("userId");
+                    dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
+                        eventAction: 'Delete', eventLabel: logintgtm}
+                    );console.log("Delete address"); console.log(dataLayer)
+                }catch(err){console.log("Error in GTM fire.");}
+                
                 toggleLoader(true);
                 userService.deleteAddress(addressId)
                     .then(function(data){
@@ -712,8 +734,14 @@ define(['app'], function(app) {
                         $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Edit Address' });
                     } else {
                         $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Create Address' });
+                         try{     
+                            logintgtm = "UserId="+ utility.getJStorageKey("userId");
+                            dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
+                                eventAction: 'Create', eventLabel: logintgtm}
+                            );console.log("Create address"); console.log(dataLayer)
+                        }catch(err){console.log("Error in GTM fire.");}
                     }
-
+                   
                     toggleLoader(true);
                     userService.saveAddress($scope.address, 
                         utility.getJStorageKey("userId"), $scope.addressId)
