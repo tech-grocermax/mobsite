@@ -240,11 +240,11 @@ define(['app'], function(app) {
                             userService.trackorderdetails($scope.orderId).then(function(data){
                                 if(data.flag==1){
                                     try{     
-                                    shipgtm = "OrderId=" + data.transactionId +"/UserId="+ utility.getJStorageKey("userId");
-                                    dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Order Successful', 
-                                                        eventAction: 'PayTm_cc', eventLabel: shipgtm}
-                                     );console.log("Mobile Order Successful"); console.log(dataLayer);
-                                    }catch(err){console.log("Error in GTM fire.");}
+                                        shipgtm = "OrderId=" + data.newgtm.transactionId +"/userId="+ utility.getJStorageKey("userId");
+                                        dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Order Successful', 
+                                                        eventAction: "paytm_cc", eventLabel: shipgtm}
+                                                    );console.log("Mobile Order Successful"); console.log(dataLayer);
+                                        }catch(err){console.log("Error in GTM fire.");}
                                     dataLayer.push(data.newgtm);
                                 }
                             });
@@ -258,6 +258,12 @@ define(['app'], function(app) {
                             keyboard: false,
                             show: true
                         });
+                         try{     
+                            shipgtm = "userId="+ utility.getJStorageKey("userId");
+                            dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Order Failure', 
+                                            eventAction: "paytm_cc", eventLabel: shipgtm}
+                                        );console.log("Mobile Order Failure"); console.log(dataLayer);
+                            }catch(err){console.log("Error in GTM fire.");}
                         flushData();
                     }                    
                 }
@@ -619,7 +625,7 @@ define(['app'], function(app) {
                                     userService.trackorderdetails(data.OrderID).then(function(data){
                                         if(data.flag==1){
                                             try{     
-                                                shipgtm = "OrderId=" + data.transactionId +"/userId="+ utility.getJStorageKey("userId");
+                                                shipgtm = "OrderId=" + data.newgtm.transactionId +"/userId="+ utility.getJStorageKey("userId");
                                                 dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Order Successful', 
                                                         eventAction: $scope.paymentMethod, eventLabel: shipgtm}
                                                     );console.log("Mobile Order Successful"); console.log(dataLayer);
