@@ -45,9 +45,9 @@
 				</ul>
 			</div>
 		</div>	
-		<div class="alert" role="alert"
+		<!-- <div class="alert" role="alert"
 			data-ng-class="{'alert-success': className.success, 'alert-danger': className.danger}"
-			data-ng-show="showUserResponse">{{userResponseMessage}}</div>			
+			data-ng-show="showUserResponse">{{userResponseMessage}}</div>	 -->		
 		<div class="row margin0 btn-bottom" data-ng-click="updateProfile(frmRegistration)"  data-ng-show="editProfileStep == 1">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0" >
 				<button type="button" class="reg-bot-btn bot-foot">UPDATE PROFILE</button>
@@ -69,7 +69,7 @@
 				value=""
 				maxlength="6" 
 				class="place-color reg-list-input" style="width: 180px;padding-left: 5px;">
-				<button style="background-color: #0e69e5;border: none;color: #fff;height: 24px;font-size: 14px;font-weight: 100;float: right;" data-ng-click="updateProfile(frmRegistration)">Resend</button>
+				<button style="background-color: #0e69e5;border: none;color: #fff;height: 24px;font-size: 14px;font-weight: 100;float: right;border: solid 1px #0e69e5;" data-ng-click="updateProfile(frmRegistration)">Resend</button>
 		</div>
 		<div class="alert" role="alert"
 			style="float: left;  width: 100%;  margin-top: 10px;"

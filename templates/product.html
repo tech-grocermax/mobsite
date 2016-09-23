@@ -39,7 +39,7 @@
 						</li>
                         <li class="cat-list-name text-ellipsis">{{product.p_name}}</li>
                         <li class="prod-list-qnty">{{product.p_pack}}</li>
-                        <li class="font-3"><span class="product-qnty">₹ {{truncateComma(product.sale_price)}} |</span> <span class="prod-new-price">₹ {{truncateComma(product.Price)}}</span></li>
+                        <li class="font-3"><span class="product-qnty">₹ {{truncateComma(product.sale_price)}} </span> <span class="prod-new-price">| &nbsp;<label style="text-decoration: line-through;">₹ {{truncateComma(product.Price)}}</label></span></li>
                         <!--<li class="product-qnty">₹ {{toFixedDecimal(getPriceDifference(product.Price, product.sale_price))}}</li>-->
                     </ul>
 					

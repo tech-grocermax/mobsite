@@ -48,7 +48,7 @@
 						</li>
                         <li class="cat-list-name text-ellipsis">{{specialdealitem.p_name}}</li>
                         <li class="prod-list-qnty">{{specialdealitem.p_pack}}</li>
-                        <li class="font-3"><span class="product-qnty">₹ {{truncateComma(specialdealitem.sale_price)}} </span> <span class="prod-new-price">| ₹ {{truncateComma(specialdealitem.Price)}}</span></li>                        
+                        <li class="font-3"><span class="product-qnty">₹ {{truncateComma(specialdealitem.sale_price)}} </span> <span class="prod-new-price">| &nbsp;<label style="text-decoration: line-through;">₹ {{truncateComma(specialdealitem.Price)}}</label></span></li>                        
                     </ul>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0 plus-minus-btn"
 						data-ng-show="specialdealitem.Status == 'In stock'">

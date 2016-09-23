@@ -790,6 +790,7 @@ define(['app'], function(app) {
                                         $scope.couponCode = data.CartDetail.coupon_code;
                                         $scope.couponAmount = data.CartDetail.you_save;
                                         $scope.cartDetails.grand_total = data.CartDetail.grand_total;
+                                        console.log($scope.cartDetails.grand_total);
                                         $scope.couponModalShow = false;
                                     }else{
                                         $scope.invalidCoupon = true;
@@ -982,6 +983,7 @@ define(['app'], function(app) {
                             $scope.couponAmount = data.CartDetails.you_save;
                             $scope.cartDetails.grand_total = data.CartDetails.grand_total;
                             $scope.couponValue = (data.CartDetail.subtotal - data.CartDetail.subtotal_with_discount);
+
                             utility.setJStorageKey("tempcouponValue", $scope.couponValue, 1); 
                             $scope.couponModalShow = false;
                             try{     
@@ -994,7 +996,17 @@ define(['app'], function(app) {
                         else {
                             $scope.invalidCoupon = true;
                             $scope.couponMessage = data.Result;
-                        }                      
+
+							utility.setJStorageKey("tempcouponValue", $scope.couponValue, 1);
+                            utility.setJStorageKey("tempCartVal", $scope.cartDetails.grand_total, 1);  
+                            $scope.couponModalShow = false;
+                        } 						
+
+
+
+                            
+
+                                            
                     });
             };
 
@@ -1014,6 +1026,7 @@ define(['app'], function(app) {
                             $scope.isCouponCodeApplied = false;
                             $scope.couponAmount = data.CartDetails.you_save;
                             $scope.couponValue = (data.CartDetail.subtotal - data.CartDetail.subtotal_with_discount);
+
                             utility.setJStorageKey("tempcouponValue", $scope.couponValue, 1); 
                             $scope.cartDetails.grand_total = data.CartDetails.grand_total;
                             try{     
@@ -1022,6 +1035,11 @@ define(['app'], function(app) {
                                     eventAction: 'Coupon Code', eventLabel: logintgtm}
                                 );console.log("Remove Coupon"); console.log(dataLayer)
                             }catch(err){console.log("Error in GTM fire.");}
+
+                            $scope.cartDetails.grand_total = data.CartDetails.grand_total;
+                            utility.setJStorageKey("tempcouponValue", $scope.couponValue, 1); 
+                            utility.setJStorageKey("tempCartVal", $scope.cartDetails.grand_total, 1);  
+
                         }                       
                         else {
                             $scope.invalidCoupon = false;

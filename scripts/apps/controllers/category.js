@@ -809,6 +809,11 @@ define(['app'], function(app) {
                 }catch(err){console.log("Error in GTM fire.");}
             }
 
+            // console.log($routeParams.pageName);
+            if($routeParams.pageName == 'term'){
+                angular.element('body').css('overflow', 'auto');
+            }
+
         }
     ]);
 });
