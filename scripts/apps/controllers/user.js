@@ -690,7 +690,9 @@ define(['app'], function(app) {
                                 if(data.flag == 1 || data.flag == "1") {
                                     if($scope.isReferrer == "checkout") {
                                         //$scope.address will be either shipping or billing
-                                        $location.url("checkout/" + $scope.addressType); 
+                                        // $location.url("checkout/" + $scope.addressType); 
+                                        //$scope.address will be either shipping Mustakeem
+                                        $location.url("checkout/shipping"); 
                                     } else {
                                         $location.url('user/address');
                                     }
