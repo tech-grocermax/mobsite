@@ -697,7 +697,7 @@ input , button, select{outline:none;}
 	display: block;height: 12px;width: 12px;background-size: 128px 37px;float: right;}
 	.edit-icon-sharp{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -367px -101px;
     display: block;height: 16px;width: 16px;background-size: 255px 74px;float: right;opacity: 0.7;}
-    .trendList{background: #fff;width: 90%;margin: auto;position: absolute;top: 90px;left: 0;right: 0;z-index: 2;box-shadow: 0px 4px 12px 2px #686868;}
+    .trendList{background: #fff;width: 90%;margin: auto;position: fixed;top: 90px;left: 0;right: 0;z-index: 2;box-shadow: 0px 4px 12px 2px #686868;}
 	/*==================== SPRITE IMAGE STYLES END====================*/
 @media  (max-width: 480px){
 	.margin-0-m{margin:0}
