@@ -755,6 +755,11 @@ define(['app'], function(app) {
 				$scope.handleSearchKeyEnter();
 			}
 
+            // console.log($routeParams.pageName);
+            if($routeParams.pageName == 'term'){
+                angular.element('body').css('overflow', 'auto');
+            }
+
         }
     ]);
 });

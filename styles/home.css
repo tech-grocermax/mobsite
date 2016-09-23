@@ -427,7 +427,7 @@ input , button, select{outline:none;}
 
 /*========== ONE TIME PASSWORD ==========*/
 .otp-text{font-size: 4.1vw; color:#2d2d2d;}
-.otp-pass{border:1px solid #d8d8d8; background:#fff;font-size: 15px; color:#000; font-weight:bold;}
+.otp-pass{border:1px solid #d8d8d8; background:#fff;font-size: 15px; color:#000; font-weight:bold;height: 26px;}
 .otp-btn{background:#0e69e5; width:100%; font-size:4.1vw; color:#fff; border:none; box-shadow:0 3px 7px -1px #999;}
 .center-box{display:inline-block; position:relative; text-align:center;}
 .center-box::before{content:""; display:block; position:absolute; z-index:-1; width:100%; height:100%; background:#000; opacity:0.8;}
@@ -697,7 +697,7 @@ input , button, select{outline:none;}
 	display: block;height: 12px;width: 12px;background-size: 128px 37px;float: right;}
 	.edit-icon-sharp{background-image:url("../images/reheadericonsize/head-sprite.png");background-position: -367px -101px;
     display: block;height: 16px;width: 16px;background-size: 255px 74px;float: right;opacity: 0.7;}
-    .trendList{background: #fff;width: 92%;margin: auto;position: absolute;top: 90px;left: 0;right: 0;z-index: 2;box-shadow: 0px 4px 12px 2px #686868;}
+    .trendList{background: #fff;width: 90%;margin: auto;position: absolute;top: 90px;left: 0;right: 0;z-index: 2;box-shadow: 0px 4px 12px 2px #686868;}
 	/*==================== SPRITE IMAGE STYLES END====================*/
 @media  (max-width: 480px){
 	.margin-0-m{margin:0}
