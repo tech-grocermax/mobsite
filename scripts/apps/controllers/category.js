@@ -756,7 +756,7 @@ define(['app'], function(app) {
 			}
 
             // console.log($routeParams.pageName);
-            if($routeParams.pageName == 'term'){
+            if($routeParams.pageName == 'term' || $routeParams.pageName == 'about'){
                 angular.element('body').css('overflow', 'auto');
             }
 
