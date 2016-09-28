@@ -388,7 +388,7 @@ input , button, select{outline:none;}
 .btn-cash{background:#ffa800;padding: 10px 0px 10px 0;border-radius: 0px;box-shadow: 0px 1px 8px 0px #666;}
 
 /*========== LOGIN ==========*/
-.login-back{/*background-image:url('../images/login-back.png'); background-attachment:fixed; background-position:center center; background-repeat:no-repeat; background-size:cover;*/position: absolute;top: 0;bottom: 0;background-color: #6a240b;}
+.login-back{/*background-image:url('../images/login-back.png'); background-attachment:fixed; background-position:center center; background-repeat:no-repeat; background-size:cover;*/position: absolute;top: 0;bottom: 0;background-color: #6a240b;left: 0;right: 0;}
 .logo-box{margin-bottom:7.8%; margin-top:25.6%;}
 .logo-box>div{padding-right:0px;}
 .log-box{box-shadow:0px 1px 6px -4px; opacity:0.45; background:#fff;}
@@ -1235,7 +1235,7 @@ ul.plisting li.font-3{padding-top:3px}
 	}
 	.loader,
 	.loader:after {
-		border-radius: 30px;width: 46px;height: 46px;position: absolute;top: 0;bottom: 0;left: 0;right: 0;margin: auto;
+		border-radius: 350%;width: 46px;height: 46px;position: absolute;top: 0;bottom: 0;left: 0;right: 0;margin: auto;
 	}
 	@-webkit-keyframes load8 {
 	  0% {
