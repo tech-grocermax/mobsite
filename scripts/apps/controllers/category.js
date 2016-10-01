@@ -392,7 +392,7 @@ define(['app'], function(app) {
             $scope.routerChange = function(route, id, name) {
                 if(route == 'category'){
                     try{
-                        dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Banner Click', 
+                        dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
                         eventAction: 'Category Page', eventLabel: name}
                         );console.log(name);
                     }catch(err){console.log("Error in GTM fire.");}  
@@ -456,8 +456,9 @@ define(['app'], function(app) {
 
             $scope.handleOfferCategoryClick = function(category) {
                 try{
+                    gtmcatname ="UserId=" + utility.getJStorageKey("userId")+"/CategoryName=" + category.name;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
-                        eventAction: 'Category Page', eventLabel: category.name}
+                        eventAction: 'Category Page', eventLabel: gtmcatname}
                         );console.log("Category Page");
                 }catch(err){console.log("Error in GTM fire.");}
 
@@ -476,8 +477,9 @@ define(['app'], function(app) {
 
             $scope.handleTopOfferClick = function(offerlistId,categoryName) {
                 try{
+                    gtmcofferatname ="UserId=" + utility.getJStorageKey("userId")+"/CategoryName=" + categoryName;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
-                        eventAction: 'Category - Top Offers', eventLabel: categoryName}
+                        eventAction: 'Category - Top Offers', eventLabel: gtmcofferatname}
                         );console.log("Category - Top Offers");
                 }catch(err){console.log("Error in GTM fire.");}
                 
@@ -561,8 +563,9 @@ define(['app'], function(app) {
 
             $scope.handleSearchKeyEnter = function() {
                 try{
+                    gtmcsearcname ="UserId=" + utility.getJStorageKey("userId")+"/Keyword=" + $scope.searchKeyword;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
-                        eventAction: 'Search', eventLabel: $scope.searchKeyword}
+                        eventAction: 'Search', eventLabel: gtmcsearcname}
                         );
                     }catch(err){console.log("Error in GTM fire.");}
 				var addItemTrendlist = $scope.trendlist.indexOf($scope.searchKeyword);
@@ -666,7 +669,7 @@ define(['app'], function(app) {
 
             $scope.navigateToCart = function() {
                 try{
-                    var QgtmCart ="CartQty="+ $scope.cartItemCount + "/UserId=" + utility.getJStorageKey("userId");
+                    var QgtmCart ="UserId=" + utility.getJStorageKey("userId") + "/CartQty="+ $scope.cartItemCount;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile View Cart', 
                         eventAction: 'Cart Details', eventLabel: QgtmCart }
                         ); console.log("Cart Open");
