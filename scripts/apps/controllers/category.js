@@ -392,17 +392,18 @@ define(['app'], function(app) {
             $scope.routerChange = function(route, id, name) {
                 if(route == 'category'){
                     try{
+                        var catclGtm = "UserId=" + utility.getJStorageKey("userId")+"/CategoryName=" + name;
                         dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
-                        eventAction: 'Category Page', eventLabel: name}
-                        );console.log(name);
+                        eventAction: 'Category Page', eventLabel: catclGtm}
+                        );console.log(catclGtm); console.log(dataLayer);
                     }catch(err){console.log("Error in GTM fire.");}  
                 }
                 if(route == 'deals'){
                     try{
-                        dataLayer.push('send', { hitType: 'event', 
-                        eventCategory: 'Mobile Banner Click', 
-                        eventAction: 'Special Deal Page', eventLabel: name}
-                        );console.log(name);
+                        var dealclGtm = "UserId=" + utility.getJStorageKey("userId")+"/Deal=" + name;
+                        dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Banner Click', 
+                        eventAction: 'Deal Page', eventLabel: dealclGtm}
+                        );console.log(dealclGtm); console.log(dataLayer);
                     }catch(err){console.log("Error in GTM fire.");} 
                 }
                 route = angular.isDefined(id) ? route + ("/" + id) : route;
@@ -459,7 +460,7 @@ define(['app'], function(app) {
                     gtmcatname ="UserId=" + utility.getJStorageKey("userId")+"/CategoryName=" + category.name;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
                         eventAction: 'Category Page', eventLabel: gtmcatname}
-                        );console.log("Category Page");
+                        );console.log(gtmcatname);console.log(dataLayer);
                 }catch(err){console.log("Error in GTM fire.");}
 
                 var isToggle = $scope.isMenuToggalable(category); 
@@ -477,10 +478,10 @@ define(['app'], function(app) {
 
             $scope.handleTopOfferClick = function(offerlistId,categoryName) {
                 try{
-                    gtmcofferatname ="UserId=" + utility.getJStorageKey("userId")+"/CategoryName=" + categoryName;
+                    gtmcofferatname ="UserId=" + utility.getJStorageKey("userId") + "/CategoryName=" + categoryName;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
                         eventAction: 'Category - Top Offers', eventLabel: gtmcofferatname}
-                        );console.log("Category - Top Offers");
+                        );console.log(gtmcofferatname); console.log(dataLayer);
                 }catch(err){console.log("Error in GTM fire.");}
                 
                 $scope.routerChange('category/offers', offerlistId);
@@ -566,7 +567,7 @@ define(['app'], function(app) {
                     gtmcsearcname ="UserId=" + utility.getJStorageKey("userId")+"/Keyword=" + $scope.searchKeyword;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
                         eventAction: 'Search', eventLabel: gtmcsearcname}
-                        );
+                        );console.log(gtmcsearcname); console.log(dataLayer);
                     }catch(err){console.log("Error in GTM fire.");}
 				var addItemTrendlist = $scope.trendlist.indexOf($scope.searchKeyword);
 				if (addItemTrendlist < 0){
@@ -682,11 +683,19 @@ define(['app'], function(app) {
                 }
             };
 
-            $scope.handleBannerClick = function(banner) {
+            $scope.handleBannerClick = function(banner, name) {
                 try{
+                    if(name == 'category'){
+                    var catbnnGtm =  "UserId=" + utility.getJStorageKey("userId") + "/BannerName=" + banner.name;   
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Banner Click', 
-                        eventAction: 'Home Page', eventLabel: banner.name}
-                        );console.log("Home Page");
+                        eventAction: 'Category Page', eventLabel: catbnnGtm}
+                        );console.log("Category Page Banner");console.log(dataLayer);
+                    }else{
+                     var hmbnnGtm =  "UserId=" + utility.getJStorageKey("userId") + "/BannerName=" + banner.name;      
+                        dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Banner Click', 
+                        eventAction: 'Home Page', eventLabel: hmbnnGtm}
+                        );console.log(hmbnnGtm);console.log(dataLayer);
+                    }
                 }catch(err){console.log("Error in GTM fire.");}
                 var arrBanner = banner.linkurl.split('?'),
                     url = arrBanner[0],

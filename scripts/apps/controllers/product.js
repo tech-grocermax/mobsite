@@ -110,7 +110,7 @@ define(['app'], function(app) {
                             try{
                                 dataLayer.push('send', { hitType: 'event', 
                                 eventCategory: 'Mobile Category Interaction', 
-                                eventAction: 'search result', eventLabel: $scope.keyword}
+                                eventAction: 'Search', eventLabel: $scope.keyword}
                                 );
                                 //console.log($scope.keyword);console.log(dataLayer);
                             }catch(err){console.log("Error in GTM fire.");}  
@@ -279,16 +279,6 @@ define(['app'], function(app) {
                 toggleLoader(true);
                 productService.getSpecialDealListBySku($scope.sku)
                     .then(function(data){
-                        // google GTM code
-                            try{
-                                dataLayer.push('send', { hitType: 'event', 
-                                eventCategory: 'Mobile Category Interaction', 
-                                eventAction: 'deal page', eventLabel: data.dealName}
-                                );
-                                 console.log("deal page getSpecialDealBySku"); console.log(dataLayer);
-                                //console.log("deals by sku");console.log(dataLayer);
-                            }catch(err){console.log("Error in GTM fire.");}
-                        // end GTM Code
                         groupAllProductByCategory(data);
                         toggleLoader(false);
                         $scope.isProductLoaded = true;
