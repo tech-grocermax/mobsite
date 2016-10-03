@@ -830,9 +830,9 @@ define(['app'], function(app) {
 			
 			$scope.reOrder = function(increment_id , order){
                 try{     
-                    logintgtm = "UserId="+ utility.getJStorageKey("userId");
+                    logintgtms = "UserId="+ utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
-                                    eventAction: 'Reorder', eventLabel: logintgtm}
+                                    eventAction: 'Reorder', eventLabel: logintgtms}
                     );console.log("Reorder");
                 }catch(err){console.log("Error in GTM fire.");}
 
@@ -1080,7 +1080,7 @@ define(['app'], function(app) {
 
             $scope.navigateToCart = function() {
                 try{
-                    var QgtmCart ="CartQty="+ $scope.cartItemCount + "/UserId=" + utility.getJStorageKey("userId");
+                    var QgtmCart ="UserId=" + utility.getJStorageKey("userId") + "/CartQty="+ $scope.cartItemCount;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile View Cart', 
                         eventAction: 'Cart Details', eventLabel: QgtmCart }
                         ); console.log("Cart Open");

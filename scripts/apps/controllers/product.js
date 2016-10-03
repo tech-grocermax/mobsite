@@ -142,6 +142,12 @@ define(['app'], function(app) {
                 data["isSelected"] = true;
                 $scope.products = [];
                 $scope.products = products;
+                try{
+                    var l4catGtm = "UserId=" + utility.getJStorageKey("userId")+"/CategoryName=" + data.category_name;
+                    dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
+                    eventAction: 'Category Page', eventLabel: l4catGtm}
+                    );console.log(l4catGtm); console.log(dataLayer);
+                }catch(err){console.log("Error in GTM fire.");}  
             };
 
             // Without using var, this makes the function global. Please add var if convinient or delete this comment.
@@ -427,7 +433,7 @@ define(['app'], function(app) {
 
             $scope.navigateToCart = function() {
                 try{
-                    var QgtmCart ="CartQty="+ $scope.cartItemCount + "/UserId=" + utility.getJStorageKey("userId");
+                    var QgtmCart ="UserId=" + utility.getJStorageKey("userId") + "/CartQty="+ $scope.cartItemCount;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile View Cart', 
                         eventAction: 'Cart Details', eventLabel: QgtmCart }
                         ); console.log("Cart Open");
@@ -496,7 +502,7 @@ define(['app'], function(app) {
 
             $scope.addProductOneByOne = function(product,page) {
                 // Tracking add to cart
-                $analytics.eventTrack($scope.selectedCity, {  category: "Add to Cart", label: ( product.productid + " - " + product.Name + " - " + product.quantity) });
+                //$analytics.eventTrack($scope.selectedCity, {  category: "Add to Cart", label: ( product.productid + " - " + product.Name + " - " + product.quantity) });
                 // code added by grocermax team for GTM
                 try{ 
                 var GtmpId = product.productid;

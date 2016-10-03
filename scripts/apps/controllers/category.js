@@ -422,8 +422,9 @@ define(['app'], function(app) {
             
             $scope.toggleCategoryMenu = function() {
                 try{
+                    var draActGtm = "UserId=" + utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile - Drawer Activity', 
-                        eventAction: 'Page Name', eventLabel: ''}
+                        eventAction: 'Page Name', eventLabel: draActGtm}
                         );
                 }catch(err){console.log("Error in GTM fire.");}
                 $scope.showSubCategoryMenu = false;
@@ -794,8 +795,9 @@ define(['app'], function(app) {
 			$scope.closeStrip = false;
 			$scope.hideStrip = function(value){
                 try{
+                     var appdwonGtml = "UserId=" + utility.getJStorageKey("userId") + "/Action=" + value;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Widgets', 
-                        eventAction: 'Download App', eventLabel:value}
+                        eventAction: 'Download App', eventLabel:appdwonGtml}
                         );
                 }catch(err){console.log("Error in GTM fire.");}
 				$scope.closeStrip = !$scope.closeStrip;
@@ -816,8 +818,9 @@ define(['app'], function(app) {
 			}
             $scope.andriodDownloat = function(value){
                 try{
+                    var appdwonGtl = "UserId=" + utility.getJStorageKey("userId") + "/Action=" + value;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Widgets', 
-                        eventAction: 'Download App', eventLabel:value}
+                        eventAction: 'Download App', eventLabel:appdwonGtl}
                         );console.log(dataLayer);
                 }catch(err){console.log("Error in GTM fire.");}
             }
