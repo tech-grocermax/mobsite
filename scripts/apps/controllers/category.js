@@ -58,8 +58,9 @@ define(['app'], function(app) {
             $scope.categorybannerlist ={};
 			
 			try{
+                var GtmUser = "UserId=" + utility.getJStorageKey("userId");
                 dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Home Page View', 
-                        eventAction: 'Page Open', eventLabel: utility.getJStorageKey("userId")}
+                        eventAction: 'Page Open', eventLabel: GtmUser}
                         );
             }catch(err){console.log("Error in GTM fire.");}
             $scope.pageRoute = {
@@ -689,7 +690,7 @@ define(['app'], function(app) {
                     var catbnnGtm =  "UserId=" + utility.getJStorageKey("userId") + "/BannerName=" + banner.name;   
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Banner Click', 
                         eventAction: 'Category Page', eventLabel: catbnnGtm}
-                        );console.log("Category Page Banner");console.log(dataLayer);
+                        );console.log(catbnnGtm);console.log(dataLayer);
                     }else{
                      var hmbnnGtm =  "UserId=" + utility.getJStorageKey("userId") + "/BannerName=" + banner.name;      
                         dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Banner Click', 

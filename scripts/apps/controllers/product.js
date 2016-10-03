@@ -507,7 +507,7 @@ define(['app'], function(app) {
                 }
                 var GtmPrice = product.Price;
                 var GtmBrand = product.p_brand;
-                productgtm = "productName=" + GtmName + "/prodcutId=" + GtmpId; 
+                productgtm = "UserId=" + utility.getJStorageKey("userId") + "/productName=" + GtmName + "/prodcutId=" + GtmpId; 
                 dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Add to Cart', 
                                 eventAction: page, eventLabel: productgtm});  console.log("add o cart");
                 }catch(err){  console.log("Error in"); }
@@ -569,9 +569,10 @@ define(['app'], function(app) {
 
             $scope.routerChange = function(route, id , name) {
                 try{
+                    var pddetailGtm = "UserId=" + utility.getJStorageKey("userId") + "/ProductName=" + name;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
-                        eventAction: 'Product Detail Page', eventLabel: name}
-                        );console.log("Product Detail Page");
+                        eventAction: 'Product Detail Page', eventLabel: pddetailGtm}
+                        );console.log(pddetailGtm);console.log(dataLayer);
                 }catch(err){console.log("Error in GTM fire.");}
 
                 $location.url(route + "/" + id);
