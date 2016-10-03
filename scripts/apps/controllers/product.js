@@ -106,15 +106,6 @@ define(['app'], function(app) {
                 toggleLoader(true);
                 productService.getProductListBySearch($scope.keyword)
                     .then(function(data){
-                        // google GTM code
-                            try{
-                                dataLayer.push('send', { hitType: 'event', 
-                                eventCategory: 'Mobile Category Interaction', 
-                                eventAction: 'Search', eventLabel: $scope.keyword}
-                                );
-                                //console.log($scope.keyword);console.log(dataLayer);
-                            }catch(err){console.log("Error in GTM fire.");}  
-                        // end GTM Code
                         groupSearchProductByCategory(data);
                         toggleLoader(false);
                         $scope.isProductLoaded = true;
@@ -513,7 +504,7 @@ define(['app'], function(app) {
                 }
                 var GtmPrice = product.Price;
                 var GtmBrand = product.p_brand;
-                productgtm = "UserId=" + utility.getJStorageKey("userId") + "/productName=" + GtmName + "/prodcutId=" + GtmpId; 
+                var productgtm = "UserId=" + utility.getJStorageKey("userId") + "/productName=" + GtmName + "/prodcutId=" + GtmpId; 
                 dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Add to Cart', 
                                 eventAction: page, eventLabel: productgtm});  console.log("add o cart");
                 }catch(err){  console.log("Error in"); }
@@ -736,7 +727,7 @@ define(['app'], function(app) {
                     // Proceed to Checkout
                     $analytics.eventTrack($scope.selectedCity, {  category: "Proceed to Checkout" });
                 try{     
-                    logintgtm = "CartQty=" + $scope.cartItemCount + "/subtotal=" + $scope.cartDetails.grand_total + "/UserId="+ utility.getJStorageKey("userId");
+                    var logintgtm = "CartQty=" + $scope.cartItemCount + "/subtotal=" + $scope.cartDetails.grand_total + "/UserId="+ utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Proceed to checkout', 
                                     eventAction: 'Proceed Details', eventLabel: logintgtm}
                     );console.log("Proceed Details");
@@ -747,7 +738,7 @@ define(['app'], function(app) {
                     // Analytics to update cart
                     $analytics.eventTrack($scope.selectedCity, {  category: "Update Cart" });
                 try{     
-                    logintgtm = "CartQty=" + $scope.cartItemCount + "/subtotal=" + $scope.cartDetails.grand_total + "/UserId="+ utility.getJStorageKey("userId");
+                    var logintgtm = "CartQty=" + $scope.cartItemCount + "/subtotal=" + $scope.cartDetails.grand_total + "/UserId="+ utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Update Cart', 
                                     eventAction: 'Update Cart', eventLabel: logintgtm}
                     );console.log("Update Cart");
@@ -982,7 +973,7 @@ define(['app'], function(app) {
                             utility.setJStorageKey("tempcouponValue", $scope.couponValue, 1); 
                             $scope.couponModalShow = false;
                             try{     
-                                logintgtm = "CouponCode=" + couponCode + "/CartQty=" + $scope.cartItemCount + "/subtotal=" + $scope.cartDetails.grand_total + "/UserId="+ utility.getJStorageKey("userId");
+                                var logintgtm = "CouponCode=" + couponCode + "/CartQty=" + $scope.cartItemCount + "/subtotal=" + $scope.cartDetails.grand_total + "/UserId="+ utility.getJStorageKey("userId");
                                 dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Apply Coupon', 
                                     eventAction: 'Coupon Code', eventLabel: logintgtm}
                                 );console.log("Apply Coupon"); console.log(dataLayer)
@@ -1014,7 +1005,7 @@ define(['app'], function(app) {
                             utility.setJStorageKey("tempcouponValue", $scope.couponValue, 1); 
                             $scope.cartDetails.grand_total = data.CartDetails.grand_total;
                             try{     
-                                logintgtm = "CouponCode=" + couponCode + "/CartQty=" + $scope.cartItemCount + "/SubTotal=" + $scope.cartDetails.grand_total + "/UserId="+ utility.getJStorageKey("userId");
+                                var logintgtm = "CouponCode=" + couponCode + "/CartQty=" + $scope.cartItemCount + "/SubTotal=" + $scope.cartDetails.grand_total + "/UserId="+ utility.getJStorageKey("userId");
                                 dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Remove Coupon', 
                                     eventAction: 'Coupon Code', eventLabel: logintgtm}
                                 );console.log("Remove Coupon"); console.log(dataLayer)

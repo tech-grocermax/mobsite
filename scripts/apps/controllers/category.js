@@ -459,7 +459,7 @@ define(['app'], function(app) {
 
             $scope.handleOfferCategoryClick = function(category) {
                 try{
-                    gtmcatname ="UserId=" + utility.getJStorageKey("userId")+"/CategoryName=" + category.name;
+                    var gtmcatname ="UserId=" + utility.getJStorageKey("userId")+"/CategoryName=" + category.name;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
                         eventAction: 'Category Page', eventLabel: gtmcatname}
                         );console.log(gtmcatname);console.log(dataLayer);
@@ -480,7 +480,7 @@ define(['app'], function(app) {
 
             $scope.handleTopOfferClick = function(offerlistId,categoryName) {
                 try{
-                    gtmcofferatname ="UserId=" + utility.getJStorageKey("userId") + "/CategoryName=" + categoryName;
+                    var gtmcofferatname ="UserId=" + utility.getJStorageKey("userId") + "/CategoryName=" + categoryName;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
                         eventAction: 'Category - Top Offers', eventLabel: gtmcofferatname}
                         );console.log(gtmcofferatname); console.log(dataLayer);
@@ -566,7 +566,7 @@ define(['app'], function(app) {
 
             $scope.handleSearchKeyEnter = function() {
                 try{
-                    gtmcsearcname ="UserId=" + utility.getJStorageKey("userId")+"/Keyword=" + $scope.searchKeyword;
+                    var gtmcsearcname ="UserId=" + utility.getJStorageKey("userId")+"/Keyword=" + $scope.searchKeyword;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
                         eventAction: 'Search', eventLabel: gtmcsearcname}
                         );console.log(gtmcsearcname); console.log(dataLayer);
