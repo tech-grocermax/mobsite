@@ -240,9 +240,9 @@ define(['app'], function(app) {
                             userService.trackorderdetails($scope.orderId).then(function(data){
                                 if(data.flag==1){
                                     try{     
-                                        shipgtm = "OrderId=" + data.newgtm.transactionId +"/userId="+ utility.getJStorageKey("userId");
+                                        var payregtm = "OrderId=" + data.newgtm.transactionId +"/userId="+ utility.getJStorageKey("userId");
                                         dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Order Successful', 
-                                                        eventAction: "paytm_cc", eventLabel: shipgtm}
+                                                        eventAction: "paytm_cc", eventLabel: payregtm}
                                                     );console.log("Mobile Order Successful"); console.log(dataLayer);
                                         }catch(err){console.log("Error in GTM fire.");}
                                     dataLayer.push(data.newgtm);
@@ -259,9 +259,9 @@ define(['app'], function(app) {
                             show: true
                         });
                          try{     
-                            shipgtm = "userId="+ utility.getJStorageKey("userId");
+                            var paytmfailgtm = "userId="+ utility.getJStorageKey("userId");
                             dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Order Failure', 
-                                            eventAction: "paytm_cc", eventLabel: shipgtm}
+                                            eventAction: "paytm_cc", eventLabel: paytmfailgtm}
                                         );console.log("Mobile Order Failure"); console.log(dataLayer);
                             }catch(err){console.log("Error in GTM fire.");}
                         flushData();
@@ -398,9 +398,9 @@ define(['app'], function(app) {
 
                 //$analytics.eventTrack($scope.selectedCity, {  category: "Shipping address" });
                 try{     
-                    shipgtm = "customerId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
+                   var selectshipgtm = "UserId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Checkout Funnel', 
-                        eventAction: 'Shipping', eventLabel: shipgtm}
+                        eventAction: 'Shipping', eventLabel: selectshipgtm}
                     );console.log("Shipping"); console.log(dataLayer);
                 }catch(err){console.log("Error in GTM fire.");}
 
@@ -472,9 +472,9 @@ define(['app'], function(app) {
 
                 $location.url("checkout/payment");
                 try{     
-                    shipgtm = "customerId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
+                    var payshipgtm = "UserId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Checkout Funnel', 
-                        eventAction: 'Delivery Slot', eventLabel: shipgtm}
+                        eventAction: 'Delivery Slot', eventLabel: payshipgtm}
                     );console.log("Delivery Slot");
                 }catch(err){console.log("Error in GTM fire.");}
             };
@@ -599,9 +599,9 @@ define(['app'], function(app) {
             $scope.placeOrder = function() { 
                 //$analytics.eventTrack($scope.selectedCity, {  category: "Review and Place order" });
                 try{     
-                    shipgtm = "customerId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
+                    var placshipgtm = "UserId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Checkout Funnel', 
-                        eventAction: 'Payment Method', eventLabel: shipgtm}
+                        eventAction: 'Payment Method', eventLabel: placshipgtm}
                     );console.log("Payment Method");
                 }catch(err){console.log("Error in GTM fire.");}
                 
@@ -625,9 +625,9 @@ define(['app'], function(app) {
                                     userService.trackorderdetails(data.OrderID).then(function(data){
                                         if(data.flag==1){
                                             try{     
-                                                shipgtm = "OrderId=" + data.newgtm.transactionId +"/userId="+ utility.getJStorageKey("userId");
+                                                var codshipgtm = "OrderId=" + data.newgtm.transactionId +"/userId="+ utility.getJStorageKey("userId");
                                                 dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Order Successful', 
-                                                        eventAction: $scope.paymentMethod, eventLabel: shipgtm}
+                                                        eventAction: $scope.paymentMethod, eventLabel: codshipgtm}
                                                     );console.log("Mobile Order Successful"); console.log(dataLayer);
                                             }catch(err){console.log("Error in GTM fire.");}
                                             console.log(data.newgtm);
@@ -737,7 +737,7 @@ define(['app'], function(app) {
 
             $scope.navigateToCart = function() {
                 try{
-                    var QgtmCart ="CartQty="+ $scope.cartItemCount + "/UserId=" + utility.getJStorageKey("userId");
+                    var QgtmCart ="UserId=" + utility.getJStorageKey("userId") + "/CartQty="+ $scope.cartItemCount;;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile View Cart', 
                         eventAction: 'Cart Details', eventLabel: QgtmCart }
                         ); console.log("Cart Open");

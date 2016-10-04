@@ -123,7 +123,7 @@ define(['app'], function(app) {
                 $scope.categoryName = "Edit My Profile";
                 $scope.columnSize = 10;
                 try{     
-                    shipgtm = "UserId=" + utility.getJStorageKey("userId");
+                    var shipgtm = "UserId=" + utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
                             eventAction: 'Account Information', eventLabel: shipgtm}
                     );console.log("Account Information");
@@ -133,7 +133,7 @@ define(['app'], function(app) {
                 $scope.categoryName = "My Address";
                 $scope.columnSize = 10;
                 try{     
-                    shipgtm = "UserId=" + utility.getJStorageKey("userId");
+                    var shipgtm = "UserId=" + utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
                             eventAction: 'Address', eventLabel: shipgtm}
                     );console.log("Address");
@@ -149,7 +149,7 @@ define(['app'], function(app) {
                 $scope.categoryName = "Max Coins";
                 $scope.columnSize = 10;
                 try{     
-                    shipgtm = "UserId=" + utility.getJStorageKey("userId");
+                    var shipgtm = "UserId=" + utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
                             eventAction: 'Max Coins', eventLabel: shipgtm}
                     );console.log("Max Coins");
@@ -159,7 +159,7 @@ define(['app'], function(app) {
                 $scope.categoryName = "Refund Wallet";
                 $scope.columnSize = 10;
                 try{     
-                    shipgtm = "UserId=" + utility.getJStorageKey("userId");
+                    var shipgtm = "UserId=" + utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
                             eventAction: 'Refund Wallet', eventLabel: shipgtm}
                     );console.log("Refund Wallet");
@@ -321,12 +321,18 @@ define(['app'], function(app) {
                 $scope.errorRegistration = true;
                 if (form.$valid) {
                     toggleLoader(true);
+                    try{ 
+                    var userRegGtm = "Email="+ $scope.user.uemail;
+                        dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Register Start', 
+                            eventAction: 'Standard', eventLabel: userRegGtm}
+                        );console.log("Mobile Register Start");
+                    }catch(err){console.log("Error in GTM fire.");}
                     utility.setJStorageKey("registrationDetails", $scope.user, 1);
                     userService.createUser($scope.user)
                         .then(function(data){
                             toggleLoader(false);
                             try{     
-                                logintgtm = "Email="+ $scope.user.uemail;
+                                var logintgtm = "Email="+ $scope.user.uemail;
                                 dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile  Register', 
                                     eventAction: 'Standard', eventLabel: logintgtm}
                                 );console.log("Standard Register");
@@ -384,6 +390,12 @@ define(['app'], function(app) {
                         $scope.showUserResponse = false;
                         $scope.userResponseMessage = "";
                         $scope.registrationStep = 4;
+                        try{
+                        var regilsogintgtm = '';
+                        dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Register Start', 
+                            eventAction: $scope.provider, eventLabel: regilsogintgtm}
+                        );console.log("Mobile Register Start");
+                    }catch(err){console.log("Error in GTM fire.");}
                     }
                     else if(data.flag == 3){ // Verify customer Mobile
                         $scope.showUserResponse = false;
@@ -443,7 +455,7 @@ define(['app'], function(app) {
                 socialName = googleUser.getBasicProfile().getName();
                 socialEmail = googleUser.getBasicProfile().getEmail();
                 try{     
-                        logintgtm = "Email="+ socialEmail;
+                        var logintgtm = "Email="+ socialEmail;
                         dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Login', 
                             eventAction: 'Google', eventLabel: logintgtm}
                         );console.log("Standard Login");
@@ -522,7 +534,7 @@ define(['app'], function(app) {
                     socialName = response.name;
                     socialEmail = response.email;
                     try{     
-                        logintgtm = "Email="+ socialEmail;
+                        var logintgtm = "Email="+ socialEmail;
                         dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Login', 
                             eventAction: 'Facebook', eventLabel: logintgtm}
                         );console.log("Standard Login");
@@ -551,13 +563,17 @@ define(['app'], function(app) {
                 $scope.errorLogin = true;
                 if (form.$valid) { 
                     toggleLoader(true);
+                    var logintgtm1 = "Email="+ $scope.user.uemail;
+                        dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Login Start', 
+                            eventAction: 'Standard', eventLabel: logintgtm1}
+                        );console.log("Mobile Login Start");
                     var input = {
                             uemail: $scope.user.uemail,
                             password: $scope.user.password
                         },
                         email = $scope.user.uemail;
                     try{     
-                        logintgtm = "Email="+ email;
+                        var logintgtm = "Email="+ email;
                         dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Login', 
                             eventAction: 'Standard', eventLabel: logintgtm}
                         );console.log("Standard Login");
@@ -705,7 +721,7 @@ define(['app'], function(app) {
 
             $scope.editAddress = function(addressId) {
                 try{     
-                    logintgtm = "UserId="+ utility.getJStorageKey("userId");
+                    var logintgtm = "UserId="+ utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
                         eventAction: 'Update', eventLabel: logintgtm}
                     );console.log("Update address"); console.log(dataLayer)
@@ -717,7 +733,7 @@ define(['app'], function(app) {
             $scope.deleteAddress = function(address) {
                 var addressId = address.customer_address_id;
                 try{     
-                    logintgtm = "UserId="+ utility.getJStorageKey("userId");
+                    var logintgtm = "UserId="+ utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
                         eventAction: 'Delete', eventLabel: logintgtm}
                     );console.log("Delete address"); console.log(dataLayer)
@@ -740,7 +756,7 @@ define(['app'], function(app) {
                     } else {
                         $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Create Address' });
                          try{     
-                            logintgtm = "UserId="+ utility.getJStorageKey("userId");
+                            var logintgtm = "UserId="+ utility.getJStorageKey("userId");
                             dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
                                 eventAction: 'Create', eventLabel: logintgtm}
                             );console.log("Create address"); console.log(dataLayer)
@@ -837,9 +853,9 @@ define(['app'], function(app) {
 			
 			$scope.reOrder = function(increment_id , order){
                 try{     
-                    logintgtm = "UserId="+ utility.getJStorageKey("userId");
+                    var logintgtms = "UserId="+ utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
-                                    eventAction: 'Reorder', eventLabel: logintgtm}
+                                    eventAction: 'Reorder', eventLabel: logintgtms}
                     );console.log("Reorder");
                 }catch(err){console.log("Error in GTM fire.");}
 
@@ -1004,7 +1020,7 @@ define(['app'], function(app) {
                // $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Logout' });
                 //$analytics.pageTrack("Logout");
                 try{     
-                    shipgtm = "UserId=" + userId;
+                    var shipgtm = "UserId=" + userId;
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Logout', 
                             eventAction: 'Logout', eventLabel: shipgtm}
                     );console.log("Logout");
@@ -1087,7 +1103,7 @@ define(['app'], function(app) {
 
             $scope.navigateToCart = function() {
                 try{
-                    var QgtmCart ="CartQty="+ $scope.cartItemCount + "/UserId=" + utility.getJStorageKey("userId");
+                    var QgtmCart ="UserId=" + utility.getJStorageKey("userId") + "/CartQty="+ $scope.cartItemCount;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile View Cart', 
                         eventAction: 'Cart Details', eventLabel: QgtmCart }
                         ); console.log("Cart Open");
@@ -1102,9 +1118,9 @@ define(['app'], function(app) {
 
             $scope.navigateToOrderDetail = function(order) {
                 try{     
-                    logintgtm = "UserId="+ utility.getJStorageKey("userId");
+                    var proflogintgtm = "UserId="+ utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
-                                    eventAction: 'View Order', eventLabel: logintgtm}
+                                    eventAction: 'View Order', eventLabel: proflogintgtm}
                     );console.log("View Order");
                 }catch(err){console.log("Error in GTM fire.");}
                 
