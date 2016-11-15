@@ -1,8 +1,8 @@
 <script>
 window.addEventListener('message', function(event) {
     // Domain restriction (to not leak variables to any page..)
-    if (event.origin == 'http://m.qa.grocermax.com' ||
-        event.origin == 'https://m.qa.grocermax.com') {
+    /*if (event.origin == 'http://m.qa.grocermax.com' ||
+        event.origin == 'https://m.qa.grocermax.com') {*/
         var data = JSON.parse(event.data);
         if ('setItem' in data) {  console.log('setItem');console.log(data);
             localStorage.setItem(data.setItem, data.value);
@@ -17,7 +17,7 @@ window.addEventListener('message', function(event) {
         } else if ('removeItem' in data) {
             localStorage.removeItem(data.removeItem);
         }
-    }
+    //}
 }, false);
 
 </script>
