@@ -1,3 +1,4 @@
+<script>
 window.addEventListener('message', function(event) {
     // Domain restriction (to not leak variables to any page..)
     if (event.origin == 'http://m.qa.grocermax.com' ||
@@ -19,3 +20,4 @@ window.addEventListener('message', function(event) {
     }
 }, false);
 
+</script>
