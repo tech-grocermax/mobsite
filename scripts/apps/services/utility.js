@@ -22,7 +22,7 @@ define(['app'], function (app) {
 
 		    this.getJStorageKey = function(key) {
 		    	//return $.jStorage.get(key);
-		    	console.log(keykey);
+		    	console.log(key);
 		    	var identifier = new Date().getTime();
 			    var obj = {
 			        identifier: identifier,
