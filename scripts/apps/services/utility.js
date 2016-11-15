@@ -22,6 +22,7 @@ define(['app'], function (app) {
 
 		    this.getJStorageKey = function(key) {
 		    	//return $.jStorage.get(key);
+		    	console.log(keykey);
 		    	var identifier = new Date().getTime();
 			    var obj = {
 			        identifier: identifier,
@@ -32,6 +33,7 @@ define(['app'], function (app) {
 		    };	
 
 		    this.setJStorageKey = function(key, value, time) {
+		    	console.log(key);console.log(value);
 		    	/*time = angular.isDefined(time) ? time : 1;
 		    	$.jStorage.set(key, value);
 				$.jStorage.setTTL(key, time * 24 * 3600 * 1000);*/
