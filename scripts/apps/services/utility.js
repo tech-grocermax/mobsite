@@ -1,16 +1,45 @@
 define(['app'], function (app) {
     app.service('utility', ['$http', 'serverUtility',
     	function ($http, serverUtility) {
-		    'use strict';	    
-	    
+		    'use strict';
+
+	    	var domain = '*'; /*target*/
+
+	    	var callbacks = {};
+			window.addEventListener('message', function(event) {
+			    if (event.source === frames['myPostMessage']) {
+			        console.log(event)
+			        var data = /^#localStorage#(\d+)(null)?#([\S\s]*)/.exec(event.data);
+			        if (data) {
+			            if (callbacks[data[1]]) {
+			                // null and "null" are distinguished by our pattern
+			                callbacks[data[1]](data[2] === 'null' ? null : data[3]);
+			            }
+			            delete callbacks[data[1]];
+			        }
+			    }
+			}, false);
+
 		    this.getJStorageKey = function(key) {
-		    	return $.jStorage.get(key);
+		    	//return $.jStorage.get(key);
+		    	var identifier = new Date().getTime();
+			    var obj = {
+			        identifier: identifier,
+			        getItem: key
+			    };
+			    callbacks[identifier] = callback;
+			    frames['myPostMessage'].postMessage(JSON.stringify(obj), domain);
 		    };	
 
 		    this.setJStorageKey = function(key, value, time) {
-		    	time = angular.isDefined(time) ? time : 1;
+		    	/*time = angular.isDefined(time) ? time : 1;
 		    	$.jStorage.set(key, value);
-				$.jStorage.setTTL(key, time * 24 * 3600 * 1000);
+				$.jStorage.setTTL(key, time * 24 * 3600 * 1000);*/
+				var obj = {
+			        setItem: key,
+			        value: value
+			    };
+			    frames['myPostMessage'].postMessage(JSON.stringify(obj), domain);
 		    };
 
 		    this.deleteJStorageKey = function(key) {
