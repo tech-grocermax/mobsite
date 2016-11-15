@@ -27,7 +27,7 @@ define(['app'], function (app) {
 			        identifier: identifier,
 			        getItem: key
 			    };
-			    callbacks[identifier] = callback;
+			    callbacks[identifier] = false;
 			    frames['myPostMessage'].postMessage(JSON.stringify(obj), domain);
 		    };	
 
