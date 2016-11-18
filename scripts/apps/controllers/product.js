@@ -527,6 +527,11 @@ define(['app'], function(app) {
                     .then(function(data){
                         toggleLoader(false);
                         if(data.flag == 1 || data.flag == "1"){
+                            // handle quoteid if customer has switched to another platform and quoteid changed somehow
+                            if(quoteId != data.QuoteId){
+                                console.log(data.QuoteId);
+                                utility.setJStorageKey("quoteId", data.QuoteId, 1);
+                            }
                             if(!quoteId) {
                                 utility.setJStorageKey("quoteId", data.QuoteId, 1);
                                 $scope.quoteId = data.QuoteId;
