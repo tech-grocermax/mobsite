@@ -566,7 +566,13 @@ define(['app'], function(app) {
                     var logintgtm1 = "Email="+ $scope.user.uemail;
                         dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Login Start', 
                             eventAction: 'Standard', eventLabel: logintgtm1}
-                        );console.log("Mobile Login Start");
+                        );console.log("Mobile Login Start 1");
+                        clevertap.profile.push({
+                         "Site": {
+                            "Email": "vinay.singh@grocermax.com"    // Email address of the user
+                           }
+                        });
+                        console.log("clevertap profile push Login ----"+ logintgtm1);
                     var input = {
                             uemail: $scope.user.uemail,
                             password: $scope.user.password
@@ -574,9 +580,10 @@ define(['app'], function(app) {
                         email = $scope.user.uemail;
                     try{     
                         var logintgtm = "Email="+ email;
+                        
                         dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Login', 
                             eventAction: 'Standard', eventLabel: logintgtm}
-                        );console.log("Standard Login");
+                        );console.log("Standard Login pp");
                     }catch(err){console.log("Error in GTM fire.");}
 
                     if(angular.isDefined(utility.getJStorageKey("quoteId")) 
@@ -1021,9 +1028,12 @@ define(['app'], function(app) {
                 //$analytics.pageTrack("Logout");
                 try{     
                     var shipgtm = "UserId=" + userId;
+                    clevertap.event.push("Mobile Logout", {
+                      "UserId": userId,
+                    });
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Logout', 
                             eventAction: 'Logout', eventLabel: shipgtm}
-                    );console.log("Logout");
+                    );console.log("Logout user");
                 }catch(err){console.log("Error in GTM fire.");}
                 
                 userService.logout(userId)

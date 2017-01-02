@@ -59,6 +59,12 @@ define(['app'], function(app) {
 			
 			try{
                 var GtmUser = "UserId=" + utility.getJStorageKey("userId");
+                clevertap.event.push("Mobile Home Page View", {
+                  "Product name":"Casio Chronograph Watch",
+                  "Category":"Mens Accessories",
+                  "Price":59.99,
+                });
+                console.log("Casio Chronograph Watch");
                 dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Home Page View', 
                         eventAction: 'Page Open', eventLabel: GtmUser}
                         );
