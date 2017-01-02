@@ -572,7 +572,7 @@ define(['app'], function(app) {
                             "Email": "vinay.singh@grocermax.com"    // Email address of the user
                            }
                         });
-                        console.log("clevertap profile push Login ----"+ logintgtm1);
+                        console.log("clevertap profile push Login ----"+ logintgtm1); 
                     var input = {
                             uemail: $scope.user.uemail,
                             password: $scope.user.password
