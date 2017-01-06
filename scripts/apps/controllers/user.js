@@ -348,7 +348,7 @@ define(['app'], function(app) {
                                 }
                             }); 
                             clevertap.event.push("Signup Complete", {
-                                "device": "m-site",
+                                "Device": "M-Site",
                                 "Event Type": "Standard"
                             });
                             console.log("clevertap profile push create"+ data.Firstname + " " + data.Lastname + " userid: "+ data.UserID +" email: "+ $scope.user.uemail + " mobile " + data.Mobile);
@@ -443,7 +443,7 @@ define(['app'], function(app) {
                                 }
                             });
                             clevertap.event.push("Signup Complete", {
-                            "device": "m-site",
+                            "Device": "M-Site",
                             "Event Type": "google"
                             });
                             console.log("clevertap profile push Login "+ socialName);
@@ -509,7 +509,7 @@ define(['app'], function(app) {
                                 }
                             });
                         clevertap.event.push("Login Complete", {
-                            "device": "m-site",
+                            "Device": "M-Site",
                             "Event Type": "google"
                         });
                             console.log("clevertap profile push google "+ socialName);
@@ -607,7 +607,7 @@ define(['app'], function(app) {
                                 }
                             });
                         clevertap.event.push("Login Complete", {
-                            "device": "m-site",
+                            "Device": "M-Site",
                             "Event Type": "facebook"
                         });
                         console.log("clevertap profile push facebook "+ socialName);
@@ -681,7 +681,7 @@ define(['app'], function(app) {
                                 }
                             }); 
                             clevertap.event.push("Login Complete", {
-                                "device": "m-site",
+                                "Device": "M-Site",
                                 "Event Type": "Standard"
                             });
                             console.log("clevertap profile push Login"+ data.Firstname + " " + data.Lastname + " userid: "+ data.UserID +" email: "+ $scope.user.uemail + " mobile " + data.Mobile);
@@ -823,7 +823,7 @@ define(['app'], function(app) {
             $scope.editAddress = function(addressId) {
                 try{  
                     clevertap.event.push("Updare Profile Acitvity", {
-                                "device": "m-site",
+                                "Device": "M-Site",
                                 "Event Type": "Standard"
                             });   
                     var logintgtm = "UserId="+ utility.getJStorageKey("userId");
@@ -839,7 +839,7 @@ define(['app'], function(app) {
                 var addressId = address.customer_address_id;
                 try{    
                     clevertap.event.push("Updare Profile Acitvity", {
-                                "device": "m-site",
+                                "Device": "M-Site",
                                 "Event Type": "Standard"
                             }); 
                     var logintgtm = "UserId="+ utility.getJStorageKey("userId");
@@ -866,7 +866,7 @@ define(['app'], function(app) {
                         $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Create Address' });
                          try{     
                             clevertap.event.push("Updare Profile Acitvity", {
-                                "device": "m-site",
+                                "Device": "M-Site",
                                 "Event Type": "Standard"
                             });
                             var logintgtm = "UserId="+ utility.getJStorageKey("userId");
@@ -967,7 +967,7 @@ define(['app'], function(app) {
 			$scope.reOrder = function(increment_id , order){
                 try{    
                     clevertap.event.push("Reorder", {
-                                "device": "m-site",
+                                "Device": "M-Site",
                                 "Event Type": "Standard"
                             }); 
 
@@ -1143,7 +1143,7 @@ define(['app'], function(app) {
                 try{     
                     var shipgtm = "UserId=" + userId;
                     clevertap.event.push("Logout", {
-                                "device": "m-site",
+                                "Device": "M-Site",
                                 "Event Type": "Standard"
                             }); 
                     /*clevertap.profile.push({
@@ -1244,7 +1244,7 @@ define(['app'], function(app) {
             $scope.navigateToCart = function() {
                 try{
                     clevertap.event.push("View Cart", {
-                                "device": "m-site",
+                                "Device": "M-Site",
                                 "Event Type": "Standard",
                                 "UserId" : utility.getJStorageKey("userId"),
                                 "CartQty" : $scope.cartItemCount
@@ -1265,7 +1265,7 @@ define(['app'], function(app) {
             $scope.navigateToOrderDetail = function(order) {
                 try{  
                     clevertap.event.push("View Order", {
-                                "device": "m-site",
+                                "Device": "M-Site",
                                 "Event Type": "Standard",
                                 "UserId" : utility.getJStorageKey("userId")
                             });    
