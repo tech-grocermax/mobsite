@@ -344,7 +344,7 @@ define(['app'], function(app) {
                                     // optional fields. controls whether the user will be sent email, push etc.
                                     "MSG-email": true,                      // Disable email notifications
                                     "MSG-push": true,                        // Enable push notifications
-                                    "MSG-sms": true                          // Enable sms notifications
+                                    "MSG-sms": true                         // Enable sms notifications
                                 }
                             }); 
                             clevertap.event.push("Signup Complete", {
