@@ -126,7 +126,7 @@ define(['app'], function(app) {
                     var shipgtm = "UserId=" + utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
                             eventAction: 'Account Information', eventLabel: shipgtm}
-                    );console.log("Account Information");
+                    );console.log("Account Information " + utility.getJStorageKey("firstName"));
                 }catch(err){console.log("Error in GTM fire.");}
 
             } else if ($scope.section.address) {
@@ -224,7 +224,9 @@ define(['app'], function(app) {
                 if(data.flag == "1") {
                     utility.setJStorageKey("userId", data.UserID, 1);
                     utility.setJStorageKey("email", email, 1); 
-
+                    utility.setJStorageKey("firstName", data.Firstname, 1);
+                    utility.setJStorageKey("lastName", data.Lastname, 1);
+                    //console.log("user name :" + data.Firstname + " " + data.Lastname);
                     var oldQuoteId = utility.getJStorageKey("quoteId")
                     utility.setJStorageKey("quoteId", data.QuoteId, 1);  
                     var oldCartCount = utility.getJStorageKey("cartCounter" + oldQuoteId);
@@ -331,7 +333,26 @@ define(['app'], function(app) {
                     userService.createUser($scope.user)
                         .then(function(data){
                             toggleLoader(false);
-                            try{     
+                            try{  
+                                 clevertap.profile.push({
+                                "Site": {
+                                    "Name": data.Firstname + " " + data.Lastname,                  // String
+                                    "Identity": data.UserID,                    // String or number
+                                    "Email": $scope.user.uemail,               // Email address of the user
+                                    "Phone":"+91" + data.Mobile,                 // Phone (with the country code)
+                                    
+                                    // optional fields. controls whether the user will be sent email, push etc.
+                                    "MSG-email": false,                      // Disable email notifications
+                                    "MSG-push": false,                        // Enable push notifications
+                                    "MSG-sms": false                          // Enable sms notifications
+                                }
+                            }); 
+                            clevertap.event.push("Signup Complete", {
+                                "device": "m-site",
+                                "Event Type": "Standard"
+                            });
+                            console.log("clevertap profile push create"+ data.Firstname + " " + data.Lastname + " userid: "+ data.UserID +" email: "+ $scope.user.uemail + " mobile " + data.Mobile);
+                              
                                 var logintgtm = "Email="+ $scope.user.uemail;
                                 dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile  Register', 
                                     eventAction: 'Standard', eventLabel: logintgtm}
@@ -408,6 +429,25 @@ define(['app'], function(app) {
                         utility.deleteJStorageKey("registrationDetails");
                         successCallbackUser(data, socialEmail);
                         try{  
+                            clevertap.profile.push({
+                                "Site": {
+                                    "Name": socialName,                  // String
+                                    "Identity": data.UserID,                    // String or number
+                                    "Email": socialEmail,               // Email address of the user
+                                    "Phone": "+91" + data.Mobile,                 // Phone (with the country code)
+                                    
+                                    // optional fields. controls whether the user will be sent email, push etc.
+                                    "MSG-email": false,                      // Disable email notifications
+                                    "MSG-push": false,                        // Enable push notifications
+                                    "MSG-sms": false                          // Enable sms notifications
+                                }
+                            });
+                            clevertap.event.push("Signup Complete", {
+                            "device": "m-site",
+                            "Event Type": "google"
+                            });
+                            console.log("clevertap profile push Login "+ socialName);
+
                           dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile  Register', 
                                     eventAction: $scope.provider, eventLabel: socialEmail}
                                 );console.log($scope.provider); console.log(dataLayer)
@@ -454,7 +494,26 @@ define(['app'], function(app) {
                         };
                 socialName = googleUser.getBasicProfile().getName();
                 socialEmail = googleUser.getBasicProfile().getEmail();
-                try{     
+                try{   
+                        clevertap.profile.push({
+                                "Site": {
+                                    "Name": socialName,                  // String
+                                    //"Identity": data.UserID,                    // String or number
+                                    "Email": socialEmail,               // Email address of the user
+                                    //"Phone": "+91" + data.Mobile,                 // Phone (with the country code)
+                                    
+                                    // optional fields. controls whether the user will be sent email, push etc.
+                                    "MSG-email": false,                      // Disable email notifications
+                                    "MSG-push": false,                        // Enable push notifications
+                                    "MSG-sms": false                          // Enable sms notifications
+                                }
+                            });
+                        clevertap.event.push("Login Complete", {
+                            "device": "m-site",
+                            "Event Type": "google"
+                        });
+                            console.log("clevertap profile push google "+ socialName);
+
                         var logintgtm = "Email="+ socialEmail;
                         dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Login', 
                             eventAction: 'Google', eventLabel: logintgtm}
@@ -533,7 +592,26 @@ define(['app'], function(app) {
                             };
                     socialName = response.name;
                     socialEmail = response.email;
-                    try{     
+                    try{ 
+                        clevertap.profile.push({
+                                "Site": {
+                                    "Name": socialName,                  // String
+                                    //"Identity": data.UserID,                    // String or number
+                                    "Email": socialEmail,               // Email address of the user
+                                    //"Phone": "+91" + data.Mobile,                 // Phone (with the country code)
+                                    
+                                    // optional fields. controls whether the user will be sent email, push etc.
+                                    "MSG-email": false,                      // Disable email notifications
+                                    "MSG-push": false,                        // Enable push notifications
+                                    "MSG-sms": false                          // Enable sms notifications
+                                }
+                            });
+                        clevertap.event.push("Login Complete", {
+                            "device": "m-site",
+                            "Event Type": "facebook"
+                        });
+                        console.log("clevertap profile push facebook "+ socialName);
+
                         var logintgtm = "Email="+ socialEmail;
                         dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Login', 
                             eventAction: 'Facebook', eventLabel: logintgtm}
@@ -566,13 +644,9 @@ define(['app'], function(app) {
                     var logintgtm1 = "Email="+ $scope.user.uemail;
                         dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Login Start', 
                             eventAction: 'Standard', eventLabel: logintgtm1}
-                        );console.log("Mobile Login Start 1");
-                        clevertap.profile.push({
-                         "Site": {
-                            "Email": "vinay.singh@grocermax.com"    // Email address of the user
-                           }
-                        });
-                        console.log("clevertap profile push Login ----"+ logintgtm1); 
+                        );console.log("Mobile Login Start 11");
+                        
+                        //console.log("clevertap profile push Login name: "+ utility.getJStorageKey("firstName")); 
                     var input = {
                             uemail: $scope.user.uemail,
                             password: $scope.user.password
@@ -592,6 +666,26 @@ define(['app'], function(app) {
                     }
                     userService.loginUser(input)
                         .then(function(data){
+                          try{   
+                            clevertap.profile.push({
+                                "Site": {
+                                    "Name": data.Firstname + " " + data.Lastname,                  // String
+                                    "Identity": data.UserID,                    // String or number
+                                    "Email": $scope.user.uemail,               // Email address of the user
+                                    "Phone":"+91" + data.Mobile,                 // Phone (with the country code)
+                                    
+                                    // optional fields. controls whether the user will be sent email, push etc.
+                                    "MSG-email": false,                      // Disable email notifications
+                                    "MSG-push": false,                        // Enable push notifications
+                                    "MSG-sms": false                          // Enable sms notifications
+                                }
+                            }); 
+                            clevertap.event.push("Login Complete", {
+                                "device": "m-site",
+                                "Event Type": "Standard"
+                            });
+                            console.log("clevertap profile push Login"+ data.Firstname + " " + data.Lastname + " userid: "+ data.UserID +" email: "+ $scope.user.uemail + " mobile " + data.Mobile);
+                            }catch(err){console.log("Error clevertap profile push Login.");}
                             successCallbackUser(data, email);
                         });
                 }
@@ -727,7 +821,11 @@ define(['app'], function(app) {
             }
 
             $scope.editAddress = function(addressId) {
-                try{     
+                try{  
+                    clevertap.event.push("Updare Profile Acitvity", {
+                                "device": "m-site",
+                                "Event Type": "Standard"
+                            });   
                     var logintgtm = "UserId="+ utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
                         eventAction: 'Update', eventLabel: logintgtm}
@@ -739,7 +837,11 @@ define(['app'], function(app) {
             
             $scope.deleteAddress = function(address) {
                 var addressId = address.customer_address_id;
-                try{     
+                try{    
+                    clevertap.event.push("Updare Profile Acitvity", {
+                                "device": "m-site",
+                                "Event Type": "Standard"
+                            }); 
                     var logintgtm = "UserId="+ utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
                         eventAction: 'Delete', eventLabel: logintgtm}
@@ -763,6 +865,10 @@ define(['app'], function(app) {
                     } else {
                         $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Create Address' });
                          try{     
+                            clevertap.event.push("Updare Profile Acitvity", {
+                                "device": "m-site",
+                                "Event Type": "Standard"
+                            });
                             var logintgtm = "UserId="+ utility.getJStorageKey("userId");
                             dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
                                 eventAction: 'Create', eventLabel: logintgtm}
@@ -859,7 +965,12 @@ define(['app'], function(app) {
             }
 			
 			$scope.reOrder = function(increment_id , order){
-                try{     
+                try{    
+                    clevertap.event.push("Reorder", {
+                                "device": "m-site",
+                                "Event Type": "Standard"
+                            }); 
+
                     var logintgtms = "UserId="+ utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
                                     eventAction: 'Reorder', eventLabel: logintgtms}
@@ -1024,13 +1135,31 @@ define(['app'], function(app) {
             $scope.logout = function() {
                 toggleLoader(true);
                 var userId = utility.getJStorageKey("userId");
+                var uemail = utility.getJStorageKey("email");
+                var firstName = utility.getJStorageKey("firstName");
+                var lastName = utility.getJStorageKey("lastName");
                // $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Logout' });
                 //$analytics.pageTrack("Logout");
                 try{     
                     var shipgtm = "UserId=" + userId;
-                    clevertap.event.push("Mobile Logout", {
-                      "UserId": userId,
-                    });
+                    clevertap.event.push("Logout", {
+                                "device": "m-site",
+                                "Event Type": "Standard"
+                            }); 
+                    clevertap.profile.push({
+                                "Site": {
+                                    "Name": firstName+ " " +lastName,                  // String
+                                    "Identity": userId,                    // String or number
+                                    "Email": uemail,               // Email address of the user
+                                    //"Phone": "",                 // Phone (with the country code)
+                                    
+                                    // optional fields. controls whether the user will be sent email, push etc.
+                                    "MSG-email": false,                      // Disable email notifications
+                                    "MSG-push": false,                        // Enable push notifications
+                                    "MSG-sms": false                          // Enable sms notifications
+                                }
+                            });
+                    console.log("clevertap profile push Logout "+ firstName);
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Logout', 
                             eventAction: 'Logout', eventLabel: shipgtm}
                     );console.log("Logout user");
@@ -1038,6 +1167,7 @@ define(['app'], function(app) {
                 
                 userService.logout(userId)
                     .then(function(data){
+                         console.log("clevertap profile push logout");
                         toggleLoader(false);
                         if(data.flag == "1") {
                             utility.deleteJStorageKey("userId");
@@ -1113,6 +1243,12 @@ define(['app'], function(app) {
 
             $scope.navigateToCart = function() {
                 try{
+                    clevertap.event.push("View Cart", {
+                                "device": "m-site",
+                                "Event Type": "Standard",
+                                "UserId" : utility.getJStorageKey("userId"),
+                                "CartQty" : $scope.cartItemCount;
+                            }); 
                     var QgtmCart ="UserId=" + utility.getJStorageKey("userId") + "/CartQty="+ $scope.cartItemCount;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile View Cart', 
                         eventAction: 'Cart Details', eventLabel: QgtmCart }
@@ -1127,7 +1263,12 @@ define(['app'], function(app) {
             };
 
             $scope.navigateToOrderDetail = function(order) {
-                try{     
+                try{  
+                    clevertap.event.push("View Order", {
+                                "device": "m-site",
+                                "Event Type": "Standard",
+                                "UserId" : utility.getJStorageKey("userId")
+                            });    
                     var proflogintgtm = "UserId="+ utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
                                     eventAction: 'View Order', eventLabel: proflogintgtm}
