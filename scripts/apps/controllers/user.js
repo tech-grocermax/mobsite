@@ -342,9 +342,9 @@ define(['app'], function(app) {
                                     "Phone":"+91" + data.Mobile,                 // Phone (with the country code)
                                     
                                     // optional fields. controls whether the user will be sent email, push etc.
-                                    "MSG-email": false,                      // Disable email notifications
-                                    "MSG-push": false,                        // Enable push notifications
-                                    "MSG-sms": false                          // Enable sms notifications
+                                    "MSG-email": true,                      // Disable email notifications
+                                    "MSG-push": true,                        // Enable push notifications
+                                    "MSG-sms": true                          // Enable sms notifications
                                 }
                             }); 
                             clevertap.event.push("Signup Complete", {
@@ -437,9 +437,9 @@ define(['app'], function(app) {
                                     "Phone": "+91" + data.Mobile,                 // Phone (with the country code)
                                     
                                     // optional fields. controls whether the user will be sent email, push etc.
-                                    "MSG-email": false,                      // Disable email notifications
-                                    "MSG-push": false,                        // Enable push notifications
-                                    "MSG-sms": false                          // Enable sms notifications
+                                    "MSG-email": true,                      // Disable email notifications
+                                    "MSG-push": true,                        // Enable push notifications
+                                    "MSG-sms": true                          // Enable sms notifications
                                 }
                             });
                             clevertap.event.push("Signup Complete", {
@@ -503,9 +503,9 @@ define(['app'], function(app) {
                                     //"Phone": "+91" + data.Mobile,                 // Phone (with the country code)
                                     
                                     // optional fields. controls whether the user will be sent email, push etc.
-                                    "MSG-email": false,                      // Disable email notifications
-                                    "MSG-push": false,                        // Enable push notifications
-                                    "MSG-sms": false                          // Enable sms notifications
+                                    "MSG-email": true,                      // Disable email notifications
+                                    "MSG-push": true,                        // Enable push notifications
+                                    "MSG-sms": true                          // Enable sms notifications
                                 }
                             });
                         clevertap.event.push("Login Complete", {
@@ -601,9 +601,9 @@ define(['app'], function(app) {
                                     //"Phone": "+91" + data.Mobile,                 // Phone (with the country code)
                                     
                                     // optional fields. controls whether the user will be sent email, push etc.
-                                    "MSG-email": false,                      // Disable email notifications
-                                    "MSG-push": false,                        // Enable push notifications
-                                    "MSG-sms": false                          // Enable sms notifications
+                                    "MSG-email": true,                      // Disable email notifications
+                                    "MSG-push": true,                        // Enable push notifications
+                                    "MSG-sms": true                          // Enable sms notifications
                                 }
                             });
                         clevertap.event.push("Login Complete", {
@@ -675,9 +675,9 @@ define(['app'], function(app) {
                                     "Phone":"+91" + data.Mobile,                 // Phone (with the country code)
                                     
                                     // optional fields. controls whether the user will be sent email, push etc.
-                                    "MSG-email": false,                      // Disable email notifications
-                                    "MSG-push": false,                        // Enable push notifications
-                                    "MSG-sms": false                          // Enable sms notifications
+                                    "MSG-email": true,                      // Disable email notifications
+                                    "MSG-push": true,                        // Enable push notifications
+                                    "MSG-sms": true                          // Enable sms notifications
                                 }
                             }); 
                             clevertap.event.push("Login Complete", {
