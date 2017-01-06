@@ -134,6 +134,13 @@ define(['app'], function(app) {
                 $scope.products = [];
                 $scope.products = products;
                 try{
+                    clevertap.event.push("Categories on L3 Level", {
+                            "Device": "M-Site",
+                            "Page": "CategoryName=" + data.category_name,
+                            "Page Name": data.category_name,
+                            "Category Id" : data.category_id
+                        });
+                    console.log("clevertap Categories on L3 Level");
                     var l4catGtm = "UserId=" + utility.getJStorageKey("userId")+"/CategoryName=" + data.category_name;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
                     eventAction: 'Category Page', eventLabel: l4catGtm}

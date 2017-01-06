@@ -398,7 +398,7 @@ define(['app'], function(app) {
             $scope.routerChange = function(route, id, name) {
                 if(route == 'category'){
                     try{
-                        clevertap.event.push("Mobile Home Page View", {
+                        clevertap.event.push("Categories on Home Page", {
                             "Device": "M-Site",
                             "Page": "CategoryName=" + name,
                             "Category Name": name
@@ -475,13 +475,13 @@ define(['app'], function(app) {
 
             $scope.handleOfferCategoryClick = function(category) {
                 try{
-                    clevertap.event.push("Categories on Home Page", {
+                    clevertap.event.push("Categories on L2 Level", {
                             "Device": "M-Site",
                             "Page": "CategoryName=" + category.name,
                             "Page Name": category.name,
                             "Category Id" : category.category_id
                         });
-                    console.log("clevertap Categories on Home Page");
+                    console.log("clevertap Categories on L2 Level");
                     var gtmcatname ="UserId=" + utility.getJStorageKey("userId")+"/CategoryName=" + category.name;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
                         eventAction: 'Category Page', eventLabel: gtmcatname}
@@ -503,13 +503,13 @@ define(['app'], function(app) {
 
             $scope.handleTopOfferClick = function(offerlistId,categoryName) {
                 try{
-                    clevertap.event.push("Categories on Home Page", {
+                    clevertap.event.push("Categories on Top Offers", {
                             "Device": "M-Site",
                             "Page": "CategoryName=" + categoryName,
                             "Page Name": categoryName,
                             "Category Id" : categoryId
                         });
-                    console.log("clevertap Categories on Home Page L1");
+                    console.log("clevertap Categories Top Offers");
                     var gtmcofferatname ="UserId=" + utility.getJStorageKey("userId") + "/CategoryName=" + categoryName;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
                         eventAction: 'Category - Top Offers', eventLabel: gtmcofferatname}
