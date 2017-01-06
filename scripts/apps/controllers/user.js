@@ -1146,7 +1146,7 @@ define(['app'], function(app) {
                                 "device": "m-site",
                                 "Event Type": "Standard"
                             }); 
-                    clevertap.profile.push({
+                    /*clevertap.profile.push({
                                 "Site": {
                                     "Name": firstName+ " " +lastName,                  // String
                                     "Identity": userId,                    // String or number
@@ -1159,7 +1159,7 @@ define(['app'], function(app) {
                                     "MSG-sms": false                          // Enable sms notifications
                                 }
                             });
-                    console.log("clevertap profile push Logout "+ firstName);
+                    console.log("clevertap profile push Logout "+ firstName);*/
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Logout', 
                             eventAction: 'Logout', eventLabel: shipgtm}
                     );console.log("Logout user");
