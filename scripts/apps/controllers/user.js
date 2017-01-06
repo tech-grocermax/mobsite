@@ -1247,7 +1247,7 @@ define(['app'], function(app) {
                                 "device": "m-site",
                                 "Event Type": "Standard",
                                 "UserId" : utility.getJStorageKey("userId"),
-                                "CartQty" : $scope.cartItemCount;
+                                "CartQty" : $scope.cartItemCount
                             }); 
                     var QgtmCart ="UserId=" + utility.getJStorageKey("userId") + "/CartQty="+ $scope.cartItemCount;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile View Cart', 
