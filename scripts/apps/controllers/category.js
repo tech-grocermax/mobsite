@@ -63,7 +63,9 @@ define(['app'], function(app) {
                     "device": "m-site",
                     "page": "Home Page"
                 });
-
+                dataLayer.push('send',{ 'event': 'setUserId', 'userId': "123451"}
+                        );
+                console.log("Mobile Home Page View with new userId");
                 dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Home Page View', 
                         eventAction: 'Page Open', eventLabel: GtmUser}
                         );
@@ -403,6 +405,9 @@ define(['app'], function(app) {
                             "Page": "CategoryName=" + name,
                             "Category Name": name
                         });
+                        dataLayer.push({ 'event': 'setUserId', 'userId': utility.getJStorageKey("userId")}
+                        );
+                console.log("Mobile Home Page category with new userId");
                         var catclGtm = "UserId=" + utility.getJStorageKey("userId")+"/CategoryName=" + name;
                         dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
                         eventAction: 'Category Page', eventLabel: catclGtm}
