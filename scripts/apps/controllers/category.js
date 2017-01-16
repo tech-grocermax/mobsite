@@ -440,8 +440,10 @@ define(['app'], function(app) {
             $scope.toggleCategoryMenu = function() {
                 try{
                     clevertap.event.push("Drawer Activity", {
-                            "Device": "M-Site"
+                            "Device": "M-Site",
+                            "Category Name" : $scope.categoryName
                         });
+                    console.log("Drawer Activity clevertap fire 1." + $scope.categoryName);
                     var draActGtm = "UserId=" + utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile - Drawer Activity', 
                         eventAction: 'Page Name', eventLabel: draActGtm}
@@ -481,6 +483,7 @@ define(['app'], function(app) {
                             "Category Name" : $scope.categoryName,
                             "Category Id" : category.category_id
                         });
+                        console.log("Drawer Activity clevertap fire.");
                     }catch(err){console.log("Error in clevertap fire.");}
             };
 

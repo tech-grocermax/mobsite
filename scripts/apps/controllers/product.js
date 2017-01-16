@@ -119,7 +119,16 @@ define(['app'], function(app) {
                 data["isSelected"] = true;
                 $scope.products = [];
                 $scope.products = products; 
-                                                
+                try{
+                    $scope.productCategoryName = categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), data.category_id);
+                    console.log("Search Category Products " + data.category_id + " | " + $scope.productCategoryName); 
+                    clevertap.event.push("Categories on L3 Level", {
+                                "Device": "M-Site",
+                                "Page": "CategoryName=" + $scope.productCategoryName,
+                                "Page Name": $scope.categoryName,
+                                "Category Id" : data.category_id
+                            }); 
+                    }catch(err){console.log("Error in Search Category Products fire.");}                              
             };
 
             $scope.setAllCategoryProducts = function(data, products) {
