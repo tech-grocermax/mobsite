@@ -442,9 +442,9 @@ define(['app'], function(app) {
                 try{
                     clevertap.event.push("View Cart", {
                             "Device": "M-Site",
-                            "Subtotal": "",
+                            "Subtotal": utility.getJStorageKey("tempCartVal"),
                             "Quantity": $scope.cartItemCount,
-                            "Coupon Code" : "",
+                            "Coupon Code" : utility.getJStorageKey("couponCode")
                         });
                     var QgtmCart ="UserId=" + utility.getJStorageKey("userId") + "/CartQty="+ $scope.cartItemCount;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile View Cart', 
@@ -1024,6 +1024,7 @@ define(['app'], function(app) {
                         $scope.couponLi = index;
                         if(data.flag == 1) {
                             $scope.couponCode = couponCode;
+                            utility.setJStorageKey("couponCode", couponCode, 1);
                             //$scope.couponDescription = coupondescription;
                             $scope.invalidCoupon = false;
                             $scope.invalidCouponBlank = false;
@@ -1087,6 +1088,7 @@ define(['app'], function(app) {
                             $scope.couponValue = (data.CartDetail.subtotal - data.CartDetail.subtotal_with_discount);
 
                             utility.setJStorageKey("tempcouponValue", $scope.couponValue, 1); 
+                            utility.deleteJStorageKey("couponCode");
                             $scope.cartDetails.grand_total = data.CartDetails.grand_total;
                             try{  
                                 clevertap.event.push("Remove Coupon", {

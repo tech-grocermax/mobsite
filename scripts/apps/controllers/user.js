@@ -1241,8 +1241,9 @@ define(['app'], function(app) {
                     clevertap.event.push("View Cart", {
                                 "Device": "M-Site",
                                 "Event Type": "Standard",
-                                "UserId" : utility.getJStorageKey("userId"),
-                                "CartQty" : $scope.cartItemCount
+                                "Subtotal": utility.getJStorageKey("tempCartVal"),
+                                "Quantity": $scope.cartItemCount,
+                                "Coupon Code" : utility.getJStorageKey("couponCode")
                             }); 
                     var QgtmCart ="UserId=" + utility.getJStorageKey("userId") + "/CartQty="+ $scope.cartItemCount;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile View Cart', 

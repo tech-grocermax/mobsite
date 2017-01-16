@@ -780,7 +780,7 @@ define(['app'], function(app) {
                             "Device": "M-Site",
                             "Subtotal": $scope.tempCartVal,
                             "Quantity": $scope.cartItemCount,
-                            "Coupon Code" : "",
+                            "Coupon Code" : utility.getJStorageKey("couponCode"),
                         });
                     var QgtmCart ="UserId=" + utility.getJStorageKey("userId") + "/CartQty="+ $scope.cartItemCount;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile View Cart', 
