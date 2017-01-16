@@ -475,6 +475,13 @@ define(['app'], function(app) {
                 } else {
                     $scope.routerChange('product', category.category_id);
                 }
+                try{
+                    clevertap.event.push("Drawer Activity", {
+                            "Device": "M-Site",
+                            "Category Name" : $scope.categoryName,
+                            "Category Id" : category.category_id
+                        });
+                    }catch(err){console.log("Error in clevertap fire.");}
             };
 
             $scope.handleOfferCategoryClick = function(category) {
