@@ -601,7 +601,7 @@ define(['app'], function(app) {
 
             $scope.routerChange = function(route, id , name) {
                 try{
-                    clevertap.event.push("Category Interaction", {
+                    clevertap.event.push("Product Detail View", {
                             "Device": "M-Site",
                             "Page": "/ProductName=" + name,
                             "Page Name": name
