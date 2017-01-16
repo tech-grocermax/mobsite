@@ -412,6 +412,10 @@ define(['app'], function(app) {
                         $scope.userResponseMessage = "";
                         $scope.registrationStep = 4;
                         try{
+
+                            clevertap.event.push("Signup Initiated", {
+                                "Device": "M-Site"
+                            });
                         var regilsogintgtm = '';
                         dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Register Start', 
                             eventAction: $scope.provider, eventLabel: regilsogintgtm}
@@ -444,7 +448,7 @@ define(['app'], function(app) {
                             });
                             clevertap.event.push("Signup Complete", {
                             "Device": "M-Site",
-                            "Event Type": "google"
+                            "Event Type": $scope.provider
                             });
                             console.log("clevertap profile push Login "+ socialName);
 
@@ -510,7 +514,7 @@ define(['app'], function(app) {
                             });
                         clevertap.event.push("Login Complete", {
                             "Device": "M-Site",
-                            "Event Type": "google"
+                            "Event Type": $scope.provider
                         });
                             console.log("clevertap profile push google "+ socialName);
 
@@ -608,7 +612,7 @@ define(['app'], function(app) {
                             });
                         clevertap.event.push("Login Complete", {
                             "Device": "M-Site",
-                            "Event Type": "facebook"
+                            "Event Type": "Facebook"
                         });
                         console.log("clevertap profile push facebook "+ socialName);
 
@@ -641,6 +645,10 @@ define(['app'], function(app) {
                 $scope.errorLogin = true;
                 if (form.$valid) { 
                     toggleLoader(true);
+                    clevertap.event.push("Login Initiate", {
+                            "Device": "M-Site",
+                            "Event Type": "Standard"
+                        });
                     var logintgtm1 = "Email="+ $scope.user.uemail;
                         dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Login Start', 
                             eventAction: 'Standard', eventLabel: logintgtm1}
@@ -838,7 +846,7 @@ define(['app'], function(app) {
             $scope.deleteAddress = function(address) {
                 var addressId = address.customer_address_id;
                 try{    
-                    clevertap.event.push("Updare Profile Acitvity", {
+                    clevertap.event.push("Delete Profile Acitvity", {
                                 "Device": "M-Site",
                                 "Event Type": "Standard"
                             }); 
@@ -865,7 +873,7 @@ define(['app'], function(app) {
                     } else {
                         $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Create Address' });
                          try{     
-                            clevertap.event.push("Updare Profile Acitvity", {
+                            clevertap.event.push("Create Profile Acitvity", {
                                 "Device": "M-Site",
                                 "Event Type": "Standard"
                             });
@@ -1146,20 +1154,7 @@ define(['app'], function(app) {
                                 "Device": "M-Site",
                                 "Event Type": "Standard"
                             }); 
-                    /*clevertap.profile.push({
-                                "Site": {
-                                    "Name": firstName+ " " +lastName,                  // String
-                                    "Identity": userId,                    // String or number
-                                    "Email": uemail,               // Email address of the user
-                                    //"Phone": "",                 // Phone (with the country code)
-                                    
-                                    // optional fields. controls whether the user will be sent email, push etc.
-                                    "MSG-email": false,                      // Disable email notifications
-                                    "MSG-push": false,                        // Enable push notifications
-                                    "MSG-sms": false                          // Enable sms notifications
-                                }
-                            });
-                    console.log("clevertap profile push Logout "+ firstName);*/
+                    
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Logout', 
                             eventAction: 'Logout', eventLabel: shipgtm}
                     );console.log("Logout user");

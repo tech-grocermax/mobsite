@@ -431,6 +431,12 @@ define(['app'], function(app) {
 
             $scope.navigateToCart = function() {
                 try{
+                    clevertap.event.push("View Cart", {
+                            "Device": "M-Site",
+                            "Subtotal": "",
+                            "Quantity": $scope.cartItemCount,
+                            "Coupon Code" : "",
+                        });
                     var QgtmCart ="UserId=" + utility.getJStorageKey("userId") + "/CartQty="+ $scope.cartItemCount;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile View Cart', 
                         eventAction: 'Cart Details', eventLabel: QgtmCart }
@@ -511,6 +517,14 @@ define(['app'], function(app) {
                 }
                 var GtmPrice = product.Price;
                 var GtmBrand = product.p_brand;
+                clevertap.event.push("Add to Cart", {
+                            "Device": "M-Site",
+                            "Product Id": GtmpId,
+                            "Page Name": page,
+                            "Product Name" : GtmName,
+                            "Qty Added to Cart" : GtmQty,
+                        });
+                
                 var productgtm = "UserId=" + utility.getJStorageKey("userId") + "/productName=" + GtmName + "/prodcutId=" + GtmpId; 
                 dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Add to Cart', 
                                 eventAction: page, eventLabel: productgtm});  console.log("add o cart");
@@ -578,6 +592,12 @@ define(['app'], function(app) {
 
             $scope.routerChange = function(route, id , name) {
                 try{
+                    clevertap.event.push("Category Interaction", {
+                            "Device": "M-Site",
+                            "Page": "/ProductName=" + name,
+                            "Page Name": name
+                            //"Category Id" : categoryId
+                        });
                     var pddetailGtm = "UserId=" + utility.getJStorageKey("userId") + "/ProductName=" + name;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
                         eventAction: 'Product Detail Page', eventLabel: pddetailGtm}
@@ -739,6 +759,15 @@ define(['app'], function(app) {
                     // Proceed to Checkout
                     $analytics.eventTrack($scope.selectedCity, {  category: "Proceed to Checkout" });
                 try{     
+                    clevertap.event.push("Proceed to Checkout", {
+                            "Device": "M-Site",
+                            //"Page": "Cart Page",
+                            "Page Name": "Cart Page",
+                            "Coupon Code" : "",
+                            "Subtotal" : $scope.cartDetails.grand_total,
+                            "Quantity" : $scope.cartItemCount
+                        });
+                    console.log("Proceed to Checkout");
                     var logintgtm = "CartQty=" + $scope.cartItemCount + "/subtotal=" + $scope.cartDetails.grand_total + "/UserId="+ utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Proceed to checkout', 
                                     eventAction: 'Proceed Details', eventLabel: logintgtm}
@@ -749,7 +778,18 @@ define(['app'], function(app) {
                 } else {
                     // Analytics to update cart
                     $analytics.eventTrack($scope.selectedCity, {  category: "Update Cart" });
-                try{     
+                try{ 
+
+                    clevertap.event.push("Update Cart", {
+                            "Device": "M-Site",
+                            //"Page": "Cart Page",
+                            "Page Name": "Cart Page",
+                            "Coupon Code" : "",
+                            "Subtotal" : $scope.cartDetails.grand_total,
+                            "Quantity" : $scope.cartItemCount
+                        });
+                    console.log("Update Cart");
+
                     var logintgtm = "CartQty=" + $scope.cartItemCount + "/subtotal=" + $scope.cartDetails.grand_total + "/UserId="+ utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Update Cart', 
                                     eventAction: 'Update Cart', eventLabel: logintgtm}
@@ -986,7 +1026,17 @@ define(['app'], function(app) {
 
                             utility.setJStorageKey("tempcouponValue", $scope.couponValue, 1); 
                             $scope.couponModalShow = false;
-                            try{     
+                            try{  
+
+                                clevertap.event.push("Apply Coupon", {
+                                    "Device": "M-Site",
+                                    //"Page": "Cart Page",
+                                    "Page Name": "Cart Page",
+                                    "Coupon Code" : couponCode,
+                                    "Subtotal" : $scope.cartDetails.grand_total,
+                                    "Quantity" : $scope.cartItemCount
+                                });
+                                console.log("Apply Coupon");   
                                 var logintgtm = "CouponCode=" + couponCode + "/CartQty=" + $scope.cartItemCount + "/subtotal=" + $scope.cartDetails.grand_total + "/UserId="+ utility.getJStorageKey("userId");
                                 dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Apply Coupon', 
                                     eventAction: 'Coupon Code', eventLabel: logintgtm}
@@ -1029,7 +1079,16 @@ define(['app'], function(app) {
 
                             utility.setJStorageKey("tempcouponValue", $scope.couponValue, 1); 
                             $scope.cartDetails.grand_total = data.CartDetails.grand_total;
-                            try{     
+                            try{  
+                                clevertap.event.push("Remove Coupon", {
+                                    "Device": "M-Site",
+                                    //"Page": "Cart Page",
+                                    "Page Name": "Cart Page",
+                                    "Coupon Code" : couponCode,
+                                    "Subtotal" : $scope.cartDetails.grand_total,
+                                    "Quantity" : $scope.cartItemCount
+                                });
+                                console.log("Remove Coupon");   
                                 var logintgtm = "CouponCode=" + couponCode + "/CartQty=" + $scope.cartItemCount + "/SubTotal=" + $scope.cartDetails.grand_total + "/UserId="+ utility.getJStorageKey("userId");
                                 dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Remove Coupon', 
                                     eventAction: 'Coupon Code', eventLabel: logintgtm}

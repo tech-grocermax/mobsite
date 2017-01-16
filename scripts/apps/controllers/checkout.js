@@ -239,7 +239,16 @@ define(['app'], function(app) {
                         try{
                             userService.trackorderdetails($scope.orderId).then(function(data){
                                 if(data.flag==1){
-                                    try{     
+                                    try{   
+
+                                    clevertap.event.push("Charged", {
+                                        "Order" :"order successful",
+                                        "Amount": $scope.tempCartVal,
+                                        "Payment mode": "paytm_cc",
+                                        "Charged ID": data.newgtm.transactionId, // important to avoid duplicate transactions due to network failure
+                                        "Order ID" : $scope.orderId
+                                       });
+
                                         var payregtm = "OrderId=" + data.newgtm.transactionId +"/userId="+ utility.getJStorageKey("userId");
                                         dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Order Successful', 
                                                         eventAction: "paytm_cc", eventLabel: payregtm}
@@ -258,7 +267,15 @@ define(['app'], function(app) {
                             keyboard: false,
                             show: true
                         });
-                         try{     
+                         try{ 
+                            clevertap.event.push("Charged", {
+                                        "Device": "M-Site",
+                                        "Order" :"order Failure",
+                                        "Amount": $scope.tempCartVal,
+                                        "Payment mode": "paytm_cc",
+                                        "Charged ID": data.newgtm.transactionId, // important to avoid duplicate transactions due to network failure
+                                        "Order ID" : $scope.orderId
+                                       });    
                             var paytmfailgtm = "userId="+ utility.getJStorageKey("userId");
                             dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Order Failure', 
                                             eventAction: "paytm_cc", eventLabel: paytmfailgtm}
@@ -397,7 +414,11 @@ define(['app'], function(app) {
                 utility.setJStorageKey("checkoutDetails", checkoutDetails, 1);
 
                 //$analytics.eventTrack($scope.selectedCity, {  category: "Shipping address" });
-                try{     
+                try{    
+                    clevertap.event.push("Shipping", {
+                            "Device": "M-Site",
+                            "Email" :  utility.getJStorageKey("email")                          
+                        }); 
                    var selectshipgtm = "UserId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Checkout Funnel', 
                         eventAction: 'Shipping', eventLabel: selectshipgtm}
@@ -471,7 +492,13 @@ define(['app'], function(app) {
                 //$analytics.eventTrack($scope.selectedCity, {  category: "Delivery details" });
 
                 $location.url("checkout/payment");
-                try{     
+                try{    
+
+                    clevertap.event.push("Delivery Slot", {
+                            "Device": "M-Site",
+                            //"Email" :  utility.getJStorageKey("email"),
+                            "Delivery Slot" :  $scope.selectedDeliveryDate + " " + $scope.selectedDeliveryTime                         
+                        }); 
                     var payshipgtm = "UserId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Checkout Funnel', 
                         eventAction: 'Delivery Slot', eventLabel: payshipgtm}
@@ -598,7 +625,11 @@ define(['app'], function(app) {
             $scope.isHidePlacedBtn =false;
             $scope.placeOrder = function() { 
                 //$analytics.eventTrack($scope.selectedCity, {  category: "Review and Place order" });
-                try{     
+                try{  
+                    clevertap.event.push("Payment Method", {
+                            "Device": "M-Site",
+                            "Payment Method" :  $scope.paymentMethod                         
+                        });   
                     var placshipgtm = "UserId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Checkout Funnel', 
                         eventAction: 'Payment Method', eventLabel: placshipgtm}
@@ -624,7 +655,15 @@ define(['app'], function(app) {
                                     try{
                                     userService.trackorderdetails(data.OrderID).then(function(data){
                                         if(data.flag==1){
-                                            try{     
+                                            try{  
+                                                clevertap.event.push("Charged", {
+                                                    "Device": "M-Site",
+                                                    "Order" :"Order Successful",
+                                                    "Amount": $scope.tempCartVal,
+                                                    "Payment mode": $scope.paymentMethod,
+                                                    "Charged ID": data.newgtm.transactionId, // important to avoid duplicate transactions due to network failure
+                                                    "Order ID" : data.OrderID
+                                                   });
                                                 var codshipgtm = "OrderId=" + data.newgtm.transactionId +"/userId="+ utility.getJStorageKey("userId");
                                                 dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Order Successful', 
                                                         eventAction: $scope.paymentMethod, eventLabel: codshipgtm}
@@ -737,7 +776,13 @@ define(['app'], function(app) {
 
             $scope.navigateToCart = function() {
                 try{
-                    var QgtmCart ="UserId=" + utility.getJStorageKey("userId") + "/CartQty="+ $scope.cartItemCount;;
+                    clevertap.event.push("View Cart", {
+                            "Device": "M-Site",
+                            "Subtotal": $scope.tempCartVal,
+                            "Quantity": $scope.cartItemCount,
+                            "Coupon Code" : "",
+                        });
+                    var QgtmCart ="UserId=" + utility.getJStorageKey("userId") + "/CartQty="+ $scope.cartItemCount;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile View Cart', 
                         eventAction: 'Cart Details', eventLabel: QgtmCart }
                         ); console.log("Cart Open");
