@@ -193,10 +193,19 @@ define(['app'], function(app) {
                             "Device": "M-Site",
                             "Event Type": "Standard"
                         });
+                    console.log("clevertap Order History fire.");
                     }catch(err){console.log("Error in GTM fire.");}
             } else if ($scope.section.forgotpassword || $scope.section.changepassword) {
                 $scope.columnSize = 1;
                 $scope.showSearchIcon = true;
+                try{ 
+                    clevertap.event.push("Change Password", {
+                            "Device": "M-Site",
+                            "Event Type": "Standard"
+                        });
+                    console.log("clevertap changepassword fire.");
+                    }catch(err){console.log("Error in clevertap changepassword fire.");}
+                
             } else if ($scope.section.login) {
                 $scope.columnSize = 0;
             } else if ($scope.section.register) {
@@ -1150,6 +1159,15 @@ define(['app'], function(app) {
                         userService.changePassword(input)
                             .then(function(data){
                                 toggleLoader(false);
+                                try{ 
+                                    clevertap.event.push("Change Password Successfully", {
+                                            "Device": "M-Site",
+                                            "Event Type": "Standard"
+                                        });
+                                    console.log("clevertap changepassword fire.");
+                                }catch(err){
+                                    console.log("Error in clevertap changepassword fire.");
+                                }
                                 if(data.flag == "1") {
                                     $location.url("user/profile");
                                 } else {
