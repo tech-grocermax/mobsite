@@ -442,7 +442,7 @@ define(['app'], function(app) {
                 try{
                     clevertap.event.push("View Cart", {
                             "Device": "M-Site",
-                            "Subtotal": utility.getJStorageKey("tempCartVal"),
+                            "Subtotal": $scope.cartDetails.grand_total,
                             "Quantity": $scope.cartItemCount,
                             "Coupon Code" : utility.getJStorageKey("couponCode")
                         });
