@@ -601,12 +601,15 @@ define(['app'], function(app) {
 
             $scope.routerChange = function(route, id , name) {
                 try{
+
                     clevertap.event.push("Product Detail View", {
                             "Device": "M-Site",
                             "Page": "/ProductName=" + name,
-                            "Page Name": name
-                            //"Category Id" : categoryId
+                            "Page Name": name,
+                            "Category Id" : $scope.categoryId,
+                            "Category Name" : categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.categoryId)
                         });
+                    console.log("clevertap product detail" + $scope.categoryId);
                     var pddetailGtm = "UserId=" + utility.getJStorageKey("userId") + "/ProductName=" + name;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
                         eventAction: 'Product Detail Page', eventLabel: pddetailGtm}
