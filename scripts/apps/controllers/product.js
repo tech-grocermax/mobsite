@@ -772,7 +772,7 @@ define(['app'], function(app) {
                             "Device": "M-Site",
                             //"Page": "Cart Page",
                             "Page Name": "Cart Page",
-                            "Coupon Code" : "",
+                            "Coupon Code" : utility.getJStorageKey("couponCode"),
                             "Subtotal" : $scope.cartDetails.grand_total,
                             "Quantity" : $scope.cartItemCount
                         });
@@ -793,11 +793,11 @@ define(['app'], function(app) {
                             "Device": "M-Site",
                             //"Page": "Cart Page",
                             "Page Name": "Cart Page",
-                            "Coupon Code" : "",
+                            "Coupon Code" : utility.getJStorageKey("couponCode"),
                             "Subtotal" : $scope.cartDetails.grand_total,
                             "Quantity" : $scope.cartItemCount
                         });
-                    console.log("Update Cart");
+                    console.log("Clever Tap Update Cart");
 
                     var logintgtm = "CartQty=" + $scope.cartItemCount + "/subtotal=" + $scope.cartDetails.grand_total + "/UserId="+ utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Update Cart', 

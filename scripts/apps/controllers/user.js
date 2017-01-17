@@ -122,7 +122,13 @@ define(['app'], function(app) {
             } else if($scope.section.editprofile) {
                 $scope.categoryName = "Edit My Profile";
                 $scope.columnSize = 10;
-                try{     
+                try{  
+                    clevertap.event.push("Account Information", {
+                            "Device": "M-Site",
+                            "Event Type": "Standard",
+                            "User Name": utility.getJStorageKey("firstName"),
+                            "User Id" : utility.getJStorageKey("userId")
+                        });   
                     var shipgtm = "UserId=" + utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
                             eventAction: 'Account Information', eventLabel: shipgtm}
@@ -132,7 +138,11 @@ define(['app'], function(app) {
             } else if ($scope.section.address) {
                 $scope.categoryName = "My Address";
                 $scope.columnSize = 10;
-                try{     
+                try{ 
+                    clevertap.event.push("Address", {
+                            "Device": "M-Site",
+                            "Event Type": "Standard"
+                        });    
                     var shipgtm = "UserId=" + utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
                             eventAction: 'Address', eventLabel: shipgtm}
@@ -148,7 +158,12 @@ define(['app'], function(app) {
             } else if ($scope.section.coinshistory) {
                 $scope.categoryName = "Max Coins";
                 $scope.columnSize = 10;
-                try{     
+                try{ 
+                    clevertap.event.push("Max Coins", {
+                            "Device": "M-Site",
+                            "Event Type": "Standard"                            
+                        }); 
+                    console.log("Max Coins" + $scope.section.coinshistory);       
                     var shipgtm = "UserId=" + utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
                             eventAction: 'Max Coins', eventLabel: shipgtm}
@@ -158,7 +173,12 @@ define(['app'], function(app) {
             } else if ($scope.section.maxmoneyhistory) {
                 $scope.categoryName = "Refund Wallet";
                 $scope.columnSize = 10;
-                try{     
+                try{ 
+                    clevertap.event.push("Refund Wallet", {
+                            "Device": "M-Site",
+                            "Event Type": "Standard"
+                        });
+                     console.log("Refund Wallet" + $scope.section.maxmoneyhistory);        
                     var shipgtm = "UserId=" + utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
                             eventAction: 'Refund Wallet', eventLabel: shipgtm}
@@ -168,6 +188,12 @@ define(['app'], function(app) {
             } else if ($scope.section.orderhistory) {
                 $scope.categoryName = "Order History";
                 $scope.columnSize = 10;
+                try{ 
+                    clevertap.event.push("Refund Wallet", {
+                            "Device": "M-Site",
+                            "Event Type": "Standard"
+                        });
+                    }catch(err){console.log("Error in GTM fire.");}
             } else if ($scope.section.forgotpassword || $scope.section.changepassword) {
                 $scope.columnSize = 1;
                 $scope.showSearchIcon = true;

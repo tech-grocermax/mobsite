@@ -447,7 +447,16 @@ define(['app'], function(app) {
                             billingAddress = value;
                         }
                     });
-                }                
+                }  
+
+                try{    
+                    clevertap.event.push("Billing", {
+                            "Device": "M-Site",
+                            "Email" :  utility.getJStorageKey("email")                          
+                        }); 
+                    }catch(err){
+                        console.log("Error in GTM fire.");
+                    }              
                 
                 var quoteId = utility.getJStorageKey("quoteId"),
                     checkoutDetails = utility.getJStorageKey("checkoutDetails");
@@ -662,7 +671,10 @@ define(['app'], function(app) {
                                                     "Amount": $scope.tempCartVal,
                                                     "Payment mode": $scope.paymentMethod,
                                                     "Charged ID": data.newgtm.transactionId, // important to avoid duplicate transactions due to network failure
-                                                    "Order ID" : data.OrderID
+                                                    "Order ID" : data.OrderID,
+                                                    "Coupon Code" : utility.getJStorageKey("couponCode"),
+                                                    "Subtotal" : $scope.cartDetails.grand_total,
+                                                    "Quantity" : $scope.cartItemCount
                                                    });
                                                 var codshipgtm = "OrderId=" + data.newgtm.transactionId +"/userId="+ utility.getJStorageKey("userId");
                                                 dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Order Successful', 
