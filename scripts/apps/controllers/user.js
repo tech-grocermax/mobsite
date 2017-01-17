@@ -865,7 +865,7 @@ define(['app'], function(app) {
 
             $scope.editAddress = function(addressId) {
                 try{  
-                    clevertap.event.push("Updare Profile Acitvity", {
+                    clevertap.event.push("Update address", {
                                 "Device": "M-Site",
                                 "Event Type": "Standard"
                             });   
@@ -881,7 +881,7 @@ define(['app'], function(app) {
             $scope.deleteAddress = function(address) {
                 var addressId = address.customer_address_id;
                 try{    
-                    clevertap.event.push("Delete Profile Acitvity", {
+                    clevertap.event.push("Delete address", {
                                 "Device": "M-Site",
                                 "Event Type": "Standard"
                             }); 
@@ -908,7 +908,7 @@ define(['app'], function(app) {
                     } else {
                         $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Create Address' });
                          try{     
-                            clevertap.event.push("Create Profile Acitvity", {
+                            clevertap.event.push("Create address", {
                                 "Device": "M-Site",
                                 "Event Type": "Standard"
                             });
