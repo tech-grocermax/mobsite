@@ -711,6 +711,19 @@ define(['app'], function(app) {
                                     keyboard: false,
                                     show: true
                                 });
+                                try{
+                                    clevertap.event.push("Charged", {
+                                                    "Device": "M-Site",
+                                                    "Order" :"Order Failed",
+                                                    "Amount": $scope.tempCartVal,
+                                                    "Payment mode": $scope.paymentMethod,
+                                                    "Charged ID": data.newgtm.transactionId, // important to avoid duplicate transactions due to network failure
+                                                    "Order ID" : data.OrderID,
+                                                    "Coupon Code" : utility.getJStorageKey("couponCode"),
+                                                    "Subtotal" : $scope.cartDetails.grand_total,
+                                                    "Quantity" : $scope.cartItemCount
+                                                   });
+                                }catch(err){console.log("Error in Charged fire.");}
                             }
 							
 							else if(data.flag == 2){
