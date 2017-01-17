@@ -788,17 +788,6 @@ define(['app'], function(app) {
                     // Analytics to update cart
                     $analytics.eventTrack($scope.selectedCity, {  category: "Update Cart" });
                 try{ 
-
-                    clevertap.event.push("Update Cart", {
-                            "Device": "M-Site",
-                            //"Page": "Cart Page",
-                            "Page Name": "Cart Page",
-                            "Coupon Code" : utility.getJStorageKey("couponCode"),
-                            "Subtotal" : $scope.cartDetails.grand_total,
-                            "Quantity" : $scope.cartItemCount
-                        });
-                    console.log("Clever Tap Update Cart");
-
                     var logintgtm = "CartQty=" + $scope.cartItemCount + "/subtotal=" + $scope.cartDetails.grand_total + "/UserId="+ utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Update Cart', 
                                     eventAction: 'Update Cart', eventLabel: logintgtm}
@@ -830,7 +819,17 @@ define(['app'], function(app) {
                                     utility.setJStorageKey("tempCartVal", data.CartDetail.grand_total, 1); 
                                     utility.setJStorageKey("tempcouponValue", $scope.couponValue, 1);
                                     utility.setJStorageKey("tempShipVal", data.CartDetail.shipping_address.shipping_amount, 1);
-                                    
+                                    try{
+                                        clevertap.event.push("Update Cart", {
+                                            "Device": "M-Site",
+                                            //"Page": "Cart Page",
+                                            "Page Name": "Cart Page",
+                                            "Coupon Code" : data.CartDetail.coupon_code,
+                                            "Subtotal" : data.CartDetail.grand_total,
+                                            "Quantity" : totalQty
+                                        });
+                                        console.log("Clever Tap Update Cart");
+                                    }catch(err){console.log("Error in Clever Tap fire.");}
                                     if(data.CartDetail.coupon_code){
                                         $scope.invalidCoupon = false;
                                         $scope.invalidCouponBlank = false;
