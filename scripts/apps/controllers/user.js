@@ -189,7 +189,7 @@ define(['app'], function(app) {
                 $scope.categoryName = "Order History";
                 $scope.columnSize = 10;
                 try{ 
-                    clevertap.event.push("Refund Wallet", {
+                    clevertap.event.push("Order History", {
                             "Device": "M-Site",
                             "Event Type": "Standard"
                         });
