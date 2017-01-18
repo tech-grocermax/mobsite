@@ -27,6 +27,7 @@ define(['app'], function(app) {
             $scope.showMoreMenuOptions = false;
             $scope.showUserMenuOptions = false;
             $scope.youSaved = 0;
+            $scope.grandTotal=0;
             $scope.totalCartQty = 0;
             $scope.keyword = angular.isDefined($routeParams.keyword) ? $routeParams.keyword : null ;
             $scope.sku = angular.isDefined($routeParams.sku) ? $routeParams.sku : null ;
@@ -122,11 +123,11 @@ define(['app'], function(app) {
                 try{
                     $scope.productCategoryName = categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), data.category_id);
                     console.log("Search Category Products " + data.category_id + " | " + $scope.productCategoryName); 
-                    clevertap.event.push("Categories on L3 Level", {
+                    clevertap.event.push("Category Interaction", {
                                 "Device": "M-Site",
-                                "Page": "CategoryName=" + $scope.productCategoryName,
-                                "Page Name": $scope.categoryName,
-                                "Category Id" : data.category_id
+                                //"Page": "CategoryName=" + $scope.productCategoryName,
+                                "Category Name": $scope.categoryName
+                                //"Category Id" : data.category_id
                             }); 
                     }catch(err){console.log("Error in Search Category Products fire.");}                              
             };
@@ -143,11 +144,11 @@ define(['app'], function(app) {
                 $scope.products = [];
                 $scope.products = products;
                 try{
-                    clevertap.event.push("Categories on L3 Level", {
+                    clevertap.event.push("Category Interaction", {
                             "Device": "M-Site",
-                            "Page": "CategoryName=" + data.category_name,
-                            "Page Name": data.category_name,
-                            "Category Id" : data.category_id
+                            //"Page": "CategoryName=" + data.category_name,
+                            "Category Name": data.category_name,
+                            //"Category Id" : data.category_id
                         });
                     console.log("clevertap Categories on L3 Level");
                     var l4catGtm = "UserId=" + utility.getJStorageKey("userId")+"/CategoryName=" + data.category_name;
@@ -362,6 +363,7 @@ define(['app'], function(app) {
                 $scope.youSaved = savedAmont; 
                 utility.setJStorageKey("tempyouSaved", savedAmont, 1); 
                 $scope.totalCartQty = qty;
+                $scope.grandTotal = $scope.cartDetails.grand_total;
             };
 
             var addShippingCharges = function() {
@@ -440,17 +442,20 @@ define(['app'], function(app) {
 
             $scope.navigateToCart = function() {
                 try{
+                    angular.forEach($scope.cartDetails, function(value, key) {
+                        console.log(key + " ---> " + value);
+                    });
                     clevertap.event.push("View Cart", {
                             "Device": "M-Site",
-                            "Subtotal": $scope.cartDetails.grand_total,
+                            "Subtotal": utility.getJStorageKey("tempCartVal"),
                             "Quantity": $scope.cartItemCount,
                             "Coupon Code" : utility.getJStorageKey("couponCode")
                         });
                     var QgtmCart ="UserId=" + utility.getJStorageKey("userId") + "/CartQty="+ $scope.cartItemCount;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile View Cart', 
                         eventAction: 'Cart Details', eventLabel: QgtmCart }
-                        ); console.log("Cart Open");
-                }catch(err){console.log("Error in GTM fire.");}
+                        ); console.log("Cart Open ");
+                }catch(err){console.log("Error in GTM fire." + err );}
                
                 if(angular.isDefined(utility.getJStorageKey("quoteId")) 
                     && utility.getJStorageKey("quoteId")
@@ -518,6 +523,12 @@ define(['app'], function(app) {
                 //$analytics.eventTrack($scope.selectedCity, {  category: "Add to Cart", label: ( product.productid + " - " + product.Name + " - " + product.quantity) });
                 // code added by grocermax team for GTM
                 try{ 
+                 //angular.forEach(product, function(value, key){
+                    //console.log(key+ " ---> " +value);
+                 //});
+                 //console.log("first " + categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"),$routeParams.categoryId));
+                 //console.log("first subCategoryList " + $categoryService.subCategoryList);
+                var L2categoryName = categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"),$routeParams.categoryId);
                 var GtmpId = product.productid;
                 var GtmQty = product.quantity;
                 var GtmName = product.Name;
@@ -532,6 +543,9 @@ define(['app'], function(app) {
                             "Page Name": page,
                             "Product Name" : GtmName,
                             "Qty Added to Cart" : GtmQty,
+                            "L1 Category Name" : "",
+                            "L2 Category Name" : "",
+                            "L3 Category Name" : ""
                         });
                 
                 var productgtm = "UserId=" + utility.getJStorageKey("userId") + "/productName=" + GtmName + "/prodcutId=" + GtmpId; 
@@ -604,10 +618,10 @@ define(['app'], function(app) {
 
                     clevertap.event.push("Product Detail View", {
                             "Device": "M-Site",
-                            "Page": "/ProductName=" + name,
-                            "Page Name": name,
-                            "Category Id" : $scope.categoryId,
-                            "Category Name" : categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.categoryId)
+                            "Product Name" : name,
+                            "L1 Category Name" : "",
+                            "L2 Category Name" : "",
+                            "L3 Category Name" : categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.categoryId)
                         });
                     console.log("clevertap product detail" + $scope.categoryId);
                     var pddetailGtm = "UserId=" + utility.getJStorageKey("userId") + "/ProductName=" + name;
@@ -770,16 +784,22 @@ define(['app'], function(app) {
                 if(flag == 'checkout') {
                     // Proceed to Checkout
                     $analytics.eventTrack($scope.selectedCity, {  category: "Proceed to Checkout" });
-                try{     
+                try{ 
+                       
                     clevertap.event.push("Proceed to Checkout", {
                             "Device": "M-Site",
                             //"Page": "Cart Page",
                             "Page Name": "Cart Page",
-                            "Coupon Code" : utility.getJStorageKey("couponCode"),
+                            "Coupon Code" : $scope.cartDetails.coupon_code, //utility.getJStorageKey("couponCode"),
                             "Subtotal" : $scope.cartDetails.grand_total,
                             "Quantity" : $scope.cartItemCount
                         });
-                    console.log("Proceed to Checkout");
+                    clevertap.profile.push({
+                                "Site": {
+                                    "Identity": $scope.cartDetails.customer_id,                    // String or number
+                                    }
+                            }); 
+                    console.log("Proceed to Checkout 111");
                     var logintgtm = "CartQty=" + $scope.cartItemCount + "/subtotal=" + $scope.cartDetails.grand_total + "/UserId="+ utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Proceed to checkout', 
                                     eventAction: 'Proceed Details', eventLabel: logintgtm}
@@ -1040,13 +1060,14 @@ define(['app'], function(app) {
                             $scope.couponModalShow = false;
                             try{  
 
-                                clevertap.event.push("Apply Coupon", {
+                                clevertap.event.push("Coupon", {
                                     "Device": "M-Site",
                                     //"Page": "Cart Page",
                                     "Page Name": "Cart Page",
                                     "Coupon Code" : couponCode,
                                     "Subtotal" : $scope.cartDetails.grand_total,
-                                    "Quantity" : $scope.cartItemCount
+                                    "Quantity" : $scope.cartItemCount,
+                                    "Applied" : Applied
                                 });
                                 console.log("Apply Coupon");   
                                 var logintgtm = "CouponCode=" + couponCode + "/CartQty=" + $scope.cartItemCount + "/subtotal=" + $scope.cartDetails.grand_total + "/UserId="+ utility.getJStorageKey("userId");
@@ -1093,13 +1114,14 @@ define(['app'], function(app) {
                             utility.deleteJStorageKey("couponCode");
                             $scope.cartDetails.grand_total = data.CartDetails.grand_total;
                             try{  
-                                clevertap.event.push("Remove Coupon", {
+                                clevertap.event.push("Coupon", {
                                     "Device": "M-Site",
                                     //"Page": "Cart Page",
                                     "Page Name": "Cart Page",
                                     "Coupon Code" : couponCode,
                                     "Subtotal" : $scope.cartDetails.grand_total,
-                                    "Quantity" : $scope.cartItemCount
+                                    "Quantity" : $scope.cartItemCount,
+                                    "Removed" : Removed
                                 });
                                 console.log("Remove Coupon");   
                                 var logintgtm = "CouponCode=" + couponCode + "/CartQty=" + $scope.cartItemCount + "/SubTotal=" + $scope.cartDetails.grand_total + "/UserId="+ utility.getJStorageKey("userId");

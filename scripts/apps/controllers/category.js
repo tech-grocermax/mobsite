@@ -60,8 +60,8 @@ define(['app'], function(app) {
 			try{
                 var GtmUser = "UserId=" + utility.getJStorageKey("userId");
                 clevertap.event.push("Mobile Home Page View", {
-                    "device": "m-site",
-                    "page": "Home Page"
+                    "Device": "M-Site",
+                    "Page": "Home Page"
                 });
                
                 dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Home Page View', 
@@ -398,9 +398,9 @@ define(['app'], function(app) {
             $scope.routerChange = function(route, id, name) {
                 if(route == 'category'){
                     try{
-                        clevertap.event.push("Categories on Home Page", {
+                        clevertap.event.push("Category Interaction", {
                             "Device": "M-Site",
-                            "Page": "CategoryName=" + name,
+                            //"Page": "CategoryName=" + name,
                             "Category Name": name
                         });
                         
@@ -415,8 +415,9 @@ define(['app'], function(app) {
                     try{
                         clevertap.event.push("Banner Click", {
                             "Device": "M-Site",
-                            "Page": "Deal=" + name,
-                            "Page Name": name
+                            //"Page": "Deal=" + name,
+                            "Page Name": name,
+                            "Banner Name":name
                         });
                         var dealclGtm = "UserId=" + utility.getJStorageKey("userId")+"/Deal=" + name;
                         dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Banner Click', 
@@ -441,9 +442,10 @@ define(['app'], function(app) {
                 try{
                     clevertap.event.push("Drawer Activity", {
                             "Device": "M-Site",
-                            "Category Name" : $scope.categoryName
+                            //"Category Name" : $scope.categoryName
+                            "Action Performed" : "Drawer Click"
                         });
-                    console.log("Drawer Activity clevertap fire 1." + $scope.categoryName);
+                    //console.log("Drawer Activity clevertap fire 11 " + $scope.categoryName);
                     var draActGtm = "UserId=" + utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile - Drawer Activity', 
                         eventAction: 'Page Name', eventLabel: draActGtm}
@@ -480,20 +482,20 @@ define(['app'], function(app) {
                 try{
                     clevertap.event.push("Drawer Activity", {
                             "Device": "M-Site",
-                            "Category Name" : $scope.categoryName,
-                            "Category Id" : category.category_id
+                            //"Category Name" : $scope.categoryName,
+                            //"Category Id" : category.category_id
+                            "Action Performed" : "Category Click"
                         });
-                        console.log("Drawer Activity clevertap fire.");
+                        console.log("Drawer Activity clevertap fire 12." + $scope.categoryName);
                     }catch(err){console.log("Error in clevertap fire.");}
             };
 
             $scope.handleOfferCategoryClick = function(category) {
                 try{
-                    clevertap.event.push("Categories on L2 Level", {
+                    clevertap.event.push("Category Interaction", {
                             "Device": "M-Site",
-                            "Page": "CategoryName=" + category.name,
-                            "Page Name": category.name,
-                            "Category Id" : category.category_id
+                            //"Page": "CategoryName=" + category.name,
+                            "Category Name": category.name
                         });
                     console.log("clevertap Categories on L2 Level");
                     var gtmcatname ="UserId=" + utility.getJStorageKey("userId")+"/CategoryName=" + category.name;
@@ -517,13 +519,13 @@ define(['app'], function(app) {
 
             $scope.handleTopOfferClick = function(offerlistId,categoryName) {
                 try{
-                    clevertap.event.push("Categories on Top Offers", {
+                    clevertap.event.push("Category Interaction", {
                             "Device": "M-Site",
-                            "Page": "CategoryName=" + categoryName,
-                            "Page Name": categoryName,
-                            "Category Id" : categoryId
+                            //"Page": "CategoryName=" + categoryName,
+                            "Category Name": "Top Offers" //categoryName,
+                            //"Category Id" : categoryId
                         });
-                    console.log("clevertap Categories Top Offers");
+                    console.log("clevertap Categories Top Offers" + offerlistId);
                     var gtmcofferatname ="UserId=" + utility.getJStorageKey("userId") + "/CategoryName=" + categoryName;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
                         eventAction: 'Category - Top Offers', eventLabel: gtmcofferatname}
@@ -864,10 +866,11 @@ define(['app'], function(app) {
 			$scope.closeStrip = false;
 			$scope.hideStrip = function(value){
                 try{
-                    clevertap.event.push("Mobile Widgets", {
+                    clevertap.event.push("Popup Click", {
                             "Device": "M-Site",
-                            "Page": "Home Page",
-                            "Action": value
+                            //"Page": "Home Page",
+                            "Popup Name": "Download App",
+                            "Button Clicked": value
                         });
                     console.log("clevertap Mobile Widgets");
                      var appdwonGtml = "UserId=" + utility.getJStorageKey("userId") + "/Action=" + value;
@@ -893,10 +896,11 @@ define(['app'], function(app) {
 			}
             $scope.andriodDownloat = function(value){
                 try{
-                    clevertap.event.push("Mobile Widgets", {
+                    clevertap.event.push("Popup Click", {
                             "Device": "M-Site",
-                            "Page": "Home Page",
-                            "Action": value
+                            //"Page": "Home Page",
+                            "Popup Name": "Download App",
+                            "Button Clicked": value
                         });
                     console.log("clevertap Mobile Widgets");
                     var appdwonGtl = "UserId=" + utility.getJStorageKey("userId") + "/Action=" + value;

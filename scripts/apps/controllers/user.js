@@ -1307,12 +1307,15 @@ define(['app'], function(app) {
                     clevertap.event.push("View Order", {
                                 "Device": "M-Site",
                                 "Event Type": "Standard",
-                                "UserId" : utility.getJStorageKey("userId")
-                            });    
+                                "UserId" : utility.getJStorageKey("userId"),
+                                "Order Id" : order.order_id,
+                                
+                            }); 
+                    console.log(order);           
                     var proflogintgtm = "UserId="+ utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
                                     eventAction: 'View Order', eventLabel: proflogintgtm}
-                    );console.log("View Order");
+                    );console.log("View Order 12");
                 }catch(err){console.log("Error in GTM fire.");}
                 
                 $location.url("user/orderhistory/" + order.order_id);
