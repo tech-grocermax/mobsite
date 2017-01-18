@@ -442,9 +442,7 @@ define(['app'], function(app) {
 
             $scope.navigateToCart = function() {
                 try{
-                    angular.forEach($scope.cartDetails, function(value, key) {
-                        console.log(key + " ---> " + value);
-                    });
+                    
                     clevertap.event.push("View Cart", {
                             "Device": "M-Site",
                             "Subtotal": utility.getJStorageKey("tempCartVal"),
