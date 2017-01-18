@@ -123,11 +123,9 @@ define(['app'], function(app) {
                 $scope.categoryName = "Edit My Profile";
                 $scope.columnSize = 10;
                 try{  
-                    clevertap.event.push("Account Information", {
+                    clevertap.event.push("Profile Acitvity", {
                             "Device": "M-Site",
-                            "Event Type": "Standard",
-                            "User Name": utility.getJStorageKey("firstName"),
-                            "User Id" : utility.getJStorageKey("userId")
+                            "Action" : "Account Information"
                         });   
                     var shipgtm = "UserId=" + utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
@@ -139,9 +137,9 @@ define(['app'], function(app) {
                 $scope.categoryName = "My Address";
                 $scope.columnSize = 10;
                 try{ 
-                    clevertap.event.push("Address", {
+                    clevertap.event.push("Profile Acitvity", {
                             "Device": "M-Site",
-                            "Event Type": "Standard"
+                            "Action" : "Address"
                         });    
                     var shipgtm = "UserId=" + utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
@@ -159,9 +157,9 @@ define(['app'], function(app) {
                 $scope.categoryName = "Max Coins";
                 $scope.columnSize = 10;
                 try{ 
-                    clevertap.event.push("Max Coins", {
+                    clevertap.event.push("Profile Acitvity", {
                             "Device": "M-Site",
-                            "Event Type": "Standard"                            
+                            "Action": "View Max Coins"                            
                         }); 
                     console.log("Max Coins" + $scope.section.coinshistory);       
                     var shipgtm = "UserId=" + utility.getJStorageKey("userId");
@@ -174,9 +172,9 @@ define(['app'], function(app) {
                 $scope.categoryName = "Refund Wallet";
                 $scope.columnSize = 10;
                 try{ 
-                    clevertap.event.push("Refund Wallet", {
+                    clevertap.event.push("Profile Acitvity", {
                             "Device": "M-Site",
-                            "Event Type": "Standard"
+                            "Action": "View Refund Wallet"
                         });
                      console.log("Refund Wallet" + $scope.section.maxmoneyhistory);        
                     var shipgtm = "UserId=" + utility.getJStorageKey("userId");
@@ -189,9 +187,9 @@ define(['app'], function(app) {
                 $scope.categoryName = "Order History";
                 $scope.columnSize = 10;
                 try{ 
-                    clevertap.event.push("Order History", {
+                    clevertap.event.push("Profile Acitvity", {
                             "Device": "M-Site",
-                            "Event Type": "Standard"
+                            "Action": "View Order History"
                         });
                     console.log("clevertap Order History fire.");
                     }catch(err){console.log("Error in GTM fire.");}
@@ -199,9 +197,9 @@ define(['app'], function(app) {
                 $scope.columnSize = 1;
                 $scope.showSearchIcon = true;
                 try{ 
-                    clevertap.event.push("Change Password", {
+                    clevertap.event.push("Profile Acitvity", {
                             "Device": "M-Site",
-                            "Event Type": "Standard"
+                            "Action": "Change Password"
                         });
                     console.log("clevertap changepassword fire.");
                     }catch(err){console.log("Error in clevertap changepassword fire.");}
@@ -384,7 +382,7 @@ define(['app'], function(app) {
                             }); 
                             clevertap.event.push("Signup Complete", {
                                 "Device": "M-Site",
-                                "Event Type": "Standard"
+                                "Action": "Standard"
                             });
                             console.log("clevertap profile push create"+ data.Firstname + " " + data.Lastname + " userid: "+ data.UserID +" email: "+ $scope.user.uemail + " mobile " + data.Mobile);
                               
@@ -449,7 +447,8 @@ define(['app'], function(app) {
                         try{
 
                             clevertap.event.push("Signup Initiated", {
-                                "Device": "M-Site"
+                                "Device": "M-Site",
+                                //"Action": $scope.provider
                             });
                         var regilsogintgtm = '';
                         dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Register Start', 
@@ -483,7 +482,7 @@ define(['app'], function(app) {
                             });
                             clevertap.event.push("Signup Complete", {
                             "Device": "M-Site",
-                            "Event Type": $scope.provider
+                            "Action": $scope.provider
                             });
                             console.log("clevertap profile push Login "+ socialName);
 
@@ -549,7 +548,7 @@ define(['app'], function(app) {
                             });
                         clevertap.event.push("Login Complete", {
                             "Device": "M-Site",
-                            "Event Type": $scope.provider
+                            "Action": $scope.provider
                         });
                             console.log("clevertap profile push google "+ socialName);
 
@@ -647,7 +646,7 @@ define(['app'], function(app) {
                             });
                         clevertap.event.push("Login Complete", {
                             "Device": "M-Site",
-                            "Event Type": "Facebook"
+                            "Action": "Facebook"
                         });
                         console.log("clevertap profile push facebook "+ socialName);
 
@@ -682,7 +681,7 @@ define(['app'], function(app) {
                     toggleLoader(true);
                     clevertap.event.push("Login Initiate", {
                             "Device": "M-Site",
-                            "Event Type": "Standard"
+                            "Action": "Standard"
                         });
                     var logintgtm1 = "Email="+ $scope.user.uemail;
                         dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Login Start', 
@@ -725,7 +724,7 @@ define(['app'], function(app) {
                             }); 
                             clevertap.event.push("Login Complete", {
                                 "Device": "M-Site",
-                                "Event Type": "Standard"
+                                "Action": "Standard"
                             });
                             console.log("clevertap profile push Login"+ data.Firstname + " " + data.Lastname + " userid: "+ data.UserID +" email: "+ $scope.user.uemail + " mobile " + data.Mobile);
                             }catch(err){console.log("Error clevertap profile push Login.");}
@@ -865,9 +864,9 @@ define(['app'], function(app) {
 
             $scope.editAddress = function(addressId) {
                 try{  
-                    clevertap.event.push("Update address", {
+                    clevertap.event.push("Profile Acitvity", {
                                 "Device": "M-Site",
-                                "Event Type": "Standard"
+                                "Action": " Update Address"
                             });   
                     var logintgtm = "UserId="+ utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
@@ -881,9 +880,9 @@ define(['app'], function(app) {
             $scope.deleteAddress = function(address) {
                 var addressId = address.customer_address_id;
                 try{    
-                    clevertap.event.push("Delete address", {
+                    clevertap.event.push("Profile Acitvity", {
                                 "Device": "M-Site",
-                                "Event Type": "Standard"
+                                "Action": "Delete address"
                             }); 
                     var logintgtm = "UserId="+ utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
@@ -908,9 +907,9 @@ define(['app'], function(app) {
                     } else {
                         $analytics.eventTrack($scope.selectedCity, {  category: "Profile Activity", label: 'Create Address' });
                          try{     
-                            clevertap.event.push("Create address", {
+                            clevertap.event.push("Profile Acitvity", {
                                 "Device": "M-Site",
-                                "Event Type": "Standard"
+                                "Action": "Create address"
                             });
                             var logintgtm = "UserId="+ utility.getJStorageKey("userId");
                             dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
@@ -1009,9 +1008,9 @@ define(['app'], function(app) {
 			
 			$scope.reOrder = function(increment_id , order){
                 try{    
-                    clevertap.event.push("Reorder", {
+                    clevertap.event.push("Profile Acitvity", {
                                 "Device": "M-Site",
-                                "Event Type": "Standard"
+                                "Action": "Reorder"
                             }); 
 
                     var logintgtms = "UserId="+ utility.getJStorageKey("userId");
@@ -1160,9 +1159,9 @@ define(['app'], function(app) {
                             .then(function(data){
                                 toggleLoader(false);
                                 try{ 
-                                    clevertap.event.push("Change Password Successfully", {
+                                    clevertap.event.push("Profile Acitvity", {
                                             "Device": "M-Site",
-                                            "Event Type": "Standard"
+                                            "Action": "Change Password"
                                         });
                                     console.log("clevertap changepassword fire.");
                                 }catch(err){
@@ -1196,7 +1195,7 @@ define(['app'], function(app) {
                     var shipgtm = "UserId=" + userId;
                     clevertap.event.push("Logout", {
                                 "Device": "M-Site",
-                                "Event Type": "Standard"
+                                "Action": "Standard"
                             }); 
                     
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Logout', 
@@ -1284,7 +1283,6 @@ define(['app'], function(app) {
                 try{
                     clevertap.event.push("View Cart", {
                                 "Device": "M-Site",
-                                "Event Type": "Standard",
                                 "Subtotal": utility.getJStorageKey("tempCartVal"),
                                 "Quantity": $scope.cartItemCount,
                                 "Coupon Code" : utility.getJStorageKey("couponCode")
@@ -1307,8 +1305,7 @@ define(['app'], function(app) {
                     clevertap.event.push("View Order", {
                                 "Device": "M-Site",
                                 "Event Type": "Standard",
-                                "UserId" : utility.getJStorageKey("userId"),
-                                "Order Id" : order.order_id,
+                                "Order Id" : order.order_id
                                 
                             }); 
                     console.log(order);           
