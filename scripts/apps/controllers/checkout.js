@@ -418,7 +418,13 @@ define(['app'], function(app) {
                 utility.setJStorageKey("checkoutDetails", checkoutDetails, 1);
 
                 //$analytics.eventTrack($scope.selectedCity, {  category: "Shipping address" });
-                try{    
+                try{ 
+                    angular.forEach(utility.getJStorageKey("cartItems"), function(value, key){
+
+                        console.log(key + " -- scope billing--> " + value);
+                    });  
+                     
+                    console.log(" -- log start -- " + utility.getJStorageKey("cartItems") );
                     // angular.forEach($scope.cartDetails, function(value, key){
                     //     console.log(key + " checkout billing " + value);
                     // });
@@ -464,19 +470,19 @@ define(['app'], function(app) {
                     clevertap.event.push("Shipping", {
                             "Device": "M-Site",
                             "Coupon Code" : utility.getJStorageKey("couponCode"), //$scope.cartDetails.coupon_code,
-                            "Subtotal" :  $scope.tempCartVal,
+                            "Subtotal" :  parseFloat($scope.tempCartVal).toFixed(2),
                             "Quantity" :  $scope.tempCartCounter                        
                         });
                     clevertap.event.push("Billing", {
                             "Device": "M-Site",
                             "Coupon Code" : utility.getJStorageKey("couponCode"),//$scope.cartDetails.coupon_code,
-                            "Subtotal" :  $scope.tempCartVal,
+                            "Subtotal" :  parseFloat($scope.tempCartVal).toFixed(2),
                             "Quantity" :  $scope.tempCartCounter                          
                         });  
                    var selectshipgtm = "UserId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Checkout Funnel', 
                         eventAction: 'Shipping', eventLabel: selectshipgtm}
-                    );console.log("Shipping data ..." + $scope.tempCartVal + " coupon code "  + utility.getJStorageKey("couponCode")); console.log(dataLayer);
+                    );console.log("Shipping data ..." + $scope.tempCartVal + " qty "  + $scope.tempCartCounter ); console.log(dataLayer);
                 }catch(err){console.log("Error in GTM fire."+ err);}
 
                 if($scope.billingAsShipping) {
@@ -508,7 +514,7 @@ define(['app'], function(app) {
                     clevertap.event.push("Billing", {
                             "Device": "M-Site",
                             "Coupon Code" : $scope.cartDetails.coupon_code,
-                            "Subtotal" :  $scope.tempCartVal,
+                            "Subtotal" :  parseFloat($scope.tempCartVal).toFixed(2),
                             "Quantity" :  $scope.tempCartCounter                          
                         }); 
                     }catch(err){
@@ -703,10 +709,10 @@ define(['app'], function(app) {
                          console.log("hello Payment Method ");
                     }
 
-                    clevertap.event.push("Payment Method", {
-                            "Device": "M-Site",
-                            "Payment Method" :  paymentMethod                         
-                        });   
+                    // clevertap.event.push("Payment Method", {
+                    //         "Device": "M-Site",
+                    //         "Payment Method" :  paymentMethod                         
+                    //     });   
                     var placshipgtm = "UserId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Checkout Funnel', 
                         eventAction: 'Payment Method', eventLabel: placshipgtm}
@@ -743,14 +749,14 @@ define(['app'], function(app) {
                                                     "Charged ID": data.newgtm.transactionId, // important to avoid duplicate transactions due to network failure
                                                     "Order ID" : data.newgtm.transactionId,
                                                     "Coupon Code" : $scope.cartDetails.coupon_code,
-                                                    "Subtotal" : $scope.cartDetails.grand_total,
+                                                    "Subtotal" : parseFloat($scope.cartDetails.grand_total).toFixed(2),
                                                     "Quantity" : $scope.cartDetails.items_count
                                                    });
                                                 clevertap.event.push("Place Order", {
                                                     "Device": "M-Site",
                                                     "Payment Method" :  paymentMethod,
                                                     "Order id": data.newgtm.transactionId,
-                                                    "Subtotal" :  $scope.cartDetails.grand_total,
+                                                    "Subtotal" :  parseFloat($scope.cartDetails.grand_total).toFixed(2),
                                                     "Coupon Code" : $scope.cartDetails.coupon_code,
                                                     "Quantity" : $scope.cartDetails.items_count              
                                                 });
@@ -797,7 +803,7 @@ define(['app'], function(app) {
                                                     "Charged ID": data.newgtm.transactionId, // important to avoid duplicate transactions due to network failure
                                                     "Order ID" : data.newgtm.transactionId,
                                                     "Coupon Code" : $scope.cartDetails.coupon_code,
-                                                    "Subtotal" : $scope.cartDetails.grand_total,
+                                                    "Subtotal" : parseFloat($scope.cartDetails.grand_total).toFixed(2),
                                                     "Quantity" : $scope.cartDetails.items_count
                                                    });
                                 }catch(err){console.log("Error in Charged fire.");}

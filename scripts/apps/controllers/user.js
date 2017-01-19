@@ -440,6 +440,10 @@ define(['app'], function(app) {
 				toggleLoader(true);
                 userService.fbregister(input).then(function(data){
                     toggleLoader(false);
+                    clevertap.event.push("Login Initiate", {
+                                "Device": "M-Site",
+                                //"Action": $scope.provider
+                            });
                     if(data.flag == 2){ // Get Customer Mobile
                         $scope.showUserResponse = false;
                         $scope.userResponseMessage = "";
@@ -1284,7 +1288,7 @@ define(['app'], function(app) {
                 try{
                     clevertap.event.push("View Cart", {
                                 "Device": "M-Site",
-                                "Subtotal": utility.getJStorageKey("tempCartVal"),
+                                "Subtotal": parseFloat(utility.getJStorageKey("tempCartVal")).toFixed(2),
                                 "Quantity": $scope.cartItemCount,
                                 "Coupon Code" : utility.getJStorageKey("couponCode")
                             }); 

@@ -411,14 +411,24 @@ define(['app'], function(app) {
                         );console.log(catclGtm); console.log(dataLayer);
                     }catch(err){console.log("Error in GTM fire.");}  
                 }
+
                 if(route == 'deals'){
                     try{
-                        clevertap.event.push("Banner Click", {
-                            "Device": "M-Site",
-                            //"Page": "Deal=" + name,
-                            "Page Name": name,
-                            "Banner Name":name
-                        });
+
+                        if(name=="undefined"){
+                            clevertap.event.push("Drawer Activity", {
+                                "Device": "M-Site",
+                                "Action Performed" : "Deal Click"
+                            });
+                        }else{
+                            clevertap.event.push("Banner Click", {
+                                "Device": "M-Site",
+                                //"Page": "Deal=" + name,
+                                "Page Name": name,
+                                "Banner Name":name
+                            });
+                        }
+                        console.log(" deal rooo " + route);
                         var dealclGtm = "UserId=" + utility.getJStorageKey("userId")+"/Deal=" + name;
                         dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Banner Click', 
                         eventAction: 'Deal Page', eventLabel: dealclGtm}
@@ -723,10 +733,11 @@ define(['app'], function(app) {
             };
 
             $scope.navigateToCart = function() {
-                try{
+                try{ 
+                     var subT = utility.getJStorageKey("tempCartVal");
                     clevertap.event.push("View Cart", {
                             "Device": "M-Site",
-                            "Subtotal": utility.getJStorageKey("tempCartVal"),
+                            "Subtotal": parseFloat(subT).toFixed(2),
                             "Quantity": $scope.cartItemCount,
                             "Coupon Code" : utility.getJStorageKey("couponCode")
                         });
@@ -910,8 +921,30 @@ define(['app'], function(app) {
                 }catch(err){console.log("Error in GTM fire.");}
             }
 
-            // console.log($routeParams.pageName);
+            
+            if($routeParams.pageName == "contact"){
+                clevertap.event.push("Drawer Activity", {
+                            "Device": "M-Site",
+                            "Action Performed" : "Contact Us"
+                        });
+             }
+             if($routeParams.pageName == "faq"){
+                clevertap.event.push("Drawer Activity", {
+                            "Device": "M-Site",
+                            "Action Performed" : "FAQ's"
+                        });
+             }
+             if($routeParams.pageName == "about"){
+                clevertap.event.push("Drawer Activity", {
+                            "Device": "M-Site",
+                            "Action Performed" : "About Us"
+                        });
+             }
             if($routeParams.pageName == 'term'){
+                clevertap.event.push("Drawer Activity", {
+                            "Device": "M-Site",
+                            "Action Performed" : "Terms of Service"
+                        });
                 angular.element('body').css('overflow', 'auto');
             }
 

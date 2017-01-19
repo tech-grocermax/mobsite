@@ -445,7 +445,7 @@ define(['app'], function(app) {
                     
                     clevertap.event.push("View Cart", {
                             "Device": "M-Site",
-                            "Subtotal": utility.getJStorageKey("tempCartVal"),
+                            "Subtotal": parseFloat(utility.getJStorageKey("tempCartVal")).toFixed(2),
                             "Quantity": $scope.cartItemCount,
                             "Coupon Code" : utility.getJStorageKey("couponCode")
                         });
@@ -789,7 +789,7 @@ define(['app'], function(app) {
                             //"Page": "Cart Page",
                             //"Page Name": "Cart Page",
                             "Coupon Code" : $scope.cartDetails.coupon_code, //utility.getJStorageKey("couponCode"),
-                            "Subtotal" : $scope.cartDetails.grand_total,
+                            "Subtotal" : parseFloat($scope.cartDetails.grand_total).toFixed(2),
                             "Quantity" : $scope.cartItemCount
                         });
                     clevertap.profile.push({
@@ -846,7 +846,7 @@ define(['app'], function(app) {
                                             //"Page": "Cart Page",
                                             //"Page Name": "Cart Page",
                                             "Coupon Code" : data.CartDetail.coupon_code,
-                                            "Subtotal" : data.CartDetail.grand_total,
+                                            "Subtotal" : parseFloat(data.CartDetail.grand_total).toFixed(2),
                                             "Quantity" : totalQty
                                         });
                                         console.log("Clever Tap Update Cart");
@@ -1057,22 +1057,22 @@ define(['app'], function(app) {
                             utility.setJStorageKey("tempcouponValue", $scope.couponValue, 1); 
                             $scope.couponModalShow = false;
                             try{  
-
+                                var gdTotal = $scope.cartDetails.grand_total;
                                 clevertap.event.push("Coupon", {
                                     "Device": "M-Site",
                                     //"Page": "Cart Page",
                                     //"Page Name": "Cart Page",
                                     "Coupon Code" : couponCode,
-                                    "Subtotal" : $scope.cartDetails.grand_total,
+                                    "Subtotal" : parseFloat(gdTotal).toFixed(2),
                                     "Quantity" : $scope.cartItemCount,
                                     "Applied" : "Applied"
                                 });
-                                console.log("Apply Coupon");   
+                                console.log("Apply Coupon" + $scope.cartDetails.grand_total);   
                                 var logintgtm = "CouponCode=" + couponCode + "/CartQty=" + $scope.cartItemCount + "/subtotal=" + $scope.cartDetails.grand_total + "/UserId="+ utility.getJStorageKey("userId");
                                 dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Apply Coupon', 
                                     eventAction: 'Coupon Code', eventLabel: logintgtm}
                                 );console.log("Apply Coupon"); console.log(dataLayer)
-                            }catch(err){console.log("Error in GTM fire.");}
+                            }catch(err){console.log("Error in GTM fire." + err);}
                         }                       
                         else {
                             $scope.invalidCoupon = true;
@@ -1117,7 +1117,7 @@ define(['app'], function(app) {
                                     //"Page": "Cart Page",
                                     //"Page Name": "Cart Page",
                                     "Coupon Code" : couponCode,
-                                    "Subtotal" : $scope.cartDetails.grand_total,
+                                    "Subtotal" : parseFloat($scope.cartDetails.grand_total).toFixed(2),
                                     "Quantity" : $scope.cartItemCount,
                                     "Removed" : "Removed"
                                 });
