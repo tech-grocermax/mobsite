@@ -414,12 +414,13 @@ define(['app'], function(app) {
 
                 if(route == 'deals'){
                     try{
-
-                        if(name=="undefined"){
+                        
+                        if(!name){
                             clevertap.event.push("Drawer Activity", {
                                 "Device": "M-Site",
                                 "Action Performed" : "Deal Click"
                             });
+                             console.log(" deal first " + route + " --- " + name);
                         }else{
                             clevertap.event.push("Banner Click", {
                                 "Device": "M-Site",
@@ -427,13 +428,14 @@ define(['app'], function(app) {
                                 "Page Name": name,
                                 "Banner Name":name
                             });
+                             console.log(" deal second " + route + " --- " + name);
                         }
-                        console.log(" deal rooo " + route);
+                        console.log(" deal rooo " + route + " --- " + name);
                         var dealclGtm = "UserId=" + utility.getJStorageKey("userId")+"/Deal=" + name;
                         dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Banner Click', 
                         eventAction: 'Deal Page', eventLabel: dealclGtm}
                         );console.log(dealclGtm); console.log(dataLayer);
-                    }catch(err){console.log("Error in GTM fire.");} 
+                    }catch(err){console.log("Error in GTM fire."+ err);} 
                 }
                 route = angular.isDefined(id) ? route + ("/" + id) : route;
                 if(isDrawerOpen) {
