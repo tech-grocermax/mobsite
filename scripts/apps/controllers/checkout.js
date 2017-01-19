@@ -453,20 +453,20 @@ define(['app'], function(app) {
                             });
                     clevertap.event.push("Shipping", {
                             "Device": "M-Site",
-                            "Coupon Code" : utility.setJStorageKey("couponCode"), //$scope.cartDetails.coupon_code,
+                            "Coupon Code" : utility.getJStorageKey("couponCode"), //$scope.cartDetails.coupon_code,
                             "Subtotal" :  $scope.tempCartVal,
                             "Quantity" :  $scope.tempCartCounter                        
                         });
                     clevertap.event.push("Billing", {
                             "Device": "M-Site",
-                            "Coupon Code" : utility.setJStorageKey("couponCode"),//$scope.cartDetails.coupon_code,
+                            "Coupon Code" : utility.getJStorageKey("couponCode"),//$scope.cartDetails.coupon_code,
                             "Subtotal" :  $scope.tempCartVal,
                             "Quantity" :  $scope.tempCartCounter                          
                         });  
                    var selectshipgtm = "UserId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Checkout Funnel', 
                         eventAction: 'Shipping', eventLabel: selectshipgtm}
-                    );console.log("Shipping data ..." + $scope.tempCartVal); console.log(dataLayer);
+                    );console.log("Shipping data ..." + $scope.tempCartVal + " coupon code "  + utility.getJStorageKey("couponCode")); console.log(dataLayer);
                 }catch(err){console.log("Error in GTM fire."+ err);}
 
                 if($scope.billingAsShipping) {
