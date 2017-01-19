@@ -461,6 +461,10 @@ define(['app'], function(app) {
                         $scope.userResponseMessage = "";
                         utility.setJStorageKey("otp", data.otp, 1);
                         $scope.registrationStep = 5;
+                        clevertap.event.push("Signup Complete", {
+                            "Device": "M-Site",
+                            "Action": $scope.provider
+                            });
                     }
                     else if(data.flag == 1){
                         utility.deleteJStorageKey("otp");
@@ -480,10 +484,7 @@ define(['app'], function(app) {
                                     "MSG-sms": true                          // Enable sms notifications
                                 }
                             });
-                            clevertap.event.push("Signup Complete", {
-                            "Device": "M-Site",
-                            "Action": $scope.provider
-                            });
+                            
                             console.log("clevertap profile push Login "+ socialName);
 
                           dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile  Register', 
