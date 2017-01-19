@@ -46,6 +46,7 @@ define(['app'], function(app) {
             $scope.youSaved = 0;
             $scope.totalCartQty = 0;
             $scope.paymentMethod = null;
+            $scope.paymentMethodWallet = null;
             $scope.payment = {
                 cashondelivery: false,
                 cc: false,
@@ -335,6 +336,7 @@ define(['app'], function(app) {
                     $scope.MaxMoneyBalanceEnough = true;
                     $scope.disSelectPaymentMethid();
                     $scope.paymentMethod = 'cashondelivery';
+                    $scope.paymentMethodWallet = 'cashwallet';
                 }else{
                     $scope.MaxMoneyBalanceEnough = false;
                 }
@@ -342,6 +344,7 @@ define(['app'], function(app) {
                 if($scope.creditMethod == true){
                  $scope.creditMethod = false;
                  $scope.paymentMethod = '';
+                 $scope.paymentMethodWallet = '';
                  $scope.disSelectPaymentMethid();
                 }else{
                     $scope.creditMethod = true;
@@ -681,15 +684,26 @@ define(['app'], function(app) {
             $scope.isHidePlacedBtn =false;
             $scope.placeOrder = function() { 
                 //$analytics.eventTrack($scope.selectedCity, {  category: "Review and Place order" });
-                try{  
+                try{ 
+                    var paymentMethod = null;
+                    if($scope.creditMethod){
+                        if($scope.MaxMoneyBalance >= $scope.cartDetails.grand_total )
+                                paymentMethod = "cashwallet";
+                            else
+                                paymentMethod = "cashondelivery";   
+                    }else{
+                         paymentMethod = "cashondelivery";
+                         console.log("hello Payment Method ");
+                    }
+
                     clevertap.event.push("Payment Method", {
                             "Device": "M-Site",
-                            "Payment Method" :  $scope.paymentMethod                         
+                            "Payment Method" :  paymentMethod                         
                         });   
                     var placshipgtm = "UserId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Checkout Funnel', 
                         eventAction: 'Payment Method', eventLabel: placshipgtm}
-                    );console.log("Payment Method");
+                    );console.log("Payment Method "+ $scope.MaxMoneyBalance +" payment "+ $scope.paymentMethod + " wallet-- " + $scope.paymentMethodWallet +" credit "+ $scope.creditMethod);
                 }catch(err){console.log("Error in GTM fire.");}
                 
                 $scope.isOrderPlaced = true;
@@ -713,11 +727,12 @@ define(['app'], function(app) {
                                     userService.trackorderdetails(data.OrderID).then(function(data){
                                         if(data.flag==1){
                                             try{  
+
                                                 clevertap.event.push("Charged", {
                                                     "Device": "M-Site",
                                                     "Order" :"Order Successful",
                                                     "Amount": $scope.tempCartVal,
-                                                    "Payment mode": $scope.paymentMethod,
+                                                    "Payment mode": paymentMethod,
                                                     "Charged ID": data.newgtm.transactionId, // important to avoid duplicate transactions due to network failure
                                                     "Order ID" : data.OrderID,
                                                     "Coupon Code" : $scope.cartDetails.coupon_code,
@@ -726,7 +741,7 @@ define(['app'], function(app) {
                                                    });
                                                 clevertap.event.push("Place Order", {
                                                     "Device": "M-Site",
-                                                    "Payment Method" :  $scope.paymentMethod,
+                                                    "Payment Method" :  paymentMethod,
                                                     "Order id": data.OrderID,
                                                     "Subtotal" :  data.SubTotal,
                                                     "Coupon Code" : $scope.cartDetails.coupon_code,
