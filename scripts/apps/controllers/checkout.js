@@ -419,7 +419,14 @@ define(['app'], function(app) {
 
                 //$analytics.eventTrack($scope.selectedCity, {  category: "Shipping address" });
                 try{    
-                    
+                    // angular.forEach($scope.cartDetails, function(value, key){
+                    //     console.log(key + " checkout billing " + value);
+                    // });
+
+                    // angular.forEach($scope, function(value, key){
+                    //     console.log(key + " -- scope billing--> " + value);
+                    // });
+
                     var billingName = checkoutDetails[quoteId].billingAddress.firstname + " " + checkoutDetails[quoteId].billingAddress.lastname;
                     var billingStreet = checkoutDetails[quoteId].billingAddress.street;
                     var billingTelephone = checkoutDetails[quoteId].billingAddress.telephone;
@@ -734,7 +741,7 @@ define(['app'], function(app) {
                                                     "Amount": $scope.tempCartVal,
                                                     "Payment mode": paymentMethod,
                                                     "Charged ID": data.newgtm.transactionId, // important to avoid duplicate transactions due to network failure
-                                                    "Order ID" : data.OrderID,
+                                                    "Order ID" : data.newgtm.transactionId,
                                                     "Coupon Code" : $scope.cartDetails.coupon_code,
                                                     "Subtotal" : $scope.cartDetails.grand_total,
                                                     "Quantity" : $scope.cartDetails.items_count
@@ -742,15 +749,15 @@ define(['app'], function(app) {
                                                 clevertap.event.push("Place Order", {
                                                     "Device": "M-Site",
                                                     "Payment Method" :  paymentMethod,
-                                                    "Order id": data.OrderID,
-                                                    "Subtotal" :  data.SubTotal,
+                                                    "Order id": data.newgtm.transactionId,
+                                                    "Subtotal" :  $scope.cartDetails.grand_total,
                                                     "Coupon Code" : $scope.cartDetails.coupon_code,
                                                     "Quantity" : $scope.cartDetails.items_count              
                                                 });
                                                 var codshipgtm = "OrderId=" + data.newgtm.transactionId +"/userId="+ utility.getJStorageKey("userId");
                                                 dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Order Successful', 
                                                         eventAction: $scope.paymentMethod, eventLabel: codshipgtm}
-                                                    );console.log("Mobile Order Successful"); console.log(dataLayer);
+                                                    );console.log("Mobile Order Successful"+ data.OrderID + " subtotal " + $scope.cartDetails.grand_total); console.log(dataLayer);
                                             }catch(err){console.log("Error in GTM fire.");}
                                             console.log(data.newgtm);
                                             dataLayer.push(data.newgtm);
@@ -788,7 +795,7 @@ define(['app'], function(app) {
                                                     "Amount": $scope.tempCartVal,
                                                     "Payment mode": $scope.paymentMethod,
                                                     "Charged ID": data.newgtm.transactionId, // important to avoid duplicate transactions due to network failure
-                                                    "Order ID" : data.OrderID,
+                                                    "Order ID" : data.newgtm.transactionId,
                                                     "Coupon Code" : $scope.cartDetails.coupon_code,
                                                     "Subtotal" : $scope.cartDetails.grand_total,
                                                     "Quantity" : $scope.cartDetails.items_count

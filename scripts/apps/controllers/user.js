@@ -1302,12 +1302,12 @@ define(['app'], function(app) {
 
             $scope.navigateToOrderDetail = function(order) {
                 try{  
-                    clevertap.event.push("View Order", {
-                                "Device": "M-Site",
-                                "Event Type": "Standard",
-                                "Order Id" : order.order_id
+                    // clevertap.event.push("View Order", {
+                    //             "Device": "M-Site",
+                    //             "Event Type": "Standard",
+                    //             "Order Id" : order.order_id
                                 
-                            }); 
+                    //         }); 
                     console.log(order);           
                     var proflogintgtm = "UserId="+ utility.getJStorageKey("userId");
                     dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Profile Acitvity', 
