@@ -341,6 +341,19 @@ define(['app'], function(app) {
                         $scope.productDetails = data.Product_Detail[0];                        
                         $scope.productDetails.productid = $scope.productDetails.product_id;
                         $scope.productDetails.quantity = 1;
+                        console.log($scope.productDetails);
+                        try{
+                            var name = $scope.productDetails.product_name
+                            clevertap.event.push("Product Detail View", {
+                                    "Device": "M-Site",
+                                    "Product Name" : name,
+                                    "L1 Category Name" : $scope.productDetails.root_parent_name,
+                                    "L2 Category Name" : categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.productDetails.cat_parent_id),
+                                    "L3 Category Name" : $scope.productDetails.cat_name
+                                });
+                            console.log("clevertap product detail" + categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.productDetails.cat_parent_id) + " | " + $scope.productDetails.root_parent_name + " | " + $scope.productDetails.cat_name);
+                           
+                            }catch(err){console.log("Error in GTM fire.");}
                     });
                
             };
@@ -526,13 +539,16 @@ define(['app'], function(app) {
                  //});
                  //console.log("first " + categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"),$routeParams.categoryId));
                  //console.log("first subCategoryList " + $categoryService.subCategoryList);
-                var L2categoryName = categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"),$routeParams.categoryId);
+                var L2categoryName = categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"),product.cat_parent_id);
                 var GtmpId = product.productid;
                 var GtmQty = product.quantity;
                 var GtmName = product.Name;
                 if (GtmName === undefined || GtmName === null) {
                     GtmName = product.product_name;
                 }
+                var catId = product.categoryid;
+                var rootCatName = product.root_parent_name;
+                var rootSubCatName = product.cat_name;
                 var GtmPrice = product.Price;
                 var GtmBrand = product.p_brand;
                 clevertap.event.push("Add to Cart", {
@@ -541,14 +557,14 @@ define(['app'], function(app) {
                             "Page Name": page,
                             "Product Name" : GtmName,
                             "Qty Added to Cart" : GtmQty,
-                            "L1 Category Name" : "",
-                            "L2 Category Name" : "",
-                            "L3 Category Name" : ""
+                            "L1 Category Name" : rootCatName,
+                            "L2 Category Name" : L2categoryName,
+                            "L3 Category Name" : rootSubCatName
                         });
                 
                 var productgtm = "UserId=" + utility.getJStorageKey("userId") + "/productName=" + GtmName + "/prodcutId=" + GtmpId; 
                 dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Add to Cart', 
-                                eventAction: page, eventLabel: productgtm});  console.log("add o cart");
+                                eventAction: page, eventLabel: productgtm});  console.log("add o cart "+ rootCatName + " || " + rootSubCatName+ product.cat_parent_id + " || " + L2categoryName + product.categoryid);
                 }catch(err){  console.log("Error in"); }
                 
                 var quoteId = null,
@@ -621,11 +637,12 @@ define(['app'], function(app) {
                             "L2 Category Name" : "",
                             "L3 Category Name" : categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.categoryId)
                         });
-                    console.log("clevertap product detail" + $scope.categoryId);
+                    console.log("clevertap product detail" + $scope.categoryId + " | " + $scope.root_parent_name + " | " + $scope.cat_name);
                     var pddetailGtm = "UserId=" + utility.getJStorageKey("userId") + "/ProductName=" + name;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
                         eventAction: 'Product Detail Page', eventLabel: pddetailGtm}
-                        );console.log(pddetailGtm);console.log(dataLayer);
+                        ); console.log(pddetailGtm);
+                    
                 }catch(err){console.log("Error in GTM fire.");}
 
                 $location.url(route + "/" + id);
