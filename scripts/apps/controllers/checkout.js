@@ -45,6 +45,7 @@ define(['app'], function(app) {
             }*/
             $scope.youSaved = 0;
             $scope.totalCartQty = 0;
+            $scope.grandTotal = 0;
             $scope.paymentMethod = null;
             $scope.paymentMethodWallet = null;
             $scope.payment = {
@@ -312,6 +313,7 @@ define(['app'], function(app) {
                                 $scope.couponCode = data.CartDetail.coupon_code;
                                 $scope.couponAmount = data.CartDetail.you_save;
                                 $scope.cartDetails.grand_total = data.CartDetail.grand_total;
+                                $scope.grandTotal = data.CartDetail.grand_total;
                                 $scope.couponModalShow = false;
 								$scope.subtotalAmount = data.CartDetail.subtotal;
                             }
@@ -740,18 +742,40 @@ define(['app'], function(app) {
                                     userService.trackorderdetails(data.OrderID).then(function(data){
                                         if(data.flag==1){
                                             try{  
-
+                                                
+                                                var myJsonString = JSON.stringify(data.newgtm.transactionProducts);
                                                 clevertap.event.push("Charged", {
                                                     "Device": "M-Site",
-                                                    "Order" :"Order Successful",
+                                                    //"Order" :"Order Successful",
                                                     "Amount": $scope.tempCartVal,
                                                     "Payment mode": paymentMethod,
                                                     "Charged ID": data.newgtm.transactionId, // important to avoid duplicate transactions due to network failure
-                                                    "Order ID" : data.newgtm.transactionId,
-                                                    "Coupon Code" : $scope.cartDetails.coupon_code,
+                                                    //"Order ID" : data.newgtm.transactionId,
+                                                    //"Coupon Code" : $scope.cartDetails.coupon_code,
                                                     "Subtotal" : parseFloat($scope.cartDetails.grand_total).toFixed(2),
-                                                    "Quantity" : $scope.cartDetails.items_count
+                                                    //"Quantity" : $scope.cartDetails.items_count,
+                                                    "Items": [
+                                                            {
+                                                                "Quantity": 8,
+                                                                "Category": "Books",
+                                                                "Book name": "The Millionaire next door",
+                                                                
+                                                            },
+                                                            {
+                                                                "Category": "Books",
+                                                                "Book name": "Achieving inner zen",
+                                                                "Quantity": 7
+                                                            },
+                                                            {
+                                                                "Category": "Books",
+                                                                "Book name": "Chuck it, let's do it",
+                                                                "Quantity": 5
+                                                            }
+                                                        ]
                                                    });
+                                                console.log(myJsonString);
+                                                console.log("--------item log-----");
+                                                console.log(clevertap.event);
                                                 clevertap.event.push("Place Order", {
                                                     "Device": "M-Site",
                                                     "Payment Method" :  paymentMethod,
@@ -763,11 +787,11 @@ define(['app'], function(app) {
                                                 var codshipgtm = "OrderId=" + data.newgtm.transactionId +"/userId="+ utility.getJStorageKey("userId");
                                                 dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Order Successful', 
                                                         eventAction: $scope.paymentMethod, eventLabel: codshipgtm}
-                                                    );console.log("Mobile Order Successful"+ data.OrderID + " subtotal " + $scope.cartDetails.grand_total); console.log(dataLayer);
+                                                    );console.log("Mobile Order Successful "+ data.OrderID + " subtotal " + $scope.cartDetails.grand_total); 
+                                                  console.log(data.productinfo);
                                             }catch(err){console.log("Error in GTM fire.");}
                                             console.log(data.newgtm);
-                                            dataLayer.push(data.newgtm);
-                                            console.log(dataLayer);
+                                            //console.log(dataLayer);
                                         }
                                     });
                                     }catch(err) { console.log(err); }
@@ -884,10 +908,10 @@ define(['app'], function(app) {
             };
 
             $scope.navigateToCart = function() {
-                try{
+                try{ 
                     clevertap.event.push("View Cart", {
                             "Device": "M-Site",
-                            "Subtotal": $scope.tempCartVal,
+                            "Subtotal": $scope.grandTotal,
                             "Quantity": $scope.cartItemCount,
                             "Coupon Code" : utility.getJStorageKey("couponCode"),
                         });

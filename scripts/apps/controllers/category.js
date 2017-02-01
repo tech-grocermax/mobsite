@@ -30,6 +30,7 @@ define(['app'], function(app) {
             $scope.cartItems = [];
 			$scope.trendlist = [];
             $scope.cartItemCount = 0;
+            $scope.grandTotal = 0;
             $scope.categoryName = "";
             $scope.bannerList = null;
             $scope.quoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
@@ -360,7 +361,8 @@ define(['app'], function(app) {
                     .then(function(data){ 
                         toggleLoader(false);             
                         $scope.cartDetails = data.CartDetail;                         
-                        $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);             
+                        $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);
+                        $scope.grandTotal = data.CartDetail.grand_total;             
                     });
             }; 
 
@@ -739,7 +741,7 @@ define(['app'], function(app) {
                      var subT = utility.getJStorageKey("tempCartVal");
                     clevertap.event.push("View Cart", {
                             "Device": "M-Site",
-                            "Subtotal": parseFloat(subT).toFixed(2),
+                            "Subtotal": parseFloat($scope.grandTotal).toFixed(2),
                             "Quantity": $scope.cartItemCount,
                             "Coupon Code" : utility.getJStorageKey("couponCode")
                         });

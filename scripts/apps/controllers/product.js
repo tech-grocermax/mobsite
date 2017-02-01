@@ -376,7 +376,7 @@ define(['app'], function(app) {
                 $scope.youSaved = savedAmont; 
                 utility.setJStorageKey("tempyouSaved", savedAmont, 1); 
                 $scope.totalCartQty = qty;
-                $scope.grandTotal = $scope.cartDetails.grand_total;
+                
             };
 
             var addShippingCharges = function() {
@@ -418,6 +418,7 @@ define(['app'], function(app) {
                                 $scope.couponCode = data.CartDetail.coupon_code;
                                 $scope.couponAmount = data.CartDetail.you_save;
                                 $scope.cartDetails.grand_total = data.CartDetail.grand_total;
+                                $scope.grandTotal = $scope.cartDetails.grand_total;
                                 $scope.couponModalShow = false;
                             }
                             getYouSaveAmout();
@@ -458,7 +459,7 @@ define(['app'], function(app) {
                     
                     clevertap.event.push("View Cart", {
                             "Device": "M-Site",
-                            "Subtotal": parseFloat(utility.getJStorageKey("tempCartVal")).toFixed(2),
+                            "Subtotal": parseFloat($scope.grandTotal).toFixed(2),
                             "Quantity": $scope.cartItemCount,
                             "Coupon Code" : utility.getJStorageKey("couponCode")
                         });

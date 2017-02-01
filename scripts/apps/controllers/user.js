@@ -111,6 +111,7 @@ define(['app'], function(app) {
             $scope.email = null;
             $scope.locationList = [];            
             $scope.cartItemCount = 0;
+            $scope.grandTotal = 0;
             $scope.quoteId = angular.isDefined(utility.getJStorageKey("quoteId")) && utility.getJStorageKey("quoteId") ? utility.getJStorageKey("quoteId") : null;
             $scope.cityList = null;
             $scope.cityLocation = {};
@@ -440,10 +441,7 @@ define(['app'], function(app) {
 				toggleLoader(true);
                 userService.fbregister(input).then(function(data){
                     toggleLoader(false);
-                    clevertap.event.push("Login Initiate", {
-                                "Device": "M-Site",
-                                //"Action": $scope.provider
-                            });
+                    
                     if(data.flag == 2){ // Get Customer Mobile
                         $scope.showUserResponse = false;
                         $scope.userResponseMessage = "";
@@ -471,6 +469,10 @@ define(['app'], function(app) {
                             });
                     }
                     else if(data.flag == 1){
+                        clevertap.event.push("Login Initiate", {
+                                "Device": "M-Site",
+                                //"Action": $scope.provider
+                            });
                         utility.deleteJStorageKey("otp");
                         utility.deleteJStorageKey("registrationDetails");
                         successCallbackUser(data, socialEmail);
@@ -1035,10 +1037,11 @@ define(['app'], function(app) {
 						if (data.QuoteId && data.flag == 1){
 							productService.getCartItemDetails(data.QuoteId, order)
 							.then(function(data){
-								$scope.cartDetails = data.CartDetail;								
+								$scope.cartDetails = data.CartDetail;
+                                $scope.grandTotal = data.CartDetail.grand_total;			
 								toggleLoader(false);
 								$scope.cartItemCount = data.TotalItem;
-								$scope.navigateToCart();
+                                $scope.navigateToCart();
 							});
 						}	
 					});				
@@ -1285,17 +1288,17 @@ define(['app'], function(app) {
             };
 
             $scope.navigateToCart = function() {
-                try{
+                try{ 
                     clevertap.event.push("View Cart", {
                                 "Device": "M-Site",
-                                "Subtotal": parseFloat(utility.getJStorageKey("tempCartVal")).toFixed(2),
+                                "Subtotal": parseFloat($scope.grandTotal).toFixed(2),
                                 "Quantity": $scope.cartItemCount,
                                 "Coupon Code" : utility.getJStorageKey("couponCode")
                             }); 
                     var QgtmCart ="UserId=" + utility.getJStorageKey("userId") + "/CartQty="+ $scope.cartItemCount;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile View Cart', 
                         eventAction: 'Cart Details', eventLabel: QgtmCart }
-                        ); console.log("Cart Open");
+                        ); console.log("Cart Open---");
                 }catch(err){console.log("Error in GTM fire.");}
 
                 if(angular.isDefined(utility.getJStorageKey("quoteId")) 
