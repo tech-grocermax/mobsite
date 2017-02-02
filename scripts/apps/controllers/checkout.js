@@ -244,13 +244,24 @@ define(['app'], function(app) {
                                 if(data.flag==1){
                                     try{   
 
+                                    // clevertap.event.push("Charged", {
+                                    //     "Order" :"order successful",
+                                    //     "Amount": $scope.tempCartVal,
+                                    //     "Payment mode": "paytm_cc",
+                                    //     "Charged ID": data.newgtm.transactionId, // important to avoid duplicate transactions due to network failure
+                                    //     "Order ID" : $scope.orderId
+                                    //    });
+                                    var myJsonString = data.newgtm.transactionItems;
                                     clevertap.event.push("Charged", {
-                                        "Order" :"order successful",
+                                        "Status" :"Order Successful",
                                         "Amount": $scope.tempCartVal,
+                                        "Subtotal" : parseFloat($scope.cartDetails.grand_total).toFixed(2),
                                         "Payment mode": "paytm_cc",
                                         "Charged ID": data.newgtm.transactionId, // important to avoid duplicate transactions due to network failure
-                                        "Order ID" : $scope.orderId
+                                        "Items": myJsonString
                                        });
+
+                                    console.log(myJsonString);
 
                                         var payregtm = "OrderId=" + data.newgtm.transactionId +"/userId="+ utility.getJStorageKey("userId");
                                         dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Order Successful', 
@@ -271,12 +282,11 @@ define(['app'], function(app) {
                             show: true
                         });
                          try{ 
-                            clevertap.event.push("Charged", {
+                            clevertap.event.push("Order Failure", {
                                         "Device": "M-Site",
-                                        "Order" :"order Failure",
                                         "Amount": $scope.tempCartVal,
                                         "Payment mode": "paytm_cc",
-                                        "Charged ID": data.newgtm.transactionId, // important to avoid duplicate transactions due to network failure
+                                        //"Charged ID": data.newgtm.transactionId, // important to avoid duplicate transactions due to network failure
                                         "Order ID" : $scope.orderId
                                        });    
                             var paytmfailgtm = "userId="+ utility.getJStorageKey("userId");
@@ -743,39 +753,18 @@ define(['app'], function(app) {
                                         if(data.flag==1){
                                             try{  
                                                 
-                                                var myJsonString = JSON.stringify(data.newgtm.transactionProducts);
+                                                var myJsonString = data.newgtm.transactionItems;
                                                 clevertap.event.push("Charged", {
-                                                    "Device": "M-Site",
-                                                    //"Order" :"Order Successful",
+                                                    "Status" :"Order Successful",
                                                     "Amount": $scope.tempCartVal,
+                                                    "Subtotal" : parseFloat($scope.cartDetails.grand_total).toFixed(2),
                                                     "Payment mode": paymentMethod,
                                                     "Charged ID": data.newgtm.transactionId, // important to avoid duplicate transactions due to network failure
-                                                    //"Order ID" : data.newgtm.transactionId,
-                                                    //"Coupon Code" : $scope.cartDetails.coupon_code,
-                                                    "Subtotal" : parseFloat($scope.cartDetails.grand_total).toFixed(2),
-                                                    //"Quantity" : $scope.cartDetails.items_count,
-                                                    "Items": [
-                                                            {
-                                                                "Quantity": 8,
-                                                                "Category": "Books",
-                                                                "Book name": "The Millionaire next door",
-                                                                
-                                                            },
-                                                            {
-                                                                "Category": "Books",
-                                                                "Book name": "Achieving inner zen",
-                                                                "Quantity": 7
-                                                            },
-                                                            {
-                                                                "Category": "Books",
-                                                                "Book name": "Chuck it, let's do it",
-                                                                "Quantity": 5
-                                                            }
-                                                        ]
+                                                    "Items": myJsonString
                                                    });
+
                                                 console.log(myJsonString);
-                                                console.log("--------item log-----");
-                                                console.log(clevertap.event);
+                                                
                                                 clevertap.event.push("Place Order", {
                                                     "Device": "M-Site",
                                                     "Payment Method" :  paymentMethod,
@@ -819,12 +808,12 @@ define(['app'], function(app) {
                                     show: true
                                 });
                                 try{
-                                    clevertap.event.push("Charged", {
+                                    clevertap.event.push("Order Failure", {
                                                     "Device": "M-Site",
-                                                    "Order" :"Order Failed",
+                                                    //"Order" :"Order Failed",
                                                     "Amount": $scope.tempCartVal,
                                                     "Payment mode": $scope.paymentMethod,
-                                                    "Charged ID": data.newgtm.transactionId, // important to avoid duplicate transactions due to network failure
+                                                    //"Charged ID": data.newgtm.transactionId, // important to avoid duplicate transactions due to network failure
                                                     "Order ID" : data.newgtm.transactionId,
                                                     "Coupon Code" : $scope.cartDetails.coupon_code,
                                                     "Subtotal" : parseFloat($scope.cartDetails.grand_total).toFixed(2),
