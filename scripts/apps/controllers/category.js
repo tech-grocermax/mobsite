@@ -363,7 +363,7 @@ define(['app'], function(app) {
                         $scope.cartDetails = data.CartDetail;                         
                         $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);
                         $scope.grandTotal = data.CartDetail.subtotal; 
-                                  
+                        console.log("test"+ $scope.grandTotal) ;           
                     });
             }; 
 

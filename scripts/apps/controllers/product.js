@@ -410,6 +410,7 @@ define(['app'], function(app) {
                             utility.setJStorageKey("tempCartSubVal", data.CartDetail.subtotal, 1);
                             utility.setJStorageKey("tempShipVal", data.CartDetail.shipping_address.shipping_amount, 1);                         
                             $scope.grandTotal = $scope.cartDetails.subtotal;
+                            console.log($scope.grandTotal+" subtotal product");
                             addShippingCharges();
                             $scope.couponValue = (data.CartDetail.subtotal - data.CartDetail.subtotal_with_discount);
                             utility.setJStorageKey("tempcouponValue", $scope.couponValue, 1); 
