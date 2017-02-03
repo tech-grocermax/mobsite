@@ -362,7 +362,8 @@ define(['app'], function(app) {
                         toggleLoader(false);             
                         $scope.cartDetails = data.CartDetail;                         
                         $scope.cartItemCount = productService.getCartItemCount($scope.cartDetails.items);
-                        $scope.grandTotal = data.CartDetail.grand_total;             
+                        $scope.grandTotal = data.CartDetail.subtotal; 
+                                  
                     });
             }; 
 

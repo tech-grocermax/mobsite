@@ -63,6 +63,7 @@ define(['app'], function(app) {
 			$scope.tempCartCounter = utility.getJStorageKey("tempCartCounter");
 			$scope.tempyouSaved = utility.getJStorageKey("tempyouSaved");
 			$scope.tempCartVal = utility.getJStorageKey("tempCartVal");
+            $scope.tempCartSubVal = utility.getJStorageKey("tempCartSubVal");
 			$scope.tempcouponValue = utility.getJStorageKey("tempcouponValue");
 			$scope.tempshippingValue = utility.getJStorageKey("tempShipVal");
             toggleLoader = function(flag) {
@@ -255,7 +256,7 @@ define(['app'], function(app) {
                                     clevertap.event.push("Charged", {
                                         "Status" :"Order Successful",
                                         "Amount": $scope.tempCartVal,
-                                        "Subtotal" : parseFloat($scope.cartDetails.grand_total).toFixed(2),
+                                        "Subtotal" : parseFloat($scope.cartDetails.subtotal).toFixed(2),
                                         "Payment mode": "paytm_cc",
                                         "Charged ID": data.newgtm.transactionId, // important to avoid duplicate transactions due to network failure
                                         "Items": myJsonString
@@ -323,7 +324,7 @@ define(['app'], function(app) {
                                 $scope.couponCode = data.CartDetail.coupon_code;
                                 $scope.couponAmount = data.CartDetail.you_save;
                                 $scope.cartDetails.grand_total = data.CartDetail.grand_total;
-                                $scope.grandTotal = data.CartDetail.grand_total;
+                                $scope.grandTotal = data.CartDetail.subtotal;
                                 $scope.couponModalShow = false;
 								$scope.subtotalAmount = data.CartDetail.subtotal;
                             }
@@ -482,13 +483,13 @@ define(['app'], function(app) {
                     clevertap.event.push("Shipping", {
                             "Device": "M-Site",
                             "Coupon Code" : utility.getJStorageKey("couponCode"), //$scope.cartDetails.coupon_code,
-                            "Subtotal" :  parseFloat($scope.tempCartVal).toFixed(2),
+                            "Subtotal" :  parseFloat($scope.tempCartSubVal).toFixed(2),
                             "Quantity" :  $scope.tempCartCounter                        
                         });
                     clevertap.event.push("Billing", {
                             "Device": "M-Site",
                             "Coupon Code" : utility.getJStorageKey("couponCode"),//$scope.cartDetails.coupon_code,
-                            "Subtotal" :  parseFloat($scope.tempCartVal).toFixed(2),
+                            "Subtotal" :  parseFloat($scope.tempCartSubVal).toFixed(2),
                             "Quantity" :  $scope.tempCartCounter                          
                         });  
                    var selectshipgtm = "UserId=" + utility.getJStorageKey("userId")+"/customerEmail="+ utility.getJStorageKey("email");
@@ -526,7 +527,7 @@ define(['app'], function(app) {
                     clevertap.event.push("Billing", {
                             "Device": "M-Site",
                             "Coupon Code" : $scope.cartDetails.coupon_code,
-                            "Subtotal" :  parseFloat($scope.tempCartVal).toFixed(2),
+                            "Subtotal" :  parseFloat($scope.tempCartSubVal).toFixed(2),
                             "Quantity" :  $scope.tempCartCounter                          
                         }); 
                     }catch(err){
@@ -757,7 +758,7 @@ define(['app'], function(app) {
                                                 clevertap.event.push("Charged", {
                                                     "Status" :"Order Successful",
                                                     "Amount": $scope.tempCartVal,
-                                                    "Subtotal" : parseFloat($scope.cartDetails.grand_total).toFixed(2),
+                                                    "Subtotal" : parseFloat($scope.cartDetails.subotal).toFixed(2),
                                                     "Payment mode": paymentMethod,
                                                     "Charged ID": data.newgtm.transactionId, // important to avoid duplicate transactions due to network failure
                                                     "Items": myJsonString
@@ -769,7 +770,7 @@ define(['app'], function(app) {
                                                     "Device": "M-Site",
                                                     "Payment Method" :  paymentMethod,
                                                     "Order id": data.newgtm.transactionId,
-                                                    "Subtotal" :  parseFloat($scope.cartDetails.grand_total).toFixed(2),
+                                                    "Subtotal" :  parseFloat($scope.cartDetails.subtotal).toFixed(2),
                                                     "Coupon Code" : $scope.cartDetails.coupon_code,
                                                     "Quantity" : $scope.cartDetails.items_count              
                                                 });
@@ -816,7 +817,7 @@ define(['app'], function(app) {
                                                     //"Charged ID": data.newgtm.transactionId, // important to avoid duplicate transactions due to network failure
                                                     "Order ID" : data.newgtm.transactionId,
                                                     "Coupon Code" : $scope.cartDetails.coupon_code,
-                                                    "Subtotal" : parseFloat($scope.cartDetails.grand_total).toFixed(2),
+                                                    "Subtotal" : parseFloat($scope.cartDetails.subtotal).toFixed(2),
                                                     "Quantity" : $scope.cartDetails.items_count
                                                    });
                                 }catch(err){console.log("Error in Charged fire.");}

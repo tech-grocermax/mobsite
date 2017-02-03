@@ -1044,7 +1044,7 @@ define(['app'], function(app) {
 							productService.getCartItemDetails(data.QuoteId, order)
 							.then(function(data){
 								$scope.cartDetails = data.CartDetail;
-                                $scope.grandTotal = data.CartDetail.grand_total;			
+                                $scope.grandTotal = data.CartDetail.subtotal;			
 								toggleLoader(false);
 								$scope.cartItemCount = data.TotalItem;
                                 $scope.navigateToCart();
