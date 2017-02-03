@@ -446,7 +446,22 @@ define(['app'], function(app) {
                                     
                                 }
                             });
-                        }                        
+                        } 
+
+
+                        try{
+                            clevertap.event.push("View Cart", {
+                                    "Device": "M-Site",
+                                    "Subtotal": parseFloat($scope.grandTotal).toFixed(2),
+                                    "Quantity": $scope.cartItemCount,
+                                    "Coupon Code" : utility.getJStorageKey("couponCode")
+                                });
+                                console.log("Cart Open product"+ $scope.grandTotal);
+                            }catch(err){
+                                console.log("Error in GTM fire." + err );
+                        }
+               
+                                       
                     });
             };  
 
@@ -458,25 +473,12 @@ define(['app'], function(app) {
             }
 
             $scope.navigateToCart = function() {
-                try{
-                    
-                    clevertap.event.push("View Cart", {
-                            "Device": "M-Site",
-                            "Subtotal": parseFloat($scope.grandTotal).toFixed(2),
-                            "Quantity": $scope.cartItemCount,
-                            "Coupon Code" : utility.getJStorageKey("couponCode")
-                        });
-                    var QgtmCart ="UserId=" + utility.getJStorageKey("userId") + "/CartQty="+ $scope.cartItemCount;
-                    dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile View Cart', 
-                        eventAction: 'Cart Details', eventLabel: QgtmCart }
-                        ); console.log("Cart Open product"+ $scope.grandTotal);
-                }catch(err){console.log("Error in GTM fire." + err );}
-               
                 if(angular.isDefined(utility.getJStorageKey("quoteId")) 
                     && utility.getJStorageKey("quoteId")
                     && $scope.cartItemCount) {
                     $location.url("cart" + "/" + utility.getJStorageKey("quoteId"));
                 }
+
             };
 
             updateCartItemCounter = function(count, resetCartCounter) {

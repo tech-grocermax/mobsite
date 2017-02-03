@@ -740,12 +740,12 @@ define(['app'], function(app) {
             $scope.navigateToCart = function() {
                 try{ 
                      var subT = utility.getJStorageKey("tempCartVal");
-                    clevertap.event.push("View Cart", {
-                            "Device": "M-Site",
-                            "Subtotal": parseFloat($scope.grandTotal).toFixed(2),
-                            "Quantity": $scope.cartItemCount,
-                            "Coupon Code" : utility.getJStorageKey("couponCode")
-                        });
+                    // clevertap.event.push("View Cart", {
+                    //         "Device": "M-Site",
+                    //         "Subtotal": parseFloat($scope.grandTotal).toFixed(2),
+                    //         "Quantity": $scope.cartItemCount,
+                    //         "Coupon Code" : utility.getJStorageKey("couponCode")
+                    //     });
                     console.log("clevertap view cart value " + utility.getJStorageKey("couponCode"));
                     var QgtmCart ="UserId=" + utility.getJStorageKey("userId") + "/CartQty="+ $scope.cartItemCount;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile View Cart', 

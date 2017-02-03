@@ -361,29 +361,31 @@ define(['app'], function(app) {
                         clevertap.event.push("Signup Initiated", {
                                 "Device": "M-Site"
                             });
-                    var userRegGtm = "Email="+ $scope.user.uemail;
+                        var userRegGtm = "Email="+ $scope.user.uemail;
                         dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Register Start', 
                             eventAction: 'Standard', eventLabel: userRegGtm}
                         );console.log("Mobile Register Start 12");
+                        //console.log("======== " + $scope.user.fname);
                     }catch(err){console.log("Error in GTM fire.");}
                     utility.setJStorageKey("registrationDetails", $scope.user, 1);
                     userService.createUser($scope.user)
                         .then(function(data){
                             toggleLoader(false);
                             try{  
+
                                  clevertap.profile.push({
-                                "Site": {
-                                    "Name": data.Firstname + " " + data.Lastname,                  // String
-                                    "Identity": data.UserID,                    // String or number
-                                    "Email": $scope.user.uemail,               // Email address of the user
-                                    "Phone":"+91" + data.Mobile,                 // Phone (with the country code)
-                                    
-                                    // optional fields. controls whether the user will be sent email, push etc.
-                                    "MSG-email": true,                      // Disable email notifications
-                                    "MSG-push": true,                        // Enable push notifications
-                                    "MSG-sms": true                         // Enable sms notifications
-                                }
-                            }); 
+                                    "Site": {
+                                        "Name": $scope.user.fname + " " + $scope.user.lname,                  // String
+                                        "Identity": data.UserID,                    // String or number
+                                        "Email": $scope.user.uemail,               // Email address of the user
+                                        "Phone":"+91" + $scope.user.number,                 // Phone (with the country code)
+                                        
+                                        // optional fields. controls whether the user will be sent email, push etc.
+                                        "MSG-email": true,                      // Disable email notifications
+                                        "MSG-push": true,                        // Enable push notifications
+                                        "MSG-sms": true                         // Enable sms notifications
+                                    }
+                                }); 
                            
                             console.log("clevertap profile push create"+ data.Firstname + " " + data.Lastname + " userid: "+ data.UserID +" email: "+ $scope.user.uemail + " mobile " + data.Mobile);
                               
@@ -397,13 +399,14 @@ define(['app'], function(app) {
                                 $scope.userResponseMessage = "";
                                 utility.setJStorageKey("otp", data.otp, 1);
                                 $scope.registrationStep = 2;
-                                 
+                                                                 
                             } else {
                                if(data.flag == 3){
                                       clevertap.event.push("Signup Complete", {
                                         "Device": "M-Site",
                                         "Action": "Standard"
                                     });
+                                      console.log("Standard Register Complete..");
                                }
                                 $scope.showUserResponse = true;
                                 $scope.userResponseMessage = data.Result;
@@ -1295,12 +1298,12 @@ define(['app'], function(app) {
 
             $scope.navigateToCart = function() {
                 try{ 
-                    clevertap.event.push("View Cart", {
-                                "Device": "M-Site",
-                                "Subtotal": parseFloat($scope.grandTotal).toFixed(2),
-                                "Quantity": $scope.cartItemCount,
-                                "Coupon Code" : utility.getJStorageKey("couponCode")
-                            }); 
+                    // clevertap.event.push("View Cart", {
+                    //             "Device": "M-Site",
+                    //             "Subtotal": parseFloat($scope.grandTotal).toFixed(2),
+                    //             "Quantity": $scope.cartItemCount,
+                    //             "Coupon Code" : utility.getJStorageKey("couponCode")
+                    //         }); 
                     var QgtmCart ="UserId=" + utility.getJStorageKey("userId") + "/CartQty="+ $scope.cartItemCount;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile View Cart', 
                         eventAction: 'Cart Details', eventLabel: QgtmCart }

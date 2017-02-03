@@ -758,7 +758,7 @@ define(['app'], function(app) {
                                                 clevertap.event.push("Charged", {
                                                     "Status" :"Order Successful",
                                                     "Amount": $scope.tempCartVal,
-                                                    "Subtotal" : parseFloat($scope.cartDetails.subotal).toFixed(2),
+                                                    "Subtotal" : parseFloat($scope.cartDetails.subtotal).toFixed(2),
                                                     "Payment mode": paymentMethod,
                                                     "Charged ID": data.newgtm.transactionId, // important to avoid duplicate transactions due to network failure
                                                     "Items": myJsonString
@@ -899,12 +899,12 @@ define(['app'], function(app) {
 
             $scope.navigateToCart = function() {
                 try{ 
-                    clevertap.event.push("View Cart", {
-                            "Device": "M-Site",
-                            "Subtotal": parseFloat($scope.grandTotal).toFixed(2),
-                            "Quantity": $scope.cartItemCount,
-                            "Coupon Code" : utility.getJStorageKey("couponCode"),
-                        });
+                    // clevertap.event.push("View Cart", {
+                    //         "Device": "M-Site",
+                    //         "Subtotal": parseFloat($scope.grandTotal).toFixed(2),
+                    //         "Quantity": $scope.cartItemCount,
+                    //         "Coupon Code" : utility.getJStorageKey("couponCode"),
+                    //     });
                     var QgtmCart ="UserId=" + utility.getJStorageKey("userId") + "/CartQty="+ $scope.cartItemCount;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile View Cart', 
                         eventAction: 'Cart Details', eventLabel: QgtmCart }
