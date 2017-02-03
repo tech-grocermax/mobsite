@@ -358,10 +358,13 @@ define(['app'], function(app) {
                 if (form.$valid) {
                     toggleLoader(true);
                     try{ 
+                        clevertap.event.push("Signup Initiated", {
+                                "Device": "M-Site"
+                            });
                     var userRegGtm = "Email="+ $scope.user.uemail;
                         dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Register Start', 
                             eventAction: 'Standard', eventLabel: userRegGtm}
-                        );console.log("Mobile Register Start");
+                        );console.log("Mobile Register Start 12");
                     }catch(err){console.log("Error in GTM fire.");}
                     utility.setJStorageKey("registrationDetails", $scope.user, 1);
                     userService.createUser($scope.user)
@@ -381,10 +384,7 @@ define(['app'], function(app) {
                                     "MSG-sms": true                         // Enable sms notifications
                                 }
                             }); 
-                            clevertap.event.push("Signup Complete", {
-                                "Device": "M-Site",
-                                "Action": "Standard"
-                            });
+                           
                             console.log("clevertap profile push create"+ data.Firstname + " " + data.Lastname + " userid: "+ data.UserID +" email: "+ $scope.user.uemail + " mobile " + data.Mobile);
                               
                                 var logintgtm = "Email="+ $scope.user.uemail;
@@ -397,7 +397,14 @@ define(['app'], function(app) {
                                 $scope.userResponseMessage = "";
                                 utility.setJStorageKey("otp", data.otp, 1);
                                 $scope.registrationStep = 2;
+                                 
                             } else {
+                               if(data.flag == 3){
+                                      clevertap.event.push("Signup Complete", {
+                                        "Device": "M-Site",
+                                        "Action": "Standard"
+                                    });
+                               }
                                 $scope.showUserResponse = true;
                                 $scope.userResponseMessage = data.Result;
                                 updateClassName("danger");
@@ -449,13 +456,12 @@ define(['app'], function(app) {
                         try{
 
                             clevertap.event.push("Signup Initiated", {
-                                "Device": "M-Site",
-                                //"Action": $scope.provider
+                                "Device": "M-Site"
                             });
                         var regilsogintgtm = '';
                         dataLayer.push('send', { hitType: 'event',  eventCategory: 'Mobile Register Start', 
                             eventAction: $scope.provider, eventLabel: regilsogintgtm}
-                        );console.log("Mobile Register Start");
+                        );console.log("Mobile Register Start 11");
                     }catch(err){console.log("Error in GTM fire.");}
                     }
                     else if(data.flag == 3){ // Verify customer Mobile
