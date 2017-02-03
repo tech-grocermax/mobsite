@@ -91,6 +91,7 @@ define(['app'], function(app) {
                     angular.forEach($scope.searchCategoryList, function(value, key) {
                         var products = [];
                         angular.forEach(data.Product, function(innerValue, innerKey) {
+                            //if(value.category_id == innerValue.categoryid[0]) {
                             if(value.category_id == innerValue.categoryid[0]) {
                                 innerValue["quantity"] = 1;
                                 products.push(innerValue);
@@ -631,13 +632,13 @@ define(['app'], function(app) {
             $scope.routerChange = function(route, id , name) {
                 try{
 
-                    clevertap.event.push("Product Detail View", {
-                            "Device": "M-Site",
-                            "Product Name" : name,
-                            "L1 Category Name" : "",
-                            "L2 Category Name" : "",
-                            "L3 Category Name" : categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.categoryId)
-                        });
+                    // clevertap.event.push("Product Detail View", {
+                    //         "Device": "M-Site",
+                    //         "Product Name" : name,
+                    //         "L1 Category Name" : "",
+                    //         "L2 Category Name" : "",
+                    //         "L3 Category Name" : categoryService.getCategoryNameInDepth(utility.getJStorageKey("categories"), $scope.categoryId)
+                    //     });
                     console.log("clevertap product detail" + $scope.categoryId + " | " + $scope.root_parent_name + " | " + $scope.cat_name);
                     var pddetailGtm = "UserId=" + utility.getJStorageKey("userId") + "/ProductName=" + name;
                     dataLayer.push('send', { hitType: 'event', eventCategory: 'Mobile Category Interaction', 
