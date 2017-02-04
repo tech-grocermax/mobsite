@@ -1081,7 +1081,7 @@ define(['app'], function(app) {
                             utility.setJStorageKey("tempcouponValue", $scope.couponValue, 1); 
                             $scope.couponModalShow = false;
                             try{  
-                                var gdTotal = $scope.cartDetails.grand_total;
+                                var gdTotal = $scope.cartDetails.subtotal;
                                 clevertap.event.push("Coupon", {
                                     "Device": "M-Site",
                                     //"Page": "Cart Page",
@@ -1142,7 +1142,7 @@ define(['app'], function(app) {
                                     //"Page": "Cart Page",
                                     //"Page Name": "Cart Page",
                                     "Coupon Code" : couponCode,
-                                    "Subtotal" : parseFloat($scope.cartDetails.grand_total).toFixed(2),
+                                    "Subtotal" : parseFloat($scope.cartDetails.subtotal).toFixed(2),
                                     "Quantity" : $scope.cartItemCount,
                                     "Removed" : "Removed"
                                 });
