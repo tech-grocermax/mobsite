@@ -228,6 +228,7 @@ define(['app'], function(app) {
 				utility.deleteJStorageKey("tempyouSaved"); 
 				utility.deleteJStorageKey("tempShipVal"); 
                 utility.deleteJStorageKey("couponCode");
+                utility.deleteJStorageKey("tempCartSubVal");                
                 $scope.quoteId = null;
                 $scope.cartItemCount = 0;
             };
