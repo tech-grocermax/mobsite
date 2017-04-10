@@ -42,12 +42,14 @@
 			<div class="col-sm-4 col-xs-4"
 				data-ng-show="category.is_active == '1' && subCategoryList.length" 
 				data-ng-repeat="category in subCategoryList | filter:searchText">
+				<a href="/product/{{category.category_id}}">
 					<img src="{{categoryImageUrl}}{{category.category_id}}.png" 
 						title="{{category.name}}" class="img-responsive"
 						analytics-on analytics-event="{{ selectedCity }}"
 						analytics-category="L2" 
 						analytics-label="{{ category.name }}"
-						data-ng-click="handleOfferCategoryClick(category)">
+						>
+				</a>
 					<span class="text-ellipsis">{{category.name}}</span>
 			</div>
 			<div class="col-sm-4 col-xs-4"
