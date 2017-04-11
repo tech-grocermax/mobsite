@@ -16,14 +16,17 @@ fs.chmod(versionFile, '0777');
 
 module.exports = function(grunt) {
     var cdn = grunt.option('cdnUrl');
+    if(! (cdn && cdn.length) )  {
+        cdn = "";
+    }
     var baseUrl = grunt.option('baseUrl');
     var txtVersion = "v" + version;
 
     stringReplaceFiles = {};
-    stringReplaceFiles['build/'+ txtVersion +'/index.html'] = 'build/'+ txtVersion +'/index.html';
+    stringReplaceFiles['build/' + txtVersion + '/index.html'] = 'build/' + txtVersion +'/index.html';
     var templateReplaceFiles = {};
     templateReplaceFiles['build/'+ txtVersion +'/templates/'] = 'build/'+ txtVersion +'/templates/**';
-    console.log(templateReplaceFiles);
+    console.log(templateReplaceFiles)
 
     console.log(baseUrl);
 
@@ -41,10 +44,10 @@ module.exports = function(grunt) {
                         {
                             pattern: '<!-- base-url -->',
                             replacement: (function(){
-                                if(cdn && cdn.length) {
+                                //if(cdn && cdn.length) {
                                     return '<base href="' + cdn + '/' + txtVersion+ '/"><script type="text/javascript">window.definedCDN = "'+ cdn +'";window.appVersion="'+ txtVersion +'";</script>';
-                                }
-                                return '';
+                                //}
+                                //return '';
                             })()
                         },
                         {
