@@ -67,6 +67,14 @@ module.exports = function(grunt) {
                             pattern: /href=\'\#/g,
                             replacement: 'href=\'' + baseUrl + '/#'
                         },
+                        {
+                            pattern: /href=\"\/\#/g,
+                            replacement: 'href="' + baseUrl + '/#'
+                        },
+                        {
+                            pattern: /href=\'\/\#/g,
+                            replacement: 'href=\'' + baseUrl + '/#'
+                        },
                     ]
                 }
             }
