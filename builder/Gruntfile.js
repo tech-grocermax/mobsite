@@ -95,6 +95,15 @@ module.exports = function(grunt) {
         },
         uglify: {
             min: uglifyFileOption
+        },
+        cssmin:{
+            minify: {
+                expand: true,
+                cwd: './build/' + txtVersion + '/styles/',
+                src: ['*.css', '!*.min.css', '!*.css.map'],
+                dest: './build/' + txtVersion + '/styles/',
+                ext: '.css'
+            }
         }
     });
     // Production Build Tools
@@ -102,12 +111,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
 
 
     grunt.task.registerTask('delayed-uglify', 'Delaying Uglify', function() {
         var done = this.async();
         uglifyFileOption["files"] = grunt.file.expandMapping([
-            './build/'+ txtVersion +'/**/*.js'
+            './build/'+ txtVersion +'/**/*.js',
         ],
         '', {
             rename: function(destBase, destPath) {
@@ -120,5 +130,5 @@ module.exports = function(grunt) {
         },1000);
     });
     // Project configuration.
-    grunt.registerTask('default', ['copy', 'string-replace', 'delayed-uglify', 'uglify']);
+    grunt.registerTask('default', ['copy', 'string-replace', 'delayed-uglify', 'uglify', 'cssmin']);
 };
