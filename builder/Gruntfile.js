@@ -130,5 +130,5 @@ module.exports = function(grunt) {
         },1000);
     });
     // Project configuration.
-    grunt.registerTask('default', ['copy', 'string-replace', 'delayed-uglify', 'uglify', 'cssmin']);
+    grunt.registerTask('default', ['copy', 'string-replace', 'delayed-uglify', 'cssmin', 'uglify']);
 };
